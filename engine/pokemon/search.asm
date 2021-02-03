@@ -55,6 +55,16 @@ CheckOwnMonAnywhere:
 	and a
 	ret z
 
+	ld hl, wBreedMon1Species
+	ld bc, wBreedMon1OT
+	call CheckOwnMon
+	ret c ; found!
+
+	ld hl, wBreedMon2Species
+	ld bc, wBreedMon2OT
+	call CheckOwnMon
+	ret c ; found!
+
 	ld d, a
 	ld e, 0
 	ld hl, wPartyMon1Species
@@ -211,12 +221,10 @@ CheckOwnMon:
 	jr nz, .notfound ; ID doesn't match
 
 ; check OT
-; This only checks five characters, which is fine for the Japanese version,
-; but in the English version the player name is 7 characters, so this is wrong.
 
 	ld hl, wPlayerName
 
-rept NAME_LENGTH_JAPANESE - 2 ; should be PLAYER_NAME_LENGTH - 2
+rept PLAYER_NAME_LENGTH - 2
 	ld a, [de]
 	cp [hl]
 	jr nz, .notfound
