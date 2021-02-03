@@ -2726,9 +2726,9 @@ wObject10Struct:: object_struct wObject10
 wObject11Struct:: object_struct wObject11
 wObject12Struct:: object_struct wObject12
 
-wCmdQueue:: ds CMDQUEUE_CAPACITY * CMDQUEUE_ENTRY_SIZE
+wStoneTableAddress:: dw
 
-	ds 40
+	ds 62
 
 wMapObjects::
 wPlayerObject:: map_object wPlayer
