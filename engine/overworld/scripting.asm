@@ -2118,7 +2118,7 @@ Script_dontrestartmapmusic:
 
 Script_usestonetable:
 	call GetScriptByte
-	ld [wStoneTableAdress], a
+	ld [wStoneTableAddress], a
 	call GetScriptByte
 	ld [wStoneTableAddress+1], a
 	ret

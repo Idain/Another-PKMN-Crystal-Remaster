@@ -143,7 +143,7 @@ LoadBattleAnimGFX:
 	jr z, .done
 	cp -1 ; did we reach the end of the list?
 	jr z, .done
-+rept PAL_COLOR_SIZE * 2
+rept PAL_COLOR_SIZE * 2
 	inc hl ; skip over the two RGB colors to the next entry
 endr
 	jr .loop
@@ -153,7 +153,7 @@ endr
 	ld [rSVBK], a
 	; load the RGB colors into the middle two colors of PAL_BATTLE_OB_RED
 	ld de, wOBPals2 palette PAL_BATTLE_OB_RED color 1
-+rept PAL_COLOR_SIZE * 2 - 1
+rept PAL_COLOR_SIZE * 2 - 1
 	ld a, [hli]
 	ld [de], a
 	inc de
