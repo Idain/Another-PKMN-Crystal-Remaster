@@ -18,7 +18,7 @@ Nuevas características de "Project New Crystal":
 - Pokémon envenenados ahora sobrevivirán con 1HP en el overworld (comportamiento tomado de la 4ta gen).
 - Cada Poké Ball en el juego posee colores únicos y ligeramente más detallados.
 - ¡Nuevos íconos de clima en la interfaz de combate! Habrá un pequeño indicador mostrando el clima presente en ese momento.
-
+- Cuando recibes una TM/HM, el cuadro de texto muestra el nombre de esta.
 - "Further improvements to overall system stability and other minor adjustments have been made to enhance the user experience."
 - 
 -
