@@ -8,7 +8,9 @@ Nuevas características de "Project New Crystal":
 	Ej.: Los movimientos tipo Fantasma siempre eran de categoría físico, como Shadow Ball. Ahora Shadow Ball es especial, sin importar su tipo elemental.
 - Objetos animados en el Overwold seguirán moviéndose auque hayan un cuadro de texto abierto (estaba en Gold/Silver, pero fue removido en Crystal).
 - Los nombres de los Pokémon pasaron de estar en MAYÚSCULA a solo Capital.
+- La Pokédex ahora muestra las versiones variocolor de un Pokémon. Presiona el botón SELECT para alternar entre Normal/Variocolor.
 - Los entrenadores con Pokémon que sepan el movimiento "Return" tendrán la amistad al máximo, asegurando que siempre tenga la máxima potencia.
+- El sistema de revancha ha sido mejorado: Ahora el equipo de los entrenadores que rebatallemos solo variará dependiendo de tu progresión, en vez de también depender de cuántas veces los hemos enfrentado.
 - Sprites de batalla japoneses de los entrenadores BEAUTY, FISHER, MEDIUM SAGE y SWIMMER (FEMALE) han sido restaurados (¡no a la censura!).
 - Ahora el nombre por default de tu personaje es GOLD (hombre)/CRYSTAL (mujer), en vez de CHRIS/KRIS, haciendo referencia a sus contrapartes en el manga "Pokémon Adventures".
 - Ligera mejora a la IA: Aparte de la precisión inicial de los movimientos de status, la IA tenía aprox. un 25% adicional de fallar. Este detalle fue removido (¿Por qué esto fue implementado en primer lugar...?)

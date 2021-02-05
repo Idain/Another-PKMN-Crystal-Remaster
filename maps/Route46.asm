@@ -54,17 +54,13 @@ TrainerPicnickerErin1:
 .WantsBattle:
 	scall Route46RematchF
 	winlosstext PicnickerErin1BeatenText, 0
-	readmem wErinFightCount
-	ifequal 2, .Fight2
-	ifequal 1, .Fight1
-	ifequal 0, .LoadFight0
-.Fight2:
+
 	checkevent EVENT_RESTORED_POWER_TO_KANTO
 	iftrue .LoadFight2
-.Fight1:
+
 	checkevent EVENT_BEAT_ELITE_FOUR
 	iftrue .LoadFight1
-.LoadFight0:
+
 	loadtrainer PICNICKER, ERIN1
 	startbattle
 	reloadmapafterbattle
