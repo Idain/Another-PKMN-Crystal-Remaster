@@ -19,6 +19,7 @@ Nuevas características de "Project New Crystal":
 - Cada Poké Ball en el juego posee colores únicos y ligeramente más detallados.
 - ¡Nuevos íconos de clima en la interfaz de combate! Habrá un pequeño indicador mostrando el clima presente en ese momento.
 - Cuando recibes una TM/HM, el cuadro de texto muestra el nombre de esta.
+- Si se acaba el efecto de un repelente, el juego nos preguntará si deseamos usar otro.
 - "Further improvements to overall system stability and other minor adjustments have been made to enhance the user experience."
 - 
 -
