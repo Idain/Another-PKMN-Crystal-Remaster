@@ -4,7 +4,8 @@ Nuevas características de "Project New Crystal":
 	--Saves corrupted by mid-save shutoff are not handled (Internal engine routines glitch)
 	--Playing Entei's Pokédex cry can distort Raikou's and Suicune's (Audio glitch)
 - ¡El evento de la GS Ball ha sido rehabilitado! Ahora se activa de forma similar a la versión Virtual Console de 3DS (cuando derrotamos a la Elite Four por primera vez). 
-
+- Ahora los movimientos se subdividen en Físico/Especial/Status dependiendo del movimiento en sí, en vez de su tipo elemental. 
+	Ej.: Los movimientos tipo Fantasma siempre eran de categoría físico, como Shadow Ball. Ahora Shadow Ball es especial, sin importar su tipo elemental.
 - Objetos animados en el Overwold seguirán moviéndose auque hayan un cuadro de texto abierto (estaba en Gold/Silver, pero fue removido en Crystal).
 - Los nombres de los Pokémon pasaron de estar en MAYÚSCULA a solo Capital.
 - Los entrenadores con Pokémon que sepan el movimiento "Return" tendrán la amistad al máximo, asegurando que siempre tenga la máxima potencia.
