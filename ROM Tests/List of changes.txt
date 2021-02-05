@@ -1,0 +1,40 @@
+Nuevas características de "Project New Crystal":
+
+- Mayoría de glitches resueltos (tanto Singleplayer como Multiplayer), exceptuando:
+	--Saves corrupted by mid-save shutoff are not handled (Internal engine routines glitch)
+	--Playing Entei's Pokédex cry can distort Raikou's and Suicune's (Audio glitch)
+- ¡El evento de la GS Ball ha sido rehabilitado! Ahora se activa de forma similar a la versión Virtual Console de 3DS (cuando derrotamos a la Elite Four por primera vez). 
+
+- Objetos animados en el Overwold seguirán moviéndose auque hayan un cuadro de texto abierto (estaba en Gold/Silver, pero fue removido en Crystal).
+- Los nombres de los Pokémon pasaron de estar en MAYÚSCULA a solo Capital.
+- Los entrenadores con Pokémon que sepan el movimiento "Return" tendrán la amistad al máximo, asegurando que siempre tenga la máxima potencia.
+- Sprites de batalla japoneses de los entrenadores BEAUTY, FISHER, MEDIUM SAGE y SWIMMER (FEMALE) han sido restaurados (¡no a la censura!).
+- Ahora el nombre por default de tu personaje es GOLD (hombre)/CRYSTAL (mujer), en vez de CHRIS/KRIS, haciendo referencia a sus contrapartes en el manga "Pokémon Adventures".
+- Ligera mejora a la IA: Aparte de la precisión inicial de los movimientos de status, la IA tenía aprox. un 25% adicional de fallar. Este detalle fue removido (¿Por qué esto fue implementado en primer lugar...?)
+- Tarjeta de entrenador:
+	-- Las medallas tienen diseños mejorados, ¡y ahora vienen a color!
+	-- Los líderes de gimnasio tenían sus cabezas cortadas en la parte superior, así que ahora restauramos sus sprites (ahora ya pueden cubrir sus cerebros de la intemperie).
+- Cuando un Pokémon llegue al Nv. 100 ya no ganará experiencia y en cambio será repartida entre los participantes del combate (antes el Pokémon Nv. 100 tomaba parte de esta).
+- Pokémon envenenados ahora sobrevivirán con 1HP en el overworld (comportamiento tomado de la 4ta gen).
+- Cada Poké Ball en el juego posee colores únicos y ligeramente más detallados.
+- ¡Nuevos íconos de clima en la interfaz de combate! Habrá un pequeño indicador mostrando el clima presente en ese momento.
+
+- "Further improvements to overall system stability and other minor adjustments have been made to enhance the user experience."
+- 
+-
+-
+-
+-
+
+
+
+
+
+
+
+
+
+
+
+
+
