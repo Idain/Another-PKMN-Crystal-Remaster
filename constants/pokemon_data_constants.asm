@@ -63,8 +63,6 @@ GENDER_UNKNOWN EQU -1
 	const EGG_DRAGON        ; e
 	const EGG_NONE          ; f (Undiscovered)
 
-; pokedex entries (see data/pokemon/dex_entries.asm)
-NUM_DEX_ENTRY_BANKS EQU 4
 
 ; party_struct members (see macros/wram.asm)
 MON_SPECIES            EQUS "(wPartyMon1Species - wPartyMon1)"
