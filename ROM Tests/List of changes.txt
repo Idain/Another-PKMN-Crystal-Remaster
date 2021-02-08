@@ -1,4 +1,4 @@
-Nuevas características de "Project New Crystal":
+Nuevas características de "Project New Crystal (NOMBRE SUJETO A CAMBIOS)":
 
 - Mayoría de glitches resueltos (tanto Singleplayer como Multiplayer), exceptuando:
 	--Saves corrupted by mid-save shutoff are not handled (Internal engine routines glitch)
@@ -25,7 +25,19 @@ Nuevas características de "Project New Crystal":
 - Si se acaba el efecto de un repelente, el juego nos preguntará si deseamos usar otro.
 - "Further improvements to overall system stability and other minor adjustments have been made to enhance the user experience."
 - 
--
+- Un nuevo tiempo ha sido añadido: EVENING. Con este añadido, el sistema de tiempo ha sido modificado ligeramente:
+	-- MORNING: 	6:00a.m. - 9:59a.m.
+	-- DAY: 	10:00a.m. - 5:59p.m.
+	-- EVENING: 	6:00p.m. - 7:59p.m.
+	-- NIGHT: 	8:00p.m. - 5:59a.m.
+	
+	** El color de los mapas en EVENING es de un tono anaranjado, simbolizando la puesta del sol.
+	** Los Pokémon que solo solían aparecer en NIGHT ahora aparecen en EVENING también. También se reutiliza la música de batalla de NIGHT.
+	** Eevee evoluciona en Umbreon en EVENING.
+	** Los diálogos de los NPC que variaban depediendo del tiempo han sido modificados para ajustarse al nuevo cambio.
+	
+
+
 -
 -
 -

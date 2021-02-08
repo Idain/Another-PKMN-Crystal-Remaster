@@ -129,16 +129,17 @@ EvolveAfterBattle_MasterLoop:
 	cp TR_MORNDAY
 	jr z, .happiness_daylight
 
-; TR_NITE
+; TR_EVENITE
 	ld a, [wTimeOfDay]
 	cp NITE_F
-	jp nz, .dont_evolve_3
+	jp c, .dont_evolve_3 ; MORN_F or DAY_F < NITE_F
 	jr .proceed
 
 .happiness_daylight
 	ld a, [wTimeOfDay]
 	cp NITE_F
-	jp z, .dont_evolve_3
+
+	jp nc, .dont_evolve_3 ; NITE_F or EVE_F >= NITE_F
 	jr .proceed
 
 .trade
