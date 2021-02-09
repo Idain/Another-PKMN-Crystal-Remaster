@@ -1,6 +1,6 @@
 	db VILEPLUME ; 045
 
-	db  75,  80,  85,  50, 100,  90
+	db  75,  80,  85,  50, 110,  90
 	evs  0,   0,   0,   0,   0,   0
 	;   hp  atk  def  spd  sat  sdf
 
