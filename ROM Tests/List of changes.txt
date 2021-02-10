@@ -37,8 +37,11 @@ Nuevas características de "Project New Crystal (NOMBRE SUJETO A CAMBIOS)":
 	** Los diálogos de los NPC que variaban depediendo del tiempo han sido modificados para ajustarse al nuevo cambio.
 	
 
-
--
+- El antiguo sistema de Stat Experience ha sido actualizado por los EVs (Effort Values) usados en generaciones posteriores. NOTA: El límite total de 510 EVs entre todos los stas no está implementado.
+- Nuevo objeto: ZINC. Aumenta los EVs de DEFENSA ESPECIAL en 10 puntos. Estos son los métodos de obtención:
+	-- Goldenrod Department Store (4F)
+	-- Celadon Department Store (5F)
+	-- Goldenrod Radio Tower (canjeando 5 puntos azules)
 -
 -
 

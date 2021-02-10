@@ -142,7 +142,7 @@
 	const PASS         ; 86
 	const ITEM_87      ; 87
 	const ITEM_88      ; 88
-	const ITEM_89      ; 89
+	const ZINC         ; 89
 	const CHARCOAL     ; 8a
 	const BERRY_JUICE  ; 8b
 	const SCOPE_LENS   ; 8c
@@ -196,6 +196,8 @@
 	const MUSIC_MAIL   ; bc
 	const MIRAGE_MAIL  ; bd
 	const ITEM_BE      ; be
+	const ITEM_C3      ; c3
+	const ITEM_DC      ; dc
 
 __tmhm_value__ = 1
 
@@ -221,8 +223,6 @@ __tmhm_value__ = __tmhm_value__ + 1
 ENDM
 
 ; see data/moves/tmhm_moves.asm for moves
-	const ITEM_C3       ; c3
-	const ITEM_DC       ; dc
 	add_tm DYNAMICPUNCH ; bf
 	add_tm HEADBUTT     ; c0
 	add_tm CURSE        ; c1
@@ -331,7 +331,6 @@ NUM_TUTORS = __tmhm_value__ - NUM_TMS - NUM_HMS - 1
 
 NUM_TM_HM_TUTOR EQU __tmhm_value__ - 1
 
-	const ITEM_FA       ; fa
 
 USE_SCRIPT_VAR EQU $00
 ITEM_FROM_MEM  EQU $ff
