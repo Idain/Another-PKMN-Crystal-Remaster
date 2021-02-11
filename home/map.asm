@@ -2202,8 +2202,8 @@ GetMapMusic::
 	ld a, c
 	cp MUSIC_MAHOGANY_MART
 	jr z, .mahoganymart
-	cp MUSIC_RADIO_TOWER
-	jr z, .radiotower	
+	bit RADIO_TOWER_MUSIC_F, c
+	jr nz, .radiotower
 	farcall Function8b342
 	ld e, c
 	ld d, 0
@@ -2220,7 +2220,11 @@ GetMapMusic::
 	jr .done
 
 .clearedradiotower
-	ld de, MUSIC_GOLDENROD_CITY
+	; the rest of the byte
+	ld a, c
+	and RADIO_TOWER_MUSIC - 1
+	ld e, a
+	ld d, 0
 	jr .done
 
 .mahoganymart
