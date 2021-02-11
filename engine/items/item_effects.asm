@@ -1215,7 +1215,7 @@ StatStrings:
 .sp_atk  db "SPCL.ATK@"
 .sp_def  db "SPCL.DEF@"
 
-GetStatExpRelativePointer:
+GetEVRelativePointer:
 	ld a, [wCurItem]
 	ld hl, StatExpItemPointerOffsets
 .next

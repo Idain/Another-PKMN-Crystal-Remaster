@@ -238,7 +238,7 @@ endr
 .loop2
 	call Random
 	maskbits NUM_DAYTIMES
-	cp eve_F
+	cp EVE_F
 	jr z, .loop2
 
 	ld bc, 2 * NUM_GRASSMON
