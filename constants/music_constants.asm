@@ -110,8 +110,8 @@
 
 
 ; GetMapMusic picks music for these values (see home/map.asm)
-+MUSIC_MAHOGANY_MART EQU $fc
-+MUSIC_RADIO_TOWER   EQU $fd
+MUSIC_MAHOGANY_MART EQU $fc
+MUSIC_RADIO_TOWER   EQU $fd
 
 ; ExitPokegearRadio_HandleMusic uses these values
 RESTART_MAP_MUSIC EQU $fe
