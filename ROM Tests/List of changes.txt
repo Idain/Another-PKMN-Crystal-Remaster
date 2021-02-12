@@ -45,7 +45,7 @@ Nuevas características de "Project New Crystal (NOMBRE SUJETO A CAMBIOS)":
 -
 - ¡Todos los Pokémon poseen íconos únicos en el menú de equipo! 
 - Los Pokémon que eclosionen de nuevos ahora lo harán al Nv. 1 en vez de Nv. 5, como sucede a partir de la 4ta gen.
-
+- Sprites del Overworld se verán más oscuros de noche.
 
 
 
