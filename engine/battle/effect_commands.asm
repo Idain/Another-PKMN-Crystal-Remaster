@@ -2616,11 +2616,16 @@ PlayerAttackDamage:
 	call CheckDamageStatsCritical
 	jr c, .thickclub
 
+	ld hl, wBattleMonAttack
+	call CheckDamageStatsCritical
+	jr c, .lightball
+
 	ld hl, wEnemyDefense
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
 	ld hl, wPlayerAttack
+	call .lightball
 	jr .thickclub
 
 .special
@@ -2865,11 +2870,16 @@ EnemyAttackDamage:
 	call CheckDamageStatsCritical
 	jr c, .thickclub
 
+	ld hl, wEnemyMonAttack
+	call CheckDamageStatsCritical
+	jr c, .lightball
+
 	ld hl, wPlayerDefense
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
 	ld hl, wEnemyAttack
+	call .lightball
 	jr .thickclub
 
 .special

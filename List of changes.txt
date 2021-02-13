@@ -48,6 +48,9 @@ Nuevas características de "Project New Crystal (NOMBRE SUJETO A CAMBIOS)":
 - Los Pokémon que eclosionen de nuevos ahora lo harán al Nv. 1 en vez de Nv. 5, como sucede a partir de la 4ta gen.
 - Sprites del Overworld se verán más oscuros de noche.
 
+- ¡Ahora puedes correr! Mantén presionado el botón B para ello. Está disponible desde el principio del juego.
+- El objeto "Light Ball" ahora boostea el ATK y SP.ATK de Pikachu, en vez de solo el SP. ATK, como funciona en otras generaciones
+
 
 
 

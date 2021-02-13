@@ -1,5 +1,5 @@
 ; code from Polished/Rangi's tutorial, palettes by Major Agnostic
-iconpal: MACRO
+icon_pals: MACRO
 	dn PAL_ICON_\1, PAL_ICON_\2
 ENDM
 
