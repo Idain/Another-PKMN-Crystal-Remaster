@@ -43,7 +43,8 @@ Nuevas características de "Project New Crystal (NOMBRE SUJETO A CAMBIOS)":
 	-- Celadon Department Store (5F)
 	-- Goldenrod Radio Tower (canjeando 5 puntos azules)
 -
-- ¡Todos los Pokémon poseen íconos únicos en el menú de equipo! 
+- ¡Todos los Pokémon poseen mini-sprites únicos en el menú de equipo! También vienen a color, y varía dependiendo de si el Pokémon es Shiny o no.
+	--Si un huevo es Shiny, su sprite será de color verde en vez de rojo.
 - Los Pokémon que eclosionen de nuevos ahora lo harán al Nv. 1 en vez de Nv. 5, como sucede a partir de la 4ta gen.
 - Sprites del Overworld se verán más oscuros de noche.
 
