@@ -1,55 +1,78 @@
-Nuevas características de "Project New Crystal (NOMBRE SUJETO A CAMBIOS)":
+Nuevas características de "ANOTHER POKÉMON CRYSTAL GAME" (NOMBRE SUJETO A CAMBIOS):
 
+CAMBIOS MAYORES:
 - Mayoría de glitches resueltos (tanto Singleplayer como Multiplayer), exceptuando:
 	--Saves corrupted by mid-save shutoff are not handled (Internal engine routines glitch)
 	--Playing Entei's Pokédex cry can distort Raikou's and Suicune's (Audio glitch)
-- ¡El evento de la GS Ball ha sido rehabilitado! Ahora se activa de forma similar a la versión Virtual Console de 3DS (cuando derrotamos a la Elite Four por primera vez). 
+
+- ¡El evento de la GS Ball ha sido rehabilitado! Ahora se accede de forma similar a la versión Virtual Console de 3DS (cuando derrotamos a la Elite Four por primera vez). 
+
 - Ahora los movimientos se subdividen en Físico/Especial/Status dependiendo del movimiento en sí, en vez de su tipo elemental. 
-	Ej.: Los movimientos tipo Fantasma siempre eran de categoría físico, como Shadow Ball. Ahora Shadow Ball es especial, sin importar su tipo elemental.
-- Objetos animados en el Overwold seguirán moviéndose auque hayan un cuadro de texto abierto (estaba en Gold/Silver, pero fue removido en Crystal).
-- Los nombres de los Pokémon pasaron de estar en MAYÚSCULA a solo Capital.
-- La Pokédex ahora muestra las versiones variocolor de un Pokémon. Presiona el botón SELECT para alternar entre Normal/Variocolor.
-- Los entrenadores con Pokémon que sepan el movimiento "Return" tendrán la amistad al máximo, asegurando que siempre tenga la máxima potencia.
-- El sistema de revancha ha sido mejorado: Ahora el equipo de los entrenadores que rebatallemos solo variará dependiendo de tu progresión, en vez de también depender de cuántas veces los hemos enfrentado.
-- Sprites de batalla japoneses de los entrenadores BEAUTY, FISHER, MEDIUM SAGE y SWIMMER (FEMALE) han sido restaurados (¡no a la censura!).
-- Ahora el nombre por default de tu personaje es GOLD (hombre)/CRYSTAL (mujer), en vez de CHRIS/KRIS, haciendo referencia a sus contrapartes en el manga "Pokémon Adventures".
-- Ligera mejora a la IA: Aparte de la precisión inicial de los movimientos de status, la IA tenía aprox. un 25% adicional de fallar. Este detalle fue removido (¿Por qué esto fue implementado en primer lugar...?)
-- Tarjeta de entrenador:
-	-- Las medallas tienen diseños mejorados, ¡y ahora vienen a color!
-	-- Los líderes de gimnasio tenían sus cabezas cortadas en la parte superior, así que ahora restauramos sus sprites (ahora ya pueden cubrir sus cerebros de la intemperie).
-- Cuando un Pokémon llegue al Nv. 100 ya no ganará experiencia y en cambio será repartida entre los participantes del combate (antes el Pokémon Nv. 100 tomaba parte de esta).
-- Pokémon envenenados ahora sobrevivirán con 1HP en el overworld (comportamiento tomado de la 4ta gen).
-- Cada Poké Ball en el juego posee colores únicos y ligeramente más detallados.
-- ¡Nuevos íconos de clima en la interfaz de combate! Habrá un pequeño indicador mostrando el clima presente en ese momento.
-- Cuando recibes una TM/HM, el cuadro de texto muestra el nombre de esta.
-- Si se acaba el efecto de un repelente, el juego nos preguntará si deseamos usar otro.
-- "Further improvements to overall system stability and other minor adjustments have been made to enhance the user experience."
-- 
+	Ej.: Antes los movimientos tipo Fantasma siempre eran de categoría físico, como Shadow Ball. Ahora Shadow Ball es especial, sin importar su tipo elemental.
+
+- ¡Ahora puedes correr! Mantén presionado el botón B para ello. Está disponible desde el principio del juego.
+
 - Un nuevo tiempo ha sido añadido: EVENING. Con este añadido, el sistema de tiempo ha sido modificado ligeramente:
 	-- MORNING: 	6:00a.m. - 9:59a.m.
-	-- DAY: 	10:00a.m. - 5:59p.m.
+	-- DAY: 		10:00a.m. - 5:59p.m.
 	-- EVENING: 	6:00p.m. - 7:59p.m.
-	-- NIGHT: 	8:00p.m. - 5:59a.m.
+	-- NIGHT: 		8:00p.m. - 5:59a.m.
 	
 	** El color de los mapas en EVENING es de un tono anaranjado, simbolizando la puesta del sol.
 	** Los Pokémon que solo solían aparecer en NIGHT ahora aparecen en EVENING también. También se reutiliza la música de batalla de NIGHT.
 	** Eevee evoluciona en Umbreon en EVENING.
 	** Los diálogos de los NPC que variaban depediendo del tiempo han sido modificados para ajustarse al nuevo cambio.
-	
 
 - El antiguo sistema de Stat Experience ha sido actualizado por los EVs (Effort Values) usados en generaciones posteriores. NOTA: El límite total de 510 EVs entre todos los stas no está implementado.
-- Nuevo objeto: ZINC. Aumenta los EVs de DEFENSA ESPECIAL en 10 puntos. Estos son los métodos de obtención:
+
+- El objeto CALCIUM fue reajustado para que solo aumente SP.ATK y se introdujo un nuevo objeto: ZINC. Aumenta SP.DEF en 10 puntos. Estos son los métodos de obtención:
 	-- Goldenrod Department Store (4F)
 	-- Celadon Department Store (5F)
 	-- Goldenrod Radio Tower (canjeando 5 puntos azules)
--
-- ¡Todos los Pokémon poseen mini-sprites únicos en el menú de equipo! También vienen a color, y varía dependiendo de si el Pokémon es Shiny o no.
-	--Si un huevo es Shiny, su sprite será de color verde en vez de rojo.
-- Los Pokémon que eclosionen de nuevos ahora lo harán al Nv. 1 en vez de Nv. 5, como sucede a partir de la 4ta gen.
-- Sprites del Overworld se verán más oscuros de noche.
 
-- ¡Ahora puedes correr! Mantén presionado el botón B para ello. Está disponible desde el principio del juego.
-- El objeto "Light Ball" ahora boostea el ATK y SP.ATK de Pikachu, en vez de solo el SP. ATK, como funciona en otras generaciones
+- El sistema de revancha ha sido mejorado: Ahora el equipo de los entrenadores que rebatallemos solo variará dependiendo de tu progresión, en vez de también depender de cuántas veces los hemos enfrentado.
+
+
+- Un cambio sorpresa fue puesto al final del juego. Cierto entrenador tiene nuevos ases bajo su manga...
+
+CAMBIOS MENORES:
+- Los Pokémon que eclosionen de nuevos ahora lo harán al Nv. 1 en vez de Nv. 5, como sucede a partir de la 4ta gen.
+- La Pokédex ahora muestra las versiones variocolor de un Pokémon. Presiona el botón SELECT para alternar entre Normal/Variocolor.
+- Los entrenadores con Pokémon que sepan el movimiento "Return" tendrán la amistad al máximo, asegurando que siempre tenga la máxima potencia.
+
+- El objeto "Light Ball" ahora boostea el ATK y SP.ATK de Pikachu, en vez de solo el SP. ATK, como funciona en otras generaciones.
+
+- Ajustes a la IA:
+	-- La IA de unos cuantos entrenadores ha sido ajustada ligeramente.
+ 	-- Aparte de la precisión inicial de los movimientos de status, la IA tenía aprox. un 25% adicional de fallar. Este detalle fue removido (¿Por qué esto fue implementado en primer lugar...?).
+
+- Cuando un Pokémon llegue al Nv. 100 ya no ganará experiencia y en cambio será repartida entre los participantes del combate (antes el Pokémon Nv. 100 tomaba parte de esta).
+- Pokémon envenenados ahora sobrevivirán con 1HP en el overworld (comportamiento tomado de la 4ta gen).
+
+- Si se acaba el efecto de un repelente, el juego nos preguntará si deseamos usar otro, como sucede a partir de Pokémon Black 2/White 2.
+
+
+CAMBIOS ESTÉTICOS:
+
+- Los nombres de los Pokémon pasaron de estar en MAYÚSCULA a solo Capital.
+- ¡Todos los Pokémon poseen mini-sprites únicos en el menú de equipo, y también a color! El color variará dependiendo de si el Pokémon es Shiny o no.
+	--Si un huevo es Shiny, su sprite será de color verde en vez de rojo.
+- ¡Nuevos íconos de clima en la interfaz de combate! Habrá un pequeño indicador mostrando el clima presente en ese momento.
+- Cada Poké Ball en el juego posee colores únicos y ligeramente más detallados.
+
+- Tarjeta de entrenador:
+	-- Las medallas tienen diseños mejorados, ¡y ahora vienen a color!
+	-- Los líderes de gimnasio tenían sus cabezas cortadas en la parte superior, así que restauramos sus sprites (ahora ya pueden cubrir sus cerebros de la intemperie).
+- Cuando recibes una TM/HM, el cuadro de texto muestra el nombre de esta.
+- Sprites de batalla japoneses de los entrenadores BEAUTY, FISHER, MEDIUM SAGE y SWIMMER (FEMALE) han sido restaurados (¡no a la censura!).
+- Objetos animados en el Overwold seguirán moviéndose auque hayan un cuadro de texto abierto (estaba en Gold/Silver, pero fue removido en Crystal).
+- Sprites del Overworld se verán más oscuros de noche.
+- Ahora el nombre por default de tu personaje es GOLD (hombre)/CRYSTAL (mujer), en vez de CHRIS/KRIS, haciendo referencia a sus contrapartes en el manga "Pokémon Adventures".
+
+Y FINALMENTE...
+- "Further improvements to overall system stability and other minor adjustments have been made to enhance the user experience."
+
+
 
 
 
