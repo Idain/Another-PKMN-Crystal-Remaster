@@ -27,7 +27,6 @@ TrainerPicnickerErin1:
 
 .Script:
 	loadvar VAR_CALLERID, PHONE_PICNICKER_ERIN
-	endifjustbattled
 	opentext
 	checkflag ENGINE_ERIN_READY_FOR_REMATCH
 	iftrue .WantsBattle
@@ -64,7 +63,6 @@ TrainerPicnickerErin1:
 	loadtrainer PICNICKER, ERIN1
 	startbattle
 	reloadmapafterbattle
-	loadmem wErinFightCount, 1
 	clearflag ENGINE_ERIN_READY_FOR_REMATCH
 	end
 
@@ -72,7 +70,6 @@ TrainerPicnickerErin1:
 	loadtrainer PICNICKER, ERIN2
 	startbattle
 	reloadmapafterbattle
-	loadmem wErinFightCount, 2
 	clearflag ENGINE_ERIN_READY_FOR_REMATCH
 	end
 

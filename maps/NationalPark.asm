@@ -74,7 +74,6 @@ TrainerSchoolboyJack1:
 
 .Script:
 	loadvar VAR_CALLERID, PHONE_SCHOOLBOY_JACK
-	endifjustbattled
 	opentext
 	checkflag ENGINE_JACK_READY_FOR_REMATCH
 	iftrue .Rematch
@@ -117,7 +116,6 @@ TrainerSchoolboyJack1:
 	loadtrainer SCHOOLBOY, JACK1
 	startbattle
 	reloadmapafterbattle
-	loadmem wJackFightCount, 1
 	clearflag ENGINE_JACK_READY_FOR_REMATCH
 	end
 
@@ -125,7 +123,6 @@ TrainerSchoolboyJack1:
 	loadtrainer SCHOOLBOY, JACK2
 	startbattle
 	reloadmapafterbattle
-	loadmem wJackFightCount, 2
 	clearflag ENGINE_JACK_READY_FOR_REMATCH
 	end
 
@@ -133,7 +130,6 @@ TrainerSchoolboyJack1:
 	loadtrainer SCHOOLBOY, JACK3
 	startbattle
 	reloadmapafterbattle
-	loadmem wJackFightCount, 3
 	clearflag ENGINE_JACK_READY_FOR_REMATCH
 	end
 
@@ -141,7 +137,6 @@ TrainerSchoolboyJack1:
 	loadtrainer SCHOOLBOY, JACK4
 	startbattle
 	reloadmapafterbattle
-	loadmem wJackFightCount, 4
 	clearflag ENGINE_JACK_READY_FOR_REMATCH
 	end
 

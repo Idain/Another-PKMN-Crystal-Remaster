@@ -39,7 +39,6 @@ TrainerFisherTully:
 
 .Script:
 	loadvar VAR_CALLERID, PHONE_FISHER_TULLY
-	endifjustbattled
 	opentext
 	checkflag ENGINE_TULLY_READY_FOR_REMATCH
 	iftrue .WantsBattle
@@ -81,7 +80,6 @@ TrainerFisherTully:
 	loadtrainer FISHER, TULLY1
 	startbattle
 	reloadmapafterbattle
-	loadmem wTullyFightCount, 1
 	clearflag ENGINE_TULLY_READY_FOR_REMATCH
 	end
 
@@ -89,7 +87,6 @@ TrainerFisherTully:
 	loadtrainer FISHER, TULLY2
 	startbattle
 	reloadmapafterbattle
-	loadmem wTullyFightCount, 2
 	clearflag ENGINE_TULLY_READY_FOR_REMATCH
 	end
 
@@ -97,7 +94,6 @@ TrainerFisherTully:
 	loadtrainer FISHER, TULLY3
 	startbattle
 	reloadmapafterbattle
-	loadmem wTullyFightCount, 3
 	clearflag ENGINE_TULLY_READY_FOR_REMATCH
 	end
 

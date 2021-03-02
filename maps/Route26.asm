@@ -29,7 +29,6 @@ TrainerCooltrainermGaven3:
 
 .Script:
 	loadvar VAR_CALLERID, PHONE_COOLTRAINERM_GAVEN
-	endifjustbattled
 	opentext
 	checkflag ENGINE_GAVEN_READY_FOR_REMATCH
 	iftrue .WantsBattle
@@ -66,7 +65,6 @@ TrainerCooltrainermGaven3:
 	loadtrainer COOLTRAINERM, GAVEN3
 	startbattle
 	reloadmapafterbattle
-	loadmem wGavenFightCount, 1
 	clearflag ENGINE_GAVEN_READY_FOR_REMATCH
 	end
 
@@ -74,7 +72,6 @@ TrainerCooltrainermGaven3:
 	loadtrainer COOLTRAINERM, GAVEN1
 	startbattle
 	reloadmapafterbattle
-	loadmem wGavenFightCount, 2
 	clearflag ENGINE_GAVEN_READY_FOR_REMATCH
 	end
 
@@ -129,7 +126,6 @@ TrainerCooltrainerfBeth1:
 
 .Script:
 	loadvar VAR_CALLERID, PHONE_COOLTRAINERF_BETH
-	endifjustbattled
 	opentext
 	checkflag ENGINE_BETH_READY_FOR_REMATCH
 	iftrue .WantsBattle
@@ -166,7 +162,6 @@ TrainerCooltrainerfBeth1:
 	loadtrainer COOLTRAINERF, BETH1
 	startbattle
 	reloadmapafterbattle
-	loadmem wBethFightCount, 1
 	clearflag ENGINE_BETH_READY_FOR_REMATCH
 	end
 
@@ -174,7 +169,6 @@ TrainerCooltrainerfBeth1:
 	loadtrainer COOLTRAINERF, BETH2
 	startbattle
 	reloadmapafterbattle
-	loadmem wBethFightCount, 2
 	clearflag ENGINE_BETH_READY_FOR_REMATCH
 	end
 

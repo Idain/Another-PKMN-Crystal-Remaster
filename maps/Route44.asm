@@ -21,7 +21,6 @@ TrainerBirdKeeperVance1:
 
 .Script:
 	loadvar VAR_CALLERID, PHONE_BIRDKEEPER_VANCE
-	endifjustbattled
 	opentext
 	checkflag ENGINE_VANCE_READY_FOR_REMATCH
 	iftrue .WantsBattle
@@ -58,7 +57,6 @@ TrainerBirdKeeperVance1:
 	loadtrainer BIRD_KEEPER, VANCE1
 	startbattle
 	reloadmapafterbattle
-	loadmem wVanceFightCount, 1
 	clearflag ENGINE_VANCE_READY_FOR_REMATCH
 	end
 
@@ -66,7 +64,6 @@ TrainerBirdKeeperVance1:
 	loadtrainer BIRD_KEEPER, VANCE2
 	startbattle
 	reloadmapafterbattle
-	loadmem wVanceFightCount, 2
 	clearflag ENGINE_VANCE_READY_FOR_REMATCH
 	end
 
@@ -159,7 +156,6 @@ TrainerFisherWilton1:
 
 .Script:
 	loadvar VAR_CALLERID, PHONE_FISHER_WILTON
-	endifjustbattled
 	opentext
 	checkflag ENGINE_WILTON_READY_FOR_REMATCH
 	iftrue .WantsBattle
@@ -198,7 +194,6 @@ TrainerFisherWilton1:
 	loadtrainer FISHER, WILTON1
 	startbattle
 	reloadmapafterbattle
-	loadmem wWiltonFightCount, 1
 	clearflag ENGINE_WILTON_READY_FOR_REMATCH
 	end
 
@@ -206,7 +201,6 @@ TrainerFisherWilton1:
 	loadtrainer FISHER, WILTON2
 	startbattle
 	reloadmapafterbattle
-	loadmem wWiltonFightCount, 2
 	clearflag ENGINE_WILTON_READY_FOR_REMATCH
 	end
 

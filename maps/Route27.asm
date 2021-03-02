@@ -62,7 +62,6 @@ TrainerBirdKeeperJose2:
 
 .Script:
 	loadvar VAR_CALLERID, PHONE_BIRDKEEPER_JOSE
-	endifjustbattled
 	opentext
 	checkflag ENGINE_JOSE_READY_FOR_REMATCH
 	iftrue .WantsBattle
@@ -101,7 +100,6 @@ TrainerBirdKeeperJose2:
 	loadtrainer BIRD_KEEPER, JOSE2
 	startbattle
 	reloadmapafterbattle
-	loadmem wJoseFightCount, 1
 	clearflag ENGINE_JOSE_READY_FOR_REMATCH
 	end
 
@@ -109,7 +107,6 @@ TrainerBirdKeeperJose2:
 	loadtrainer BIRD_KEEPER, JOSE1
 	startbattle
 	reloadmapafterbattle
-	loadmem wJoseFightCount, 2
 	clearflag ENGINE_JOSE_READY_FOR_REMATCH
 	end
 
@@ -193,7 +190,6 @@ TrainerCooltrainerfReena:
 
 .Script:
 	loadvar VAR_CALLERID, PHONE_COOLTRAINERF_REENA
-	endifjustbattled
 	opentext
 	checkflag ENGINE_REENA_READY_FOR_REMATCH
 	iftrue .WantsBattle
@@ -230,7 +226,6 @@ TrainerCooltrainerfReena:
 	loadtrainer COOLTRAINERF, REENA1
 	startbattle
 	reloadmapafterbattle
-	loadmem wReenaFightCount, 1
 	clearflag ENGINE_REENA_READY_FOR_REMATCH
 	end
 
@@ -238,7 +233,6 @@ TrainerCooltrainerfReena:
 	loadtrainer COOLTRAINERF, REENA2
 	startbattle
 	reloadmapafterbattle
-	loadmem wReenaFightCount, 2
 	clearflag ENGINE_REENA_READY_FOR_REMATCH
 	end
 

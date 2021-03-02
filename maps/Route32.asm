@@ -168,7 +168,6 @@ TrainerFisherRalph1:
 
 .Script:
 	loadvar VAR_CALLERID, PHONE_FISHER_RALPH
-	endifjustbattled
 	opentext
 	checkflag ENGINE_RALPH_READY_FOR_REMATCH
 	iftrue .Rematch
@@ -213,7 +212,6 @@ TrainerFisherRalph1:
 	loadtrainer FISHER, RALPH1
 	startbattle
 	reloadmapafterbattle
-	loadmem wRalphFightCount, 1
 	clearflag ENGINE_RALPH_READY_FOR_REMATCH
 	end
 
@@ -221,7 +219,6 @@ TrainerFisherRalph1:
 	loadtrainer FISHER, RALPH2
 	startbattle
 	reloadmapafterbattle
-	loadmem wRalphFightCount, 2
 	clearflag ENGINE_RALPH_READY_FOR_REMATCH
 	end
 
@@ -229,7 +226,6 @@ TrainerFisherRalph1:
 	loadtrainer FISHER, RALPH3
 	startbattle
 	reloadmapafterbattle
-	loadmem wRalphFightCount, 3
 	clearflag ENGINE_RALPH_READY_FOR_REMATCH
 	end
 
@@ -237,7 +233,6 @@ TrainerFisherRalph1:
 	loadtrainer FISHER, RALPH4
 	startbattle
 	reloadmapafterbattle
-	loadmem wRalphFightCount, 4
 	clearflag ENGINE_RALPH_READY_FOR_REMATCH
 	end
 
@@ -298,7 +293,6 @@ TrainerPicnickerLiz1:
 
 .Script:
 	loadvar VAR_CALLERID, PHONE_PICNICKER_LIZ
-	endifjustbattled
 	opentext
 	checkflag ENGINE_LIZ_READY_FOR_REMATCH
 	iftrue .Rematch
@@ -341,7 +335,6 @@ TrainerPicnickerLiz1:
 	loadtrainer PICNICKER, LIZ1
 	startbattle
 	reloadmapafterbattle
-	loadmem wLizFightCount, 1
 	clearflag ENGINE_LIZ_READY_FOR_REMATCH
 	end
 
@@ -349,7 +342,6 @@ TrainerPicnickerLiz1:
 	loadtrainer PICNICKER, LIZ2
 	startbattle
 	reloadmapafterbattle
-	loadmem wLizFightCount, 2
 	clearflag ENGINE_LIZ_READY_FOR_REMATCH
 	end
 
@@ -357,7 +349,6 @@ TrainerPicnickerLiz1:
 	loadtrainer PICNICKER, LIZ3
 	startbattle
 	reloadmapafterbattle
-	loadmem wLizFightCount, 3
 	clearflag ENGINE_LIZ_READY_FOR_REMATCH
 	end
 
@@ -365,7 +356,6 @@ TrainerPicnickerLiz1:
 	loadtrainer PICNICKER, LIZ4
 	startbattle
 	reloadmapafterbattle
-	loadmem wLizFightCount, 4
 	clearflag ENGINE_LIZ_READY_FOR_REMATCH
 	end
 

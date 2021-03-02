@@ -39,7 +39,6 @@ TrainerLassDana1:
 
 .Script
 	loadvar VAR_CALLERID, PHONE_LASS_DANA
-	endifjustbattled
 	opentext
 	checkflag ENGINE_DANA_READY_FOR_REMATCH
 	iftrue .DanaRematch
@@ -84,7 +83,6 @@ TrainerLassDana1:
 	loadtrainer LASS, DANA1
 	startbattle
 	reloadmapafterbattle
-	loadmem wDanaFightCount, 1
 	clearflag ENGINE_DANA_READY_FOR_REMATCH
 	end
 
@@ -92,7 +90,6 @@ TrainerLassDana1:
 	loadtrainer LASS, DANA2
 	startbattle
 	reloadmapafterbattle
-	loadmem wDanaFightCount, 2
 	clearflag ENGINE_DANA_READY_FOR_REMATCH
 	end
 
@@ -100,7 +97,6 @@ TrainerLassDana1:
 	loadtrainer LASS, DANA3
 	startbattle
 	reloadmapafterbattle
-	loadmem wDanaFightCount, 3
 	clearflag ENGINE_DANA_READY_FOR_REMATCH
 	end
 
@@ -108,7 +104,6 @@ TrainerLassDana1:
 	loadtrainer LASS, DANA4
 	startbattle
 	reloadmapafterbattle
-	loadmem wDanaFightCount, 4
 	clearflag ENGINE_DANA_READY_FOR_REMATCH
 	end
 
@@ -171,7 +166,6 @@ TrainerSchoolboyChad1:
 
 .Script
 	loadvar VAR_CALLERID, PHONE_SCHOOLBOY_CHAD
-	endifjustbattled
 	opentext
 	checkflag ENGINE_CHAD_READY_FOR_REMATCH
 	iftrue .ChadRematch
@@ -214,7 +208,6 @@ TrainerSchoolboyChad1:
 	loadtrainer SCHOOLBOY, CHAD1
 	startbattle
 	reloadmapafterbattle
-	loadmem wChadFightCount, 1
 	clearflag ENGINE_CHAD_READY_FOR_REMATCH
 	end
 
@@ -222,7 +215,6 @@ TrainerSchoolboyChad1:
 	loadtrainer SCHOOLBOY, CHAD2
 	startbattle
 	reloadmapafterbattle
-	loadmem wChadFightCount, 2
 	clearflag ENGINE_CHAD_READY_FOR_REMATCH
 	end
 
@@ -230,7 +222,6 @@ TrainerSchoolboyChad1:
 	loadtrainer SCHOOLBOY, CHAD3
 	startbattle
 	reloadmapafterbattle
-	loadmem wChadFightCount, 3
 	clearflag ENGINE_CHAD_READY_FOR_REMATCH
 	end
 
@@ -238,7 +229,6 @@ TrainerSchoolboyChad1:
 	loadtrainer SCHOOLBOY, CHAD4
 	startbattle
 	reloadmapafterbattle
-	loadmem wChadFightCount, 4
 	clearflag ENGINE_CHAD_READY_FOR_REMATCH
 	end
 
