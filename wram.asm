@@ -2840,7 +2840,6 @@ wMooMooBerries:: db
 wUndergroundSwitchPositions:: db
 wFarfetchdPosition:: db
 
-	ds 13
 
 ; map scene ids
 wPokecenter2FSceneID::                            db
@@ -2923,7 +2922,7 @@ wMountMoonSquareSceneID::                         db
 wMobileTradeRoomSceneID::                         db
 wMobileBattleRoomSceneID::                        db
 
-	ds 49
+
 
 ; fight counts
 wJackFightCount::    db
