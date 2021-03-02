@@ -2614,19 +2614,14 @@ PlayerAttackDamage:
 .physicalcrit
 	ld hl, wBattleMonAttack
 	call CheckDamageStatsCritical
-	jr c, .thickclub
-
-	ld hl, wBattleMonAttack
-	call CheckDamageStatsCritical
-	jr c, .lightball
+	jr c, .thickclub ; I didn't change the name in case I need to modify it later.
 
 	ld hl, wEnemyDefense
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
 	ld hl, wPlayerAttack
-	call .lightball
-	jr .thickclub
+	jr .thickclub ; Read the comment above.
 
 .special
 	ld hl, wEnemyMonSpclDef
@@ -2654,13 +2649,52 @@ PlayerAttackDamage:
 .lightball
 ; Note: Returns player special attack at hl in hl.
 	call LightBallBoost
-	jr .done
+    ld a, [hli]
+    ld l, [hl]
+    ld h, a
+    jr nc, .no_double_atk
+    sla l
+    rl h
+
+	ld a, HIGH(MAX_STAT_VALUE)
+	cp h
+	jr c, .cap
+	ret nz
+	ld a, LOW(MAX_STAT_VALUE)
+	cp l
+	ret nc
+
+	jr .end_atk_boost_items
 
 .thickclub
 ; Note: Returns player attack at hl in hl.
 	call ThickClubBoost
+    jr c, .double_atk
+    call LightBallBoost
+    jr nc, .no_double_atk
+.double_atk
+    ld a, [hli]
+    ld l, [hl]
+    ld h, a
+    sla l
+    rl h
+	ld a, HIGH(MAX_STAT_VALUE)
+	cp h
+	jr c, .cap
+	ret nz
+	ld a, LOW(MAX_STAT_VALUE)
+	cp l
+	ret nc
+.cap
+	ld hl, MAX_STAT_VALUE
+    jr .end_atk_boost_items
 
-.done
+.no_double_atk
+    ld a, [hli]
+    ld l, [hl]
+    ld h, a
+
+.end_atk_boost_items
 	call TruncateHL_BC
 
 	ld a, [wBattleMonLevel]
@@ -2789,55 +2823,40 @@ LightBallBoost:
 	ret
 
 SpeciesItemBoost:
-; Return in hl the stat value at hl.
-
 ; If the attacking monster is species b or c and
-; it's holding item d, double it.
+; it's holding item d, return carry
 
-	ld a, [hli]
-	ld l, [hl]
-	ld h, a
+    push hl
+    ld a, MON_SPECIES
+    call BattlePartyAttr
 
-	push hl
-	ld a, MON_SPECIES
-	call BattlePartyAttr
-
-	ldh a, [hBattleTurn]
-	and a
-	ld a, [hl]
-	jr z, .CompareSpecies
-	ld a, [wTempEnemyMonSpecies]
+    ldh a, [hBattleTurn]
+    and a
+    ld a, [hl]
+    jr z, .CompareSpecies
+    ld a, [wTempEnemyMonSpecies]
 .CompareSpecies:
-	pop hl
+    pop hl
 
-	cp b
-	jr z, .GetItemHeldEffect
-	cp c
-	ret nz
+    cp b
+    jr z, .GetItemHeldEffect
+    cp c
+    jr nz, .no_carry
 
 .GetItemHeldEffect:
-	push hl
-	call GetUserItem
-	ld a, [hl]
-	pop hl
-	cp d
-	ret nz
+    push hl
+    call GetUserItem
+    ld a, [hl]
+    pop hl
+    cp d
+    jr nz, .no_carry
 
 ; Double the stat
-	sla l
-	rl h
-
-	ld a, HIGH(MAX_STAT_VALUE)
-	cp h
-	jr c, .cap
-	ret nz
-	ld a, LOW(MAX_STAT_VALUE)
-	cp l
-	ret nc
-
-.cap
-	ld hl, MAX_STAT_VALUE
-	ret
+    scf
+    ret
+.no_carry
+    and a
+    ret
 
 EnemyAttackDamage:
 	call ResetDamage
@@ -2868,19 +2887,14 @@ EnemyAttackDamage:
 .physicalcrit
 	ld hl, wEnemyMonAttack
 	call CheckDamageStatsCritical
-	jr c, .thickclub
-
-	ld hl, wEnemyMonAttack
-	call CheckDamageStatsCritical
-	jr c, .lightball
+	jr c, .thickclub ; Didn't change the name in case I need to change the code.
 
 	ld hl, wPlayerDefense
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
 	ld hl, wEnemyAttack
-	call .lightball
-	jr .thickclub
+	jr .thickclub ; Read the comment above.
 
 .special
 	ld hl, wBattleMonSpclDef
@@ -2906,12 +2920,53 @@ EnemyAttackDamage:
 
 .lightball
 	call LightBallBoost
-	jr .done
+    ld a, [hli]
+    ld l, [hl]
+    ld h, a
+    jr nc, .no_double_atk
+    sla l
+    rl h
+
+	ld a, HIGH(MAX_STAT_VALUE)
+	cp h
+	jr c, .cap
+	ret nz
+	ld a, LOW(MAX_STAT_VALUE)
+	cp l
+	ret nc
+
+	jr .end_atk_boost_items
 
 .thickclub
+; Note: Returns enemy attack at hl in hl.
 	call ThickClubBoost
+    jr c, .double_atk
+    call LightBallBoost
+    jr nc, .no_double_atk
+.double_atk
+    ld a, [hli]
+    ld l, [hl]
+    ld h, a
+    sla l
+    rl h
+	ld a, HIGH(MAX_STAT_VALUE)
+	cp h
+	jr c, .cap
+	ret nz
+	ld a, LOW(MAX_STAT_VALUE)
+	cp l
+	ret nc
+.cap
+	ld hl, MAX_STAT_VALUE
+    jr .end_atk_boost_items
 
-.done
+.no_double_atk
+    ld a, [hli]
+    ld l, [hl]
+    ld h, a
+
+
+.end_atk_boost_items
 	call TruncateHL_BC
 
 	ld a, [wEnemyMonLevel]
