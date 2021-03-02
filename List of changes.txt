@@ -14,9 +14,9 @@ CAMBIOS MAYORES:
 
 - Un nuevo tiempo ha sido añadido: EVENING. Con este añadido, el sistema de tiempo ha sido modificado ligeramente:
 	-- MORNING: 	6:00a.m. - 9:59a.m.
-	-- DAY: 		10:00a.m. - 5:59p.m.
+	-- DAY: 	10:00a.m. - 5:59p.m.
 	-- EVENING: 	6:00p.m. - 7:59p.m.
-	-- NIGHT: 		8:00p.m. - 5:59a.m.
+	-- NIGHT: 	8:00p.m. - 5:59a.m.
 	
 	** El color de los mapas en EVENING es de un tono anaranjado, simbolizando la puesta del sol.
 	** Los Pokémon que solo solían aparecer en NIGHT ahora aparecen en EVENING también. También se reutiliza la música de batalla de NIGHT.
@@ -31,16 +31,20 @@ CAMBIOS MAYORES:
 	-- Goldenrod Radio Tower (canjeando 5 puntos azules)
 
 - El sistema de revancha ha sido mejorado: Ahora el equipo de los entrenadores que rebatallemos solo variará dependiendo de tu progresión, en vez de también depender de cuántas veces los hemos enfrentado.
+	-- Cuando les ganemos por primera vez, nos ofrecerán sus números de forma automática en vez de tener que volver a dialogar con ellos.
 
+- Hay un nuevo bolsillo en la mochila: BERRY POCKET. Toda baya o Apricorn obtenida será depositada aquí automáticamente.
+	-- La capacidad máxima del ITEM Pocket ha sido expandida de 20 a 50.
 
 - Un cambio sorpresa fue puesto al final del juego. Cierto entrenador tiene nuevos ases bajo su manga...
 
 CAMBIOS MENORES:
+- Ahora ganas experiencia cada vez que capturas un Pokémon, tal como funciona en la 5ta gen en adelante.
 - Los Pokémon que eclosionen de nuevos ahora lo harán al Nv. 1 en vez de Nv. 5, como sucede a partir de la 4ta gen.
 - La Pokédex ahora muestra las versiones variocolor de un Pokémon. Presiona el botón SELECT para alternar entre Normal/Variocolor.
 - Los entrenadores con Pokémon que sepan el movimiento "Return" tendrán la amistad al máximo, asegurando que siempre tenga la máxima potencia.
 
-- El objeto "Light Ball" ahora boostea el ATK y SP.ATK de Pikachu, en vez de solo el SP. ATK, como funciona en otras generaciones.
+- El objeto "Light Ball" ahora boostea el ATK y SP.ATK de Pikachu, en vez de solo el SP. ATK, como funciona en otras generaciones. (Estado beta)
 
 - Ajustes a la IA:
 	-- La IA de unos cuantos entrenadores ha sido ajustada ligeramente.
@@ -51,6 +55,7 @@ CAMBIOS MENORES:
 
 - Si se acaba el efecto de un repelente, el juego nos preguntará si deseamos usar otro, como sucede a partir de Pokémon Black 2/White 2.
 
+- Algunos movimientos han sido ajustados para corresponderse con sus efectos de la 8va gen.
 
 CAMBIOS ESTÉTICOS:
 
@@ -67,7 +72,7 @@ CAMBIOS ESTÉTICOS:
 - Sprites de batalla japoneses de los entrenadores BEAUTY, FISHER, MEDIUM SAGE y SWIMMER (FEMALE) han sido restaurados (¡no a la censura!).
 - Objetos animados en el Overwold seguirán moviéndose auque hayan un cuadro de texto abierto (estaba en Gold/Silver, pero fue removido en Crystal).
 - Sprites del Overworld se verán más oscuros de noche.
-- Ahora el nombre por default de tu personaje es GOLD (hombre)/CRYSTAL (mujer), en vez de CHRIS/KRIS, haciendo referencia a sus contrapartes en el manga "Pokémon Adventures".
+- Si no escoges ningún nombre, por default tu personaje se llamará GOLD (hombre)/CRYSTAL (mujer), en vez de CHRIS/KRIS, haciendo referencia a sus contrapartes en el manga "Pokémon Adventures".
 
 Y FINALMENTE...
 - "Further improvements to overall system stability and other minor adjustments have been made to enhance the user experience."
@@ -79,6 +84,7 @@ Y FINALMENTE...
 
 
 
+- 
 
 
 
