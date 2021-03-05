@@ -5,14 +5,14 @@
 	const PACKSTATE_ITEMSPOCKETMENU    ;  2
 	const PACKSTATE_INITBALLSPOCKET    ;  3
 	const PACKSTATE_BALLSPOCKETMENU    ;  4
-	const PACKSTATE_INITKEYITEMSPOCKET ;  5
-	const PACKSTATE_KEYITEMSPOCKETMENU ;  6
-	const PACKSTATE_INITTMHMPOCKET     ;  7
-	const PACKSTATE_TMHMPOCKETMENU     ;  8
-	const PACKSTATE_INITBERRYPOCKET
-	const PACKSTATE_BERRYPOCKETMENU
-	const PACKSTATE_QUITNOSCRIPT       ;  9
-	const PACKSTATE_QUITRUNSCRIPT      ; 10
+	const PACKSTATE_INITBERRYPOCKET    ;  5
+	const PACKSTATE_BERRYPOCKETMENU	   ;  6
+	const PACKSTATE_INITKEYITEMSPOCKET ;  7
+	const PACKSTATE_KEYITEMSPOCKETMENU ;  8
+	const PACKSTATE_INITTMHMPOCKET     ;  9
+	const PACKSTATE_TMHMPOCKETMENU     ;  10
+	const PACKSTATE_QUITNOSCRIPT       ;  11
+	const PACKSTATE_QUITRUNSCRIPT      ;  12
 
 Pack:
 	ld hl, wOptions
@@ -47,14 +47,14 @@ Pack:
 	dw .ItemsPocketMenu    ;  2
 	dw .InitBallsPocket    ;  3
 	dw .BallsPocketMenu    ;  4
-	dw .InitKeyItemsPocket ;  5
-	dw .KeyItemsPocketMenu ;  6
-	dw .InitTMHMPocket     ;  7
-	dw .TMHMPocketMenu     ;  8
-	dw .InitBerryPocket
-	dw .BerryPocketMenu
-	dw Pack_QuitNoScript   ;  9
-	dw Pack_QuitRunScript  ; 10
+	dw .InitBerryPocket    ;  5
+	dw .BerryPocketMenu	   ;  6
+	dw .InitKeyItemsPocket ;  7
+	dw .KeyItemsPocketMenu ;  8
+	dw .InitTMHMPocket     ;  9
+	dw .TMHMPocketMenu     ;  10
+	dw Pack_QuitNoScript   ;  11
+	dw Pack_QuitRunScript  ;  12
 
 .InitGFX:
 	xor a
@@ -681,19 +681,19 @@ BattlePack:
 
 .Jumptable:
 ; entries correspond to PACKSTATE_* constants
-	dw .InitGFX            ;  0
-	dw .InitItemsPocket    ;  1
-	dw .ItemsPocketMenu    ;  2
-	dw .InitBallsPocket    ;  3
-	dw .BallsPocketMenu    ;  4
-	dw .InitKeyItemsPocket ;  5
-	dw .KeyItemsPocketMenu ;  6
-	dw .InitTMHMPocket     ;  7
-	dw .TMHMPocketMenu     ;  8
-	dw .InitBerryPocket
-	dw .BerryPocketMenu
-	dw Pack_QuitNoScript   ;  9
-	dw Pack_QuitRunScript  ; 10
+	dw .InitGFX            	;  0
+	dw .InitItemsPocket    	;  1
+	dw .ItemsPocketMenu    	;  2
+	dw .InitBallsPocket    	;  3
+	dw .BallsPocketMenu    	;  4
+	dw .InitBerryPocket 	;  5
+	dw .BerryPocketMenu 	;  6
+	dw .InitKeyItemsPocket 	;  7
+	dw .KeyItemsPocketMenu 	;  8
+	dw .InitTMHMPocket     	;  9
+	dw .TMHMPocketMenu     	;  10
+	dw Pack_QuitNoScript   	;  11
+	dw Pack_QuitRunScript  	;  12
 
 .InitGFX:
 	xor a
@@ -1004,9 +1004,9 @@ DepositSellPack:
 ; entries correspond to *_POCKET constants
 	dw .ItemsPocket
 	dw .BallsPocket
+	dw .BerryPocket
 	dw .KeyItemsPocket
 	dw .TMHMPocket
-	dw .BerryPocket
 
 .ItemsPocket:
 	xor a ; ITEM_POCKET
@@ -1171,9 +1171,9 @@ TutorialPack:
 ; entries correspond to *_POCKET constants
 	dw .Items
 	dw .Balls
+	dw .Berries
 	dw .KeyItems
 	dw .TMHM
-	dw .Berries
 
 .Items:
 	xor a ; ITEM_POCKET
@@ -1343,9 +1343,9 @@ DrawPackGFX:
 PackGFXPointers:
 	dw PackGFX + (15 tiles) * 1 ; ITEM_POCKET
 	dw PackGFX + (15 tiles) * 3 ; BALL_POCKET
+	dw PackGFX + (15 tiles) * 4 ; BERRY_POCKET	
 	dw PackGFX + (15 tiles) * 0 ; KEY_ITEM_POCKET
 	dw PackGFX + (15 tiles) * 2 ; TM_HM_POCKET
-	dw PackGFX + (15 tiles) * 4 ; BERRY_POCKET
 
 Pack_InterpretJoypad:
 	ld hl, wMenuJoypad

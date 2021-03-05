@@ -1300,7 +1300,7 @@ DebugRoomMenu_PokemonGet_Page2Values:
 	paged_value wDebugRoomMonSpdEV+1,      $00, $ff,         $00,            DebugRoom_BoxStructStrings.SpeedEV1, NULL,                       FALSE
 
 DebugRoomMenu_PokemonGet_Page3Values:
-	db 10
+	db 8
 	paged_value wDebugRoomMonSpclAtkEV+0,   $00, $ff,         $00,            DebugRoom_BoxStructStrings.SpclAtkEV0,  NULL,                       FALSE
 	paged_value wDebugRoomMonSpclAtkEV+1,   $00, $ff,         $00,            DebugRoom_BoxStructStrings.SpclAtkEV1,  NULL,                       FALSE
 	paged_value wDebugRoomMonSpclDefEV+0,   $00, $ff,         $00,            DebugRoom_BoxStructStrings.SpclDefEV0,  NULL,                       FALSE
@@ -1309,11 +1309,11 @@ DebugRoomMenu_PokemonGet_Page3Values:
 	paged_value wDebugRoomMonDVs+1,         $00, $ff,         $00,            DebugRoom_BoxStructStrings.PowerRnd1, NULL,                       TRUE
 	paged_value wDebugRoomMonPP+0,          $00, $ff,         $00,            DebugRoom_BoxStructStrings.PP1,       NULL,                       FALSE
 	paged_value wDebugRoomMonPP+1,          $00, $ff,         $00,            DebugRoom_BoxStructStrings.PP2,       NULL,                       FALSE
-	paged_value wDebugRoomMonPP+2,          $00, $ff,         $00,            DebugRoom_BoxStructStrings.PP3,       NULL,                       FALSE
-	paged_value wDebugRoomMonPP+3,          $00, $ff,         $00,            DebugRoom_BoxStructStrings.PP4,       NULL,                       FALSE
 
 DebugRoomMenu_PokemonGet_Page4Values:
-	db 6
+	db 8
+	paged_value wDebugRoomMonPP+2,          $00, $ff,         $00,            DebugRoom_BoxStructStrings.PP3,       NULL,                       FALSE
+	paged_value wDebugRoomMonPP+3,          $00, $ff,         $00,            DebugRoom_BoxStructStrings.PP4,       NULL,                       FALSE
 	paged_value wDebugRoomMonHappiness,     $00, $ff,         BASE_HAPPINESS, DebugRoom_BoxStructStrings.Friend,    NULL,                       FALSE
 	paged_value wDebugRoomMonPokerusStatus, $00, $ff,         $00,            DebugRoom_BoxStructStrings.Pokerus,   NULL,                       TRUE
 	paged_value wDebugRoomMonCaughtData+0,  $00, $ff,         $00,            DebugRoom_BoxStructStrings.NoUse0,    NULL,                       FALSE
