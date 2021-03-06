@@ -39,9 +39,9 @@ AI_Redundant:
 	dbw EFFECT_RAIN_DANCE,   .RainDance
 	dbw EFFECT_SUNNY_DAY,    .SunnyDay
 	dbw EFFECT_TELEPORT,     .Teleport
-	dbw EFFECT_MORNING_SUN,  .MorningSun
-	dbw EFFECT_SYNTHESIS,    .Synthesis
-	dbw EFFECT_MOONLIGHT,    .Moonlight
+	dbw EFFECT_WEATHER_HEAL, .MorningSun
+	dbw EFFECT_WEATHER_HEAL, .Synthesis
+	dbw EFFECT_WEATHER_HEAL, .Moonlight
 	dbw EFFECT_SWAGGER,      .Swagger
 	dbw EFFECT_FUTURE_SIGHT, .FutureSight
 	db -1

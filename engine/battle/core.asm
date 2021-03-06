@@ -1939,6 +1939,7 @@ GetTwoThirdsMaxHP: ; 2/3 Max HP
 	call GetThirdMaxHP
 	sla c  ; Multiply by 2
 	rl b
+	ret 
 
 GetMaxHP:
 ; output: bc, wHPBuffer1

@@ -6544,23 +6544,8 @@ INCLUDE "engine/battle/move_effects/pursuit.asm"
 
 INCLUDE "engine/battle/move_effects/rapid_spin.asm"
 
-BattleCommand_HealMorn:
-; healmorn
-	ld b, MORN_F
-	jr BattleCommand_TimeBasedHealContinue
-
-BattleCommand_HealDay:
-; healday
-	ld b, DAY_F
-	jr BattleCommand_TimeBasedHealContinue
-
-BattleCommand_HealNite:
-; healnite
-	ld b, NITE_F
-	; fallthrough
-
-BattleCommand_TimeBasedHealContinue:
-; Time- and weather-sensitive heal.
+BattleCommand_WeatherBasedHeal:
+; Weather-sensitive heal.
 
 	ld hl, wBattleMonMaxHP
 	ld de, wBattleMonHP
@@ -6573,23 +6558,15 @@ BattleCommand_TimeBasedHealContinue:
 .start
 ; Index for .Multipliers
 ; Default restores half max HP.
-	ld c, 2
+	ld c, 1
 
 ; Don't bother healing if HP is already full.
+	inc c ; Temporarily increase c to compare bytes correctly.
 	push bc
 	call CompareBytes
 	pop bc
 	jr z, .Full
-
-; Don't factor in time of day in link battles.
-;	ld a, [wLinkMode]
-;	and a
-;	jr nz, .Weather
-
-;	ld a, [wTimeOfDay] 
-;	cp b 
-;	jr z, .Weather
-;	dec c ; double
+	dec c  ; Return c to its original value.
 
 .Weather:
 	ld a, [wBattleWeather]
@@ -6608,7 +6585,7 @@ BattleCommand_TimeBasedHealContinue:
 	ld b, 0
 	ld hl, .Multipliers
 	add hl, bc
-;	add hl, bc
+	add hl, bc
 
 	ld a, [hli]
 	ld h, [hl] 
@@ -6637,9 +6614,8 @@ BattleCommand_TimeBasedHealContinue:
 
 .Multipliers:
 	dw GetQuarterMaxHP
-	dw GetTwoThirdsMaxHP
 	dw GetHalfMaxHP
-
+	dw GetTwoThirdsMaxHP
 
 INCLUDE "engine/battle/move_effects/hidden_power.asm"
 

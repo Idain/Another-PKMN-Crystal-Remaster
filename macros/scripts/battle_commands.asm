@@ -110,9 +110,7 @@ ENDM
 	command batonpass               ; 67
 	command pursuit                 ; 68
 	command clearhazards            ; 69
-	command healmorn                ; 6a
-	command healday                 ; 6b
-	command healnite                ; 6c
+	command weatherheal             ; 6a
 	command hiddenpower             ; 6d
 	command startrain               ; 6e
 	command startsun                ; 6f

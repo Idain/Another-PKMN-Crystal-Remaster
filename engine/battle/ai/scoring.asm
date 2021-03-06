@@ -371,9 +371,9 @@ AI_Smart_EffectHandlers:
 	dbw EFFECT_BATON_PASS,       AI_Smart_BatonPass
 	dbw EFFECT_PURSUIT,          AI_Smart_Pursuit
 	dbw EFFECT_RAPID_SPIN,       AI_Smart_RapidSpin
-	dbw EFFECT_MORNING_SUN,      AI_Smart_MorningSun
-	dbw EFFECT_SYNTHESIS,        AI_Smart_Synthesis
-	dbw EFFECT_MOONLIGHT,        AI_Smart_Moonlight
+	dbw EFFECT_WEATHER_HEAL,     AI_Smart_MorningSun
+	dbw EFFECT_WEATHER_HEAL,     AI_Smart_Synthesis
+	dbw EFFECT_WEATHER_HEAL,     AI_Smart_Moonlight
 	dbw EFFECT_HIDDEN_POWER,     AI_Smart_HiddenPower
 	dbw EFFECT_RAIN_DANCE,       AI_Smart_RainDance
 	dbw EFFECT_SUNNY_DAY,        AI_Smart_SunnyDay
