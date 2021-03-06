@@ -2659,12 +2659,11 @@ PlayerAttackDamage:
 	ld a, HIGH(MAX_STAT_VALUE)
 	cp h
 	jr c, .cap
-	ret nz
+	jr nz, .end_atk_boost_items
+
 	ld a, LOW(MAX_STAT_VALUE)
 	cp l
-	ret nc
-
-	jr .end_atk_boost_items
+	jr nc, .end_atk_boost_items
 
 .thickclub
 ; Note: Returns player attack at hl in hl.
@@ -2678,13 +2677,16 @@ PlayerAttackDamage:
     ld h, a
     sla l
     rl h
+
 	ld a, HIGH(MAX_STAT_VALUE)
 	cp h
 	jr c, .cap
-	ret nz
+	jr nz, .end_atk_boost_items
+
 	ld a, LOW(MAX_STAT_VALUE)
 	cp l
-	ret nc
+	jr nc, .end_atk_boost_items
+
 .cap
 	ld hl, MAX_STAT_VALUE
     jr .end_atk_boost_items
@@ -2930,12 +2932,11 @@ EnemyAttackDamage:
 	ld a, HIGH(MAX_STAT_VALUE)
 	cp h
 	jr c, .cap
-	ret nz
+	jr nz, .end_atk_boost_items
+
 	ld a, LOW(MAX_STAT_VALUE)
 	cp l
-	ret nc
-
-	jr .end_atk_boost_items
+	jr nc, .end_atk_boost_items
 
 .thickclub
 ; Note: Returns enemy attack at hl in hl.
@@ -2949,13 +2950,16 @@ EnemyAttackDamage:
     ld h, a
     sla l
     rl h
+
 	ld a, HIGH(MAX_STAT_VALUE)
 	cp h
 	jr c, .cap
-	ret nz
+	jr nz, .end_atk_boost_items
+
 	ld a, LOW(MAX_STAT_VALUE)
 	cp l
-	ret nc
+	jr nc, .end_atk_boost_items
+
 .cap
 	ld hl, MAX_STAT_VALUE
     jr .end_atk_boost_items
@@ -2964,7 +2968,6 @@ EnemyAttackDamage:
     ld a, [hli]
     ld l, [hl]
     ld h, a
-
 
 .end_atk_boost_items
 	call TruncateHL_BC
@@ -2976,6 +2979,7 @@ EnemyAttackDamage:
 	ld a, 1
 	and a
 	ret
+	
 
 INCLUDE "engine/battle/move_effects/beat_up.asm"
 
