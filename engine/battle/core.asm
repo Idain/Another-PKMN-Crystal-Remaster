@@ -1899,6 +1899,25 @@ GetQuarterMaxHP:
 .end
 	ret
 
+GetThirdMaxHP::
+; Assumes HP<768
+	call GetMaxHP
+	xor a
+	inc b
+.loop
+	dec b
+	inc a
+	dec bc
+	dec bc
+	dec bc
+	inc b
+	jr nz, .loop
+	dec a
+	ld c, a
+	ret nz
+	inc c ; At least 1.
+	ret
+
 GetHalfMaxHP:
 ; output: bc
 	call GetMaxHP
@@ -1914,6 +1933,12 @@ GetHalfMaxHP:
 	inc c
 .end
 	ret
+
+GetTwoThirdsMaxHP: ; 2/3 Max HP
+	; outputs bc from GetThirdMaxHP
+	call GetThirdMaxHP
+	sla c  ; Multiply by 2
+	rl b
 
 GetMaxHP:
 ; output: bc, wHPBuffer1

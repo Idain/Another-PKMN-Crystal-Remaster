@@ -6582,14 +6582,14 @@ BattleCommand_TimeBasedHealContinue:
 	jr z, .Full
 
 ; Don't factor in time of day in link battles.
-	ld a, [wLinkMode]
-	and a
-	jr nz, .Weather
+;	ld a, [wLinkMode]
+;	and a
+;	jr nz, .Weather
 
-	ld a, [wTimeOfDay]
-	cp b
-	jr z, .Weather
-	dec c ; double
+;	ld a, [wTimeOfDay] 
+;	cp b 
+;	jr z, .Weather
+;	dec c ; double
 
 .Weather:
 	ld a, [wBattleWeather]
@@ -6608,11 +6608,11 @@ BattleCommand_TimeBasedHealContinue:
 	ld b, 0
 	ld hl, .Multipliers
 	add hl, bc
-	add hl, bc
+;	add hl, bc
 
 	ld a, [hli]
-	ld h, [hl]
-	ld l, a
+	ld h, [hl] 
+	ld l, a  
 	ld a, BANK(GetMaxHP)
 	rst FarCall
 
@@ -6636,10 +6636,10 @@ BattleCommand_TimeBasedHealContinue:
 	jp StdBattleTextbox
 
 .Multipliers:
-	dw GetEighthMaxHP
 	dw GetQuarterMaxHP
+	dw GetTwoThirdsMaxHP
 	dw GetHalfMaxHP
-	dw GetMaxHP
+
 
 INCLUDE "engine/battle/move_effects/hidden_power.asm"
 

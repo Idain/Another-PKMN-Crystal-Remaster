@@ -1,16 +1,14 @@
 Nuevas características de "ANOTHER POKÉMON CRYSTAL GAME" (NOMBRE SUJETO A CAMBIOS):
 
 CAMBIOS MAYORES:
-- Mayoría de glitches resueltos (tanto Singleplayer como Multiplayer), exceptuando:
-	--Saves corrupted by mid-save shutoff are not handled (Internal engine routines glitch)
-	--Playing Entei's Pokédex cry can distort Raikou's and Suicune's (Audio glitch)
+- ¡Mayoría de glitches resueltos (tanto Singleplayer como Multiplayer)!
 
 - ¡El evento de la GS Ball ha sido rehabilitado! Ahora se accede de forma similar a la versión Virtual Console de 3DS (cuando derrotamos a la Elite Four por primera vez). 
 
 - Ahora los movimientos se subdividen en Físico/Especial/Status dependiendo del movimiento en sí, en vez de su tipo elemental. 
 	Ej.: Antes los movimientos tipo Fantasma siempre eran de categoría físico, como Shadow Ball. Ahora Shadow Ball es especial, sin importar su tipo elemental.
 
-- ¡Ahora puedes correr! Mantén presionado el botón B para ello. Está disponible desde el principio del juego.
+- ¡Por fin puedes correr! Mantén presionado el botón B para ello. Está disponible desde el principio del juego.
 
 - Un nuevo tiempo ha sido añadido: EVENING. Con este añadido, el sistema de tiempo ha sido modificado ligeramente:
 	-- MORNING: 	6:00a.m. - 9:59a.m.
@@ -34,17 +32,19 @@ CAMBIOS MAYORES:
 	-- Cuando les ganemos por primera vez, nos ofrecerán sus números de forma automática en vez de tener que volver a dialogar con ellos.
 
 - Hay un nuevo bolsillo en la mochila: BERRY POCKET. Toda baya o Apricorn obtenida será depositada aquí automáticamente.
-	-- La capacidad máxima del ITEM Pocket ha sido expandida de 20 a 50.
+	-- La capacidad máxima del ITEM POCKET ha sido expandida de 20 a 50.
 
 - Un cambio sorpresa fue puesto al final del juego. Cierto entrenador tiene nuevos ases bajo su manga...
 
+
 CAMBIOS MENORES:
+- La lista de contactos del PokéGear ha sido expandida de 10 a 35.
 - Ahora ganas experiencia cada vez que capturas un Pokémon, tal como funciona en la 5ta gen en adelante.
 - Los Pokémon que eclosionen de nuevos ahora lo harán al Nv. 1 en vez de Nv. 5, como sucede a partir de la 4ta gen.
 - La Pokédex ahora muestra las versiones variocolor de un Pokémon. Presiona el botón SELECT para alternar entre Normal/Variocolor.
 - Los entrenadores con Pokémon que sepan el movimiento "Return" tendrán la amistad al máximo, asegurando que siempre tenga la máxima potencia.
 
-- El objeto "Light Ball" ahora boostea el ATK y SP.ATK de Pikachu, en vez de solo el SP. ATK, como funciona en otras generaciones. (Estado beta)
+- El objeto "Light Ball" ahora boostea el ATK y SP.ATK de Pikachu, en vez de solo el SP. ATK, como funciona en otras generaciones. (ESTADO BETA)
 
 - Ajustes a la IA:
 	-- La IA de unos cuantos entrenadores ha sido ajustada ligeramente.

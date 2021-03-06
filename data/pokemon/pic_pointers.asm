@@ -2,8 +2,8 @@
 
 PokemonPicPointers::
 ; entries correspond to Pokémon species, two apiece
-	dba BulbasaurBackpic
 	dba BulbasaurFrontpic
+	dba BulbasaurBackpic
 	dba IvysaurFrontpic
 	dba IvysaurBackpic
 	dba VenusaurFrontpic
