@@ -1,9 +1,11 @@
-GOLDENRODGAMECORNER_TM25_COINS EQU 5500
-GOLDENRODGAMECORNER_TM14_COINS EQU 5500
-GOLDENRODGAMECORNER_TM38_COINS EQU 5500
-GOLDENRODGAMECORNER_ABRA_COINS      EQU 100
-GOLDENRODGAMECORNER_CUBONE_COINS    EQU 800
+GOLDENRODGAMECORNER_TM25_COINS EQU 3000
+GOLDENRODGAMECORNER_TM14_COINS EQU 3000
+GOLDENRODGAMECORNER_TM38_COINS EQU 3000
+GOLDENRODGAMECORNER_TM44_COINS EQU 3000
+GOLDENRODGAMECORNER_ABRA_COINS      EQU 200
+GOLDENRODGAMECORNER_CUBONE_COINS    EQU 700
 GOLDENRODGAMECORNER_WOBBUFFET_COINS EQU 1500
+GOLDENRODGAMECORNER_DRATINI_COINS   EQU 2100
 
 	object_const_def
 	const GOLDENRODGAMECORNER_CLERK
@@ -30,17 +32,20 @@ GoldenrodGameCorner_MapScripts:
 	iffalse .finish
 	checkitem COIN_CASE
 	iffalse .move_tutor_inside
-	readvar VAR_WEEKDAY
-	ifequal WEDNESDAY, .move_tutor_outside
-	ifequal SATURDAY, .move_tutor_outside
-.move_tutor_inside
-	appear GOLDENRODGAMECORNER_MOVETUTOR
-	endcallback
+;	readvar VAR_WEEKDAY
+;	ifequal WEDNESDAY, .move_tutor_outside
+;	ifequal SATURDAY, .move_tutor_outside
 
 .move_tutor_outside
 	checkflag ENGINE_DAILY_MOVE_TUTOR
 	iftrue .finish
 	disappear GOLDENRODGAMECORNER_MOVETUTOR
+	endcallback
+
+.move_tutor_inside
+	appear GOLDENRODGAMECORNER_MOVETUTOR
+;	endcallback
+
 .finish
 	endcallback
 
@@ -72,6 +77,7 @@ GoldenrodGameCornerTMVendor_LoopScript:
 	ifequal 1, .Thunder
 	ifequal 2, .Blizzard
 	ifequal 3, .FireBlast
+	ifequal 4, .Rest
 	sjump GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
 
 .Thunder:
@@ -105,6 +111,17 @@ GoldenrodGameCornerTMVendor_LoopScript:
 	giveitem TM_FIRE_BLAST
 	iffalse GoldenrodGameCornerPrizeMonVendor_NoRoomForPrizeScript
 	takecoins GOLDENRODGAMECORNER_TM38_COINS
+	sjump GoldenrodGameCornerTMVendor_FinishScript
+
+.Rest:
+	checkcoins GOLDENRODGAMECORNER_TM44_COINS
+	ifequal HAVE_LESS, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
+	getitemname STRING_BUFFER_3, TM_REST
+	scall GoldenrodGameCornerPrizeVendor_ConfirmPurchaseScript
+	iffalse GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
+	giveitem TM_REST
+	iffalse GoldenrodGameCornerPrizeMonVendor_NoRoomForPrizeScript
+	takecoins GOLDENRODGAMECORNER_TM44_COINS
 	sjump GoldenrodGameCornerTMVendor_FinishScript
 
 GoldenrodGameCornerPrizeVendor_ConfirmPurchaseScript:
@@ -151,10 +168,11 @@ GoldenrodGameCornerTMVendorMenuHeader:
 
 .MenuData:
 	db STATICMENU_CURSOR ; flags
-	db 4 ; items
-	db "TM25    5500@"
-	db "TM14    5500@"
-	db "TM38    5500@"
+	db 5 ; items
+	db "TM25    4000@"
+	db "TM14    4000@"
+	db "TM38    4000@"
+	db "TM44	4000@"
 	db "CANCEL@"
 
 GoldenrodGameCornerPrizeMonVendorScript:
@@ -173,6 +191,7 @@ GoldenrodGameCornerPrizeMonVendorScript:
 	ifequal 1, .Abra
 	ifequal 2, .Cubone
 	ifequal 3, .Wobbuffet
+	ifequal 4, .Dratini
 	sjump GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
 
 .Abra:
@@ -189,7 +208,7 @@ GoldenrodGameCornerPrizeMonVendorScript:
 	waitbutton
 	setval ABRA
 	special GameCornerPrizeMonCheckDex
-	givepoke ABRA, 5
+	givepoke ABRA, 15
 	takecoins GOLDENRODGAMECORNER_ABRA_COINS
 	sjump .loop
 
@@ -229,6 +248,24 @@ GoldenrodGameCornerPrizeMonVendorScript:
 	takecoins GOLDENRODGAMECORNER_WOBBUFFET_COINS
 	sjump .loop
 
+.Dratini:
+	checkcoins GOLDENRODGAMECORNER_DRATINI_COINS
+	ifequal HAVE_LESS, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
+	readvar VAR_PARTYCOUNT
+	ifequal PARTY_LENGTH, GoldenrodGameCornerPrizeMonVendor_NoRoomForPrizeScript
+	getmonname STRING_BUFFER_3, DRATINI
+	scall GoldenrodGameCornerPrizeVendor_ConfirmPurchaseScript
+	iffalse GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
+	waitsfx
+	playsound SFX_TRANSACTION
+	writetext GoldenrodGameCornerPrizeVendorHereYouGoText
+	waitbutton
+	setval DRATINI
+	special GameCornerPrizeMonCheckDex
+	givepoke DRATINI, 15
+	takecoins GOLDENRODGAMECORNER_DRATINI_COINS
+	sjump .loop
+
 .MenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 2, 17, TEXTBOX_Y - 1
@@ -237,10 +274,11 @@ GoldenrodGameCornerPrizeMonVendorScript:
 
 .MenuData:
 	db STATICMENU_CURSOR ; flags
-	db 4 ; items
-	db "ABRA        100@"
-	db "CUBONE      800@"
-	db "WOBBUFFET  1500@"
+	db 5 ; items
+	db "ABRA        200@"
+	db "CUBONE      700@"
+	db "WOBBUFFET   1500@"
+	db "DRATINI		2100@"
 	db "CANCEL@"
 
 GoldenrodGameCornerPharmacistScript:

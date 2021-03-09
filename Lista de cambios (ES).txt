@@ -1,5 +1,35 @@
 Nuevas características de "ANOTHER POKÉMON CRYSTAL GAME" (NOMBRE SUJETO A CAMBIOS):
 
+
+VERSIÓN 1.1
+
+- Los Game Corners de Goldenrod City y Celadon City han sido ligeramente ajustados:
+	-- Goldenrod City:
+	  * TM44 Rest ha sido añadida a la lista de TMs en venta.
+	  * Todas las TMs de Goldenrod City pasaron a costar de 5500 a 3000.
+	  * Dratini ahora puede ser comprado en el Game Corner, por 2100 monedas.
+
+	-- Celadon City:
+	  * Los precios de todas las TMs han sido reducidos ligeramente.
+	  * TM20 Endure ha sido añadida a la lista de TMs en venta.
+	  * Mr. Mime y Eevee ahora pueden ser comprados en el Game Corner; Mr. Mime por 3333 monedas y Eevee por 6666.
+	--
+- Los precios del tutor de movimientos de Goldenrod Game Corner han sido reducidos de 4000 a 3000.
+	-- Ahora el tutor estará fuera del Game Corner todos los días, en vez de solo estarlo los miércoles y sábados.
+
+- Los árboles de bayas/apricorns ahora dan tres (3) bayas en vez de una.
+
+- El sistema de amistad del juego ha sido mejorado ligeramente:
+	-- Los Pokémon que evolucionan mediante amistad ahora solo necesitan llegar a 160 puntos, en vez de 220.
+	-- Si un Pokémon sube de nivel, su amistad sube ligeramente más.
+	-- Los hermanos masajistas de Goldenrod City suben ligeramente más la amistad.
+
+
+
+
+
+VERSIÓN 1.0
+
 CAMBIOS MAYORES:
 - ¡Mayoría de glitches resueltos (tanto Singleplayer como Multiplayer)!
 
@@ -21,7 +51,8 @@ CAMBIOS MAYORES:
 	** Eevee evoluciona en Umbreon en EVENING.
 	** Los diálogos de los NPC que variaban depediendo del tiempo han sido modificados para ajustarse al nuevo cambio.
 
-- El antiguo sistema de Stat Experience ha sido actualizado por los EVs (Effort Values) usados en generaciones posteriores. NOTA: El límite total de 510 EVs entre todos los stas no está implementado.
+- El antiguo sistema de Stat Experience ha sido actualizado por los EVs (Effort Values) usados en generaciones posteriores. 
+	NOTA: El límite de la suma total de EVs de 510 EVs no está implementado, pero cada stat tiene un límite máximo individual de 255 EVs.
 
 - El objeto CALCIUM fue reajustado para que solo aumente SP.ATK y se introdujo un nuevo objeto: ZINC. Aumenta SP.DEF en 10 puntos. Estos son los métodos de obtención:
 	-- Goldenrod Department Store (4F)
@@ -44,7 +75,7 @@ CAMBIOS MENORES:
 - La Pokédex ahora muestra las versiones variocolor de un Pokémon. Presiona el botón SELECT para alternar entre Normal/Variocolor.
 - Los entrenadores con Pokémon que sepan el movimiento "Return" tendrán la amistad al máximo, asegurando que siempre tenga la máxima potencia.
 
-- El objeto "Light Ball" ahora boostea el ATK y SP.ATK de Pikachu, en vez de solo el SP. ATK, como funciona en otras generaciones. (ESTADO BETA)
+- El objeto "Light Ball" ahora boostea el ATK y SP.ATK de Pikachu, en vez de solo el SP. ATK, como funciona en otras generaciones.
 
 - Ajustes a la IA:
 	-- La IA de unos cuantos entrenadores ha sido ajustada ligeramente.
@@ -56,6 +87,7 @@ CAMBIOS MENORES:
 - Si se acaba el efecto de un repelente, el juego nos preguntará si deseamos usar otro, como sucede a partir de Pokémon Black 2/White 2.
 
 - Algunos movimientos han sido ajustados para corresponderse con sus efectos de la 8va gen.
+
 
 CAMBIOS ESTÉTICOS:
 

@@ -1,0 +1,77 @@
+VERSION 1.0
+
+MAJOR CHANGES:
+- Most of the glitches have been fixed (both for Single and Multiplayer)!
+
+- The GS Ball has been restored! Now you can activate it when you defeat the Elite Four for the 1st time (just like in the 3DS version).
+
+- Now moves are classified in Physical/Special/Status individually, instead of it being determined by the elemental type (just like in Gen 4 onwards).
+
+- You can also run by pressing and holding the B button! It's available from the start of the game.
+
+- A new time has been added: EVENING. With this, the time system has been changed slightly:
+	-- MORNING: 	6:00a.m. - 9:59a.m.
+	-- DAY: 	10:00a.m. - 5:59p.m.
+	-- EVENING: 	6:00p.m. - 7:59p.m.
+	-- NIGHT: 	8:00p.m. - 5:59a.m.
+	
+	** Maps have been adjusted to show a orange hue at EVENING, simulating the sunset.
+	** Pokémon that used to only appear at NIGHT can also appear at EVENING. Also, the battle music is the NIGHT version.
+	** Eevee evolves into Umbreon at EVENING.
+	** NPC dialogues that varied depending on the time have been adjusted accordingly. 
+
+- The old Stat Experience system has been replaced with EVs (Effort Values). 
+	NOTE: The total limit of 510 EVs isn't implemented, which means you can have a Pokémon with 255 EVs in all of its stats.
+
+- The CALCIUM vitamin has been changed so that it only boosts the Special Attack. Because of this, the ZINC vitamin has been introduced; these are the methods to get a ZINC:
+	-- Goldenrod Department Store (4F)
+	-- Celadon Department Store (5F)
+	-- Goldenrod Radio Tower (exchange for 5 Blue Points)
+
+- The rematch system has been improved: Now trainer's teams will be upgraded as we progress through our adventure, instead of also taking into account how many times we've fought them.
+	-- They also give us their phone number automatically, instead of having to speak to them to trigger the event.
+
+- Our bag as a new pocket: BERRY POCKET. All the berries and apricorns will automatically be stored here.
+	-- Maximum ITEM POCKET capacity has been expanded from 20 to 50.
+
+- A certain trainer has new tricks under their sleeves...
+
+
+MINOR CHANGES:
+- Our PokéGear contact list has been expanded from 10 to 35.
+- Some Pokémon's base stats were adjusted to match their Gen 8 version.
+- Some moves were adjusted to match their Gen 8 behavior.
+- Now your battling Pokémon get experience when you catch wild Pokémon (like it happens in Gen 5).
+- Hatched Pokémon start at level 1 instead of 5 (like in Gen 4).
+- The Pokédex can alternate between the Normal and the Shiny version of a Pokémon if you press the SELECT button.
+- If a Trainer's Pokémon knows "Return" it will always have max power.
+- The item "Light Ball" now also boosts Pikachu's ATK instead of only boosting the SP.ATK (like in Gen 4).
+- AI has been slightly improved and most of its bugs have been fixed.
+- If a Pokémon reaches level 100 it will no longer be counted when sharing the experience among the battling Pokémon.
+- Poisoned Pokémon now will survive with 1HP in the Overworld (like in Gen 4).
+- If a Repel's effect wears off, the game will prompt a dialogue box asking us whether we want to use another one or not (like in B2/W2 onwards). 
+
+
+AESTHETIC CHANGES:
+
+- Pokémon names are no longer in FULL UPPERCASE.
+- Now every Pokémon has a unique party menu icon instead of the generic ones, and in color! Also, the color changes depending on whether the Pokémon is Shiny or not.
+	-- This also aplies to Eggs, being green if they're shiny instead of red.
+- There are new weather icons in the Battle GUI! It shows a small indicator in the bottom-left corner which changes depending of the current weather.  
+- Now every Poké Ball has a unique color and they look slightly more detailed.
+- Trainer Card:
+	-- The badges showcase an improved design, and in color! 
+	-- Fixed detail where the Gym leaders had their heads slightly cut off, so they've been restored.
+- Whenever you receive a new TM/HM the dialogue box will also show its name.
+- The censored Japanese trainer sprites have been restored (BEAUTY, FISHER, MEDIUM SAGE y SWIMMER (FEMALE). F*ck the unnecessary censorship!
+- Overworld sprites now look darker at NIGHT.
+- When naming your character, if you choose to leave it blank the game will default to GOLD/CRYSTAL, referencing their Pokémon Adventures manga counteparts.
+- Animated overworld tiles no longer stop its animation whenever a dialogue box appears.
+
+AND FINALLY, THE MOST IMPORTANT CHANGE...
+- "Further improvements to overall system stability and other minor adjustments have been made to enhance the user experience."
+
+
+
+
+
