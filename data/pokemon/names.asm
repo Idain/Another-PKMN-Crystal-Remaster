@@ -1,4 +1,5 @@
 PokemonNames::
+	table_width NAME_LENGTH - 1, PokemonNames
 	db "Bulbasaur@"
 	db "Ivysaur@@@"
 	db "Venusaur@@"
@@ -250,8 +251,11 @@ PokemonNames::
 	db "Lugia@@@@@"
 	db "Ho-Oh@@@@@"
 	db "Celebi@@@@"
+	assert_table_length NUM_POKEMON
 	db "?????@@@@@"
 	db "EGG@@@@@@@"
+	assert_table_length EGG
 	db "?????@@@@@"
 	db "?????@@@@@"
 	db "?????@@@@@"
+	assert_table_length $100

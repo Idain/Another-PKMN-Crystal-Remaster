@@ -1,30 +1,35 @@
 ; base data struct members (see data/pokemon/base_stats/*.asm)
-BASE_DEX_NO      EQUS "(wBaseDexNo - wCurBaseData)"
-BASE_STATS       EQUS "(wBaseStats - wCurBaseData)"
-BASE_HP          EQUS "(wBaseHP - wCurBaseData)"
-BASE_ATK         EQUS "(wBaseAttack - wCurBaseData)"
-BASE_SPD         EQUS "(wBaseSpeed - wCurBaseData)"
-BASE_SAT         EQUS "(wBaseSpecialAttack - wCurBaseData)"
-BASE_SDF         EQUS "(wBaseSpecialDefense - wCurBaseData)"
-BASE_TYPES       EQUS "(wBaseType - wCurBaseData)"
-BASE_TYPE_1      EQUS "(wBaseType1 - wCurBaseData)"
-BASE_TYPE_2      EQUS "(wBaseType2 - wCurBaseData)"
-BASE_CATCH_RATE  EQUS "(wBaseCatchRate - wCurBaseData)"
-BASE_EXP         EQUS "(wBaseExp - wCurBaseData)"
-BASE_ITEMS       EQUS "(wBaseItems - wCurBaseData)"
-BASE_ITEM_1      EQUS "(wBaseItem1 - wCurBaseData)"
-BASE_ITEM_2      EQUS "(wBaseItem2 - wCurBaseData)"
-BASE_GENDER      EQUS "(wBaseGender - wCurBaseData)"
-BASE_UNKNOWN_1   EQUS "(wBaseUnknown1 - wCurBaseData)"
-BASE_EGG_STEPS   EQUS "(wBaseEggSteps - wCurBaseData)"
-BASE_UNKNOWN_2   EQUS "(wBaseUnknown2 - wCurBaseData)"
-BASE_PIC_SIZE    EQUS "(wBasePicSize - wCurBaseData)"
-BASE_FRONTPIC    EQUS "(wBaseUnusedFrontpic - wCurBaseData)"
-BASE_BACKPIC     EQUS "(wBaseUnusedBackpic - wCurBaseData)"
-BASE_GROWTH_RATE EQUS "(wBaseGrowthRate - wCurBaseData)"
-BASE_EGG_GROUPS  EQUS "(wBaseEggGroups - wCurBaseData)"
-BASE_TMHM        EQUS "(wBaseTMHM - wCurBaseData)"
-BASE_DATA_SIZE   EQUS "(wCurBaseDataEnd - wCurBaseData)"
+rsreset
+BASE_DEX_NO      rb
+BASE_STATS       rb NUM_STATS
+rsset BASE_STATS
+BASE_HP          rb
+BASE_ATK         rb
+BASE_DEF         rb
+BASE_SPD         rb
+BASE_SAT         rb
+BASE_SDF         rb
+BASE_TYPES       rw
+rsset BASE_TYPES
+BASE_TYPE_1      rb
+BASE_TYPE_2      rb
+BASE_CATCH_RATE  rb
+BASE_EXP         rb
+BASE_ITEMS       rw
+rsset BASE_ITEMS
+BASE_ITEM_1      rb
+BASE_ITEM_2      rb
+BASE_GENDER      rb
+                 rb_skip
+BASE_EGG_STEPS   rb
+                 rb_skip
+BASE_PIC_SIZE    rb
+BASE_FRONTPIC    rw
+BASE_BACKPIC     rw
+BASE_GROWTH_RATE rb
+BASE_EGG_GROUPS  rb
+BASE_TMHM        rb (NUM_TM_HM_TUTOR + 7) / 8
+BASE_DATA_SIZE EQU _RS
 
 ; gender ratio constants
 GENDER_F0      EQU   0 percent
@@ -65,41 +70,47 @@ GENDER_UNKNOWN EQU -1
 
 
 ; party_struct members (see macros/wram.asm)
-MON_SPECIES            EQUS "(wPartyMon1Species - wPartyMon1)"
-MON_ITEM               EQUS "(wPartyMon1Item - wPartyMon1)"
-MON_MOVES              EQUS "(wPartyMon1Moves - wPartyMon1)"
-MON_ID                 EQUS "(wPartyMon1ID - wPartyMon1)"
-MON_EXP                EQUS "(wPartyMon1Exp - wPartyMon1)"
-MON_EVS                EQUS "(wPartyMon1EVs - wPartyMon1)"
-MON_HP_EV              EQUS "(wPartyMon1HPEV - wPartyMon1)"
-MON_ATK_EV             EQUS "(wPartyMon1AtkEV - wPartyMon1)"
-MON_DEF_EV             EQUS "(wPartyMon1DefEV - wPartyMon1)"
-MON_SPD_EV             EQUS "(wPartyMon1SpdEV - wPartyMon1)"
-MON_SAT_EV             EQUS "(wPartyMon1SpclAtkEV - wPartyMon1)"
-MON_SDF_EV             EQUS "(wPartyMon1SpclDefEV - wPartyMon1)"
-MON_PADDING            EQUS "(wPartyMon1Padding - wPartyMon1)"
-MON_DVS                EQUS "(wPartyMon1DVs - wPartyMon1)"
-MON_PP                 EQUS "(wPartyMon1PP - wPartyMon1)"
-MON_HAPPINESS          EQUS "(wPartyMon1Happiness - wPartyMon1)"
-MON_PKRUS              EQUS "(wPartyMon1PokerusStatus - wPartyMon1)"
-MON_CAUGHTDATA         EQUS "(wPartyMon1CaughtData - wPartyMon1)"
-MON_CAUGHTLEVEL        EQUS "(wPartyMon1CaughtLevel - wPartyMon1)"
-MON_CAUGHTTIME         EQUS "(wPartyMon1CaughtTime - wPartyMon1)"
-MON_CAUGHTGENDER       EQUS "(wPartyMon1CaughtGender - wPartyMon1)"
-MON_CAUGHTLOCATION     EQUS "(wPartyMon1CaughtLocation - wPartyMon1)"
-MON_LEVEL              EQUS "(wPartyMon1Level - wPartyMon1)"
-MON_STATUS             EQUS "(wPartyMon1Status - wPartyMon1)"
-MON_HP                 EQUS "(wPartyMon1HP - wPartyMon1)"
-MON_MAXHP              EQUS "(wPartyMon1MaxHP - wPartyMon1)"
-MON_ATK                EQUS "(wPartyMon1Attack - wPartyMon1)"
-MON_DEF                EQUS "(wPartyMon1Defense - wPartyMon1)"
-MON_SPD                EQUS "(wPartyMon1Speed - wPartyMon1)"
-MON_SAT                EQUS "(wPartyMon1SpclAtk - wPartyMon1)"
-MON_SDF                EQUS "(wPartyMon1SpclDef - wPartyMon1)"
-BOXMON_STRUCT_LENGTH   EQUS "(wPartyMon1BoxEnd - wPartyMon1)"
-PARTYMON_STRUCT_LENGTH EQUS "(wPartyMon1StructEnd - wPartyMon1)"
+rsreset
+MON_SPECIES            rb
+MON_ITEM               rb
+MON_MOVES              rb NUM_MOVES
+MON_ID                 rw
+MON_EXP                rb 3
 
-NICKNAMED_MON_STRUCT_LENGTH EQUS "(PARTYMON_STRUCT_LENGTH + MON_NAME_LENGTH)"
+MON_EVS           	   rb NUM_EVS
+rsset MON_EVS
+MON_HP_EV              rb
+MON_ATK_EV             rb
+MON_DEF_EV             rb
+MON_SPD_EV             rb
+MON_SAT_EV             rb
+MON_SDF_EV			   rb
+MON_PADDING			   rb
+MON_DVS                rw
+MON_PP                 rb NUM_MOVES
+MON_HAPPINESS          rb
+MON_PKRUS              rb
+MON_CAUGHTDATA         rw
+rsset MON_CAUGHTDATA
+MON_CAUGHTTIME         rb
+MON_CAUGHTGENDER       rb
+rsset MON_CAUGHTDATA
+MON_CAUGHTLEVEL        rb
+MON_CAUGHTLOCATION     rb
+MON_LEVEL              rb
+BOXMON_STRUCT_LENGTH EQU _RS
+MON_STATUS             rb
+                       rb_skip
+MON_HP                 rw
+MON_MAXHP              rw
+MON_ATK                rw
+MON_DEF                rw
+MON_SPD                rw
+MON_SAT                rw
+MON_SDF                rw
+PARTYMON_STRUCT_LENGTH EQU _RS
+
+NICKNAMED_MON_STRUCT_LENGTH EQU PARTYMON_STRUCT_LENGTH + MON_NAME_LENGTH
 REDMON_STRUCT_LENGTH EQU 44
 
 ; significant EV values
@@ -118,6 +129,8 @@ CAUGHT_BY_GIRL    EQU 1
 CAUGHT_BY_BOY     EQU 2
 
 CAUGHT_EGG_LEVEL EQU 1
+
+MON_CRY_LENGTH EQU 6
 
 ; maximum number of party pokemon
 PARTY_LENGTH EQU 6
@@ -202,6 +215,7 @@ NUM_TREEMON_SETS EQU const_value
 	const HAPPINESS_REVIVALHERB       ; 11
 	const HAPPINESS_GROOMING          ; 12
 	const HAPPINESS_GAINLEVELATHOME   ; 13
+NUM_HAPPINESS_CHANGES EQU const_value - 1
 
 ; significant happiness values
 BASE_HAPPINESS        EQU 70

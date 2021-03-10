@@ -1,5 +1,6 @@
 IconPointers:
-; entries correspond to ICON_* constants
+; entries correspond to ICON_* constants (see constants/icon_constants.asm)
+	table_width 2, IconPointers
 	dw NullIcon
 	dw BulbasaurIcon
 	dw IvysaurIcon
@@ -252,4 +253,5 @@ IconPointers:
 	dw LugiaIcon 	  
 	dw HoOhIcon 	  
 	dw CelebiIcon
-	dw EggIcon	  
+	dw EggIcon
+	assert_table_length NUM_ICONS + 1	  

@@ -2,6 +2,7 @@
 
 PokemonPicPointers::
 ; entries correspond to Pokémon species, two apiece
+	table_width 3 * 2, PokemonPicPointers
 	dba BulbasaurFrontpic
 	dba BulbasaurBackpic
 	dba IvysaurFrontpic
@@ -507,7 +508,9 @@ PokemonPicPointers::
 	dba HoOhBackpic
 	dba CelebiFrontpic
 	dba CelebiBackpic
+	assert_table_length NUM_POKEMON
 	dbw -1, -1 ; unused
 	dbw -1, -1 ; unused
 	dba EggPic
 	dbw -1, -1 ; unused
+	assert_table_length EGG

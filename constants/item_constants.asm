@@ -198,6 +198,7 @@
 	const ITEM_BE      ; be
 	const ITEM_C3      ; c3
 	const ITEM_DC      ; dc
+NUM_ITEMS EQU const_value - 1
 
 __tmhm_value__ = 1
 
