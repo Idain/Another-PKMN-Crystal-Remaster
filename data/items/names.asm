@@ -51,7 +51,7 @@ ItemNames::
 	db "X SP. DEF@"
 	db "X DEFEND@"
 	db "X SPEED@"
-	db "X SPECIAL@"
+	db "X SP. ATK@"
 	db "COIN CASE@"
 	db "ITEMFINDER@"
 	db "TERU-SAMA@"
