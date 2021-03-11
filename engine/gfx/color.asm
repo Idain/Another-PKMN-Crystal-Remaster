@@ -13,9 +13,9 @@ CheckShininess:
 	ld h, b
 
 ; Attack
-	ld a, [hl]
-	and 1 << SHINY_ATK_BIT
-	jr z, .not_shiny
+;	ld a, [hl]
+;	and 1 << SHINY_ATK_BIT
+;	jr z, .not_shiny
 
 ; Defense
 	ld a, [hli]
@@ -1311,7 +1311,7 @@ MapObjectPals::
 INCLUDE "gfx/overworld/npc_sprites.pal"
 
 RoofPals:
-	table_width PAL_COLOR_SIZE * 2 * 2, RoofPals
+	table_width PAL_COLOR_SIZE * 3 * 2, RoofPals
 INCLUDE "gfx/tilesets/roofs.pal"
 	assert_table_length NUM_MAP_GROUPS + 1
 

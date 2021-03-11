@@ -3,6 +3,18 @@ Nuevas características de "ANOTHER POKÉMON CRYSTAL GAME" (NOMBRE SUJETO A CAMB
 
 VERSIÓN 1.1
 
+AÑADIDOS:
+- El Objeto "X SP. DEF" ha sido añadido al juego. Boostea el stat base de Defensa Especial por 1.5x.
+
+CAMBIOS:
+- Las probabilidades de obtener un Pokémon variocolor (Shiny) han sido aumentadas de 1/8192 a 1/4096.
+	Para que un Pokémon sea Shiny, sus valores de sus DVs han de ser:
+	-- DV de Ataque: 0-15
+	-- DV de defensa 10
+	-- DV de velocidad: 10
+	-- DV de Special: 10
+	NOTA: Gracias a esto, ahora es posible que un Pokémon hembra cuyo ratio de género es 7:1 (Macho/Hembra) ahora puede ser Shiny. 
+
 - Los Game Corners de Goldenrod City y Celadon City han sido ligeramente ajustados:
 	-- Goldenrod City:
 	  * TM44 Rest ha sido añadida a la lista de TMs en venta.
@@ -13,19 +25,31 @@ VERSIÓN 1.1
 	  * Los precios de todas las TMs han sido reducidos ligeramente.
 	  * TM20 Endure ha sido añadida a la lista de TMs en venta.
 	  * Mr. Mime y Eevee ahora pueden ser comprados en el Game Corner; Mr. Mime por 3333 monedas y Eevee por 6666.
-	--
+	
 - Los precios del tutor de movimientos de Goldenrod Game Corner han sido reducidos de 4000 a 3000.
 	-- Ahora el tutor estará fuera del Game Corner todos los días, en vez de solo estarlo los miércoles y sábados.
 
-- Los árboles de bayas/apricorns ahora dan tres (3) bayas en vez de una.
+- Los árboles de frutas ahora dan dos (2) bayas/bonguris en vez de una.
 
 - El sistema de amistad del juego ha sido mejorado ligeramente:
 	-- Los Pokémon que evolucionan mediante amistad ahora solo necesitan llegar a 160 puntos, en vez de 220.
 	-- Si un Pokémon sube de nivel, su amistad sube ligeramente más.
 	-- Los hermanos masajistas de Goldenrod City suben ligeramente más la amistad.
 
+- Ahora las piedras evolutivas pueden ser compradas tanto en Goldenrod Department Store como en Celadon Department Store, por $3000.
 
+- Los precios de varios objetos han sido ajustados de acuerdo a generaciones recientes (estoy vago para hacer la lista).
+	-- TM SolarBeam está disponible en Goldenrod Department Store, 5to piso.
+	-- TM Dig y TM Swagger están disponibles en Celadon Department Store, 3er piso. 
 
+- Adicionalmente, los efectos curativos y precios de la Super Poción, Hyper Poción, Agua Fresca, Soda Pop y Limonada han sido ajustados a sus versiones de la 8va gen.
+	-- Los nombres ELIXER y MAX ELIXER han sido cambiados a ELIXIR y MAX ELIXIR.
+
+- Los nombres de la mayoría de bayas han sido cambiados a sus versiones actuales.
+	-- La baya Leppa ahora restaura 10PP como en generaciones recientes, en vez de solo 5PP.
+
+FIXES:
+- Los sprites japoneses de los entrenadores BEAUTY, FISHER, MEDIUM, SAGE y Female SWIMMER no mostraban los colores correctos, así que han sido revertidos a sus versiones internacionales.
 
 
 VERSIÓN 1.0

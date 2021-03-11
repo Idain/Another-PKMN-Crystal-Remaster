@@ -15,7 +15,7 @@ FruitTreeScript::
 .fruit
 	writetext HeyItsFruitText
 	readmem wCurFruit
-	giveitem ITEM_FROM_MEM, 3
+	giveitem ITEM_FROM_MEM, 2
 	iffalse .packisfull
 	promptbutton
 	writetext ObtainedFruitText

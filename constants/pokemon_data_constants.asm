@@ -76,8 +76,7 @@ MON_ITEM               rb
 MON_MOVES              rb NUM_MOVES
 MON_ID                 rw
 MON_EXP                rb 3
-
-MON_EVS           	   rb NUM_EVS
+MON_EVS           	   rb NUM_EXP_STATS
 rsset MON_EVS
 MON_HP_EV              rb
 MON_ATK_EV             rb
@@ -85,7 +84,7 @@ MON_DEF_EV             rb
 MON_SPD_EV             rb
 MON_SAT_EV             rb
 MON_SDF_EV			   rb
-MON_PADDING			   rb
+					   rb_skip 4
 MON_DVS                rw
 MON_PP                 rb NUM_MOVES
 MON_HAPPINESS          rb
