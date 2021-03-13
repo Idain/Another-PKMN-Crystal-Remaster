@@ -7,6 +7,13 @@ AÑADIDOS:
 - El Objeto "X SP. DEF" ha sido añadido al juego. Boostea el stat base de Defensa Especial por 1.5x.
 
 CAMBIOS:
+- Tabla de tipos actualizada: Los tipos FANTASMA y SINIESTRO ahora hacen daño neutro al tipo ACERO, en vez de 1/2 de daño (como sucede desde la 6ta gen en adelante).
+
+- Los problemas de status han sido actualizados:
+	-- El chance de un Pokémon descongelarse ha aumentado de 10% a 20%.
+	-- Parálisis ahora solo reduce la velocidad en un 50% (como en la 7ma gen en adelante, en vez de un 75%.	
+	-- El estado "Dormido" ahora dura de uno a tres (1-3) turnos. Antes duraba de uno a siete (1-7).
+
 - Las probabilidades de obtener un Pokémon variocolor (Shiny) han sido aumentadas de 1/8192 a 1/4096.
 	Para que un Pokémon sea Shiny, sus valores de sus DVs han de ser:
 	-- DV de Ataque: 0-15
@@ -46,7 +53,7 @@ CAMBIOS:
 	-- Los nombres ELIXER y MAX ELIXER han sido cambiados a ELIXIR y MAX ELIXIR.
 
 - Los nombres de la mayoría de bayas han sido cambiados a sus versiones actuales.
-	-- La baya Leppa ahora restaura 10PP como en generaciones recientes, en vez de solo 5PP.
+	-- La baya Leppa ahora restaura 10 PP como en generaciones recientes, en vez de solo 5 PP.
 
 FIXES:
 - Los sprites japoneses de los entrenadores BEAUTY, FISHER, MEDIUM, SAGE y Female SWIMMER no mostraban los colores correctos, así que han sido revertidos a sus versiones internacionales.

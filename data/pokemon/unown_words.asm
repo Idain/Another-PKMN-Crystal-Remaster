@@ -39,7 +39,7 @@ UnownWords:
 	dw UnownWordZ
 	assert_table_length NUM_UNOWN + 1
 
-UnownWordA: unownword "ANGRY"
+UnownWordA: unownword "ANGER"
 UnownWordB: unownword "BEAR"
 UnownWordC: unownword "CHASE"
 UnownWordD: unownword "DIRECT"
