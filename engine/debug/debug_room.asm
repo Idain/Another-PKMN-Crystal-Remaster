@@ -1290,34 +1290,28 @@ DebugRoomMenu_PokemonGet_Page1Values:
 
 DebugRoomMenu_PokemonGet_Page2Values:
 	db 8
-	paged_value wDebugRoomMonHPEV+0,       $00, $ff,         $00,            DebugRoom_BoxStructStrings.HPEV0,    NULL,                       FALSE
-	paged_value wDebugRoomMonHPEV+1,       $00, $ff,         $00,            DebugRoom_BoxStructStrings.HPEV1,    NULL,                       FALSE
-	paged_value wDebugRoomMonAtkEV+0,      $00, $ff,         $00,            DebugRoom_BoxStructStrings.AttkEV0,  NULL,                       FALSE
-	paged_value wDebugRoomMonAtkEV+1,      $00, $ff,         $00,            DebugRoom_BoxStructStrings.AttkEV1,  NULL,                       FALSE
-	paged_value wDebugRoomMonDefEV+0,      $00, $ff,         $00,            DebugRoom_BoxStructStrings.DfnsEV0,  NULL,                       FALSE
-	paged_value wDebugRoomMonDefEV+1,      $00, $ff,         $00,            DebugRoom_BoxStructStrings.DfnsEV1,  NULL,                       FALSE
-	paged_value wDebugRoomMonSpdEV+0,      $00, $ff,         $00,            DebugRoom_BoxStructStrings.SpeedEV0, NULL,                       FALSE
-	paged_value wDebugRoomMonSpdEV+1,      $00, $ff,         $00,            DebugRoom_BoxStructStrings.SpeedEV1, NULL,                       FALSE
+	paged_value wDebugRoomMonHPEV,       $00, $ff,         $00,            DebugRoom_BoxStructStrings.HPEV0,    NULL,                       FALSE
+	paged_value wDebugRoomMonAtkEV,      $00, $ff,         $00,            DebugRoom_BoxStructStrings.AttkEV0,  NULL,                       FALSE
+	paged_value wDebugRoomMonDefEV,      $00, $ff,         $00,            DebugRoom_BoxStructStrings.DfnsEV0,  NULL,                       FALSE
+	paged_value wDebugRoomMonSpdEV,      $00, $ff,         $00,            DebugRoom_BoxStructStrings.SpeedEV0, NULL,                       FALSE
+	paged_value wDebugRoomMonSpclAtkEV,   $00, $ff,         $00,            DebugRoom_BoxStructStrings.SpclAtkEV0,  NULL,                       FALSE
+	paged_value wDebugRoomMonSpclDefEV,   $00, $ff,         $00,            DebugRoom_BoxStructStrings.SpclDefEV0,  NULL,                       FALSE
+	paged_value wDebugRoomMonDVs+0,         $00, $ff,         $00,            DebugRoom_BoxStructStrings.PowerRnd0, NULL,                       TRUE
+	paged_value wDebugRoomMonDVs+1,         $00, $ff,         $00,            DebugRoom_BoxStructStrings.PowerRnd1, NULL,                       TRUE
 
 DebugRoomMenu_PokemonGet_Page3Values:
 	db 8
-	paged_value wDebugRoomMonSpclAtkEV+0,   $00, $ff,         $00,            DebugRoom_BoxStructStrings.SpclAtkEV0,  NULL,                       FALSE
-	paged_value wDebugRoomMonSpclAtkEV+1,   $00, $ff,         $00,            DebugRoom_BoxStructStrings.SpclAtkEV1,  NULL,                       FALSE
-	paged_value wDebugRoomMonSpclDefEV+0,   $00, $ff,         $00,            DebugRoom_BoxStructStrings.SpclDefEV0,  NULL,                       FALSE
-	paged_value wDebugRoomMonSpclDefEV+1,   $00, $ff,         $00,            DebugRoom_BoxStructStrings.SpclDefEV1,  NULL,                       FALSE
-	paged_value wDebugRoomMonDVs+0,         $00, $ff,         $00,            DebugRoom_BoxStructStrings.PowerRnd0, NULL,                       TRUE
-	paged_value wDebugRoomMonDVs+1,         $00, $ff,         $00,            DebugRoom_BoxStructStrings.PowerRnd1, NULL,                       TRUE
 	paged_value wDebugRoomMonPP+0,          $00, $ff,         $00,            DebugRoom_BoxStructStrings.PP1,       NULL,                       FALSE
 	paged_value wDebugRoomMonPP+1,          $00, $ff,         $00,            DebugRoom_BoxStructStrings.PP2,       NULL,                       FALSE
-
-DebugRoomMenu_PokemonGet_Page4Values:
-	db 8
 	paged_value wDebugRoomMonPP+2,          $00, $ff,         $00,            DebugRoom_BoxStructStrings.PP3,       NULL,                       FALSE
 	paged_value wDebugRoomMonPP+3,          $00, $ff,         $00,            DebugRoom_BoxStructStrings.PP4,       NULL,                       FALSE
 	paged_value wDebugRoomMonHappiness,     $00, $ff,         BASE_HAPPINESS, DebugRoom_BoxStructStrings.Friend,    NULL,                       FALSE
 	paged_value wDebugRoomMonPokerusStatus, $00, $ff,         $00,            DebugRoom_BoxStructStrings.Pokerus,   NULL,                       TRUE
 	paged_value wDebugRoomMonCaughtData+0,  $00, $ff,         $00,            DebugRoom_BoxStructStrings.NoUse0,    NULL,                       FALSE
 	paged_value wDebugRoomMonCaughtData+1,  $00, $ff,         $00,            DebugRoom_BoxStructStrings.NoUse1,    NULL,                       FALSE
+
+DebugRoomMenu_PokemonGet_Page4Values:
+	db 2
 	paged_value wDebugRoomMonLevel,         1,   MAX_LEVEL,   $05,            DebugRoom_BoxStructStrings.Level,     NULL,                       FALSE
 	paged_value wDebugRoomMonBox,           1,   NUM_BOXES,   $0e,            DebugRoom_BoxStructStrings.SendBox,   NULL,                       FALSE
 
@@ -1334,17 +1328,11 @@ DebugRoom_BoxStructStrings:
 .BaseExp1:  db "BASE EXP[1]@" ; unreferenced
 .BaseExp2:  db "BASE EXP[2]@" ; unreferenced
 .HPEV0:    db "HP EV[0]@"
-.HPEV1:    db "HP EV[1]@"
 .AttkEV0:  db "ATK EV[0]@"
-.AttkEV1:  db "ATK EV[1]@"
 .DfnsEV0:  db "DEF EV[0]@"
-.DfnsEV1:  db "DEF EV[1]@"
 .SpeedEV0: db "SPEED EV[0]@"
-.SpeedEV1: db "SPEED EV[1]@"
 .SpclAtkEV0:  db "SP.ATK EV[0]@"
-.SpclAtkEV1:  db "SP.ATK EV[1]@"
 .SpclDefEV0:  db "SP.DEF EV[0]@"
-.SpclDefEV1:  db "SP.DEF EV[1]@"
 .PowerRnd0: db "POWER RND[0]<LF>  RARE:--1-1010@"
 .PowerRnd1: db "POWER RND[1]<LF>  RARE:10101010@"
 .PP1:       db "PP 1@"
