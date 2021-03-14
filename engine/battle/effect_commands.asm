@@ -2649,10 +2649,11 @@ PlayerAttackDamage:
 .lightball
 ; Note: Returns player special attack at hl in hl.
 	call LightBallBoost
+
     ld a, [hli]
     ld l, [hl]
     ld h, a
-    jr nc, .no_double_atk
+    jr nc, .end_atk_boost_items
     sla l
     rl h
 
@@ -2663,6 +2664,7 @@ PlayerAttackDamage:
 
 	ld a, LOW(MAX_STAT_VALUE)
 	cp l
+	jr c, .cap
 	jr nc, .end_atk_boost_items
 
 .thickclub
@@ -2828,37 +2830,37 @@ SpeciesItemBoost:
 ; If the attacking monster is species b or c and
 ; it's holding item d, return carry
 
-    push hl
-    ld a, MON_SPECIES
-    call BattlePartyAttr
+	push hl
+	ld a, MON_SPECIES
+	call BattlePartyAttr
 
-    ldh a, [hBattleTurn]
-    and a
-    ld a, [hl]
-    jr z, .CompareSpecies
-    ld a, [wTempEnemyMonSpecies]
+	ldh a, [hBattleTurn]
+	and a
+	ld a, [hl]
+	jr z, .CompareSpecies
+	ld a, [wTempEnemyMonSpecies]
 .CompareSpecies:
-    pop hl
+	pop hl
 
-    cp b
-    jr z, .GetItemHeldEffect
-    cp c
-    jr nz, .no_carry
+	cp b
+	jr z, .GetItemHeldEffect
+	cp c
+	jr nz, .no_carry
 
 .GetItemHeldEffect:
-    push hl
-    call GetUserItem
-    ld a, [hl]
-    pop hl
-    cp d
-    jr nz, .no_carry
+	push hl
+	call GetUserItem
+	ld a, [hl]
+	pop hl
+	cp d
+	jr nz, .no_carry
 
 ; Double the stat
-    scf
-    ret
+	scf
+	ret
 .no_carry
-    and a
-    ret
+	and a
+	ret
 
 EnemyAttackDamage:
 	call ResetDamage
@@ -2921,13 +2923,15 @@ EnemyAttackDamage:
 	ld hl, wEnemySpAtk
 
 .lightball
+; Note: Returns enemy special attack at hl in hl.
 	call LightBallBoost
-    ld a, [hli]
-    ld l, [hl]
-    ld h, a
-    jr nc, .no_double_atk
-    sla l
-    rl h
+
+	ld a, [hli]
+	ld l, [hl]
+	ld h, a
+	jr nc, .end_atk_boost_items
+	sla l
+	rl h
 
 	ld a, HIGH(MAX_STAT_VALUE)
 	cp h
@@ -2936,20 +2940,21 @@ EnemyAttackDamage:
 
 	ld a, LOW(MAX_STAT_VALUE)
 	cp l
+	jr c, .cap
 	jr nc, .end_atk_boost_items
 
 .thickclub
 ; Note: Returns enemy attack at hl in hl.
 	call ThickClubBoost
-    jr c, .double_atk
-    call LightBallBoost
-    jr nc, .no_double_atk
+	jr c, .double_atk
+	call LightBallBoost
+	jr nc, .no_double_atk
 .double_atk
-    ld a, [hli]
-    ld l, [hl]
-    ld h, a
-    sla l
-    rl h
+	ld a, [hli]
+	ld l, [hl]
+	ld h, a
+	sla l
+	rl h
 
 	ld a, HIGH(MAX_STAT_VALUE)
 	cp h
@@ -2962,12 +2967,12 @@ EnemyAttackDamage:
 
 .cap
 	ld hl, MAX_STAT_VALUE
-    jr .end_atk_boost_items
+	jr .end_atk_boost_items
 
 .no_double_atk
-    ld a, [hli]
-    ld l, [hl]
-    ld h, a
+	ld a, [hli]
+	ld l, [hl]
+	ld h, a
 
 .end_atk_boost_items
 	call TruncateHL_BC
