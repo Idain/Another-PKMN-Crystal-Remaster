@@ -226,7 +226,7 @@ TownMap_InitCursorAndPlayerIconPositions:
 
 .FastShip:
 	ld [wPokegearMapPlayerIconLandmark], a
-	ld a, LANDMARK_NEW_BARK_TOWN
+	ld a, LANDMARK_FAST_SHIP
 	ld [wPokegearMapCursorLandmark], a
 	ret
 

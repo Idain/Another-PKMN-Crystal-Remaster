@@ -57,7 +57,7 @@ CAMBIOS:
 
 FIXES:
 - Los sprites japoneses de los entrenadores BEAUTY, FISHER, MEDIUM, SAGE y Female SWIMMER no mostraban los colores correctos, así que han sido revertidos a sus versiones internacionales.
-
+- Al modificar la Light Ball se introdujo un glitch que hacía que los ataques especiales (con o sin objeto equipado) no se calculasen correctamente. 
 
 VERSIÓN 1.0
 
