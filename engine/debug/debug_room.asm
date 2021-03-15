@@ -1290,12 +1290,12 @@ DebugRoomMenu_PokemonGet_Page1Values:
 
 DebugRoomMenu_PokemonGet_Page2Values:
 	db 8
-	paged_value wDebugRoomMonHPEV,       $00, $ff,         $00,            DebugRoom_BoxStructStrings.HPEV0,    NULL,                       FALSE
-	paged_value wDebugRoomMonAtkEV,      $00, $ff,         $00,            DebugRoom_BoxStructStrings.AttkEV0,  NULL,                       FALSE
-	paged_value wDebugRoomMonDefEV,      $00, $ff,         $00,            DebugRoom_BoxStructStrings.DfnsEV0,  NULL,                       FALSE
-	paged_value wDebugRoomMonSpdEV,      $00, $ff,         $00,            DebugRoom_BoxStructStrings.SpeedEV0, NULL,                       FALSE
-	paged_value wDebugRoomMonSpclAtkEV,   $00, $ff,         $00,            DebugRoom_BoxStructStrings.SpclAtkEV0,  NULL,                       FALSE
-	paged_value wDebugRoomMonSpclDefEV,   $00, $ff,         $00,            DebugRoom_BoxStructStrings.SpclDefEV0,  NULL,                       FALSE
+	paged_value wDebugRoomMonHPEV,       $00, $ff,         $00,            DebugRoom_BoxStructStrings.HPEV,    NULL,                       FALSE
+	paged_value wDebugRoomMonAtkEV,      $00, $ff,         $00,            DebugRoom_BoxStructStrings.AttkEV,  NULL,                       FALSE
+	paged_value wDebugRoomMonDefEV,      $00, $ff,         $00,            DebugRoom_BoxStructStrings.DfnsEV,  NULL,                       FALSE
+	paged_value wDebugRoomMonSpdEV,      $00, $ff,         $00,            DebugRoom_BoxStructStrings.SpeedEV, NULL,                       FALSE
+	paged_value wDebugRoomMonSpclAtkEV,   $00, $ff,         $00,            DebugRoom_BoxStructStrings.SpclAtkEV,  NULL,                       FALSE
+	paged_value wDebugRoomMonSpclDefEV,   $00, $ff,         $00,            DebugRoom_BoxStructStrings.SpclDefEV,  NULL,                       FALSE
 	paged_value wDebugRoomMonDVs+0,         $00, $ff,         $00,            DebugRoom_BoxStructStrings.PowerRnd0, NULL,                       TRUE
 	paged_value wDebugRoomMonDVs+1,         $00, $ff,         $00,            DebugRoom_BoxStructStrings.PowerRnd1, NULL,                       TRUE
 
@@ -1327,12 +1327,12 @@ DebugRoom_BoxStructStrings:
 .BaseExp0:  db "BASE EXP[0]@" ; unreferenced
 .BaseExp1:  db "BASE EXP[1]@" ; unreferenced
 .BaseExp2:  db "BASE EXP[2]@" ; unreferenced
-.HPEV0:    db "HP EV[0]@"
-.AttkEV0:  db "ATK EV[0]@"
-.DfnsEV0:  db "DEF EV[0]@"
-.SpeedEV0: db "SPEED EV[0]@"
-.SpclAtkEV0:  db "SP.ATK EV[0]@"
-.SpclDefEV0:  db "SP.DEF EV[0]@"
+.HPEV:    db "HP EV@"
+.AttkEV:  db "ATK EV@"
+.DfnsEV:  db "DEF EV@"
+.SpeedEV: db "SPEED EV@"
+.SpclAtkEV:  db "SP.ATK EV@"
+.SpclDefEV:  db "SP.DEF EV@"
 .PowerRnd0: db "POWER RND[0]<LF>  RARE:--1-1010@"
 .PowerRnd1: db "POWER RND[1]<LF>  RARE:10101010@"
 .PP1:       db "PP 1@"
