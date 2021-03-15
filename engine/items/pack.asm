@@ -1516,7 +1516,7 @@ DrawPocketName:
 	jr nz, .row
 	ret
 
-.tilemap: ; 5x12
+.tilemap: ; 5x15
 ; the 5x3 pieces correspond to *_POCKET constants
 INCBIN "gfx/pack/pack_menu.tilemap"
 
