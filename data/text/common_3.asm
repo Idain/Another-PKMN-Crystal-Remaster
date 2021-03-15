@@ -1524,3 +1524,8 @@ _MomLostGearBookletText::
 	para "Come back again in"
 	line "a while."
 	prompt
+
+AlreadyHaveTMText::
+	text "You already have"
+	line "that TM."
+	done	

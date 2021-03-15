@@ -1,5 +1,5 @@
 CELADONGAMECORNERPRIZEROOM_TM32_COINS EQU 1500
-CELADONGAMECORNERPRIZEROOM_TM20_COINS EQU 2000
+;CELADONGAMECORNERPRIZEROOM_TM20_COINS EQU 2000
 CELADONGAMECORNERPRIZEROOM_TM29_COINS EQU 3000
 CELADONGAMECORNERPRIZEROOM_TM15_COINS EQU 6000
 CELADONGAMECORNERPRIZEROOM_PIKACHU_COINS  EQU 2222
@@ -43,6 +43,8 @@ CeladonPrizeRoom_tmcounterloop:
 	sjump CeladonPrizeRoom_CancelPurchaseScript
 
 .DoubleTeam:
+	checkitem TM_DOUBLE_TEAM
+	iftrue CeladonPrizeRoom_alreadyhavetm
 	checkcoins CELADONGAMECORNERPRIZEROOM_TM32_COINS
 	ifequal HAVE_LESS, CeladonPrizeRoom_notenoughcoins
 	getitemname STRING_BUFFER_3, TM_DOUBLE_TEAM
@@ -53,18 +55,20 @@ CeladonPrizeRoom_tmcounterloop:
 	takecoins CELADONGAMECORNERPRIZEROOM_TM32_COINS
 	sjump CeladonPrizeRoom_purchased
 
-.Endure:
-	checkcoins CELADONGAMECORNERPRIZEROOM_TM20_COINS
-	ifequal HAVE_LESS, CeladonPrizeRoom_notenoughcoins
-	getitemname STRING_BUFFER_3, TM_ENDURE
-	scall CeladonPrizeRoom_askbuy
-	iffalse CeladonPrizeRoom_CancelPurchaseScript
-	giveitem TM_ENDURE
-	iffalse CeladonPrizeRoom_notenoughroom
-	takecoins CELADONGAMECORNERPRIZEROOM_TM20_COINS
-	sjump CeladonPrizeRoom_purchased
+;.Endure:
+;	checkcoins CELADONGAMECORNERPRIZEROOM_TM20_COINS
+;	ifequal HAVE_LESS, CeladonPrizeRoom_notenoughcoins
+;	getitemname STRING_BUFFER_3, TM_ENDURE
+;	scall CeladonPrizeRoom_askbuy
+;	iffalse CeladonPrizeRoom_CancelPurchaseScript
+;	giveitem TM_ENDURE
+;	iffalse CeladonPrizeRoom_notenoughroom
+;	takecoins CELADONGAMECORNERPRIZEROOM_TM20_COINS
+;	sjump CeladonPrizeRoom_purchased
 
 .Psychic:
+	checkitem TM_PSYCHIC_M
+	iftrue CeladonPrizeRoom_alreadyhavetm
 	checkcoins CELADONGAMECORNERPRIZEROOM_TM29_COINS
 	ifequal HAVE_LESS, CeladonPrizeRoom_notenoughcoins
 	getitemname STRING_BUFFER_3, TM_PSYCHIC_M
@@ -76,6 +80,8 @@ CeladonPrizeRoom_tmcounterloop:
 	sjump CeladonPrizeRoom_purchased
 
 .HyperBeam:
+	checkitem TM_HYPER_BEAM
+	iftrue CeladonPrizeRoom_alreadyhavetm
 	checkcoins CELADONGAMECORNERPRIZEROOM_TM15_COINS
 	ifequal HAVE_LESS, CeladonPrizeRoom_notenoughcoins
 	getitemname STRING_BUFFER_3, TM_HYPER_BEAM
@@ -95,6 +101,11 @@ CeladonPrizeRoom_purchased:
 	waitsfx
 	playsound SFX_TRANSACTION
 	writetext CeladonPrizeRoom_HereYouGoText
+	waitbutton
+	sjump CeladonPrizeRoom_tmcounterloop
+
+CeladonPrizeRoom_alreadyhavetm:
+	writetext CeladonPrizeRoom_AlreadyHaveTMText
 	waitbutton
 	sjump CeladonPrizeRoom_tmcounterloop
 
@@ -130,9 +141,9 @@ CeladonPrizeRoom_TMMenuHeader:
 
 .MenuData:
 	db STATICMENU_CURSOR ; flags
-	db 5 ; items
+	db 4 ; items
 	db "TM32    1500@"
-	db "TM20 	2000@"
+;	db "TM20 	2000@"
 	db "TM29    3000@"
 	db "TM15    6000@"
 	db "CANCEL@"
@@ -309,6 +320,11 @@ CeladonPrizeRoom_ConfirmPurchaseText:
 
 CeladonPrizeRoom_HereYouGoText:
 	text "Here you go!"
+	done
+
+CeladonPrizeRoom_AlreadyHaveTMText:
+	text "You already have"
+	line "that TM."
 	done
 
 CeladonPrizeRoom_NotEnoughCoinsText:
