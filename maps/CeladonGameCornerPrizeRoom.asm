@@ -37,9 +37,8 @@ CeladonPrizeRoom_tmcounterloop:
 	verticalmenu
 	closewindow
 	ifequal 1, .DoubleTeam
-	ifequal 2, .Endure
-	ifequal 3, .Psychic
-	ifequal 4, .HyperBeam
+	ifequal 2, .Psychic
+	ifequal 3, .HyperBeam
 	sjump CeladonPrizeRoom_CancelPurchaseScript
 
 .DoubleTeam:

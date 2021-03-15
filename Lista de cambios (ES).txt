@@ -9,6 +9,8 @@ AÑADIDOS:
 CAMBIOS:
 - Tabla de tipos actualizada: Los tipos FANTASMA y SINIESTRO ahora hacen daño neutro al tipo ACERO, en vez de 1/2 de daño (como sucede desde la 6ta gen en adelante).
 
+- ¡Ahora las TM pueden usarse de forma infinita! Tal como sucede a partir de la 5ta generación.
+
 - Los problemas de status han sido actualizados:
 	-- El chance de un Pokémon descongelarse ha aumentado de 10% a 20%.
 	-- Parálisis ahora solo reduce la velocidad en un 50% (como en la 7ma gen en adelante, en vez de un 75%.	
@@ -24,13 +26,11 @@ CAMBIOS:
 
 - Los Game Corners de Goldenrod City y Celadon City han sido ligeramente ajustados:
 	-- Goldenrod City:
-	  * TM44 Rest ha sido añadida a la lista de TMs en venta.
 	  * Todas las TMs de Goldenrod City pasaron a costar de 5500 a 3000.
 	  * Dratini ahora puede ser comprado en el Game Corner, por 2100 monedas.
 
 	-- Celadon City:
 	  * Los precios de todas las TMs han sido reducidos ligeramente.
-	  * TM20 Endure ha sido añadida a la lista de TMs en venta.
 	  * Mr. Mime y Eevee ahora pueden ser comprados en el Game Corner; Mr. Mime por 3333 monedas y Eevee por 6666.
 	
 - Los precios del tutor de movimientos de Goldenrod Game Corner han sido reducidos de 4000 a 3000.
@@ -46,8 +46,6 @@ CAMBIOS:
 - Ahora las piedras evolutivas pueden ser compradas tanto en Goldenrod Department Store como en Celadon Department Store, por $3000.
 
 - Los precios de varios objetos han sido ajustados de acuerdo a generaciones recientes (estoy vago para hacer la lista).
-	-- TM SolarBeam está disponible en Goldenrod Department Store, 5to piso.
-	-- TM Dig y TM Swagger están disponibles en Celadon Department Store, 3er piso. 
 
 - Adicionalmente, los efectos curativos y precios de la Super Poción, Hyper Poción, Agua Fresca, Soda Pop y Limonada han sido ajustados a sus versiones de la 8va gen.
 	-- Los nombres ELIXER y MAX ELIXER han sido cambiados a ELIXIR y MAX ELIXIR.
