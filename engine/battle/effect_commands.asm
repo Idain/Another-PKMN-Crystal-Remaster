@@ -2665,7 +2665,7 @@ PlayerAttackDamage:
 	ld a, LOW(MAX_STAT_VALUE)
 	cp l
 	jr c, .cap
-	jr nc, .end_atk_boost_items
+	jr .end_atk_boost_items
 
 .thickclub
 ; Note: Returns player attack at hl in hl.
@@ -2941,7 +2941,7 @@ EnemyAttackDamage:
 	ld a, LOW(MAX_STAT_VALUE)
 	cp l
 	jr c, .cap
-	jr nc, .end_atk_boost_items
+	jr .end_atk_boost_items
 
 .thickclub
 ; Note: Returns enemy attack at hl in hl.
