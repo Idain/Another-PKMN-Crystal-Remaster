@@ -4,6 +4,11 @@ Nuevas características de "ANOTHER POKÉMON CRYSTAL GAME" (NOMBRE SUJETO A CAMB
 VERSIÓN 1.1
 
 AÑADIDOS:
+
+- NUEVO TIPO: ¡Tipo hada! Los Pokémon y movimientos existentes que son de tipo hada en la 6ta gen ahora lo serán en este juego.
+	-- NUEVO ITEM: Polkadow Bow. Aumenta la potencia de movimientos tipo hada en un 10%.
+			---Obtención: A veces Picknicker Tiffany lo entrega en Ruta 43. Has de tener su número.
+
 - ¡Nidorina y Nidoqueen ya pueden criar! Ahora ambos Pokémon pertenecen a los grupos huevo MONSTRUO y CAMPO.
 	-- Las crías pueden ser Nidoran♀ o Nidoran♂.
 - El Objeto "X SP. DEF" ha sido añadido al juego. Boostea el stat base de Defensa Especial por 1.5x.
@@ -26,10 +31,12 @@ CAMBIOS:
 	-- DV de Special: 10
 	NOTA: Gracias a esto, ahora es posible que un Pokémon hembra cuyo ratio de género es 7:1 (Macho/Hembra) ahora puede ser Shiny. 
 
+- Nidoran♂, Nidorino y Nidoking ahora tienen un 50% de probabilidad de dar a luz una Nidoran♀.
 - Detalle removido donde, al momento de criar, si ambos padres tenían el mismo DV en Defensa y su DVs en Especial eran o el mismo o diferían exactamente por 8, entonces no podían criar.
 
 - Ratio de captura de ciertas Poké Balls ha sido modificado:
-	--Lure Ball: 5x si el Pokémon fue encontrado pescando (en vez de 3x)
+	-- Fast Ball: Si la velocidad base del Pokémon es >=100, el ratio de captura será 4x. De lo contrario, será 1x.
+	-- Lure Ball: 5x si el Pokémon fue encontrado pescando (en vez de 3x).
 
 - Los Game Corners de Goldenrod City y Celadon City han sido ligeramente ajustados:
 	-- Goldenrod City:
@@ -52,7 +59,7 @@ CAMBIOS:
 
 - Ahora las piedras evolutivas pueden ser compradas tanto en Goldenrod Department Store como en Celadon Department Store, por $3000.
 
-- Los precios de varios objetos han sido ajustados de acuerdo a generaciones recientes (estoy vago para hacer la lista).
+- Los precios de varios artículos han sido ajustados de acuerdo a generaciones recientes (estoy vago para hacer la lista).
 
 - Adicionalmente, los efectos curativos y precios de la Super Poción, Hyper Poción, Agua Fresca, Soda Pop y Limonada han sido ajustados a sus versiones de la 8va gen.
 	-- Los nombres ELIXER y MAX ELIXER han sido cambiados a ELIXIR y MAX ELIXIR.
