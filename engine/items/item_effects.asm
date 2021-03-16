@@ -442,9 +442,6 @@ PokeBallEffect:
 	push af
 	set SUBSTATUS_TRANSFORMED, [hl]
 
-; This code is buggy. Any wild Pokémon that has Transformed will be
-; caught as a Ditto, even if it was something else like Mew.
-; To fix, do not set [wTempEnemyMonSpecies] to DITTO.
 	bit SUBSTATUS_TRANSFORMED, a
 	jr nz, .load_data
 
@@ -870,7 +867,7 @@ endr
 	db HIGH(65280), 40
 
 LureBallMultiplier:
-; multiply catch rate by 3 if this is a fishing rod battle
+; multiply catch rate by 5 if this is a fishing rod battle
 	ld a, [wBattleType]
 	cp BATTLETYPE_FISH
 	ret nz
@@ -878,6 +875,11 @@ LureBallMultiplier:
 	ld a, b
 	add a
 	jr c, .max
+
+rept 2
+	add b
+	jr c, .max
+endr
 
 	add b
 	jr nc, .done
@@ -888,9 +890,6 @@ LureBallMultiplier:
 	ret
 
 MoonBallMultiplier:
-; This function is buggy.
-; Intent:  multiply catch rate by 4 if mon evolves with moon stone
-; Reality: no boost
 	push bc
 	ld a, [wTempEnemyMonSpecies]
 	dec a
@@ -914,9 +913,6 @@ MoonBallMultiplier:
 	inc hl
 	inc hl
 
-; Moon Stone's constant from Pokémon Red is used.
-; No Pokémon evolve with Burn Heal,
-; so Moon Balls always have a catch rate of 1×.
 	push bc
 	ld a, BANK("Evolutions and Attacks")
 	call GetFarByte
@@ -934,10 +930,6 @@ MoonBallMultiplier:
 	ret
 
 LoveBallMultiplier:
-; This function is buggy.
-; Intent:  multiply catch rate by 8 if mons are of same species, different sex
-; Reality: multiply catch rate by 8 if mons are of same species, same sex
-
 	; does species match?
 	ld a, [wTempEnemyMonSpecies]
 	ld c, a

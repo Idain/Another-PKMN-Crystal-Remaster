@@ -4,6 +4,8 @@ Nuevas características de "ANOTHER POKÉMON CRYSTAL GAME" (NOMBRE SUJETO A CAMB
 VERSIÓN 1.1
 
 AÑADIDOS:
+- ¡Nidorina y Nidoqueen ya pueden criar! Ahora ambos Pokémon pertenecen a los grupos huevo MONSTRUO y CAMPO.
+	-- Las crías pueden ser Nidoran♀ o Nidoran♂.
 - El Objeto "X SP. DEF" ha sido añadido al juego. Boostea el stat base de Defensa Especial por 1.5x.
 
 CAMBIOS:
@@ -23,6 +25,11 @@ CAMBIOS:
 	-- DV de velocidad: 10
 	-- DV de Special: 10
 	NOTA: Gracias a esto, ahora es posible que un Pokémon hembra cuyo ratio de género es 7:1 (Macho/Hembra) ahora puede ser Shiny. 
+
+- Detalle removido donde, al momento de criar, si ambos padres tenían el mismo DV en Defensa y su DVs en Especial eran o el mismo o diferían exactamente por 8, entonces no podían criar.
+
+- Ratio de captura de ciertas Poké Balls ha sido modificado:
+	--Lure Ball: 5x si el Pokémon fue encontrado pescando (en vez de 3x)
 
 - Los Game Corners de Goldenrod City y Celadon City han sido ligeramente ajustados:
 	-- Goldenrod City:
@@ -56,6 +63,7 @@ CAMBIOS:
 FIXES:
 - Los sprites japoneses de los entrenadores BEAUTY, FISHER, MEDIUM, SAGE y Female SWIMMER no mostraban los colores correctos, así que han sido revertidos a sus versiones internacionales.
 - Al modificar la Light Ball se introdujo un glitch que hacía que los ataques especiales (con o sin objeto equipado) no se calculasen correctamente. 
+
 
 VERSIÓN 1.0
 

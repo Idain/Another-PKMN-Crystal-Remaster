@@ -53,7 +53,7 @@ CheckBreedmonCompatibility:
 	jr z, .done
 
 .compute
-	call .CheckDVs
+;	call .CheckDVs
 	ld c, 255
 	jp z, .done
 	ld a, [wBreedMon2Species]
