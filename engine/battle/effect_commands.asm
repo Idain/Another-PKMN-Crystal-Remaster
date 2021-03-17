@@ -4386,6 +4386,8 @@ RaiseStat:
 	ld [wFailedMessage], a
 	ret
 
+INCLUDE "engine/battle/move_effects/growth.asm"
+
 MinimizeDropSub:
 ; Lower the substitute if we're minimizing
 

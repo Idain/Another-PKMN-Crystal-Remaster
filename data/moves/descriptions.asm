@@ -560,8 +560,8 @@ LeechSeedDescription:
 	next "foe on every turn.@"
 
 GrowthDescription:
-	db   "Raises the SPCL."
-	next "ATK rating.@"
+	db   "Raises ATK and"
+	next "SPCL. ATK rating.@"
 
 RazorLeafDescription:
 	db   "Has a high criti-"
@@ -1201,15 +1201,15 @@ VitalThrowDescription:
 
 MorningSunDescription:
 	db   "Restores HP"
-	next "(varies by time).@"
+	next "based on weather.@"
 
 SynthesisDescription:
 	db   "Restores HP"
-	next "(varies by time).@"
+	next "based on weather.@"
 
 MoonlightDescription:
 	db   "Restores HP"
-	next "(varies by time).@"
+	next "based on weather.@"
 
 HiddenPowerDescription:
 	db   "The power varies"

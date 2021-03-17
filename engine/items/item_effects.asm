@@ -929,8 +929,9 @@ MoonBallMultiplier:
 	ret
 
 LoveBallMultiplier: ; Cath rate = x4
-
+	push bc
 	farcall CheckBattleEggGroupCompatibility
+	pop bc
 	ret nc
 
 	; check player mon species

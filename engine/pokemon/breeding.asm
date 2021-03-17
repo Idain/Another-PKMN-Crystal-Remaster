@@ -192,7 +192,7 @@ CheckBattleEggGroupCompatibility:
 	ld b, a
 	pop af
 	and $f0
-	cp EGG_NONE << 8
+	cp EGG_NONE << 4
 	jr z, .Incompatible
 	swap a
 	ld c, a
@@ -213,7 +213,7 @@ CheckBattleEggGroupCompatibility:
 	ld d, a
 	pop af
 	and $f0
-	cp EGG_NONE << 8
+	cp EGG_NONE << 4
 	jr z, .Incompatible
 	swap a
 	ld e, a

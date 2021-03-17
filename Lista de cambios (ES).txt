@@ -38,7 +38,7 @@ CAMBIOS:
 - Ratio de captura de ciertas Poké Balls ha sido modificado:
 	-- Love Ball: Ahora es más efectiva si ambos Pokémon pertenecen al mismo Grupo Huevo (en vez de ser de la misma especie) y son de géneros opuestos. 
 		-- Ratio de captura reducido de x8 a x4.
-		-- No funciona si uno o ambos no poseen género.
+		-- Ratio x1 si uno o ambos no poseen género, o si uno de los Pokémon es Ditto.
 	-- Fast Ball: Si la velocidad base del Pokémon es >=100, el ratio de captura será 4x. De lo contrario, será 1x. (Gen 4 en adelante)
 	-- Lure Ball: 5x si el Pokémon fue encontrado pescando (en vez de 3x).
 	-- Heavy Ball: Ligero buff. Los multiplicadores según el peso han sido cambiados:
