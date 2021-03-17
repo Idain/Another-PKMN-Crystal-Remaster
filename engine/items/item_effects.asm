@@ -872,17 +872,17 @@ LureBallMultiplier:
 	cp BATTLETYPE_FISH
 	ret nz
 
-	ld a, b
-	add a
+	ld a, b ; a = b = 1x
+	add a ; a = 2x
 	jr c, .max
 
-rept 2
-	add b
+	add a ; a = 4x
 	jr c, .max
-endr
 
-	add b
+	add b ; 4x + 1x = 5x
 	jr nc, .done
+
+; fallthrough
 .max
 	ld a, $ff
 .done
