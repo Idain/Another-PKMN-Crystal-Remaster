@@ -3946,6 +3946,21 @@ CheckIfTargetIsSteelType:
 	cp STEEL
 	ret
 
+CheckIfTargetIsElectricType:
+	ld de, wEnemyMonType1
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .ok
+	ld de, wBattleMonType1
+.ok
+	ld a, [de]
+	inc de
+	cp ELECTRIC
+	ret z
+	ld a, [de]
+	cp ELECTRIC
+	ret
+
 PoisonOpponent:
 	ld a, BATTLE_VARS_STATUS_OPP
 	call GetBattleVarAddr
@@ -4189,6 +4204,8 @@ BattleCommand_ParalyzeTarget:
 	ret nz
 	ld a, [wTypeModifier]
 	and $7f
+	ret z
+	call CheckIfTargetIsElectricType
 	ret z
 	call GetOpponentItem
 	ld a, b
@@ -6003,6 +6020,8 @@ BattleCommand_Paralyze:
 	jr nz, .paralyzed
 	ld a, [wTypeModifier]
 	and $7f
+	jr z, .didnt_affect
+	call CheckIfTargetIsElectricType
 	jr z, .didnt_affect
 	call GetOpponentItem
 	ld a, b
