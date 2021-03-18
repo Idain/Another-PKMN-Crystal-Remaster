@@ -1,28 +1,25 @@
 BattleCommand_Growth:
 
-	ld bc, wPlayerStatLevels
+	ld hl, wPlayerStatLevels
 	ldh a, [hBattleTurn]
 	and a
 	jr z, .go
-	ld bc, wEnemyStatLevels
+	ld hl, wEnemyStatLevels
 
 .go   
 ; Attack
-	ld a, [bc]
+	ld a, [hli]
 	cp MAX_STAT_LEVEL
 	jr c, .checkweather
 
 ; Special Attack
-rept 3
-    inc bc
-endr
-	ld a, [bc]
+    inc hl
+    inc hl
+	ld a, [hl]
 	cp MAX_STAT_LEVEL
 	jr nc, .cantraise
 
 .checkweather
-;    ld a, $1
-;	ld [wBattleAnimParam], a
 	call AnimateCurrentMove
 
 	ld a, [wBattleWeather]

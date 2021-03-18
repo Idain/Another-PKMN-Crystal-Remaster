@@ -12,5 +12,3 @@ Beat Up
 
 
 * Modificar IA para que sepa usar la versión modificada de Growth.
-
-* Bug in BattleTowerText
