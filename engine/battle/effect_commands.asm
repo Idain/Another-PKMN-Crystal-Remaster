@@ -1479,6 +1479,35 @@ CheckTypeMatchup:
 	pop hl
 	ret
 
+BattleCommand_CheckPowder:
+; Checks if the move is powder/spore-based and 
+; if the opponent is Grass-type
+	ld a, BATTLE_VARS_MOVE_ANIM
+	call GetBattleVar
+	ld hl, PowderMoves
+	call IsInArray
+	ret nc
+
+; If the opponent is Grass-type, the move fails.
+	ld hl, wEnemyMonType1
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .checkgrasstype
+	ld hl, wBattleMonType1
+
+.checkgrasstype:
+	ld a, [hli]
+	cp GRASS
+	jp z, .Immune
+	ld a, [hl]
+	cp GRASS
+	ret nz
+	;fallthrough
+.Immune:
+	ld a, 1
+	ld [wAttackMissed], a
+	ret
+
 BattleCommand_ResetTypeMatchup:
 ; Reset the type matchup multiplier to 1.0, if the type matchup is not 0.
 ; If there is immunity in play, the move automatically misses.
