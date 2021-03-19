@@ -13,7 +13,7 @@ Mimic
 Waterfall
 Toxic
 Rapid Spin
-
+Low Kick
 
 
 * Añadir In-Game trades para obtener a Misdreavus, Murkrow y Houndour.
