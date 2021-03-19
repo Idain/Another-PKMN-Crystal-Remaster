@@ -3122,15 +3122,22 @@ AI_Status:
 	inc de
 	call AIGetEnemyMove
 
+; If the move is Cotton Spore, go directly to check      
+; if the opponent is grass type.
+	ld a, [wEnemyMoveStruct + MOVE_ANIM]
+	ld c, a  ; Copy of MOVE_ANIM into c.
+	cp COTTON_SPORE
+	jr z, .cottonspore
+
 	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
 	cp EFFECT_TOXIC
 	jr z, .poisonimmunity
 	cp EFFECT_POISON
 	jr z, .poisonimmunity
 	cp EFFECT_SLEEP
-	jr z, .typeimmunity
+	jr z, .powderimmunity
 	cp EFFECT_PARALYZE
-	jr z, .typeimmunity
+	jr z, .paralysisimmunity
 
 	ld a, [wEnemyMoveStruct + MOVE_POWER]
 	and a
@@ -3138,6 +3145,16 @@ AI_Status:
 
 	jr .typeimmunity
 
+
+.paralysisimmunity
+	ld a, [wBattleMonType1]
+	cp ELECTRIC
+	jr z, .immune
+	ld a, [wBattleMonType2]
+	cp ELECTRIC
+	jr z, .immune
+	jr .powderimmunity	
+	
 .poisonimmunity
 	ld a, [wBattleMonType1]
 	cp POISON
@@ -3145,7 +3162,27 @@ AI_Status:
 	ld a, [wBattleMonType2]
 	cp POISON
 	jr z, .immune
+	;fallthorugh
+.powderimmunity
+	ld a, c  ; Put MOVE_ANIM back into a.
+	ld hl, PowderMoves
+	call IsInArray
+	jr nc, .typeimmunity
+	;fallthrough
+.cottonspore
+    ld a, [wBattleMonType1]
+    cp GRASS
+    jr z, .immune
+    ld a, [wBattleMonType2]
+    cp GRASS
+    jr z, .immune
 
+; If the move is Cotton Spore, but the opponent isn't grass-type
+; don't check type matchups.
+	ld a, c
+	cp COTTON_SPORE 
+	jr z, .checkmove
+	;fallthrough
 .typeimmunity
 	push hl
 	push bc

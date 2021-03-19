@@ -17,9 +17,18 @@ CAMBIOS:
 - ¡Ahora las TM pueden usarse de forma infinita! Tal como sucede a partir de la 5ta generación.
 
 - Movimientos:
+	* Chupavidas ahora tiene 80 de potencia.
+	* Crunch puede bajar la defensa física en vez de la especial (Gen 4 en adelante)
 	* Growth ahora también boostea ataque físico. Si el clima es soleado, sube Atk y Sp. Atk dos niveles.
 	* Los tipo eléctrico ya no pueden ser paralizados.
 	* Los movimientos basados en polvos y esporas ya no afectan a los tipo planta.
+
+- Movesets:
+	* Chikorita, Cyndaquil, Totodile, sus evoluciones y otros Pokémon tienen movesets ligeramente ajustados de acuerdo a Gen 7/8.
+	* Pikachu y Piloswine ahora aprenden Excavar, como en Gen 8.
+	* Typhlosion ahora aprende Solar Beam.
+	* Varios Pokémon aprenden nuevas TMs y HMs.
+
 
 - Los problemas de status han sido actualizados:
 	-- El chance de un Pokémon descongelarse ha aumentado de 10% a 20%.
@@ -70,6 +79,11 @@ CAMBIOS:
 	-- Los Pokémon que evolucionan mediante amistad ahora solo necesitan llegar a 160 puntos, en vez de 220.
 	-- Si un Pokémon sube de nivel, su amistad sube ligeramente más.
 	-- Los hermanos masajistas de Goldenrod City suben ligeramente más la amistad.
+
+- Items:
+	-- El boosteo de items que aumentan la potencia de ataques elementales ha aumentado de 10% a 20%.
+	-- Pink Bow ahora se llama "Silk Scarf".
+	-- Pikachu salvajes tienen un 23% chance de tener Oran Berry equipado y 2% chance de tener Light Ball.
 
 - Ahora las piedras evolutivas pueden ser compradas tanto en Goldenrod Department Store como en Celadon Department Store, por $3000.
 

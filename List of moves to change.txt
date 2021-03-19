@@ -9,3 +9,6 @@ Foresight
 Lock-On
 Pain Split
 Beat Up
+Mimic
+Waterfall
+Toxic

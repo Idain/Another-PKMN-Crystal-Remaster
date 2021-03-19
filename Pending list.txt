@@ -9,6 +9,11 @@ Foresight
 Lock-On
 Pain Split
 Beat Up
+Mimic
+Waterfall
+Toxic
+Rapid Spin
 
 
-* Modificar IA para que sepa usar la versión modificada de Growth.
+
+* Añadir In-Game trades para obtener a Misdreavus, Murkrow y Houndour.
