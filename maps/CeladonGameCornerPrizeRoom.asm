@@ -1,5 +1,4 @@
 CELADONGAMECORNERPRIZEROOM_TM32_COINS EQU 1500
-;CELADONGAMECORNERPRIZEROOM_TM20_COINS EQU 2000
 CELADONGAMECORNERPRIZEROOM_TM29_COINS EQU 3000
 CELADONGAMECORNERPRIZEROOM_TM15_COINS EQU 6000
 CELADONGAMECORNERPRIZEROOM_PIKACHU_COINS  EQU 2222
@@ -53,17 +52,6 @@ CeladonPrizeRoom_tmcounterloop:
 	iffalse CeladonPrizeRoom_notenoughroom
 	takecoins CELADONGAMECORNERPRIZEROOM_TM32_COINS
 	sjump CeladonPrizeRoom_purchased
-
-;.Endure:
-;	checkcoins CELADONGAMECORNERPRIZEROOM_TM20_COINS
-;	ifequal HAVE_LESS, CeladonPrizeRoom_notenoughcoins
-;	getitemname STRING_BUFFER_3, TM_ENDURE
-;	scall CeladonPrizeRoom_askbuy
-;	iffalse CeladonPrizeRoom_CancelPurchaseScript
-;	giveitem TM_ENDURE
-;	iffalse CeladonPrizeRoom_notenoughroom
-;	takecoins CELADONGAMECORNERPRIZEROOM_TM20_COINS
-;	sjump CeladonPrizeRoom_purchased
 
 .Psychic:
 	checkitem TM_PSYCHIC_M
@@ -142,7 +130,6 @@ CeladonPrizeRoom_TMMenuHeader:
 	db STATICMENU_CURSOR ; flags
 	db 4 ; items
 	db "TM32    1500@"
-;	db "TM20 	2000@"
 	db "TM29    3000@"
 	db "TM15    6000@"
 	db "CANCEL@"
@@ -267,11 +254,11 @@ CeladonGameCornerPrizeRoomPokemonVendor:
 .MenuData:
 	db STATICMENU_CURSOR ; flags
 	db 6 ; items
-	db "PIKACHU    2222@"
-	db "MR. MIME   3333@"
-	db "PORYGON    5555@"
-	db "EEVEE 	   6666@"
-	db "LARVITAR   8888@"
+	db "PIKACHU    {d:CELADONGAMECORNERPRIZEROOM_PIKACHU_COINS}@"
+	db "MR. MIME   {d:CELADONGAMECORNERPRIZEROOM_MR_MIME_COINS}@"
+	db "PORYGON    {d:CELADONGAMECORNERPRIZEROOM_PORYGON_COINS}@"
+	db "EEVEE 	   {d:CELADONGAMECORNERPRIZEROOM_EEVEE_COINS}@"
+	db "LARVITAR   {d:CELADONGAMECORNERPRIZEROOM_LARVITAR_COINS}@"
 	db "CANCEL@"
 
 CeladonGameCornerPrizeRoomGentlemanText:

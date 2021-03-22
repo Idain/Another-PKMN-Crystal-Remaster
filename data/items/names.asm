@@ -172,7 +172,7 @@ ItemNames::
 	db "TERU-SAMA@"
 	db "UP-GRADE@"
 	db "ORAN BERRY@"
-	db "GOLD BERRY@"
+	db "SITRUS BERRY@"
 	db "SQUIRTBOTTLE@"
 	db "TERU-SAMA@"
 	db "PARK BALL@"

@@ -3790,7 +3790,7 @@ BattleCommand_SleepTarget:
 	call BattleRandom
 	and b
 	jr z, .random_loop
-	cp SLP
+	cp SLP + 1
 	jr z, .random_loop
 	inc a
 	ld [de], a

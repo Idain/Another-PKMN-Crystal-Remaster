@@ -6,8 +6,10 @@ VERSIÓN 1.1
 AÑADIDOS:
 - NUEVO TIPO: ¡Tipo hada! Los Pokémon y movimientos existentes que son de tipo hada en la 6ta gen ahora lo serán en este juego.
 
-- NUEVO ITEM: Polkadow Bow. Aumenta la potencia de movimientos tipo hada en un 10%.
-	* Obtención: A veces Picknicker Tiffany lo entrega en Ruta 43. Has de tener su número.
+- ITEM: 
+	-- Polkadow Bow. Aumenta la potencia de movimientos tipo hada en un 10%.
+		* Obtención: A veces Picknicker Tiffany lo entrega en Ruta 43. Has de tener su número.
+	-- Sitrus Berry. Esta reemplaza a la Gold Berry, curando 25% MAX HP en vez de 30HP.
 
 - El Objeto "X SP. DEF" ha sido añadido al juego. Boostea el stat base de Defensa Especial por 1.5x.
 
@@ -24,7 +26,7 @@ CAMBIOS:
 	* Growth ahora también boostea ataque físico. Si el clima es soleado, sube Atk y Sp. Atk dos niveles.
 	* Los tipo eléctrico ya no pueden ser paralizados.
 	* Los movimientos basados en polvos y esporas ya no afectan a los tipo planta.
-	* Autodestrucción y Explosión ya no bajan la defensa del oponente a la mitad al calcular el daño total.
+	* Autodestrucción y Explosión ya no bajan la defensa del oponente a la mitad al momento de calcular el daño total.
 
 - Movesets:
 	* Chikorita, Cyndaquil, Totodile, sus evoluciones y otros Pokémon tienen movesets ligeramente ajustados de acuerdo a Gen 7/8.
@@ -32,25 +34,28 @@ CAMBIOS:
 	* Typhlosion ahora aprende Solar Beam.
 	* Varios Pokémon aprenden nuevas TMs y HMs.
 
-
 - Los problemas de status han sido actualizados:
 	-- El chance de un Pokémon descongelarse ha aumentado de 10% a 20%.
 	-- Parálisis ahora solo reduce la velocidad en un 50% (como en la 7ma gen en adelante, en vez de un 75%.	
-	-- El estado "Dormido" ahora dura de uno a tres (1-3) turnos. Antes duraba de uno a siete (1-7).
+	-- El estado "Dormido" ahora dura 1-3 turnos. Antes duraba 1-7.
 
-- Las probabilidades de obtener un Pokémon variocolor (Shiny) han sido aumentadas de 1/8192 a 1/4096.
-	Para que un Pokémon sea Shiny, sus valores de sus DVs han de ser:
-	-- Ataque: 	0-15
-	-- Defensa: 	10
-	-- Velocidad: 	10
-	-- Special: 	10
-	NOTA: Gracias a esto, ahora es posible tener un Pokémon hembra variocolor cuyo ratio de género es 7:1 (Macho/Hembra).
+- Las probabilidades de obtener un Pokémon variocolor (Shiny) han sido aumentadas de 1/8192 a 3/8192 (¡el triple!).
+	Para que un Pokémon sea Shiny, sus DVs han de ser:
+	-- Ataque: 	1, 14, 15
+	-- Defensa: 	14, 15
+	-- Velocidad: 	14, 15
+	-- Special: 	14, 15
+	NOTA: Gracias a esto, ahora es posible tener un Pokémon hembra variocolor cuyo ratio de género es 7:1 (Macho/Hembra).	
 
-- ¡Nidorina y Nidoqueen ya pueden criar! Ahora ambos Pokémon pertenecen a los grupos huevo MONSTRUO y CAMPO.
-	-- Las crías pueden ser Nidoran♀ o Nidoran♂.
-	-- Nidoran♂, Nidorino y Nidoking ahora tienen un 50% de probabilidad de dar a luz una Nidoran♀.
+- Debido al cambio de Shiny DVs, el Gyarados rojo del Lago Furia tendrá DVs perfectos.
 
-- Detalle removido donde, al momento de criar, si ambos padres tenían el mismo DV en Defensa y su DVs en Especial eran o el mismo o diferían exactamente por 8, entonces no podían criar.
+
+- Crianza:
+	- ¡Nidorina y Nidoqueen ya pueden criar! Ahora ambos Pokémon pertenecen a los grupos huevo MONSTRUO y CAMPO.
+		-- Las crías pueden ser Nidoran♀ o Nidoran♂.
+		-- Nidoran♂, Nidorino y Nidoking ahora tienen un 50% de probabilidad de dar a luz una Nidoran♀.
+
+	- Detalle removido donde, al momento de criar, si ambos padres tenían el mismo DV en Defensa y su DVs en Especial eran o el mismo o diferían exactamente por 8, entonces no podían criar.
 
 - Los ratios de captura de ciertas Poké Balls han sido modificado:
 	-- Love Ball: Ahora es más efectiva si ambos Pokémon pertenecen al mismo Grupo Huevo (en vez de ser de la misma especie) y son de géneros opuestos. 
@@ -86,7 +91,11 @@ CAMBIOS:
 - Items:
 	-- El boosteo de items que aumentan la potencia de ataques elementales ha aumentado de 10% a 20%.
 	-- Pink Bow ahora se llama "Silk Scarf".
-	-- Pikachu salvajes tienen un 23% chance de tener Oran Berry equipado y 2% chance de tener Light Ball.
+	-- Algunos Pokémon salvajes ahora tienen una probabilidad de 55% de tener items (50% Item1 y 5% Item2), en vez de 25% (23% Item1 y 2% Item2).
+	-- Pikachu salvajes tienen un 50% chance de tener una Oran Berry y 5% chance de tener una Light Ball.
+	-- RageCandyBar ahora funciona como el Full Heal, curando todos los problemas de estado.
+
+- En la granja de la ruta 39 ahora podemos comprar una docena de Moomoo Milk en vez de solo una.
 
 - Ahora las piedras evolutivas pueden ser compradas tanto en Goldenrod Department Store como en Celadon Department Store, por $3000.
 

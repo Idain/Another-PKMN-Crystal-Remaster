@@ -127,7 +127,7 @@ ItemEffects:
 	dw NoEffect            ; BIG_PEARL
 	dw NoEffect            ; EVERSTONE
 	dw NoEffect            ; SPELL_TAG
-	dw RestoreHPEffect     ; RAGECANDYBAR
+	dw StatusHealingEffect ; RAGECANDYBAR
 	dw NoEffect            ; GS_BALL
 	dw BlueCardEffect      ; BLUE_CARD
 	dw NoEffect            ; MIRACLE_SEED
@@ -1937,6 +1937,28 @@ GetOneFifthMaxHP:
 GetHealingItemAmount:
 	push hl
 	ld a, [wCurItem]
+	cp GOLD_BERRY
+	ret nz, .not gold_berry
+
+; If item is GOLD_BERRY, heal 25% HP.
+	ld a, MON_MAXHP
+	call GetPartyParamLocation
+	ld a, [hli]
+	ld d, a
+	ld e, [hl]
+
+; Divide MON_MAXHP by 4
+	srl d
+	rr e
+	srl d
+	rr e
+	ld a, d
+	or e  	; Check if the result was 0.
+	jr nz, .sitrus_berry_done
+	ld e, 1 ; If it was, convert it to 1.
+	jr. .sitrus_berry_done
+
+.not_gold_berry
 	ld hl, HealingHPAmounts
 	ld d, a
 .next
@@ -1955,6 +1977,7 @@ GetHealingItemAmount:
 	ld e, [hl]
 	inc hl
 	ld d, [hl]
+.sitrus_berry_done
 	pop hl
 	ret
 
@@ -2118,7 +2141,9 @@ XItemEffect:
 
 .got_it
 	inc hl
-	ld b, [hl]
+	ld a, $10
+	or [hl]
+	ld b, a
 	xor a
 	ldh [hBattleTurn], a
 	ld [wAttackMissed], a

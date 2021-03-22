@@ -1,5 +1,5 @@
-ROUTE39FARMHOUSE_MILK_PRICE EQU 500
-
+ROUTE39FARMHOUSE_MILK_PRICE EQU 600
+ROUTE39FARMHOUSE_MILK_DOZEN_PRICE EQU ROUTE39FARMHOUSE_MILK_PRICE * 12
 	object_const_def
 	const ROUTE39FARMHOUSE_POKEFAN_M
 	const ROUTE39FARMHOUSE_POKEFAN_F
@@ -21,25 +21,40 @@ PokefanM_DairyFarmer:
 	end
 
 FarmerMScript_SellMilk:
-	checkitem MOOMOO_MILK
-	iftrue FarmerMScript_Milking
 	writetext FarmerMText_BuyMilk
+FarmerMScript_SellMilk_LoopScript:
 	special PlaceMoneyTopRight
-	yesorno
-	iffalse FarmerMScript_NoSale
+	loadmenu FarmerMScript_SellMilkMenuHeader
+	verticalmenu
+	closewindow
+	ifequal 1, .OneBottle
+	ifequal 2, .OneDozen
+	sjump FarmerMScript_NoSale
+
+.OneBottle
 	checkmoney YOUR_MONEY, ROUTE39FARMHOUSE_MILK_PRICE
 	ifequal HAVE_LESS, FarmerMScript_NoMoney
 	giveitem MOOMOO_MILK
 	iffalse FarmerMScript_NoRoom
 	takemoney YOUR_MONEY, ROUTE39FARMHOUSE_MILK_PRICE
 	special PlaceMoneyTopRight
+	sjump FarmerMScript_SellMil_FinishScript
+
+.OneDozen
+	checkmoney YOUR_MONEY, ROUTE39FARMHOUSE_MILK_DOZEN_PRICE
+	ifequal HAVE_LESS, FarmerMScript_NoMoney
+	giveitem MOOMOO_MILK, 12
+	iffalse FarmerMScript_NoRoom
+	takemoney YOUR_MONEY, ROUTE39FARMHOUSE_MILK_DOZEN_PRICE
+	special PlaceMoneyTopRight
+	; fallthrough
+FarmerMScript_SellMil_FinishScript:
 	waitsfx
 	playsound SFX_TRANSACTION
 	writetext FarmerMText_GotMilk
 	promptbutton
 	itemnotify
-	closetext
-	end
+	sjump FarmerMScript_SellMilk_LoopScript
 
 FarmerMScript_NoMoney:
 	writetext FarmerMText_NoMoney
@@ -90,6 +105,19 @@ FarmerFScript_NoRoomForSnore:
 	closetext
 	end
 
+FarmerMScript_SellMilkMenuHeader:
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 0, 2, SCREEN_WIDTH - 1 TEXTBOX_Y - 1
+	dw .MenuData
+	db 1 ; default option
+
+.MenuData:
+	db STATICMENU_CURSOR ; flags
+	db 3 ; items
+	db "ONE BOTTLE   ¥{d:ROUTE39FARMHOUSE_MILK_PRICE}@"
+	db "ONE DOZEN    ¥{d:ROUTE39FARMHOUSE_MILK_DOZEN_PRICE}@"
+	db "CANCEL@"
+
 FarmhouseBookshelf:
 	jumpstd PictureBookshelfScript
 
@@ -122,7 +150,7 @@ FarmerMText_BuyMilk:
 	line "to restore HP!"
 
 	para "I'll give it to ya"
-	line "fer just ¥500."
+	line "fer just ¥{d:ROUTE39FARMHOUSE_MILK_PRICE}."
 	done
 
 FarmerMText_GotMilk:

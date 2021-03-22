@@ -9,9 +9,9 @@ HealingHPAmounts:
 	dbw FULL_RESTORE, MAX_STAT_VALUE
 	dbw MOOMOO_MILK,  100
 	dbw BERRY,         10
-	dbw GOLD_BERRY,    30
-	dbw ENERGYPOWDER,  50
-	dbw ENERGY_ROOT,  200
-	dbw RAGECANDYBAR,  20
+;	dbw GOLD_BERRY,    30
+	dbw ENERGYPOWDER,  60
+	dbw ENERGY_ROOT,  120
+;	dbw RAGECANDYBAR,  20
 	dbw BERRY_JUICE,   20
 	dbw -1, 0 ; end

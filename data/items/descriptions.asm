@@ -701,8 +701,8 @@ SpellTagDesc:
 	next "type moves. (HOLD)@"
 
 RageCandyBarDesc:
-	db   "Restores #MON"
-	next "HP by 20.@"
+	db   "Eliminates all"
+	next "status problems.@"
 
 GSBallDesc:
 	db   "The mysterious"
@@ -729,11 +729,11 @@ TeruSama8Desc:
 
 EnergyPowderDesc:
 	db   "Restores #MON"
-	next "HP by 50. Bitter.@"
+	next "HP by 60. Bitter.@"
 
 EnergyRootDesc:
 	db   "Restores #MON"
-	next "HP by 200. Bitter.@"
+	next "HP by 120. Bitter.@"
 
 HealPowderDesc:
 	db   "Cures all status"
@@ -926,8 +926,8 @@ BerryDesc:
 	next "item. (10HP, HOLD)@"
 
 GoldBerryDesc:
-	db   "A self-restore"
-	next "item. (30HP, HOLD)@"
+	db   "Self-restore item"
+	next "(25% MAX HP, HOLD)@"
 
 SquirtBottleDesc:
 	db   "A bottle used for"
