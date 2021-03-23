@@ -22,8 +22,9 @@ CAMBIOS:
 
 - Movimientos:
 	* Chupavidas ahora tiene 80 de potencia.
-	* Crunch puede bajar la defensa física en vez de la especial (Gen 4 en adelante)
-	* Growth ahora también boostea ataque físico. Si el clima es soleado, sube Atk y Sp. Atk dos niveles.
+	* Triturar puede bajar la defensa física en vez de la especial (Gen 4 en adelante).
+	* Poder Oculto ahora siempre tendrá potencia 70 en vez de variar.
+	* Desarrollo ahora también boostea ataque físico. Si el clima es soleado, sube Atk y Sp. Atk dos niveles.
 	* Los tipo eléctrico ya no pueden ser paralizados.
 	* Los movimientos basados en polvos y esporas ya no afectan a los tipo planta.
 	* Autodestrucción y Explosión ya no bajan la defensa del oponente a la mitad al momento de calcular el daño total.
@@ -31,7 +32,7 @@ CAMBIOS:
 - Movesets:
 	* Chikorita, Cyndaquil, Totodile, sus evoluciones y otros Pokémon tienen movesets ligeramente ajustados de acuerdo a Gen 7/8.
 	* Pikachu y Piloswine ahora aprenden Excavar, como en Gen 8.
-	* Typhlosion ahora aprende Solar Beam.
+	* Typhlosion ahora aprende Rayo Solar.
 	* Varios Pokémon aprenden nuevas TMs y HMs.
 
 - Los problemas de status han sido actualizados:
