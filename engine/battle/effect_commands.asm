@@ -1485,7 +1485,7 @@ BattleCommand_CheckPowder:
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar
 	ld hl, PowderMoves
-	call IsInArray
+	call IsInByteArray
 	ret nc
 
 ; If the opponent is Grass-type, the move fails.
@@ -3790,7 +3790,7 @@ BattleCommand_SleepTarget:
 	call BattleRandom
 	and b
 	jr z, .random_loop
-	cp SLP + 1
+	cp SLP 
 	jr z, .random_loop
 	inc a
 	ld [de], a

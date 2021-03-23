@@ -3166,7 +3166,7 @@ AI_Status:
 .powderimmunity
 	ld a, c  ; Put MOVE_ANIM back into a.
 	ld hl, PowderMoves
-	call IsInArray
+	call IsInByteArray
 	jr nc, .typeimmunity
 	;fallthrough
 .cottonspore
@@ -3200,8 +3200,7 @@ AI_Status:
 
 .immune
 	call AIDiscourageMove
-	jr .checkmove
-
+	jp .checkmove
 
 AI_Risky:
 ; Use any move that will KO the target.

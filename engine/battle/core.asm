@@ -4389,6 +4389,22 @@ HandleHPHealingItem:
 
 .less
 	call ItemRecoveryAnim
+
+	; Evaluate if it's a Sitrus Berry
+	push hl
+	callfar GetOpponentItem
+	ld a, [hl]
+	cp GOLD_BERRY
+	pop hl
+	jr nz, .not_sitrus_berry ; If it's not, continue the normal routine.
+
+	call SwitchTurnCore  ; Temporary Switch turn
+	call GetQuarterMaxHP
+	call SwitchTurnCore ; Back to normal.
+	call RestoreHP
+	jr UseOpponentItem
+
+.not_sitrus_berry
 	; store max HP in wHPBuffer1
 	ld a, [hli]
 	ld [wHPBuffer1 + 1], a
@@ -4419,6 +4435,7 @@ HandleHPHealingItem:
 	inc de
 	ld a, [wHPBuffer3]
 	ld [de], a
+
 	ldh a, [hBattleTurn]
 	ld [wWhichHPBar], a
 	and a

@@ -1938,7 +1938,7 @@ GetHealingItemAmount:
 	push hl
 	ld a, [wCurItem]
 	cp GOLD_BERRY
-	ret nz, .not gold_berry
+	jr nz, .not_gold_berry
 
 ; If item is GOLD_BERRY, heal 25% HP.
 	ld a, MON_MAXHP
@@ -1956,7 +1956,7 @@ GetHealingItemAmount:
 	or e  	; Check if the result was 0.
 	jr nz, .sitrus_berry_done
 	ld e, 1 ; If it was, convert it to 1.
-	jr. .sitrus_berry_done
+	jr .sitrus_berry_done
 
 .not_gold_berry
 	ld hl, HealingHPAmounts

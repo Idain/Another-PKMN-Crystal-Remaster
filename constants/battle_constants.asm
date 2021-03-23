@@ -154,7 +154,7 @@ assert const_value % 2 == 0
 NUM_BATTLE_VAR_LOCATION_PAIRS EQU const_value / 2
 
 ; status condition bit flags
-SLP EQU %011 ; 0-3 turns
+SLP EQU 7 ; 0-7 turns
 	const_def 3
 	const PSN
 	const BRN
