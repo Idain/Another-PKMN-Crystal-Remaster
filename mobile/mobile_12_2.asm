@@ -9,7 +9,7 @@ MobileCheckOwnMonAnywhere:
 	ld d, a
 	ld e, 0
 	ld hl, wPartyMon1Species
-	ld bc, wPartyMonOT
+	ld bc, wPartyMonOTs
 .asm_4a851
 	call .CheckMatch
 	ret c
@@ -27,7 +27,7 @@ MobileCheckOwnMonAnywhere:
 	jr z, .asm_4a888
 	ld d, a
 	ld hl, sBoxMon1Species
-	ld bc, sBoxMonOT
+	ld bc, sBoxMonOTs
 .asm_4a873
 	call .CheckMatch
 	jr nc, .asm_4a87c
@@ -51,7 +51,7 @@ MobileCheckOwnMonAnywhere:
 	and $f
 	cp c
 	jr z, .asm_4a8d1
-	ld hl, .BoxAddrs
+	ld hl, .BoxAddresses
 	ld b, 0
 	add hl, bc
 	add hl, bc
@@ -72,7 +72,7 @@ MobileCheckOwnMonAnywhere:
 	ld e, l
 	pop hl
 	push de
-	ld de, sBoxMonOT - sBoxCount
+	ld de, sBoxMonOTs - sBoxCount
 	add hl, de
 	ld b, h
 	ld c, l
@@ -130,7 +130,8 @@ MobileCheckOwnMonAnywhere:
 	scf
 	ret
 
-.BoxAddrs:
+.BoxAddresses:
+	table_width 3, MobileCheckOwnMonAnywhere.BoxAddresses
 	dba sBox1
 	dba sBox2
 	dba sBox3
@@ -145,6 +146,7 @@ MobileCheckOwnMonAnywhere:
 	dba sBox12
 	dba sBox13
 	dba sBox14
+	assert_table_length NUM_BOXES
 
 .AdvanceOTName:
 	push hl
@@ -264,7 +266,7 @@ Function4a9c3:
 Function4a9d7:
 	ld a, [wd002]
 	ld hl, wPartyMonNicknames
-	call GetNick
+	call GetNickname
 	ld h, d
 	ld l, e
 	ld de, wMobileParticipant1Nickname
@@ -272,7 +274,7 @@ Function4a9d7:
 	call CopyBytes
 	ld a, [wd003]
 	ld hl, wPartyMonNicknames
-	call GetNick
+	call GetNickname
 	ld h, d
 	ld l, e
 	ld de, wMobileParticipant2Nickname
@@ -280,7 +282,7 @@ Function4a9d7:
 	call CopyBytes
 	ld a, [wd004]
 	ld hl, wPartyMonNicknames
-	call GetNick
+	call GetNickname
 	ld h, d
 	ld l, e
 	ld de, wMobileParticipant3Nickname

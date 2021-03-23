@@ -1347,6 +1347,7 @@ DebugRoom_BoxStructStrings:
 .SendBox:   db "SEND BOX@"
 
 DebugRoom_BoxAddresses:
+	table_width 3, DebugRoom_BoxAddresses
 	dba sBox1
 	dba sBox2
 	dba sBox3
@@ -1361,6 +1362,7 @@ DebugRoom_BoxAddresses:
 	dba sBox12
 	dba sBox13
 	dba sBox14
+	assert_table_length NUM_BOXES
 
 DebugRoomMenu_RTCEdit:
 	ld hl, .PagedValuesHeader

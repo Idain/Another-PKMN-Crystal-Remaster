@@ -18,6 +18,7 @@ ITEMATTR_STRUCT_LENGTH EQU _RS
 	const BALL     	; 3
 	const TM_HM    	; 4
 	const BERRIES	; 5
+NUM_ITEM_TYPES EQU const_value - 1
 
 ; item menu types
 ; UseItem.dw indexes (see engine/items/pack.asm)

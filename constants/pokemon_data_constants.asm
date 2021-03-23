@@ -49,6 +49,7 @@ GENDER_UNKNOWN EQU -1
 	const GROWTH_MEDIUM_SLOW
 	const GROWTH_FAST
 	const GROWTH_SLOW
+NUM_GROWTH_RATES EQU const_value
 
 ; wBaseEggGroups values
 	const_def 1
@@ -102,6 +103,8 @@ MON_STATUS             rb
                        rb_skip
 MON_HP                 rw
 MON_MAXHP              rw
+MON_STATS              rw NUM_BATTLE_STATS
+rsset MON_STATS
 MON_ATK                rw
 MON_DEF                rw
 MON_SPD                rw
@@ -136,7 +139,7 @@ PARTY_LENGTH EQU 6
 
 ; boxes
 MONS_PER_BOX EQU 20
-NUM_BOXES    EQU 14
+NUM_BOXES EQU 14
 
 ; hall of fame
 HOF_MON_LENGTH EQU 1 + 2 + 2 + 1 + (MON_NAME_LENGTH - 1) ; species, id, dvs, level, nick
@@ -193,7 +196,7 @@ NUM_TREEMON_SETS EQU const_value
 	const TREEMON_SCORE_GOOD ; 1
 	const TREEMON_SCORE_RARE ; 2
 
-; ChangeHappiness arguments (see data/happiness_changes.asm)
+; ChangeHappiness arguments (see data/events/happiness_changes.asm)
 	const_def 1
 	const HAPPINESS_GAINLEVEL         ; 01
 	const HAPPINESS_USEDITEM          ; 02

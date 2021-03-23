@@ -41,15 +41,15 @@ BASE_AI_SWITCH_SCORE EQU 10
 NUM_LEVEL_STATS EQU const_value
 
 ; move struct members (see data/moves/moves.asm)
-	const_def
-	const MOVE_ANIM   ; 0
-	const MOVE_EFFECT ; 1
-	const MOVE_POWER  ; 2
-	const MOVE_TYPE   ; 3
-	const MOVE_ACC    ; 4
-	const MOVE_PP     ; 5
-	const MOVE_CHANCE ; 6
-MOVE_LENGTH EQU const_value
+rsreset
+MOVE_ANIM   rb ; 0
+MOVE_EFFECT rb ; 1
+MOVE_POWER  rb ; 2
+MOVE_TYPE   rb ; 3
+MOVE_ACC    rb ; 4
+MOVE_PP     rb ; 5
+MOVE_CHANCE rb ; 6
+MOVE_LENGTH EQU _RS
 
 ; stat constants
 ; indexes for:
@@ -97,7 +97,7 @@ SPDSPCDV_SHINY EQU $FF
 	const BATTLETYPE_CELEBI
 	const BATTLETYPE_SUICUNE
 
-; BattleVarPairs indexes (see home/battle.asm)
+; BattleVarPairs indexes (see home/battle_vars.asm)
 	const_def
 	const BATTLE_VARS_SUBSTATUS1
 	const BATTLE_VARS_SUBSTATUS2
@@ -122,7 +122,7 @@ SPDSPCDV_SHINY EQU $FF
 	const BATTLE_VARS_LAST_MOVE_OPP
 NUM_BATTLE_VARS EQU const_value
 
-; BattleVarLocations indexes (see home/battle.asm)
+; BattleVarLocations indexes (see home/battle_vars.asm)
 	const_def
 	const PLAYER_SUBSTATUS_1
 	const ENEMY_SUBSTATUS_1
@@ -263,3 +263,7 @@ ALL_STATUS EQU (1 << PSN) | (1 << BRN) | (1 << FRZ) | (1 << PAR) | SLP
 BATTLERESULT_CAUGHT_CELEBI EQU 6
 BATTLERESULT_BOX_FULL EQU 7
 BATTLERESULT_BITMASK EQU (1 << BATTLERESULT_CAUGHT_CELEBI) | (1 << BATTLERESULT_BOX_FULL)
+
+; link_battle_record struct
+LINK_BATTLE_RECORD_LENGTH EQU 2 + (NAME_LENGTH - 1) + 2 * 3
+NUM_LINK_BATTLE_RECORDS EQU 5
