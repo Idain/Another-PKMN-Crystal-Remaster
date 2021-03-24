@@ -1,5 +1,5 @@
 ROUTE39FARMHOUSE_MILK_PRICE EQU 600
-ROUTE39FARMHOUSE_MILK_DOZEN_PRICE EQU ROUTE39FARMHOUSE_MILK_PRICE * 12
+ROUTE39FARMHOUSE_MILK_DOZEN_PRICE EQU 6000
 	object_const_def
 	const ROUTE39FARMHOUSE_POKEFAN_M
 	const ROUTE39FARMHOUSE_POKEFAN_F
@@ -107,7 +107,7 @@ FarmerFScript_NoRoomForSnore:
 
 FarmerMScript_SellMilkMenuHeader:
 	db MENU_BACKUP_TILES ; flags
-	menu_coords 0, 2, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
+	menu_coords 0, 3, SCREEN_WIDTH - 1, TEXTBOX_Y - 1
 	dw .MenuData
 	db 1 ; default option
 
@@ -115,7 +115,7 @@ FarmerMScript_SellMilkMenuHeader:
 	db STATICMENU_CURSOR ; flags
 	db 3 ; items
 	db "ONE BOTTLE   ¥{d:ROUTE39FARMHOUSE_MILK_PRICE}@"
-	db "ONE DOZEN    ¥{d:ROUTE39FARMHOUSE_MILK_DOZEN_PRICE}@"
+	db "ONE DOZEN   ¥{d:ROUTE39FARMHOUSE_MILK_DOZEN_PRICE}@"
 	db "CANCEL@"
 
 FarmhouseBookshelf:

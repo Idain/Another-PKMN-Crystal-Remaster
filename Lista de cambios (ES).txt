@@ -10,6 +10,7 @@ AÑADIDOS:
 	-- Polkadow Bow. Aumenta la potencia de movimientos tipo hada en un 10%.
 		* Obtención: A veces Picknicker Tiffany lo entrega en Ruta 43. Has de tener su número.
 	-- Sitrus Berry. Esta reemplaza a la Gold Berry, curando 25% MAX HP en vez de 30HP.
+	-- PP MAX. Aumenta permanentemente los PP de un movimiento al máximo.
 
 - El Objeto "X SP. DEF" ha sido añadido al juego. Boostea el stat base de Defensa Especial por 1.5x.
 
@@ -97,7 +98,10 @@ CAMBIOS:
 
 - En la granja de la ruta 39 ahora podemos comprar una docena de Moomoo Milk en vez de solo una.
 
-- Ahora las piedras evolutivas pueden ser compradas tanto en Goldenrod Department Store como en Celadon Department Store, por $3000.
+- Las piedras evolutivas, PP Up y PP Max pueden ser comprados tanto en Goldenrod Department Store como en Celadon Department Store.
+	-- Piedras evolutivas: $3000
+	-- PP UP: $10000
+	-- PP Max: $25000
 
 - Los precios de varios artículos han sido ajustados de acuerdo a generaciones recientes (estoy vago para hacer la lista).
 
@@ -108,8 +112,8 @@ CAMBIOS:
 	-- La baya Leppa ahora restaura 10 PP como en generaciones recientes, en vez de solo 5 PP.
 
 FIXES:
-- Los sprites japoneses de los entrenadores BEAUTY, FISHER, MEDIUM, SAGE y Female SWIMMER no mostraban los colores correctos, así que han sido revertidos a sus versiones internacionales.
-- Al modificar la Light Ball se introdujo un glitch que hacía que los ataques especiales (con o sin objeto equipado) no se calculasen correctamente. 
+- Corregido error donde los sprites japoneses de los entrenadores BEAUTY, FISHER, MEDIUM, SAGE y SWIMMER♀ no mostraban los colores correctos.
+- Corregido error donde los ataques especiales no se calculaban correctamente.
 
 
 VERSIÓN 1.0

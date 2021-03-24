@@ -1331,6 +1331,12 @@ _PPsIncreasedText::
 	line "increased."
 	prompt
 
+_PPsMaximizedText::
+	text_ram wStringBuffer2
+	text "'s PP"
+	line "maximized."
+	prompt
+
 _PPRestoredText::
 	text "PP was restored."
 	prompt

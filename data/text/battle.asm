@@ -251,7 +251,7 @@ BattleText_PluralEnemyAreAboutToUseWillPlayerChangeMon:
 	text "<ENEMY>"
 	line "are about to use"
 	cont "@"
-	text_ram wEnemyMonNick
+	text_ram wEnemyMonNickname
 	text "."
 
 	para "Will <PLAYER>"

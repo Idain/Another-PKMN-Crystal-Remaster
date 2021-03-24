@@ -129,13 +129,15 @@ MartGoldenrod3F:
 	db -1 ; end
 
 MartGoldenrod4F:
-	db 6 ; # items
+	db 8 ; # items
+	db HP_UP
 	db PROTEIN
 	db IRON
 	db CARBOS
 	db CALCIUM
 	db ZINC
-	db HP_UP
+	db PP_UP
+	db PP_MAX
 	db -1 ; end
 
 MartGoldenrod5F:
@@ -315,13 +317,15 @@ MartCeladon4F:
 	db -1 ; end
 
 MartCeladon5F1:
-	db 6 ; # items
+	db 8 ; # items
 	db HP_UP
 	db PROTEIN
 	db IRON
 	db CARBOS
 	db CALCIUM
 	db ZINC
+	db PP_UP
+	db PP_MAX
 	db -1 ; end
 
 MartCeladon5F2:

@@ -27,6 +27,7 @@ BattleCommand_Growth:
 	jr z, .RaiseAttacks2 ; Boost both Atk and Sp.Atk by 2
 
 .RaiseAttacks:
+	call ResetMiss
 	call BattleCommand_AttackUp
     call BattleCommand_StatUpMessage
 	call ResetMiss
@@ -34,6 +35,7 @@ BattleCommand_Growth:
     jp BattleCommand_StatUpMessage
 
 .RaiseAttacks2:
+	call ResetMiss
 	call BattleCommand_AttackUp2
     call BattleCommand_StatUpMessage
 	call ResetMiss
@@ -42,7 +44,7 @@ BattleCommand_Growth:
 
 .cantraise
 ; Can't raise either stat.
-	ld b, ABILITY + 1
+	ld b, STATS + 1
 	call GetStatName
 	call AnimateFailedMove
 	ld hl, WontRiseAnymoreText

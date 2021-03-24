@@ -35,8 +35,8 @@
 	const PROTEIN      ; 1b
 	const IRON         ; 1c
 	const CARBOS       ; 1d
-	const LUCKY_PUNCH  ; 1e
-	const CALCIUM      ; 1f
+	const CALCIUM      ; 1e
+	const ZINC  	   ; 1f
 	const RARE_CANDY   ; 20
 	const X_ACCURACY   ; 21
 	const LEAF_STONE   ; 22
@@ -68,6 +68,7 @@
 	const SILVER_LEAF  ; 3c
 	const SUPER_ROD    ; 3d
 	const PP_UP        ; 3e
+	const PP_MAX
 	const ETHER        ; 3f
 	const MAX_ETHER    ; 40
 	const ELIXER       ; 41
@@ -95,7 +96,6 @@
 	const BIG_MUSHROOM ; 57
 	const SILVERPOWDER ; 58
 	const BLU_APRICORN ; 59
-	const ITEM_5A      ; 5a
 	const AMULET_COIN  ; 5b
 	const YLW_APRICORN ; 5c
 	const GRN_APRICORN ; 5d
@@ -142,7 +142,7 @@
 	const PASS         ; 86
 	const ITEM_87      ; 87
 	const ITEM_88      ; 88
-	const ZINC         ; 89
+	const LUCKY_PUNCH  ; 89
 	const CHARCOAL     ; 8a
 	const BERRY_JUICE  ; 8b
 	const SCOPE_LENS   ; 8c

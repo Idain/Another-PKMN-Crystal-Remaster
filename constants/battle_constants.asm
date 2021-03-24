@@ -37,7 +37,8 @@ BASE_AI_SWITCH_SCORE EQU 10
 	const SP_DEFENSE
 	const ACCURACY
 	const EVASION
-	const ABILITY ; used for BattleCommand_Curse
+	const STATS ; used for BattleCommand_Curse and 
+	; BattleCommand_Growth
 NUM_LEVEL_STATS EQU const_value
 
 ; move struct members (see data/moves/moves.asm)

@@ -30,8 +30,8 @@ ItemDescriptions:
 	dw ProteinDesc
 	dw IronDesc
 	dw CarbosDesc
-	dw LuckyPunchDesc
 	dw CalciumDesc
+	dw ZincDesc
 	dw RareCandyDesc
 	dw XAccuracyDesc
 	dw LeafStoneDesc
@@ -63,6 +63,7 @@ ItemDescriptions:
 	dw SilverLeafDesc
 	dw SuperRodDesc
 	dw PPUpDesc
+	dw PPMaxDesc
 	dw EtherDesc
 	dw MaxEtherDesc
 	dw ElixirDesc
@@ -90,7 +91,6 @@ ItemDescriptions:
 	dw BigMushroomDesc
 	dw SilverPowderDesc
 	dw BluApricornDesc
-	dw TeruSama6Desc
 	dw AmuletCoinDesc
 	dw YlwApricornDesc
 	dw GrnApricornDesc
@@ -137,7 +137,7 @@ ItemDescriptions:
 	dw PassDesc
 	dw TeruSama9Desc
 	dw TeruSama10Desc
-	dw ZincDesc
+	dw LuckyPunchDesc
 	dw CharcoalDesc
 	dw BerryJuiceDesc
 	dw ScopeLensDesc
@@ -503,6 +503,10 @@ PPUpDesc:
 	db   "Raises max PP of"
 	next "a selected move.@"
 
+PPMaxDesc:
+	db   "Maximizes PP of"
+	next "a selected move.@"
+
 EtherDesc:
 	db   "Restores PP of one"
 	next "move by 10.@"
@@ -608,9 +612,6 @@ SilverPowderDesc:
 
 BluApricornDesc:
 	db   "A blue APRICORN.@"
-
-TeruSama6Desc:
-	db   "?@"
 
 AmuletCoinDesc:
 	db   "Doubles monetary"
