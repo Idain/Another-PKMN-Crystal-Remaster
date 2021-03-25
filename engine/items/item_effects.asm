@@ -1146,7 +1146,7 @@ VitaminEffect:
 
 	add hl, bc
 	ld a, [hl]
-	cp 100
+	cp MAX_EV  ; 252
 	jr nc, NoEffectMessage
 
 	add 10

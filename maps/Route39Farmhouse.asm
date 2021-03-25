@@ -149,8 +149,8 @@ FarmerMText_BuyMilk:
 	para "Give it to #MON"
 	line "to restore HP!"
 
-	para "I'll give it to ya"
-	line "fer just ¥{d:ROUTE39FARMHOUSE_MILK_PRICE}."
+	para "Grab a bottle or"
+	line "a dozen!"
 	done
 
 FarmerMText_GotMilk:

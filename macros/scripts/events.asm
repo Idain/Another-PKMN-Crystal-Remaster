@@ -579,6 +579,11 @@ verticalmenu: MACRO
 	db verticalmenu_command
 ENDM
 
+	const scrollingmenu_command ; 
+scrollingmenu: MACRO
+	db scrollingmenu_command
+ENDM
+
 	const loadpikachudata_command ; $5a
 loadpikachudata: MACRO
 	db loadpikachudata_command

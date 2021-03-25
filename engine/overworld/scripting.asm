@@ -180,6 +180,7 @@ ScriptCommandTable:
 	dw Script_closepokepic               ; 57
 	dw Script__2dmenu                    ; 58
 	dw Script_verticalmenu               ; 59
+	dw Script_ScrollingMenu
 	dw Script_loadpikachudata            ; 5a
 	dw Script_randomwildmon              ; 5b
 	dw Script_loadtemptrainer            ; 5c
@@ -463,6 +464,17 @@ Script__2dmenu:
 	ld hl, _2DMenu
 	rst FarCall
 	ld a, [wMenuCursorPosition]
+	jr nc, .ok
+	xor a
+.ok
+	ld [wScriptVar], a
+	ret
+
+Script_ScrollingMenu:
+	ld a, [wScriptBank]
+	ld hl, ScrollingMenu
+	rst FarCall
+	ld a, [wMenuJoypad]
 	jr nc, .ok
 	xor a
 .ok
