@@ -11,8 +11,7 @@ AÑADIDOS:
 		* Obtención: A veces Picknicker Tiffany lo entrega en Ruta 43. Has de tener su número.
 	-- Sitrus Berry. Esta reemplaza a la Gold Berry, curando 25% MAX HP en vez de 30HP.
 	-- PP MAX. Aumenta permanentemente los PP de un movimiento al máximo.
-
-- El Objeto "X SP. DEF" ha sido añadido al juego. Boostea el stat base de Defensa Especial por 1.5x.
+	-- "X SP. DEF" ha sido añadido al juego. Boostea el stat base de Defensa Especial por 1.5x.
 
 CAMBIOS:
 - Tabla de tipos actualizada: Los tipos FANTASMA y SINIESTRO ahora hacen daño neutro al tipo ACERO, en vez de 1/2 de daño (como sucede desde la 6ta gen en adelante).
@@ -50,7 +49,6 @@ CAMBIOS:
 
 - Debido al cambio de Shiny DVs, el Gyarados rojo del Lago Furia tendrá DVs perfectos.
 
-
 - Crianza:
 	- ¡Nidorina y Nidoqueen ya pueden criar! Ahora ambos Pokémon pertenecen a los grupos huevo MONSTRUO y CAMPO.
 		-- Las crías pueden ser Nidoran♀ o Nidoran♂.
@@ -70,14 +68,7 @@ CAMBIOS:
 		* 102.4kg - 204.8kg: 	+20
 		* Más de 204.8kg: 	+30
 
-- Los Game Corners de Goldenrod City y Celadon City han sido ligeramente ajustados:
-	-- Goldenrod City:
-	  * Todas las TMs de Goldenrod City pasaron a costar de 5500 a 3000.
-	  * Dratini ahora puede ser comprado en el Game Corner, por 2100 monedas.
-
-	-- Celadon City:
-	  * Los precios de todas las TMs han sido reducidos ligeramente.
-	  * Mr. Mime y Eevee ahora pueden ser comprados en el Game Corner; Mr. Mime por 3333 monedas y Eevee por 6666.
+- Los precios de las TMs de los Game Corners de Goldenrod City y Celadon City han sido ligeramente reducidos.
 	
 - Los precios del tutor de movimientos de Goldenrod Game Corner han sido reducidos de 4000 a 3000.
 	-- Ahora el tutor estará fuera del Game Corner todos los días, en vez de solo estarlo los miércoles y sábados.
@@ -90,6 +81,7 @@ CAMBIOS:
 	-- Los hermanos masajistas de Goldenrod City suben ligeramente más la amistad.
 
 - Items:
+	-- Los objetos X ahora aumentan el stat correspondiente por dos puntos en vez de uno.
 	-- El boosteo de items que aumentan la potencia de ataques elementales ha aumentado de 10% a 20%.
 	-- Pink Bow ahora se llama "Silk Scarf".
 	-- Algunos Pokémon salvajes ahora tienen una probabilidad de 55% de tener items (50% Item1 y 5% Item2), en vez de 25% (23% Item1 y 2% Item2).

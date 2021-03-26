@@ -148,10 +148,10 @@ CeladonGameCornerPrizeRoomPokemonVendor:
 	verticalmenu
 	closewindow
 	ifequal 1, .Pikachu
-	ifequal 2, .MrMime
-	ifequal 3, .Porygon
-	ifequal 4, .Eevee
-	ifequal 5, .Larvitar
+;	ifequal 2, .MrMime
+	ifequal 2, .Porygon
+;	ifequal 4, .Eevee
+	ifequal 3, .Larvitar
 	
 	sjump CeladonPrizeRoom_CancelPurchaseScript
 
@@ -172,7 +172,7 @@ CeladonGameCornerPrizeRoomPokemonVendor:
 	givepoke PIKACHU, 25
 	takecoins CELADONGAMECORNERPRIZEROOM_PIKACHU_COINS
 	sjump .loop
-
+/*
 .MrMime:
 	checkcoins CELADONGAMECORNERPRIZEROOM_MR_MIME_COINS
 	ifequal HAVE_LESS, CeladonPrizeRoom_notenoughcoins
@@ -190,7 +190,7 @@ CeladonGameCornerPrizeRoomPokemonVendor:
 	givepoke MR__MIME, 20
 	takecoins CELADONGAMECORNERPRIZEROOM_MR_MIME_COINS
 	sjump .loop
-
+*/
 .Porygon:
 	checkcoins CELADONGAMECORNERPRIZEROOM_PORYGON_COINS
 	ifequal HAVE_LESS, CeladonPrizeRoom_notenoughcoins
@@ -208,7 +208,7 @@ CeladonGameCornerPrizeRoomPokemonVendor:
 	givepoke PORYGON, 15
 	takecoins CELADONGAMECORNERPRIZEROOM_PORYGON_COINS
 	sjump .loop
-
+/*
 .Eevee:
 	checkcoins CELADONGAMECORNERPRIZEROOM_EEVEE_COINS
 	ifequal HAVE_LESS, CeladonPrizeRoom_notenoughcoins
@@ -226,7 +226,7 @@ CeladonGameCornerPrizeRoomPokemonVendor:
 	givepoke EEVEE, 20
 	takecoins CELADONGAMECORNERPRIZEROOM_EEVEE_COINS
 	sjump .loop	
-
+*/
 .Larvitar:
 	checkcoins CELADONGAMECORNERPRIZEROOM_LARVITAR_COINS
 	ifequal HAVE_LESS, CeladonPrizeRoom_notenoughcoins
@@ -253,11 +253,11 @@ CeladonGameCornerPrizeRoomPokemonVendor:
 
 .MenuData:
 	db STATICMENU_CURSOR ; flags
-	db 6 ; items
+	db 4 ; items
 	db "PIKACHU    {d:CELADONGAMECORNERPRIZEROOM_PIKACHU_COINS}@"
-	db "MR. MIME   {d:CELADONGAMECORNERPRIZEROOM_MR_MIME_COINS}@"
+;	db "MR. MIME   {d:CELADONGAMECORNERPRIZEROOM_MR_MIME_COINS}@"
 	db "PORYGON    {d:CELADONGAMECORNERPRIZEROOM_PORYGON_COINS}@"
-	db "EEVEE 	   {d:CELADONGAMECORNERPRIZEROOM_EEVEE_COINS}@"
+;	db "EEVEE 	   {d:CELADONGAMECORNERPRIZEROOM_EEVEE_COINS}@"
 	db "LARVITAR   {d:CELADONGAMECORNERPRIZEROOM_LARVITAR_COINS}@"
 	db "CANCEL@"
 

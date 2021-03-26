@@ -474,7 +474,7 @@ Script_ScrollingMenu:
 	ld a, [wScriptBank]
 	ld hl, ScrollingMenu
 	rst FarCall
-	ld a, [wMenuJoypad]
+	ld a, [wMenuCursorY]
 	jr nc, .ok
 	xor a
 .ok

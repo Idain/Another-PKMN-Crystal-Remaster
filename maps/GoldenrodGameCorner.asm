@@ -188,7 +188,7 @@ GoldenrodGameCornerPrizeMonVendorScript:
 	ifequal 1, .Abra
 	ifequal 2, .Cubone
 	ifequal 3, .Wobbuffet
-	ifequal 4, .Dratini
+;	ifequal 4, .Dratini
 	sjump GoldenrodGameCornerPrizeVendor_CancelPurchaseScript
 
 .Abra:
@@ -244,7 +244,7 @@ GoldenrodGameCornerPrizeMonVendorScript:
 	givepoke WOBBUFFET, 15
 	takecoins GOLDENRODGAMECORNER_WOBBUFFET_COINS
 	sjump .loop
-
+/*
 .Dratini:
 	checkcoins GOLDENRODGAMECORNER_DRATINI_COINS
 	ifequal HAVE_LESS, GoldenrodGameCornerPrizeVendor_NotEnoughCoinsScript
@@ -262,7 +262,7 @@ GoldenrodGameCornerPrizeMonVendorScript:
 	givepoke DRATINI, 15
 	takecoins GOLDENRODGAMECORNER_DRATINI_COINS
 	sjump .loop
-
+*/
 .MenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 2, 17, TEXTBOX_Y - 1
@@ -271,12 +271,68 @@ GoldenrodGameCornerPrizeMonVendorScript:
 
 .MenuData:
 	db STATICMENU_CURSOR ; flags
+	db 4  ; items
+	db "ABRA        {d:GOLDENRODGAMECORNER_ABRA_COINS}@"
+	db "CUBONE      {d:GOLDENRODGAMECORNER_CUBONE_COINS}@"
+	db "WOBBUFFET  {d:GOLDENRODGAMECORNER_WOBBUFFET_COINS}@"
+;	db "DRATINI	   {d:GOLDENRODGAMECORNER_DRATINI_COINS}@"
+	db "CANCEL@"
+
+
+/*
+	db SCROLLINGMENU_DISPLAY_ARROWS ; flags
+	db 4, 0 ; rows, columns
+	db SCROLLINGMENU_ITEMS_NORMAL ; item format
+	dba .Prizes
+	dba .PrintPrizeItem
+;	dba .PrintPrizePoints
 	db 5 ; items
 	db "ABRA        {d:GOLDENRODGAMECORNER_ABRA_COINS}@"
 	db "CUBONE      {d:GOLDENRODGAMECORNER_CUBONE_COINS}@"
 	db "WOBBUFFET  {d:GOLDENRODGAMECORNER_WOBBUFFET_COINS}@"
 	db "DRATINI	   {d:GOLDENRODGAMECORNER_DRATINI_COINS}@"
 	db "CANCEL@"
+
+.Prizes:
+	db 4
+x = 1
+rept 4
+	db x
+x = x + 1
+endr
+	db -1
+
+.PrintPrizeItem:
+	ld a, [wMenuSelection]
+	call Casino_GetPrize
+	ld a, [hl]
+;	push de
+;	ld [wNamedObjectIndex], a
+;	call GetItemName
+;	pop hl
+	call PlaceString
+	ret
+
+.PrintPrizePoints:
+	ld a, [wMenuSelection]
+	call Casino_GetPrize
+	inc hl
+	ld a, [hl]
+;	ld c, "0"
+;	add c
+	ld [de], a
+	ret
+
+Casino_GetPrize:
+	dec a
+	ld hl, GoldenrodCasinoPrizeItems
+	ld b, 0
+	ld c, a
+	add hl, bc
+	add hl, bc
+	ret
+*/
+INCLUDE "data/items/GoldenrodCasino_prizes.asm"
 
 GoldenrodGameCornerPharmacistScript:
 	faceplayer

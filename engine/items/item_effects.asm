@@ -194,7 +194,7 @@ ItemEffects:
 	dw PokeBallEffect      ; PARK_BALL
 	dw NoEffect            ; RAINBOW_WING
 	dw NoEffect            ; ITEM_B3
-	assert_table_length ITEM_B3
+	assert_table_length BRICK_PIECE
 ; The items past ITEM_B3 do not have effect entries:
 ;	BRICK_PIECE
 ;	SURF_MAIL
@@ -2364,7 +2364,7 @@ RestorePPEffect:
 
 .do_ppup
 	ld c, PP_UP_MASK
-	ld a, [wTempItem]
+	ld a, [wTempRestorePPItem]
 	cp PP_MAX
 	ld b, 3
 	jr z, .pp_restore_loop
@@ -2392,7 +2392,7 @@ RestorePPEffect:
 .maxed_pp
 	call Play_SFX_FULL_HEAL
 	ld hl, PPsIncreasedText
-	ld a, [wTempItem]
+	ld a, [wTempRestorePPItem]
 	cp PP_UP
 	jr z, .ppup3
 	ld hl, PPsMaximizedText

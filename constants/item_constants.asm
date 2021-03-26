@@ -68,7 +68,7 @@
 	const SILVER_LEAF  ; 3c
 	const SUPER_ROD    ; 3d
 	const PP_UP        ; 3e
-	const PP_MAX
+	const PP_MAX	   ;
 	const ETHER        ; 3f
 	const MAX_ETHER    ; 40
 	const ELIXER       ; 41
