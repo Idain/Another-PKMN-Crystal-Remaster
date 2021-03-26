@@ -1,10 +1,12 @@
 StatNames:
 ; entries correspond to stat ids
-	db "ATTACK@"
-	db "DEFENSE@"
-	db "SPEED@"
-	db "SPCL.ATK@"
-	db "SPCL.DEF@"
-	db "ACCURACY@"
-	db "EVASION@"
-	db "STATS@" ; used for BattleCommand_Curse
+	list_start StatNames
+	li "ATTACK"
+	li "DEFENSE"
+	li "SPEED"
+	li "SPCL.ATK"
+	li "SPCL.DEF"
+	li "ACCURACY"
+	li "EVASION"
+	li "STATS" ; used for BattleCommand_Curse and BattleCommand_Growth
+	assert_list_length NUM_LEVEL_STATS
