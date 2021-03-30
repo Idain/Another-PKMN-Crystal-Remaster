@@ -4,10 +4,13 @@ V1.1.3
 
 CAMBIOS:
 - X Accuracy aumenta la precisión dos puntos (2x) en vez de uno (1.5x). Ahora puede usarse varias veces.
-- Las probabilidades de obtener un golpe crítico han sido cambiadas para asemejarse a Gen 8.
+- Las probabilidades de dar un golpe crítico han sido cambiadas para asemejarse a Gen 8.
 	-- Dire Hit también ha sido ajustado.
 - Mist ahora solo dura cinco turnos y el efecto no desaparece aunque cambiemos de Pokémon (Gen 3+).
 	-- Esto también afecta el objeto Guard Spec.
+
+FIXES:
+- Algunos items no podían ser seleccionados/tenían el efecto equivocado.
 
 
 V1.1.2
