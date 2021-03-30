@@ -46,7 +46,7 @@ ItemEffects:
 	dw VitaminEffect       ; CALCIUM
 	dw VitaminEffect       ; ZINC
 	dw RareCandyEffect     ; RARE_CANDY
-	dw XAccuracyEffect     ; X_ACCURACY
+	dw XItemEffect     	   ; X_ACCURACY
 	dw EvoStoneEffect      ; LEAF_STONE
 	dw NoEffect            ; METAL_POWDER
 	dw NoEffect            ; NUGGET
@@ -2089,12 +2089,12 @@ RepelUsedEarlierIsStillInEffectText:
 	text_far _RepelUsedEarlierIsStillInEffectText
 	text_end
 
-XAccuracyEffect:
-	ld hl, wPlayerSubStatus4
-	bit SUBSTATUS_X_ACCURACY, [hl]
-	jp nz, WontHaveAnyEffect_NotUsedMessage
-	set SUBSTATUS_X_ACCURACY, [hl]
-	jp UseItemText
+;XAccuracyEffect:
+;	ld hl, wPlayerSubStatus4
+;	bit SUBSTATUS_X_ACCURACY, [hl]
+;	jp nz, WontHaveAnyEffect_NotUsedMessage
+;	set SUBSTATUS_X_ACCURACY, [hl]
+;	jp UseItemText
 
 PokeDollEffect:
 	ld a, [wBattleMode]
@@ -2114,10 +2114,10 @@ PokeDollEffect:
 	ret
 
 GuardSpecEffect:
-	ld hl, wPlayerSubStatus4
-	bit SUBSTATUS_MIST, [hl]
+	ld hl, wPlayerScreens
+	bit SCREENS_MIST, [hl]
 	jp nz, WontHaveAnyEffect_NotUsedMessage
-	set SUBSTATUS_MIST, [hl]
+	set SCREENS_MIST, [hl]
 	jp UseItemText
 
 DireHitEffect:

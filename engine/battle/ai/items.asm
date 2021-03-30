@@ -382,14 +382,14 @@ AI_Items:
 .HyperPotion:
 	call .HealItem
 	jp c, .DontUse
-	ld b, 200
+	ld b, 120
 	call EnemyUsedHyperPotion
 	jp .Use
 
 .SuperPotion:
 	call .HealItem
 	jp c, .DontUse
-	ld b, 50
+	ld b, 60
 	call EnemyUsedSuperPotion
 	jp .Use
 
@@ -551,9 +551,6 @@ EnemyUsedFullHeal:
 	call AIUsedItemSound
 	call AI_HealStatus
 	ld a, FULL_HEAL
-	ld [wCurEnemyItem], a
-	xor a
-	ld [wEnemyConfuseCount], a
 	jp PrintText_UsedItemOn_AND_AIUpdateHUD
 
 EnemyUsedMaxPotion:
@@ -565,8 +562,6 @@ EnemyUsedFullRestore:
 	call AI_HealStatus
 	ld a, FULL_RESTORE
 	ld [wCurEnemyItem], a
-	xor a
-	ld [wEnemyConfuseCount], a
 
 FullRestoreContinue:
 	ld de, wCurHPAnimOldHP
@@ -596,12 +591,12 @@ EnemyUsedPotion:
 
 EnemyUsedSuperPotion:
 	ld a, SUPER_POTION
-	ld b, 50
+	ld b, 60
 	jr EnemyPotionContinue
 
 EnemyUsedHyperPotion:
 	ld a, HYPER_POTION
-	ld b, 200
+	ld b, 120
 
 EnemyPotionContinue:
 	ld [wCurEnemyItem], a
@@ -740,6 +735,7 @@ AI_HealStatus:
 	xor a
 	ld [hl], a
 	ld [wEnemyMonStatus], a
+	ld [wEnemyConfuseCount], a
 	ld hl, wEnemySubStatus1
 	res SUBSTATUS_NIGHTMARE, [hl]
 	ld hl, wEnemySubStatus3
@@ -748,17 +744,17 @@ AI_HealStatus:
 	res SUBSTATUS_TOXIC, [hl]
 	ret
 
-EnemyUsedXAccuracy:
-	call AIUsedItemSound
-	ld hl, wEnemySubStatus4
-	set SUBSTATUS_X_ACCURACY, [hl]
-	ld a, X_ACCURACY
-	jp PrintText_UsedItemOn_AND_AIUpdateHUD
+;EnemyUsedXAccuracy:
+;	call AIUsedItemSound
+;	ld hl, wEnemySubStatus4
+;	set SUBSTATUS_X_ACCURACY, [hl]
+;	ld a, X_ACCURACY
+;	jp PrintText_UsedItemOn_AND_AIUpdateHUD
 
 EnemyUsedGuardSpec:
 	call AIUsedItemSound
-	ld hl, wEnemySubStatus4
-	set SUBSTATUS_MIST, [hl]
+	ld hl, wEnemyScreens
+	set SCREENS_MIST, [hl]
 	ld a, GUARD_SPEC
 	jp PrintText_UsedItemOn_AND_AIUpdateHUD
 
@@ -801,29 +797,34 @@ AICheckEnemyFractionMaxHP: ; unreferenced
 	sub c
 	ret
 
-EnemyUsedXAttack:
-	ld b, ATTACK
+EnemyUsedXAttack: 	; Boost by 2 stages
+	ld b, $10 | ATTACK
 	ld a, X_ATTACK
 	jr EnemyUsedXItem
 
-EnemyUsedXDefend:
-	ld b, DEFENSE
+EnemyUsedXDefend: 	; Boost by 2 stages
+	ld b, $10 | DEFENSE
 	ld a, X_DEFEND
 	jr EnemyUsedXItem
 
-EnemyUsedXSpeed:
-	ld b, SPEED
+EnemyUsedXSpeed: 	; Boost by 2 stages
+	ld b, $10 | SPEED
 	ld a, X_SPEED
 	jr EnemyUsedXItem
 
-EnemyUsedXSpDef:
-	ld b, SP_DEFENSE
+EnemyUsedXSpDef: 	; Boost by 2 stages
+	ld b, $10 | SP_DEFENSE
 	ld a, X_SP_DEF
 	jr EnemyUsedXItem
 
-EnemyUsedXSpecial:
-	ld b, SP_ATTACK
+EnemyUsedXSpecial: 	; Boost by 2 stages
+	ld b, $10 | SP_ATTACK
 	ld a, X_SPECIAL
+	jr EnemyUsedXItem
+
+EnemyUsedXAccuracy: ; Boost by 2 stages
+	ld b, $10 | ACCURACY
+	ld a, X_ACCURACY
 
 ; Parameter
 ; a = ITEM_CONSTANT

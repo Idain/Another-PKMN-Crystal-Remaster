@@ -289,6 +289,7 @@ HandleBetweenTurnEffects:
 	call HandleLeftovers
 	call HandleMysteryberry
 	call HandleDefrost
+	call HandleMist
 	call HandleSafeguard
 	call HandleScreens
 	call HandleStatBoostingHeldItems
@@ -1585,6 +1586,45 @@ HandleDefrost:
 	call SetPlayerTurn
 	ld hl, DefrostedOpponentText
 	jp StdBattleTextbox
+
+
+HandleMist:
+	ldh a, [hSerialConnectionStatus]
+	cp USING_EXTERNAL_CLOCK
+	jr z, .player1
+	call .CheckPlayer
+	jr .CheckEnemy
+
+.player1
+	call .CheckEnemy
+.CheckPlayer:
+	ld a, [wPlayerScreens]
+	bit SCREENS_MIST, a
+	ret z
+	ld hl, wPlayerMistCount
+	dec [hl]
+	ret nz
+	res SCREENS_MIST, a
+	ld [wPlayerScreens], a
+	xor a
+	jr .print
+
+.CheckEnemy:
+	ld a, [wEnemyScreens]
+	bit SCREENS_MIST, a
+	ret z
+	ld hl, wEnemyMistCount
+	dec [hl]
+	ret nz
+	res SCREENS_MIST, a
+	ld [wEnemyScreens], a
+	ld a, $1
+
+.print
+	ldh [hBattleTurn], a
+	ld hl, BattleText_MistFaded
+	jp StdBattleTextbox
+
 
 HandleSafeguard:
 	ldh a, [hSerialConnectionStatus]

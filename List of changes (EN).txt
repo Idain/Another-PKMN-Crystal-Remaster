@@ -1,3 +1,121 @@
+V1.1.2
+CHANGES:
+- The chances of two Pokémon making an Egg every certain amount of steps have been increased (Gen 3 onwards).
+
+FIXES:
+- If the 1st Pokémon in the DayCare was Genderless but the 2nd one was a Ditto, breeding was impossible.
+
+
+V1.1.1
+FIXES: 
+- Fixed error where some Trainers had Shiny Pokémon by mistake.
+
+
+VERSIÓN 1.1
+
+NEW:
+- NEW TYPE: FAIRY-TYPE! All Pokémon and moves that are Fairy-type from Gen 6 onwards were changed to also have it in this game.
+
+- ITEM: 
+	-- Polkadow Bow. Boosts Fairy-type moves by 20%
+		* LOCATION: Sometimes Picknicker Tiffany calls you and hands it over.
+	-- Sitrus Berry. Replaces Gold Berry, healing 25% MAX HP instead of 30HP.
+	-- PP MAX. Maximizes PPs of a single move.
+	-- "X SP. DEF" was also added. Boosts Special Defense by 2x.
+
+CHANGES:
+- Type matchups: GHOST- and DARK-type moves now deal neutral damage to Steel-type Pokémon instead of 1/2 damage.
+
+- TMs can be used indefinitely, just like in Gen 5!
+
+- The teams of Gym Leaders, Elite Four and Champion have been slightly adjusted to resemble their Gen 4 teams.
+
+- Moves:
+	* Leech Life now has 80 Power.
+	* Crunch reduces Physical Defense instead of Sp. Def. (Gen 4 onwards).
+	* Hidden Power now always has 70 Power, instead of changing depending on your DVs.
+	* Growth acts like in Gen 5, also boosting your Physical Attack and doubling your boost if there's Harsh Sunlight.
+	* Electric-type Pokémon cannot be paralyzed anymore.
+	* Powder/Spore-based moves no longer affect Grass-type Pokémon.
+	* Self-Destruct and Explosion no longer halve Defense while calculating total damage (seriously, why was this a thing?)
+
+- Movesets:
+	* Chikorita, Cyndaquil & Totodile evolutionary family, along with other Pokémon's movesets, have been updated to resemble their Gen 7-8 counterparts.
+	* Pikachu and Piloswine now learn Dig, like in Gen 8.
+	* Typhlosion now learns Solar Beam.
+	* A few Pokémon can learn new TMs/HMs, based on recent gens.
+
+- Status conditions:
+	-- Thaw chance has been increased from 10% to 20% (Gen 3)
+	-- Paralysis' speed reduction changed from 75% to 50% (Gen 7).
+
+- The chances of getting a Shiny Pokémonn were increased from 1/8192 to 3/8192 (oh baby, a triple!).
+	For a Pokémon to be Shiny, its DVs must be:
+	-- Attack: 	1, 14, 15
+	-- Defense: 	14, 15
+	-- Speed: 	14, 15
+	-- Special: 	14, 15
+	* NOTA: Thansk to this, getting a Shiny Female Pokémon whose gender ratio is 7M:1F is now possible.
+	* Because of the Shiny DV requierements' change, the Red Gyarados from Lake of Rage will always have perfect DVs.
+
+- Breeding:
+	- Nidorina and Nidoqueen can finally breed! Both Pokémon now have the Monster and Field egg groups.
+		-- The Egg can be either Nidoran♀ or Nidoran♂.
+		-- Nidoran♂, Nidorino and Nidoking now have a 50% chance of breeding a Nidoran♀ Egg.
+
+	- Removed detail where, if both Pokémon had the same Defense DV and their Special DVs were either the same of differed by 8, they couldn't breed.
+
+- Poké Ball's catch rate have been modified:
+	-- Love Ball: TOTAL REWORK. Now it's more effective if both user and opponent share at least one Egg Group (instead of being of the same species) and have opposite genders.
+		-- Catch rate reduced from 8x to 4x.
+		-- Catch rate x1 if one or both Pokémon are genderless, or if one of them is Ditto.
+	-- Fast Ball: Now it works like in Gen 4 onwards.
+	-- Lure Ball: Catch rate buffed from 3x to 5x (Gen 7).
+	-- Heavy Ball: Slight buff. Catch rate modifiers adjusted to be more similar to Gen 7:
+		* Less than 51.2kg: 	-20
+		* 51.2kg - 102.4kg: 	 +0
+		* 102.4kg - 204.8kg: 	+20
+		* More than 204.8kg: 	+30
+
+- TMs' prices of both Goldenrod and Celadon Game Corners have been slightly reduced.
+	
+- The prices of the Move Tutor located outside of the Goldenrod Game Corner have been reduced from 4000 to 3000.
+	-- Now the Move Tutor will be outside everyday instead of only Wednesdays and Saturdays.
+
+- Fuit Trees now give 2 berries/apricorns instead onf one.
+
+- Friendship system has been slightly improved:
+	-- Pokémon who evolve through friendship now only need 160 points instead of 220 (Gen 8).
+	-- If a Pokémon levels up, their friendship will increase more slightly than normal.
+	-- The Haircut Brothers increase friendship slightly more.
+
+- Items:
+	-- X Items now boost the corresponding sta by two points (2x) instead of one (1.5x).
+	-- Boost from type-enhancing items increased from 10% to 20% (Gen 4).
+	-- "Pink Bow" is now called "Silk Scarf".
+	-- Increased the chances for a wild Pokémon to have a held item from 25% (23% Item1, 2% Item2) to 55% (50% Item1, 5% Item2).
+	-- RageCandyBar now works similarly like a Full Heal, healing all status conditions.
+
+- We can now buy a dozen of bottles from the Moomoo Farm located at Route 39.
+
+- Evolution stones, PP Up and PP Max can now be bought in both Goldenrod and Celadon Department Stores.
+	-- Evolution stones: $3000
+	-- PP UP: $10000
+	-- PP Max: $25000
+
+- The prices of more articles were also adjusted to match recent gens (I'm too lazy to make the list, sorry).
+
+- Healing effects and prices of the Super Potion, Hyper Potion, Fresh Water, Soda Pop and Lemonade have been changed (Gen 7).
+	-- The names of ELIXER, MAX ELIXER and X SPECIAL have been changed to ELIXIR, MAX ELIXIR and X SP. ATK, respectively.
+
+- Names of all the berries were changed to their current names.
+	-- Leppa Berry now restores 10 PP instead of 5 PP (Gen 3).
+
+FIXES:
+- Fixed graphical error where the sprites of BEAUTY, FISHER, MEDIUM, SAGE and SWIMMER♀ didn't show the right colors.
+- Fixed critical error where the damage of special attacks wasn't calculated correctly.
+
+
 VERSION 1.0
 
 MAJOR CHANGES:

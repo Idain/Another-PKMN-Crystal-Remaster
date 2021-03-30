@@ -576,7 +576,7 @@ wPlayerMinimized:: db
 wPlayerScreens::
 ; bit
 ; 0 spikes
-; 1
+; 1 mist
 ; 2 safeguard
 ; 3 light screen
 ; 4 reflect
@@ -588,15 +588,16 @@ wEnemyScreens::
 	db
 
 UNION
+wPlayerMistCount:: db
 wPlayerSafeguardCount:: db
 wPlayerLightScreenCount:: db
 wPlayerReflectCount:: db
-	ds 1
 
+wEnemyMistCount:: db
 wEnemySafeguardCount:: db
 wEnemyLightScreenCount:: db
 wEnemyReflectCount:: db
-	ds 1
+
 
 NEXTU
 	ds 1

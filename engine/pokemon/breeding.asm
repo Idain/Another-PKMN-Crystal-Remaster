@@ -54,8 +54,8 @@ CheckBreedmonCompatibility:
 
 .compute
 ;	call .CheckDVs
-	ld c, 255
-	jp z, .done
+;	ld c, 255
+;	jp z, .done
 	ld a, [wBreedMon2Species]
 	ld b, a
 	ld a, [wBreedMon1Species]
@@ -83,7 +83,7 @@ CheckBreedmonCompatibility:
 	ld a, c
 	ld [wBreedingCompatibility], a
 	ret
-
+/*
 .CheckDVs:
 ; If Defense DVs match and the lower 3 bits of the Special DVs match,
 ; avoid breeding
@@ -101,7 +101,7 @@ CheckBreedmonCompatibility:
 	and %111
 	cp b
 	ret
-
+*/
 .CheckBreedingGroupCompatibility:
 ; If either mon is in the No Eggs group,
 ; they are not compatible.
@@ -978,9 +978,9 @@ DayCareMonCompatibilityText:
 	call CheckBreedmonCompatibility
 	pop bc
 	ld a, [wBreedingCompatibility]
-	ld hl, .BreedBrimmingWithEnergyText
-	cp -1
-	jr z, .done
+;	ld hl, .BreedBrimmingWithEnergyText
+;	cp -1
+;	jr z, .done
 	ld hl, .BreedNoInterestText
 	and a
 	jr z, .done

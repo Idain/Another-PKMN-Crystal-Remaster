@@ -1173,8 +1173,8 @@ BattleCommand_Critical:
 	bit SUBSTATUS_FOCUS_ENERGY, a
 	jr z, .CheckCritical
 
-; +1 critical level
-	inc c
+; +2 critical level
+	ld c, 2
 
 .CheckCritical:
 	ld a, BATTLE_VARS_MOVE_ANIM
@@ -1186,8 +1186,7 @@ BattleCommand_Critical:
 	pop bc
 	jr nc, .ScopeLens
 
-; +2 critical level
-	inc c
+; +1 critical level
 	inc c
 
 .ScopeLens:
@@ -1202,12 +1201,18 @@ BattleCommand_Critical:
 	inc c
 
 .Tally:
+	ld a, c
+	cp 3 ; If stage >= +3, it's always critic
+	jr nc, .CriticalDone
+
 	ld hl, CriticalHitChances
 	ld b, 0
 	add hl, bc
 	call BattleRandom
 	cp [hl]
 	ret nc
+
+.CriticalDone
 	ld a, 1
 	ld [wCriticalHit], a
 	ret
@@ -4634,9 +4639,16 @@ CheckMist:
 	ret
 
 .check_mist
-	ld a, BATTLE_VARS_SUBSTATUS4_OPP
-	call GetBattleVar
-	bit SUBSTATUS_MIST, a
+;	ld a, BATTLE_VARS_SUBSTATUS4_OPP
+;	call GetBattleVar
+	ld hl, wEnemyScreens
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .check_mist2 
+	ld hl, wPlayerScreens
+.check_mist2
+	ld a, [hl]
+	bit SCREENS_MIST, a
 	ret
 
 BattleCommand_StatUpMessage:

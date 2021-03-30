@@ -1,7 +1,7 @@
 TrainerClassDVs:
 ; entries correspond to trainer classes (see constants/trainer_constants.asm)
 	table_width 2, TrainerClassDVs
-	;  atk,def,spd,spc
+	;  Atk,Def,Spd,Spc
 	dn  9, 15, 15, 15 ; FALKNER
 	dn  8, 15, 15, 15 ; WHITNEY
 	dn  9, 15, 15, 15 ; BUGSY
@@ -10,14 +10,14 @@ TrainerClassDVs:
 	dn  9, 15, 15, 15 ; JASMINE
 	dn  9, 15, 15, 15 ; CHUCK
 	dn  7, 15, 15, 15 ; CLAIR
-	dn 15, 15, 15, 15 ; RIVAL1
+	dn 13, 15, 15, 15 ; RIVAL1
 	dn  9, 15, 15, 15 ; POKEMON_PROF
-	dn 15, 15, 15, 15 ; WILL
+	dn 13, 15, 15, 15 ; WILL
 	dn 14, 14, 15, 15 ; CAL
-	dn 15, 15, 15, 15 ; BRUNO
+	dn 13, 15, 15, 15 ; BRUNO
 	dn  7, 15, 15, 15 ; KAREN
-	dn 15, 15, 15, 15 ; KOGA
-	dn 15, 15, 15, 15 ; CHAMPION
+	dn 13, 15, 15, 15 ; KOGA
+	dn 13, 15, 15, 15 ; CHAMPION
 	dn  9, 15, 15, 15 ; BROCK
 	dn  7, 15, 15, 15 ; MISTY
 	dn  9, 15, 15, 15 ; LT_SURGE
@@ -43,7 +43,7 @@ TrainerClassDVs:
 	dn  7, 15, 15, 15 ; SWIMMERF
 	dn  9, 15, 15, 15 ; SAILOR
 	dn  9, 15, 15, 15 ; SUPER_NERD
-	dn 15, 15, 15, 15 ; RIVAL2
+	dn 13, 15, 15, 15 ; RIVAL2
 	dn  9, 15, 15, 15 ; GUITARIST
 	dn 10, 15, 15, 15 ; HIKER
 	dn  9, 15, 15, 15 ; BIKER
@@ -65,8 +65,8 @@ TrainerClassDVs:
 	dn  6, 15, 15, 15 ; TWINS
 	dn  6, 15, 15, 15 ; POKEFANF
 	dn 14, 12, 15, 15 ; RED
-	dn 15, 15, 15, 15 ; BLUE
+	dn 13, 15, 15, 15 ; BLUE
 	dn  9, 15, 15, 15 ; OFFICER
 	dn  7, 15, 15, 15 ; GRUNTF
-	dn 15, 15, 15, 15 ; MYSTICALMAN
+	dn 13, 15, 15, 15 ; MYSTICALMAN
 	assert_table_length NUM_TRAINER_CLASSES

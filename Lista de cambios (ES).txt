@@ -1,5 +1,27 @@
 Nuevas características de "ANOTHER POKÉMON CRYSTAL GAME" (NOMBRE SUJETO A CAMBIOS):
 
+V1.1.3
+
+CAMBIOS:
+- X Accuracy aumenta la precisión dos puntos (2x) en vez de uno (1.5x). Ahora puede usarse varias veces.
+- Las probabilidades de obtener un golpe crítico han sido cambiadas para asemejarse a Gen 8.
+	-- Dire Hit también ha sido ajustado.
+- Mist ahora solo dura cinco turnos y el efecto no desaparece aunque cambiemos de Pokémon (Gen 3+).
+	-- Esto también afecta el objeto Guard Spec.
+
+
+V1.1.2
+CAMBIOS:
+- Las probabilidades de que dos Pokémon generen un huevo cada cierto tiempo han aumentado (Gen 3 en adelante).
+
+FIXES:
+- Corregido error de la Guardería Pokémon donde si el 1er Pokémon no tenía género (pero puede criar) y el 2do era un Ditto, la crianza sería imposible.
+
+
+V1.1.1
+FIXES: 
+- Corregido error donde algunos entrenadores tenían Pokémon Shiny de forma no intencional.
+
 
 VERSIÓN 1.1
 
@@ -7,11 +29,11 @@ AÑADIDOS:
 - NUEVO TIPO: ¡Tipo hada! Los Pokémon y movimientos existentes que son de tipo hada en la 6ta gen ahora lo serán en este juego.
 
 - ITEM: 
-	-- Polkadow Bow. Aumenta la potencia de movimientos tipo hada en un 10%.
+	-- Polkadow Bow. Aumenta la potencia de movimientos tipo hada en un 20%.
 		* Obtención: A veces Picknicker Tiffany lo entrega en Ruta 43. Has de tener su número.
 	-- Sitrus Berry. Esta reemplaza a la Gold Berry, curando 25% MAX HP en vez de 30HP.
 	-- PP MAX. Aumenta permanentemente los PP de un movimiento al máximo.
-	-- "X SP. DEF" ha sido añadido al juego. Boostea el stat base de Defensa Especial por 1.5x.
+	-- "X SP. DEF" ha sido añadido al juego. Boostea el stat base de Defensa Especial por 2x.
 
 CAMBIOS:
 - Tabla de tipos actualizada: Los tipos FANTASMA y SINIESTRO ahora hacen daño neutro al tipo ACERO, en vez de 1/2 de daño (como sucede desde la 6ta gen en adelante).

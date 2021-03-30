@@ -387,7 +387,7 @@ RareCandyDesc:
 
 XAccuracyDesc:
 	db   "Raises accuracy."
-	next "(1 BTL)@"
+	next "(2 BTL)@"
 
 LeafStoneDesc:
 	db   "Evolves certain"
@@ -431,7 +431,7 @@ MaxRepelDesc:
 
 DireHitDesc:
 	db   "Ups critical hit"
-	next "ratio. (1 BTL)@"
+	next "ratio. (2 BTL)@"
 
 TeruSama3Desc:
 	db   "?@"
@@ -450,23 +450,23 @@ LemonadeDesc:
 
 XAttackDesc:
 	db   "Raises ATTACK."
-	next "(1 BTL)@"
+	next "(2 BTL)@"
 
 XSpDefDesc:
 	db   "Raises SPECIAL"
-	next "DEFENSE. (1 BTL)@"
+	next "DEFENSE. (2 BTL)@"
 
 XDefendDesc:
 	db   "Raises DEFENSE."
-	next "(1 BTL)@"
+	next "(2 BTL)@"
 
 XSpeedDesc:
 	db   "Raises SPEED."
-	next "(1 BTL)@"
+	next "(2 BTL)@"
 
 XSpecialDesc:
 	db   "Raises SPECIAL"
-	next "ATTACK. (1 BTL)@"
+	next "ATTACK. (2 BTL)@"
 
 CoinCaseDesc:
 	db   "Holds up to 9,999"

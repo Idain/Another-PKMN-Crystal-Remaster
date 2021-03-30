@@ -118,20 +118,25 @@ BattleText_TargetWasHitByFutureSight:
 	cont "SIGHT!"
 	prompt
 
+BattleText_MistFaded:
+	text "#MON's"
+	line "MIST faded!"
+	prompt
+
 BattleText_SafeguardFaded:
 	text "<USER>'s"
 	line "SAFEGUARD faded!"
 	prompt
-
+	
 BattleText_MonsLightScreenFell:
 	text_ram wStringBuffer1
-	text " #MON's"
+	text "#MON's"
 	line "LIGHT SCREEN fell!"
 	prompt
 
 BattleText_MonsReflectFaded:
 	text_ram wStringBuffer1
-	text " #MON's"
+	text "#MON's"
 	line "REFLECT faded!"
 	prompt
 

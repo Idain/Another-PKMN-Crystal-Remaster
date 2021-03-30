@@ -50,8 +50,8 @@ AI_Redundant:
 	ret
 
 .Mist:
-	ld a, [wEnemySubStatus4]
-	bit SUBSTATUS_MIST, a
+	ld a, [wEnemyScreens]
+	bit SCREENS_MIST, a
 	ret
 
 .FocusEnergy:

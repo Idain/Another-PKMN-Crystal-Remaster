@@ -534,8 +534,8 @@ DayCare_InitBreeding:
 	ld a, [wBreedingCompatibility]
 	and a
 	ret z
-	inc a
-	ret z
+;	inc a
+;	ret z
 	ld hl, wDayCareMan
 	set DAYCAREMAN_MONS_COMPATIBLE_F, [hl]
 .loop
@@ -543,9 +543,7 @@ DayCare_InitBreeding:
 	cp 150
 	jr c, .loop
 	ld [wStepsToEgg], a
-	jp .UselessJump
 
-.UselessJump:
 	xor a
 	ld hl, wEggMon
 	ld bc, BOXMON_STRUCT_LENGTH
