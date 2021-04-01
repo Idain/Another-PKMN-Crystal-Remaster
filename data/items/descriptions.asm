@@ -50,10 +50,10 @@ ItemDescriptions:
 	dw SodaPopDesc
 	dw LemonadeDesc
 	dw XAttackDesc
-	dw XSpDefDesc
 	dw XDefendDesc
 	dw XSpeedDesc
 	dw XSpecialDesc
+	dw XSpDefDesc
 	dw CoinCaseDesc
 	dw ItemfinderDesc
 	dw TeruSama5Desc

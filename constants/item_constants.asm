@@ -55,10 +55,10 @@
 	const SODA_POP     ; 2f
 	const LEMONADE     ; 30
 	const X_ATTACK     ; 31
-	const X_SP_DEF     ; 32
-	const X_DEFEND     ; 33
-	const X_SPEED      ; 34
-	const X_SPECIAL    ; 35
+	const X_DEFEND     ; 32
+	const X_SPEED      ; 33
+	const X_SPECIAL    ; 34
+	const X_SP_DEF     ; 35
 	const COIN_CASE    ; 36
 	const ITEMFINDER   ; 37
 	const POKE_FLUTE   ; 38

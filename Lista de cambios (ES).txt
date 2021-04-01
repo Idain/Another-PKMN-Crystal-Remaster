@@ -1,6 +1,6 @@
 Nuevas características de "ANOTHER POKÉMON CRYSTAL GAME" (NOMBRE SUJETO A CAMBIOS):
 
-V1.3.0
+V1.2.0
 AÑADIDOS:
 - Ahora ciertos Pokémon aprenden movimientos al evolucionar, basado en la Gen 7.
 
@@ -19,7 +19,7 @@ CAMBIOS:
 	-- Si el usuario es tipo Veneno, Toxic nunca fallará, aunque el oponente esté en un estado semi-invunerable, como en el primer turno de Vuelo o Excavar.
 	-- Rapid Spin ahora sube la velocidad un nivel (Gen 8).
 
-- HMs: Algunos Pokémon aprenden nuevas HMs, esto basado en la 4ta gen:
+- HMs. Algunos Pokémon aprenden nuevas HMs, esto basado en la 4ta gen:
 	-- Cut: Rattata, Nidoran♀, Nidorina, Nidoqueen, Nidoran♂, Nidorino, Nidokind, Meowth, Persian, Rhydon, Kangaskhan, Dragonite, Celebi.
 	-- Vuelo: Zubat, Golbat.
 	-- Surf: Pikachu (8va gen), Raichu (8va gen), Kabuto, Pichu.
@@ -39,6 +39,7 @@ CAMBIOS:
 
 - Equipos Pokémon:
 	-- Falkner ahora tiene un Hoothoot como 3er Pokémon. 
+	-- Los Metapod y Kakuna de Bugsy ahora son Butterfree y Beedrill.
 	-- Uno de los Haunter de Morty ha sido reemplazado por Misdreavus.
 FIXES:
 - Algunos items no podían ser seleccionados/tenían el efecto equivocado.

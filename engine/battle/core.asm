@@ -1729,7 +1729,7 @@ HandleScreens:
 	ld [de], a
 	ret nz
 	res SCREENS_REFLECT, [hl]
-	ld hl, BattleText_MonsReflectFaded
+	ld hl, BattleText_MonsReflectFell
 	jp StdBattleTextbox
 
 HandleWeather:

@@ -63,10 +63,10 @@ ItemEffects:
 	dw RestoreHPEffect     ; SODA_POP
 	dw RestoreHPEffect     ; LEMONADE
 	dw XItemEffect         ; X_ATTACK
-	dw XItemEffect         ; X_SP_DEF
 	dw XItemEffect         ; X_DEFEND
 	dw XItemEffect         ; X_SPEED
 	dw XItemEffect         ; X_SPECIAL
+	dw XItemEffect         ; X_SP_DEF
 	dw CoinCaseEffect      ; COIN_CASE
 	dw ItemfinderEffect    ; ITEMFINDER
 	dw PokeFluteEffect     ; POKE_FLUTE
@@ -2114,9 +2114,12 @@ PokeDollEffect:
 
 GuardSpecEffect:
 	ld hl, wPlayerScreens
+	ld de, wPlayerMistCount
 	bit SCREENS_MIST, [hl]
 	jp nz, WontHaveAnyEffect_NotUsedMessage
 	set SCREENS_MIST, [hl]
+	ld a, 5
+	ld [de], a
 	jp UseItemText
 
 DireHitEffect:

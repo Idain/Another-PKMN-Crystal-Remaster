@@ -754,7 +754,10 @@ AI_HealStatus:
 EnemyUsedGuardSpec:
 	call AIUsedItemSound
 	ld hl, wEnemyScreens
+	ld de, wEnemyMistCount
 	set SCREENS_MIST, [hl]
+	ld a, 5
+	ld [de], a
 	ld a, GUARD_SPEC
 	jp PrintText_UsedItemOn_AND_AIUpdateHUD
 
