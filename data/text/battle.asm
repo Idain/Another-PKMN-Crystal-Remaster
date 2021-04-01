@@ -899,7 +899,7 @@ TransformedText:
 
 LightScreenEffectText:
 	text "<USER>'s"
-	line "SPCL.DEF rose!"
+	line "SP.DEF rose!"
 	prompt
 
 ReflectEffectText:

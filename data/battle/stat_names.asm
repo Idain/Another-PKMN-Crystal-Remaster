@@ -4,8 +4,8 @@ StatNames:
 	li "ATTACK"
 	li "DEFENSE"
 	li "SPEED"
-	li "SPCL.ATK"
-	li "SPCL.DEF"
+	li "SP.ATK"
+	li "SP.DEF"
 	li "ACCURACY"
 	li "EVASION"
 	li "STATS" ; used for BattleCommand_Curse and BattleCommand_Growth

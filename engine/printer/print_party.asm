@@ -337,8 +337,8 @@ PrintParty_IDNoString:
 PrintParty_StatsString:
 	db   "ATTACK"
 	next "DEFENSE"
-	next "SPCL.ATK"
-	next "SPCL.DEF"
+	next "SP.ATK"
+	next "SP.DEF"
 	next "SPEED"
 	db   "@"
 

@@ -378,7 +378,7 @@ LuckyPunchDesc:
 	next "ratio of CHANSEY.@"
 
 CalciumDesc:
-	db   "Raises SPCL.ATK"
+	db   "Raises SP.ATK"
 	next "of one #MON.@"
 
 RareCandyDesc:
@@ -386,8 +386,8 @@ RareCandyDesc:
 	next "#MON by one.@"
 
 XAccuracyDesc:
-	db   "Raises accuracy."
-	next "(2 BTL)@"
+	db   "Sharply raises"
+	next "accuracy. (1 BTL)@"
 
 LeafStoneDesc:
 	db   "Evolves certain"
@@ -431,42 +431,42 @@ MaxRepelDesc:
 
 DireHitDesc:
 	db   "Ups critical hit"
-	next "ratio. (2 BTL)@"
+	next "ratio. (1 BTL)@"
 
 TeruSama3Desc:
 	db   "?@"
 
 FreshWaterDesc:
 	db   "Restores #MON"
-	next "HP by 50.@"
+	next "HP by 30.@"
 
 SodaPopDesc:
 	db   "Restores #MON"
-	next "HP by 60.@"
+	next "HP by 50.@"
 
 LemonadeDesc:
 	db   "Restores #MON"
-	next "HP by 80.@"
+	next "HP by 70.@"
 
 XAttackDesc:
-	db   "Raises ATTACK."
-	next "(2 BTL)@"
+	db   "Sharply raises"
+	next "ATTACK. (1 BTL)@"
 
 XSpDefDesc:
-	db   "Raises SPECIAL"
-	next "DEFENSE. (2 BTL)@"
+	db   "Sharply raises"
+	next "SP.DEF. (1 BTL)@"
 
 XDefendDesc:
-	db   "Raises DEFENSE."
-	next "(2 BTL)@"
+	db   "Sharply raises"
+	next "DEFENSE. (1 BTL)@"
 
 XSpeedDesc:
-	db   "Raises SPEED."
-	next "(2 BTL)@"
+	db   "Sharply raises"
+	next "SPEED. (1 BTL)@"
 
 XSpecialDesc:
-	db   "Raises SPECIAL"
-	next "ATTACK. (2 BTL)@"
+	db   "Sharply raises"
+	next "SP.ATK. (1 BTL)@"
 
 CoinCaseDesc:
 	db   "Holds up to 9,999"
@@ -790,7 +790,7 @@ TeruSama10Desc:
 	db   "?@"
 
 ZincDesc:
-	db   "Raises SPCL.DEF"
+	db   "Raises SP.DEF"
 	next "of one #MON.@"
 
 CharcoalDesc:

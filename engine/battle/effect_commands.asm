@@ -1591,6 +1591,9 @@ BattleCommand_DamageVariation:
 BattleCommand_CheckHit:
 ; checkhit
 
+	call .Toxic
+	ret z
+
 	call .DreamEater
 	jp z, .Miss
 
@@ -1609,14 +1612,20 @@ BattleCommand_CheckHit:
 	call .ThunderRain
 	ret z
 
-	call .XAccuracy
-	ret nz
+;	call .XAccuracy
+;	ret nz
 
 	; Perfect-accuracy moves
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
 	cp EFFECT_ALWAYS_HIT
 	ret z
+
+	ld a, BATTLE_VARS_MOVE_ANIM
+	call GetBattleVar
+	ld hl, AlwaysHitMoves
+	call IsInByteArray
+	ret c
 
 	call .StatModifiers
 
@@ -1667,6 +1676,29 @@ BattleCommand_CheckHit:
 .Missed:
 	ld a, 1
 	ld [wAttackMissed], a
+	ret
+
+	
+.Toxic
+	ld a, BATTLE_VARS_MOVE_ANIM
+	call GetBattleVar
+	cp TOXIC
+	ret nz
+
+; If the user is Poison-type, Toxic will never fail, 
+; even if the target is in a semi-invulnerable turn
+	ld hl, wBattleMonType1
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .CheckPoisonType
+	ld hl, wEnemyMonType1
+
+.CheckPoisonType:
+	ld a, [hli]
+	cp POISON
+	ret z
+	ld a, [hl]
+	cp POISON
 	ret
 
 .DreamEater:
@@ -1795,13 +1827,13 @@ BattleCommand_CheckHit:
 	ld a, [wBattleWeather]
 	cp WEATHER_RAIN
 	ret
-
+/*
 .XAccuracy:
 	ld a, BATTLE_VARS_SUBSTATUS4
 	call GetBattleVar
 	bit SUBSTATUS_X_ACCURACY, a
 	ret
-
+*/
 .StatModifiers:
 	ldh a, [hBattleTurn]
 	and a
@@ -1822,11 +1854,9 @@ BattleCommand_CheckHit:
 	ld c, a
 
 .got_acc_eva
-	cp b
-	jr c, .skip_foresight_check
+	cp BASE_STAT_LEVEL + 1
+	jr c, .skip_foresight_check 
 
-	; if the target's evasion is greater than the user's accuracy,
-	; check the target's foresight status
 	ld a, BATTLE_VARS_SUBSTATUS1_OPP
 	call GetBattleVar
 	bit SUBSTATUS_IDENTIFIED, a
@@ -1894,6 +1924,7 @@ BattleCommand_CheckHit:
 	ret
 
 INCLUDE "data/battle/accuracy_multipliers.asm"
+INCLUDE "engine/battle/always_hit_moves.asm"
 
 BattleCommand_EffectChance:
 ; effectchance
@@ -5838,11 +5869,9 @@ BattleCommand_TrapTarget:
 	bit SUBSTATUS_SUBSTITUTE, a
 	ret nz
 	call BattleRandom
-	; trapped for 2-5 turns
-	and %11
-	inc a
-	inc a
-	inc a
+	; trapped for 4-5 turns
+	and %1
+	add 5
 	ld [hl], a
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar
@@ -5887,15 +5916,15 @@ BattleCommand_Recoil:
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar
 	ld d, a
-; get 1/4 damage or 1 HP, whichever is higher
+; get 1/2 damage or 1 HP, whichever is higher
 	ld a, [wCurDamage]
 	ld b, a
 	ld a, [wCurDamage + 1]
 	ld c, a
 	srl b
 	rr c
-	srl b
-	rr c
+;	srl b
+;	rr c
 	ld a, b
 	or c
 	jr nz, .min_damage

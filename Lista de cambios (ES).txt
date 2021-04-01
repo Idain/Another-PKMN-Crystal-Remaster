@@ -1,14 +1,45 @@
 Nuevas características de "ANOTHER POKÉMON CRYSTAL GAME" (NOMBRE SUJETO A CAMBIOS):
 
-V1.1.3
+V1.3.0
+AÑADIDOS:
+- Ahora ciertos Pokémon aprenden movimientos al evolucionar, basado en la Gen 7.
 
 CAMBIOS:
 - X Accuracy aumenta la precisión dos puntos (2x) en vez de uno (1.5x). Ahora puede usarse varias veces.
 - Las probabilidades de dar un golpe crítico han sido cambiadas para asemejarse a Gen 8.
-	-- Dire Hit también ha sido ajustado.
+	-- Dire Hit se ve afectado indirectamente.
 - Mist ahora solo dura cinco turnos y el efecto no desaparece aunque cambiemos de Pokémon (Gen 3+).
-	-- Esto también afecta el objeto Guard Spec.
+	-- Esto también afecta indirectamente el objeto Guard Spec.
 
+- Movimientos:
+	-- Foresight ahora solo ignora los cambios en la evasión del oponente si esta es mayor o igual a +1. (Gen 4+)
+	-- La precisión de algunos movimientos ha sido actualizada.
+	-- Bide ahora siempre almacena energía por 2 turnos en vez de variar 2-3 turnos.
+	-- El efecto secundario de movimientos atrapantes (Bind, Wrap, etc.) ahora durará 4-5 turnos en vez de 2-5.
+	-- Si el usuario es tipo Veneno, Toxic nunca fallará, aunque el oponente esté en un estado semi-invunerable, como en el primer turno de Vuelo o Excavar.
+	-- Rapid Spin ahora sube la velocidad un nivel (Gen 8).
+
+- HMs: Algunos Pokémon aprenden nuevas HMs, esto basado en la 4ta gen:
+	-- Cut: Rattata, Nidoran♀, Nidorina, Nidoqueen, Nidoran♂, Nidorino, Nidokind, Meowth, Persian, Rhydon, Kangaskhan, Dragonite, Celebi.
+	-- Vuelo: Zubat, Golbat.
+	-- Surf: Pikachu (8va gen), Raichu (8va gen), Kabuto, Pichu.
+	-- Strength: Bulbasaur, Ivysaur, Venusaur, Nidoran♀, Nidoran♂, Growlithe, Arcanine, Ponyta, Rapidash, Grimer, Muk, Vaporen, Jolteon, Flareon, Aerodactyl, Ledian, Marill.
+	-- Flash: Beedrill, Venonat, Meowth, Persian, Koffing, Weezing, Jynx, Skarmory, Smoochum, Lugia.
+	-- Waterfall: Tentacool, Tentacruel, Lapras, Omanyte, Omastar, Kabuto, Kabutops, Totodile, Croconaw, Feraligatr, Wooper, Quagsire, Remoraid, Octillery.
+	-- Whirlpool: Nidoqueen, Nidoking, Slowpoke, Slowbro, Lickitung, Rhydon, Kangaskhan, Goldeen, Seaking, Tauros, Kabuto, Snorlax, Dratini, Dragonair, Sentret, Furret, Sneasel, Miltank, Tyranitar.
+
+- Recoil damage ahora hace 1/2 MAX HP, en vez de 1/4.
+- El daño secundario de movimientos atrapantes (Wrap, Bind, etc.) al final de cada turno ha aumentado de 1/16 MAX HP a 1/8 MAX HP.
+- Ajustada prioridad de movimientos para asemejarse más a la Gen 8.
+
+- Movesets: Bulbasaur, Ivysaur, Venusaur, Charmander, Charmeleon, Charizard, Squirtle, Wartortle, Blastoise, Caterpie, Metapod, Butterfree, Weedle, Kakuna, Beedrill, Magikarp, Gyarados, Hoothoot, Noctowl, 
+	Misdreavus, Tyrogue, Hitmontop,
+
+- El dinero que dan los entrenadores ha sido ajustado basado en HeartGold/SoulSilver.
+
+- Equipos Pokémon:
+	-- Falkner ahora tiene un Hoothoot como 3er Pokémon. 
+	-- Uno de los Haunter de Morty ha sido reemplazado por Misdreavus.
 FIXES:
 - Algunos items no podían ser seleccionados/tenían el efecto equivocado.
 

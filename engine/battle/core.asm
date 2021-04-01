@@ -838,9 +838,13 @@ GetMovePriority:
 
 	ld b, a
 
-	; Vital Throw goes last.
+	; Vital Throw has -1 priority.
 	cp VITAL_THROW
-	ld a, 0
+	ld a, 2
+	ret z
+	; Extremespeed has +2 priority
+	cp EXTREMESPEED
+	ld a, 5
 	ret z
 
 	call GetMoveEffect
@@ -1266,7 +1270,7 @@ HandleWrap:
 	call SwitchTurnCore
 
 .skip_anim
-	call GetSixteenthMaxHP
+	call GetEighthMaxHP
 	call SubtractHPFromUser
 	ld hl, BattleText_UsersHurtByStringBuffer1
 	jr .print_text
