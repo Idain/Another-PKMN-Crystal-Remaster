@@ -1,6 +1,6 @@
 BattleCommand_SleepTalk:
 ; sleeptalk
-
+	
 	call ClearLastMove
 	ld a, [wAttackMissed]
 	and a
@@ -44,8 +44,8 @@ BattleCommand_SleepTalk:
 	ld a, e
 	cp d
 	jr z, .sample_move
-	call .check_two_turn_move
-	jr z, .sample_move
+	call .check_unselectable_move
+	jr c, .sample_move
 	ld a, BATTLE_VARS_MOVE
 	call GetBattleVarAddr
 	ld a, e
@@ -84,10 +84,10 @@ BattleCommand_SleepTalk:
 
 	ld a, [wEnemyDisabledMove]
 .got_move_2
-	ld b, a
+	ld b, a  ; Contains possible disabled move
 	ld a, BATTLE_VARS_MOVE
 	call GetBattleVar
-	ld c, a
+	ld c, a  ; Current move, aka Sleep Talk.
 	dec hl
 	ld d, NUM_MOVES
 .loop2
@@ -100,8 +100,8 @@ BattleCommand_SleepTalk:
 	cp b
 	jr z, .nope
 
-	call .check_two_turn_move
-	jr nz, .no_carry
+	call .check_unselectable_move
+	jr nc, .no_carry
 
 .nope
 	inc hl
@@ -116,28 +116,21 @@ BattleCommand_SleepTalk:
 	and a
 	ret
 
-.check_two_turn_move
+.check_unselectable_move  
+; If move can´t be selected, set Carry flag.
 	push hl
 	push de
 	push bc
 
 	ld b, a
-	callfar GetMoveEffect
+	callfar GetMoveAnim
 	ld a, b
+	ld hl, SleepTalk_unallowed_moves
+	call IsInByteArray
 
 	pop bc
 	pop de
 	pop hl
-
-	cp EFFECT_SKULL_BASH
-	ret z
-	cp EFFECT_RAZOR_WIND
-	ret z
-	cp EFFECT_SKY_ATTACK
-	ret z
-	cp EFFECT_SOLARBEAM
-	ret z
-	cp EFFECT_FLY
-	ret z
-	cp EFFECT_BIDE
 	ret
+
+INCLUDE "engine/battle/list_moves/SleepTalk_unallowed_moves.asm"

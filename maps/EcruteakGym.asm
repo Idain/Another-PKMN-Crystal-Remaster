@@ -178,12 +178,12 @@ EcruteakGymGrampsSlowStepDownMovement:
 	step_end
 
 MortyIntroText:
-	text "Good of you to"
-	line "have come."
+	text "It's good of you"
+	line "to have come."
 
-	para "Here in ECRUTEAK,"
-	line "#MON have been"
-	cont "revered."
+	para "Here in Ecruteak,"
+	line "#MON have long"
+	cont "been revered."
 
 	para "It's said that a"
 	line "rainbow-colored"
@@ -204,14 +204,14 @@ MortyIntroText:
 	line "now see what"
 	cont "others cannot."
 
-	para "Just a bit more…"
+	para "I see a shadow of"
+	line "the person who"
+	
+	para "will make the"
+	line "#MON appear."
 
-	para "With a little"
-	line "more, I could see"
-
-	para "a future in which"
-	line "I meet the #MON"
-	cont "of rainbow colors."
+	para "I believe that"
+	line "person is me!"
 
 	para "You're going to"
 	line "help me reach that"
@@ -223,37 +223,38 @@ MortyWinLossText:
 	line "enough yet…"
 
 	para "All right. This"
-	line "BADGE is yours."
+	line "Badge is yours."
 	done
 
 Text_ReceivedFogBadge:
 	text "<PLAYER> received"
-	line "FOGBADGE."
+	line "Fog Badge."
 	done
 
 MortyText_FogBadgeSpeech:
-	text "By having FOG-"
-	line "BADGE, #MON up"
+	text "By having the Fog"
+	line "Badge, #MON up"
 
-	para "to L50 will obey"
-	line "you."
+	para "to Lv. 50 will"
+	line "obey you."
 
-	para "Also, #MON that"
-	line "know SURF will be"
+	para "Also, #MON will"
+	line "be able to use" 
+	cont "Surf."
 
-	para "able to use that"
-	line "move anytime."
+	para "Here's another"
+	line "thing…"
 
 	para "I want you to have"
-	line "this too."
+	line "this, too."
 	done
 
 MortyText_ShadowBallSpeech:
-	text "It's SHADOW BALL."
+	text "It's Shadow Ball."
 	line "It causes damage"
 
 	para "and may reduce"
-	line "SP.DEF."
+	line "Sp.Def."
 
 	para "Use it if it"
 	line "appeals to you."
@@ -268,7 +269,7 @@ MortyFightDoneText:
 
 	para "And you have wit-"
 	line "nessed much more"
-	cont "than I."
+	cont "than me."
 
 	para "I envy you for"
 	line "that…"

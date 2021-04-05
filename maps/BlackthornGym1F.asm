@@ -148,7 +148,7 @@ BlackthornGymStatue:
 	jumpstd GymStatue2Script
 
 ClairIntroText:
-	text "I am CLAIR."
+	text "I am Clair."
 
 	para "The world's best"
 	line "dragon master."
@@ -156,8 +156,8 @@ ClairIntroText:
 	para "I can hold my own"
 	line "against even the"
 
-	para "#MON LEAGUE's"
-	line "ELITE FOUR."
+	para "#MON League's"
+	line "Elite Four."
 
 	para "Do you still want"
 	line "to take me on?"
@@ -165,7 +165,7 @@ ClairIntroText:
 	para "…Fine."
 	line "Let's do it!"
 
-	para "As a GYM LEADER,"
+	para "As a Gym Leader,"
 	line "I will use my full"
 
 	para "power against any"
@@ -181,28 +181,26 @@ ClairWinText:
 	done
 
 ClairText_GoToDragonsDen:
-	text "I won't admit"
+	text "I won't concede"
 	line "this."
 
 	para "I may have lost,"
 	line "but you're still"
 
 	para "not ready for the"
-	line "#MON LEAGUE."
+	line "#MON League."
 
 	para "I know. You should"
-	line "take the dragon"
-	cont "user challenge."
+	line "take the Dragon-"
+	cont "master challenge."
 
-	para "Behind this GYM is"
+	para "Behind this Gym is"
 	line "a place called"
-	cont "DRAGON'S DEN."
+	cont "Dragon'S Den."
 
 	para "There is a small"
 	line "shrine at its"
-
-	para "center."
-	line "Go there."
+	cont "heart. Go there."
 
 	para "If you can prove"
 	line "that you've lost"
@@ -211,8 +209,8 @@ ClairText_GoToDragonsDen:
 	line "I will recognize"
 
 	para "you as a trainer"
-	line "worthy of a GYM"
-	cont "BADGE!"
+	line "worthy of a Gym"
+	cont "Badge!"
 	done
 
 ClairText_TooMuchToExpect:
@@ -231,12 +229,12 @@ BlackthornGymClairText_YouKeptMeWaiting:
 
 BlackthornGymText_ReceivedTM24:
 	text "<PLAYER> received"
-	line "TM24 DRAGONBREATH."
+	line "TM24 DragonBreath."
 	done
 
 BlackthornGymClairText_DescribeTM24:
 	text "That contains"
-	line "DRAGONBREATH."
+	line "DragonBreath."
 
 	para "No, it doesn't"
 	line "have anything to"
@@ -257,21 +255,21 @@ BlackthornGymClairText_League:
 
 	para "Aren't you headed"
 	line "to the #MON"
-	cont "LEAGUE?"
+	cont "League?"
 
 	para "Don't you know"
 	line "where it is?"
 
 	para "From here, go to"
-	line "NEW BARK TOWN."
+	line "New Bark Town."
 
-	para "Then SURF east."
+	para "Then Surf east."
 	line "The route there is"
 	cont "very tough."
 
 	para "Don't you dare"
 	line "lose at the #-"
-	cont "MON LEAGUE!"
+	cont "MON League!"
 
 	para "If you do, I'll"
 	line "feel even worse"
@@ -297,7 +295,7 @@ CooltrainermPaulBeatenText:
 	done
 
 CooltrainermPaulAfterBattleText:
-	text "LANCE told you"
+	text "Lance told you"
 	line "that he'd like to"
 
 	para "see you again?"
@@ -347,7 +345,7 @@ CooltrainerfLolaAfterBattleText:
 	done
 
 BlackthornGymGuideText:
-	text "Yo! CHAMP in"
+	text "Yo! Champ in"
 	line "making!"
 
 	para "It's been a long"
@@ -356,7 +354,7 @@ BlackthornGymGuideText:
 	para "are almost done!"
 	line "Count on me!"
 
-	para "CLAIR uses the"
+	para "Clair uses the"
 	line "mythical and sac-"
 	cont "red dragon-type"
 	cont "#MON."
@@ -373,15 +371,15 @@ BlackthornGymGuideText:
 
 BlackthornGymGuideWinText:
 	text "You were great to"
-	line "beat CLAIR!"
+	line "beat Clair!"
 
 	para "All that's left is"
-	line "the #MON LEAGUE"
+	line "the #MON League"
 	cont "challenge."
 
 	para "You're on the way"
 	line "to becoming the"
-	cont "#MON CHAMPION!"
+	cont "#MON Champion!"
 	done
 
 BlackthornGym1F_MapEvents:

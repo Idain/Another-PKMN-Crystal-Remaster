@@ -183,14 +183,14 @@ BridgetWalksAwayMovement:
 	step_end
 
 WhitneyBeforeText:
-	text "Hi! I'm WHITNEY!"
+	text "Hi! I'm Whitney!"
 
 	para "Everyone was into"
 	line "#MON, so I got"
 	cont "into it too!"
 
 	para "#MON are"
-	line "super-cute!"
+	line "super cute!"
 
 	para "You want to bat-"
 	line "tle? I'm warning"
@@ -221,35 +221,31 @@ WhitneyWhatDoYouWantText:
 	text "…Sniff…"
 
 	para "What? What do you"
-	line "want? A BADGE?"
+	line "want? A Badge?"
 
 	para "Oh, right."
 	line "I forgot. Here's"
-	cont "PLAINBADGE."
+	cont "Pllain Badge."
 	done
 
 PlayerReceivedPlainBadgeText:
 	text "<PLAYER> received"
-	line "PLAINBADGE."
+	line "Plain Badge."
 	done
 
 WhitneyPlainBadgeText:
-	text "PLAINBADGE lets"
-	line "your #MON use"
+	text "The Plain Badge"
+	line "lets your #MON"
 
-	para "STRENGTH outside"
-	line "of battle."
-
-	para "It also boosts"
-	line "your #MON's"
-	cont "SPEED."
+	para "use Strength out-"
+	line "side of battle."
 
 	para "Oh, you can have"
-	line "this too!"
+	line "this, too!"
 	done
 
 WhitneyAttractText:
-	text "It's ATTRACT!"
+	text "It's Attract!"
 	line "It makes full use"
 
 	para "of a #MON's"
@@ -301,7 +297,7 @@ LassBridgetBeatenText:
 
 LassBridgetAfterBattleText:
 	text "I'm trying to beat"
-	line "WHITNEY, but…"
+	line "Whitney, but…"
 	cont "It's depressing."
 
 	para "I'm okay! If I"
@@ -313,7 +309,7 @@ LassBridgetAfterBattleText:
 
 BridgetWhitneyCriesText:
 	text "Oh, no. You made"
-	line "WHITNEY cry."
+	line "Whitney cry."
 
 	para "It's OK. She'll"
 	line "stop soon. She"
@@ -348,26 +344,26 @@ BeautySamanthaSeenText:
 	done
 
 BeautySamanthaBeatenText:
-	text "No! Oh, MEOWTH,"
+	text "No! Oh, Meowth,"
 	line "I'm so sorry!"
 	done
 
 BeautySamanthaAfterBattleText:
-	text "I taught MEOWTH"
+	text "I taught Meowth"
 	line "moves for taking"
 	cont "on any type…"
 	done
 
 GoldenrodGymGuideText:
-	text "Yo! CHAMP in"
+	text "Yo! Champ in"
 	line "making!"
 
-	para "This GYM is home"
+	para "This Gym is home"
 	line "to normal-type"
 	cont "#MON trainers."
 
 	para "I recommend you"
-	line "use fighting-type"
+	line "use Fighting-type"
 	cont "#MON."
 	done
 

@@ -143,7 +143,7 @@ DoWeatherModifiers:
 	ret
 
 INCLUDE "data/battle/weather_modifiers.asm"
-
+/*
 DoBadgeTypeBoosts:
 	ld a, [wLinkMode]
 	and a
@@ -222,3 +222,4 @@ DoBadgeTypeBoosts:
 	ret
 
 INCLUDE "data/types/badge_type_boosts.asm"
+*/

@@ -112,7 +112,7 @@ GoldenrodFlowerShopTeacherAskWantToBorrowWaterBottleText:
 
 GoldenrodFlowerShopTeacherHeresTheSquirtbottleText:
 	text "Oh, you're better"
-	line "than WHITNEY…"
+	line "than Whitney…"
 
 	para "You'll be OK,"
 	line "then. Here's the"
@@ -137,7 +137,7 @@ GoldenrodFlowerShopFloriaWonderIfSisWillLendWaterBottleText:
 	para "tree, she told me"
 	line "it's dangerous."
 
-	para "If I beat WHITNEY,"
+	para "If I beat Whitney,"
 	line "I wonder if she'll"
 
 	para "lend me her water"
@@ -146,7 +146,7 @@ GoldenrodFlowerShopFloriaWonderIfSisWillLendWaterBottleText:
 
 GoldenrodFlowerShopFloriaYouBeatWhitneyText:
 	text "Wow, you beat"
-	line "WHITNEY? Cool!"
+	line "Whitney? Cool!"
 	done
 
 GoldenrodFlowerShopFloriaItReallyWasAMonText:

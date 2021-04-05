@@ -104,9 +104,9 @@ MoveTutorScript:
 .MenuData:
 	db STATICMENU_CURSOR ; flags
 	db 4 ; items
-	db "FLAMETHROWER@"
-	db "THUNDERBOLT@"
-	db "ICE BEAM@"
+	db "Flamethrower@"
+	db "Thunderbolt@"
+	db "Ice Beam@"
 	db "CANCEL@"
 
 .Refused:
@@ -318,7 +318,7 @@ GoldenrodCityCooltrainerF1Text_ClearedRadioTower:
 
 GoldenrodCityCooltrainerF2Text:
 	text "The RADIO TOWER in"
-	line "GOLDENROD CITY is"
+	line "Goldenrod City is"
 	cont "a landmark."
 
 	para "They're running a"
@@ -416,12 +416,12 @@ GoldenrodCityRocket6Text:
 	done
 
 GoldenrodCityStationSignText:
-	text "GOLDENROD CITY"
+	text "Goldenrod City"
 	line "STATION"
 	done
 
 GoldenrodCityRadioTowerSignText:
-	text "GOLDENROD CITY"
+	text "Goldenrod City"
 	line "RADIO TOWER"
 	done
 
@@ -429,21 +429,21 @@ GoldenrodDeptStoreSignText:
 	text "Full Selection of"
 	line "#MON Goods!"
 
-	para "GOLDENROD CITY"
+	para "Goldenrod City"
 	line "DEPT.STORE"
 	done
 
 GoldenrodGymSignText:
-	text "GOLDENROD CITY"
-	line "#MON GYM"
-	cont "LEADER: WHITNEY"
+	text "Goldenrod City"
+	line "#MON Gym"
+	cont "LEADER: Whitney"
 
 	para "The Incredibly"
 	line "Pretty Girl!"
 	done
 
 GoldenrodCitySignText:
-	text "GOLDENROD CITY"
+	text "Goldenrod City"
 
 	para "The Festive City"
 	line "of Opulent Charm"
@@ -452,41 +452,41 @@ GoldenrodCitySignText:
 GoldenrodCityBikeShopSignText:
 	text "The World is a"
 	line "Cycle Path!"
-	cont "BIKE SHOP"
+	cont "Bike Shop"
 	done
 
 GoldenrodCityGameCornerSignText:
 	text "Your Playground!"
 
-	para "GOLDENROD CITY"
-	line "GAME CORNER"
+	para "Goldenrod City"
+	line "Game Corner"
 	done
 
 GoldenrodCityNameRaterSignText:
-	text "NAME RATER"
+	text "Name Rater"
 
 	para "Get Your #MON"
 	line "Nicknames Rated"
 	done
 
 GoldenrodCityUndergroundSignNorthText:
-	text "UNDERGROUND"
-	line "ENTRANCE"
+	text "Underground"
+	line "Entrance"
 	done
 
 GoldenrodCityUndergroundSignSouthText:
-	text "UNDERGROUND"
-	line "ENTRANCE"
+	text "Underground"
+	line "Entrance"
 	done
 
 GoldenrodCityPokeComCenterSignText: ; unreferenced
 	text "For Mobile Tips!"
-	line "#COM CENTER"
+	line "#COM Center"
 	done
 
 GoldenrodCityFlowerShopSignText:
 	text "Blooming Beautiful"
-	line "FLOWER SHOP"
+	line "Flower Shop"
 	done
 
 GoldenrodCityMoveTutorAskTeachAMoveText:

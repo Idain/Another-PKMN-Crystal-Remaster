@@ -3,27 +3,38 @@ Nuevas características de "ANOTHER POKÉMON CRYSTAL GAME" (NOMBRE SUJETO A CAMB
 V1.2.0
 AÑADIDOS:
 - Ahora ciertos Pokémon aprenden movimientos al evolucionar, basado en la Gen 7.
+- La tormenta de arena ahora boostea la Defensa Especial de los Pokémon tipo Roca en un 50% (Gen 4+).
+- El género del Pokémon ahora es visible en el menú del equipo.
 
 CAMBIOS:
+- Removido modificador de medallas que boosteaban ataques y stats.
+
+- Obediencia: Ahora funciona como en HG/SS, con la Zephyr Badge afectando obediencia hasta el nv. 20 y la Mineral Badge reemplazando a la Storm Badge para obediencia hasta nv. 70.
+
 - X Accuracy aumenta la precisión dos puntos (2x) en vez de uno (1.5x). Ahora puede usarse varias veces.
+
 - Las probabilidades de dar un golpe crítico han sido cambiadas para asemejarse a Gen 8.
 	-- Dire Hit se ve afectado indirectamente.
+
 - Mist ahora solo dura cinco turnos y el efecto no desaparece aunque cambiemos de Pokémon (Gen 3+).
 	-- Esto también afecta indirectamente el objeto Guard Spec.
 
 - Movimientos:
 	-- Foresight ahora solo ignora los cambios en la evasión del oponente si esta es mayor o igual a +1. (Gen 4+)
 	-- La precisión de algunos movimientos ha sido actualizada.
-	-- Bide ahora siempre almacena energía por 2 turnos en vez de variar 2-3 turnos.
+	-- Bide ahora siempre almacena energía por 2 turnos en vez de variar (2-3 turnos).
 	-- El efecto secundario de movimientos atrapantes (Bind, Wrap, etc.) ahora durará 4-5 turnos en vez de 2-5.
-	-- Si el usuario es tipo Veneno, Toxic nunca fallará, aunque el oponente esté en un estado semi-invunerable, como en el primer turno de Vuelo o Excavar.
+	-- Si el usuario es tipo Veneno, Toxic nunca fallará, aunque el oponente esté en un estado semi-invunerable, como en el 1er turno de Vuelo o Excavar.
 	-- Rapid Spin ahora sube la velocidad un nivel (Gen 8).
+	-- Sleep Talk no puede seleccionar Rest, Metronome ni Mirror Move (Gen 3+).
+	-- Mimic ahora también copia los Max PPs del movimiento copiado, en vez de solo darte 5 PPs.
+	-- Rayo Solar hace menos daño durante una Tormenta de Arena. (Gen 3+).
 
-- HMs. Algunos Pokémon aprenden nuevas HMs, esto basado en la 4ta gen:
-	-- Cut: Rattata, Nidoran♀, Nidorina, Nidoqueen, Nidoran♂, Nidorino, Nidokind, Meowth, Persian, Rhydon, Kangaskhan, Dragonite, Celebi.
-	-- Vuelo: Zubat, Golbat.
+- HMs. Algunos Pokémon aprenden nuevas HMs, basado en HG/SS:
+	-- Cut: Rattata, Nidoran♀, Nidorina, Nidoqueen, Nidoran♂, Nidorino, Nidoking, Meowth, Persian, Rhydon, Kangaskhan, Dragonite, Celebi.
+	-- Fly: Zubat, Golbat.
 	-- Surf: Pikachu (8va gen), Raichu (8va gen), Kabuto, Pichu.
-	-- Strength: Bulbasaur, Ivysaur, Venusaur, Nidoran♀, Nidoran♂, Growlithe, Arcanine, Ponyta, Rapidash, Grimer, Muk, Vaporen, Jolteon, Flareon, Aerodactyl, Ledian, Marill.
+	-- Strength: Bulbasaur, Ivysaur, Venusaur, Nidoran♀, Nidoran♂, Growlithe, Arcanine, Ponyta, Rapidash, Grimer, Muk, Vaporeon, Jolteon, Flareon, Aerodactyl, Ledian, Marill.
 	-- Flash: Beedrill, Venonat, Meowth, Persian, Koffing, Weezing, Jynx, Skarmory, Smoochum, Lugia.
 	-- Waterfall: Tentacool, Tentacruel, Lapras, Omanyte, Omastar, Kabuto, Kabutops, Totodile, Croconaw, Feraligatr, Wooper, Quagsire, Remoraid, Octillery.
 	-- Whirlpool: Nidoqueen, Nidoking, Slowpoke, Slowbro, Lickitung, Rhydon, Kangaskhan, Goldeen, Seaking, Tauros, Kabuto, Snorlax, Dratini, Dragonair, Sentret, Furret, Sneasel, Miltank, Tyranitar.
@@ -32,15 +43,22 @@ CAMBIOS:
 - El daño secundario de movimientos atrapantes (Wrap, Bind, etc.) al final de cada turno ha aumentado de 1/16 MAX HP a 1/8 MAX HP.
 - Ajustada prioridad de movimientos para asemejarse más a la Gen 8.
 
-- Movesets: Bulbasaur, Ivysaur, Venusaur, Charmander, Charmeleon, Charizard, Squirtle, Wartortle, Blastoise, Caterpie, Metapod, Butterfree, Weedle, Kakuna, Beedrill, Magikarp, Gyarados, Hoothoot, Noctowl, 
-	Misdreavus, Tyrogue, Hitmontop,
+- Los movesets de los siguientes Pokémon han sido cambiados para asemejarse a generaciones recientes: 
+	-- Bulbasaur, Ivysaur, Venusaur, Charmander, Charmeleon, Charizard, Squirtle, Wartortle, Blastoise, Caterpie, Metapod, Butterfree, Weedle, Kakuna, Beedrill, Rattata, Raticate, 
+	Ekans, Arbok, Pikachu, Raichu, Clefairy, Clefable, Jigglypuff, Wigglytuff, Onixm Magneton, Magikarp, Gyarados, Hoothoot, Noctowl, Cleffa, Igglybuff, Steelix, Heracross, Misdreavus, Tyrogue, Hitmontop.
 
 - El dinero que dan los entrenadores ha sido ajustado basado en HeartGold/SoulSilver.
+- Los items que te da tu madre cada vez que ahorra una cierta cantidad de dinero han sido ajustados.
+- Si un Pokémon es afectado por un problema de estado, ahora este se muestra al lado del nivel en vez de reemplazarlo.
 
 - Equipos Pokémon:
 	-- Falkner ahora tiene un Hoothoot como 3er Pokémon. 
 	-- Los Metapod y Kakuna de Bugsy ahora son Butterfree y Beedrill.
 	-- Uno de los Haunter de Morty ha sido reemplazado por Misdreavus.
+	-- Uno de los Magnemite de Jasmine ha evolucionado a Magneton.
+
+- Los nombres de los movimientos ahora están en Capital en vez de MAYÚSCULA.
+
 FIXES:
 - Algunos items no podían ser seleccionados/tenían el efecto equivocado.
 

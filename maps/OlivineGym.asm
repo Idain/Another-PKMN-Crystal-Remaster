@@ -95,7 +95,7 @@ OlivineGymStatue:
 Jasmine_SteelTypeIntro:
 	text "…Thank you for"
 	line "your help at the"
-	cont "LIGHTHOUSE…"
+	cont "Lighthouse…"
 
 	para "But this is dif-"
 	line "ferent. Please"
@@ -103,16 +103,16 @@ Jasmine_SteelTypeIntro:
 	para "allow me to intro-"
 	line "duce myself."
 
-	para "I am JASMINE, a"
-	line "GYM LEADER. I use"
-	cont "the steel-type."
+	para "I'm Jasmine, a"
+	line "Gym Leader. I use"
+	cont "the Steel-type."
 
 	para "…Do you know about"
-	line "the steel-type?"
+	line "the Steel-type?"
 
-	para "It's a type that"
-	line "was only recently"
-	cont "discovered."
+	para "They're very hard,"
+	line "cold, sharp, and"
+	cont "really strong!"
 
 	para "…Um… May I begin?"
 	done
@@ -125,21 +125,27 @@ Jasmine_BetterTrainer:
 	line "kindness."
 
 	para "In accordance with"
-	line "LEAGUE rules, I"
+	line "League rules, I"
 
 	para "confer upon you"
-	line "this BADGE."
+	line "this badge."
 	done
 
 Text_ReceivedMineralBadge:
 	text "<PLAYER> received"
-	line "MINERALBADGE."
+	line "Mineral Badge."
 	done
 
 Jasmine_BadgeSpeech:
-	text "MINERALBADGE"
-	line "raises #MON's"
-	cont "DEFENSE."
+	text "With that Badge,"
+	line "all #MON, in-" 
+	
+	para "cluding traded" 
+	line "#MON up to"
+
+	para "Lv. 70, will obey"
+	line "you, without ques-"
+	cont "tion."
 
 	para "…Um… Please take"
 	line "this too…"
@@ -151,9 +157,17 @@ Text_ReceivedTM09: ; unreferenced
 	done
 
 Jasmine_IronTailSpeech:
-	text "…You could use"
-	line "that TM to teach"
-	cont "IRON TAIL."
+	text "It's called Iron"
+	line "Tail…"
+
+	para "Your #MON will"
+	line "hit the target"
+
+	para "with its hard" 
+	line "tail, occasionally"
+
+	para "lowering the tar-"
+	line "get's Defense…"
 	done
 
 Jasmine_GoodLuck:
@@ -163,9 +177,9 @@ Jasmine_GoodLuck:
 	done
 
 OlivineGymGuideText:
-	text "JASMINE uses the"
+	text "Jasmine uses the"
 	line "newly discovered"
-	cont "steel-type."
+	cont "Steel-type."
 
 	para "I don't know very"
 	line "much about it."
@@ -174,7 +188,7 @@ OlivineGymGuideText:
 OlivineGymGuideWinText:
 	text "That was awesome."
 
-	para "The steel-type,"
+	para "The Steel-type,"
 	line "huh?"
 
 	para "That was a close"
@@ -183,8 +197,8 @@ OlivineGymGuideWinText:
 	done
 
 OlivineGymGuidePreText:
-	text "JASMINE, the GYM"
-	line "LEADER, is at the"
+	text "Jasmine, the Gym"
+	line "Leader, is at the"
 	cont "LIGHTHOUSE."
 
 	para "She's been tending"

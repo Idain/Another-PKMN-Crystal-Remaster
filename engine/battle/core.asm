@@ -877,6 +877,17 @@ GetMoveEffect:
 	ld b, a
 	ret
 
+GetMoveAnim:
+	ld a, b
+	dec a
+	ld hl, Moves
+	ld bc, MOVE_LENGTH
+	call AddNTimes
+	ld a, BANK(Moves)
+	call GetFarByte
+	ld b, a
+	ret
+
 Battle_EnemyFirst:
 	call LoadTilemapToTempTilemap
 	call TryEnemyFlee
@@ -4025,7 +4036,6 @@ InitBattleMon:
 	ld bc, PARTYMON_STRUCT_LENGTH - MON_ATK
 	call CopyBytes
 	call ApplyStatusEffectOnPlayerStats
-	call BadgeStatBoosts
 	ret
 
 BattleCheckPlayerShininess:
@@ -4836,14 +4846,15 @@ PrintPlayerHUD:
 .got_gender_char
 	hlcoord 17, 8
 	ld [hl], a
-	hlcoord 14, 8
 	push af ; back up gender
 	push hl
+	hlcoord 10, 8
 	ld de, wBattleMonStatus
 	predef PlaceNonFaintStatus
 	pop hl
 	pop bc
-	ret nz
+	hlcoord 14, 8
+;	ret nz
 	ld a, b
 	cp " "
 	jr nz, .copy_level ; male or female
@@ -4913,14 +4924,15 @@ DrawEnemyHUD:
 	hlcoord 9, 1
 	ld [hl], a
 
-	hlcoord 6, 1
 	push af
 	push hl
+	hlcoord 2, 1
 	ld de, wEnemyMonStatus
 	predef PlaceNonFaintStatus
 	pop hl
 	pop bc
-	jr nz, .skip_level
+	hlcoord 6, 1
+;	jr nz, .skip_level
 	ld a, b
 	cp " "
 	jr nz, .print_level
@@ -6949,7 +6961,7 @@ ApplyStatLevelMultiplier:
 	ret
 
 INCLUDE "data/battle/stat_multipliers_2.asm"
-
+/*
 BadgeStatBoosts:
 ; Raise the stats of the battle mon in wBattleMon
 ; depending on which badges have been obtained.
@@ -7040,6 +7052,7 @@ BoostStat:
 	ld a, LOW(MAX_STAT_VALUE)
 	ld [hld], a
 	ret
+*/
 
 _LoadBattleFontsHPBar:
 	callfar LoadBattleFontsHPBar
@@ -7466,7 +7479,6 @@ GiveExperiencePoints:
 	ld [wApplyStatLevelMultipliersToEnemy], a
 	call ApplyStatLevelMultiplierOnAllStats
 	callfar ApplyStatusEffectOnPlayerStats
-	callfar BadgeStatBoosts
 	callfar UpdatePlayerHUD
 	call EmptyBattleTextbox
 	call LoadTilemapToTempTilemap

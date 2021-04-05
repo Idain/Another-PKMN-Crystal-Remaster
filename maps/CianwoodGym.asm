@@ -190,34 +190,31 @@ ChuckLossText:
 
 	para "How about that!"
 	line "You're worthy of"
-	cont "STORMBADGE!"
+	cont "Storm Badge!"
 	done
 
 GetStormBadgeText:
 	text "<PLAYER> received"
-	line "STORMBADGE."
+	line "Storm Badge."
 	done
 
 ChuckExplainBadgeText:
-	text "STORMBADGE makes"
-	line "all #MON up to"
+	text "The Storm Badge"
+	line "lets your #MON"
 
-	para "L70 obey, even"
-	line "traded ones."
+	para "use Fly to any" 
+	line "city or town you"
+	
+	para "have already been"
+	line "to!"
 
-	para "It also lets your"
-	line "#MON use FLY"
-
-	para "when you're not in"
-	line "a battle."
-
-	para "Here, take this"
+	para "Here, take this,"
 	line "too!"
 	done
 
 ChuckExplainTMText:
-	text "That is DYNAMIC-"
-	line "PUNCH."
+	text "That is Dynamic-"
+	line "Punch."
 
 	para "It doesn't always"
 	line "hit, but when it"

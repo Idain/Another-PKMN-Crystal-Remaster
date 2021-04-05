@@ -417,8 +417,8 @@ SudowoodoAttackedText:
 	done
 
 FloriaText1:
-	text "I'm the FLOWER"
-	line "SHOP's FLORIA!"
+	text "I'm the Flower"
+	line "Shop's Floria!"
 
 	para "Listen, listen!"
 
@@ -449,7 +449,7 @@ FloriaText2:
 	para "tree, she said"
 	line "it's dangerous."
 
-	para "If I beat WHITNEY,"
+	para "If I beat Whitney,"
 	line "I wonder if she'll"
 
 	para "lend me her water"

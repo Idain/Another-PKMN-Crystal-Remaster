@@ -682,7 +682,7 @@ BattleCommand_CheckObedience:
 	jr nz, .getlevel
 
 	; stormbadge
-	bit STORMBADGE, [hl]
+	bit MINERALBADGE, [hl]
 	ld a, 70
 	jr nz, .getlevel
 
@@ -694,6 +694,11 @@ BattleCommand_CheckObedience:
 	; hivebadge
 	bit HIVEBADGE, [hl]
 	ld a, 30
+	jr nz, .getlevel
+
+	; zephyrbadge
+	bit ZEPHYRBADGE, [hl]
+	ld a, 20
 	jr nz, .getlevel
 
 	; no badges
@@ -1265,13 +1270,13 @@ BattleCommand_Stab:
 	pop bc
 	pop de
 	pop hl
-
+/*
 	push de
 	push bc
 	farcall DoBadgeTypeBoosts
 	pop bc
 	pop de
-
+*/
 	ld a, [wCurType]
 	cp b
 	jr z, .stab
@@ -1924,7 +1929,7 @@ BattleCommand_CheckHit:
 	ret
 
 INCLUDE "data/battle/accuracy_multipliers.asm"
-INCLUDE "engine/battle/always_hit_moves.asm"
+INCLUDE "engine/battle/list_moves/always_hit_moves.asm"
 
 BattleCommand_EffectChance:
 ; effectchance
@@ -2526,9 +2531,9 @@ BattleCommand_CheckFaint:
 BattleCommand_BuildOpponentRage:
 ; buildopponentrage
 
-	jp .start
+;	jp .start
 
-.start
+;.start
 	ld a, [wAttackMissed]
 	and a
 	ret nz
@@ -2694,6 +2699,8 @@ PlayerAttackDamage:
 	ld b, a
 	ld c, [hl]
 
+	call SandstormSpDefBoost
+
 	ld a, [wEnemyScreens]
 	bit SCREENS_LIGHT_SCREEN, a
 	jr z, .specialcrit
@@ -2738,6 +2745,7 @@ PlayerAttackDamage:
     jr c, .double_atk
     call LightBallBoost
     jr nc, .no_double_atk
+
 .double_atk
     ld a, [hli]
     ld l, [hl]
@@ -2762,7 +2770,7 @@ PlayerAttackDamage:
     ld a, [hli]
     ld l, [hl]
     ld h, a
-
+	;fallthrough
 .end_atk_boost_items
 	call TruncateHL_BC
 
@@ -2815,10 +2823,38 @@ TruncateHL_BC:
 	ld b, l
 	ret
 
+SandstormSpDefBoost: 
+; Raise Sp. Def. by 50% if there's Sandstorm and the opponent
+; is Rock-type.
+
+; First, check if Sandstorm is active.
+	ld a, [wBattleWeather]
+	cp WEATHER_SANDSTORM
+	ret nz
+
+; Then, check the opponent's types.
+	push bc
+	push de
+	ld b, ROCK
+	call CheckIfTargetIsSomeType
+	pop de
+	pop bc
+	ret nz
+
+; Start boost
+	ld h, b
+	ld l, c
+	srl b
+	rr c
+	add hl, bc
+	ld b, h
+	ld c, l
+	ret
+
 CheckDamageStatsCritical:
 ; Return carry if boosted stats should be used in damage calculations.
 ; Unboosted stats should be used if the attack is a critical hit,
-;  and the stage of the opponent's defense is higher than the user's attack.
+; and the stage of the opponent's defense is higher than the user's attack.
 
 	ld a, [wCriticalHit]
 	and a
@@ -2970,6 +3006,8 @@ EnemyAttackDamage:
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
+
+	call SandstormSpDefBoost
 
 	ld a, [wPlayerScreens]
 	bit SCREENS_LIGHT_SCREEN, a
@@ -3860,9 +3898,11 @@ BattleCommand_PoisonTarget:
 	ld a, [wTypeModifier]
 	and $7f
 	ret z
-	call CheckIfTargetIsPoisonType
+	ld b, POISON
+	call CheckIfTargetIsSomeType
 	ret z
-	call CheckIfTargetIsSteelType
+	ld b, STEEL
+	call CheckIfTargetIsSomeType
 	ret z
 	call GetOpponentItem
 	ld a, b
@@ -3893,7 +3933,8 @@ BattleCommand_Poison:
 	and $7f
 	jp z, .failed
 
-	call CheckIfTargetIsPoisonType
+	ld b, POISON
+	call CheckIfTargetIsSomeType
 	jp z, .failed
 
 	ld a, BATTLE_VARS_STATUS_OPP
@@ -3971,22 +4012,10 @@ BattleCommand_Poison:
 	cp EFFECT_TOXIC
 	ret
 
-CheckIfTargetIsPoisonType:
-	ld de, wEnemyMonType1
-	ldh a, [hBattleTurn]
-	and a
-	jr z, .ok
-	ld de, wBattleMonType1
-.ok
-	ld a, [de]
-	inc de
-	cp POISON
-	ret z
-	ld a, [de]
-	cp POISON
-	ret
+CheckIfTargetIsSomeType:   
+; Check if the opponent is a certain type.
+; Register b contains the type to compare to.
 
-CheckIfTargetIsSteelType:
 	ld de, wEnemyMonType1
 	ldh a, [hBattleTurn]
 	and a
@@ -3995,25 +4024,10 @@ CheckIfTargetIsSteelType:
 .ok
 	ld a, [de]
 	inc de
-	cp STEEL
+	cp b
 	ret z
 	ld a, [de]
-	cp STEEL
-	ret
-
-CheckIfTargetIsElectricType:
-	ld de, wEnemyMonType1
-	ldh a, [hBattleTurn]
-	and a
-	jr z, .ok
-	ld de, wBattleMonType1
-.ok
-	ld a, [de]
-	inc de
-	cp ELECTRIC
-	ret z
-	ld a, [de]
-	cp ELECTRIC
+	cp b
 	ret
 
 PoisonOpponent:
@@ -4260,7 +4274,8 @@ BattleCommand_ParalyzeTarget:
 	ld a, [wTypeModifier]
 	and $7f
 	ret z
-	call CheckIfTargetIsElectricType
+	ld b, ELECTRIC
+	call CheckIfTargetIsSomeType
 	ret z
 	call GetOpponentItem
 	ld a, b
@@ -5007,9 +5022,6 @@ CalcPlayerStats:
 
 	ld a, 5
 	call CalcBattleStats
-
-	ld hl, BadgeStatBoosts
-	call CallBattleCore
 
 	call BattleCommand_SwitchTurn
 
@@ -6081,7 +6093,8 @@ BattleCommand_Paralyze:
 	ld a, [wTypeModifier]
 	and $7f
 	jr z, .didnt_affect
-	call CheckIfTargetIsElectricType
+	ld b, ELECTRIC
+	call CheckIfTargetIsSomeType
 	jr z, .didnt_affect
 	call GetOpponentItem
 	ld a, b
@@ -6783,7 +6796,7 @@ GetUserItem:
 	ld hl, wEnemyMonItem
 .go
 	ld b, [hl]
-	jp GetItemHeldEffect
+	jr GetItemHeldEffect
 
 GetOpponentItem:
 ; Return the effect of the opponent's item in bc, and its id at hl.
@@ -6794,7 +6807,7 @@ GetOpponentItem:
 	ld hl, wBattleMonItem
 .go
 	ld b, [hl]
-	jp GetItemHeldEffect
+	; fallthrough
 
 GetItemHeldEffect:
 ; Return the effect of item b in bc.

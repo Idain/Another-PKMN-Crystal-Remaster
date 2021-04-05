@@ -23,7 +23,7 @@ IrwinPlainBadgeGossipText:
 	text "<PLAY_G>, I heard!"
 
 	para "You defeated that"
-	line "WHITNEY?"
+	line "Whitney?"
 
 	para "It makes me proud"
 	line "to be your friend!"

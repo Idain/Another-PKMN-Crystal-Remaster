@@ -272,8 +272,8 @@ DragonShrineQuestion1_MenuHeader:
 .MenuData:
 	db STATICMENU_CURSOR | STATICMENU_DISABLE_B ; flags
 	db 3 ; items
-	db "Pal@"
-	db "Underling@"
+	db "Ally@"
+	db "Junior@"
 	db "Friend@"
 
 DragonShrineQuestion2_MenuHeader:
@@ -286,7 +286,7 @@ DragonShrineQuestion2_MenuHeader:
 	db STATICMENU_CURSOR | STATICMENU_DISABLE_B ; flags
 	db 3 ; items
 	db "Strategy@"
-	db "Raising@"
+	db "Training@"
 	db "Cheating@"
 
 DragonShrineQuestion3_MenuHeader:
@@ -298,9 +298,9 @@ DragonShrineQuestion3_MenuHeader:
 .MenuData:
 	db STATICMENU_CURSOR | STATICMENU_DISABLE_B ; flags
 	db 3 ; items
-	db "Weak person@"
-	db "Tough person@"
-	db "Anybody@"
+	db "Weak@"
+	db "Strong@"
+	db "Anyone@"
 
 DragonShrineQuestion4_MenuHeader:
 	db MENU_BACKUP_TILES ; flags
@@ -324,9 +324,9 @@ DragonShrineQuestion5_MenuHeader:
 .MenuData:
 	db STATICMENU_CURSOR | STATICMENU_DISABLE_B ; flags
 	db 3 ; items
-	db "Tough@"
+	db "Strength@"
 	db "Both@"
-	db "Weak@"
+	db "Weakness@"
 
 DragonShrinePlayerWalkInMovement:
 	slow_step UP
@@ -398,7 +398,7 @@ DragonShrineElderGreetingText:
 	para "No need to explain"
 	line "why you came."
 
-	para "CLAIR sent you"
+	para "Clair sent you"
 	line "here, didn't she?"
 
 	para "That girl is a"
@@ -460,26 +460,26 @@ DragonShrinePassedTestText:
 
 	para "It will see you"
 	line "through at the"
-	cont "#MON LEAGUE."
+	cont "#MON League."
 	done
 
 DragonShrineMustIInformLanceText:
-	text "CLAIR!"
+	text "Clair!"
 
 	para "This child is"
 	line "impeccable, in"
 	cont "skill and spirit!"
 
 	para "Admit defeat and"
-	line "confer the RISING-"
-	cont "BADGE!"
+	line "confer the Rising"
+	cont "Badge!"
 
 	para "…Or must I inform"
-	line "LANCE of this?"
+	line "Lance of this?"
 	done
 
 DragonShrineElderScoldsClairText:
-	text "CLAIR…"
+	text "Clair…"
 
 	para "Reflect upon what"
 	line "it is that you"
@@ -503,7 +503,7 @@ DragonShrineTakeThisDratiniText:
 	para "I have something"
 	line "for you."
 
-	para "Take this DRATINI"
+	para "Take this Dratini"
 	line "as proof that I"
 
 	para "have recognized"
@@ -512,7 +512,7 @@ DragonShrineTakeThisDratiniText:
 
 DragonShrinePlayerReceivedDratiniText:
 	text "<PLAYER> received"
-	line "DRATINI!"
+	line "Dratini!"
 	done
 
 DragonShrinePartyFullText:
@@ -533,7 +533,7 @@ DragonShrineSymbolicDragonText:
 	done
 
 DragonShrineClairsGrandfatherText:
-	text "CLAIR appears to"
+	text "Clair appears to"
 	line "have learned an"
 
 	para "invaluable lesson"
@@ -549,7 +549,7 @@ DragonShrineSilverIsInTrainingText:
 	cont "training here."
 
 	para "He is much like"
-	line "CLAIR when she was"
+	line "Clair when she was"
 
 	para "younger. It is a"
 	line "little worrisome…"
@@ -574,19 +574,19 @@ DragonShrineElder2Text:
 	line "some time since a"
 
 	para "trainer has gained"
-	line "our MASTER's rare"
+	line "our Master's rare"
 	cont "approval."
 
 	para "In fact, not since"
-	line "Master LANCE."
+	line "Master Lance."
 	done
 
 DragonShrineElder3Text:
 	text "You know young"
-	line "Master LANCE?"
+	line "Master Lance?"
 
 	para "He looks so much"
-	line "like our MASTER"
+	line "like our Master"
 	cont "did in his youth."
 
 	para "It's in their"
@@ -623,18 +623,18 @@ DragonShrineIUnderstandText:
 
 DragonShrineHereRisingBadgeText:
 	text "Here, this is the"
-	line "RISINGBADGE…"
+	line "Rising Badge…"
 
 	para "Hurry up! Take it!"
 	done
 
 DragonShrinePlayerReceivedRisingBadgeText:
 	text "<PLAYER> received"
-	line "RISINGBADGE."
+	line "Rising Badge."
 	done
 
 DragonShrineRisingBadgeExplanationText:
-	text "RISINGBADGE will"
+	text "Rising Badge will"
 	line "enable your"
 
 	para "#MON to use the"

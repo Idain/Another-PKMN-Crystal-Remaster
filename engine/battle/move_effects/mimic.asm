@@ -40,7 +40,16 @@ BattleCommand_Mimic:
 	ld [wNamedObjectIndex], a
 	ld bc, wBattleMonPP - wBattleMonMoves
 	add hl, bc
-	ld [hl], 5
+
+	push hl
+	dec a
+    ld de, wStringBuffer1
+    call GetMoveData
+    ld a, [wStringBuffer1 + MOVE_PP]
+    pop hl
+
+    ld [hl], a
+
 	call GetMoveName
 	call AnimateCurrentMove
 	ld hl, MimicLearnedMoveText

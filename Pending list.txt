@@ -1,5 +1,7 @@
 Low Kick
 Beat Up
+Rage
 
 
 * Añadir In-Game trades para obtener a Misdreavus, Murkrow y Houndour.
+* Añadir Sp.Def x1.5 boost para tipos Roca/Tierra/Acero en tormenta arena.

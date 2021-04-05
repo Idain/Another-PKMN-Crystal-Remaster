@@ -201,15 +201,15 @@ LizSalonGossipText:
 LizWhitneyGossipText:
 	text "Listen, listen!"
 
-	para "GOLDENROD GYM's"
-	line "WHITNEY began"
+	para "Goldenrod Gym's"
+	line "Whitney began"
 
 	para "battling only a"
 	line "little while ago!"
 
 	para "But the #MON"
-	line "LEAGUE chose her"
-	cont "as a GYM LEADER!"
+	line "League chose her"
+	cont "as a Gym Leader!"
 
 	para "I bet she must be"
 	line "totally talented."
@@ -223,16 +223,16 @@ LizBugCatchingContestGossipText:
 
 	para "Bug-Catching"
 	line "Contest at the"
-	cont "NATIONAL PARK?"
+	cont "National Park?"
 
 	para "I did once, but"
 	line "all I could catch"
-	cont "was a CATERPIE."
+	cont "was a Caterpie."
 
 	para "But guess what!"
 
 	para "I won with that"
-	line "CATERPIE. Isn't"
+	line "Caterpie. Isn't"
 	cont "that great?"
 	done
 

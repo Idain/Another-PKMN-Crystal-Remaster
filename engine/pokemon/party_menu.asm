@@ -77,6 +77,7 @@ WritePartyMenuTilemap:
 	dw PlacePartyMonEvoStoneCompatibility
 	dw PlacePartyMonGender
 	dw PlacePartyMonMobileBattleSelection
+	dw PlacePartyMonGenderStats
 
 PlacePartyNicknames:
 	hlcoord 3, 1
@@ -269,7 +270,7 @@ PlacePartyMonStatus:
 	ret z
 	ld c, a
 	ld b, 0
-	hlcoord 5, 2
+	hlcoord 3, 2
 .loop
 	push bc
 	push hl
@@ -553,6 +554,57 @@ PlacePartyMonMobileBattleSelection:
 	db "けってい　　やめる@" ; Quit
 .Strings_1_2_3:
 	db "１@", "２@", "３@" ; 1st, 2nd, 3rd
+
+
+PlacePartyMonGenderStats:
+    ld a, [wPartyCount]
+    and a
+    ret z
+    ld c, a
+    ld b, 0
+    hlcoord 7, 2
+.loop
+    push bc
+    push hl
+    call PartyMenuCheckEgg
+    jr z, .next
+    ld [wCurPartySpecies], a
+    push hl
+    ld a, b
+    ld [wCurPartyMon], a
+    xor a
+    ld [wMonType], a
+    call GetGender
+    ld de, .unknown
+    jr c, .got_gender
+    ld de, .male
+    jr nz, .got_gender
+    ld de, .female
+
+.got_gender
+    pop hl
+    call PlaceString
+
+.next
+    pop hl
+    ld de, 2 * SCREEN_WIDTH
+    add hl, de
+    pop bc
+    inc b
+    dec c
+    jr nz, .loop
+    ret
+
+.male
+    db "♂@"
+
+.female
+    db "♀@"
+
+.unknown
+    db "@"
+; function end
+
 
 PartyMenuCheckEgg:
 	ld a, LOW(wPartySpecies)

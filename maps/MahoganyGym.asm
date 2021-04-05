@@ -151,7 +151,7 @@ PryceText_Intro:
 	text "#MON have many"
 	line "experiences in"
 
-	para "their lives, just "
+	para "their lives, just"
 	line "like we do. "
 
 	para "I, too, have seen"
@@ -171,8 +171,8 @@ PryceText_Intro:
 	para "I do not lose"
 	line "easily."
 
-	para "I, PRYCE--the"
-	line "winter trainer--"
+	para "I, Pryce--the"
+	line "Winter Trainer--"
 
 	para "shall demonstrate"
 	line "my power!"
@@ -189,23 +189,21 @@ PryceText_Impressed:
 	line "life's obstacles."
 
 	para "You are worthy of"
-	line "this BADGE!"
+	line "this Badge!"
 	done
 
 Text_ReceivedGlacierBadge:
 	text "<PLAYER> received"
-	line "GLACIERBADGE."
+	line "Glacier Badge."
 	done
 
 PryceText_GlacierBadgeSpeech:
-	text "That BADGE will"
-	line "raise the SPECIAL"
-	cont "stats of #MON."
+	text "That Badge will"
+	line "let your #MON"
 
-	para "It also lets your"
-	line "#MON use WHIRL-"
-	cont "POOL to get across"
-	cont "real whirlpools."
+	para "use Whirlpool to"
+	line "get across real"
+	cont "whirlpools."
 
 	para "And this… This is"
 	line "a gift from me!"
@@ -213,7 +211,7 @@ PryceText_GlacierBadgeSpeech:
 
 PryceText_IcyWindSpeech:
 	text "That TM contains"
-	line "ICY WIND."
+	line "Icy Wind."
 
 	para "It inflicts damage"
 	line "and lowers speed."
