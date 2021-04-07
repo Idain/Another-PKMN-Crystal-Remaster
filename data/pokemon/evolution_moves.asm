@@ -183,7 +183,7 @@ EvolutionMoves::
     db NO_MOVE      ; BELLOSSOM
     db NO_MOVE      ; MARILL
     db NO_MOVE      ; AZUMARILL
-    db SLAM         ; SUDOWOODO
+    db NO_MOVE      ; SUDOWOODO
     db NO_MOVE      ; POLITOED
     db NO_MOVE      ; HOPPIP
     db NO_MOVE      ; SKIPLOOM

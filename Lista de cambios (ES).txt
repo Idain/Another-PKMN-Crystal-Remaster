@@ -29,6 +29,7 @@ CAMBIOS:
 	-- Sleep Talk no puede seleccionar Rest, Metronome ni Mirror Move (Gen 3+).
 	-- Mimic ahora también copia los Max PPs del movimiento copiado, en vez de solo darte 5 PPs.
 	-- Rayo Solar hace menos daño durante una Tormenta de Arena. (Gen 3+).
+	-- Los movimientos OHKO no toman en cuenta los niveles de la Precisión del usuario y la Evasión del oponente. (Gen 3+)
 
 - HMs. Algunos Pokémon aprenden nuevas HMs, basado en HG/SS:
 	-- Cut: Rattata, Nidoran♀, Nidorina, Nidoqueen, Nidoran♂, Nidorino, Nidoking, Meowth, Persian, Rhydon, Kangaskhan, Dragonite, Celebi.
@@ -45,7 +46,11 @@ CAMBIOS:
 
 - Los movesets de los siguientes Pokémon han sido cambiados para asemejarse a generaciones recientes: 
 	-- Bulbasaur, Ivysaur, Venusaur, Charmander, Charmeleon, Charizard, Squirtle, Wartortle, Blastoise, Caterpie, Metapod, Butterfree, Weedle, Kakuna, Beedrill, Rattata, Raticate, 
-	Ekans, Arbok, Pikachu, Raichu, Clefairy, Clefable, Jigglypuff, Wigglytuff, Onixm Magneton, Magikarp, Gyarados, Hoothoot, Noctowl, Cleffa, Igglybuff, Steelix, Heracross, Misdreavus, Tyrogue, Hitmontop.
+	Ekans, Arbok, Pikachu, Raichu, Nidoran♀, Nidorina, Nidoqueen, Clefairy, Clefable, Jigglypuff, Wigglytuff, Diglett, Dugtrio, Meowth, Persian, Mankey, Primeape, Growlithe, Arcanine,
+	Poliwag, Poliwhirl, Poliwrath, Kadabra, Alakazam, Machop, Machoke, Machamp, Ponyta, Rapidash, Slowpoke, Slowbro, Magneton, Farfetch'd, Doduo, Dodrio, Shellder, Cloyster
+	Onix, Exeggcute, Exeggutor, Cubone, Marowak, Hitmonlee, Hitmonchan, Magikarp, Gyarados, Eevee, Vaporeon, Jolteon, Flareon, Porygon, Omanyte, Omastar, Kabuto, Kabutops, Snorlax, 
+	Dratini, Dragonair, Dragonite, Mewtwo, Mew, Sentret, Furret, Hoothoot, Noctowl, Cleffa, Igglybuff, Mareep, Flaaffy, Ampharos, Politoed, Espeon, Umbreon, Steelix, Heracross, 
+	Slowking, Misdreavus, Swinub, Piloswine, Remoraid, Octillery, Delibird, Phanpy, Donphan, Tyrogue, Porygon2, Hitmontop.
 
 - El dinero que dan los entrenadores ha sido ajustado basado en HeartGold/SoulSilver.
 - Los items que te da tu madre cada vez que ahorra una cierta cantidad de dinero han sido ajustados.
@@ -53,11 +58,14 @@ CAMBIOS:
 
 - Equipos Pokémon:
 	-- Falkner ahora tiene un Hoothoot como 3er Pokémon. 
-	-- Los Metapod y Kakuna de Bugsy ahora son Butterfree y Beedrill.
+	-- Los Metapod y Kakuna de Bugsy han evolucionado a Butterfree y Beedrill, respectivamente.
+	-- Whitney ahora tiene un Jigglypuff para complementar su colección de Pokémon bonitos.
 	-- Uno de los Haunter de Morty ha sido reemplazado por Misdreavus.
 	-- Uno de los Magnemite de Jasmine ha evolucionado a Magneton.
+	-- Chuck ahora tiene un Hitmontop.
 
 - Los nombres de los movimientos ahora están en Capital en vez de MAYÚSCULA.
+- Modificado cálculo para aparición de formas Unown.
 
 FIXES:
 - Algunos items no podían ser seleccionados/tenían el efecto equivocado.
@@ -263,17 +271,6 @@ CAMBIOS ESTÉTICOS:
 
 Y FINALMENTE...
 - "Further improvements to overall system stability and other minor adjustments have been made to enhance the user experience."
-
-
-
-
-
-
-
-
-- 
-
-
 
 
 

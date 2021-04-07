@@ -1,6 +1,42 @@
 GetUnownLetter:
 ; Return Unown letter in wUnownLetter based on DVs at hl
 
+	; hDividend = DVs
+	ld a, [hli]
+	ldh [hDividend], a
+	ld a, [hl]
+	ldh [hDividend + 1], a
+
+	; hDivisor = 13  
+	ld a, 13
+	ldh [hDivisor], a
+
+	; divide 2-byte DVs by 13
+	ld b, 2
+	call Divide
+
+	ld a, [hld]
+	xor [hl]
+	ld b, a
+	swap b
+	xor b
+	ld b, a
+	rrca
+	rrca
+	xor b
+	ld b, a
+	rrca
+	xor b
+
+	; Unown letter = (DVs mod 13) * 2 + parity(DVs)
+	rra
+	ldh a, [hRemainder]
+	rla
+	inc a  ; 0-25 becomes 1-26
+	ld [wUnownLetter], a
+	ret
+
+/*
 ; Take the middle 2 bits of each DV and place them in order:
 ;	atk  def  spd  spc
 ;	.ww..xx.  .yy..zz.
@@ -47,7 +83,7 @@ GetUnownLetter:
 	inc a
 	ld [wUnownLetter], a
 	ret
-
+*/
 GetMonFrontpic:
 	ld a, [wCurPartySpecies]
 	ld [wCurSpecies], a

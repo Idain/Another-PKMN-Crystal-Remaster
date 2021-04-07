@@ -184,7 +184,7 @@ MoveNames::
 	li "Protect"
 	li "Mach Punch"
 	li "Scary Face"
-	li "Faint Attack"
+	li "Feint Attack"
 	li "Sweet Kiss"
 	li "Belly Drum"
 	li "Sludge Bomb"

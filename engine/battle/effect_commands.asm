@@ -1625,6 +1625,9 @@ BattleCommand_CheckHit:
 	call GetBattleVar
 	cp EFFECT_ALWAYS_HIT
 	ret z
+	; If the move is OHKO, ignore accuracy and evasion modifiers.
+	cp EFFECT_OHKO
+	jr z, .skip_stat_modifiers
 
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar
@@ -1634,6 +1637,7 @@ BattleCommand_CheckHit:
 
 	call .StatModifiers
 
+.skip_stat_modifiers
 	ld a, [wPlayerMoveStruct + MOVE_ACC]
 	ld b, a
 	ldh a, [hBattleTurn]
@@ -1865,7 +1869,11 @@ BattleCommand_CheckHit:
 	ld a, BATTLE_VARS_SUBSTATUS1_OPP
 	call GetBattleVar
 	bit SUBSTATUS_IDENTIFIED, a
-	ret nz
+	jr z, .skip_foresight_check
+
+	; Foresight ignores all changes in opponent's evasion.
+	ld c, BASE_STAT_LEVEL
+	jr .start_foresight
 
 .skip_foresight_check
 	; subtract evasion from 14
@@ -1873,6 +1881,7 @@ BattleCommand_CheckHit:
 	sub c
 	ld c, a
 	; store the base move accuracy for math ops
+.start_foresight
 	xor a
 	ldh [hMultiplicand + 0], a
 	ldh [hMultiplicand + 1], a
@@ -5679,13 +5688,15 @@ BattleCommand_OHKO:
 	pop de
 	ld bc, wEnemyMoveStruct + MOVE_ACC
 .got_move_accuracy
-	ld a, [de]
-	sub [hl]
+	ld a, [de]   ; User lvl
+	sub [hl]     ; substract Opponent lvl
 	jr c, .no_effect
-	add a
-	ld e, a
+	ld e, a   ; a
+	add a 	  ; 2a
+	add e     ; a + 2a = 3a
+	ld e, a 
 	ld a, [bc]
-	add e
+	add e  ; + Acc
 	jr nc, .finish_ohko
 	ld a, $ff
 .finish_ohko
