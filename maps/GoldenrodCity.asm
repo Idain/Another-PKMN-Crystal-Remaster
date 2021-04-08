@@ -286,7 +286,7 @@ GoldenrodCityMoveTutorWalkAroundPlayerThenEnterGameCornerMovement:
 
 GoldenrodCityPokefanMText:
 	text "They built the new"
-	line "RADIO TOWER to"
+	line "Radio Tower to"
 
 	para "replace the old,"
 	line "creaky one."
@@ -294,7 +294,7 @@ GoldenrodCityPokefanMText:
 
 GoldenrodCityYoungster1Text:
 	text "I know there's a"
-	line "new BIKE SHOP, but"
+	line "new Bike Shop, but"
 
 	para "I can't find it"
 	line "anywhere."
@@ -304,7 +304,7 @@ GoldenrodCityCooltrainerF1Text:
 	text "Is that man in"
 	line "black dressed up"
 
-	para "like a TEAM ROCKET"
+	para "like a Team Rocket"
 	line "member? How silly!"
 	done
 
@@ -312,12 +312,12 @@ GoldenrodCityCooltrainerF1Text_ClearedRadioTower:
 	text "Was that man in"
 	line "black really part"
 
-	para "of TEAM ROCKET? I"
+	para "of Team Rocket? I"
 	line "can't believe it!"
 	done
 
 GoldenrodCityCooltrainerF2Text:
-	text "The RADIO TOWER in"
+	text "The Radio Tower in"
 	line "Goldenrod City is"
 	cont "a landmark."
 
@@ -344,7 +344,7 @@ GoldenrodCityYoungster2Text:
 	line "for playing in the"
 
 	para "basement of the"
-	line "DEPT.STORE."
+	line "Dept.Store."
 	done
 
 GoldenrodCityLassText:
@@ -366,7 +366,7 @@ GoldenrodCityGrampsText:
 
 GoldenrodCityRocketScoutText1:
 	text "So this is the"
-	line "RADIO TOWER…"
+	line "Radio Tower…"
 	done
 
 GoldenrodCityRocketScoutText2:
@@ -381,7 +381,7 @@ GoldenrodCityRocket1Text:
 
 GoldenrodCityRocket2Text:
 	text "Take over the"
-	line "RADIO TOWER…"
+	line "Radio Tower…"
 
 	para "What? It's none of"
 	line "your business!"
@@ -412,16 +412,16 @@ GoldenrodCityRocket5Text:
 GoldenrodCityRocket6Text:
 	text "Come taste the"
 	line "true terror of"
-	cont "TEAM ROCKET!"
+	cont "Team Rocket!"
 	done
 
 GoldenrodCityStationSignText:
-	text "Goldenrod City"
+	text "GOLDENROD CITY"
 	line "STATION"
 	done
 
 GoldenrodCityRadioTowerSignText:
-	text "Goldenrod City"
+	text "GOLDENROD CITY"
 	line "RADIO TOWER"
 	done
 
@@ -429,13 +429,13 @@ GoldenrodDeptStoreSignText:
 	text "Full Selection of"
 	line "#MON Goods!"
 
-	para "Goldenrod City"
+	para "GOLDENROD CITY"
 	line "DEPT.STORE"
 	done
 
 GoldenrodGymSignText:
-	text "Goldenrod City"
-	line "#MON Gym"
+	text "GOLDENROD CITY"
+	line "#MON GYM"
 	cont "LEADER: Whitney"
 
 	para "The Incredibly"
@@ -443,7 +443,7 @@ GoldenrodGymSignText:
 	done
 
 GoldenrodCitySignText:
-	text "Goldenrod City"
+	text "GOLDENROD CITY"
 
 	para "The Festive City"
 	line "of Opulent Charm"
@@ -451,19 +451,19 @@ GoldenrodCitySignText:
 
 GoldenrodCityBikeShopSignText:
 	text "The World is a"
-	line "Cycle Path!"
-	cont "Bike Shop"
+	line "Cycling Path!"
+	cont "MIRACLE CYCLE"
 	done
 
 GoldenrodCityGameCornerSignText:
 	text "Your Playground!"
 
-	para "Goldenrod City"
-	line "Game Corner"
+	para "GOLDENROD CITY"
+	line "GAME CORNER"
 	done
 
 GoldenrodCityNameRaterSignText:
-	text "Name Rater"
+	text "NAME RATER"
 
 	para "Get Your #MON"
 	line "Nicknames Rated"
@@ -486,7 +486,7 @@ GoldenrodCityPokeComCenterSignText: ; unreferenced
 
 GoldenrodCityFlowerShopSignText:
 	text "Blooming Beautiful"
-	line "Flower Shop"
+	line "FLOWER SHOP"
 	done
 
 GoldenrodCityMoveTutorAskTeachAMoveText:

@@ -1,5 +1,6 @@
 	object_const_def
-	const MOVEDELETERSHOUSE_SUPER_NERD
+	const MOVEDELETERSHOUSE_SUPER_NERD1
+	const MOVEDELETERSHOUSE_SUPER_NERD2
 
 MoveDeletersHouse_MapScripts:
 	def_scene_scripts
@@ -13,6 +14,14 @@ MoveDeleter:
 	waitbutton
 	closetext
 	end
+
+MoveReminder:
+	faceplayer
+	opentext
+	special MoveReminder
+	waitbutton
+	closetext
+	end	
 
 MoveDeletersHouseBookshelf:
 	jumpstd DifficultBookshelfScript
@@ -32,3 +41,4 @@ MoveDeletersHouse_MapEvents:
 
 	def_object_events
 	object_event  2,  3, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MoveDeleter, -1
+	object_event  5,  3, SPRITE_SUPER_NERD, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, MoveReminder, -1

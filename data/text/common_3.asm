@@ -1469,7 +1469,7 @@ _DeleterAskWhichMoveText::
 
 _DeleterIntroText::
 	text "Um… Oh, yes, I'm"
-	line "the MOVE DELETER."
+	line "the Move Deleter."
 
 	para "I can make #MON"
 	line "forget moves."
@@ -1535,3 +1535,65 @@ AlreadyHaveTMText::
 	text "You already have"
 	line "that TM."
 	done	
+
+_MoveReminderIntro::
+    text "Hi, I'm the Move"
+    line "Reminder!"
+
+    para "I can teach your"
+    line "#MON a move it"
+
+    para "has learned pre-"
+    line "viously."
+
+	para "Are you"
+    line "interested?"
+    done
+/*
+_MoveReminderPrompt::
+    text "Are you"
+    line "interested?"
+    done
+*/
+_MoveReminderWhichMon::
+    text "Which #MON"
+    next "would you like"
+    cont "to remember a"
+    cont "move?"
+    done
+
+_MoveReminderWhichMove::
+    text "Which move would"
+    next "you like to"
+    cont "remember?"
+    done
+
+_MoveReminderCancel::
+    text "Come back anytime."
+    done
+
+_MoveReminderEgg::
+    text "Hey! What am I"
+    line "supposed to teach"
+    cont "an EGG?"
+    done
+/*
+_MoveReminderNoPay::
+    text "Hm. Come back with"
+    line "more money and I"
+    cont "can teach a move"
+    cont "to your #MON."
+    done
+*/
+_MoveReminderNoMon::
+    text "You don't have a"
+    line "#MON that can"
+    cont "remember a move."
+    done
+
+_MoveReminderNoMoves::
+    text "There are no moves"
+    line "for this #MON"
+    cont "to learn."
+    done
+
