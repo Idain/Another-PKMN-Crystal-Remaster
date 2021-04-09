@@ -242,11 +242,11 @@ INCBIN "gfx/tilesets/traditional_house.2bpp.lz"
 TilesetTraditionalHouseMeta::
 INCBIN "data/tilesets/traditional_house_metatiles.bin"
 
-TilesetTraditionalHouseColl::
-INCLUDE "data/tilesets/traditional_house_collision.asm"
-
 
 SECTION "Tileset Data 6", ROMX
+
+TilesetTraditionalHouseColl::
+INCLUDE "data/tilesets/traditional_house_collision.asm"
 
 TilesetForestGFX::
 INCBIN "gfx/tilesets/forest.2bpp.lz"

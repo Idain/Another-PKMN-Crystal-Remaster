@@ -71,7 +71,7 @@ GetPlayerSprite:
 	cp c
 	jr z, .good
 	inc hl
-	cp -1
+	inc a
 	jr nz, .loop
 
 ; Any player state not in the array defaults to Chris's sprite.

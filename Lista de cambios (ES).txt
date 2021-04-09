@@ -5,6 +5,7 @@ AÑADIDOS:
 - Ahora ciertos Pokémon aprenden movimientos al evolucionar, basado en la Gen 7.
 - La tormenta de arena ahora boostea la Defensa Especial de los Pokémon tipo Roca en un 50% (Gen 4+).
 - El género del Pokémon ahora es visible en el menú del equipo.
+- ¡NUEVO MOVE REMINDER! Está localizado en Blackthorn City, en la misma casa del Move Deleter.
 
 CAMBIOS:
 - Removido modificador de medallas que boosteaban ataques y stats.
