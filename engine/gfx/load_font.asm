@@ -34,16 +34,13 @@ _LoadStandardFont::
 	call Get1bppViaHDMA
 	ret
 
-_LoadFontsExtra1::
-	jr LoadFrame
-
 _LoadFontsBattleExtra::
 	ld de, FontBattleExtra
 	ld hl, vTiles2 tile $60
 	lb bc, BANK(FontBattleExtra), 25
 	call Get2bppViaHDMA
-	jr LoadFrame
 
+_LoadFontsExtra1::
 LoadFrame:
 	ld a, [wTextboxFrame]
 	maskbits NUM_FRAMES

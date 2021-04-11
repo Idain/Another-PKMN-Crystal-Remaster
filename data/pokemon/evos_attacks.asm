@@ -1582,26 +1582,30 @@ KoffingEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, POISON_GAS
 	db 1, TACKLE
-	db 9, SMOG
-	db 17, SELFDESTRUCT
-	db 21, SLUDGE
-	db 25, SMOKESCREEN
-	db 33, HAZE
-	db 41, EXPLOSION
-	db 45, DESTINY_BOND
+	db 6, SMOG
+	db 10, SMOKESCREEN
+	db 15, SELFDESTRUCT
+	db 19, SLUDGE
+	db 26, HAZE
+	db 33, TOXIC
+	db 37, SLUDGE_BOMB
+	db 42, EXPLOSION
+	db 46, DESTINY_BOND
 	db 0 ; no more level-up moves
 
 WeezingEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, POISON_GAS
 	db 1, TACKLE
-	db 9, SMOG
-	db 17, SELFDESTRUCT
-	db 21, SLUDGE
-	db 25, SMOKESCREEN
-	db 33, HAZE
-	db 44, EXPLOSION
-	db 51, DESTINY_BOND
+	db 6, SMOG
+	db 10, SMOKESCREEN
+	db 15, SELFDESTRUCT
+	db 19, SLUDGE
+	db 26, HAZE
+	db 33, TOXIC
+	db 39, SLUDGE_BOMB
+	db 45, EXPLOSION
+	db 50, DESTINY_BOND
 	db 0 ; no more level-up moves
 
 RhyhornEvosAttacks:
@@ -2418,7 +2422,6 @@ NoctowlEvosAttacks:
 	db 1, SKY_ATTACK
 	db 1, TACKLE
 	db 1, GROWL
-	db 1, FORESIGHT
 	db 1, HYPNOSIS
 	db 5, FORESIGHT
 	db 13, PECK
@@ -2894,11 +2897,12 @@ UmbreonEvosAttacks:
 MurkrowEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, PECK
-	db 11, PURSUIT
-	db 16, HAZE
-	db 26, NIGHT_SHADE
-	db 31, FAINT_ATTACK
-	db 41, MEAN_LOOK
+	db 5, PURSUIT
+	db 11, HAZE
+	db 15, WING_ATTACK
+	db 21, NIGHT_SHADE
+	db 25, FAINT_ATTACK
+	db 31, MEAN_LOOK
 	db 0 ; no more level-up moves
 
 SlowkingEvosAttacks:
@@ -3287,8 +3291,8 @@ HoundourEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, LEER
 	db 1, EMBER
-	db 7, ROAR
-	db 13, SMOG
+	db 8, SMOG
+	db 13, ROAR
 	db 20, BITE
 	db 27, FAINT_ATTACK
 	db 35, FLAMETHROWER
@@ -3303,8 +3307,8 @@ HoundoomEvosAttacks:
 	db 13, SMOG
 	db 20, BITE
 	db 30, FAINT_ATTACK
-	db 41, FLAMETHROWER
-	db 52, CRUNCH
+	db 39, FLAMETHROWER
+	db 45, CRUNCH
 	db 0 ; no more level-up moves
 
 KingdraEvosAttacks:

@@ -110,6 +110,7 @@ CheckDailyResetTimer::
 	ld [hli], a ; wDailyFlags2
 	ld [hli], a ; wSwarmFlags
 	ld [hl], a  ; wSwarmFlags + 1
+	ld [wLuckyNumberShowFlag], a
 	ld hl, wDailyRematchFlags
 rept 4
 	ld [hli], a
@@ -244,13 +245,11 @@ RestartLuckyNumberCountdown:
 	ld a, FRIDAY
 	sub c
 	jr z, .friday_saturday
-	jr nc, .earlier ; could have done "ret nc"
+	ret nc
 
 .friday_saturday
 	add 7
-
-.earlier
-	ret
+	ret 
 
 _CheckLuckyNumberShowFlag:
 	ld hl, wLuckyNumberDayTimer
@@ -288,8 +287,9 @@ DoMysteryGiftIfDayHasPassed:
 UpdateTimeRemaining:
 ; If the amount of time elapsed exceeds the capacity of its
 ; unit, skip this part.
-	cp -1
+	inc a
 	jr z, .set_carry
+	dec a
 	ld c, a
 	ld a, [hl] ; time remaining
 	sub c

@@ -416,67 +416,71 @@ GoldenrodCityRocket6Text:
 	done
 
 GoldenrodCityStationSignText:
-	text "GOLDENROD CITY"
-	line "STATION"
+	text "Goldenrod City"
+	line "Station"
 	done
 
 GoldenrodCityRadioTowerSignText:
-	text "GOLDENROD CITY"
-	line "RADIO TOWER"
+	text "Goldenrod City"
+	line "Radio Tower"
 	done
 
 GoldenrodDeptStoreSignText:
 	text "Full Selection of"
 	line "#MON Goods!"
 
-	para "GOLDENROD CITY"
-	line "DEPT.STORE"
+	para "Goldenrod City"
+	line "Dept.Store"
 	done
 
 GoldenrodGymSignText:
-	text "GOLDENROD CITY"
-	line "#MON GYM"
-	cont "LEADER: Whitney"
+	text "Goldenrod City"
+	line "#MON Gym"
+	cont "Leader: Whitney"
 
 	para "The Incredibly"
 	line "Pretty Girl!"
 	done
 
 GoldenrodCitySignText:
-	text "GOLDENROD CITY"
+	text "Goldenrod City"
 
-	para "The Festive City"
-	line "of Opulent Charm"
+	para "A Happening Big"
+	line "City"
 	done
 
 GoldenrodCityBikeShopSignText:
 	text "The World is a"
 	line "Cycling Path!"
-	cont "MIRACLE CYCLE"
+	cont "Miracle Cycle"
 	done
 
 GoldenrodCityGameCornerSignText:
 	text "Your Playground!"
 
-	para "GOLDENROD CITY"
-	line "GAME CORNER"
+	para "Goldenrod City"
+	line "Game Corner"
 	done
 
 GoldenrodCityNameRaterSignText:
-	text "NAME RATER"
+	text "Name Rater"
 
 	para "Get Your #MON"
 	line "Nicknames Rated"
 	done
 
 GoldenrodCityUndergroundSignNorthText:
-	text "Underground"
-	line "Entrance"
+	text "Watch Out!"
+
+	para "Get Off Your Bike"
+	line "in the Tunnel!"
 	done
 
 GoldenrodCityUndergroundSignSouthText:
-	text "Underground"
-	line "Entrance"
+	text "Be Careful!"
+
+	para "Get Off Your Bike"
+	line "in the Tunnel!"
 	done
 
 GoldenrodCityPokeComCenterSignText: ; unreferenced
@@ -486,7 +490,7 @@ GoldenrodCityPokeComCenterSignText: ; unreferenced
 
 GoldenrodCityFlowerShopSignText:
 	text "Blooming Beautiful"
-	line "FLOWER SHOP"
+	line "Flower Shop"
 	done
 
 GoldenrodCityMoveTutorAskTeachAMoveText:

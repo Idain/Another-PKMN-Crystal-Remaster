@@ -903,8 +903,8 @@ BenFernText3B:
 LuckyNumberShow1:
 	call StartRadioStation
 	callfar CheckLuckyNumberShowFlag
-	jr nc, .dontreset
-	callfar ResetLuckyNumberShowFlag
+	jr nz, .dontreset
+	callfar LoadOrRegenerateLuckyIDNumber
 .dontreset
 	ld hl, LC_Text1
 	ld a, LUCKY_NUMBER_SHOW_2

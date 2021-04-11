@@ -156,15 +156,27 @@ CheckForLuckyNumberWinners:
 	pop de
 	push af
 	ld a, c
-	ld b, 1
-	cp 5
+
+	and a ; No match = No prize
+	jr z, .nomatch
+
+	ld b, 5 ; 5th place
+	dec a
 	jr z, .okay
-	ld b, 2
-	cp 3
-	jr nc, .okay
-	ld b, 3
-	cp 2
-	jr nz, .nomatch
+
+	ld b, 4 ; 4th place
+	dec a
+	jr z, .okay
+
+	ld b, 3 ; 3rd place
+	dec a
+	jr z, .okay
+
+	ld b, 2 ; 2nd place
+	dec a
+	jr z, .okay
+
+	ld b, 1 ; 1st place
 
 .okay
 	inc b

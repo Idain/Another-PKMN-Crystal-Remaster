@@ -49,9 +49,9 @@ CAMBIOS:
 	-- Bulbasaur, Ivysaur, Venusaur, Charmander, Charmeleon, Charizard, Squirtle, Wartortle, Blastoise, Caterpie, Metapod, Butterfree, Weedle, Kakuna, Beedrill, Rattata, Raticate, 
 	Ekans, Arbok, Pikachu, Raichu, Nidoran♀, Nidorina, Nidoqueen, Clefairy, Clefable, Jigglypuff, Wigglytuff, Diglett, Dugtrio, Meowth, Persian, Mankey, Primeape, Growlithe, Arcanine,
 	Poliwag, Poliwhirl, Poliwrath, Kadabra, Alakazam, Machop, Machoke, Machamp, Ponyta, Rapidash, Slowpoke, Slowbro, Magneton, Farfetch'd, Doduo, Dodrio, Shellder, Cloyster
-	Onix, Exeggcute, Exeggutor, Cubone, Marowak, Hitmonlee, Hitmonchan, Magikarp, Gyarados, Eevee, Vaporeon, Jolteon, Flareon, Porygon, Omanyte, Omastar, Kabuto, Kabutops, Snorlax, 
+	Onix, Exeggcute, Exeggutor, Cubone, Marowak, Hitmonlee, Hitmonchan, Koffing, Weezing, Magikarp, Gyarados, Eevee, Vaporeon, Jolteon, Flareon, Porygon, Omanyte, Omastar, Kabuto, Kabutops, Snorlax, 
 	Dratini, Dragonair, Dragonite, Mewtwo, Mew, Sentret, Furret, Hoothoot, Noctowl, Cleffa, Igglybuff, Mareep, Flaaffy, Ampharos, Politoed, Espeon, Umbreon, Steelix, Heracross, 
-	Slowking, Misdreavus, Swinub, Piloswine, Remoraid, Octillery, Delibird, Phanpy, Donphan, Tyrogue, Porygon2, Hitmontop.
+	Murkrow, Slowking, Misdreavus, Swinub, Piloswine, Remoraid, Octillery, Delibird, Houndour, Houndoom, Phanpy, Donphan, Tyrogue, Porygon2, Hitmontop.
 
 - El dinero que dan los entrenadores ha sido ajustado basado en HeartGold/SoulSilver.
 - Los items que te da tu madre cada vez que ahorra una cierta cantidad de dinero han sido ajustados.
