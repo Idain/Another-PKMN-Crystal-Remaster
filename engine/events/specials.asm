@@ -93,7 +93,7 @@ NameRival:
 	ret
 
 .DefaultName:
-	db "SILVER@"
+	db "Silver@"
 
 NameRater:
 	farcall _NameRater
@@ -310,7 +310,7 @@ CheckPokerus:
 	farcall _CheckPokerus
 	jp ScriptReturnCarry
 
-ResetLuckyNumberShow:
+ResetLuckyNumberShowFlag:
 ;	farcall RestartLuckyNumberCountdown
 ;	ld hl, wLuckyNumberShowFlag
 ;	res LUCKYNUMBERSHOW_GAME_OVER_F, [hl]

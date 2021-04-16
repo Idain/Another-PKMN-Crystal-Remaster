@@ -36,7 +36,7 @@ PlaceDiplomaOnScreen:
 	ret
 
 .Player:
-	db "PLAYER@"
+	db "Player@"
 
 .EmptyString:
 	db "@"
@@ -45,7 +45,7 @@ PlaceDiplomaOnScreen:
 	db   "This certifies"
 	next "that you have"
 	next "completed the"
-	next "new #DEX."
+	next "new #dex."
 	next "Congratulations!"
 	db   "@"
 

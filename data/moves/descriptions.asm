@@ -732,7 +732,7 @@ FocusEnergyDescription:
 	next "cal hit ratio.@"
 
 BideDescription:
-	db   "Waits 2-3 turns &"
+	db   "Waits 2 turns &"
 	next "hits back double.@"
 
 MetronomeDescription:

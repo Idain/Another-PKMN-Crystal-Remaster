@@ -46,13 +46,15 @@ CAMBIOS:
 - Ajustada prioridad de movimientos para asemejarse más a la Gen 8.
 
 - Los movesets de los siguientes Pokémon han sido cambiados para asemejarse a generaciones recientes: 
-	-- Bulbasaur, Ivysaur, Venusaur, Charmander, Charmeleon, Charizard, Squirtle, Wartortle, Blastoise, Caterpie, Metapod, Butterfree, Weedle, Kakuna, Beedrill, Rattata, Raticate, 
-	Ekans, Arbok, Pikachu, Raichu, Nidoran♀, Nidorina, Nidoqueen, Clefairy, Clefable, Jigglypuff, Wigglytuff, Diglett, Dugtrio, Meowth, Persian, Mankey, Primeape, Growlithe, Arcanine,
-	Poliwag, Poliwhirl, Poliwrath, Kadabra, Alakazam, Machop, Machoke, Machamp, Ponyta, Rapidash, Slowpoke, Slowbro, Magneton, Farfetch'd, Doduo, Dodrio, Shellder, Cloyster
-	Onix, Exeggcute, Exeggutor, Cubone, Marowak, Hitmonlee, Hitmonchan, Koffing, Weezing, Magikarp, Gyarados, Eevee, Vaporeon, Jolteon, Flareon, Porygon, Omanyte, Omastar, Kabuto, Kabutops, Snorlax, 
-	Dratini, Dragonair, Dragonite, Mewtwo, Mew, Sentret, Furret, Hoothoot, Noctowl, Cleffa, Igglybuff, Mareep, Flaaffy, Ampharos, Politoed, Espeon, Umbreon, Steelix, Heracross, 
-	Murkrow, Slowking, Misdreavus, Swinub, Piloswine, Remoraid, Octillery, Delibird, Houndour, Houndoom, Phanpy, Donphan, Tyrogue, Porygon2, Hitmontop.
+	-- Bulbasaur, Ivysaur, Venusaur, Charmander, Charmeleon, Charizard, Squirtle, Wartortle, Blastoise, Caterpie, Metapod, Butterfree, Weedle, Kakuna, Beedrill, Pidgey, Pidgeotto, Pidgeot, Rattata, Raticate, 
+	Ekans, Arbok, Pikachu, Raichu, Sandshrew, Sandslash, Nidoran♀, Nidorina, Nidoqueen, Clefairy, Clefable, Jigglypuff, Wigglytuff, Oddish, Gloom, Vileplume, Diglett, Dugtrio, Meowth, Persian, Mankey, Primeape, Growlithe, Arcanine,
+	Poliwag, Poliwhirl, Poliwrath, Kadabra, Alakazam, Machop, Machoke, Machamp, Ponyta, Rapidash, Slowpoke, Slowbro, Magneton, Farfetch'd, Doduo, Dodrio, Shellder, Cloyster,
+	Onix, Drowzee, Hypno, Krabby, Kingler, Voltorb, Electrode, Exeggcute, Exeggutor, Cubone, Marowak, Hitmonlee, Hitmonchan, Lickitung, Koffing, Weezing, Electabuzz, Magmar, Magikarp, Gyarados, Lapras, Eevee, Vaporeon, 
+	Jolteon, Flareon, Porygon, Omanyte, Omastar, Kabuto, Kabutops, Snorlax, Dratini, Dragonair, Dragonite, Mewtwo, Mew, Sentret, Furret, Hoothoot, Noctowl, Cleffa, Igglybuff, Natu, Xatu, Mareep, 
+	Flaaffy, Ampharos, Bellossom, Sudowoodo, Politoed, Hoppip, Skiploom, Jumpluff, Wooper, Quagsire, Espeon, Umbreon, Steelix, Heracross, Murkrow, Slowking, Misdreavus, Swinub, Piloswine, Remoraid, Octillery, 
+	Delibird, Houndour, Houndoom, Phanpy, Donphan, Tyrogue, Porygon2, Elekid, Magby, Hitmontop, Raikou, Entei, Suicune.
 
+- Raikou y Entei ya no tendrán Roar cuando los encuentres rondando por Johto.
 - El dinero que dan los entrenadores ha sido ajustado basado en HeartGold/SoulSilver.
 - Los items que te da tu madre cada vez que ahorra una cierta cantidad de dinero han sido ajustados.
 - Si un Pokémon es afectado por un problema de estado, ahora este se muestra al lado del nivel en vez de reemplazarlo.
@@ -64,9 +66,15 @@ CAMBIOS:
 	-- Uno de los Haunter de Morty ha sido reemplazado por Misdreavus.
 	-- Uno de los Magnemite de Jasmine ha evolucionado a Magneton.
 	-- Chuck ahora tiene un Hitmontop.
+	-- Algunos Pokémon de Brock han evolucionado.
+	-- Blaine ahora tiene un Arcanine.
 
 - Los nombres de los movimientos ahora están en Capital en vez de MAYÚSCULA.
+- Los nombres de los entrenadores y sus clases ahora están en Capital.
 - Modificado cálculo para aparición de formas Unown.
+- Después de hablar con la enfermera del Centro Pokémon, el jugador mirará hacia abajo automáticamente. Así pueden spamear el botón A libremente sin temor a iniciar otro diálogo con ella. :V
+- La probabilidad de que salga un Pokémon Shiny del Huevo Extraño ahora es de un 50% (basado en versión japonesa del juego).
+- El moveset del Dratini que recibes en Dragon's Den ha sido actualizado para asemejarse a HG/SS.
 
 FIXES:
 - Algunos items no podían ser seleccionados/tenían el efecto equivocado.

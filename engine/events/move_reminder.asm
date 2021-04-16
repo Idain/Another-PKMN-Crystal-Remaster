@@ -229,7 +229,7 @@ ChooseMoveToLearn:
 	call FadeToMenu
 	farcall BlankScreen
 	call UpdateSprites
-	ld hl, .MenuDataHeader
+	ld hl, .MenuHeader
 	call CopyMenuHeader
 	xor a
 	ld [wMenuCursorPosition], a
@@ -248,17 +248,16 @@ ChooseMoveToLearn:
 	scf
 	ret
 
-.MenuDataHeader:
-	db $40 ; flags
-	db 1, 1 ; start coords
-	db 11, 19 ; end coords
+.MenuHeader:
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 1, 1, SCREEN_WIDTH - 1, 11
 	dw .MenuData
 	db 1 ; default option
 
 .MenuData:
-	db $30 ; pointers
+	db SCROLLINGMENU_DISPLAY_ARROWS | SCROLLINGMENU_ENABLE_FUNCTION3 ; item format
 	db 5, SCREEN_WIDTH + 2 ; rows, columns
-	db 1 ; horizontal spacing
+	db SCROLLINGMENU_ITEMS_NORMAL
 	dbw 0, wd002
 	dba .PrintMoveName
 	dba .PrintDetails
@@ -274,7 +273,7 @@ ChooseMoveToLearn:
 	ret
 
 .PrintDetails
-ld hl, wStringBuffer1
+	ld hl, wStringBuffer1
 	ld bc, wStringBuffer2 - wStringBuffer1
 	ld a, " "
 	call ByteFill
@@ -285,7 +284,7 @@ ld hl, wStringBuffer1
 	push de
 	dec a
 
-if DEF(PSS)
+IF DEF(PSS)
 	ld bc, MOVE_LENGTH
 	ld hl, Moves + MOVE_CATEGORY
 	call AddNTimes
@@ -310,7 +309,7 @@ if DEF(PSS)
 
 	ld a, [wMenuSelection]
 	dec a
-endc
+ENDC
 
 	ld bc, MOVE_LENGTH
 	ld hl, Moves + MOVE_TYPE

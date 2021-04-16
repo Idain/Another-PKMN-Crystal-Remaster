@@ -32,10 +32,10 @@ ElmPhoneCheckingTheEggText:
 	text "Hello, <PLAY_G>?"
 
 	para "We're checking the"
-	line "EGG now. It does"
+	line "Egg now. It does"
 
 	para "appear to be a"
-	line "#MON EGG."
+	line "#MON Egg."
 	done
 
 ElmPhoneAssistantText:
@@ -148,7 +148,7 @@ ElmPhoneEggAssistantText:
 	line "discovered some-"
 
 	para "thing about the"
-	line "EGG!"
+	line "Egg!"
 
 	para "My assistant is at"
 	line "the #MON CENTER"

@@ -161,10 +161,10 @@ AcademyEarlSpinMovement:
 	step_end
 
 AcademyEarlIntroText:
-	text "EARL, I am!"
+	text "Earl, I am!"
 
 	para "Wonderful are"
-	line "#MON, yes!"
+	line "#mon, yes!"
 
 	para "Teach you I will"
 	line "to be a better"
@@ -179,7 +179,7 @@ AcademyEarlTeachHowToWinText:
 	text "Good! Teach you,"
 	line "I will!"
 
-	para "In battle, #MON"
+	para "In battle, #mon"
 	line "top on list jump"
 	cont "out first!"
 
@@ -194,27 +194,27 @@ AcademyEarlTeachHowToWinText:
 AcademyEarlTeachMoreText:
 	text "So, want to know"
 	line "how to raise"
-	cont "#MON well?"
+	cont "#mon well?"
 	done
 
 AcademyEarlTeachHowToRaiseWellText:
 	text "Fine! Teach you,"
 	line "I will!"
 
-	para "If #MON come"
+	para "If #mon come"
 	line "out in battle even"
 
-	para "briefly, some EXP."
+	para "briefly, some Exp."
 	line "Points it gets."
 
 	para "At top of list put"
-	line "weak #MON."
+	line "weak #mon."
 
 	para "Switch in battle"
 	line "quick!"
 
 	para "This way, weak"
-	line "#MON strong"
+	line "#mon strong"
 	cont "become!"
 	done
 
@@ -223,7 +223,7 @@ AcademyEarlNoMoreToTeachText:
 	line "you are! Nothing"
 	cont "more do I teach!"
 
-	para "Good to #MON"
+	para "Good to #mon"
 	line "you must be!"
 	done
 
@@ -239,24 +239,26 @@ EarlsPokemonAcademyYoungster1Text:
 
 EarlsPokemonAcademyGameboyKid1Text:
 	text "I traded my best"
-	line "#MON to the"
+	line "#mon to the"
 	cont "guy beside me."
 	done
 
 EarlsPokemonAcademyGameboyKid2Text:
-	text "Huh? The #MON I"
+	text "Huh? The #mon I"
 	line "just got is hold-"
 	cont "ing something!"
 	done
 
 EarlsPokemonAcademyYoungster2Text:
-	text "A #MON holding"
-	line "a BERRY will heal"
-	cont "itself in battle."
+	text "A #mon holding"
+	line "an Oran Berry will" 
+	
+	para "heal itself in"
+	line "battle."
 
 	para "Many other items"
 	line "can be held by"
-	cont "#MON…"
+	cont "#mon…"
 
 	para "It sure is tough"
 	line "taking notes…"
@@ -264,7 +266,7 @@ EarlsPokemonAcademyYoungster2Text:
 
 AcademyBlackboardText:
 	text "The blackboard"
-	line "describes #MON"
+	line "describes #mon"
 
 	para "status changes in"
 	line "battle."
@@ -276,7 +278,7 @@ AcademyBlackboardText2: ; unreferenced
 
 AcademyPoisonText:
 	text "If poisoned, a"
-	line "#MON steadily"
+	line "#mon steadily"
 	cont "loses HP."
 
 	para "Poison lingers"
@@ -286,17 +288,19 @@ AcademyPoisonText:
 	line "you walk."
 
 	para "To cure it, use an"
-	line "ANTIDOTE."
+	line "Antidote."
 	done
 
 AcademyParalysisText:
 	text "Paralysis reduces"
-	line "speed and may"
-	cont "prevent movement."
+	line "speed by 50% and"
+
+	para "may prevent move-"
+	cont "ment."
 
 	para "It remains after"
 	line "battle, so use"
-	cont "a PARLYZ HEAL."
+	cont "a Parlyz Heal."
 	done
 
 AcademySleepText:
@@ -304,30 +308,32 @@ AcademySleepText:
 	line "#MON can't make"
 	cont "a move."
 
-	para "A sleeping #MON"
+	para "A sleeping #mon"
 	line "doesn't wake up"
 	cont "after battle."
 
 	para "Wake it up with"
-	line "an AWAKENING."
+	line "an Awakening."
 	done
 
 AcademyBurnText:
 	text "A burn steadily"
-	line "consumes HP."
+	line "consumes 1/8 of"
+	cont "your Max HP."
 
 	para "It also reduces"
-	line "attack power."
+	line "attack power by"
+	cont "50%."
 
 	para "A burn lingers"
 	line "after battle."
 
-	para "Use a BURN HEAL as"
+	para "Use a Burn Heal as"
 	line "the cure."
 	done
 
 AcademyFreezeText:
-	text "If your #MON is"
+	text "If your #mon is"
 	line "frozen, it can't"
 	cont "do a thing."
 
@@ -335,15 +341,15 @@ AcademyFreezeText:
 	line "after battle."
 
 	para "Thaw it out with"
-	line "an ICE HEAL."
+	line "an Ice Heal."
 	done
 
 AcademyNotebookText:
 	text "It's this kid's"
 	line "notebook…"
 
-	para "Catch #MON"
-	line "using # BALLS."
+	para "Catch #mon"
+	line "using # Balls."
 
 	para "Up to six can be"
 	line "in your party."
@@ -353,7 +359,7 @@ AcademyNotebookText:
 
 AcademyNotebookText1:
 	text "Before throwing a"
-	line "# BALL, weaken"
+	line "# Ball, weaken"
 	cont "the target first."
 
 	para "A poisoned or"
@@ -368,7 +374,7 @@ AcademyNotebookText2:
 	line "cause confusion."
 
 	para "Confusion may make"
-	line "a #MON attack"
+	line "a #mon attack"
 	cont "itself."
 
 	para "Leaving battle"
@@ -380,15 +386,15 @@ AcademyNotebookText2:
 
 AcademyNotebookText3:
 	text "People who catch"
-	line "and use #MON"
+	line "and use #mon"
 
 	para "in battle are"
 	line "#MON trainers."
 
 	para "They are expected"
-	line "to visit #MON"
+	line "to visit #mon"
 
-	para "GYMS and defeat"
+	para "Gyms and defeat"
 	line "other trainers."
 
 	para "The next page"

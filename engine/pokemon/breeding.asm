@@ -994,11 +994,11 @@ DayCareMonCompatibilityText:
 
 .done
 	ret
-
+/*
 .BreedBrimmingWithEnergyText:
 	text_far _BreedBrimmingWithEnergyText
 	text_end
-
+*/
 .BreedNoInterestText:
 	text_far _BreedNoInterestText
 	text_end

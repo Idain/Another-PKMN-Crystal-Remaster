@@ -132,9 +132,11 @@ ParasEggMoves:
 	db -1 ; end
 
 VenonatEggMoves:
+	db AGILITY
 	db BATON_PASS
 	db SCREECH
 	db GIGA_DRAIN
+	db SCREECH
 	db -1 ; end
 
 DiglettEggMoves:
@@ -215,6 +217,7 @@ TentacoolEggMoves:
 	db RAPID_SPIN
 	db HAZE
 	db SAFEGUARD
+	db CONFUSE_RAY
 	db -1 ; end
 
 GeodudeEggMoves:
@@ -499,6 +502,7 @@ SpinarakEggMoves:
 	db SONICBOOM
 	db BATON_PASS
 	db PURSUIT
+	db MEGAHORN
 	db -1 ; end
 
 ChinchouEggMoves:

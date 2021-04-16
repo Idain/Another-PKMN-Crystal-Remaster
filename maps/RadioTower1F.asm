@@ -35,7 +35,7 @@ RadioTower1FLuckyNumberManScript:
 	checkflag ENGINE_LUCKY_NUMBER_SHOW
 ;	special CheckLuckyNumberShowFlag
 	iftrue, .skip
-	special ResetLuckyNumberShow
+	special ResetLuckyNumberShowFlag
 
 .skip
 	special PrintTodaysLuckyNumber

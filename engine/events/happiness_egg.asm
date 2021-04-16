@@ -200,14 +200,9 @@ DayCareStep::
 	cp 230
 	ld b, 70 percent + 1
 	jr nc, .okay
-	ld a, [wBreedingCompatibility]
 	cp 125
-	ld b, 50 percent +1
+	ld b, 50 percent + 1
 	jr nc, .okay
-;	ld a, [wBreedingCompatibility]
-;	cp 110
-;	ld b, 12 percent
-;	jr nc, .okay
 	ld b, 20 percent
 
 .okay

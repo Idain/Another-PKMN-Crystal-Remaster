@@ -71,49 +71,25 @@ PokecenterNurseScript:
 	sjump .ok
 
 .morn
-	checkevent EVENT_WELCOMED_TO_POKECOM_CENTER
-	iftrue .morn_comcenter
 	farwritetext NurseMornText
-	promptbutton
-	sjump .ok
-.morn_comcenter
-	farwritetext PokeComNurseMornText
 	promptbutton
 	sjump .ok
 
 .day
-	checkevent EVENT_WELCOMED_TO_POKECOM_CENTER
-	iftrue .day_comcenter
 	farwritetext NurseDayText
-	promptbutton
-	sjump .ok
-.day_comcenter
-	farwritetext PokeComNurseDayText
 	promptbutton
 	sjump .ok
 
 .eve
-	checkevent EVENT_WELCOMED_TO_POKECOM_CENTER
-	iftrue .eve_comcenter
 	farwritetext NurseEveText
-	promptbutton
-	sjump .ok
-.eve_comcenter
-	farwritetext PokeComNurseEveText
 	promptbutton
 	sjump .ok
 
 .nite
-	checkevent EVENT_WELCOMED_TO_POKECOM_CENTER
-	iftrue .nite_comcenter
+
 	farwritetext NurseNiteText
 	promptbutton
-	sjump .ok
-.nite_comcenter
-	farwritetext PokeComNurseNiteText
-	promptbutton
-	sjump .ok
-
+	; fallthrough
 .ok
 	; only do this once
 	clearevent EVENT_WELCOMED_TO_POKECOM_CENTER
@@ -136,14 +112,14 @@ PokecenterNurseScript:
 	turnobject LAST_TALKED, DOWN
 	pause 10
 
-	checkphonecall ; elm already called about pokerus
+	checkphonecall ; Elm already called about Pokérus
 	iftrue .no
 	checkflag ENGINE_CAUGHT_POKERUS
 	iftrue .no
 	special CheckPokerus
 	iftrue .pokerus
+	; fallthrough
 .no
-
 	farwritetext NurseReturnPokemonText
 	pause 20
 
@@ -154,28 +130,21 @@ PokecenterNurseScript:
 	pause 10
 	turnobject LAST_TALKED, DOWN
 	pause 10
+	turnobject PLAYER, DOWN
 
 	waitbutton
 	closetext
 	end
 
 .pokerus
-	; already cleared earlier in the script
-	checkevent EVENT_WELCOMED_TO_POKECOM_CENTER
-	iftrue .pokerus_comcenter
 	farwritetext NursePokerusText
 	waitbutton
 	closetext
-	sjump .pokerus_done
-
-.pokerus_comcenter
-	farwritetext PokeComNursePokerusText
-	waitbutton
-	closetext
-
+	; fallthrough
 .pokerus_done
 	setflag ENGINE_CAUGHT_POKERUS
 	specialphonecall SPECIALCALL_POKERUS
+	turnobject PLAYER, DOWN
 	end
 
 DifficultBookshelfScript:

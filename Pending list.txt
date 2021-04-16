@@ -5,3 +5,7 @@ Spikes
 
 
 * Añadir In-Game trades para obtener a Misdreavus, Murkrow y Houndour.
+
+* Editar Egg Moves.
+* Editar learnsets.
+* Editar rematch teams.

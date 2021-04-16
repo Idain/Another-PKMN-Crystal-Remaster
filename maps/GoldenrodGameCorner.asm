@@ -456,7 +456,7 @@ GoldenrodGameCornerPrizeVendorQuitText:
 
 GoldenrodGameCornerPrizeVendorNoCoinCaseText:
 	text "Oh? You don't have"
-	line "a COIN CASE."
+	line "a Coin Case."
 	done
 
 GoldenrodGameCornerPharmacistText:
@@ -480,7 +480,7 @@ if DEF(_CRYSTAL_AU)
 	line "seem different"
 
 	para "from the ones at"
-	line "CELADON CITY!"
+	line "Celadon City!"
 	done
 else
 	text "I just love this"
@@ -488,7 +488,7 @@ else
 
 	para "It's more of a"
 	line "challenge than the"
-	cont "ones in CELADON."
+	cont "ones in Celadon."
 	done
 endc
 
@@ -529,7 +529,7 @@ GoldenrodGameCornerCooltrainerFText:
 	done
 
 GoldenrodGameCornerGentlemanText:
-	text "I taught BLIZZARD"
+	text "I taught Blizzard"
 	line "to my #MON."
 
 	para "It was hard to get"
@@ -543,7 +543,7 @@ GoldenrodGameCornerPokefanM2Text:
 if DEF(_CRYSTAL_AU)
 	text "COIN CASE? I threw"
 	line "it away in the"
-	cont "UNDERGROUND."
+	cont "Underground."
 	done
 else
 	text "I couldn't win at"
@@ -555,8 +555,8 @@ else
 	para "I got so furious,"
 	line "I tossed out my"
 
-	para "COIN CASE in the"
-	line "UNDERGROUND."
+	para "Coin Case in the"
+	line "Underground."
 	done
 endc
 

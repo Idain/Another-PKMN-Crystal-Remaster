@@ -732,4 +732,4 @@ DayCare_InitBreeding:
 	ret
 
 .String_EGG:
-	db "EGG@"
+	db "Egg@"
