@@ -38,7 +38,7 @@ MoveEffectsPointers:
 	dw PayDay
 	dw LightScreen
 	dw TriAttack
-	dw NormalHit
+	dw Growth
 	dw OHKOHit
 	dw RazorWind
 	dw SuperFang
@@ -156,5 +156,4 @@ MoveEffectsPointers:
 	dw BeatUp
 	dw Fly
 	dw DefenseCurl
-	dw Growth
 	assert_table_length NUM_MOVE_EFECTS

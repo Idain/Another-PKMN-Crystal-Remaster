@@ -202,7 +202,7 @@ CreditsStringsPointers:
 .SpecialThanks:       db "   SPECIAL THANKS@"         ; "スぺシャルサンクス@"
 .Producers:           db "     PRODUCERS@"            ; "プロデューサー@"
 .ExecutiveProducer:   db " EXECUTIVE PRODUCER@"       ; "エグゼクティブ　プロデューサー@"
-.PokemonAnimation:    db " POKÉMON ANIMATION@"           ; "#　アニメーション@"
+.PokemonAnimation:    db " POKéMON ANIMATION@"           ; "#　アニメーション@"
 .PokedexText:         db "    POKEDEX TEXT@"             ; "ずかん　テキスト@"
 .MobilePrjLeader:     db " MOBILE PRJ. LEADER@"       ; "モバイルプロジェクト　りーダー@"
 .MobileSystemAd:      db " MOBILE SYSTEM AD.@"        ; "モバイル　システムアドバイザー@"
