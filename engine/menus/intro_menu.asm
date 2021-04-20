@@ -1313,8 +1313,7 @@ if \1 == 0 && \2 == 0
 _dx = 0
 endc
 	dbpixel \1, \2, _dx, 0
-	shift
-	shift
+	shift 2
 endr
 ENDM
 	; frame 0 y, x; frame 1 y, x
