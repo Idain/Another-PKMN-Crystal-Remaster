@@ -148,7 +148,7 @@ MahoganyGymStatue:
 	jumpstd GymStatue2Script
 
 PryceText_Intro:
-	text "#MON have many"
+	text "#mon have many"
 	line "experiences in"
 
 	para "their lives, just"
@@ -163,7 +163,7 @@ PryceText_Intro:
 	cont "you what I mean."
 
 	para "I have been with"
-	line "#MON since"
+	line "#mon since"
 
 	para "before you were"
 	line "born."
@@ -199,7 +199,7 @@ Text_ReceivedGlacierBadge:
 
 PryceText_GlacierBadgeSpeech:
 	text "That Badge will"
-	line "let your #MON"
+	line "let your #mon"
 
 	para "use Whirlpool to"
 	line "get across real"
@@ -227,7 +227,7 @@ PryceText_CherishYourPokemon:
 	cont "arrives."
 
 	para "You and your #-"
-	line "MON will be to-"
+	line "mon will be to-"
 
 	para "gether for many"
 	line "years to come."
@@ -238,7 +238,7 @@ PryceText_CherishYourPokemon:
 
 BoarderRonaldSeenText:
 	text "I'll freeze your"
-	line "#MON, so you"
+	line "#mon, so you"
 	cont "can't do a thing!"
 	done
 
@@ -249,14 +249,14 @@ BoarderRonaldBeatenText:
 
 BoarderRonaldAfterBattleText:
 	text "I think there's a"
-	line "move a #MON"
+	line "move a #mon"
 
 	para "can use while it's"
 	line "frozen."
 	done
 
 BoarderBradSeenText:
-	text "This GYM has a"
+	text "This Gym has a"
 	line "slippery floor."
 
 	para "It's fun, isn't"
@@ -273,24 +273,24 @@ BoarderBradBeatenText:
 	done
 
 BoarderBradAfterBattleText:
-	text "This GYM is great."
+	text "This Gym is great."
 	line "I love boarding"
-	cont "with my #MON!"
+	cont "with my #mon!"
 	done
 
 BoarderDouglasSeenText:
-	text "I know PRYCE's"
+	text "I know Pryce's"
 	line "secret."
 	done
 
 BoarderDouglasBeatenText:
 	text "OK. I'll tell you"
-	line "PRYCE's secret."
+	line "Pryce's secret."
 	done
 
 BoarderDouglasAfterBattleText:
 	text "The secret behind"
-	line "PRYCE's power…"
+	line "Pryce's power…"
 
 	para "He meditates under"
 	line "a waterfall daily"
@@ -300,8 +300,8 @@ BoarderDouglasAfterBattleText:
 	done
 
 SkierRoxanneSeenText:
-	text "To get to PRYCE,"
-	line "our GYM LEADER,"
+	text "To get to Pryce,"
+	line "our Gym Leader,"
 
 	para "you need to think"
 	line "before you skate."
@@ -317,7 +317,7 @@ SkierRoxanneAfterBattleText:
 	line "with precision,"
 
 	para "you won't get far"
-	line "in this GYM."
+	line "in this Gym."
 	done
 
 SkierClarissaSeenText:
@@ -337,10 +337,10 @@ SkierClarissaAfterBattleText:
 	done
 
 MahoganyGymGuideText:
-	text "PRYCE is a veteran"
+	text "Pryce is a veteran"
 	line "who has trained"
 
-	para "#MON for some"
+	para "#mon for some"
 	line "50 years."
 
 	para "He's said to be"
@@ -357,7 +357,7 @@ MahoganyGymGuideText:
 	done
 
 MahoganyGymGuideWinText:
-	text "PRYCE is some-"
+	text "Pryce is some-"
 	line "thing, but you're"
 	cont "something else!"
 

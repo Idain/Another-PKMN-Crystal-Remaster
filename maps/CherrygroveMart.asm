@@ -10,14 +10,44 @@ CherrygroveMart_MapScripts:
 
 CherrygroveMartClerkScript:
 	opentext
+	checkflag ENGINE_RISINGBADGE
+	iftrue .EightBadgesStock
+	checkflag ENGINE_GLACIERBADGE
+	iftrue .SevenBadgesStock
+	checkflag ENGINE_MINERALBADGE
+	iftrue .FiveBadgesStock
+	checkflag ENGINE_MINERALBADGE
+	iftrue .ThreeBadgesStock
+	checkflag ENGINE_ZEPHYRBADGE
+	iftrue .OneBadgeStock
 	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	iftrue .PokeBallsInStock
 	pokemart MARTTYPE_STANDARD, MART_CHERRYGROVE
-	closetext
-	end
+	sjump .Finish
 
 .PokeBallsInStock:
 	pokemart MARTTYPE_STANDARD, MART_CHERRYGROVE_DEX
+	sjump .Finish
+
+.OneBadgeStock
+	pokemart MARTTYPE_STANDARD, MART_CHERRYGROVE_ONE_BADGE
+	sjump .Finish
+
+.ThreeBadgesStock
+	pokemart MARTTYPE_STANDARD, MART_CHERRYGROVE_THREE_BADGES
+	sjump .Finish
+
+.FiveBadgesStock
+	pokemart MARTTYPE_STANDARD, MART_CHERRYGROVE_FIVE_BADGES
+	sjump .Finish
+
+.SevenBadgesStock
+	pokemart MARTTYPE_STANDARD, MART_CHERRYGROVE_SEVEN_BADGES
+	sjump .Finish
+
+.EightBadgesStock
+	pokemart MARTTYPE_STANDARD, MART_CHERRYGROVE_EIGHT_BADGES
+.Finish
 	closetext
 	end
 

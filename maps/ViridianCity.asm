@@ -100,7 +100,7 @@ ViridianCityCoffeeGrampsQuestionText:
 	line "like much now, but"
 
 	para "I was an expert at"
-	line "catching #MON."
+	line "catching #mon."
 
 	para "Do you believe me?"
 	done
@@ -125,20 +125,20 @@ ViridianCityCoffeeGrampsDoubtedText:
 	done
 
 ViridianCityGrampsNearGymText:
-	text "This GYM didn't"
-	line "have a LEADER"
+	text "This Gym didn't"
+	line "have a Leader"
 	cont "until recently."
 
 	para "A young man from"
-	line "PALLET became the"
+	line "Pallet became the"
 
-	para "LEADER, but he's"
+	para "Leader, but he's"
 	line "often away."
 	done
 
 ViridianCityGrampsNearGymBlueReturnedText:
 	text "Are you going to"
-	line "battle the LEADER?"
+	line "battle the Leader?"
 
 	para "Good luck to you."
 	line "You'll need it."
@@ -151,7 +151,7 @@ ViridianCityDreamEaterFisherText:
 	line "off in the sun."
 
 	para "…I had this dream"
-	line "about a DROWZEE"
+	line "about a Drowzee"
 
 	para "eating my dream."
 	line "Weird, huh?"
@@ -169,7 +169,7 @@ ViridianCityDreamEaterFisherText:
 
 ViridianCityDreamEaterFisherGotDreamEaterText:
 	text "TM42 contains"
-	line "DREAM EATER…"
+	line "Dream Eater…"
 
 	para "…Zzzzz…"
 	done
@@ -179,35 +179,34 @@ ViridianCityYoungsterText:
 	line "are many items on"
 
 	para "the ground in"
-	line "VIRIDIAN FOREST."
+	line "Viridian Forest."
 	done
 
 ViridianCitySignText:
-	text "VIRIDIAN CITY"
+	text "Viridian City"
 
-	para "The Eternally"
-	line "Green Paradise"
-	done
+	para "The City of"
+	line "Evergreen"
 
 ViridianGymSignText:
-	text "VIRIDIAN CITY"
-	line "#MON GYM"
-	cont "LEADER: …"
+	text "Viridian City"
+	line "#mon Gym"
+	cont "Leader: …"
 
 	para "The rest of the"
 	line "text is illegible…"
 	done
 
 ViridianCityWelcomeSignText:
-	text "WELCOME TO"
-	line "VIRIDIAN CITY,"
+	text "Welcome to"
+	line "Viridian City,"
 
-	para "THE GATEWAY TO"
-	line "INDIGO PLATEAU"
+	para "The Gateway to"
+	line "Indigo Plateau"
 	done
 
 TrainerHouseSignText:
-	text "TRAINER HOUSE"
+	text "Trainer House"
 
 	para "The Club for Top"
 	line "Trainer Battles"

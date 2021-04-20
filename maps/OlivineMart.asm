@@ -10,7 +10,26 @@ OlivineMart_MapScripts:
 
 OlivineMartClerkScript:
 	opentext
+	checkflag ENGINE_RISINGBADGE
+	iftrue .EightBadgesStock
+	checkflag ENGINE_GLACIERBADGE
+	iftrue .SevenBadgesStock
+	checkflag ENGINE_MINERALBADGE
+	iftrue .FiveBadgesStock
 	pokemart MARTTYPE_STANDARD, MART_OLIVINE
+	sjump .Finish
+
+.FiveBadgesStock
+	pokemart MARTTYPE_STANDARD, MART_OLIVINE_FIVE_BADGES
+	sjump .Finish
+
+.SevenBadgesStock
+	pokemart MARTTYPE_STANDARD, MART_OLIVINE_SEVEN_BADGES
+	sjump .Finish
+	
+.EightBadgesStock
+	pokemart MARTTYPE_STANDARD, MART_OLIVINE_EIGHT_BADGES
+.Finish
 	closetext
 	end
 
@@ -21,7 +40,7 @@ OlivineMartLassScript:
 	jumptextfaceplayer OlivineMartLassText
 
 OlivineMartCooltrainerFText:
-	text "Do your #MON"
+	text "Do your #mon"
 	line "already know the"
 
 	para "move for carrying"
@@ -29,12 +48,12 @@ OlivineMartCooltrainerFText:
 	done
 
 OlivineMartLassText:
-	text "My BUTTERFREE came"
+	text "My Butterfree came"
 	line "from my boyfriend"
 	cont "overseas."
 
 	para "It carried some"
-	line "MAIL from him."
+	line "Mail from him."
 
 	para "Want to know what"
 	line "it says?"

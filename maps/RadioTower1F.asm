@@ -34,7 +34,7 @@ RadioTower1FLuckyNumberManScript:
 	promptbutton
 	checkflag ENGINE_LUCKY_NUMBER_SHOW
 ;	special CheckLuckyNumberShowFlag
-	iftrue, .skip
+	iftrue .skip
 	special ResetLuckyNumberShowFlag
 
 .skip

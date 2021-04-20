@@ -1931,7 +1931,7 @@ GetQuarterMaxHP:
 .end
 	ret
 
-GetThirdMaxHP::
+GetThirdMaxHP:
 ; Assumes HP<768
 	call GetMaxHP
 	xor a

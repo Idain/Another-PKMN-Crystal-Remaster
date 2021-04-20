@@ -10,35 +10,75 @@ AzaleaMart_MapScripts:
 
 AzaleaMartClerkScript:
 	opentext
+	checkflag ENGINE_RISINGBADGE
+	iftrue .EightBadgesStock
+	checkflag ENGINE_GLACIERBADGE
+	iftrue .SevenBadgesStock
+	checkflag ENGINE_MINERALBADGE
+	iftrue .FiveBadgesStock
+	checkflag ENGINE_PLAINBADGE
+	iftrue .ThreeBadgesStock
 	pokemart MARTTYPE_STANDARD, MART_AZALEA
+	sjump .Finish
+
+.ThreeBadgesStock
+	pokemart MARTTYPE_STANDARD, MART_AZALEA_THREE_BADGES
+	sjump .Finish
+
+.FiveBadgesStock
+	pokemart MARTTYPE_STANDARD, MART_AZALEA_FIVE_BADGES
+	sjump .Finish
+
+.SevenBadgesStock
+	pokemart MARTTYPE_STANDARD, MART_AZALEA_SEVEN_BADGES
+	sjump .Finish
+
+.EightBadgesStock
+	pokemart MARTTYPE_STANDARD, MART_AZALEA_EIGHT_BADGES
+.Finish
 	closetext
 	end
 
 AzaleaMartCooltrainerMScript:
+	checkflag ENGINE_MINERALBADGE
+	iftrue .GreatBallStock
 	jumptextfaceplayer AzaleaMartCooltrainerMText
 
+.GreatBallStock
+	jumptextfaceplayer AzaleaMartCooltrainerMGreatBallStockText
+	
 AzaleaMartBugCatcherScript:
 	jumptextfaceplayer AzaleaMartBugCatcherText
 
 AzaleaMartCooltrainerMText:
-	text "There's no GREAT"
-	line "BALL here. #"
+	text "There's no Great"
+	line "Ball here. #"
 
-	para "BALLS will have"
+	para "Balls will have"
 	line "to do."
 
-	para "I wish KURT would"
+	para "I wish Kurt would"
 	line "make me some of"
-	cont "his custom BALLS."
+	cont "his custom Balls."
+	done
+
+AzaleaMartCooltrainerMGreatBallStockText:
+	text "Finally! There are"
+	line "Great Balls in"
+	cont "stock!"
+
+	para "Still, I wish I"
+	line "had some of Kurt's"
+	cont "custom Balls…"
 	done
 
 AzaleaMartBugCatcherText:
-	text "A GREAT BALL is"
+	text "A Great Ball is"
 	line "better for catch-"
-	cont "ing #MON than a"
-	cont "# BALL."
+	cont "ing #mon than a"
+	cont "# Ball."
 
-	para "But KURT's might"
+	para "But Kurt's might"
 	line "be better some-"
 	cont "times."
 	done

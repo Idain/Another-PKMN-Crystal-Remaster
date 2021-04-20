@@ -21,14 +21,14 @@ ViridianMartCooltrainerMScript:
 	jumptextfaceplayer ViridianMartCooltrainerMText
 
 ViridianMartLassText:
-	text "The GYM LEADER"
+	text "The Gym Leader"
 	line "here is totally"
 	cont "cool."
 	done
 
 ViridianMartCooltrainerMText:
 	text "Have you been to"
-	line "CINNABAR?"
+	line "Cinnabar?"
 
 	para "It's an island way"
 	line "south of here."

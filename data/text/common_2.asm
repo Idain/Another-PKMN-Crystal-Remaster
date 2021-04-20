@@ -1533,7 +1533,7 @@ _OakText1::
 	para "Welcome to the"
 	line "world of #mon!"
 
-	para "My name is OAK."
+	para "My name is Oak."
 
 	para "People call me the"
 	line "#mon Prof."

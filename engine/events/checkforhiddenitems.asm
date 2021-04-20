@@ -88,13 +88,13 @@ RockItemEncounter:
 .loop
 	sub [hl]
 	jr c, .ok
-rept 2
+REPT 2
 	inc hl
-endr
+ENDR
 	jr .loop
 .ok
 	ld a, [hli]
-	cp $ff
+	cp -1
 	ld a, NO_ITEM
 	jr z, .done
 	ld a, [hli]

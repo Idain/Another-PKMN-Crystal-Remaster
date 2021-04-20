@@ -8,7 +8,7 @@ _OakText7::
 	line "ready?"
 
 	para "Your very own"
-	line "#MON story is"
+	line "#mon story is"
 	cont "about to unfold."
 
 	para "You'll face fun"
@@ -18,7 +18,7 @@ _OakText7::
 	para "A world of dreams"
 	line "and adventures"
 
-	para "with #MON"
+	para "with #mon"
 	line "awaits! Let's go!"
 
 	para "I'll be seeing you"
@@ -1233,14 +1233,14 @@ _WaitButtonText::
 _BallSentToPCText::
 	text_ram wMonOrItemNameBuffer
 	text " was"
-	line "sent to BILL's PC."
+	line "sent to Bill's PC."
 	prompt
 
 _NewDexDataText::
 	text_ram wEnemyMonNickname
 	text "'s data"
 	line "was newly added to"
-	cont "the #DEX.@"
+	cont "the #dex.@"
 	sound_slot_machine_start
 	text_promptbutton
 	text_end
@@ -1264,18 +1264,18 @@ _ItemStatRoseText::
 
 _ItemCantUseOnMonText::
 	text "That can't be used"
-	line "on this #MON."
+	line "on this #mon."
 	prompt
 
 _RepelUsedEarlierIsStillInEffectText::
-	text "The REPEL used"
+	text "The Repel used"
 	line "earlier is still"
 	cont "in effect."
 	prompt
 
 _PlayedFluteText::
 	text "Played the #"
-	line "FLUTE."
+	line "Flute."
 
 	para "Now, that's a"
 	line "catchy tune!"
@@ -1283,12 +1283,12 @@ _PlayedFluteText::
 
 _FluteWakeUpText::
 	text "All sleeping"
-	line "#MON woke up."
+	line "#mon woke up."
 	prompt
 
 Text_PlayedPokeFlute::
 	text "<PLAYER> played the"
-	line "# FLUTE.@"
+	line "# Flute.@"
 	text_promptbutton
 	text_end
 

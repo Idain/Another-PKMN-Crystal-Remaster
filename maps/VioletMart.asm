@@ -10,7 +10,34 @@ VioletMart_MapScripts:
 
 VioletMartClerkScript:
 	opentext
+	checkflag ENGINE_RISINGBADGE
+	iftrue .EightBadgesStock
+	checkflag ENGINE_GLACIERBADGE
+	iftrue .SevenBadgesStock
+	checkflag ENGINE_MINERALBADGE
+	iftrue .FiveBadgesStock
+	checkflag ENGINE_PLAINBADGE
+	iftrue .ThreeBadgesStock
+	checkflag ENGINE_ZEPHYRBADGE
+	iftrue .OneBadgeStock
 	pokemart MARTTYPE_STANDARD, MART_VIOLET
+	sjump .Finish
+
+.OneBadgeStock
+	pokemart MARTTYPE_STANDARD, MART_VIOLET_ONE_BADGE
+	sjump .Finish
+.ThreeBadgesStock
+	pokemart MARTTYPE_STANDARD, MART_VIOLET_THREE_BADGES
+	sjump .Finish
+.FiveBadgesStock
+	pokemart MARTTYPE_STANDARD, MART_VIOLET_FIVE_BADGES
+	sjump .Finish
+.SevenBadgesStock
+	pokemart MARTTYPE_STANDARD, MART_VIOLET_SEVEN_BADGES
+	sjump .Finish
+.EightBadgesStock
+	pokemart MARTTYPE_STANDARD, MART_VIOLET_EIGHT_BADGES
+.Finish
 	closetext
 	end
 
@@ -22,7 +49,7 @@ VioletMartCooltrainerMScript:
 
 VioletMartGrannyText:
 	text "When you first"
-	line "catch a #MON,"
+	line "catch a #mon,"
 	cont "it may be weak."
 
 	para "But it will even-"
@@ -30,14 +57,14 @@ VioletMartGrannyText:
 	cont "strong."
 
 	para "It's important to"
-	line "treat #MON with"
+	line "treat #mon with"
 	cont "love."
 	done
 
 VioletMartCooltrainerMText:
-	text "#MON can hold"
-	line "items like POTION"
-	cont "and ANTIDOTE."
+	text "#mon can hold"
+	line "items like Potion"
+	cont "and Antidote."
 
 	para "But they don't"
 	line "appear to know how"

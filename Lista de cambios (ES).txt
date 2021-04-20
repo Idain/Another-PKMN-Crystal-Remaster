@@ -7,6 +7,8 @@ AÑADIDOS:
 - El género del Pokémon ahora es visible en el menú del equipo.
 - ¡NUEVO MOVE REMINDER! Está localizado en Blackthorn City, en la misma casa del Move Deleter.
 
+- Tu madre te da un tutorial muy breve de cómo correr en el juego.
+
 CAMBIOS:
 - Removido modificador de medallas que boosteaban ataques y stats.
 
@@ -19,6 +21,10 @@ CAMBIOS:
 
 - Mist ahora solo dura cinco turnos y el efecto no desaparece aunque cambiemos de Pokémon (Gen 3+).
 	-- Esto también afecta indirectamente el objeto Guard Spec.
+
+- Mercados:
+	-- Los caálogos de los Poké Marts se irá expandiendo a medida que el jugador progrese en la historia. (Gen 4)
+	-- Los objetos Mails de la 2da Gen que solo se conseguían por evento ahora pueden ser comprados en Mt. Moon Square.
 
 - Movimientos:
 	-- Foresight ahora solo ignora los cambios en la evasión del oponente si esta es mayor o igual a +1. (Gen 4+)

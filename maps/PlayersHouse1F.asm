@@ -64,20 +64,17 @@ MeetMomScript:
 	writetext ComeHomeForDSTText
 	yesorno
 	iffalse .ExplainPhone
-	sjump .KnowPhone
 
-.KnowPhone:
 	writetext KnowTheInstructionsText
 	promptbutton
-	sjump .FinishPhone
+	sjump .RunningShoes
 
 .ExplainPhone:
 	writetext DontKnowTheInstructionsText
 	promptbutton
-	sjump .FinishPhone
-
-.FinishPhone:
-	writetext InstructionsNextText
+	;fallthrough
+.RunningShoes
+	writetext RunningShoesInstruction
 	waitbutton
 	closetext
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
@@ -92,8 +89,7 @@ MeetMomScript:
 
 .FromLeft:
 	applymovement PLAYERSHOUSE1F_MOM1, MomWalksBackMovement
-	sjump .Finish
-
+	;fallthrough
 .Finish:
 	special RestartMapMusic
 	turnobject PLAYERSHOUSE1F_MOM1, LEFT
@@ -104,7 +100,7 @@ MeetMomTalkedScript:
 	sjump MeetMomScript
 
 PokegearName:
-	db "#GEAR@"
+	db "#gear@"
 
 PlayersHouse1FReceiveItemStd:
 	jumpstd ReceiveItemScript
@@ -212,9 +208,9 @@ MomWalksBackMovement:
 
 ElmsLookingForYouText:
 	text "Oh, <PLAYER>…! Our"
-	line "neighbor, PROF."
+	line "neighbor, Prof."
 
-	para "ELM, was looking"
+	para "Elm, was looking"
 	line "for you."
 
 	para "He said he wanted"
@@ -222,17 +218,17 @@ ElmsLookingForYouText:
 	cont "thing for him."
 
 	para "Oh! I almost for-"
-	line "got! Your #MON"
+	line "got! Your #mon"
 
-	para "GEAR is back from"
+	para "Gear is back from"
 	line "the repair shop."
 
 	para "Here you go!"
 	done
 
 MomGivesPokegearText:
-	text "#MON GEAR, or"
-	line "just #GEAR."
+	text "#mon Gear, or"
+	line "just #gear."
 
 	para "It's essential if"
 	line "you want to be a"
@@ -258,29 +254,24 @@ ComeHomeForDSTText:
 	line "Saving Time."
 
 	para "By the way, do you"
-	line "know how to use"
-	cont "the PHONE?"
+	line "remember how to"
+	cont "use the Phone?"
 	done
 
 KnowTheInstructionsText:
-	text "Don't you just"
-	line "turn the #GEAR"
-
-	para "on and select the"
-	line "PHONE icon?"
+	text "I'm glad you didn't"
+	line "forget, honey!"
 	done
 
 DontKnowTheInstructionsText:
 	text "I'll read the"
 	line "instructions."
 
-	para "Turn the #GEAR"
+	para "Turn the #gear"
 	line "on and select the"
-	cont "PHONE icon."
-	done
+	cont "Phone icon."
 
-InstructionsNextText:
-	text "Phone numbers are"
+	para "Phone numbers are"
 	line "stored in memory."
 
 	para "Just choose a name"
@@ -290,16 +281,36 @@ InstructionsNextText:
 	line "convenient?"
 	done
 
+RunningShoesInstruction:
+	text "Oh! One last"
+	line "thing, <PLAYER>…"
+
+	para "Do you like the"
+	line "Running Shoes I"
+
+	para "bought for you"
+	line "recently?"
+
+	para "Remember that you"
+	line "can press the"
+
+	para "B button to move"
+	line "faster."
+
+	para "Oh! I won't bother"
+	line "you any further!"
+	done
+
 HurryUpElmIsWaitingText:
-	text "PROF.ELM is wait-"
+	text "Prof.Elm is wait-"
 	line "ing for you."
 
 	para "Hurry up, baby!"
 	done
 
 SoWhatWasProfElmsErrandText:
-	text "So, what was PROF."
-	line "ELM's errand?"
+	text "So, what was Prof."
+	line "Elm's errand?"
 
 	para "…"
 
@@ -344,18 +355,18 @@ NeighborText:
 	para "My daughter is"
 	line "adamant about"
 
-	para "becoming PROF."
-	line "ELM's assistant."
+	para "becoming Prof."
+	line "Elm's assistant."
 
 	para "She really loves"
-	line "#MON!"
+	line "#mon!"
 	done
 
 PlayersHouse1FStoveText:
 	text "Mom's specialty!"
 
-	para "CINNABAR VOLCANO"
-	line "BURGER!"
+	para "Cinnabar Volcano"
+	line "Burger!"
 	done
 
 PlayersHouse1FSinkText:
@@ -368,8 +379,8 @@ PlayersHouse1FFridgeText:
 	text "Let's see what's"
 	line "in the fridge…"
 
-	para "FRESH WATER and"
-	line "tasty LEMONADE!"
+	para "Fresh Water and"
+	line "tasty Lemonade!"
 	done
 
 PlayersHouse1FTVText:
