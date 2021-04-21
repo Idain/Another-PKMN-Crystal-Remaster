@@ -25,6 +25,20 @@ _OakText7::
 	line "later!"
 	done
 
+_WarnVBAText::
+	text "Warning!"
+
+	para "This Game Boy"
+	line "emulator has bugs"
+
+	para "that may crash"
+	line "the game."
+
+	para "Please use another"
+	line "emulator, such as"
+	cont "BGB or Gambatte."
+	prompt
+
 _ClockTimeMayBeWrongText::
 	text "The clock's time"
 	line "may be wrong."
@@ -58,7 +72,7 @@ _LinkTimeoutText::
 
 _LinkTradeCantBattleText::
 	text "If you trade that"
-	line "#MON, you won't"
+	line "#mon, you won't"
 	cont "be able to battle."
 	prompt
 

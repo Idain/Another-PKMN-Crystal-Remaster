@@ -23,31 +23,36 @@ CherrygroveMartClerkScript:
 	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
 	iftrue .PokeBallsInStock
 	pokemart MARTTYPE_STANDARD, MART_CHERRYGROVE
-	sjump .Finish
+	closetext
+	end
 
 .PokeBallsInStock:
 	pokemart MARTTYPE_STANDARD, MART_CHERRYGROVE_DEX
-	sjump .Finish
+	closetext
+	end
 
 .OneBadgeStock
 	pokemart MARTTYPE_STANDARD, MART_CHERRYGROVE_ONE_BADGE
-	sjump .Finish
+	closetext
+	end
 
 .ThreeBadgesStock
 	pokemart MARTTYPE_STANDARD, MART_CHERRYGROVE_THREE_BADGES
-	sjump .Finish
+	closetext
+	end
 
 .FiveBadgesStock
 	pokemart MARTTYPE_STANDARD, MART_CHERRYGROVE_FIVE_BADGES
-	sjump .Finish
+	closetext
+	end
 
 .SevenBadgesStock
 	pokemart MARTTYPE_STANDARD, MART_CHERRYGROVE_SEVEN_BADGES
-	sjump .Finish
+	closetext
+	end
 
 .EightBadgesStock
 	pokemart MARTTYPE_STANDARD, MART_CHERRYGROVE_EIGHT_BADGES
-.Finish
 	closetext
 	end
 

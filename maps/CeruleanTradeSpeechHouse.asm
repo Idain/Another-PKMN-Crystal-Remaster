@@ -34,7 +34,7 @@ CeruleanTradeSpeechHouseZubatScript:
 CeruleanTradeSpeechHouseGrannyText:
 	text "My husband lives"
 	line "happily with #-"
-	cont "MON he got through"
+	cont "mon he got through"
 	cont "trades."
 	done
 
@@ -43,12 +43,12 @@ CeruleanTradeSpeechHouseGrampsText:
 	done
 
 CeruleanTradeSpeechHouseRhydonText:
-	text "KANGASKHAN: Garu"
+	text "Kangaskhan: Garu"
 	line "garuu."
 	done
 
 CeruleanTradeSpeechHouseZubatText:
-	text "ZUBAT: Zuba zubaa."
+	text "Zubat: Zuba zubaa."
 	done
 
 CeruleanTradeSpeechHouse_MapEvents:

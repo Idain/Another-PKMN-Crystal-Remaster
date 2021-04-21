@@ -22,15 +22,15 @@ FuchsiaMartCooltrainerFScript:
 
 FuchsiaMartFisherText:
 	text "I was hoping to"
-	line "buy some SAFARI"
+	line "buy some Safari"
 
-	para "ZONE souvenirs,"
+	para "Zone souvenirs,"
 	line "but it's closed…"
 	done
 
 FuchsiaMartCooltrainerFText:
-	text "The SAFARI ZONE"
-	line "WARDEN's grand-"
+	text "The Safari Zone"
+	line "Warden's grand-"
 	cont "daughter lives in"
 	cont "town."
 	done

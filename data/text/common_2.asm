@@ -1443,7 +1443,7 @@ _PokemonHoldItemText::
 
 _PokemonRemoveMailText::
 	text "Please remove the"
-	line "MAIL first."
+	line "Mail first."
 	prompt
 
 _PokemonNotHoldingText::
@@ -1520,10 +1520,10 @@ _PokemonNotEnoughHPText::
 
 _MayRegisterItemText::
 	text "An item in your"
-	line "PACK may be"
+	line "Pack may be"
 
 	para "registered for use"
-	line "on SELECT Button."
+	line "on Select Button."
 	done
 
 _OakText1::
@@ -1536,7 +1536,7 @@ _OakText1::
 	para "My name is Oak."
 
 	para "People call me the"
-	line "#mon Prof."
+	line "#mon Professor."
 	prompt
 
 _OakText2::

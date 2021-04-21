@@ -19,23 +19,26 @@ AzaleaMartClerkScript:
 	checkflag ENGINE_PLAINBADGE
 	iftrue .ThreeBadgesStock
 	pokemart MARTTYPE_STANDARD, MART_AZALEA
-	sjump .Finish
+	closetext
+	end
 
 .ThreeBadgesStock
 	pokemart MARTTYPE_STANDARD, MART_AZALEA_THREE_BADGES
-	sjump .Finish
+	closetext
+	end
 
 .FiveBadgesStock
 	pokemart MARTTYPE_STANDARD, MART_AZALEA_FIVE_BADGES
-	sjump .Finish
+	closetext
+	end
 
 .SevenBadgesStock
 	pokemart MARTTYPE_STANDARD, MART_AZALEA_SEVEN_BADGES
-	sjump .Finish
+	closetext
+	end
 
 .EightBadgesStock
 	pokemart MARTTYPE_STANDARD, MART_AZALEA_EIGHT_BADGES
-.Finish
 	closetext
 	end
 

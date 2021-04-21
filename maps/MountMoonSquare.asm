@@ -126,9 +126,15 @@ ClefairyFleeMovement:
 	step_end
 
 DontLitterSignText:
-	text "MT.MOON SQUARE"
-	line "DON'T LITTER"
+	text "Mt.Moon Square"
+
+	para "Please don't"
+	line "litter."
+
+	para "Put the trash"
+	line "where it belongs!"
 	done
+
 
 MountMoonSquare_MapEvents:
 	db 0, 0 ; filler

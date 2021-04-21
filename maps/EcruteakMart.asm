@@ -17,19 +17,21 @@ EcruteakMartClerkScript:
 	checkflag ENGINE_MINERALBADGE
 	iftrue .FiveBadgesStock
 	pokemart MARTTYPE_STANDARD, MART_ECRUTEAK
-	sjump .Finish
+	closetext
+	end
 	
 .FiveBadgesStock
 	pokemart MARTTYPE_STANDARD, MART_ECRUTEAK_FIVE_BADGES
-	sjump .Finish
+	closetext
+	end
 
 .SevenBadgesStock
 	pokemart MARTTYPE_STANDARD, MART_ECRUTEAK_SEVEN_BADGES
-	sjump .Finish
+	closetext
+	end
 
 .EightBadgesStock
 	pokemart MARTTYPE_STANDARD, MART_ECRUTEAK_EIGHT_BADGES
-.Finish
 	closetext
 	end
 

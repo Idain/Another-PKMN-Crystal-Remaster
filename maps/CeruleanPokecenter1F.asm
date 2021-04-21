@@ -26,12 +26,12 @@ CeruleanPokecenter1FSuperNerdText:
 	text "For battles, I'd"
 	line "much rather use"
 
-	para "#MON I've been"
+	para "#mon I've been"
 	line "raising, even if"
 
 	para "they're weaker"
 	line "than some newly"
-	cont "caught #MON."
+	cont "caught #mon."
 	done
 
 CeruleanPokecenter1FSuperNerdText_Mobile:
@@ -47,17 +47,17 @@ CeruleanPokecenter1FSuperNerdText_Mobile:
 	done
 
 CeruleanPokecenter1FGymGuideText:
-	text "The MAGNET TRAIN"
+	text "The Magnet Train"
 	line "travels at over"
 
 	para "340 mph. It goes"
-	line "between KANTO and"
+	line "between Kanto and"
 
-	para "JOHTO in almost no"
+	para "Johto in almost no"
 	line "time at all."
 
 	para "It really makes"
-	line "JOHTO accessible."
+	line "Johto accessible."
 	done
 
 CeruleanPokecenter1F_MapEvents:

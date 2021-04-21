@@ -13,11 +13,11 @@ BlackthornMartClerkScript:
 	checkflag ENGINE_RISINGBADGE
 	iftrue .EightBadgesStock
 	pokemart MARTTYPE_STANDARD, MART_BLACKTHORN
-	sjump .Finish
+	closetext
+	end
 
 .EightBadgesStock
 	pokemart MARTTYPE_STANDARD, MART_BLACKTHORN_EIGHT_BADGES
-.Finish
 	closetext
 	end
 

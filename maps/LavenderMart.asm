@@ -21,7 +21,7 @@ LavenderMartRockerScript:
 	jumptextfaceplayer LavenderMartRockerText
 
 LavenderMartPokefanMText:
-	text "REPEL is a neces-"
+	text "Repel is a neces-"
 	line "sity if you are"
 
 	para "going to explore a"
@@ -38,10 +38,10 @@ LavenderMartRockerText:
 	text "I heard about a"
 	line "craftsman who"
 
-	para "makes custom BALLS"
-	line "in the JOHTO town"
+	para "makes custom Balls"
+	line "in the Johto town"
 
-	para "of AZALEA. I wish"
+	para "of Azalea. I wish"
 	line "I had some."
 	done
 

@@ -79,8 +79,8 @@ BrunosRoom_EnterMovement:
 	step_end
 
 BrunoScript_BrunoBeforeText:
-	text "I am BRUNO of the"
-	line "ELITE FOUR."
+	text "I am Bruno of the"
+	line "Elite Four."
 
 	para "I always train to"
 	line "the extreme be-"
