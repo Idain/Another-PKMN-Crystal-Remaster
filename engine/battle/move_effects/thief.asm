@@ -77,8 +77,18 @@ BattleCommand_Thief:
 	and a
 	ret nz
 
-; If the enemy steals your item,
-; it's gone for good if you don't get it back.
+; Don't let wild Pokémon/opposing trainers steal 
+; the player's item in Singleplayer.
+
+	ld a, [wLinkMode]
+	and a
+	ret z
+
+	ld a, [wBattleMode]
+	dec a
+	ret z
+
+; Steal item
 
 	call .playeritem
 	xor a

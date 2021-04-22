@@ -9,3 +9,4 @@ Spikes
 * Editar Egg Moves.
 * Editar learnsets.
 * Editar rematch teams.
+* Crear script Prof. Oak donde te da a Bulbasaur, Charmander y Squirtle.

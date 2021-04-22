@@ -5,31 +5,6 @@ Function8b342::
 	call GetMapAttributesPointer
 	ld d, h
 	ld e, l
-
-; Everything between here and "ret" is useless.
-	xor a
-.loop
-	push af
-	ld hl, .dw
-	rst JumpTable
-	pop af
-	inc a
-	cp 3
-	jr nz, .loop
-	ret
-
-.dw
-	dw .zero
-	dw .one
-	dw .two
-
-.zero
-	ret
-
-.one
-	ret
-
-.two
 	ret
 
 Function8b35d: ; unreferenced

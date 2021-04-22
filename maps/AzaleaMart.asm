@@ -43,7 +43,7 @@ AzaleaMartClerkScript:
 	end
 
 AzaleaMartCooltrainerMScript:
-	checkflag ENGINE_MINERALBADGE
+	checkflag ENGINE_PLAINBADGE
 	iftrue .GreatBallStock
 	jumptextfaceplayer AzaleaMartCooltrainerMText
 

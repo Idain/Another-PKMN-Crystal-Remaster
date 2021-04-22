@@ -2169,7 +2169,7 @@ wUsingItemWithSelect:: db
 UNION
 ; mart data
 wCurMartCount:: db
-wCurMartItems:: ds 15
+wCurMartItems:: ds 20
 
 NEXTU
 ; elevator data

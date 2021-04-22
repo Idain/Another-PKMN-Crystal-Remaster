@@ -6,6 +6,7 @@ AÑADIDOS:
 - La tormenta de arena ahora boostea la Defensa Especial de los Pokémon tipo Roca en un 50% (Gen 4+).
 - El género del Pokémon ahora es visible en el menú del equipo.
 - ¡NUEVO MOVE REMINDER! Está localizado en Blackthorn City, en la misma casa del Move Deleter.
+	-- Hay un NPC en Blackthorn City que menciona la existencia de este.
 
 - Tu madre te da un tutorial muy breve de cómo correr en el juego.
 
@@ -37,6 +38,7 @@ CAMBIOS:
 	-- Mimic ahora también copia los Max PPs del movimiento copiado, en vez de solo darte 5 PPs.
 	-- Rayo Solar hace menos daño durante una Tormenta de Arena. (Gen 3+).
 	-- Los movimientos OHKO no toman en cuenta los niveles de la Precisión del usuario y la Evasión del oponente. (Gen 3+)
+	-- Pokémon salvajes/entrenadores NPCs ya no podrán robarle objetos al jugador al usar Thief.
 
 - HMs. Algunos Pokémon aprenden nuevas HMs, basado en HG/SS:
 	-- Cut: Rattata, Nidoran♀, Nidorina, Nidoqueen, Nidoran♂, Nidorino, Nidoking, Meowth, Persian, Rhydon, Kangaskhan, Dragonite, Celebi.

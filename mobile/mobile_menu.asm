@@ -86,9 +86,7 @@ Function49f16:
 	call ClearBox
 	hlcoord 1, 14
 	call PlaceString
-	jp .useless_jump
 
-.useless_jump
 	call MobileMenu_InitMenuBuffers
 	pop bc
 	ld hl, wMenuCursorY

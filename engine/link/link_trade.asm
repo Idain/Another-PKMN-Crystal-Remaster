@@ -23,8 +23,6 @@ TestMobileTradeBorderTilemap: ; unreferenced
 	call ClearBGPalettes
 	call ClearTilemap
 	call ClearSprites
-	farcall __LoadTradeScreenBorderGFX ; useless to farcall
-	farcall LoadMobileTradeBorderTilemap ; useless to farcall
 	ld b, SCGB_DIPLOMA
 	call GetSGBLayout
 	call SetPalettes

@@ -92,7 +92,7 @@ PokemaniacMillerAfterBattleText:
 	done
 
 SupernerdMarkusSeenText:
-	text "Hey! HUGH!"
+	text "Hey! Hugh!"
 	done
 
 SupernerdMarkusBeatenText:
@@ -102,7 +102,7 @@ SupernerdMarkusBeatenText:
 
 SupernerdMarkusAfterBattleText:
 	text "I came to explore"
-	line "MT.MORTAR, but I"
+	line "Mt.Mortar, but I"
 
 	para "got separated from"
 	line "my partner…"
@@ -110,8 +110,8 @@ SupernerdMarkusAfterBattleText:
 	para "Did you run into a"
 	line "trainer who uses a"
 
-	para "SEADRA that knows"
-	line "WATERFALL?"
+	para "Seadra that knows"
+	line "Waterfall?"
 	done
 
 MountMortar1FInside_MapEvents:
