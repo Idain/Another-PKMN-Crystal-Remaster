@@ -1,6 +1,6 @@
-;based on an old commit of Rangi's Polished Crystal, which was in turn based off TPP Anniversary Crystal
-;https://github.com/Rangi42/polishedcrystal/blob/39bf603531d74254e7ab2740677d38ec3ef9b6bd/event/move_reminder.asm
-;https://github.com/TwitchPlaysPokemon/tppcrystal251pub/blob/public/event/move_relearner.asm
+; Based on an old commit of Rangi's Polished Crystal, which was in turn based off TPP Anniversary Crystal
+; https://github.com/Rangi42/polishedcrystal/blob/39bf603531d74254e7ab2740677d38ec3ef9b6bd/event/move_reminder.asm
+; https://github.com/TwitchPlaysPokemon/tppcrystal251pub/blob/public/event/move_relearner.asm
 
 MoveReminder:
 	ld hl, Text_MoveReminderIntro
@@ -28,7 +28,7 @@ MoveReminder:
 	call PrintText
 	call JoyWaitAorB
 
-	ld b, $6
+	ld b, 6
 	farcall SelectMonFromParty
 	jr c, .cancel
 
@@ -106,7 +106,7 @@ MoveReminder:
 GetRemindableMoves:
 ; Get moves remindable by CurPartyMon
 ; Returns z if no moves can be reminded.
-;	EXPORT EvosAttacksPointers, EvosAttacks
+
 	ld hl, wd002
 	xor a
 	ld [hli], a
@@ -125,17 +125,17 @@ GetRemindableMoves:
 
 	ld b, 0
 	ld de, wd002 + 1
-; based on GetEggMove in engine/breeding/egg.asm
-;.loop
+
+; Based on GetEggMove in engine/breeding/egg.asm
 	ld a, [wCurPartySpecies]
 	dec a
 	push bc
 	ld b, 0
 	ld c, a
 	ld hl, EvosAttacksPointers
-rept 2
+REPT 2
 	add hl, bc
-endr
+ENDR
 	ld a, BANK(EvosAttacksPointers)
 	call GetFarWord
 .skip_evos
@@ -224,8 +224,8 @@ CheckPokemonAlreadyKnowsMove:
 	ret
 
 ChooseMoveToLearn:
-	; Number of items stored in wd002
-	; List of items stored in wd002 + 1
+; Number of items stored in wd002
+; List of items stored in wd002 + 1
 	call FadeToMenu
 	farcall BlankScreen
 	call UpdateSprites
@@ -258,7 +258,7 @@ ChooseMoveToLearn:
 	db SCROLLINGMENU_DISPLAY_ARROWS | SCROLLINGMENU_ENABLE_FUNCTION3 ; item format
 	db 5, SCREEN_WIDTH + 2 ; rows, columns
 	db SCROLLINGMENU_ITEMS_NORMAL
-	dbw 0, wd002
+	dba  wd002
 	dba .PrintMoveName
 	dba .PrintDetails
 	dba .PrintMoveDesc
@@ -291,8 +291,8 @@ IF DEF(PSS)
 	ld a, BANK(Moves)
 	call GetFarByte
 	and CATEGORY_MASK
-	; bc = a * 4
-	ld c, a
+
+; bc = a * 4
 	add a
 	add a
 	ld b, 0
@@ -317,8 +317,8 @@ ENDC
 	ld a, BANK(Moves)
 	call GetFarByte
 	ld [wd265], a
-	; bc = a * 4
-	ld c, a
+
+; bc = a * 4
 	add a
 	add a
 	ld b, 0
@@ -354,13 +354,13 @@ ENDC
 	ld bc, 3
 	call PlaceString
 .got_power
-	ld hl, wStringBuffer1 + 8 + 3
+	ld hl, wStringBuffer1 + 11
 	ld [hl], "/"
 
 	ld a, [wMenuSelection]
 	dec a
 
-;print PP (works)
+; Print PP (works)
 	ld a, [wMenuSelection]
 	dec a
 	ld bc, MOVE_LENGTH

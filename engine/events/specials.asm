@@ -15,9 +15,6 @@ Special::
 
 INCLUDE "data/events/special_pointers.asm"
 
-UnusedDummySpecial:
-	ret
-
 SetPlayerPalette:
 	ld a, [wScriptVar]
 	ld d, a

@@ -285,6 +285,7 @@ GetBaseData::
 	inc hl
 	ld [hl], d
 
+.end
 ; Replace Pokedex # with species
 	ld a, [wCurSpecies]
 	ld [wBaseDexNo], a

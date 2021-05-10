@@ -54,7 +54,7 @@ OddEggs:
 	bigdw 12 ; Spd
 	bigdw 9 ; SAtk
 	bigdw 9 ; SDef
-	db "EGG@@@@@@@@"
+	db "Egg@@@@@@@@"
 
 	db PICHU
 	db NO_ITEM
@@ -76,7 +76,7 @@ OddEggs:
 	bigdw 12 ; Spd
 	bigdw 10 ; SAtk
 	bigdw 10 ; SDef
-	db "EGG@@@@@@@@"
+	db "Egg@@@@@@@@"
 
 	db CLEFFA
 	db NO_ITEM
@@ -98,7 +98,7 @@ OddEggs:
 	bigdw 7 ; Spd
 	bigdw 10 ; SAtk
 	bigdw 11 ; SDef
-	db "EGG@@@@@@@@"
+	db "Egg@@@@@@@@"
 
 	db CLEFFA
 	db NO_ITEM
@@ -120,7 +120,7 @@ OddEggs:
 	bigdw 8 ; Spd
 	bigdw 11 ; SAtk
 	bigdw 12 ; SDef
-	db "EGG@@@@@@@@"
+	db "Egg@@@@@@@@"
 
 	db IGGLYBUFF
 	db NO_ITEM
@@ -142,7 +142,7 @@ OddEggs:
 	bigdw 7 ; Spd
 	bigdw 10 ; SAtk
 	bigdw 8 ; SDef
-	db "EGG@@@@@@@@"
+	db "Egg@@@@@@@@"
 
 	db IGGLYBUFF
 	db NO_ITEM
@@ -164,7 +164,7 @@ OddEggs:
 	bigdw 8 ; Spd
 	bigdw 10 ; SAtk
 	bigdw 8 ; SDef
-	db "EGG@@@@@@@@"
+	db "Egg@@@@@@@@"
 
 	db SMOOCHUM
 	db NO_ITEM
@@ -186,7 +186,7 @@ OddEggs:
 	bigdw 12 ; Spd
 	bigdw 14 ; SAtk
 	bigdw 12 ; SDef
-	db "EGG@@@@@@@@"
+	db "Egg@@@@@@@@"
 
 	db SMOOCHUM
 	db NO_ITEM
@@ -208,7 +208,7 @@ OddEggs:
 	bigdw 15 ; Spd
 	bigdw 15 ; SAtk
 	bigdw 13 ; SDef
-	db "EGG@@@@@@@@"
+	db "Egg@@@@@@@@"
 
 	db MAGBY
 	db NO_ITEM
@@ -230,7 +230,7 @@ OddEggs:
 	bigdw 14 ; Spd
 	bigdw 13 ; SAtk
 	bigdw 11 ; SDef
-	db "EGG@@@@@@@@"
+	db "Egg@@@@@@@@"
 
 	db MAGBY
 	db NO_ITEM
@@ -252,7 +252,7 @@ OddEggs:
 	bigdw 14 ; Spd
 	bigdw 13 ; SAtk
 	bigdw 12 ; SDef
-	db "EGG@@@@@@@@"
+	db "Egg@@@@@@@@"
 
 	db ELEKID
 	db NO_ITEM
@@ -274,7 +274,7 @@ OddEggs:
 	bigdw 15 ; Spd
 	bigdw 12 ; SAtk
 	bigdw 11 ; SDef
-	db "EGG@@@@@@@@"
+	db "Egg@@@@@@@@"
 
 	db ELEKID
 	db NO_ITEM
@@ -296,7 +296,7 @@ OddEggs:
 	bigdw 16 ; Spd
 	bigdw 13 ; SAtk
 	bigdw 12 ; SDef
-	db "EGG@@@@@@@@"
+	db "Egg@@@@@@@@"
 
 	db TYROGUE
 	db NO_ITEM
@@ -318,7 +318,7 @@ OddEggs:
 	bigdw 9 ; Spd
 	bigdw 9 ; SAtk
 	bigdw 9 ; SDef
-	db "EGG@@@@@@@@"
+	db "Egg@@@@@@@@"
 
 	db TYROGUE
 	db NO_ITEM
@@ -340,6 +340,6 @@ OddEggs:
 	bigdw 10 ; Spd
 	bigdw 10 ; SAtk
 	bigdw 10 ; SDef
-	db "EGG@@@@@@@@"
+	db "Egg@@@@@@@@"
 
 	assert_table_length NUM_ODD_EGGS

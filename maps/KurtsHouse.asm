@@ -16,21 +16,22 @@ KurtsHouse_MapScripts:
 	iffalse .Done
 	checkevent EVENT_FOREST_IS_RESTLESS
 	iftrue .Done
-	checkflag ENGINE_KURT_MAKING_BALLS
-	iftrue .MakingBalls
+;	checkflag ENGINE_KURT_MAKING_BALLS
+;	iftrue .MakingBalls
 	disappear KURTSHOUSE_KURT2
 	appear KURTSHOUSE_KURT1
 	disappear KURTSHOUSE_TWIN2
 	appear KURTSHOUSE_TWIN1
+.Done
 	endcallback
 
-.MakingBalls:
-	disappear KURTSHOUSE_KURT1
-	appear KURTSHOUSE_KURT2
-	disappear KURTSHOUSE_TWIN1
-	appear KURTSHOUSE_TWIN2
-.Done:
-	endcallback
+;.MakingBalls:
+;	disappear KURTSHOUSE_KURT1
+;	appear KURTSHOUSE_KURT2
+;	disappear KURTSHOUSE_TWIN1
+;	appear KURTSHOUSE_TWIN2
+;.Done:
+;	endcallback
 
 Kurt1:
 	faceplayer
@@ -167,7 +168,7 @@ Kurt1:
 
 .GaveKurtApricorns:
 	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_1
-	setflag ENGINE_KURT_MAKING_BALLS
+;	setflag ENGINE_KURT_MAKING_BALLS
 .WaitForApricorns:
 	writetext KurtsHouseKurtItWillTakeADayText
 	waitbutton
@@ -190,8 +191,8 @@ Kurt1:
 	end
 
 .GiveLevelBall:
-	checkflag ENGINE_KURT_MAKING_BALLS
-	iftrue KurtMakingBallsScript
+;	checkflag ENGINE_KURT_MAKING_BALLS
+;	iftrue KurtMakingBallsScript
 	writetext KurtsHouseKurtJustFinishedYourBallText
 	promptbutton
 	verbosegiveitemvar LEVEL_BALL, VAR_KURT_APRICORNS
@@ -200,8 +201,8 @@ Kurt1:
 	sjump ._ThatTurnedOutGreat
 
 .GiveLureBall:
-	checkflag ENGINE_KURT_MAKING_BALLS
-	iftrue KurtMakingBallsScript
+;	checkflag ENGINE_KURT_MAKING_BALLS
+;	iftrue KurtMakingBallsScript
 	writetext KurtsHouseKurtJustFinishedYourBallText
 	promptbutton
 	verbosegiveitemvar LURE_BALL, VAR_KURT_APRICORNS
@@ -210,8 +211,8 @@ Kurt1:
 	sjump ._ThatTurnedOutGreat
 
 .GiveMoonBall:
-	checkflag ENGINE_KURT_MAKING_BALLS
-	iftrue KurtMakingBallsScript
+;	checkflag ENGINE_KURT_MAKING_BALLS
+;	iftrue KurtMakingBallsScript
 	writetext KurtsHouseKurtJustFinishedYourBallText
 	promptbutton
 	verbosegiveitemvar MOON_BALL, VAR_KURT_APRICORNS
@@ -220,8 +221,8 @@ Kurt1:
 	sjump ._ThatTurnedOutGreat
 
 .GiveFriendBall:
-	checkflag ENGINE_KURT_MAKING_BALLS
-	iftrue KurtMakingBallsScript
+;	checkflag ENGINE_KURT_MAKING_BALLS
+;	iftrue KurtMakingBallsScript
 	writetext KurtsHouseKurtJustFinishedYourBallText
 	promptbutton
 	verbosegiveitemvar FRIEND_BALL, VAR_KURT_APRICORNS
@@ -230,8 +231,8 @@ Kurt1:
 	sjump ._ThatTurnedOutGreat
 
 .GiveFastBall:
-	checkflag ENGINE_KURT_MAKING_BALLS
-	iftrue KurtMakingBallsScript
+;	checkflag ENGINE_KURT_MAKING_BALLS
+;	iftrue KurtMakingBallsScript
 	writetext KurtsHouseKurtJustFinishedYourBallText
 	promptbutton
 	verbosegiveitemvar FAST_BALL, VAR_KURT_APRICORNS
@@ -240,8 +241,8 @@ Kurt1:
 	sjump ._ThatTurnedOutGreat
 
 .GiveHeavyBall:
-	checkflag ENGINE_KURT_MAKING_BALLS
-	iftrue KurtMakingBallsScript
+;	checkflag ENGINE_KURT_MAKING_BALLS
+;	iftrue KurtMakingBallsScript
 	writetext KurtsHouseKurtJustFinishedYourBallText
 	promptbutton
 	verbosegiveitemvar HEAVY_BALL, VAR_KURT_APRICORNS
@@ -250,8 +251,8 @@ Kurt1:
 	sjump ._ThatTurnedOutGreat
 
 .GiveLoveBall:
-	checkflag ENGINE_KURT_MAKING_BALLS
-	iftrue KurtMakingBallsScript
+;	checkflag ENGINE_KURT_MAKING_BALLS
+;	iftrue KurtMakingBallsScript
 	writetext KurtsHouseKurtJustFinishedYourBallText
 	promptbutton
 	verbosegiveitemvar LOVE_BALL, VAR_KURT_APRICORNS
@@ -269,11 +270,13 @@ Kurt1:
 	closetext
 	setevent EVENT_GAVE_GS_BALL_TO_KURT
 	takeitem GS_BALL
-	setflag ENGINE_KURT_MAKING_BALLS
+;	setflag ENGINE_KURT_MAKING_BALLS
+	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_4
 	end
 
 .GaveGSBallToKurt:
-	checkflag ENGINE_KURT_MAKING_BALLS
+	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_4
+;	checkflag ENGINE_KURT_MAKING_BALLS
 	iffalse .NotMakingBalls
 	writetext KurtsHouseKurtImCheckingItNowText
 	waitbutton
@@ -349,6 +352,8 @@ KurtsGranddaughter1:
 	iftrue KurtsGranddaughter2Subscript
 	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_2
 	iftrue KurtsGranddaughterFunScript
+	checkevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_4
+	iftrue KurtsGranddaughter2Subscript
 	checkevent EVENT_FOREST_IS_RESTLESS
 	iftrue .Lonely
 	checkevent EVENT_FAST_SHIP_FIRST_TIME
@@ -453,21 +458,21 @@ KurtsHouseKurtMakingBallsMustWaitText:
 
 	para "<PLAYER>, eh? You"
 	line "want me to make"
-	cont "some BALLS?"
+	cont "some Balls?"
 
 	para "Sorry, but that'll"
 	line "have to wait."
 
-	para "Do you know TEAM"
-	line "ROCKET? Ah, don't"
+	para "Do you know Team"
+	line "Rocket? Ah, don't"
 
 	para "worry. I'll tell"
 	line "you anyhow."
 
-	para "TEAM ROCKET's an"
+	para "Team Rocket's an"
 	line "evil gang that"
 
-	para "uses #MON for"
+	para "uses #mon for"
 	line "their dirty work."
 
 	para "They're supposed"
@@ -475,31 +480,31 @@ KurtsHouseKurtMakingBallsMustWaitText:
 	cont "three years ago."
 
 	para "Anyway, they're at"
-	line "the WELL, cutting"
+	line "the Well, cutting"
 
-	para "off SLOWPOKETAILS"
+	para "off SlowpokeTails"
 	line "for sale!"
 
 	para "So I'm going to"
 	line "go give them a"
 	cont "lesson in pain!"
 
-	para "Hang on, SLOWPOKE!"
-	line "Old KURT is on his"
+	para "Hang on, Slowpoke!"
+	line "Old Kurt is on his"
 	cont "way!"
 	done
 
 KurtsHouseKurtHonoredToMakeBallsText:
-	text "KURT: Hi, <PLAYER>!"
+	text "Kurt: Hi, <PLAYER>!"
 
 	para "You handled your-"
 	line "self like a real"
-	cont "hero at the WELL."
+	cont "hero at the Well."
 
 	para "I like your style!"
 
 	para "I would be honored"
-	line "to make BALLS for"
+	line "to make Balls for"
 
 	para "a trainer like"
 	line "you."
@@ -509,59 +514,59 @@ KurtsHouseKurtHonoredToMakeBallsText:
 	done
 
 KurtsHouseKurtBallsFromApricornsText:
-	text "KURT: I make BALLS"
-	line "from APRICORNS."
+	text "Kurt: I make Balls"
+	line "from Apricorns."
 
 	para "Collect them from"
 	line "trees and bring"
 	cont "'em to me."
 
-	para "I'll make BALLS"
+	para "I'll make Balls"
 	line "out of them."
 	done
 
 KurtsHouseKurtAskYouHaveAnApricornText:
-	text "KURT: You have an"
-	line "APRICORN for me?"
+	text "Kurt: You have an"
+	line "Apricorn for me?"
 
 	para "Fine! I'll turn it"
-	line "into a BALL."
+	line "into a Ball."
 	done
 
 KurtsHouseKurtItWillTakeADayText:
-	text "KURT: It'll take a"
-	line "day to make you a"
+	text "Kurt: It'll take"
+	line "some time to make"
 
-	para "BALL. Come back"
-	line "for it later."
+	para "you a Ball. Come"
+	line "back for it later."
 	done
 
 KurtsHouseKurtThatsALetdownText:
-	text "KURT: Oh…"
+	text "Kurt: Oh…"
 	line "That's a letdown."
 	done
 
 KurtsHouseKurtDontBotherMeText:
-	text "KURT: I'm working!"
+	text "Kurt: I'm working!"
 	line "Don't bother me!"
 	done
 
 KurtsHouseKurtJustFinishedYourBallText:
-	text "KURT: Ah, <PLAYER>!"
+	text "Kurt: Ah, <PLAYER>!"
 	line "I just finished"
-	cont "your BALL. Here!"
+	cont "your Ball. Here!"
 	done
 
 KurtsHouseKurtTurnedOutGreatText:
-	text "KURT: That turned"
+	text "Kurt: That turned"
 	line "out great."
 
 	para "Try catching"
-	line "#MON with it."
+	line "#mon with it."
 	done
 
 KurtsHouseKurtGranddaughterHelpingWorkFasterText:
-	text "KURT: Now that my"
+	text "Kurt: Now that my"
 	line "granddaughter is"
 
 	para "helping me, I can"
@@ -575,7 +580,7 @@ KurtsHouseKurtWhatIsThatText:
 	line "one before."
 
 	para "It looks a lot"
-	line "like a # BALL,"
+	line "like a # Ball,"
 
 	para "but it appears to"
 	line "be something else."
@@ -597,7 +602,7 @@ KurtsHouseKurtAhHaISeeText:
 KurtsHouseKurtThisBallStartedToShakeText:
 	text "<PLAYER>!"
 
-	para "This BALL started"
+	para "This Ball started"
 	line "to shake while I"
 	cont "was checking it."
 
@@ -606,7 +611,7 @@ KurtsHouseKurtThisBallStartedToShakeText:
 	done
 
 KurtsGranddaughterSlowpokeGoneText:
-	text "The SLOWPOKE are"
+	text "The Slowpoke are"
 	line "gone… Were they"
 
 	para "taken away by bad"
@@ -619,21 +624,21 @@ KurtsGranddaughterLonelyText:
 	done
 
 KurtsGranddaughterSlowpokeBackText:
-	text "The SLOWPOKE my"
+	text "The Slowpoke my"
 	line "dad gave me came"
 
-	para "back! Its TAIL is"
+	para "back! Its tail is"
 	line "growing back too!"
 	done
 
 KurtsGranddaughterDadText:
-	text "Dad works at SILPH"
+	text "Dad works at Silph"
 	line "where he studies"
-	cont "# BALLS."
+	cont "# Balls."
 
 	para "I have to stay"
 	line "home with Grandpa"
-	cont "and SLOWPOKE."
+	cont "and Slowpoke."
 	done
 
 KurtsGranddaughterHelpText:
@@ -641,31 +646,31 @@ KurtsGranddaughterHelpText:
 	line "Grandpa now!"
 
 	para "We'll make good"
-	line "BALLS for you, so"
+	line "Balls for you, so"
 	cont "please wait!"
 	done
 
 KurtsGranddaughterFunText:
 	text "It's fun to make"
-	line "BALLS!"
+	line "Balls!"
 	done
 
 KurtsGranddaughterGSBallText:
 	text "Grandpa's checking"
-	line "a BALL right now."
+	line "a Ball right now."
 
 	para "So I'm waiting"
 	line "till he's done."
 	done
 
 KurtsHouseSlowpokeText:
-	text "SLOWPOKE: …"
+	text "Slowpoke: …"
 	line "Yawn?"
 	done
 
 KurtsHouseOakPhotoText:
-	text "…A young PROF."
-	line "OAK?"
+	text "…A young Prof."
+	line "Oak?"
 	done
 
 KurtsHouseCelebiStatueText:

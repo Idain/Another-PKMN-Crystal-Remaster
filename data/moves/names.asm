@@ -47,7 +47,7 @@ MoveNames::
 	li "Growl"
 	li "Roar"
 	li "Sing"
-	li "Super Sonic"
+	li "Supersonic"
 	li "Sonic Boom"
 	li "Disable"
 	li "Acid"

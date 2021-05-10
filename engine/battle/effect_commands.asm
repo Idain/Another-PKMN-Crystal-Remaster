@@ -1508,7 +1508,7 @@ BattleCommand_CheckPowder:
 .checkgrasstype:
 	ld a, [hli]
 	cp GRASS
-	jp z, .Immune
+	jr z, .Immune
 	ld a, [hl]
 	cp GRASS
 	ret nz
@@ -1699,10 +1699,10 @@ BattleCommand_CheckHit:
 	ld hl, wBattleMonType1
 	ldh a, [hBattleTurn]
 	and a
-	jr z, .CheckPoisonType
+	jr z, .CheckUserPoisonType
 	ld hl, wEnemyMonType1
 
-.CheckPoisonType:
+.CheckUserPoisonType:
 	ld a, [hli]
 	cp POISON
 	ret z
@@ -2792,14 +2792,14 @@ PlayerAttackDamage:
 	ret
 
 TruncateHL_BC:
-.loop
+
 ; Truncate 16-bit values hl and bc to 8-bit values b and c respectively.
 ; b = hl, c = bc
-
 	ld a, h
 	or b
 	jr z, .finish
 
+.loop
 	srl b
 	rr c
 	srl b
@@ -2822,9 +2822,6 @@ TruncateHL_BC:
 	inc l
 
 .finish
-; If we go back to the loop point,
-; it's the same as doing this exact
-; same check twice.
 	ld a, h
 	or b
 	jr nz, .loop
@@ -5865,10 +5862,6 @@ BattleCommand_Charge:
 	text_far _BattleDugText
 	text_end
 
-BattleCommand_Unused3C:
-; effect0x3c
-	ret
-
 BattleCommand_TrapTarget:
 ; traptarget
 
@@ -6620,10 +6613,6 @@ INCLUDE "engine/battle/move_effects/perish_song.asm"
 INCLUDE "engine/battle/move_effects/sandstorm.asm"
 
 INCLUDE "engine/battle/move_effects/rollout.asm"
-
-BattleCommand_Unused5D:
-; effect0x5d
-	ret
 
 INCLUDE "engine/battle/move_effects/fury_cutter.asm"
 

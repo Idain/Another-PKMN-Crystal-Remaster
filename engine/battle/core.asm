@@ -2089,9 +2089,7 @@ UpdateHPBar:
 
 HandleEnemyMonFaint:
 	call FaintEnemyPokemon
-	ld hl, wBattleMonHP
-	ld a, [hli]
-	or [hl]
+	call HasPlayerFainted
 	call z, FaintYourPokemon
 	xor a
 	ld [wWhichMonFaintedFirst], a
@@ -2736,9 +2734,7 @@ IsPluralTrainer:
 
 HandlePlayerMonFaint:
 	call FaintYourPokemon
-	ld hl, wEnemyMonHP
-	ld a, [hli]
-	or [hl]
+	call HasEnemyFainted
 	call z, FaintEnemyPokemon
 	ld a, $1
 	ld [wWhichMonFaintedFirst], a
@@ -5796,19 +5792,18 @@ GetWeatherImage:
 	ld a, [wBattleWeather]
 	and a
 	ret z
-	cp WEATHER_RAIN
 	ld de, RainWeatherImage
 	lb bc, PAL_BATTLE_OB_BLUE, 4
+	dec a
 	jr z, .done
-	cp WEATHER_SUN
 	ld de, SunWeatherImage
 	ld b, PAL_BATTLE_OB_YELLOW
+	dec a
 	jr z, .done
-	cp WEATHER_SANDSTORM
 	ld de, SandstormWeatherImage
 	ld b, PAL_BATTLE_OB_BROWN
-	jr z, .done
-	ret
+	dec a
+	ret nz
 	
 .done
 	push bc
@@ -8353,14 +8348,6 @@ InitEnemyTrainer:
 	callfar GetTrainerAttributes
 	callfar ReadTrainerParty
 
-	; RIVAL1's first mon has no held item
-	ld a, [wTrainerClass]
-	cp RIVAL1
-	jr nz, .ok
-	xor a
-	ld [wOTPartyMon1Item], a
-
-.ok
 	ld de, vTiles2
 	callfar GetTrainerPic
 	xor a

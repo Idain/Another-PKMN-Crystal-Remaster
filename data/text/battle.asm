@@ -1024,7 +1024,7 @@ IdentifiedText:
 	prompt
 
 StartPerishText:
-	text "Both #MON will"
+	text "Both #mon will"
 	line "faint in 3 turns!"
 	prompt
 
@@ -1089,7 +1089,7 @@ SunGotBrightText:
 BellyDrumText:
 	text "<USER>"
 	line "cut its HP and"
-	cont "maximized ATTACK!"
+	cont "maximized Attack!"
 	prompt
 
 CopiedStatsText:

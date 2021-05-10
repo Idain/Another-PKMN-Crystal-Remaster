@@ -4719,6 +4719,7 @@ Function102112:
 	ld a, $01
 	and a
 
+.done
 	push af
 	call CloseSRAM
 	pop af

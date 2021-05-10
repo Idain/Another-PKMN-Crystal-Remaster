@@ -1377,7 +1377,7 @@ _ItemCantUseOnEggText::
 	prompt
 
 _ItemOakWarningText::
-	text "OAK: <PLAYER>!"
+	text "Oak: <PLAYER>!"
 	line "This isn't the"
 	cont "time to use that!"
 	prompt
@@ -1394,7 +1394,7 @@ _ItemWontHaveEffectText::
 
 _BallBlockedText::
 	text "The trainer"
-	line "blocked the BALL!"
+	line "blocked the Ball!"
 	prompt
 
 _BallDontBeAThiefText::
@@ -1414,7 +1414,7 @@ _ItemCantGetOnText::
 	prompt
 
 _BallBoxFullText::
-	text "The #MON BOX"
+	text "The #mon Box"
 	line "is full. That"
 	cont "can't be used now."
 	prompt
@@ -1450,7 +1450,7 @@ _KnowsMoveText::
 	prompt
 
 _MoveKnowsOneText::
-	text "That #MON knows"
+	text "That #mon knows"
 	line "only one move."
 	done
 
@@ -1462,7 +1462,7 @@ _AskDeleteMoveText::
 	done
 
 _DeleterForgotMoveText::
-	text "Done! Your #MON"
+	text "Done! Your #mon"
 	line "forgot the move."
 	done
 
@@ -1485,15 +1485,15 @@ _DeleterIntroText::
 	text "Um… Oh, yes, I'm"
 	line "the Move Deleter."
 
-	para "I can make #MON"
+	para "I can make #mon"
 	line "forget moves."
 
 	para "Shall I make a"
-	line "#MON forget?"
+	line "#mon forget?"
 	done
 
 _DeleterAskWhichMonText::
-	text "Which #MON?"
+	text "Which #mon?"
 	prompt
 
 _DSTIsThatOKText::
@@ -1539,7 +1539,7 @@ _TimesetAskAdjustDSTText::
 _MomLostGearBookletText::
 	text "I lost the in-"
 	line "struction booklet"
-	cont "for the #GEAR."
+	cont "for the #gear."
 
 	para "Come back again in"
 	line "a while."
@@ -1555,7 +1555,7 @@ _MoveReminderIntro::
     line "Reminder!"
 
     para "I can teach your"
-    line "#MON a move it"
+    line "#mon a move it"
 
     para "has learned pre-"
     line "viously."
@@ -1570,10 +1570,11 @@ _MoveReminderPrompt::
     done
 */
 _MoveReminderWhichMon::
-    text "Which #MON"
+    text "Which #mon"
     next "would you like"
-    cont "to remember a"
-    cont "move?"
+
+    para "to make remember"
+    line "a move?"
     done
 
 _MoveReminderWhichMove::
@@ -1595,19 +1596,20 @@ _MoveReminderEgg::
 _MoveReminderNoPay::
     text "Hm. Come back with"
     line "more money and I"
-    cont "can teach a move"
-    cont "to your #MON."
+
+    para "can teach a move"
+    line "to your #MON."
     done
 */
 _MoveReminderNoMon::
     text "You don't have a"
-    line "#MON that can"
+    line "#mon that can"
     cont "remember a move."
     done
 
 _MoveReminderNoMoves::
     text "There are no moves"
-    line "for this #MON"
+    line "for this #mon"
     cont "to learn."
     done
 

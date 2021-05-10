@@ -2647,7 +2647,6 @@ wDudeNumItems:: db
 wDudeItems:: ds 2 * 4 + 1
 
 wDudeNumBerries::
-
 wDudeNumKeyItems:: db
 wDudeKeyItems:: ds 18 + 1
 

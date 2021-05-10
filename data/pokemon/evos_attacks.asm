@@ -247,6 +247,7 @@ PidgeottoEvosAttacks:
 
 PidgeotEvosAttacks:
 	db 0 ; no more evolutions
+	db 1, SKY_ATTACK
 	db 1, TACKLE
 	db 5, SAND_ATTACK
 	db 9, GUST
@@ -294,24 +295,29 @@ SpearowEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, PECK
 	db 1, GROWL
-	db 7, LEER
-	db 13, FURY_ATTACK
-	db 25, PURSUIT
-	db 31, MIRROR_MOVE
-	db 37, DRILL_PECK
-	db 43, AGILITY
+	db 4, LEER
+	db 8, PURSUIT
+	db 11, FURY_ATTACK
+	db 15, SONICBOOM
+	db 18, MIRROR_MOVE
+	db 25, AGILITY
+	db 29, FOCUS_ENERGY
+	db 34, DRILL_PECK
 	db 0 ; no more level-up moves
 
 FearowEvosAttacks:
 	db 0 ; no more evolutions
+	db 1, SKY_ATTACK
 	db 1, PECK
 	db 1, GROWL
-	db 7, LEER
-	db 13, FURY_ATTACK
-	db 26, PURSUIT
-	db 32, MIRROR_MOVE
-	db 40, DRILL_PECK
-	db 47, AGILITY
+	db 4, LEER
+	db 8, PURSUIT
+	db 11, FURY_ATTACK
+	db 15, QUICK_ATTACK
+	db 18, MIRROR_MOVE
+	db 27, AGILITY
+	db 32, FOCUS_ENERGY
+	db 39, DRILL_PECK
 	db 0 ; no more level-up moves
 
 EkansEvosAttacks:
@@ -1232,6 +1238,7 @@ FarfetchDEvosAttacks:
 	db 25, SWORDS_DANCE
 	db 31, AGILITY
 	db 33, FALSE_SWIPE
+	db 40, SKY_ATTACK
 	db 0 ; no more level-up moves
 
 DoduoEvosAttacks:
@@ -3651,41 +3658,44 @@ TyranitarEvosAttacks:
 
 LugiaEvosAttacks:
 	db 0 ; no more evolutions
-	db 1, AEROBLAST
-	db 11, SAFEGUARD
-	db 22, GUST
-	db 33, RECOVER
-	db 44, HYDRO_PUMP
-	db 55, RAIN_DANCE
-	db 66, SWIFT
-	db 77, WHIRLWIND
-	db 88, ANCIENTPOWER
-	db 99, FUTURE_SIGHT
+	db 1, WHIRLWIND
+	db 1, SWIFT
+	db 9, MIST
+	db 15, GUST
+	db 27, RAIN_DANCE
+	db 36, HYDRO_PUMP
+	db 45, AEROBLAST
+	db 54, ANCIENTPOWER
+	db 63, SAFEGUARD
+	db 71, RECOVER
+	db 79, FUTURE_SIGHT
+	db 85, SKY_ATTACK
 	db 0 ; no more level-up moves
 
 HoOhEvosAttacks:
 	db 0 ; no more evolutions
-	db 1, SACRED_FIRE
-	db 11, SAFEGUARD
-	db 22, GUST
-	db 33, RECOVER
-	db 44, FIRE_BLAST
-	db 55, SUNNY_DAY
-	db 66, SWIFT
-	db 77, WHIRLWIND
-	db 88, ANCIENTPOWER
-	db 99, FUTURE_SIGHT
+	db 1, WHIRLWIND
+	db 1, SWIFT
+	db 9, GUST
+	db 27, SUNNY_DAY
+	db 36, FIRE_BLAST
+	db 45, SACRED_FIRE
+	db 54, ANCIENTPOWER
+	db 63, SAFEGUARD
+	db 71, RECOVER
+	db 79, FUTURE_SIGHT
+	db 85, SKY_ATTACK
 	db 0 ; no more level-up moves
 
 CelebiEvosAttacks:
 	db 0 ; no more evolutions
+	db 1, RECOVER
+	db 1, SAFEGUARD
+	db 1, BATON_PASS
+	db 1, FUTURE_SIGHT
+	db 1, PERISH_SONG
 	db 1, LEECH_SEED
 	db 1, CONFUSION
-	db 1, RECOVER
+	db 1, ANCIENTPOWER
 	db 1, HEAL_BELL
-	db 10, SAFEGUARD
-	db 20, ANCIENTPOWER
-	db 30, FUTURE_SIGHT
-	db 40, BATON_PASS
-	db 50, PERISH_SONG
 	db 0 ; no more level-up moves
