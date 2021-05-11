@@ -1073,8 +1073,7 @@ BattleCommand_DoTurn:
 	call GetBattleVar
 ; continuous?
 	ld hl, .continuousmoves
-	ld de, 1
-	call IsInArray
+	call IsInByteArray
 
 ; 'has no pp left for [move]'
 	ld hl, HasNoPPLeftText
@@ -1156,10 +1155,7 @@ BattleCommand_Critical:
 	ld a, [hl]
 	cp LUCKY_PUNCH
 	jr nz, .FocusEnergy
-
-; +2 critical level
-	ld c, 2
-	jr .Tally
+	jr .RaiseCriticalLevel2
 
 .Farfetchd:
 	cp FARFETCH_D
@@ -1167,11 +1163,10 @@ BattleCommand_Critical:
 	ld a, [hl]
 	cp STICK
 	jr nz, .FocusEnergy
-
+	; fallthrough
+.RaiseCriticalLevel2:
 ; +2 critical level
 	ld c, 2
-	jr .Tally
-
 .FocusEnergy:
 	ld a, BATTLE_VARS_SUBSTATUS4
 	call GetBattleVar
@@ -1179,15 +1174,15 @@ BattleCommand_Critical:
 	jr z, .CheckCritical
 
 ; +2 critical level
-	ld c, 2
+	inc c
+	inc c
 
 .CheckCritical:
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar
-	ld de, 1
 	ld hl, CriticalHitMoves
 	push bc
-	call IsInArray
+	call IsInByteArray
 	pop bc
 	jr nc, .ScopeLens
 
@@ -1207,7 +1202,7 @@ BattleCommand_Critical:
 
 .Tally:
 	ld a, c
-	cp 3 ; If stage >= +3, it's always critic
+	cp 3 ; If stage >= +3, it's always a critic hit
 	jr nc, .CriticalDone
 
 	ld hl, CriticalHitChances
@@ -1625,10 +1620,11 @@ BattleCommand_CheckHit:
 	call GetBattleVar
 	cp EFFECT_ALWAYS_HIT
 	ret z
-	; If the move is OHKO, ignore accuracy and evasion modifiers.
+	; If the move is OHKO, ignore accuracy and evasion stat modifiers.
 	cp EFFECT_OHKO
 	jr z, .skip_stat_modifiers
 
+	; Moves that bypass accuracy checks without having EFFECT_ALWAYS_HIT.
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar
 	ld hl, AlwaysHitMoves

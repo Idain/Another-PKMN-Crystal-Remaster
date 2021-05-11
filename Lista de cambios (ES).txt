@@ -18,12 +18,13 @@ CAMBIOS:
 
 - Las probabilidades de dar un golpe crítico han sido cambiadas para asemejarse a Gen 8.
 	-- Dire Hit se ve afectado indirectamente.
+- Los efectos de los items Lucky Punch y Sitck (Leek en Gen 8) ahora se acumulan con Focus Energy y movimientos con alta probabilidad de golpe crítico.
 
 - Mist ahora solo dura cinco turnos y el efecto no desaparece aunque cambiemos de Pokémon (Gen 3+).
 	-- Esto también afecta indirectamente el objeto Guard Spec.
 
 - Mercados:
-	-- Los caálogos de los Poké Marts se irá expandiendo a medida que el jugador progrese en la historia. (Gen 4)
+	-- Los catálogos de los Poké Marts se irá expandiendo a medida que el jugador progrese en la historia. (Gen 4)
 	-- Los objetos Mails de la 2da Gen que solo se conseguían por evento ahora pueden ser comprados en Mt. Moon Square.
 
 - Movimientos:
@@ -38,6 +39,7 @@ CAMBIOS:
 	-- Rayo Solar hace menos daño durante una Tormenta de Arena. (Gen 3+).
 	-- Los movimientos OHKO no toman en cuenta los niveles de la Precisión del usuario y la Evasión del oponente. (Gen 3+)
 	-- Pokémon salvajes/entrenadores NPCs ya no podrán robarle objetos al jugador al usar Thief.
+	-- Sky Attack ahora tiene un 30% de hacer al oponente retroceder y tiene una alta probabilidad de ser un golpe crítico (Gen 3+).
 
 - HMs. Algunos Pokémon aprenden nuevas HMs, basado en HG/SS:
 	-- Cut: Rattata, Nidoran♀, Nidorina, Nidoqueen, Nidoran♂, Nidorino, Nidoking, Meowth, Persian, Rhydon, Kangaskhan, Dragonite, Celebi.
@@ -81,6 +83,7 @@ CAMBIOS:
 
 - Los nombres de los movimientos ahora están en Capital en vez de MAYÚSCULA.
 - Los nombres de los entrenadores y sus clases ahora están en Capital.
+- El objeto "Stick" ahora se llama "Leek" (Gen 8).
 - Modificada fórmula para aparición de formas Unown.
 - Después de hablar con la enfermera del Centro Pokémon, el jugador mirará hacia abajo automáticamente. Así pueden spamear el botón A libremente sin temor a iniciar otro diálogo con ella. :V
 - La probabilidad de que salga un Pokémon Shiny del Huevo Extraño ahora es de un 50% (basado en versión japonesa del juego).
