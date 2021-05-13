@@ -1667,10 +1667,6 @@ _MomJustDoWhatYouCanText::
 	line "you can."
 	done
 
-_DaycareDummyText::
-	text_start
-	done
-
 _DayCareManIntroText::
 	text "I'm the Day-Care"
 	line "Man. Want me to"

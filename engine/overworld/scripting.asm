@@ -500,11 +500,7 @@ Script_verbosegiveitem:
 	ld de, GiveItemScript
 	jp ScriptCall
 
-GiveItemScript_DummyFunction:
-	ret
-
 GiveItemScript:
-	callasm GiveItemScript_DummyFunction
 	writetext .ReceivedItemText
 	iffalse .Full
 	waitsfx
@@ -2308,8 +2304,6 @@ Script_end:
 
 Script_endcallback:
 	call ExitScriptSubroutine
-	jr c, .dummy
-.dummy
 	ld hl, wScriptFlags
 	res 0, [hl]
 	call StopScript

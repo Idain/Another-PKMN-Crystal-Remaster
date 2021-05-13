@@ -80,7 +80,6 @@ ENDM
 	dw .HOF_LoadBallsOntoMachine
 	dw .PlayHealMusic
 	dw .HOF_PlaySFX
-	dw .dummy_5 ; never encountered
 
 .LoadGFX:
 	call .LoadPalettes
@@ -128,9 +127,6 @@ ENDM
 	call WaitSFX
 	ld de, SFX_BOOT_PC
 	call PlaySFX
-	ret
-
-.dummy_5
 	ret
 
 .PC_ElmsLab_OAM:

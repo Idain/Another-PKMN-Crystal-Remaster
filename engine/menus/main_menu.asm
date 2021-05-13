@@ -40,15 +40,12 @@ MainMenu:
 	call LoadMenuHeader
 	call MainMenuJoypadLoop
 	call CloseWindow
-	jr c, .quit
+	ret c
 	call ClearTilemap
 	ld a, [wMenuSelection]
 	ld hl, .Jumptable
 	rst JumpTable
 	jr .loop
-
-.quit
-	ret
 
 .MenuHeader:
 	db MENU_BACKUP_TILES ; flags

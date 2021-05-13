@@ -89,8 +89,8 @@ _DebugRoom:
 ; entries correspond to DEBUGROOMMENUITEM_* constants
 	db "SP CLEAR@"
 	db "WIN WORK CLR@"
-	db "#MON GET!@"
-	db "#DEX COMP@"
+	db "POKéMON GET!@"
+	db "POKéDEX COMP@"
 	db "TIMER RESET@"
 	db "DECORATE ALL@"
 	db "ITEM GET!@"
@@ -1316,7 +1316,7 @@ DebugRoomMenu_PokemonGet_Page4Values:
 	paged_value wDebugRoomMonBox,           1,   NUM_BOXES,   $0e,            DebugRoom_BoxStructStrings.SendBox,   NULL,                       FALSE
 
 DebugRoom_BoxStructStrings:
-.Pokemon:   db "#MON@"
+.Pokemon:   db "POKéMON@"
 .Item:      db "ITEM@"
 .Move1:     db "MOVE 1@"
 .Move2:     db "MOVE 2@"

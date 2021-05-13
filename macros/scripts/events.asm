@@ -480,7 +480,6 @@ if _NARG == 0
 	refreshscreen 0
 else
 	db refreshscreen_command
-	db \1 ; dummy
 endc
 ENDM
 

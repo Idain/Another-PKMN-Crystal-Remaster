@@ -177,10 +177,6 @@ PlaceNextChar::
 	pop hl
 	ret
 
-DummyChar:: ; unreferenced
-	pop de
-	; fallthrough
-
 NextChar::
 	inc de
 	jp PlaceNextChar

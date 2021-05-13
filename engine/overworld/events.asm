@@ -248,8 +248,6 @@ PlayerEvents:
 	and a
 	ret nz
 
-	call Dummy_CheckScriptFlags2Bit5 ; This is a waste of time
-
 	call CheckTrainerBattle_GetPlayerEvent
 	jr c, .ok
 
@@ -393,12 +391,6 @@ SetMinTwoStepWildEncounterCooldown:
 	ret nc
 	ld a, 2
 	ld [wWildEncounterCooldown], a
-	ret
-
-Dummy_CheckScriptFlags2Bit5:
-	call CheckBit5_ScriptFlags2
-	ret z
-	call SetXYCompareFlags
 	ret
 
 RunSceneScript:
@@ -576,11 +568,6 @@ ObjectEventTypeArray:
 	dbw OBJECTTYPE_SCRIPT, .script
 	dbw OBJECTTYPE_ITEMBALL, .itemball
 	dbw OBJECTTYPE_TRAINER, .trainer
-	; the remaining four are dummy events
-	dbw OBJECTTYPE_3, .three
-	dbw OBJECTTYPE_4, .four
-	dbw OBJECTTYPE_5, .five
-	dbw OBJECTTYPE_6, .six
 	assert_table_length NUM_OBJECT_TYPES
 	db -1 ; end
 
@@ -612,22 +599,6 @@ ObjectEventTypeArray:
 	call TalkToTrainer
 	ld a, PLAYEREVENT_TALKTOTRAINER
 	scf
-	ret
-
-.three
-	xor a
-	ret
-
-.four
-	xor a
-	ret
-
-.five
-	xor a
-	ret
-
-.six
-	xor a
 	ret
 
 TryBGEvent:

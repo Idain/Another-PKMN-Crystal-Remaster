@@ -1,12 +1,3 @@
-Function8b342::
-; Loads the map data pointer, then runs through a
-; dw with three dummy functions. Spends a lot of energy
-; doing pretty much nothing.
-	call GetMapAttributesPointer
-	ld d, h
-	ld e, l
-	ret
-
 Function8b35d: ; unreferenced
 	ld a, h
 	cp d

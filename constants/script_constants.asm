@@ -134,12 +134,7 @@ NUM_BGEVENTS EQU const_value
 	const OBJECTTYPE_SCRIPT
 	const OBJECTTYPE_ITEMBALL
 	const OBJECTTYPE_TRAINER
-	const OBJECTTYPE_3
-	const OBJECTTYPE_4
-	const OBJECTTYPE_5
-	const OBJECTTYPE_6
 NUM_OBJECT_TYPES EQU const_value
-
 
 ; elevfloor macro values
 ; ElevatorFloorNames indexes (see data/events/elevator_floors.asm)

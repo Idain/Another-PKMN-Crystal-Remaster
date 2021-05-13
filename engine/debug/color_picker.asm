@@ -385,13 +385,13 @@ DebugColor_InitScreen:
 	ret
 
 .ShinyText:
-	db "レア", DEBUGTEST_BLACK, DEBUGTEST_BLACK, "@" ; Rare (shiny)
+	db "Shiny", DEBUGTEST_BLACK, DEBUGTEST_BLACK, "@" ; Rare (shiny)
 
 .NormalText:
-	db "ノーマル@" ; Normal
+	db "Normal@" ; Normal
 
 .SwitchText:
-	db DEBUGTEST_A, "きりかえ▶@" ; (A) Switches
+	db DEBUGTEST_A, "Switches▶@" ; (A) Switches
 
 DebugColor_LoadRGBMeter:
 	decoord 0, 11, wAttrmap
@@ -794,10 +794,10 @@ DebugColor_PrintTMHMMove:
 	ret
 
 .AbleText:
-	db "おぼえられる@" ; Learnable
+	db "Learnable@" ; Learnable
 
 .NotAbleText:
-	db "おぼえられない@" ; Not learnable
+	db "Not learnable@" ; Not learnable
 
 .GetNumberedTMHM:
 	cp NUM_TMS
@@ -1058,9 +1058,9 @@ DebugColor_PlaceCursor:
 	ret
 
 DebugColor_AreYouFinishedString:
-	db   "おわりますか？"                        ; Are you finished?
-	next "はい<DOT><DOT><DOT>", DEBUGTEST_A ; YES...(A)
-	next "いいえ<DOT><DOT>", DEBUGTEST_B     ; NO..(B)
+	db   "Are you done?"             ; Are you finished?
+	next "YES<DOT><DOT>", DEBUGTEST_A     ; YES..(A)
+	next "NO<DOT><DOT><DOT>", DEBUGTEST_B ; NO...(B)
 	db   "@"
 
 DebugColor_UpArrowGFX:
@@ -1435,10 +1435,4 @@ DebugTileset_CalculatePalette:
 	ld a, e
 	ld [hli], a
 	ld [hl], d
-	ret
-
-.dummy1: ; unreferenced
-	ret
-
-.dummy2: ; unreferenced
 	ret
