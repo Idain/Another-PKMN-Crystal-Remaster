@@ -32,7 +32,7 @@
 	const DEBUGCOLORMAIN_INITTMHM       ; 4
 	const DEBUGCOLORMAIN_TMHMJOYPAD     ; 5
 
-DebugColorPicker: ; unreferenced
+DebugColorPicker:
 ; A debug menu to test monster and trainer palettes at runtime.
 	ldh a, [hCGB]
 	and a
@@ -70,8 +70,13 @@ DebugColorPicker: ; unreferenced
 	jr .loop
 
 .exit
+	xor a
+	ld [wDebugColorIsTrainer], a
 	pop af
 	ldh [hInMenu], a
+	call LoadFontsExtra
+	call LoadStandardFont
+	call SetPalettes
 	ret
 
 DebugColor_InitMonOrTrainerColor:
@@ -356,7 +361,7 @@ DebugColor_InitScreen:
 .normal
 	ld de, .NormalText
 .place_text
-	hlcoord 7, 17
+	hlcoord 10, 17
 	call PlaceString
 	hlcoord 0, 17
 	ld de, .SwitchText
@@ -391,7 +396,7 @@ DebugColor_InitScreen:
 	db "Normal@" ; Normal
 
 .SwitchText:
-	db DEBUGTEST_A, "Switches▶@" ; (A) Switches
+	db DEBUGTEST_A, " Switch▶@" ; (A) Switches
 
 DebugColor_LoadRGBMeter:
 	decoord 0, 11, wAttrmap
@@ -708,6 +713,10 @@ DebugColor_InitTMHM:
 DebugColor_TMHMJoypad:
 	ld hl, hJoyPressed
 	ld a, [hl]
+	and A_BUTTON
+	jr nz, .exit
+
+	ld a, [hl]
 	and B_BUTTON
 	jr nz, .cancel
 	call .scroll
@@ -718,7 +727,7 @@ DebugColor_TMHMJoypad:
 	ld [wJumptableIndex], a
 	ret
 
-.exit ; unreferenced
+.exit
 	ld hl, wJumptableIndex
 	set 7, [hl]
 	ret
@@ -760,13 +769,13 @@ DebugColor_TMHMJoypad:
 	ret
 
 DebugColor_PrintTMHMMove:
-	hlcoord 10, 11
+	hlcoord 8, 11
 	call .ClearRow
-	hlcoord 10, 12
+	hlcoord 8, 12
 	call .ClearRow
-	hlcoord 10, 13
+	hlcoord 8, 13
 	call .ClearRow
-	hlcoord 10, 14
+	hlcoord 8, 14
 	call .ClearRow
 
 	ld a, [wDebugColorCurTMHM]
@@ -776,7 +785,7 @@ DebugColor_PrintTMHMMove:
 	ld a, [wTempTMHM]
 	ld [wPutativeTMHMMove], a
 	call GetMoveName
-	hlcoord 10, 12
+	hlcoord 8, 12
 	call PlaceString
 
 	ld a, [wDebugColorCurTMHM]
@@ -797,7 +806,7 @@ DebugColor_PrintTMHMMove:
 	db "Learnable@" ; Learnable
 
 .NotAbleText:
-	db "Not learnable@" ; Not learnable
+	db "Not Learn@" ; Not learnable
 
 .GetNumberedTMHM:
 	cp NUM_TMS
@@ -810,7 +819,7 @@ DebugColor_PrintTMHMMove:
 	ret
 
 .ClearRow:
-	ld bc, 10
+	ld bc, 12
 	ld a, DEBUGTEST_BLACK
 	call ByteFill
 	ret
@@ -1058,7 +1067,7 @@ DebugColor_PlaceCursor:
 	ret
 
 DebugColor_AreYouFinishedString:
-	db   "Are you done?"             ; Are you finished?
+	db   "Done?"             ; Are you finished?
 	next "YES<DOT><DOT>", DEBUGTEST_A     ; YES..(A)
 	next "NO<DOT><DOT><DOT>", DEBUGTEST_B ; NO...(B)
 	db   "@"
@@ -1072,7 +1081,12 @@ INCBIN "gfx/debug/color_test.2bpp"
 TilesetColorPicker: ; unreferenced
 ; A debug menu to test tileset palettes at runtime.
 ; dummied out
-	ret
+
+	call DisableLCD
+	call DebugColor_InitVRAM
+	call DebugColor_LoadGFX
+	call DebugColor_InitPalettes
+	call EnableLCD
 
 	xor a
 	ld [wJumptableIndex], a

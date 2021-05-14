@@ -418,6 +418,21 @@ YesNoBox::
 PlaceYesNoBox::
 	jr _YesNoBox
 
+
+ColorPickerOptionBox::
+	ld hl, ColorPickerOptionMenuHeader	
+	call LoadMenuHeader
+	call VerticalMenu
+	push af
+	ld c, $f
+	call DelayFrames
+	call CloseWindow
+	pop af
+	ret c ; Cancel
+	ld a, [wMenuCursorY]
+	ret
+
+
 PlaceGenericTwoOptionBox:: ; unreferenced
 	call LoadMenuHeader
 	jr InterpretTwoOptionMenu
@@ -428,11 +443,10 @@ _YesNoBox::
 	ld hl, YesNoMenuHeader
 	call CopyMenuHeader
 	pop bc
-; This seems to be an overflow prevention,
-; but it was coded wrong.
+; This seems to be an overflow prevention.
 	ld a, b
 	cp SCREEN_WIDTH - 1 - 5
-	jr nz, .okay ; should this be "jr nc"?
+	jr nc, .okay
 	ld a, SCREEN_WIDTH - 1 - 5
 	ld b, a
 
@@ -456,8 +470,8 @@ InterpretTwoOptionMenu::
 	pop af
 	jr c, .no
 	ld a, [wMenuCursorY]
-	cp 2 ; no
-	jr z, .no
+	dec a
+	jr nz, .no ; If it doesn't set Z, then [wMenuCursor] = 2
 	and a
 	ret
 
@@ -478,6 +492,20 @@ YesNoMenuHeader::
 	db 2
 	db "YES@"
 	db "NO@"
+
+
+ColorPickerOptionMenuHeader::
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 10, 7, 19, 11
+	dw .MenuData
+	db 1 ; default option
+
+.MenuData:
+	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
+	db 2
+	db "POKéMON@"
+	db "TRAINER@"
+
 
 OffsetMenuHeader::
 	call _OffsetMenuHeader

@@ -7,33 +7,35 @@ DEBUGROOMMENU_NUM_PAGES EQU const_value
 
 	; _DebugRoom.Strings and _DebugRoom.Jumptable indexes
 	const_def
-	const DEBUGROOMMENUITEM_SP_CLEAR     ; 00
-	const DEBUGROOMMENUITEM_WIN_WORK_CLR ; 01
-	const DEBUGROOMMENUITEM_POKEMON_GET  ; 02
-	const DEBUGROOMMENUITEM_POKEDEX_COMP ; 03
-	const DEBUGROOMMENUITEM_TIMER_RESET  ; 04
-	const DEBUGROOMMENUITEM_DECORATE_ALL ; 05
-	const DEBUGROOMMENUITEM_ITEM_GET     ; 06
-	const DEBUGROOMMENUITEM_RTC_EDIT     ; 07
-	const DEBUGROOMMENUITEM_NEXT         ; 08
-	const DEBUGROOMMENUITEM_GB_ID_SET    ; 09
-	const DEBUGROOMMENUITEM_BTL_REC_CLR  ; 0a
-	const DEBUGROOMMENUITEM_POKEDEX_CLR  ; 0b
-	const DEBUGROOMMENUITEM_HALT_CHK_CLR ; 0c
-	const DEBUGROOMMENUITEM_BATTLE_SKIP  ; 0d
-	const DEBUGROOMMENUITEM_HOF_CLEAR    ; 0e
-	const DEBUGROOMMENUITEM_ROM_CHECKSUM ; 0f
-	const DEBUGROOMMENUITEM_TEL_DEBUG    ; 10
-	const DEBUGROOMMENUITEM_SUM_RECALC   ; 11
-	const DEBUGROOMMENUITEM_RAM_FLAG_CLR ; 12
-	const DEBUGROOMMENUITEM_CHANGE_SEX   ; 13
-	const DEBUGROOMMENUITEM_BT_BUG_POKE  ; 14
+	const DEBUGROOMMENUITEM_SP_CLEAR     			; 00
+	const DEBUGROOMMENUITEM_WIN_WORK_CLR 			; 01
+	const DEBUGROOMMENUITEM_POKEMON_GET  			; 02
+	const DEBUGROOMMENUITEM_POKEDEX_COMP 			; 03
+	const DEBUGROOMMENUITEM_TIMER_RESET  			; 04
+	const DEBUGROOMMENUITEM_DECORATE_ALL 			; 05
+	const DEBUGROOMMENUITEM_ITEM_GET     			; 06
+	const DEBUGROOMMENUITEM_RTC_EDIT     			; 07
+	const DEBUGROOMMENUITEM_NEXT         			; 08
+	const DEBUGROOMMENUITEM_GB_ID_SET    			; 09
+	const DEBUGROOMMENUITEM_BTL_REC_CLR  			; 0a
+	const DEBUGROOMMENUITEM_POKEDEX_CLR  			; 0b
+	const DEBUGROOMMENUITEM_HALT_CHK_CLR 			; 0c
+	const DEBUGROOMMENUITEM_BATTLE_SKIP  			; 0d
+	const DEBUGROOMMENUITEM_HOF_CLEAR    			; 0e
+	const DEBUGROOMMENUITEM_ROM_CHECKSUM 			; 0f
+	const DEBUGROOMMENUITEM_TEL_DEBUG    			; 10
+	const DEBUGROOMMENUITEM_SUM_RECALC   			; 11
+	const DEBUGROOMMENUITEM_RAM_FLAG_CLR 			; 12
+	const DEBUGROOMMENUITEM_CHANGE_SEX   			; 13
+	const DEBUGROOMMENUITEM_BT_BUG_POKE  			; 14
+	const DEBUGROOMMENUITEM_COLOR_PICKER	 		; 15
+	const DEBUGROOMMENUITEM_TILESET_COLOR_PICKER    ; 16
 
 _DebugRoom:
-	ldh a, [hJoyDown]
-	and SELECT | START
-	cp SELECT | START
-	ret nz
+;	ldh a, [hJoyDown]
+;	and SELECT | START
+;	cp SELECT | START
+;	ret nz
 	ldh a, [hDebugRoomMenuPage]
 	push af
 	xor a
@@ -98,7 +100,7 @@ _DebugRoom:
 	db "NEXT@"
 	db "GB ID SET@"
 	db "BTL REC CLR@"
-	db "#DEX CLR@"
+	db "POKéDEX CLR@"
 	db "HALT CHK CLR@"
 	db "BATTLE SKIP@"
 	db "HOF CLEAR@"
@@ -108,6 +110,8 @@ _DebugRoom:
 	db "RAM FLAG CLR@"
 	db "CHANGE SEX@"
 	db "BT BUG POKE@"
+	db "COLOR PICKER@"
+	db "TILESET RGB@"
 
 .Jumptable:
 ; entries correspond to DEBUGROOMMENUITEM_* constants
@@ -132,6 +136,8 @@ _DebugRoom:
 	dw DebugRoomMenu_RAMFlagClr
 	dw DebugRoomMenu_ChangeSex
 	dw DebugRoomMenu_BTBugPoke
+	dw DebugRoomMenu_ColorPicker
+	dw DebugRoomMenu_TilesetColorPicker
 
 .MenuItems:
 ; entries correspond to DEBUGROOMMENU_* constants
@@ -161,12 +167,14 @@ _DebugRoom:
 	db -1
 
 	; DEBUGROOMMENU_PAGE_3
-	db 6
+	db 8
 	db DEBUGROOMMENUITEM_TEL_DEBUG
 	db DEBUGROOMMENUITEM_SUM_RECALC
 	db DEBUGROOMMENUITEM_RAM_FLAG_CLR
 	db DEBUGROOMMENUITEM_CHANGE_SEX
 	db DEBUGROOMMENUITEM_BT_BUG_POKE
+	db DEBUGROOMMENUITEM_COLOR_PICKER
+	db DEBUGROOMMENUITEM_TILESET_COLOR_PICKER
 	db DEBUGROOMMENUITEM_NEXT
 	db -1
 
@@ -1692,7 +1700,7 @@ DebugRoomMenu_BTBugPoke:
 	ret
 
 .NoBugMonText:
-	text "No bug #MON."
+	text "No bug #mon."
 	done
 
 .bug_mon:
@@ -1715,9 +1723,24 @@ DebugRoomMenu_BTBugPoke:
 	ret
 
 .ItsBugMonText:
-	text "It'", "s bug #MON!"
+	text "It'", "s bug #mon!"
 	next "No.    Clear flag?"
 	done
+
+DebugRoomMenu_ColorPicker:
+	call ColorPickerOptionBox
+	ret c ; Cancel
+	dec a
+	jr z, .pokemon
+; Trainer
+	ld [wDebugColorIsTrainer], a
+.pokemon
+	farcall DebugColorPicker
+	ret
+
+DebugRoomMenu_TilesetColorPicker:
+	farcall TilesetColorPicker
+	ret
 
 PrintHexNumber:
 ; Print the c-byte value from de to hl as hexadecimal digits.
