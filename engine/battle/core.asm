@@ -7587,8 +7587,7 @@ GiveExperiencePoints:
 	ret c
 
 	ld [wTempByteValue], a
-	ld hl, wEnemyMonBaseStats
-	ld c, wEnemyMonEnd - wEnemyMonBaseStats
+	ld hl, wEnemyMonBaseExp ; Only divide Exp, not EVs.
 .base_stat_division_loop
 	xor a
 	ldh [hDividend + 0], a
@@ -7599,9 +7598,7 @@ GiveExperiencePoints:
 	ld b, 2
 	call Divide
 	ldh a, [hQuotient + 3]
-	ld [hli], a
-	dec c
-	jr nz, .base_stat_division_loop
+	ld [hl], a
 	ret
 
 BoostExp:

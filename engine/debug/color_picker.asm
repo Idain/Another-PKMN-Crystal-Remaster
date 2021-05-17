@@ -396,7 +396,7 @@ DebugColor_InitScreen:
 	db "Normal@" ; Normal
 
 .SwitchText:
-	db DEBUGTEST_A, " Switch▶@" ; (A) Switches
+	db DEBUGTEST_A, DEBUGTEST_BLACK, "Switch▶@" ; (A) Switch
 
 DebugColor_LoadRGBMeter:
 	decoord 0, 11, wAttrmap
@@ -700,7 +700,7 @@ DebugColor_InitTMHM:
 	ld bc, SCREEN_WIDTH * 8
 	ld a, DEBUGTEST_BLACK
 	call ByteFill
-	hlcoord 2, 12
+	hlcoord 1, 12
 	ld de, DebugColor_AreYouFinishedString
 	call PlaceString
 	xor a
@@ -798,15 +798,15 @@ DebugColor_PrintTMHMMove:
 	jr nz, .place_string
 	ld de, .NotAbleText
 .place_string
-	hlcoord 10, 14
+	hlcoord 8, 14
 	call PlaceString
 	ret
 
 .AbleText:
-	db "Learnable@" ; Learnable
+	db "Can", DEBUGTEST_BLACK, "Learn@" ; Learnable"
 
 .NotAbleText:
-	db "Not Learn@" ; Not learnable
+	db "Can't", DEBUGTEST_BLACK, "Learn@"; Not learnable
 
 .GetNumberedTMHM:
 	cp NUM_TMS

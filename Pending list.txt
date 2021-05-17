@@ -2,6 +2,7 @@ Low Kick
 Beat Up
 Rage
 Spikes
+Substitute (y todas sus propiedades)
 
 
 * Añadir In-Game trades para obtener a Misdreavus, Murkrow y Houndour.

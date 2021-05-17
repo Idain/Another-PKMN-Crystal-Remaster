@@ -71,7 +71,7 @@ AI_Setup:
 
 ; 50% chance to greatly encourage stat-up moves during the first turn of enemy's Pokemon.
 ; 50% chance to greatly encourage stat-down moves during the first turn of player's Pokemon.
-; Almost 90% chance to greatly discourage stat-modifying moves otherwise.
+; Almost 80% chance to greatly discourage stat-modifying moves otherwise.
 
 	ld hl, wEnemyAIMoveScores - 1
 	ld de, wEnemyMonMoves
@@ -134,7 +134,7 @@ AI_Setup:
 
 .discourage
 	call Random
-	cp 12 percent
+	cp 20 percent - 1
 	jr c, .checkmove
 	inc [hl]
 	inc [hl]
@@ -3113,7 +3113,8 @@ AI_Status:
 .checkmove
 	dec b
 	ret z
-
+	
+	ld c, 0 ; Cleaning register c.
 	inc hl
 	ld a, [de]
 	and a
@@ -3152,7 +3153,28 @@ AI_Status:
 	cp EFFECT_PARALYZE
 	jr z, .paralysisimmunity
 
+; Discourage moves that either inflict status ailments or lower stats 
+; against a subtitute.
+; This check also applies for both Leech Seed and Swagger.
+	cp EFFECT_LEECH_SEED
+	jr z, .subs_check	
+	cp EFFECT_SWAGGER
+	jr z, .subs_check
+
+; Stat-lowering moves
+	cp EFFECT_ATTACK_DOWN
+	jr c, .powercheck
+	cp EFFECT_EVASION_DOWN + 1
+	jr c, .subs_check
+
+	cp EFFECT_ATTACK_DOWN_2
+	jr c, .powercheck
+	cp EFFECT_EVASION_DOWN_2 + 1
+	jr c, .subs_check
+
+.powercheck
 	ld a, [wEnemyMoveStruct + MOVE_POWER]
+	ld c, a ; Store Move's Power in c.
 	and a
 	jr z, .checkmove
 
@@ -3165,7 +3187,7 @@ AI_Status:
 	ld a, [wBattleMonType2]
 	cp ELECTRIC
 	jr z, .immune
-	jr .typeimmunity	
+	jr .typeimmunity
 	
 .poisonimmunity
 	ld a, [wBattleMonType1]
@@ -3174,7 +3196,8 @@ AI_Status:
 	ld a, [wBattleMonType2]
 	cp POISON
 	jr z, .immune
-	;fallthorugh
+	; fallthorugh
+
 .typeimmunity
 	push hl
 	push bc
@@ -3188,7 +3211,19 @@ AI_Status:
 
 	ld a, [wTypeMatchup]
 	and a
-	jr nz, .checkmove
+	jr z, .immune
+	; fallthrough
+
+; ** Substitute check starts here **
+.subs_check
+	ld a, BATTLE_VARS_SUBSTATUS4_OPP
+	call GetBattleVar
+	bit SUBSTATUS_SUBSTITUTE, a
+	jp z, .checkmove
+
+	ld a, c ; Load Move's Power back into a.
+	and a
+	jp nz, .checkmove
 
 .immune
 	call AIDiscourageMove
@@ -3220,7 +3255,7 @@ AI_Risky:
 	and a
 	jr z, .nextmove
 
-; Don't use risky moves at max hp.
+; Don't use risky moves at max HP.
 	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
 	ld de, 1
 	ld hl, RiskyEffects

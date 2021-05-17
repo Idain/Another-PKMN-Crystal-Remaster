@@ -661,16 +661,16 @@ BattleCommand_CheckObedience:
 
 	; If the monster's id doesn't match the player's,
 	; some conditions need to be met.
-	ld a, MON_ID
-	call BattlePartyAttr
-
-	ld a, [wPlayerID]
-	cp [hl]
-	jr nz, .obeylevel
-	inc hl
-	ld a, [wPlayerID + 1]
-	cp [hl]
-	ret z
+;	ld a, MON_ID
+;	call BattlePartyAttr
+;
+;	ld a, [wPlayerID]
+;	cp [hl]
+;	jr nz, .obeylevel
+;	inc hl
+;	ld a, [wPlayerID + 1]
+;	cp [hl]
+;	ret z
 
 .obeylevel
 	; The maximum obedience level is constrained by owned badges:
@@ -702,7 +702,7 @@ BattleCommand_CheckObedience:
 	jr nz, .getlevel
 
 	; no badges
-	ld a, 10
+	ld a, 15
 
 .getlevel
 ; c = obedience level
@@ -723,7 +723,7 @@ BattleCommand_CheckObedience:
 	ld b, $ff
 
 .checklevel
-; If the monster's level is lower than the obedience level, it will obey.
+; If the monster's level is lower than or equal to the obedience level, it will obey.
 	ld a, c
 	cp d
 	ret nc

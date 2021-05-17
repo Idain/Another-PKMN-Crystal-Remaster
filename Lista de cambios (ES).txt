@@ -13,6 +13,7 @@ CAMBIOS:
 - Removido modificador de medallas que boosteaban ataques y stats.
 
 - Obediencia: Ahora funciona como en HG/SS, con la Zephyr Badge afectando obediencia hasta el Nv. 20 y la Mineral Badge reemplazando a la Storm Badge para obediencia hasta Nv. 70.
+	-- El sistema ahora también afecta a los Pokémon que sean originalmente del jugador.
 
 - X Accuracy aumenta la precisión dos puntos (2x) en vez de uno (1.5x). Ahora puede usarse varias veces.
 
@@ -91,6 +92,7 @@ CAMBIOS:
 
 FIXES:
 - Algunos items no podían ser seleccionados/tenían el efecto equivocado.
+- Al final de la batalla, los EVs ganados se dividían entre los participantes en vez de que cada uno ganase el 100%. Esto causaba casos donde si eran muchos participantes todos ganaban 0 EVs.
 
 
 V1.1.2
