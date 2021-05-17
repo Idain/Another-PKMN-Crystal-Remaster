@@ -3153,13 +3153,15 @@ AI_Status:
 	cp EFFECT_PARALYZE
 	jr z, .paralysisimmunity
 
-; Discourage moves that either inflict status ailments or lower stats 
+; Discourage moves that inflict status ailments, confuse or lower stats 
 ; against a subtitute.
 ; This check also applies for both Leech Seed and Swagger.
 	cp EFFECT_LEECH_SEED
-	jr z, .subs_check	
+	jr z, .subs_check
 	cp EFFECT_SWAGGER
 	jr z, .subs_check
+	cp EFFECT_CONFUSE
+	jr z, .subs_check 
 
 ; Stat-lowering moves
 	cp EFFECT_ATTACK_DOWN
