@@ -3137,7 +3137,7 @@ AI_Status:
 
 	ld a, [wBattleMonType1]
 	cp GRASS
-	jr z, .immune
+	jp z, .immune
 	ld a, [wBattleMonType2]
 	cp GRASS
 	jr z, .immune

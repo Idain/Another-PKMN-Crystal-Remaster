@@ -24,6 +24,8 @@ CAMBIOS:
 - Mist ahora solo dura cinco turnos y el efecto no desaparece aunque cambiemos de Pokémon (Gen 3+).
 	-- Esto también afecta indirectamente el objeto Guard Spec.
 
+- Status: Ahora el estado Dormido dura entre 1-3 turnos (sin contar el turno donde el Pokémon fue afectado).
+
 - Mercados:
 	-- Los catálogos de los Poké Marts se irá expandiendo a medida que el jugador progrese en la historia. (Gen 4)
 	-- Los objetos Mails de la 2da Gen que solo se conseguían por evento ahora pueden ser comprados en Mt. Moon Square.

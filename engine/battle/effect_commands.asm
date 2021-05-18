@@ -3856,18 +3856,18 @@ BattleCommand_SleepTarget:
 	jr nz, .fail
 
 	call AnimateCurrentMove
-	ld b, SLP
+;	ld b, SLP
 ;	ld a, [wInBattleTowerBattle]
 ;	and a
 ;	jr z, .random_loop
-;	ld b, %011
+	ld b, 3
 
 .random_loop
 	call BattleRandom
 	and b
 	jr z, .random_loop
-	cp SLP 
-	jr z, .random_loop
+;	cp SLP 
+;	jr z, .random_loop
 	inc a
 	ld [de], a
 	call UpdateOpponentInParty
