@@ -255,8 +255,9 @@ PokeBallEffect:
 
 .get_multiplier_loop
 	ld a, [hli]
-	cp $ff
+	inc a
 	jr z, .skip_or_return_from_ball_fn
+	dec a
 	cp c
 	jr z, .call_ball_function
 	inc hl
@@ -1145,10 +1146,16 @@ VitaminEffect:
 
 	add hl, bc
 	ld a, [hl]
-	cp MAX_EV  ; 252
-	jr nc, NoEffectMessage
+	cp MAX_EV
+	jr z, NoEffectMessage
 
 	add 10
+	jr c, .ev_overflow
+	cp MAX_EV + 1
+	jr c, .got_ev
+.ev_overflow
+	ld a, MAX_EV
+.got_ev
 	ld [hl], a
 	call UpdateStatsAfterItem
 
@@ -1402,7 +1409,7 @@ IsItemUsedOnConfusedMon:
 	bit SUBSTATUS_CONFUSED, a
 	jr z, .nope
 	ld a, c
-	cp $ff
+	inc a
 	jr nz, .nope
 	scf
 	ret
@@ -1618,7 +1625,7 @@ EnergypowderEnergyRootCommon:
 	push bc
 	call ItemRestoreHP
 	pop bc
-	cp 0
+	and a
 	jr nz, .skip_happiness
 
 	farcall ChangeHappiness

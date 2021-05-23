@@ -1036,7 +1036,7 @@ DebugRoom_SaveItem:
 	ld a, [hl]
 	cp c
 	jr z, .found
-	cp -1
+	inc a
 	jr z, .not_found
 	inc hl
 	inc hl

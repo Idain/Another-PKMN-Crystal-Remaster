@@ -152,8 +152,9 @@ INCLUDE "data/events/unown_walls.asm"
 
 _DisplayUnownWords_FillAttr:
 	ld a, [de]
-	cp $ff
+	inc a
 	ret z
+	dec a
 	cp $60
 	ld a, VRAM_BANK_1 | PAL_BG_BROWN
 	jr c, .got_pal
@@ -183,8 +184,9 @@ _DisplayUnownWords_CopyWord:
 	push de
 .word_loop
 	ld a, [de]
-	cp $ff
+	inc a
 	jr z, .word_done
+	dec a
 	ld c, a
 	call .ConvertChar
 	inc hl

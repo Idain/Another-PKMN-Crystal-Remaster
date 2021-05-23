@@ -6,7 +6,7 @@ UpdateItemDescription:
 	ld c, SCREEN_WIDTH - 2
 	call Textbox
 	ld a, [wMenuSelection]
-	cp -1
+	inc a
 	ret z
 	decoord 1, 14
 	farcall PrintItemDescription

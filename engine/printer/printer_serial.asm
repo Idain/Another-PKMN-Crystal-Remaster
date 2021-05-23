@@ -185,10 +185,10 @@ Printer_CheckConnectionStatus:
 	and a
 	ret nz
 	ld a, [wPrinterHandshake]
-	cp $ff
+	inc a
 	jr nz, .printer_connected
 	ld a, [wPrinterStatusFlags]
-	cp $ff
+	inc a
 	jr z, .printer_error
 
 .printer_connected

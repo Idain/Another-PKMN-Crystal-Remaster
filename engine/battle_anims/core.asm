@@ -249,13 +249,14 @@ InitBattleAnimBuffer:
 	ld a, [hli]
 	ld d, a
 	ld a, [wBattleAnimTempFixY]
-	cp $ff
+	inc a
 	jr nz, .check_kinesis_softboiled_milkdrink
 	ld a, 5 * 8
 	add d
 	jr .done
 
 .check_kinesis_softboiled_milkdrink
+	dec a
 	sub d
 	push af
 	ld a, [wFXAnimID + 1]

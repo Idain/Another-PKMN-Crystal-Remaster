@@ -237,8 +237,9 @@ CheckAbleToSwitch:
 	ld c, a
 	call FindEnemyMonsWithASuperEffectiveMove
 	ld a, [wEnemyAISwitchScore]
-	cp $ff
+	inc a
 	ret z
+	dec a
 
 	ld b, a
 	ld a, e
@@ -551,8 +552,9 @@ FindEnemyMonsThatResistPlayer:
 
 .loop
 	ld a, [hli]
-	cp $ff
+	inc a
 	jr z, .done
+	dec a
 
 	push hl
 	ld [wCurSpecies], a
@@ -613,7 +615,7 @@ FindEnemyMonsWithAtLeastQuarterMaxHP:
 .loop
 	ld a, [de]
 	inc de
-	cp $ff
+	inc a
 	jr z, .done
 
 	push hl

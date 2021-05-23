@@ -62,9 +62,11 @@ InitMapNameSign::
 
 .CheckSpecialMap:
 ; These landmarks do not get pop-up signs.
-	cp -1
+	inc a ; Check if it's -1
 	ret z
-	cp LANDMARK_SPECIAL ; redundant check
+	dec a
+
+	and a ; cp LANDMARK_SPECIAL
 	ret z
 	cp LANDMARK_RADIO_TOWER
 	ret z

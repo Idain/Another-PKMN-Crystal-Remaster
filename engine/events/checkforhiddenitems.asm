@@ -94,7 +94,7 @@ ENDR
 	jr .loop
 .ok
 	ld a, [hli]
-	cp -1
+	inc a ; Comparison with -1
 	ld a, NO_ITEM
 	jr z, .done
 	ld a, [hli]

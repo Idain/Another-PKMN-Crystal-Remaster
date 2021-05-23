@@ -733,8 +733,9 @@ Printer_PrintBoxListSegment:
 	jp z, .max_length
 	dec c
 	ld a, [de]
-	cp $ff
+	inc a
 	jp z, .finish
+	dec a
 	ld [wNamedObjectIndex], a
 	ld [wCurPartySpecies], a
 

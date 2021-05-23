@@ -26,8 +26,9 @@ EvolveAfterBattle_MasterLoop:
 
 	inc hl
 	ld a, [hl]
-	cp $ff
+	inc a
 	jp z, .ReturnToMap
+	dec a
 
 	ld [wEvolutionOldSpecies], a
 

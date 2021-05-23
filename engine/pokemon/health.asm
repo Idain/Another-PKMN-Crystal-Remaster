@@ -4,8 +4,9 @@ HealParty:
 	ld hl, wPartySpecies
 .loop
 	ld a, [hli]
-	cp -1
+	inc a
 	jr z, .done
+	dec a
 	cp EGG
 	jr z, .next
 

@@ -1265,13 +1265,7 @@ BattleCommand_Stab:
 	pop bc
 	pop de
 	pop hl
-/*
-	push de
-	push bc
-	farcall DoBadgeTypeBoosts
-	pop bc
-	pop de
-*/
+
 	ld a, [wCurType]
 	cp b
 	jr z, .stab
@@ -1309,12 +1303,11 @@ BattleCommand_Stab:
 
 .TypesLoop:
 	ld a, [hli]
-
-	cp -1
+	inc a
 	jr z, .end
 
 	; foresight
-	cp -2
+	inc a
 	jr nz, .SkipForesightCheck
 	ld a, BATTLE_VARS_SUBSTATUS1_OPP
 	call GetBattleVar
@@ -1324,6 +1317,8 @@ BattleCommand_Stab:
 	jr .TypesLoop
 
 .SkipForesightCheck:
+	dec a
+	dec a
 	cp b
 	jr nz, .SkipType
 	ld a, [hl]
@@ -1432,9 +1427,9 @@ CheckTypeMatchup:
 	ld hl, TypeMatchups
 .TypesLoop:
 	ld a, [hli]
-	cp -1
+	inc a
 	jr z, .End
-	cp -2
+	inc a
 	jr nz, .Next
 	ld a, BATTLE_VARS_SUBSTATUS1_OPP
 	call GetBattleVar
@@ -1443,6 +1438,8 @@ CheckTypeMatchup:
 	jr .TypesLoop
 
 .Next:
+	dec a
+	dec a
 	cp d
 	jr nz, .Nope
 	ld a, [hli]
@@ -1660,14 +1657,12 @@ BattleCommand_CheckHit:
 
 .skip_brightpowder
 	ld a, b
-	cp -1
-	jr z, .Hit
+	inc a
+	ret z ; Hit
 
 	call BattleRandom
 	cp b
 	jr nc, .Miss
-
-.Hit:
 	ret
 
 .Miss:
@@ -2314,7 +2309,7 @@ GetFailureResultText:
 	ld hl, AttackMissedText
 	ld de, AttackMissed2Text
 	ld a, [wCriticalHit]
-	cp -1
+	inc a
 	jr nz, .got_text
 	ld hl, UnaffectedText
 .got_text
@@ -3237,8 +3232,9 @@ ConfusionDamageCalc:
 
 .NextItem:
 	ld a, [hli]
-	cp -1
+	inc a
 	jr z, .DoneItem
+	dec a
 
 ; Item effect
 	cp b

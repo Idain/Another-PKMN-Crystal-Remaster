@@ -21,7 +21,7 @@ TypeNames:
 	dw Normal
 	dw Normal
 	dw Normal
-	dw CurseType
+	dw Normal
 	assert_table_length UNUSED_TYPES_END
 	dw Fire
 	dw Water
@@ -38,7 +38,6 @@ Normal:    	db "Normal@"
 Fighting:  	db "Fighting@"
 Flying:    	db "Flying@"
 Poison:    	db "Poison@"
-CurseType: 	db "???@"
 Fire:      	db "Fire@"
 Water:     	db "Water@"
 Grass:     	db "Grass@"

@@ -45,10 +45,8 @@ BattleCommand_Conversion:
 	ld hl, wStringBuffer1
 .loop2
 	ld a, [hl]
-	cp -1
+	inc a
 	jr z, .fail
-	cp CURSE_TYPE
-	jr z, .next
 	ld a, [de]
 	cp [hl]
 	jr z, .next
@@ -74,9 +72,7 @@ BattleCommand_Conversion:
 	ld hl, wStringBuffer1
 	add hl, bc
 	ld a, [hl]
-	cp -1
-	jr z, .loop3
-	cp CURSE_TYPE
+	inc a
 	jr z, .loop3
 	ld a, [de]
 	cp [hl]

@@ -2860,8 +2860,9 @@ AIHasMoveInArray:
 
 .next
 	ld a, [hli]
-	cp -1
+	inc a
 	jr z, .done
+	dec a
 
 	ld b, a
 	ld c, NUM_MOVES + 1

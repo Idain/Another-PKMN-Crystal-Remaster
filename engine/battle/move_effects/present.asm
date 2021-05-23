@@ -23,8 +23,9 @@ BattleCommand_Present:
 	ld c, 0
 .next
 	ld a, [hli]
-	cp -1
+	inc a
 	jr z, .heal_effect
+	dec a
 	cp b
 	jr nc, .got_power
 	inc c
@@ -41,7 +42,7 @@ BattleCommand_Present:
 
 .heal_effect
 	pop bc
-	ld a, $3 ; heal animation
+	ld a, 3 ; heal animation
 	ld [wBattleAnimParam], a
 	call AnimateCurrentMove
 	call BattleCommand_SwitchTurn

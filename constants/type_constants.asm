@@ -18,8 +18,7 @@
 	const STEEL
 
 UNUSED_TYPES EQU const_value
-	const_next 19
-	const CURSE_TYPE
+	const_next 20
 UNUSED_TYPES_END EQU const_value
 
 	const FIRE

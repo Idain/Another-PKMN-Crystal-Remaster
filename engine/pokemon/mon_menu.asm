@@ -974,8 +974,9 @@ MoveScreenLoop:
 	ld hl, wPartySpecies
 	add hl, bc
 	ld a, [hl]
-	cp -1
+	inc a
 	jr z, .cycle_left
+	dec a
 	cp EGG
 	ret nz
 	jr .cycle_right
@@ -1286,8 +1287,9 @@ PlaceMoveScreenRightArrow:
 	add hl, de
 .loop
 	ld a, [hl]
-	cp -1
+	inc a
 	ret z
+	dec a
 	and a
 	jr z, .next
 	cp EGG

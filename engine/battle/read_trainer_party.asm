@@ -44,15 +44,14 @@ ReadTrainerParty:
 	jr z, .got_trainer
 .loop
 	ld a, [hli]
-	cp -1
+	inc a
 	jr nz, .loop
 	jr .skip_trainer
-.got_trainer
 
-.skip_name
+.got_trainer
 	ld a, [hli]
 	cp "@"
-	jr nz, .skip_name
+	jr nz, .got_trainer ; Skip name.
 
 	ld a, [hli]
 	ld c, a
@@ -93,8 +92,9 @@ TrainerType1:
 	ld l, e
 .loop
 	ld a, [hli]
-	cp $ff
+	inc a
 	ret z
+	dec a
 
 	ld [wCurPartyLevel], a
 	ld a, [hli]
@@ -112,8 +112,9 @@ TrainerType2:
 	ld l, e
 .loop
 	ld a, [hli]
-	cp $ff
+	inc a
 	ret z
+	dec a
 
 	ld [wCurPartyLevel], a
 	ld a, [hli]
@@ -188,8 +189,9 @@ TrainerType3:
 	ld l, e
 .loop
 	ld a, [hli]
-	cp $ff
+	inc a
 	ret z
+	dec a
 
 	ld [wCurPartyLevel], a
 	ld a, [hli]
@@ -216,8 +218,9 @@ TrainerType4:
 	ld l, e
 .loop
 	ld a, [hli]
-	cp $ff
+	inc a
 	ret z
+	dec a
 
 	ld [wCurPartyLevel], a
 	ld a, [hli]
@@ -368,7 +371,7 @@ GetTrainerName::
 
 .skip
 	ld a, [hli]
-	cp $ff
+	inc a
 	jr nz, .skip
 	jr .loop
 
@@ -420,15 +423,14 @@ SetTrainerBattleLevel:
 	jr z, .got_trainer
 .skip_party
 	ld a, [hli]
-	cp $ff
+	inc a
 	jr nz, .skip_party
 	jr .skip_trainer
-.got_trainer
 
-.skip_name
+.got_trainer
 	ld a, [hli]
 	cp "@"
-	jr nz, .skip_name
+	jr nz, .got_trainer ; Skip name.
 
 	inc hl
 	ld a, [hl]

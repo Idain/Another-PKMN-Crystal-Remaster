@@ -95,7 +95,7 @@ AnimateHallOfFame:
 	ld bc, wHallOfFameTempMon1End - wHallOfFameTempMon1
 	call AddNTimes
 	ld a, [hl]
-	cp -1
+	inc a
 	jr z, .done
 	push hl
 	call AnimateHOFMonEntrance
@@ -145,8 +145,9 @@ GetHallOfFameParty:
 	ld c, 0
 .next
 	ld a, [hli]
-	cp -1
+	inc a
 	jr z, .done
+	dec a
 	cp EGG
 	jr nz, .mon
 	inc c
@@ -349,7 +350,7 @@ _HallOfFamePC:
 	ld bc, wHallOfFameTempMon1End - wHallOfFameTempMon1
 	call AddNTimes
 	ld a, [hl]
-	cp -1
+	inc a
 	jr nz, .okay
 
 .fail

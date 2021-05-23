@@ -405,8 +405,9 @@ rept 5
 	add hl, de
 endr
 	ld a, [hli]
-	cp -1
+	inc a
 	jr z, .end
+	dec a
 	ld [wBattleTransitionSineWaveOffset], a
 	call .load
 	ld a, 1
@@ -503,8 +504,9 @@ ENDM
 	add hl, bc
 	ld a, [de]
 	inc de
-	cp -1
+	inc a
 	ret z
+	dec a
 	and a
 	jr z, .loop
 	ld c, a
@@ -818,8 +820,9 @@ StartTrainerBattle_ZoomToBlack:
 
 .loop
 	ld a, [de]
-	cp -1
+	inc a
 	jr z, .done
+	dec a
 	inc de
 	ld c, a
 	ld a, [de]

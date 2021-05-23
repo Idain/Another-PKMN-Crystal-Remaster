@@ -256,8 +256,9 @@ StartMenu::
 .MenuDesc:
 	push de
 	ld a, [wMenuSelection]
-	cp $ff
+	inc a
 	jr z, .none
+	dec a
 	call .GetMenuAccountTextPointer
 rept 4
 	inc hl
@@ -520,14 +521,15 @@ StartMenu_Pokemon:
 	jr c, .return ; if cancelled or pressed B
 
 	call PokemonActionSubmenu
-	cp 3
-	jr z, .menu
-	cp 0
+
+	and a
 	jr z, .choosemenu
-	cp 1
+	dec a
 	jr z, .menunoreload
-	cp 2
+	dec a
 	jr z, .quit
+	dec a
+	jr z, .menu
 
 .return
 	call CloseSubmenu

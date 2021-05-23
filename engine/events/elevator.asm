@@ -45,7 +45,7 @@ Elevator::
 	ld [de], a
 	inc de
 	add hl, bc
-	cp -1
+	inc a
 	jr nz, .loop
 	ret
 

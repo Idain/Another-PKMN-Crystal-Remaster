@@ -727,11 +727,11 @@ BattleBGEffect_RunPicResizeScript:
 	add hl, de
 	add hl, de
 	ld a, [hl]
-	cp -1
+	inc a
 	jr z, .end
-	cp -2
+	inc a
 	jr z, .clear
-	cp -3
+	inc a
 	jr z, .skip
 	call .PlaceGraphic
 .skip
@@ -1183,7 +1183,7 @@ BattleBGEffect_DoubleTeam:
 	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
 	add hl, bc
 	ld a, [hl]
-	ld d, $2
+	ld d, 2
 	call BattleBGEffects_Sine
 	ld hl, BG_EFFECT_STRUCT_PARAM
 	add hl, bc
@@ -1192,7 +1192,7 @@ BattleBGEffect_DoubleTeam:
 	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
 	add hl, bc
 	ld a, [hl]
-	add $4
+	add 4
 	ld [hl], a
 
 .four
@@ -2617,9 +2617,9 @@ BattleBGEffect_GetNextDMGPal:
 	ld h, 0
 	add hl, de
 	ld a, [hl]
-	cp -1
+	inc a
 	jr z, .quit
-	cp -2
+	inc a
 	jr nz, .repeat
 	ld a, [de]
 	ld hl, BG_EFFECT_STRUCT_PARAM

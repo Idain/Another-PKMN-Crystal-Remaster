@@ -141,7 +141,7 @@ LoadBattleAnimGFX:
 	ld a, [hli]
 	cp b ; did we find the current ball?
 	jr z, .done
-	cp -1 ; did we reach the end of the list?
+	inc a ; did we reach the end of the list?
 	jr z, .done
 rept PAL_COLOR_SIZE * 2
 	inc hl ; skip over the two RGB colors to the next entry

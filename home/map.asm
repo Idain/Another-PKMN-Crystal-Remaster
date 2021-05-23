@@ -753,8 +753,9 @@ ChangeMap::
 FillMapConnections::
 ; North
 	ld a, [wNorthConnectedMapGroup]
-	cp $ff
+	inc a
 	jr z, .South
+	dec a
 	ld b, a
 	ld a, [wNorthConnectedMapNumber]
 	ld c, a
@@ -776,8 +777,9 @@ FillMapConnections::
 
 .South:
 	ld a, [wSouthConnectedMapGroup]
-	cp $ff
+	inc a
 	jr z, .West
+	dec a
 	ld b, a
 	ld a, [wSouthConnectedMapNumber]
 	ld c, a
@@ -799,8 +801,9 @@ FillMapConnections::
 
 .West:
 	ld a, [wWestConnectedMapGroup]
-	cp $ff
+	inc a
 	jr z, .East
+	dec a
 	ld b, a
 	ld a, [wWestConnectedMapNumber]
 	ld c, a
@@ -822,8 +825,9 @@ FillMapConnections::
 
 .East:
 	ld a, [wEastConnectedMapGroup]
-	cp $ff
+	inc a
 	jr z, .Done
+	dec a
 	ld b, a
 	ld a, [wEastConnectedMapNumber]
 	ld c, a
