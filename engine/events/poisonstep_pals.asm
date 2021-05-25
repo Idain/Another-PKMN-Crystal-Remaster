@@ -1,12 +1,4 @@
 LoadPoisonBGPals:
-	call .LoadPals
-	ldh a, [hCGB]
-	and a
-	ret nz
-	; code was probably dummied out here
-	ret
-
-.LoadPals:
 	ldh a, [hCGB]
 	and a
 	jr nz, .cgb

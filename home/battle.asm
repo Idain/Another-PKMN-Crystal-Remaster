@@ -104,8 +104,7 @@ UpdateOpponentInParty::
 UpdateUserInParty::
 	ldh a, [hBattleTurn]
 	and a
-	jr z, UpdateBattleMonInParty
-	jr UpdateEnemyMonInParty
+	jr nz, UpdateEnemyMonInParty
 
 UpdateBattleMonInParty::
 ; Update level, status, current HP
@@ -198,8 +197,7 @@ BattleTextbox::
 	call UpdateSprites
 	call ApplyTilemap
 	pop hl
-	call PrintTextboxText
-	ret
+	jp PrintTextboxText
 
 StdBattleTextbox::
 ; Open a textbox and print battle text at 20:hl.

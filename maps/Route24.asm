@@ -13,7 +13,7 @@ Route24RocketScript:
 	writetext Route24RocketSeenText
 	waitbutton
 	closetext
-	winlosstext Route24RocketBeatenText, -1
+	winlosstext Route24RocketBeatenText, 0
 	loadtrainer GRUNTM, GRUNTM_31
 	startbattle
 	dontrestartmapmusic
@@ -36,7 +36,7 @@ Route24RocketScript:
 
 Route24RocketSeenText:
 	text "Hey, kid! Me am a"
-	line "TEAM ROCKET member"
+	line "Team Rocket member"
 	cont "kind of guy!"
 
 	para "Come from another"
@@ -77,25 +77,25 @@ Route24RocketAfterBattleText:
 	text "OK. Tell you mine"
 	line "secret will I."
 
-	para "MACHINE PART steal"
+	para "Machine Part steal"
 	line "by me, hide it I"
 
-	para "did in GYM of the"
-	line "CERULEAN."
+	para "did in Gym of the"
+	line "Cerulean."
 
 	para "Inside water put"
 	line "it I did. Look for"
 
 	para "in water center of"
-	line "GYM at."
+	line "Gym at."
 
 	para "But you forget me"
 	line "not!"
 
 	para "Beat you for sure"
-	line "will TEAM ROCKET."
+	line "will Team Rocket."
 
-	para "Come from JOHTO"
+	para "Come from Johto"
 	line "will they, mine"
 
 	para "friends, yes. Will"
@@ -105,8 +105,8 @@ Route24RocketAfterBattleText:
 Route24RocketDisappearsText:
 	text "…"
 
-	para "You say what? TEAM"
-	line "ROCKET bye-bye a"
+	para "You say what? Team"
+	line "Rocket bye-bye a"
 
 	para "go-go? Broken it"
 	line "is says you?"

@@ -14,15 +14,13 @@ Function49f16:
 	ld c, 12
 	call DelayFrames
 	hlcoord 4, 0
-	ld b, 10
-	ld c, 10
+	lb bc, 10, 10
 	call Function48cdc
 	hlcoord 6, 2
 	ld de, MobileString1
 	call PlaceString
 	hlcoord 0, 12
-	ld b, 4
-	ld c, SCREEN_HEIGHT
+	lb bc, 4, SCREEN_HEIGHT
 	call Textbox
 	xor a
 	ld de, String_0x49fe9
@@ -69,8 +67,7 @@ Function49f16:
 	ld a, MUSIC_MAIN_MENU
 	ld [wMapMusic], a
 	ld de, MUSIC_MAIN_MENU
-	call Function4a6c5
-	ret
+	jp Function4a6c5
 
 .next
 	ld hl, wMenuCursorY
@@ -81,8 +78,7 @@ Function49f16:
 	ld d, h
 	ld e, l
 	hlcoord 1, 13
-	ld b, 4
-	ld c, SCREEN_HEIGHT
+	lb bc, 4, SCREEN_HEIGHT
 	call ClearBox
 	hlcoord 1, 14
 	call PlaceString
@@ -91,8 +87,7 @@ Function49f16:
 	pop bc
 	ld hl, wMenuCursorY
 	ld [hl], b
-	ld b, $a
-	ld c, $1
+	lb bc, 10, 1
 	hlcoord 5, 1
 	call ClearBox
 	jp .joy_loop
@@ -158,7 +153,7 @@ Function4a098:
 	call WaitBGMap
 	call LoadStandardMenuHeader
 	farcall Function89de0
-	call Call_ExitMenu
+	call ExitMenu
 	call MG_Mobile_Layout_LoadPals
 	call Function4a485
 	pop bc
@@ -190,7 +185,7 @@ Function4a0c2:
 	pop af
 	and a
 	jr nz, .skip_save
-	farcall _SaveData
+	farcall SaveData
 .skip_save
 	ld c, 5
 	call DelayFrames
@@ -243,15 +238,13 @@ Function4a13b:
 
 Function4a149:
 	hlcoord 1, 2
-	ld b, $6
-	ld c, $10
+	lb bc, 6, 16
 	call Function48cdc
 	hlcoord 3, 4
 	ld de, String_4a1ef
 	call PlaceString
 	hlcoord 0, 12
-	ld b, $4
-	ld c, $12
+	lb bc, 4, 18
 	call Textbox
 	ld a, [wMenuCursorY]
 	dec a
@@ -260,8 +253,7 @@ Function4a149:
 	ld d, h
 	ld e, l
 	hlcoord 1, 13
-	ld b, $4
-	ld c, $12
+	lb bc, 4, 18
 	call ClearBox
 	hlcoord 1, 14
 	call PlaceString
@@ -288,9 +280,9 @@ asm_4a19d:
 .asm_4a1a7
 	ld hl, wMenuCursorY
 	ld a, [hl]
-	cp $1
+	dec a
 	jp z, Function4a20e
-	cp $2
+	dec a
 	jp z, Function4a221
 	ld a, $1
 	call MenuClickSound
@@ -306,12 +298,10 @@ asm_4a19d:
 	ld d, h
 	ld e, l
 	hlcoord 1, 13
-	ld b, $4
-	ld c, $12
+	lb bc, 4, 18
 	call ClearBox
 	hlcoord 1, 14
 	call PlaceString
-	jr .asm_4a1db
 .asm_4a1db
 	call Function4a373
 	pop bc
@@ -328,7 +318,7 @@ String_4a1ef:
 	next "もどる@"
 
 Function4a20e:
-	ld a, $1
+	ld a, 1
 	call MenuClickSound
 	farcall Function1719c8
 	call ClearBGPalettes
@@ -336,14 +326,13 @@ Function4a20e:
 	jr Function4a239
 
 Function4a221:
-	ld a, $1
+	ld a, 1
 	call MenuClickSound
 	call Function4a28a
 	jr c, Function4a239
 	call Function4a373
-	ld a, $2
+	ld a, 2
 	ld [wMenuCursorY], a
-	jr .asm_4a235
 .asm_4a235
 	pop bc
 	jp Function4a149
@@ -371,15 +360,14 @@ Function4a28a:
 	call PlaceHollowCursor
 	call WaitBGMap
 	call LoadStandardMenuHeader
-	ld a, $5
+	ld a, 5
 	call OpenSRAM
 	ld a, [$aa4b]
 	call CloseSRAM
 	and a
 	jr z, .asm_4a2df
 	hlcoord 12, 0
-	ld b, $5
-	ld c, $6
+	lb bc, 5, 6
 	call Function48cdc
 	hlcoord 14, 1
 	ld de, String_4a34b
@@ -393,14 +381,14 @@ Function4a28a:
 	bit B_BUTTON_F, a
 	jr nz, .quit
 	ld a, [wMenuCursorY]
-	cp $2
+	cp 2
 	jr z, .DeleteLoginPassword
-	cp $3
+	cp 3
 	jr z, .quit
 .asm_4a2df
 	farcall Function11765d
 	call ClearBGPalettes
-	call Call_ExitMenu
+	call ExitMenu
 	call LoadFontsExtra
 	scf
 	ret
@@ -410,8 +398,7 @@ Function4a28a:
 	ld hl, DeleteSavedLoginPasswordText
 	call PrintText
 	hlcoord 14, 7
-	ld b, 3
-	ld c, 4
+	lb bc, 3, 4 
 	call Textbox
 	farcall Mobile_OpenAndCloseMenu_HDMATransferTilemapAndAttrmap
 	ld hl, DeletePassword_YesNo_MenuHeader
@@ -420,7 +407,7 @@ Function4a28a:
 	bit B_BUTTON_F, a
 	jr nz, .dont_delete_password
 	ld a, [wMenuCursorY]
-	cp $2
+	cp 2
 	jr z, .dont_delete_password
 	ld a, BANK(sMobileLoginPassword)
 	call OpenSRAM
@@ -435,7 +422,7 @@ Function4a28a:
 .dont_delete_password
 	call ExitMenu
 .quit
-	call Call_ExitMenu
+	call ExitMenu
 	farcall Mobile_OpenAndCloseMenu_HDMATransferTilemapAndAttrmap
 	xor a
 	ret
@@ -500,8 +487,7 @@ Function4a39a: ; unreferenced
 	call Function4a485
 	call Function4a492
 	call Function4a3aa
-	call SetPalettes
-	ret
+	jp SetPalettes
 
 Function4a3a7:
 	call Function4a485
@@ -565,8 +551,7 @@ Function4a3aa:
 	call Function4a6d8
 	lb bc, 1, 1
 	ld a, " "
-	call Function4a6d8
-	ret
+	jp Function4a6d8
 
 Function4a449: ; unreferenced
 	ld bc, 3 * SCREEN_WIDTH
@@ -590,19 +575,16 @@ Function4a449: ; unreferenced
 	call ByteFill
 	ld bc, SCREEN_WIDTH
 	ld a, " "
-	call ByteFill
-	ret
+	jp ByteFill
 
 Function4a485:
 	ld de, MobileMenuGFX
 	ld hl, vTiles2 tile $00
 	lb bc, BANK(MobileMenuGFX), 13
-	call Get2bpp
-	ret
+	jp Get2bpp
 
 Function4a492:
-	call _CrystalCGB_MobileLayout0
-	ret
+	jp _CrystalCGB_MobileLayout0
 
 MainMenu_MobileStudium:
 	ld a, [wStartDay]
@@ -638,8 +620,7 @@ Function4a4c4:
 	ld c, 20
 	call DelayFrames
 	hlcoord 2, 0
-	ld b, $a
-	ld c, $e
+	lb bc, 10, 14
 	call Function48cdc
 	hlcoord 4, 2
 	ld de, String_4a5c5
@@ -657,8 +638,7 @@ Function4a4c4:
 	ld de, String_4a5f2
 	call PlaceString
 	hlcoord 0, 12
-	ld b, $4
-	ld c, $12
+	lb bc, 4, 18
 	call Textbox
 	xor a
 	ld hl, Strings_4a5f6
@@ -666,7 +646,7 @@ Function4a4c4:
 	ld e, l
 	hlcoord 1, 14
 	call PlaceString
-	ld a, $1
+	ld a, 1
 	ld hl, Strings_4a5f6
 	call GetNthString
 	ld d, h
@@ -722,8 +702,7 @@ asm_4a54d:
 	ld d, h
 	ld e, l
 	hlcoord 1, 13
-	ld b, $4
-	ld c, $12
+	lb bc, 4, 18
 	call ClearBox
 	hlcoord 1, 14
 	call PlaceString
@@ -735,15 +714,13 @@ asm_4a54d:
 	ld e, l
 	hlcoord 1, 16
 	call PlaceString
-	jp Function4a5b0
 
 Function4a5b0:
 	call Function4a680
 	pop bc
 	ld hl, wMenuCursorY
 	ld [hl], b
-	ld b, $a
-	ld c, $1
+	lb bc, 10, 1
 	hlcoord 3, 1
 	call ClearBox
 	jp Function4a545
@@ -821,8 +798,7 @@ Function4a6c5:
 	ld a, d
 	ld [wMusicFadeID + 1], a
 	ld c, 22
-	call DelayFrames
-	ret
+	jp DelayFrames
 
 Function4a6d8:
 	push bc

@@ -53,6 +53,6 @@ SubtractAbsolute:: ; unreferenced
 	sub b
 	ret nc
 	cpl
-	add 1
+	inc a
 	scf
 	ret

@@ -18,7 +18,6 @@ SaveMenu:
 
 .refused
 	call ExitMenu
-	call GSReloadPalettes
 	farcall SaveMenu_CopyTilemapAtOnce
 	scf
 	ret
@@ -33,8 +32,7 @@ SaveAfterLinkTrade:
 	call SaveBackupChecksum
 	farcall BackupPartyMonMail
 	farcall SaveRTC
-	call ResumeGameLogic
-	ret
+	jp ResumeGameLogic
 
 ChangeBoxSaveGame:
 	push de
@@ -62,13 +60,11 @@ ChangeBoxSaveGame:
 
 Link_SaveGame:
 	call AskOverwriteSaveFile
-	jr c, .refused
+	ret c
 	call PauseGameLogic
 	call _SavingDontTurnOffThePower
 	call ResumeGameLogic
 	and a
-
-.refused
 	ret
 
 MoveMonWOMail_SaveGame:
@@ -79,8 +75,7 @@ MoveMonWOMail_SaveGame:
 	ld a, e
 	ld [wCurBox], a
 	call LoadBox
-	call ResumeGameLogic
-	ret
+	jr ResumeGameLogic
 
 MoveMonWOMail_InsertMon_SaveGame:
 	call PauseGameLogic
@@ -109,10 +104,7 @@ MoveMonWOMail_InsertMon_SaveGame:
 	call LoadBox
 	call ResumeGameLogic
 	ld de, SFX_SAVE
-	call PlaySFX
-	ld c, 24
-	call DelayFrames
-	ret
+	jp PlaySFX
 
 StartMoveMonWOMail_SaveGame:
 	ld hl, MoveMonWOMailSaveText
@@ -160,34 +152,20 @@ AddHallOfFameEntry:
 	ld de, sHallOfFame
 	ld bc, wHallOfFamePokemonListEnd - wHallOfFamePokemonList + 1
 	call CopyBytes
-	call CloseSRAM
-	ret
-
-SaveGameData:
-	call _SaveGameData
-	ret
+	jp CloseSRAM
 
 AskOverwriteSaveFile:
 	ld a, [wSaveFileExists]
 	and a
 	jr z, .erase
 	call CompareLoadedAndSavedPlayerID
-	jr z, .yoursavefile
+	ret z ; pretend the player answered "Yes", but without asking
 	ld hl, AnotherSaveFileText
 	call SaveTheGame_yesorno
 	jr nz, .refused
-	jr .erase
-
-.yoursavefile
-	ld hl, AlreadyASaveFileText
-	call SaveTheGame_yesorno
-	jr nz, .refused
-	jr .ok
 
 .erase
 	call ErasePreviousSave
-
-.ok
 	and a
 	ret
 
@@ -205,7 +183,6 @@ SaveTheGame_yesorno:
 	dec a
 	call CloseWindow
 	push af
-	call GSReloadPalettes
 	pop af
 	and a
 	ret
@@ -228,15 +205,12 @@ CompareLoadedAndSavedPlayerID:
 _SavingDontTurnOffThePower:
 	call SavingDontTurnOffThePower
 SavedTheGame:
-	call _SaveGameData
-	; wait 32 frames
-	ld c, 32
-	call DelayFrames
+	call SaveGameData
 	; copy the original text speed setting to the stack
 	ld a, [wOptions]
 	push af
-	; set text speed to medium
-	ld a, TEXT_DELAY_MED
+	; set text speed to fast
+	ld a, TEXT_DELAY_FAST
 	ld [wOptions], a
 	; <PLAYER> saved the game!
 	ld hl, SavedTheGameText
@@ -246,13 +220,9 @@ SavedTheGame:
 	ld [wOptions], a
 	ld de, SFX_SAVE
 	call WaitPlaySFX
-	call WaitSFX
-	; wait 30 frames
-	ld c, 30
-	call DelayFrames
-	ret
+	jp WaitSFX
 
-_SaveGameData:
+SaveGameData:
 	ld a, TRUE
 	ld [wSaveFileExists], a
 	farcall StageRTCTimeForSave
@@ -280,8 +250,7 @@ _SaveGameData:
 	xor a
 	ld [sBattleTowerChallengeState], a
 .ok
-	call CloseSRAM
-	ret
+	jp CloseSRAM
 
 UpdateStackTop:
 ; sStackTop appears to be unused.
@@ -299,17 +268,14 @@ UpdateStackTop:
 	sub l
 	ld a, d
 	sbc h
-	jr c, .done
+	jp c, CloseSRAM
 
 .update
 	ld a, l
 	ld [sStackTop + 0], a
 	ld a, h
 	ld [sStackTop + 1], a
-
-.done
-	call CloseSRAM
-	ret
+	jp CloseSRAM
 
 FindStackTop:
 ; Find the furthest point that sp has traversed to.
@@ -332,8 +298,8 @@ SavingDontTurnOffThePower:
 	; Save the text speed setting to the stack
 	ld a, [wOptions]
 	push af
-	; Set the text speed to medium
-	ld a, TEXT_DELAY_MED
+	; Set the text speed to fast
+	ld a, TEXT_DELAY_FAST
 	ld [wOptions], a
 	; SAVING... DON'T TURN OFF THE POWER.
 	ld hl, SavingDontTurnOffThePowerText
@@ -341,10 +307,9 @@ SavingDontTurnOffThePower:
 	; Restore the text speed setting
 	pop af
 	ld [wOptions], a
-	; Wait for 16 frames
-	ld c, 16
-	call DelayFrames
-	ret
+	; Wait for 8 frames
+	ld c, 8
+	jp DelayFrames
 
 ErasePreviousSave:
 	call EraseBoxes
@@ -411,10 +376,6 @@ EraseBattleTowerStatus:
 	xor a
 	ld [sBattleTowerChallengeState], a
 	jp CloseSRAM
-
-SaveData:
-	call _SaveData
-	ret
 
 Function14d6c: ; unreferenced
 	ld a, BANK(s4_a60b) ; MBC30 bank used by JP Crystal; inaccessible by MBC3
@@ -807,7 +768,7 @@ VerifyBackupChecksum:
 	pop af
 	ret
 
-_SaveData:
+SaveData:
 	; This is called within two scenarios:
 	;   a) ErasePreviousSave (the process of erasing the save from a previous game file)
 	;   b) unused mobile functionality
@@ -825,11 +786,11 @@ _SaveData:
 	; garbage from wd479. This isn't an issue, since ErasePreviousSave is followed by a regular
 	; save that unwrites the garbage.
 
-	ld hl, wd479
-	ld a, [hli]
-	ld [s4_a60e + 0], a
-	ld a, [hli]
-	ld [s4_a60e + 1], a
+;	ld hl, wd479
+;	ld a, [hli]
+;	ld [s4_a60e + 0], a
+;	ld a, [hli]
+;	ld [s4_a60e + 1], a
 
 	jp CloseSRAM
 
@@ -841,14 +802,14 @@ _LoadData:
 	ld bc, wCrystalDataEnd - wCrystalData
 	call CopyBytes
 
-	; This block originally had some mobile functionality to mirror _SaveData above, but instead it
+	; This block originally had some mobile functionality to mirror SaveData above, but instead it
 	; (harmlessly) writes the aforementioned wEventFlags to the unused wd479.
 
-	ld hl, wd479
-	ld a, [s4_a60e + 0]
-	ld [hli], a
-	ld a, [s4_a60e + 1]
-	ld [hli], a
+;	ld hl, wd479
+;	ld a, [s4_a60e + 0]
+;	ld [hli], a
+;	ld a, [s4_a60e + 1]
+;	ld [hli], a
 
 	jp CloseSRAM
 
@@ -1099,10 +1060,6 @@ SavingDontTurnOffThePowerText:
 
 SavedTheGameText:
 	text_far _SavedTheGameText
-	text_end
-
-AlreadyASaveFileText:
-	text_far _AlreadyASaveFileText
 	text_end
 
 AnotherSaveFileText:

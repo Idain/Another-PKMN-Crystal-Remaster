@@ -2,8 +2,7 @@ FieldMoveJumptableReset:
 	xor a
 	ld hl, wFieldMoveData
 	ld bc, wFieldMoveDataEnd - wFieldMoveData
-	call ByteFill
-	ret
+	jp ByteFill
 
 FieldMoveJumptable:
 	ld a, [wFieldMoveJumptableIndex]
@@ -30,8 +29,7 @@ GetPartyNickname:
 ; copy text from wStringBuffer2 to wStringBuffer3
 	ld de, wStringBuffer2
 	ld hl, wStringBuffer3
-	call CopyName2
-	ret
+	jp CopyName2
 
 CheckEngineFlag:
 ; Check engine flag de
@@ -75,8 +73,9 @@ CheckPartyMove:
 	ld a, [hl]
 	and a
 	jr z, .no
-	cp -1
+	inc a
 	jr z, .no
+	dec a
 	cp EGG
 	jr z, .next
 
@@ -107,8 +106,7 @@ CheckPartyMove:
 
 FieldMoveFailed:
 	ld hl, .CantUseItemText
-	call MenuTextboxBackup
-	ret
+	jp MenuTextboxBackup
 
 .CantUseItemText:
 	text_far _CantUseItemText
@@ -230,8 +228,7 @@ CutDownTreeOrGrass:
 	call GetMovementPermissions
 	call UpdateSprites
 	call DelayFrame
-	call LoadStandardFont
-	ret
+	jp LoadStandardFont
 
 CheckOverworldTileArrays:
 	; Input: c contains the tile you're facing
@@ -561,8 +558,7 @@ FlyFunction:
 	jr c, .nostormbadge
 	call GetMapEnvironment
 	call CheckOutdoorMap
-	jr z, .outdoors
-	jr .indoors
+	jr nz, .indoors
 
 .outdoors
 	xor a
@@ -571,14 +567,15 @@ FlyFunction:
 	call ClearSprites
 	farcall _FlyMap
 	ld a, e
-	cp -1
+	inc a
 	jr z, .illegal
+	dec a
 	cp NUM_SPAWNS
 	jr nc, .illegal
 
 	ld [wDefaultSpawnpoint], a
 	call CloseWindow
-	ld a, $1
+	ld a, 1
 	ret
 
 .nostormbadge
@@ -586,7 +583,7 @@ FlyFunction:
 	ret
 
 .indoors
-	ld a, $2
+	ld a, 2
 	ret
 
 .illegal
@@ -889,8 +886,7 @@ TeleportFunction:
 .TryTeleport:
 	call GetMapEnvironment
 	call CheckOutdoorMap
-	jr z, .CheckIfSpawnPoint
-	jr .nope
+	jr nz, .nope
 
 .CheckIfSpawnPoint:
 	ld a, [wLastSpawnMapGroup]
@@ -901,11 +897,11 @@ TeleportFunction:
 	jr nc, .nope
 	ld a, c
 	ld [wDefaultSpawnpoint], a
-	ld a, $1
+	ld a, 1
 	ret
 
 .nope
-	ld a, $2
+	ld a, 2
 	ret
 
 .DoTeleport:
@@ -997,8 +993,7 @@ SetStrengthFlag:
 	add hl, de
 	ld a, [hl]
 	ld [wStrengthSpecies], a
-	call GetPartyNickname
-	ret
+	jp GetPartyNickname
 
 Script_StrengthFromMenu:
 	reloadmappart
@@ -1076,8 +1071,6 @@ TryStrengthOW:
 
 .already_using
 	xor a
-	jr .done
-
 .done
 	ld [wScriptVar], a
 	ret
@@ -1185,8 +1178,7 @@ DisappearWhirlpool:
 	ld e, a
 	farcall PlayWhirlpoolSound
 	call BufferScreen
-	call GetMovementPermissions
-	ret
+	jp GetMovementPermissions
 
 TryWhirlpoolOW::
 	ld d, WHIRLPOOL
@@ -1424,7 +1416,6 @@ HasRockSmash:
 	jr .done
 .yes
 	xor a
-	jr .done
 .done
 	ld [wScriptVar], a
 	ret
@@ -1610,8 +1601,7 @@ PutTheRodAway:
 	ld a, $1
 	ld [wPlayerAction], a
 	call UpdateSprites
-	call UpdatePlayerSprite
-	ret
+	jp UpdatePlayerSprite
 
 RodBiteText:
 	text_far _RodBiteText
@@ -1656,7 +1646,7 @@ BikeFunction:
 	ld a, e
 	ld [wMapMusic], a
 	call PlayMusic
-	ld a, $1
+	ld a, 1
 	ret
 
 .GetOffBike:
@@ -1674,12 +1664,12 @@ BikeFunction:
 	jr .done
 
 .CannotUseBike:
-	ld a, $0
+	ld a, 0
 	ret
 
 .done
 	call QueueScript
-	ld a, $1
+	ld a, 1
 	ret
 
 .CheckIfRegistered:
@@ -1697,8 +1687,7 @@ BikeFunction:
 	cp CAVE
 	jr z, .ok
 	cp GATE
-	jr z, .ok
-	jr .nope
+	jr nz, .nope
 
 .ok
 	call GetPlayerStandingTile

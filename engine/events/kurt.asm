@@ -46,8 +46,7 @@ SelectApricornForKurt:
 	call Kurt_GiveUpSelectedQuantityOfSelectedApricorn
 
 .done
-	call Call_ExitMenu
-	ret
+	jp ExitMenu
 
 Kurt_SelectApricorn:
 	farcall FindApricornsInBag

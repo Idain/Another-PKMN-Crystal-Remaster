@@ -96,12 +96,10 @@ StatsScreenMobile:
 	rst JumpTable
 	call StatsScreen_WaitAnim
 	farcall MobileComms_CheckInactivityTimer
-	jr c, .exit
+	ret c
 	ld a, [wJumptableIndex]
 	bit 7, a
 	jr z, .loop
-
-.exit
 	ret
 
 StatsScreenPointerTable:
@@ -120,8 +118,7 @@ StatsScreen_WaitAnim:
 	jr nz, .try_anim
 	bit 5, [hl]
 	jr nz, .finish
-	call DelayFrame
-	ret
+	jp DelayFrame
 
 .try_anim
 	farcall SetUpPokeAnim
@@ -160,13 +157,11 @@ MonStatsInit:
 	ld hl, wStatsScreenFlags
 	set 4, [hl]
 	ld h, 4
-	call StatsScreen_SetJumptableIndex
-	ret
+	jr StatsScreen_SetJumptableIndex
 
 .egg
 	ld h, 1
-	call StatsScreen_SetJumptableIndex
-	ret
+	jr StatsScreen_SetJumptableIndex
 
 EggStatsInit:
 	call EggStatsScreen
@@ -179,8 +174,7 @@ EggStatsJoypad:
 	call StatsScreen_GetJoypad
 	jr nc, .check
 	ld h, 0
-	call StatsScreen_SetJumptableIndex
-	ret
+	jr StatsScreen_SetJumptableIndex
 
 .check
 	bit A_BUTTON_F, a
@@ -194,8 +188,7 @@ endc
 
 .quit
 	ld h, 7
-	call StatsScreen_SetJumptableIndex
-	ret
+	jr StatsScreen_SetJumptableIndex
 
 if DEF(_DEBUG)
 .hatch
@@ -243,8 +236,7 @@ MonStatsJoypad:
 	call StatsScreen_GetJoypad
 	jr nc, .next
 	ld h, 0
-	call StatsScreen_SetJumptableIndex
-	ret
+	jp StatsScreen_SetJumptableIndex
 
 .next
 	and D_DOWN | D_UP | D_LEFT | D_RIGHT | A_BUTTON | B_BUTTON
@@ -330,12 +322,13 @@ StatsScreen_JoypadAction:
 	jr nz, .d_up
 	bit D_DOWN_F, a
 	jr nz, .d_down
-	jr .done
+	ret
 
 .d_down
 	ld a, [wMonType]
 	cp BOXMON
-	jr nc, .done
+	ret nc
+
 	and a
 	ld a, [wPartyCount]
 	jr z, .next_mon
@@ -345,7 +338,8 @@ StatsScreen_JoypadAction:
 	ld a, [wCurPartyMon]
 	inc a
 	cp b
-	jr z, .done
+	ret z
+
 	ld [wCurPartyMon], a
 	ld b, a
 	ld a, [wMonType]
@@ -359,7 +353,7 @@ StatsScreen_JoypadAction:
 .d_up
 	ld a, [wCurPartyMon]
 	and a
-	jr z, .done
+	ret z
 	dec a
 	ld [wCurPartyMon], a
 	ld b, a
@@ -389,27 +383,21 @@ StatsScreen_JoypadAction:
 	ld c, BLUE_PAGE ; last page
 	jr .set_page
 
-.done
-	ret
-
 .set_page
 	ld a, [wStatsScreenFlags]
 	and $ff ^ STAT_PAGE_MASK
 	or c
 	ld [wStatsScreenFlags], a
 	ld h, 4
-	call StatsScreen_SetJumptableIndex
-	ret
+	jp StatsScreen_SetJumptableIndex
 
 .load_mon
 	ld h, 0
-	call StatsScreen_SetJumptableIndex
-	ret
+	jp StatsScreen_SetJumptableIndex
 
 .b_button
 	ld h, 7
-	call StatsScreen_SetJumptableIndex
-	ret
+	jp StatsScreen_SetJumptableIndex
 
 StatsScreen_InitUpperHalf:
 	call .PlaceHPBar
@@ -445,8 +433,7 @@ StatsScreen_InitUpperHalf:
 	call PlaceString
 	call StatsScreen_PlaceHorizontalDivider
 	call StatsScreen_PlacePageSwitchArrows
-	call StatsScreen_PlaceShinyIcon
-	ret
+	jr StatsScreen_PlaceShinyIcon
 
 .PlaceHPBar:
 	ld hl, wTempMonHP
@@ -462,8 +449,7 @@ StatsScreen_InitUpperHalf:
 	call SetHPPal
 	ld b, SCGB_STATS_SCREEN_HP_PALS
 	call GetSGBLayout
-	call DelayFrame
-	ret
+	jp DelayFrame
 
 .PlaceGenderChar:
 	push hl
@@ -533,12 +519,10 @@ StatsScreen_LoadGFX:
 	ld hl, wStatsScreenFlags
 	bit 4, [hl]
 	jr nz, .place_frontpic
-	call SetPalettes
-	ret
+	jp SetPalettes
 
 .place_frontpic
-	call StatsScreen_PlaceFrontpic
-	ret
+	jp StatsScreen_PlaceFrontpic
 
 .ClearBox:
 	ld a, [wStatsScreenFlags]
@@ -547,8 +531,7 @@ StatsScreen_LoadGFX:
 	call StatsScreen_LoadPageIndicators
 	hlcoord 0, 8
 	lb bc, 10, 20
-	call ClearBox
-	ret
+	jp ClearBox
 
 .LoadPals:
 	ld a, [wStatsScreenFlags]
@@ -714,7 +697,7 @@ LoadPinkPage:
 	db "TO@"
 
 .PkrsStr:
-	db "#RUS@"
+	db "#rus@"
 
 LoadGreenPage:
 	ld de, .Item
@@ -737,8 +720,7 @@ LoadGreenPage:
 	hlcoord 12, 11
 	ld a, SCREEN_WIDTH * 2
 	ld [wListMovesLineSpacing], a
-	predef ListMovePP
-	ret
+	predef_jump ListMovePP
 
 .GetItemName:
 	ld de, .ThreeDashes
@@ -749,8 +731,7 @@ LoadGreenPage:
 	farcall TimeCapsule_ReplaceTeruSama
 	ld a, b
 	ld [wNamedObjectIndex], a
-	call GetItemName
-	ret
+	jp GetItemName
 
 .Item:
 	db "ITEM@"
@@ -774,8 +755,7 @@ LoadBluePage:
 	jr nz, .vertical_divider
 	hlcoord 11, 8
 	ld bc, 6
-	predef PrintTempMonStats
-	ret
+	predef_jump PrintTempMonStats
 
 .PlaceOTInfo:
 	ld de, IDNoString
@@ -796,9 +776,9 @@ LoadBluePage:
 	call PlaceString
 	ld a, [wTempMonCaughtGender]
 	and a
-	jr z, .done
+	ret z
 	cp $7f
-	jr z, .done
+	ret z
 	and CAUGHT_GENDER_MASK
 	ld a, "♂"
 	jr z, .got_gender
@@ -806,7 +786,6 @@ LoadBluePage:
 .got_gender
 	hlcoord 9, 13
 	ld [hl], a
-.done
 	ret
 
 .OTNamePointers:
@@ -827,26 +806,22 @@ StatsScreen_PlaceFrontpic:
 	call StatsScreen_GetAnimationParam
 	jr c, .egg
 	and a
-	jr z, .no_cry
-	jr .cry
-
-.egg
-	call .AnimateEgg
-	call SetPalettes
-	ret
+	jr nz, .cry
 
 .no_cry
 	call .AnimateMon
-	call SetPalettes
-	ret
-
+	jp SetPalettes
+	
 .cry
 	call SetPalettes
 	call .AnimateMon
 	ld a, [wCurPartySpecies]
-	call PlayMonCry2
-	ret
+	jp PlayMonCry2
 
+.egg
+	call .AnimateEgg
+	jp SetPalettes
+	
 .AnimateMon:
 	ld hl, wStatsScreenFlags
 	set 5, [hl]
@@ -854,15 +829,13 @@ StatsScreen_PlaceFrontpic:
 	cp UNOWN
 	jr z, .unown
 	hlcoord 0, 0
-	call PrepMonFrontpic
-	ret
+	jp PrepMonFrontpic
 
 .unown
 	xor a
 	ld [wBoxAlignment], a
 	hlcoord 0, 0
-	call _PrepMonFrontpic
-	ret
+	jp _PrepMonFrontpic
 
 .AnimateEgg:
 	ld a, [wCurPartySpecies]
@@ -870,14 +843,11 @@ StatsScreen_PlaceFrontpic:
 	jr z, .unownegg
 	ld a, TRUE
 	ld [wBoxAlignment], a
-	call .get_animation
-	ret
+	jr .get_animation
 
 .unownegg
 	xor a
 	ld [wBoxAlignment], a
-	call .get_animation
-	ret
 
 .get_animation
 	ld a, [wCurPartySpecies]
@@ -937,7 +907,6 @@ StatsScreen_GetAnimationParam:
 
 .Tempmon:
 	ld bc, wTempMonSpecies
-	jr .CheckEggFaintedFrzSlp ; utterly pointless
 
 .CheckEggFaintedFrzSlp:
 	ld a, [wCurPartySpecies]
@@ -1046,8 +1015,7 @@ endc
 	cp 6
 	ret nc
 	ld de, SFX_2_BOOPS
-	call PlaySFX
-	ret
+	jp PlaySFX
 
 EggString:
 	db "Egg@"
@@ -1072,7 +1040,7 @@ EggMoreTimeString:
 	next "more time, though.@"
 
 EggALotMoreTimeString:
-	db   "This EGG needs a"
+	db   "This Egg needs a"
 	next "lot more time to"
 	next "hatch.@"
 
@@ -1148,8 +1116,7 @@ CopyNickname:
 	push de
 	call CopyBytes
 	pop de
-	call CloseSRAM
-	ret
+	jp CloseSRAM
 
 .partymon
 	push de

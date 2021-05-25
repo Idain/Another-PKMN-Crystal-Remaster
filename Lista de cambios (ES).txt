@@ -10,6 +10,8 @@ AÑADIDOS:
 - Tu madre te da un tutorial muy breve de cómo correr en el juego.
 
 CAMBIOS:
+- ¡Ahora es más mucho rápido salvar la partida!
+
 - Removido modificador de medallas que boosteaban ataques y stats.
 
 - Obediencia: Ahora funciona como en HG/SS, con la Zephyr Badge afectando obediencia hasta el Nv. 20 y la Mineral Badge reemplazando a la Storm Badge para obediencia hasta Nv. 70.
@@ -31,6 +33,7 @@ CAMBIOS:
 	-- Los objetos Mails de la 2da Gen que solo se conseguían por evento ahora pueden ser comprados en Mt. Moon Square.
 
 - Movimientos:
+	-- Corte ya no permite cortar la hierba alta (Gen 4+).
 	-- Foresight ahora solo ignora los cambios en la evasión del oponente si esta es mayor o igual a +1. (Gen 4+)
 	-- La precisión de algunos movimientos ha sido actualizada.
 	-- Bide ahora siempre almacena energía por 2 turnos en vez de variar (2-3 turnos).
@@ -91,10 +94,10 @@ CAMBIOS:
 - Después de hablar con la enfermera del Centro Pokémon, el jugador mirará hacia abajo automáticamente. Así pueden spamear el botón A libremente sin temor a iniciar otro diálogo con ella. :V
 - La probabilidad de que salga un Pokémon Shiny del Huevo Extraño ahora es de un 50% (basado en versión japonesa del juego).
 - El moveset del Dratini que recibes en Dragon's Den ha sido actualizado para asemejarse a HG/SS.
+- Tu rival imprimirá un texto de victoria en caso de que pierdas en una batalla.
 
 FIXES:
 - Algunos items no podían ser seleccionados/tenían el efecto equivocado.
-- Al final de la batalla, los EVs ganados se dividían entre los participantes en vez de que cada uno ganase el 100%. Esto causaba casos donde si eran muchos participantes todos ganaban 0 EVs.
 
 
 V1.1.2

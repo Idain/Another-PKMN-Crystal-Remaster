@@ -67,8 +67,8 @@ Init::
 	ld hl, WRAM0_Begin
 	ld bc, WRAM0_End - WRAM0_Begin
 .ByteFill:
-	ld [hl], 0
-	inc hl
+	xor a
+	ld [hli], a
 	dec bc
 	ld a, b
 	or c
@@ -148,10 +148,9 @@ Init::
 
 	ldh a, [hCGB]
 	and a
-	jr z, .no_double_speed
-	call NormalSpeed
-.no_double_speed
+	call nz, NormalSpeed
 
+.no_double_speed
 	xor a
 	ldh [rIF], a
 	ld a, IE_DEFAULT
@@ -180,8 +179,7 @@ ClearVRAM::
 	ld hl, VRAM_Begin
 	ld bc, VRAM_End - VRAM_Begin
 	xor a
-	call ByteFill
-	ret
+	jp ByteFill
 
 ClearWRAM::
 ; Wipe swappable WRAM banks (1-7)
@@ -210,5 +208,4 @@ ClearsScratch::
 	ld bc, $20
 	xor a
 	call ByteFill
-	call CloseSRAM
-	ret
+	jp CloseSRAM

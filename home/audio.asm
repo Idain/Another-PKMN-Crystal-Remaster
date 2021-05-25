@@ -219,8 +219,7 @@ PlaySFX::
 
 WaitPlaySFX::
 	call WaitSFX
-	call PlaySFX
-	ret
+	jp PlaySFX
 
 WaitSFX::
 ; infinite loop until sfx is done playing
@@ -371,8 +370,7 @@ PlayMapMusicBike::
 	ld de, MUSIC_BICYCLE
 	ld a, [wPlayerState]
 	cp PLAYER_BIKE
-	jr z, .play
-	call GetMapMusic_MaybeSpecial
+	call nz, GetMapMusic_MaybeSpecial
 .play
 	push de
 	ld de, MUSIC_NONE
@@ -464,8 +462,7 @@ SpecialMapMusic::
 GetMapMusic_MaybeSpecial::
 	call SpecialMapMusic
 	ret c
-	call GetMapMusic
-	ret
+	jp GetMapMusic
 
 PlaceBCDNumberSprite:: ; unreferenced
 ; Places a BCD number at the upper center of the screen.
@@ -482,7 +479,7 @@ PlaceBCDNumberSprite:: ; unreferenced
 	ld a, [wUnusedBCDNumber]
 	cp 100
 	jr nc, .max
-	add 1
+	inc a
 	daa
 	ld b, a
 	swap a

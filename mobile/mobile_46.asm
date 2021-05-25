@@ -5384,16 +5384,14 @@ BattleTowerRoomMenu_SetMessage:
 Function11a9ce:
 	call ClearBGPalettes
 	call ReloadTilesetAndPalettes
-	call Call_ExitMenu
+	call ExitMenu
 	farcall Stubbed_Function106462
 	farcall Function106464
-	call GSReloadPalettes
 	farcall FinishExitMenu
-	call UpdateSprites
-	ret
+	jp UpdateSprites
 
 Function11a9f0:
-	ld a, $1
+	ld a, 1
 	and a
 	ret
 
@@ -5444,7 +5442,7 @@ Text_CanceledSendingSaveFile: ; unreferenced
 	done
 
 Text_ReceivedOddEgg: ; unreferenced
-	text "ODD EGG"
+	text "Odd Egg"
 	line "was received!"
 	done
 
@@ -5455,11 +5453,11 @@ Text_RegisteringRecord:
 
 Text_BattleRoomVisitLimit: ; unreferenced
 	text "One visit per day"
-	line "per BATTLE ROOM!"
+	line "per Battle Room!"
 	done
 
 Text_PartyMonTopsThisLevel:
-	text "A party #MON"
+	text "A party #mon"
 	line "tops this level."
 	done
 

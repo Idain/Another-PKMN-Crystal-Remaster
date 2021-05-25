@@ -1715,7 +1715,7 @@ LinkTrade:
 	farcall Link_WaitBGMap
 	call ScrollingMenuJoypad
 	push af
-	call Call_ExitMenu
+	call ExitMenu
 	call WaitBGMap2
 	pop af
 	bit 1, a
@@ -1725,7 +1725,7 @@ LinkTrade:
 	jr z, .try_trade
 
 .canceled
-	ld a, $1
+	ld a, 1
 	ld [wPlayerLinkAction], a
 	hlcoord 0, 12
 	ld b, 4
@@ -2465,8 +2465,6 @@ TryQuickSave:
 	xor a ; FALSE
 .return_result
 	ld [wScriptVar], a
-	ld c, 30
-	call DelayFrames
 	pop af
 	ld [wChosenCableClubRoom], a
 	ret

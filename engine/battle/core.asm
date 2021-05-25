@@ -3045,10 +3045,16 @@ LostBattle:
 	ld a, [wInBattleTowerBattle]
 	and a
 	jr nz, .battle_tower
+	
+	ld a, [wBattleMode]
+	dec a ; wild?
+	jr z, .no_loss_text
 
-	ld a, [wBattleType]
-	cp BATTLETYPE_CANLOSE
-	jr nz, .not_canlose
+	ld hl, wLossTextPointer
+	ld a, [hli]
+	ld h, [hl]
+	or h
+	jr z, .no_loss_text
 
 ; Remove the enemy from the screen.
 	hlcoord 0, 0
@@ -3084,7 +3090,7 @@ LostBattle:
 	call ClearBGPalettes
 	ret
 
-.not_canlose
+.no_loss_text
 	ld a, [wLinkMode]
 	and a
 	jr nz, .LostLinkBattle

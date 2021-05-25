@@ -20,8 +20,8 @@ PrintBCDNumber::
 	jr z, .loop
 	bit PRINTNUM_LEADINGZEROS_F, b
 	jr nz, .loop ; skip currency symbol
-	ld [hl], "¥"
-	inc hl
+	ld a, "¥"
+	ld [hli], a
 .loop
 	ld a, [de]
 	swap a
@@ -32,7 +32,7 @@ PrintBCDNumber::
 	dec c
 	jr nz, .loop
 	bit PRINTNUM_LEADINGZEROS_F, b
-	jr z, .done ; if so, we are done
+	ret z ; if so, we are done
 ; every digit of the BCD number is zero
 	bit PRINTNUM_LEFTALIGN_F, b
 	jr nz, .skipLeftAlignmentAdjustment
@@ -41,18 +41,16 @@ PrintBCDNumber::
 .skipLeftAlignmentAdjustment
 	bit PRINTNUM_MONEY_F, b
 	jr z, .skipCurrencySymbol
-	ld [hl], "¥" ; currency symbol
-	inc hl
+	ld a, "¥"
+	ld [hli], a ; currency symbol
 .skipCurrencySymbol
 	ld [hl], "0"
 	call PrintLetterDelay
 	inc hl
-.done
 	ret
 
 PrintBCDDigit::
 	and %00001111
-	and a
 	jr z, .zeroDigit
 ; nonzero digit
 	bit PRINTNUM_LEADINGZEROS_F, b ; have any non-space characters been printed?

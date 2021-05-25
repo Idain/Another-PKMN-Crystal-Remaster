@@ -6,8 +6,7 @@ WaitBGMap::
 	ldh [hBGMapMode], a
 ; Wait for it to do its magic
 	ld c, 4
-	call DelayFrames
-	ret
+	jp DelayFrames
 
 WaitBGMap2::
 	ldh a, [hCGB]
@@ -23,8 +22,7 @@ WaitBGMap2::
 	ld a, 1
 	ldh [hBGMapMode], a
 	ld c, 4
-	call DelayFrames
-	ret
+	jp DelayFrames
 
 IsCGB::
 	ldh a, [hCGB]
@@ -49,8 +47,7 @@ ApplyTilemap::
 	ld a, 1
 	ldh [hBGMapMode], a
 	ld c, 4
-	call DelayFrames
-	ret
+	jp DelayFrames
 
 CGBOnly_CopyTilemapAtOnce::
 	ldh a, [hCGB]
@@ -58,13 +55,13 @@ CGBOnly_CopyTilemapAtOnce::
 	jr z, WaitBGMap
 
 CopyTilemapAtOnce::
-	jr _CopyTilemapAtOnce
+;	jr _CopyTilemapAtOnce
 
-CopyAttrmapAndTilemapToWRAMBank3: ; unreferenced
-	farcall HDMATransferAttrmapAndTilemapToWRAMBank3
-	ret
+;CopyAttrmapAndTilemapToWRAMBank3: ; unreferenced
+;	farcall HDMATransferAttrmapAndTilemapToWRAMBank3
+;	ret
 
-_CopyTilemapAtOnce:
+;_CopyTilemapAtOnce:
 	ldh a, [hBGMapMode]
 	push af
 	xor a
@@ -111,8 +108,7 @@ _CopyTilemapAtOnce:
 	ld l, 0
 	ld a, SCREEN_HEIGHT
 	ldh [hTilesPerCycle], a
-	ld b, 1 << 1 ; not in v/hblank
-	ld c, LOW(rSTAT)
+	lb bc, (1 << 1), LOW(rSTAT) ; not in v/hblank
 
 .loop
 rept SCREEN_WIDTH / 2

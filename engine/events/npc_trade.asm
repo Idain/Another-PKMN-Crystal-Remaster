@@ -49,8 +49,7 @@ NPCTrade::
 	ld a, TRADE_DIALOG_COMPLETE
 
 .done
-	call PrintTradeText
-	ret
+	jp PrintTradeText
 
 .TradeAnimation:
 	call DisableSpriteUpdates
@@ -64,8 +63,7 @@ NPCTrade::
 	ld [wTradeDialog], a
 	pop af
 	ld [wJumptableIndex], a
-	call ReturnToMapWithSpeechTextbox
-	ret
+	jp ReturnToMapWithSpeechTextbox
 
 CheckTradeGender:
 	xor a
@@ -289,8 +287,7 @@ GetTradeAttr:
 
 Trade_GetAttributeOfCurrentPartymon:
 	ld a, [wCurPartyMon]
-	call AddNTimes
-	ret
+	jp AddNTimes
 
 Trade_GetAttributeOfLastPartymon:
 	ld a, [wPartyCount]
@@ -310,8 +307,7 @@ GetTradeMonName:
 
 CopyTradeName:
 	ld bc, NAME_LENGTH
-	call CopyBytes
-	ret
+	jp CopyBytes
 
 Trade_CopyFourCharString: ; unreferenced
 	ld bc, 4
@@ -400,8 +396,7 @@ PrintTradeText:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	call PrintText
-	ret
+	jp PrintText
 
 TradeTexts:
 ; entries correspond to TRADE_DIALOG_* × TRADE_DIALOGSET_* constants

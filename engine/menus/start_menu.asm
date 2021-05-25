@@ -145,13 +145,12 @@ StartMenu::
 
 .Clear:
 	call ClearBGPalettes
-	call Call_ExitMenu
+	call ExitMenu
 	call ReloadTilesetAndPalettes
 	call .DrawMenuAccount
 	call DrawVariableLengthMenuBox
 	call .DrawBugContestStatus
 	call UpdateSprites
-	call GSReloadPalettes
 	call FinishExitMenu
 	ret
 

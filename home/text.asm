@@ -124,8 +124,7 @@ TextboxPalette::
 SpeechTextbox::
 ; Standard textbox.
 	hlcoord TEXTBOX_X, TEXTBOX_Y
-	ld b, TEXTBOX_INNERH
-	ld c, TEXTBOX_INNERW
+	lb bc, TEXTBOX_INNERH, TEXTBOX_INNERW
 	jp Textbox
 
 GameFreakText:: ; unreferenced
@@ -153,8 +152,7 @@ BuenaPrintText::
 
 PrintTextboxText::
 	bccoord TEXTBOX_INNERX, TEXTBOX_INNERY
-	call PlaceHLTextAtBC
-	ret
+	jp PlaceHLTextAtBC
 
 SetUpTextbox::
 	push hl
@@ -343,7 +341,7 @@ PlaceGenderedPlayerName::
 	ld de, KunSuffixText
 	jr z, PlaceCommandCharacter
 	ld de, ChanSuffixText
-	jr PlaceCommandCharacter
+	; fallthrough
 
 PlaceCommandCharacter::
 	call PlaceString
@@ -438,8 +436,7 @@ Paragraph::
 	cp LINK_COLOSSEUM
 	jr z, .linkbattle
 	cp LINK_MOBILE
-	jr z, .linkbattle
-	call LoadBlinkingCursor
+	call nz, LoadBlinkingCursor
 
 .linkbattle
 	call Text_WaitBGMap
@@ -457,8 +454,7 @@ Paragraph::
 _ContText::
 	ld a, [wLinkMode]
 	or a
-	jr nz, .communication
-	call LoadBlinkingCursor
+	call z, LoadBlinkingCursor
 
 .communication
 	call Text_WaitBGMap
@@ -505,8 +501,7 @@ PromptText::
 	cp LINK_COLOSSEUM
 	jr z, .ok
 	cp LINK_MOBILE
-	jr z, .ok
-	call LoadBlinkingCursor
+	call nz, LoadBlinkingCursor
 
 .ok
 	call Text_WaitBGMap
@@ -515,13 +510,11 @@ PromptText::
 	cp LINK_COLOSSEUM
 	jr z, DoneText
 	cp LINK_MOBILE
-	jr z, DoneText
-	call UnloadBlinkingCursor
+	call nz, UnloadBlinkingCursor
 
 DoneText::
 	pop hl
-	ld de, .stop
-	dec de
+	ld de, .stop - 1
 	ret
 
 .stop:
@@ -562,8 +555,7 @@ TextScroll::
 	ld bc, TEXTBOX_INNERW
 	call ByteFill
 	ld c, 5
-	call DelayFrames
-	ret
+	jp DelayFrames
 
 Text_WaitBGMap::
 	push bc
@@ -577,9 +569,6 @@ Text_WaitBGMap::
 	pop af
 	ldh [hOAMUpdate], a
 	pop bc
-	ret
-
-Diacritic::
 	ret
 
 LoadBlinkingCursor::

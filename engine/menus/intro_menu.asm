@@ -21,8 +21,7 @@ PrintDayOfWeek:
 	ld h, b
 	ld l, c
 	ld de, .Day
-	call PlaceString
-	ret
+	jp PlaceString
 
 .Days:
 	db "SUN@"
@@ -42,8 +41,7 @@ NewGame_ClearTilemapEtc:
 	call ClearTilemap
 	call LoadFontsExtra
 	call LoadStandardFont
-	call ClearWindowData
-	ret
+	jp ClearWindowData
 
 MysteryGift:
 	call UpdateTime
@@ -95,8 +93,6 @@ endc
 ResetWRAM:
 	xor a
 	ldh [hBGMapMode], a
-	call _ResetWRAM
-	ret
 
 _ResetWRAM:
 	ld hl, wVirtualOAM
@@ -223,8 +219,7 @@ endc
 
 	farcall DeleteMobileEventIndex
 
-	call ResetGameTime
-	ret
+	jp ResetGameTime
 
 .InitList:
 ; Loads 0 in the count and -1 in the first item or mon slot.
@@ -264,7 +259,7 @@ SetDefaultBoxNames:
 	ret
 
 .Box:
-	db "BOX@"
+	db "Box@"
 
 InitializeMagikarpHouse:
 	ld hl, wBestMagikarpLengthFeet
@@ -273,11 +268,10 @@ InitializeMagikarpHouse:
 	ld a, $6
 	ld [hli], a
 	ld de, .Ralph
-	call CopyName2
-	ret
+	jp CopyName2
 
 .Ralph:
-	db "RALPH@"
+	db "Ralph@"
 
 InitializeNPCNames:
 	ld hl, .Rival
@@ -297,13 +291,12 @@ InitializeNPCNames:
 
 .Copy:
 	ld bc, NAME_LENGTH
-	call CopyBytes
-	ret
+	jp CopyBytes
 
 .Rival:  db "???@"
-.Red:    db "RED@"
-.Green:  db "GREEN@"
-.Mom:    db "MOM@"
+.Red:    db "Red@"
+.Green:  db "Green@"
+.Mom:    db "Mom@"
 
 InitializeWorld:
 	call ShrinkPlayer
@@ -340,7 +333,7 @@ LoadOrRegenerateLuckyIDNumber:
 
 Continue:
 	farcall TryLoadSaveFile
-	jr c, .FailToLoad
+	ret c
 	farcall _LoadData
 	call LoadStandardMenuHeader
 	call DisplaySaveInfoOnContinue
@@ -350,15 +343,13 @@ Continue:
 	call DelayFrames
 	call ConfirmContinue
 	jr nc, .Check1Pass
-	call CloseWindow
-	jr .FailToLoad
+	jp CloseWindow
 
 .Check1Pass:
 	call CheckVBA
 	call Continue_CheckRTC_RestartClock
 	jr nc, .Check2Pass
-	call CloseWindow
-	jr .FailToLoad
+	jp CloseWindow
 
 .Check2Pass:
 	ld a, $8
@@ -382,9 +373,6 @@ Continue:
 	ld a, MAPSETUP_CONTINUE
 	ldh [hMapEntryMethod], a
 	jp FinishContinueFunction
-
-.FailToLoad:
-	ret
 
 .SpawnAfterE4:
 	ld a, SPAWN_NEW_BARK
@@ -422,7 +410,7 @@ Continue_MobileAdapterMenu:
 	call DelayFrames
 	ld c, $1
 	farcall InitMobileProfile ; mobile
-	farcall _SaveData
+	farcall SaveData
 	ld a, 8
 	ld [wMusicFade], a
 	ld a, LOW(MUSIC_NONE)
@@ -430,8 +418,7 @@ Continue_MobileAdapterMenu:
 	ld a, HIGH(MUSIC_NONE)
 	ld [wMusicFadeID + 1], a
 	ld c, 35
-	call DelayFrames
-	ret
+	jp DelayFrames
 
 ConfirmContinue:
 .loop
@@ -439,13 +426,10 @@ ConfirmContinue:
 	call GetJoypad
 	ld hl, hJoyPressed
 	bit A_BUTTON_F, [hl]
-	jr nz, .PressA
+	ret nz
 	bit B_BUTTON_F, [hl]
 	jr z, .loop
 	scf
-	ret
-
-.PressA:
 	ret
 
 CheckVBA:
@@ -502,13 +486,11 @@ DisplaySaveInfoOnContinue:
 	and %10000000
 	jr z, .clock_ok
 	lb de, 4, 8
-	call DisplayContinueDataWithRTCError
-	ret
+	jp DisplayContinueDataWithRTCError
 
 .clock_ok
 	lb de, 4, 8
-	call DisplayNormalContinueData
-	ret
+	jp DisplayNormalContinueData
 
 DisplaySaveInfoOnSave:
 	lb de, 4, 0
@@ -519,16 +501,14 @@ DisplayNormalContinueData:
 	call Continue_DisplayBadgesDexPlayerName
 	call Continue_PrintGameTime
 	call LoadFontsExtra
-	call UpdateSprites
-	ret
+	jp UpdateSprites
 
 DisplayContinueDataWithRTCError:
 	call Continue_LoadMenuHeader
 	call Continue_DisplayBadgesDexPlayerName
 	call Continue_UnknownGameTime
 	call LoadFontsExtra
-	call UpdateSprites
-	ret
+	jp UpdateSprites
 
 Continue_LoadMenuHeader:
 	xor a
@@ -542,8 +522,7 @@ Continue_LoadMenuHeader:
 .show_menu
 	call _OffsetMenuHeader
 	call MenuBox
-	call PlaceVerticalMenuItems
-	ret
+	jp PlaceVerticalMenuItems
 
 .MenuHeader_Dex:
 	db MENU_BACKUP_TILES ; flags
@@ -599,15 +578,13 @@ Continue_DisplayBadgesDexPlayerName:
 Continue_PrintGameTime:
 	decoord 9, 8, 0
 	add hl, de
-	call Continue_DisplayGameTime
-	ret
+	jr Continue_DisplayGameTime
 
 Continue_UnknownGameTime:
 	decoord 9, 8, 0
 	add hl, de
 	ld de, .three_question_marks
-	call PlaceString
-	ret
+	jp PlaceString
 
 .three_question_marks
 	db " ???@"
@@ -724,8 +701,7 @@ OakSpeech:
 	call PrintText
 	call NamePlayer
 	ld hl, OakText7
-	call PrintText
-	ret
+	jp PrintText
 
 OakText1:
 	text_far _OakText1
@@ -797,8 +773,7 @@ NamePlayer:
 	jr z, .Male
 	ld de, .Kris
 .Male:
-	call InitName
-	ret
+	jp InitName
 
 .Chris:
 	db "Gold@@@@@@@"
@@ -811,8 +786,8 @@ GSShowPlayerNamingChoices: ; unreferenced
 	ld a, [wMenuCursorY]
 	dec a
 	call CopyNameFromMenu
-	call CloseWindow
-	ret
+	jp CloseWindow
+
 
 StorePlayerName:
 	ld a, "@"
@@ -821,8 +796,8 @@ StorePlayerName:
 	call ByteFill
 	ld hl, wPlayerName
 	ld de, wStringBuffer2
-	call CopyName2
-	ret
+	jp CopyName2
+
 
 ShrinkPlayer:
 	ldh a, [hROMBank]
@@ -873,8 +848,7 @@ ShrinkPlayer:
 	call DelayFrames
 
 	call RotateThreePalettesRight
-	call ClearTilemap
-	ret
+	jp ClearTilemap
 
 Intro_RotatePalettesLeftFrontpic:
 	ld hl, IntroFadePalettes
@@ -919,8 +893,7 @@ Intro_PrepTrainerPic:
 	ldh [hGraphicStartTile], a
 	hlcoord 6, 4
 	lb bc, 7, 7
-	predef PlaceGraphic
-	ret
+	predef_jump PlaceGraphic
 
 ShrinkFrame:
 	ld de, vTiles2
@@ -930,8 +903,7 @@ ShrinkFrame:
 	ldh [hGraphicStartTile], a
 	hlcoord 6, 4
 	lb bc, 7, 7
-	predef PlaceGraphic
-	ret
+	predef_jump PlaceGraphic
 
 Intro_PlacePlayerSprite:
 	farcall GetPlayerIcon
@@ -1075,8 +1047,7 @@ UnusedTitlePerspectiveScroll: ; unreferenced
 	ld a, [hl]
 	dec a
 	ld bc, 2 * SCREEN_WIDTH
-	call ByteFill
-	ret
+	jp ByteFill
 
 TitleScreenScene:
 	ld e, a
@@ -1315,8 +1286,7 @@ UpdateTitleTrailSprite: ; unreferenced
 	ld e, a
 	ld d, [hl]
 	ld a, SPRITE_ANIM_INDEX_GS_TITLE_TRAIL
-	call InitSpriteAnimStruct
-	ret
+	jp InitSpriteAnimStruct
 
 .TitleTrailCoords:
 trail_coords: MACRO

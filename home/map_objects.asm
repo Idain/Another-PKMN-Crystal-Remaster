@@ -241,10 +241,10 @@ CheckObjectTime::
 	ld a, [wTimeOfDay]
 	add l
 	ld l, a
-	jr nc, .ok
-	inc h
+	adc h
+	sub l
+	ld h, a
 
-.ok
 	ld a, [hl]
 	ld hl, MAPOBJECT_TIMEOFDAY
 	add hl, bc
@@ -290,9 +290,7 @@ CheckObjectTime::
 	jr c, .no
 	ld a, [hl]
 	cp d
-	jr nc, .yes
-	jr .no
-
+	jr c, .no
 .yes
 	and a
 	ret
@@ -304,8 +302,7 @@ CheckObjectTime::
 CopyMapObjectStruct:: ; unreferenced
 	ldh [hMapObjectIndex], a
 	call GetMapObject
-	call CopyObjectStruct
-	ret
+	jp CopyObjectStruct
 
 UnmaskCopyMapObjectStruct::
 	ldh [hMapObjectIndex], a
@@ -347,8 +344,7 @@ ApplyDeletionToMapObject::
 
 DeleteObjectStruct::
 	call ApplyDeletionToMapObject
-	call MaskObject
-	ret
+	jp MaskObject
 
 CopyPlayerObjectTemplate::
 	push hl
@@ -360,8 +356,7 @@ CopyPlayerObjectTemplate::
 	inc de
 	pop hl
 	ld bc, MAPOBJECT_LENGTH - 1
-	call CopyBytes
-	ret
+	jp CopyBytes
 
 DeleteFollowerMapObject: ; unreferenced
 	call GetMapObject
@@ -369,8 +364,8 @@ DeleteFollowerMapObject: ; unreferenced
 	add hl, bc
 	ld a, [hl]
 	push af
-	ld [hl], -1
-	inc hl
+	ld a, -1
+	ld [hli], a
 	ld bc, MAPOBJECT_LENGTH - 1
 	xor a
 	call ByteFill
@@ -563,9 +558,9 @@ _GetMovementByte::
 	add hl, bc
 	add [hl]
 	ld e, a
-	ld a, d
-	adc 0
-	ld d, a
+	jr nc, .no_carry
+	inc d
+.no_carry
 	inc [hl]
 	ld a, [de]
 	ld h, a

@@ -14,8 +14,7 @@ _GiveOddEgg:
 	ld d, a
 
 	; Break on $ffff.
-	ld a, d
-	cp HIGH($ffff)
+	cp HIGH($ffff) ; Comparing with d
 	jr nz, .not_done
 	ld a, e
 	cp LOW($ffff)
@@ -26,8 +25,8 @@ _GiveOddEgg:
 	ldh a, [hRandomSub]
 	cp d
 	jr c, .done
-	jr z, .ok
-	jr .next
+	jr nz, .next
+	; fallthrough
 .ok
 	ldh a, [hRandomAdd]
 	cp e
@@ -92,6 +91,6 @@ _GiveOddEgg:
 	ret
 
 .Odd:
-	db "ODD@@@@@@@@@"
+	db "Odd@@@@@@@@@"
 
 INCLUDE "data/events/odd_eggs.asm"
