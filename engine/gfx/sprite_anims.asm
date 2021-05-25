@@ -498,7 +498,7 @@ AnimSeq_TradePokeBall:
 	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	ld a, [hl]
-	call Sprites_Sine
+	call Sine
 
 	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
@@ -869,9 +869,9 @@ AnimSeqs_IncAnonJumptableIndex:
 	ret
 
 AnimSeqs_Sine:
-	call Sprites_Sine
+	call Sine
 	ret
 
 AnimSeqs_Cosine:
-	call Sprites_Cosine
+	call Cosine
 	ret

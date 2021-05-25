@@ -539,13 +539,6 @@ INCLUDE "data/sprite_anims/oam.asm"
 
 INCLUDE "data/sprite_anims/unused_gfx.asm"
 
-Sprites_Cosine:
-; a = d * cos(a * pi/32)
-	add %010000 ; cos(x) = sin(x + pi/2)
-	; fallthrough
-Sprites_Sine:
-; a = d * sin(a * pi/32)
-	calc_sine_wave
 
 AnimateEndOfExpBar:
 	ldh a, [hSGB]
@@ -569,8 +562,7 @@ AnimateEndOfExpBar:
 	inc d
 	dec c
 	jr nz, .loop
-	call ClearSprites
-	ret
+	jp ClearSprites
 
 .AnimateFrame:
 	ld hl, wVirtualOAMSprite00
@@ -589,7 +581,7 @@ AnimateEndOfExpBar:
 
 	push de
 	push hl
-	call Sprites_Sine
+	call Sine
 	pop hl
 	pop de
 	add 13 * TILE_WIDTH
@@ -598,7 +590,7 @@ AnimateEndOfExpBar:
 	pop af
 	push de
 	push hl
-	call Sprites_Cosine
+	call Cosine
 	pop hl
 	pop de
 	add 10 * TILE_WIDTH + 4

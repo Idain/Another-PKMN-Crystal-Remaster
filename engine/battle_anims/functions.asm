@@ -4258,12 +4258,9 @@ BattleAnim_IncAnonJumptableIndex:
 	ret
 
 BattleAnim_Cosine:
-; a = d * cos(a * pi/32)
-	add %010000 ; cos(x) = sin(x + pi/2)
-	; fallthrough
+	jp Cosine
 BattleAnim_Sine:
-; a = d * sin(a * pi/32)
-	calc_sine_wave BattleAnimSineWave
+	jp Sine
 
 BattleAnim_Sine_e:
 	ld a, e
@@ -4290,6 +4287,3 @@ BattleAnim_AbsCosinePrecise: ; unreferenced
 	ld e, l
 	ld d, h
 	ret
-
-BattleAnimSineWave:
-	sine_table 32
