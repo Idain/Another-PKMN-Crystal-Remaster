@@ -346,7 +346,7 @@ _HallOfFamePC:
 	ld bc, wHallOfFameTempMon1End - wHallOfFameTempMon1
 	call AddNTimes
 	ld a, [hl]
-	inc a
+	cp -1
 	jr nz, .okay
 
 .fail

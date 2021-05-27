@@ -1409,7 +1409,7 @@ IsItemUsedOnConfusedMon:
 	bit SUBSTATUS_CONFUSED, a
 	jr z, .nope
 	ld a, c
-	inc a
+	cp -1
 	jr nz, .nope
 	scf
 	ret

@@ -14,9 +14,8 @@ HandleStoneQueue::
 	ld hl, OBJECT_MAP_OBJECT_INDEX
 	add hl, de
 	ld a, [hl]
-	inc a
+	cp -1
 	jr z, .nope
-	dec a
 
 	ld l, a
 	push hl
@@ -106,9 +105,8 @@ HandleStoneQueue::
 	ld l, c
 .loop2
 	ld a, [hli]
-	inc a
+	cp -1
 	jr z, .nope3
-	dec a
 	cp d
 	jr nz, .next_inc3
 	ld a, [hli]

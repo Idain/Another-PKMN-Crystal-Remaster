@@ -4,9 +4,8 @@ HealParty:
 	ld hl, wPartySpecies
 .loop
 	ld a, [hli]
-	inc a
-	jr z, .done
-	dec a
+	cp -1
+	ret z
 	cp EGG
 	jr z, .next
 
@@ -19,9 +18,6 @@ HealParty:
 	inc a
 	ld [wCurPartyMon], a
 	jr .loop
-
-.done
-	ret
 
 HealPartyMon:
 	ld a, MON_SPECIES
@@ -107,5 +103,4 @@ ComputeHPBarPixels:
 AnimateHPBar:
 	call WaitBGMap
 	call _AnimateHPBar
-	call WaitBGMap
-	ret
+	jp WaitBGMap

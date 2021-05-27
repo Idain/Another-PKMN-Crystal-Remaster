@@ -544,9 +544,8 @@ INCLUDE "gfx/credits/credits.pal"
 Credits_LoadBorderGFX:
 	ld hl, wCreditsBorderFrame
 	ld a, [hl]
-	inc a
+	cp -1
 	jr z, .init
-	dec a
 
 	and %11
 	ld e, a

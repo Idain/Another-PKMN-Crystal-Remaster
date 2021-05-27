@@ -1270,9 +1270,8 @@ BattleCommand_Stab:
 	cp b
 	jr z, .stab
 	cp c
-	jr z, .stab
-
-	jr .SkipStab
+	jr nz, .SkipStab
+	; fallthrough
 
 .stab
 	ld hl, wCurDamage + 1
@@ -1427,9 +1426,9 @@ CheckTypeMatchup:
 	ld hl, TypeMatchups
 .TypesLoop:
 	ld a, [hli]
-	inc a
+	cp -1
 	jr z, .End
-	inc a
+	cp -2
 	jr nz, .Next
 	ld a, BATTLE_VARS_SUBSTATUS1_OPP
 	call GetBattleVar
@@ -1438,8 +1437,6 @@ CheckTypeMatchup:
 	jr .TypesLoop
 
 .Next:
-	dec a
-	dec a
 	cp d
 	jr nz, .Nope
 	ld a, [hli]

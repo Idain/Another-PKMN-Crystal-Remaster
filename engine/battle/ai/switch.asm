@@ -237,9 +237,8 @@ CheckAbleToSwitch:
 	ld c, a
 	call FindEnemyMonsWithASuperEffectiveMove
 	ld a, [wEnemyAISwitchScore]
-	inc a
+	cp -1
 	ret z
-	dec a
 
 	ld b, a
 	ld a, e

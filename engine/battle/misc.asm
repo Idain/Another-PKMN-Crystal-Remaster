@@ -85,9 +85,8 @@ DoWeatherModifiers:
 .CheckWeatherMove:
 	ld a, [de]
 	inc de
-	inc a
-	jr z, .done
-	dec a
+	cp -1
+	ret z
 
 	cp b
 	jr nz, .NextWeatherMove
@@ -140,8 +139,6 @@ DoWeatherModifiers:
 	ld [wCurDamage], a
 	ld a, c
 	ld [wCurDamage + 1], a
-
-.done
 	ret
 
 INCLUDE "data/battle/weather_modifiers.asm"

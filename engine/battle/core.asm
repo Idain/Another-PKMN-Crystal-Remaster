@@ -4535,9 +4535,8 @@ UseHeldStatusHealingItem:
 	ld hl, HeldStatusHealingEffects
 .loop
 	ld a, [hli]
-	inc a
+	cp -1
 	ret z
-	dec a
 	inc hl
 	cp b
 	jr nz, .loop
@@ -4642,12 +4641,12 @@ HandleStatBoostingHeldItems:
 
 .DoPlayer:
 	call GetPartymonItem
-	ld a, $0
+	ld a, 0
 	jp .HandleItem
 
 .DoEnemy:
 	call GetOTPartymonItem
-	ld a, $1
+	ld a, 1
 .HandleItem:
 	ldh [hBattleTurn], a
 	ld d, h
@@ -4660,9 +4659,8 @@ HandleStatBoostingHeldItems:
 	ld hl, HeldStatUpItems
 .loop
 	ld a, [hli]
-	inc a
+	cp -1
 	jr z, .finish
-	dec a
 	inc hl
 	inc hl
 	cp b

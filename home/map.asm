@@ -727,9 +727,8 @@ ChangeMap::
 FillMapConnections::
 ; North
 	ld a, [wNorthConnectedMapGroup]
-	inc a
+	cp -1
 	jr z, .South
-	dec a
 	ld b, a
 	ld a, [wNorthConnectedMapNumber]
 	ld c, a
@@ -751,9 +750,8 @@ FillMapConnections::
 
 .South:
 	ld a, [wSouthConnectedMapGroup]
-	inc a
+	cp -1
 	jr z, .West
-	dec a
 	ld b, a
 	ld a, [wSouthConnectedMapNumber]
 	ld c, a
@@ -775,9 +773,8 @@ FillMapConnections::
 
 .West:
 	ld a, [wWestConnectedMapGroup]
-	inc a
+	cp -1
 	jr z, .East
-	dec a
 	ld b, a
 	ld a, [wWestConnectedMapNumber]
 	ld c, a
@@ -799,9 +796,8 @@ FillMapConnections::
 
 .East:
 	ld a, [wEastConnectedMapGroup]
-	inc a
+	cp -1
 	ret z
-	dec a
 	ld b, a
 	ld a, [wEastConnectedMapNumber]
 	ld c, a

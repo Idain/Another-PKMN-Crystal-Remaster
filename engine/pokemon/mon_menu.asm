@@ -906,7 +906,7 @@ MoveScreenLoop:
 	and a
 	jr nz, .moving_move
 	call PlaceMoveData
-	jp .joy_loop
+	jr .joy_loop
 
 .moving_move
 	ld a, " "
@@ -1287,9 +1287,8 @@ PlaceMoveScreenRightArrow:
 	add hl, de
 .loop
 	ld a, [hl]
-	inc a
+	cp -1
 	ret z
-	dec a
 	and a
 	jr z, .next
 	cp EGG

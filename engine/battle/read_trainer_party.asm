@@ -92,9 +92,8 @@ TrainerType1:
 	ld l, e
 .loop
 	ld a, [hli]
-	inc a
+	cp -1
 	ret z
-	dec a
 
 	ld [wCurPartyLevel], a
 	ld a, [hli]
@@ -189,9 +188,8 @@ TrainerType3:
 	ld l, e
 .loop
 	ld a, [hli]
-	inc a
+	cp -1
 	ret z
-	dec a
 
 	ld [wCurPartyLevel], a
 	ld a, [hli]
@@ -371,7 +369,7 @@ GetTrainerName::
 
 .skip
 	ld a, [hli]
-	inc a
+	cp -1
 	jr nz, .skip
 	jr .loop
 

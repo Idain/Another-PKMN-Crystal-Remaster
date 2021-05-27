@@ -504,9 +504,8 @@ ENDM
 	add hl, bc
 	ld a, [de]
 	inc de
-	inc a
+	cp -1
 	ret z
-	dec a
 	and a
 	jr z, .loop
 	ld c, a

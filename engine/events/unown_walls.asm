@@ -105,8 +105,8 @@ DisplayUnownWords:
 	and a
 	jr z, .load
 
-	ld d, $0
-	ld e, $5
+	ld d, 0
+	ld e, 5
 .loop
 	add hl, de
 	dec a
@@ -152,9 +152,8 @@ INCLUDE "data/events/unown_walls.asm"
 
 _DisplayUnownWords_FillAttr:
 	ld a, [de]
-	inc a
+	cp -1
 	ret z
-	dec a
 	cp $60
 	ld a, VRAM_BANK_1 | PAL_BG_BROWN
 	jr c, .got_pal
@@ -184,9 +183,8 @@ _DisplayUnownWords_CopyWord:
 	push de
 .word_loop
 	ld a, [de]
-	inc a
+	cp -1
 	jr z, .word_done
-	dec a
 	ld c, a
 	call .ConvertChar
 	inc hl

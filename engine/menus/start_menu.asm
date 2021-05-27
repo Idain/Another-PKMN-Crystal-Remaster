@@ -255,9 +255,8 @@ StartMenu::
 .MenuDesc:
 	push de
 	ld a, [wMenuSelection]
-	inc a
+	cp -1
 	jr z, .none
-	dec a
 	call .GetMenuAccountTextPointer
 rept 4
 	inc hl
@@ -523,11 +522,11 @@ StartMenu_Pokemon:
 
 	and a
 	jr z, .choosemenu
-	dec a
+	dec a ; 1
 	jr z, .menunoreload
-	dec a
+	dec a ; 2
 	jr z, .quit
-	dec a
+	dec a ; 3
 	jr z, .menu
 
 .return

@@ -2617,9 +2617,9 @@ BattleBGEffect_GetNextDMGPal:
 	ld h, 0
 	add hl, de
 	ld a, [hl]
-	inc a
+	cp -1
 	jr z, .quit
-	inc a
+	cp -2
 	jr nz, .repeat
 	ld a, [de]
 	ld hl, BG_EFFECT_STRUCT_PARAM
