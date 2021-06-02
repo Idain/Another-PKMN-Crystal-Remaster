@@ -1487,10 +1487,9 @@ DoScene:
 	call GetMapSceneID
 	ld a, d
 	or e
-	jr z, .no_scene
+	ret z
 	call GetScriptByte
 	ld [de], a
-.no_scene
 	ret
 
 Script_readmem:
@@ -2232,7 +2231,6 @@ Script_opentext:
 
 Script_refreshscreen:
 	call RefreshScreen
-	call GetScriptByte
 	ret
 
 Script_writeunusedbyte:
@@ -2245,8 +2243,7 @@ UnusedClosetextScript: ; unreferenced
 
 Script_closetext:
 	call _OpenAndCloseMenu_HDMATransferTilemapAndAttrmap
-	call CloseText
-	ret
+	jp CloseText
 
 Script_autoinput:
 	call GetScriptByte
@@ -2256,8 +2253,7 @@ Script_autoinput:
 	call GetScriptByte
 	ld h, a
 	pop af
-	call StartAutoInput
-	ret
+	jp StartAutoInput
 
 Script_pause:
 	call GetScriptByte

@@ -1324,8 +1324,8 @@ BattleCommand_Stab:
 	cp d
 	jr z, .GotMatchup
 	cp e
-	jr z, .GotMatchup
-	jr .SkipType
+	jr nz, .SkipType
+	; fallthrough
 
 .GotMatchup:
 	push hl
@@ -1571,7 +1571,7 @@ BattleCommand_DamageVariation:
 ; ...divide by 100%...
 	ld a, 100 percent
 	ldh [hDivisor], a
-	ld b, $4
+	ld b, 4
 	call Divide
 
 ; ...to get .85-1.00x damage.
@@ -1605,9 +1605,6 @@ BattleCommand_CheckHit:
 
 	call .ThunderRain
 	ret z
-
-;	call .XAccuracy
-;	ret nz
 
 	; Perfect-accuracy moves
 	ld a, BATTLE_VARS_MOVE_EFFECT
@@ -1824,13 +1821,7 @@ BattleCommand_CheckHit:
 	ld a, [wBattleWeather]
 	cp WEATHER_RAIN
 	ret
-/*
-.XAccuracy:
-	ld a, BATTLE_VARS_SUBSTATUS4
-	call GetBattleVar
-	bit SUBSTATUS_X_ACCURACY, a
-	ret
-*/
+
 .StatModifiers:
 	ldh a, [hBattleTurn]
 	and a

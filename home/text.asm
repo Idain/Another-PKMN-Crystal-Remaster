@@ -177,7 +177,7 @@ PlaceNextChar::
 
 NextChar::
 	inc de
-	jp PlaceNextChar
+	jr PlaceNextChar
 
 CheckDict::
 dict: MACRO
@@ -306,10 +306,17 @@ PlaceEnemysName::
 
 	ld a, [wTrainerClass]
 	cp RIVAL1
-	jr z, .rival
-	cp RIVAL2
-	jr z, .rival
+	jr nz, .print_trainer_name
 
+	ld a, [wOtherTrainerID]
+	cp RIVAL1_1_CHIKORITA
+	jr z, .rival_first_battle
+	cp RIVAL1_1_CYNDAQUIL
+	jr z, .rival_first_battle
+	cp RIVAL1_1_TOTODILE
+	jr z, .rival_first_battle
+
+.print_trainer_name
 	ld de, wOTClassName
 	call PlaceString
 	ld h, b
@@ -322,7 +329,7 @@ PlaceEnemysName::
 	ld de, wStringBuffer1
 	jr PlaceCommandCharacter
 
-.rival
+.rival_first_battle
 	ld de, wRivalName
 	jr PlaceCommandCharacter
 

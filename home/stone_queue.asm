@@ -106,7 +106,7 @@ HandleStoneQueue::
 .loop2
 	ld a, [hli]
 	cp -1
-	jr z, .nope3
+	jr z, .nope2
 	cp d
 	jr nz, .next_inc3
 	ld a, [hli]
@@ -115,7 +115,8 @@ HandleStoneQueue::
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jr .yes
+	scf
+	ret
 
 .next_inc3
 	inc hl
@@ -124,11 +125,4 @@ HandleStoneQueue::
 	inc hl
 	inc hl
 	jr .loop2
-
-.nope3
-	and a
-	ret
-
-.yes
-	scf
-	ret
+	

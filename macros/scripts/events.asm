@@ -476,11 +476,7 @@ ENDM
 
 	const refreshscreen_command ; $48
 refreshscreen: MACRO
-if _NARG == 0
-	refreshscreen 0
-else
 	db refreshscreen_command
-endc
 ENDM
 
 	const closetext_command ; $49
