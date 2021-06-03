@@ -252,15 +252,14 @@ MoveDescriptions::
 	dw RockSmashDescription
 	dw WhirlpoolDescription
 	dw BeatUpDescription
+	dw HailDescription
 	assert_table_length NUM_ATTACKS
-	dw MoveFCDescription
 	dw MoveFDDescription
 	dw MoveFEDescription
 	dw MoveFFDescription
 	dw Move00Description
 	assert_table_length $100
 
-MoveFCDescription:
 MoveFDDescription:
 MoveFEDescription:
 MoveFFDescription:
@@ -1233,10 +1232,10 @@ SunnyDayDescription:
 
 CrunchDescription:
 	db   "An attack that may"
-	next "lower DEFENSE.@"
+	next "lower Defense.@"
 
 MirrorCoatDescription:
-	db   "Counters a SP.ATK"
+	db   "Counters a Sp.Atk"
 	next "move double.@"
 
 PsychUpDescription:
@@ -1253,7 +1252,7 @@ AncientpowerDescription:
 
 ShadowBallDescription:
 	db   "An attack that may"
-	next "lower SP.DEF.@"
+	next "lower Sp.Def.@"
 
 FutureSightDescription:
 	db   "An attack that"
@@ -1261,12 +1260,16 @@ FutureSightDescription:
 
 RockSmashDescription:
 	db   "An attack that may"
-	next "lower DEFENSE.@"
+	next "lower Defense.@"
 
 WhirlpoolDescription:
 	db   "Traps the foe for"
 	next "4-5 turns.@"
 
 BeatUpDescription:
-	db   "Party #MON join"
+	db   "Party #mon join"
 	next "in the attack.@"
+
+HailDescription:
+	db   "Inflicts damage"
+	next "every turn.@"

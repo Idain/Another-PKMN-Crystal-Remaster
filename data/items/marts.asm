@@ -832,12 +832,10 @@ MartCeladon2F2:
 	db -1 ; end
 
 MartCeladon3F:
-	db 5 ; # items
+	db 3 ; # items
 	db TM_PSYCH_UP
 	db TM_PROTECT
-	db TM_THUNDERPUNCH
-	db TM_FIRE_PUNCH
-	db TM_ICE_PUNCH
+	db TM_HAIL
 	db -1 ; end
 
 MartCeladon4F:

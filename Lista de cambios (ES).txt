@@ -8,6 +8,10 @@ AÑADIDOS:
 - ¡NUEVO MOVE REMINDER! Está localizado en Blackthorn City, en la misma casa del Move Deleter.
 	-- Hay un NPC en Blackthorn City que menciona la existencia de este.
 - Tu madre te da un tutorial muy breve de cómo correr en el juego.
+- ¡NUEVO MOVIMIENTO! Hail (Granizo), y también es la nueva TM51. Se vende en el 3er piso de Celadon Department Store por $10,000.
+	-- Por nivel: Seel, Dewgong, Articuno
+	-- Por TM: Squirtle, Wartortle, Blastoise, Psyduck, Golduck, Poliwag, Poliwhirl, Poliwrath, Tentacool, Tentacruel, Slowpoke, Slowbro,
+Seel, Dewgong, Shellder, Cloyster, Mew, Sneasel
 
 CAMBIOS:
 - ¡Ahora es más mucho rápido salvar la partida!
@@ -31,7 +35,7 @@ CAMBIOS:
 - Mercados:
 	-- Los catálogos de los Poké Marts se irá expandiendo a medida que el jugador progrese en la historia. (Gen 4)
 	-- Los objetos Mails de la 2da Gen que solo se conseguían por evento ahora pueden ser comprados en Mt. Moon Square.
-
+	-- Los precios de todas las TMs en los Dept. Store es ahora $10,000. También, Celadon Dept. Store ya no vende los puños elementales, dado que ya se podían conseguir en Goldenrod Dept. Store.
 - Movimientos:
 	-- Corte ya no permite cortar la hierba alta (Gen 4+).
 	-- Foresight ahora solo ignora los cambios en la evasión del oponente si esta es mayor o igual a +1. (Gen 4+)
@@ -89,12 +93,15 @@ CAMBIOS:
 
 - Los nombres de los movimientos ahora están en Capital en vez de MAYÚSCULA.
 - Los nombres de los entrenadores y sus clases ahora están en Capital.
+- Los nombres de los bolsillos también están en capital.
 - El objeto "Stick" ahora se llama "Leek" (Gen 8).
 - Modificada fórmula para aparición de formas Unown.
 - Después de hablar con la enfermera del Centro Pokémon, el jugador mirará hacia abajo automáticamente. Así pueden spamear el botón A libremente sin temor a iniciar otro diálogo con ella. :V
 - La probabilidad de que salga un Pokémon Shiny del Huevo Extraño ahora es de un 50% (basado en versión japonesa del juego).
 - El moveset del Dratini que recibes en Dragon's Den ha sido actualizado para asemejarse a HG/SS.
 - Tu rival imprimirá un texto de victoria en caso de que pierdas en una batalla.
+- El texto imprimirá "Rival <nombre que le pusimos>" en vez de solo el nombre del rival cuando batallemos contra él.
+- Moomoo, el Miltank enfermo de la granja Moomoo, ahora solo necesita seis bayas para ser curada en vez de siete.
 
 FIXES:
 - Algunos items no podían ser seleccionados/tenían el efecto equivocado.

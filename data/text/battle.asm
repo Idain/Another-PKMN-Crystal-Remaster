@@ -155,6 +155,11 @@ BattleText_TheSandstormRages:
 	line "rages."
 	prompt
 
+BattleText_HailContinuesToFall:
+	text "Hail continues to"
+	line "fall."
+	prompt
+
 BattleText_TheRainStopped:
 	text "The rain stopped."
 	prompt
@@ -168,6 +173,11 @@ BattleText_TheSandstormSubsided:
 	text "The sandstorm"
 	line "subsided."
 	prompt
+
+BattleText_TheHailStopped:
+	text "The hail stopped."
+	prompt
+
 
 BattleText_EnemyMonFainted:
 	text "Enemy @"
@@ -1128,7 +1138,13 @@ BattleText_LinkErrorBattleCanceled:
 	line "been canceled…"
 	prompt
 
-BattleText_NoTimeLeftToday: ; unreferenced
-	text "There is no time"
-	line "left today!"
-	done
+ItStartedToHailText:
+	text "It started"
+	line "to hail!"
+	prompt
+
+PeltedByHailText:
+	text "<USER>"
+	line "is pelted by Hail!"
+	prompt
+

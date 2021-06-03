@@ -70,15 +70,15 @@ MoomooScript:
 	readmem wMooMooBerries
 	addval 1
 	writemem wMooMooBerries
-	ifequal 3, .ThreeBerries
-	ifequal 5, .FiveBerries
-	ifequal 7, .SevenBerries
+	ifequal 2, .TwoBerries
+	ifequal 4, .FourBerries
+	ifequal 6, .SixBerries
 	writetext Route39BarnGaveBerryText
 	waitbutton
 	closetext
 	end
 
-.ThreeBerries:
+.TwoBerries:
 	writetext Route39BarnGaveBerryText
 	promptbutton
 	writetext Route39BarnLittleHealthierText
@@ -86,7 +86,7 @@ MoomooScript:
 	closetext
 	end
 
-.FiveBerries:
+.FourBerries:
 	writetext Route39BarnGaveBerryText
 	promptbutton
 	writetext Route39BarnQuiteHealthyText
@@ -94,7 +94,7 @@ MoomooScript:
 	closetext
 	end
 
-.SevenBerries:
+.SixBerries:
 	playmusic MUSIC_HEAL
 	writetext Route39BarnGaveBerryText
 	pause 60
@@ -126,19 +126,19 @@ MoomooScript:
 	end
 
 Route39BarnTwinMoomooIsSickText:
-	text "MOOMOO is sick…"
+	text "Moomoo is sick…"
 
 	para "She needs lots of"
-	line "ORAN BERRIES."
+	line "Oran Berries."
 	done
 
 Route39BarnTwinWereFeedingMoomooText:
 	text "We're feeding"
-	line "MOOMOO!"
+	line "Moomoo!"
 	done
 
 MoomooWeakMooText:
-	text "MILTANK: …Moo…"
+	text "Moomoo: …Moo…"
 	done
 
 Route39BarnItsCryIsWeakText:
@@ -146,45 +146,46 @@ Route39BarnItsCryIsWeakText:
 	done
 
 MoomooHappyMooText:
-	text "MILTANK: Mooo!"
+	text "Moomoo: Mooo!"
 	done
 
 Route39BarnAskGiveBerryText:
-	text "Give an ORAN BERRY"
-	line "to MILTANK?"
+	text "Give an Oran Berry"
+	line "to Moomoo?"
 	done
 
 Route39BarnGaveBerryText:
 	text "<PLAYER> gave an"
-	line "ORAN BERRY to"
-	cont "MILTANK."
+	line "Oran Berry to"
+	cont "Moomoo."
 	done
 
 Route39BarnLittleHealthierText:
-	text "MILTANK became a"
+	text "Moomoo became a"
 	line "little healthier!"
 	done
 
 Route39BarnQuiteHealthyText:
-	text "MILTANK became"
+	text "Moomoo became"
 	line "quite healthy!"
 	done
 
 Route39BarnTotallyHealthyText:
-	text "MILTANK became"
+	text "Moomoo became"
 	line "totally healthy!"
 	done
 
 Route39BarnNoBerriesText:
 	text "<PLAYER> has no"
-	line "ORAN BERRIES…"
+	line "Oran Berries…"
 	done
 
 Route39BarnRefusedBerryText:
 	text "<PLAYER> wouldn't"
-	line "give a ORAN BERRY."
+	line "give an Oran Ber-"
+	cont "ry."
 
-	para "MILTANK looks sad."
+	para "Moomoo looks sad."
 	done
 
 Route39Barn_MapEvents:

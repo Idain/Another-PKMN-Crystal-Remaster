@@ -2095,3 +2095,10 @@ Growth:
 	doturn
 	growth
 	endmove
+
+Hail:
+	checkobedience
+	usedmovetext
+	doturn
+	starthail
+	endmove

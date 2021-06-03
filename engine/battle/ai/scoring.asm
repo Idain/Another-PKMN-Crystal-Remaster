@@ -327,7 +327,7 @@ AI_Smart_EffectHandlers:
 	dbw EFFECT_RAZOR_WIND,       AI_Smart_RazorWind
 	dbw EFFECT_SUPER_FANG,       AI_Smart_SuperFang
 	dbw EFFECT_TRAP_TARGET,      AI_Smart_TrapTarget
-	dbw EFFECT_UNUSED_2B,        AI_Smart_Unused2B
+	dbw EFFECT_HAIL,             AI_Smart_Hail
 	dbw EFFECT_CONFUSE,          AI_Smart_Confuse
 	dbw EFFECT_SP_DEF_UP_2,      AI_Smart_SpDefenseUp2
 	dbw EFFECT_REFLECT,          AI_Smart_Reflect
@@ -940,21 +940,26 @@ AI_Smart_ForceSwitch:
 
 AI_Smart_Heal:
 AI_Smart_WeatherHeal:
-; 90% chance to greatly encourage this move if enemy's HP is below 25%.
-; Discourage this move if enemy's HP is higher than 50%.
-; Do nothing otherwise.
+; 80% chance to greatly encourage this move if enemy's HP is below 25%.
+; 50% chance to encourage this move if enemy's HP is between 25% and 50%.
+; Discourage otherwise.
 
-	call AICheckEnemyQuarterHP
-	jr nc, .encourage
-	call AICheckEnemyHalfHP
-	ret nc
+    call AICheckEnemyQuarterHP
+    jr nc, .very_low_hp
+    call AICheckEnemyHalfHP
+    jr nc, .low_hp
 	inc [hl]
 	ret
 
-.encourage
-	call Random
-	cp 10 percent
-	ret c
+.low_hp
+    call AI_50_50
+    ret c
+    dec [hl]
+	ret
+    
+.very_low_hp
+    call AI_80_20
+    ret c
 	dec [hl]
 	dec [hl]
 	ret
@@ -969,16 +974,46 @@ AI_Smart_LeechSeed:
 	ret
 
 AI_Smart_LightScreen:
-AI_Smart_Reflect:
-; Over 90% chance to discourage this move unless enemy's HP is full.
+; Greatly encourage this move if enemy's HP is greater than 50% and 
+; enemy's Sp. Def < Def.
 
-	call AICheckEnemyMaxHP
-	ret c
-	call Random
-	cp 8 percent
-	ret c
-	inc [hl]
-	ret
+    call AICheckEnemyHalfHP
+    ret nc
+    ld a, [wEnemyDefense]
+    ld b, a
+    ld a, [wEnemySpDef]
+    cp b
+    jr nc, .spdef_is_greater_or_equal
+    dec [hl]
+    dec [hl]
+    ret
+    
+.spdef_is_greater_or_equal
+; Otherwise, encourage if enemy's HP > 50% and 
+; enemy's Sp. Def >= Def.
+    dec [hl]
+    ret
+
+AI_Smart_Reflect:
+; Greatly encourage this move if enemy's HP is greater than 50% and 
+; enemy's Def < Sp. Def.
+
+    call AICheckEnemyHalfHP
+    ret nc
+    ld a, [wEnemySpDef]
+    ld b, a
+    ld a, [wEnemyDefense]
+    cp b
+    jr nc, .def_is_greater_or_equal
+    dec [hl]
+    dec [hl]
+    ret
+    
+.def_is_greater_or_equal
+; Otherwise, encourage if enemy's HP > 50% and 
+; enemy's Def >= Sp. Def.
+    dec [hl]
+    ret
 
 AI_Smart_Ohko:
 ; Dismiss this move if player's level is higher than enemy's level.
@@ -1034,7 +1069,6 @@ AI_Smart_TrapTarget:
 	ret
 
 AI_Smart_RazorWind:
-AI_Smart_Unused2B:
 	ld a, [wEnemySubStatus1]
 	bit SUBSTATUS_PERISH, a
 	jr z, .no_perish_count
@@ -2051,16 +2085,14 @@ AI_Smart_Sandstorm:
 	ld a, [wBattleMonType1]
 	push hl
 	ld hl, .SandstormImmuneTypes
-	ld de, 1
-	call IsInArray
+	call IsInByteArray
 	pop hl
 	jr c, .greatly_discourage
 
 	ld a, [wBattleMonType2]
 	push hl
 	ld hl, .SandstormImmuneTypes
-	ld de, 1
-	call IsInArray
+	call IsInByteArray
 	pop hl
 	jr c, .greatly_discourage
 
@@ -2085,6 +2117,45 @@ AI_Smart_Sandstorm:
 	db ROCK
 	db GROUND
 	db STEEL
+	db -1 ; end
+
+AI_Smart_Hail:
+; Greatly discourage this move if the player is immune to Hail damage.
+	ld a, [wBattleMonType1]
+	cp ICE
+	jr z, .greatly_discourage
+
+	ld a, [wBattleMonType2]
+	cp ICE
+	jr z, .greatly_discourage
+
+; Discourage this move if player's HP is below 50%.
+	call AICheckPlayerHalfHP
+	jr nc, .discourage
+
+; Encourage move if AI has good Hail moves
+	push hl
+	ld hl, .GoodHailMoves
+	call AIHasMoveInArray
+	pop hl
+	jr c, .encourage
+
+; 50% chance to encourage this move otherwise.
+	call AI_50_50
+	ret c
+
+.encourage
+	dec [hl]
+	ret
+
+.greatly_discourage
+	inc [hl]
+.discourage
+	inc [hl]
+	ret
+
+.GoodHailMoves
+	db BLIZZARD
 	db -1 ; end
 
 AI_Smart_Endure:

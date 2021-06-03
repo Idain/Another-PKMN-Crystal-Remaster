@@ -861,23 +861,23 @@ SacredAshDesc:
 	next "fainted #mon.@"
 
 HeavyBallDesc:
-	db   "A BALL for catch-"
+	db   "A Ball for catch-"
 	next "ing heavy #mon.@"
 
 FlowerMailDesc:
-	db   "Flower-print MAIL."
+	db   "Flower-print Mail."
 	next "(HOLD)@"
 
 LevelBallDesc:
-	db   "A BALL for lower-"
+	db   "A Ball for lower-"
 	next "level #mon.@"
 
 LureBallDesc:
-	db   "A BALL for #mon"
+	db   "A Ball for #mon"
 	next "hooked by a ROD.@"
 
 FastBallDesc:
-	db   "A BALL for catch-"
+	db   "A Ball for catch-"
 	next "ing fast #mon.@"
 
 TeruSama21Desc:
@@ -888,12 +888,12 @@ LightBallDesc:
 	next "orb. (HOLD)@"
 
 FriendBallDesc:
-	db   "A BALL that makes"
+	db   "A Ball that makes"
 	next "#mon friendly.@"
 
 MoonBallDesc:
-	db   "A BALL for MOON"
-	next "STONE evolvers.@"
+	db   "A Ball for Moon"
+	next "Stone evolvers.@"
 
 LoveBallDesc:
 	db   "For catching the"
@@ -939,7 +939,7 @@ TeruSama23Desc:
 
 ParkBallDesc:
 	db   "The Bug-Catching"
-	next "Contest BALL.@"
+	next "Contest Ball.@"
 
 RainbowWingDesc:
 	db   "A mystical feather"
@@ -953,39 +953,39 @@ BrickPieceDesc:
 	next "tile.@"
 
 SurfMailDesc:
-	db   "LAPRAS-print MAIL."
+	db   "Lapras-print Mail."
 	next "(HOLD)@"
 
 LiteBlueMailDesc:
-	db   "DRATINI-print"
-	next "MAIL. (HOLD)@"
+	db   "Dratini-print"
+	next "Mail. (HOLD)@"
 
 PortraitMailDesc:
-	db   "MAIL featuring the"
+	db   "Mail featuring the"
 	next "holder's likeness.@"
 
 LovelyMailDesc:
-	db   "Heart-print MAIL."
+	db   "Heart-print Mail."
 	next "(HOLD)@"
 
 EonMailDesc:
-	db   "EEVEE-print MAIL."
+	db   "Eevee-print Mail."
 	next "(HOLD)@"
 
 MorphMailDesc:
-	db   "DITTO-print MAIL."
+	db   "Ditto-print Mail."
 	next "(HOLD)@"
 
 BlueSkyMailDesc:
-	db   "Sky-print MAIL."
+	db   "Sky-print Mail."
 	next "(HOLD)@"
 
 MusicMailDesc:
-	db   "NATU-print MAIL."
+	db   "Natu-print Mail."
 	next "(HOLD)@"
 
 MirageMailDesc:
-	db   "MEW-print MAIL."
+	db   "Mew-print Mail."
 	next "(HOLD)@"
 
 TeruSama25Desc:
