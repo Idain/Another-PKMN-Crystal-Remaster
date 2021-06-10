@@ -603,7 +603,7 @@ wEnemyFutureSightCount:: db
 
 wGivingExperienceToExpShareHolders:: db
 
-wBackupEnemyMonBaseStats:: ds NUM_EXP_STATS
+wBackupEnemyMonBaseStats:: ds NUM_STATS
 wBackupEnemyMonCatchRate:: db
 wBackupEnemyMonBaseExp:: db
 
@@ -2487,7 +2487,7 @@ wTempEnemyMonSpecies::  db
 wTempBattleMonSpecies:: db
 
 wEnemyMon:: battle_struct wEnemyMon
-wEnemyMonBaseStats:: ds NUM_EXP_STATS
+wEnemyMonBaseStats:: ds NUM_STATS
 wEnemyMonCatchRate:: db
 wEnemyMonBaseExp::   db
 wEnemyMonEnd::
@@ -2555,8 +2555,6 @@ wCurBaseDataEnd::
 
 wCurDamage:: dw
 
-	ds 1
-
 wMornEncounterRate::  db
 wDayEncounterRate::   db
 wNiteEncounterRate::  db
@@ -2592,7 +2590,6 @@ wMonTriedToEvolve:: db
 
 wTimeOfDay:: db
 
-	ds 1
 
 
 SECTION "Enemy Party", WRAMX

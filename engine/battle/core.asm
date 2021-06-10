@@ -6614,10 +6614,10 @@ LoadEnemyMon:
 	call CopyBytes
 
 .Finish:
-; Only the first five base stats are copied..
+; All six base stats are copied.
 	ld hl, wBaseStats
 	ld de, wEnemyMonBaseStats
-	ld b, wBaseSpecialDefense - wBaseStats
+	ld b, wBaseEVs - wBaseStats
 .loop
 	ld a, [hli]
 	ld [de], a
@@ -6659,9 +6659,8 @@ LoadEnemyMon:
 	ld hl, wEnemyMonStats
 	ld de, wEnemyStats
 	ld bc, NUM_EXP_STATS * 2
-	call CopyBytes
+	jp CopyBytes
 
-	ret
 
 CheckSleepingTreeMon:
 ; Return carry if species is in the list
@@ -6865,7 +6864,7 @@ ApplyPrzEffectOnSpeed:
 	ld [hli], a
 	or b
 	jr nz, .enemy_ok
-	ld b, $1 ; min speed
+	ld b, 1 ; min speed
 
 .enemy_ok
 	ld [hl], b
@@ -6886,10 +6885,10 @@ ApplyBrnEffectOnAttack:
 	rr b
 	ld [hli], a
 	or b
-	jr nz, .player_ok
-	ld b, $1 ; min attack
+	jr nz, .player_enemy_ok
+	ld b, 1 ; min attack
 
-.player_ok
+.player_enemy_ok
 	ld [hl], b
 	ret
 
@@ -6905,12 +6904,9 @@ ApplyBrnEffectOnAttack:
 	rr b
 	ld [hli], a
 	or b
-	jr nz, .enemy_ok
-	ld b, $1 ; min attack
-
-.enemy_ok
-	ld [hl], b
-	ret
+	jr nz, .player_enemy_ok
+	ld b, 1 ; min attack
+	jr .player_enemy_ok
 
 ApplyStatLevelMultiplierOnAllStats:
 ; Apply StatLevelMultipliers on all 5 Stats
