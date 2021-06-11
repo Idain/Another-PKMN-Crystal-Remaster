@@ -4054,7 +4054,7 @@ InitBattleMon:
 	ld bc, MON_DVS - MON_ID
 	add hl, bc
 	ld de, wBattleMonDVs
-	ld bc, MON_PKRUS - MON_DVS
+	ld bc, MON_POKERUS - MON_DVS
 	call CopyBytes
 	inc hl
 	inc hl
@@ -4139,7 +4139,7 @@ InitEnemyMon:
 	ld bc, MON_DVS - MON_ID
 	add hl, bc
 	ld de, wEnemyMonDVs
-	ld bc, MON_PKRUS - MON_DVS
+	ld bc, MON_POKERUS - MON_DVS
 	call CopyBytes
 	inc hl
 	inc hl
@@ -7154,7 +7154,7 @@ GiveExperiencePoints:
 ; Give EVs
 ; e = 0 for no Pokerus, 1 for Pokerus
 	ld e, 0
-	ld hl, MON_PKRUS
+	ld hl, MON_POKERUS
 	add hl, bc
 	ld a, [hl]
 	and a

@@ -91,7 +91,7 @@ MON_SDF_EV			   rb
 MON_DVS                rw
 MON_PP                 rb NUM_MOVES
 MON_HAPPINESS          rb
-MON_PKRUS              rb
+MON_POKERUS            rb
 MON_CAUGHTDATA         rw
 rsset MON_CAUGHTDATA
 MON_CAUGHTTIME         rb
