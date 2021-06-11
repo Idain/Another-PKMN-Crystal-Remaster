@@ -160,7 +160,7 @@ BattleTurn:
 .loop
 	call Stubbed_Increments5_a89a
 	call CheckContestBattleOver
-	jp c, .quit
+	ret c
 
 	xor a
 	ld [wPlayerIsSwitching], a
@@ -180,20 +180,20 @@ BattleTurn:
 	farcall Function100da5
 	farcall StartMobileInactivityTimer
 	farcall Function100dd8
-	jp c, .quit
+	ret c
 .not_disconnected
 
 	call CheckPlayerLockedIn
 	jr c, .skip_iteration
 .loop1
 	call BattleMenu
-	jr c, .quit
+	ret c
 	ld a, [wBattleEnded]
 	and a
-	jr nz, .quit
+	ret nz
 	ld a, [wForcedSwitch] ; roared/whirlwinded/teleported
 	and a
-	jr nz, .quit
+	ret nz
 .skip_iteration
 	call ParsePlayerAction
 	push af
@@ -202,7 +202,7 @@ BattleTurn:
 	jr nz, .loop1
 
 	call EnemyTriesToFlee
-	jr c, .quit
+	ret c
 
 	call DetermineMoveOrder
 	jr c, .false
@@ -212,24 +212,21 @@ BattleTurn:
 	call Battle_PlayerFirst
 .proceed
 	call CheckMobileBattleError
-	jr c, .quit
+	ret c
 
 	ld a, [wForcedSwitch]
 	and a
-	jr nz, .quit
+	ret nz
 
 	ld a, [wBattleEnded]
 	and a
-	jr nz, .quit
+	ret nz
 
 	call HandleBetweenTurnEffects
 	ld a, [wBattleEnded]
 	and a
-	jr nz, .quit
+	ret nz
 	jp .loop
-
-.quit
-	ret
 
 Stubbed_Increments5_a89a:
 	ret
@@ -237,17 +234,14 @@ Stubbed_Increments5_a89a:
 	call OpenSRAM
 	ld hl, s5_a89a + 1 ; address of MBC30 bank
 	inc [hl]
-	jr nz, .finish
+	jp nz, CloseSRAM
 	dec hl
 	inc [hl]
-	jr nz, .finish
+	jp nz, CloseSRAM
 	dec [hl]
 	inc hl
 	dec [hl]
-
-.finish
-	call CloseSRAM
-	ret
+	jp CloseSRAM
 
 HandleBetweenTurnEffects:
 	ldh a, [hSerialConnectionStatus]
@@ -1354,7 +1348,7 @@ HandleMysteryberry:
 	call SetPlayerTurn
 	call .do_it
 	call SetEnemyTurn
-	jp .do_it
+	jr .do_it
 
 .DoEnemyFirst:
 	call SetEnemyTurn
@@ -1365,7 +1359,7 @@ HandleMysteryberry:
 	callfar GetUserItem
 	ld a, b
 	cp HELD_RESTORE_PP
-	jr nz, .quit
+	ret nz
 	ld hl, wPartyMon1PP
 	ld a, [wCurBattleMon]
 	call GetPartyLocation
@@ -1396,7 +1390,7 @@ HandleMysteryberry:
 .loop
 	ld a, [hl]
 	and a
-	jr z, .quit
+	ret z
 	ld a, [de]
 	and PP_MASK
 	jr z, .restore
@@ -1406,8 +1400,6 @@ HandleMysteryberry:
 	ld a, c
 	cp NUM_MOVES
 	jr nz, .loop
-
-.quit
 	ret
 
 .restore
@@ -1707,7 +1699,7 @@ HandleScreens:
 	bit SCREENS_LIGHT_SCREEN, [hl]
 	call nz, .LightScreenTick
 	bit SCREENS_REFLECT, [hl]
-	call nz, .ReflectTick
+	jr nz, .ReflectTick
 	ret
 
 .Copy:
@@ -1985,8 +1977,10 @@ GetQuarterMaxHP:
 	ret
 
 GetThirdMaxHP:
-; Assumes HP<768
+; Assumes HP < 768
 	call GetMaxHP
+CalculateOneThird:
+; output: bc
 	xor a
 	inc b
 .loop
@@ -3569,7 +3563,7 @@ ScoreMonTypeMatchups:
 	inc b
 	sla c
 	jr nc, .loop3
-	jr .quit
+	ret
 
 .okay2
 	ld b, -1
@@ -3579,7 +3573,7 @@ ScoreMonTypeMatchups:
 	inc b
 	sla c
 	jr c, .loop4
-	jr .quit
+	ret
 
 .loop5
 	ld a, [wOTPartyCount]
@@ -3602,8 +3596,6 @@ ScoreMonTypeMatchups:
 	ld a, [hl]
 	or c
 	jr z, .loop5
-
-.quit
 	ret
 
 LoadEnemyMonToSwitchTo:
@@ -4900,11 +4892,9 @@ PrintPlayerHUD:
 	hlcoord 17, 8
 	ld [hl], a
 	push af ; back up gender
-	push hl
 	hlcoord 10, 8
 	ld de, wBattleMonStatus
 	predef PlaceNonFaintStatus
-	pop hl
 	pop bc
 	hlcoord 14, 8
 ;	ret nz
@@ -4975,13 +4965,10 @@ DrawEnemyHUD:
 .got_gender
 	hlcoord 9, 1
 	ld [hl], a
-
 	push af
-	push hl
 	hlcoord 2, 1
 	ld de, wEnemyMonStatus
 	predef PlaceNonFaintStatus
-	pop hl
 	pop bc
 	hlcoord 6, 1
 ;	jr nz, .skip_level
@@ -5044,8 +5031,7 @@ DrawEnemyHUD:
 	ldh [hDividend + 0], a
 	ldh a, [hProduct + 3]
 	ldh [hDividend + 1], a
-	ld a, 2
-	ld b, a
+	ld b, 2
 	call Divide
 	ldh a, [hQuotient + 3]
 	ld e, a
@@ -8720,7 +8706,7 @@ ReadAndPrintLinkBattleRecord:
 	hlcoord 6, 4
 	ld de, sLinkBattleWins
 	call .PrintZerosIfNoSaveFileExists
-	jr c, .quit
+	ret c
 
 	lb bc, 2, 4
 	call PrintNum
@@ -8737,10 +8723,7 @@ ReadAndPrintLinkBattleRecord:
 	call .PrintZerosIfNoSaveFileExists
 
 	lb bc, 2, 4
-	call PrintNum
-
-.quit
-	ret
+	jp PrintNum
 
 .PrintZerosIfNoSaveFileExists:
 	ld a, [wSavedAtLeastOnce]
@@ -8918,8 +8901,7 @@ AddLastLinkBattleToLinkRecord:
 
 .done
 	call .StoreResult
-	call .FindOpponentAndAppendRecord
-	ret
+	jr .FindOpponentAndAppendRecord
 
 .StoreResult:
 	ld a, [wBattleResult]
@@ -8976,8 +8958,8 @@ AddLastLinkBattleToLinkRecord:
 	pop bc
 	dec b
 	jr nz, .loop3
-	ld b, $0
-	ld c, $1
+	ld b, 0
+	ld c, 1
 .loop4
 	ld a, b
 	add b
@@ -9041,8 +9023,7 @@ AddLastLinkBattleToLinkRecord:
 	ld hl, wLinkBattleRecordBuffer
 	ld bc, LINK_BATTLE_RECORD_LENGTH
 	pop de
-	call CopyBytes
-	ret
+	jp CopyBytes
 
 .LoadPointer:
 	ld e, $0
@@ -9136,8 +9117,7 @@ InitBattleDisplay:
 
 .InitBackPic:
 	call GetTrainerBackpic
-	call CopyBackpic
-	ret
+	jp CopyBackpic
 
 GetTrainerBackpic:
 ; Load the player character's backpic (6x6) into VRAM starting from vTiles2 tile $31.
@@ -9169,8 +9149,7 @@ GetTrainerBackpic:
 .Decompress:
 	ld de, vTiles2 tile $31
 	ld c, 7 * 7
-	predef DecompressGet2bpp
-	ret
+	predef_jump DecompressGet2bpp
 
 CopyBackpic:
 	ldh a, [rSVBK]
@@ -9190,8 +9169,7 @@ CopyBackpic:
 	ldh [hGraphicStartTile], a
 	hlcoord 2, 6
 	lb bc, 6, 6
-	predef PlaceGraphic
-	ret
+	predef_jump PlaceGraphic
 
 .LoadTrainerBackpicAsOAM:
 	ld hl, wVirtualOAMSprite00

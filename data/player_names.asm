@@ -12,8 +12,8 @@ ChrisNameMenuHeader:
 MalePlayerNameArray:
 	db "Chris@"
 	db "Mat@"
-	db "Allan@"
-	db "Ethan@"
+	db "Jimmy@" ; Anime reference
+	db "Ethan@" ; HG/SS reference
 	db 2 ; title indent
 	db " NAME @" ; title
 
@@ -31,7 +31,7 @@ KrisNameMenuHeader:
 FemalePlayerNameArray:
 	db "Kris@"
 	db "Amanda@"
-	db "Juana@"
-	db "Lyra@"
+	db "Marina@" ; Anime reference
+	db "Lyra@"   ; HG/SS reference
 	db 2 ; title indent
 	db " NAME @" ; title

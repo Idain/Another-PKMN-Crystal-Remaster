@@ -39,8 +39,7 @@ NamingScreen:
 	ldh [hMapAnims], a
 	pop af
 	ld [wOptions], a
-	call ClearJoypad
-	ret
+	jp ClearJoypad
 
 .SetUpNamingScreen:
 	call ClearBGPalettes
@@ -55,8 +54,7 @@ NamingScreen:
 	call WaitBGMap
 	call WaitTop
 	call SetPalettes
-	call NamingScreen_InitNameEntry
-	ret
+	jp NamingScreen_InitNameEntry
 
 .GetNamingScreenSetup:
 	ld a, [wNamingScreenType]
@@ -110,8 +108,7 @@ NamingScreen:
 	hlcoord 1, 2
 	ld [hl], a
 .genderless
-	call .StoreMonIconParams
-	ret
+	jp .StoreMonIconParams
 
 .NicknameStrings:
 	db "'S@"
@@ -123,8 +120,7 @@ NamingScreen:
 	hlcoord 5, 2
 	ld de, .PlayerNameString
 	call PlaceString
-	call .StoreSpriteIconParams
-	ret
+	jp .StoreSpriteIconParams
 
 .PlayerNameString:
 	db "YOUR NAME?@"
@@ -136,8 +132,7 @@ NamingScreen:
 	hlcoord 5, 2
 	ld de, .RivalNameString
 	call PlaceString
-	call .StoreSpriteIconParams
-	ret
+	jp .StoreSpriteIconParams
 
 .RivalNameString:
 	db "RIVAL'S NAME?@"
@@ -149,8 +144,7 @@ NamingScreen:
 	hlcoord 5, 2
 	ld de, .MomNameString
 	call PlaceString
-	call .StoreSpriteIconParams
-	ret
+	jp .StoreSpriteIconParams
 
 .MomNameString:
 	db "MOTHER'S NAME?@"
@@ -173,8 +167,7 @@ NamingScreen:
 	hlcoord 5, 2
 	ld de, .BoxNameString
 	call PlaceString
-	call .StoreBoxIconParams
-	ret
+	jr .StoreBoxIconParams
 
 .BoxNameString:
 	db "BOX NAME?@"
@@ -183,8 +176,7 @@ NamingScreen:
 	hlcoord 3, 2
 	ld de, .oTomodachi_no_namae_sutoringu
 	call PlaceString
-	call .StoreSpriteIconParams
-	ret
+	jr .StoreSpriteIconParams
 
 .oTomodachi_no_namae_sutoringu
 	db "おともだち　の　なまえは？@"
@@ -218,8 +210,7 @@ NamingScreen:
 .not_kris
 	ld a, b
 	depixel 4, 4, 4, 0
-	call InitSpriteAnimStruct
-	ret
+	jp InitSpriteAnimStruct
 
 .StoreMonIconParams:
 	ld a, MON_NAME_LENGTH - 1
@@ -234,7 +225,6 @@ NamingScreen:
 .StoreBoxIconParams:
 	ld a, BOX_NAME_LENGTH - 1
 	hlcoord 5, 4
-	jr .StoreParams
 
 .StoreParams:
 	ld [wNamingScreenMaxNameLength], a
@@ -395,29 +385,28 @@ NamingScreenJoypadLoop:
 .ReadButtons:
 	ld hl, hJoyPressed
 	ld a, [hl]
-	and A_BUTTON
-	jr nz, .a
-	ld a, [hl]
 	and B_BUTTON
-	jr nz, .b
+	jp nz, NamingScreen_DeleteCharacter ; b
 	ld a, [hl]
 	and START
 	jr nz, .start
 	ld a, [hl]
 	and SELECT
 	jr nz, .select
-	ret
+	ld a, [hl]
+	and A_BUTTON
+	ret z
 
-.a
+;.a
 	call .GetCursorPosition
-	cp $1
+	dec a
 	jr z, .select
-	cp $2
-	jr z, .b
-	cp $3
+	dec a
+	jp z, NamingScreen_DeleteCharacter ; b
+	dec a
 	jr z, .end
 	call NamingScreen_GetLastCharacter
-	call NamingScreen_TryAddCharacter
+	call MailComposition_TryAddCharacter
 	ret nc
 
 .start
@@ -436,10 +425,6 @@ NamingScreenJoypadLoop:
 	inc [hl]
 	ret
 
-.b
-	call NamingScreen_DeleteCharacter
-	ret
-
 .end
 	call NamingScreen_StoreEntry
 	ld hl, wJumptableIndex
@@ -453,13 +438,11 @@ NamingScreenJoypadLoop:
 	ld [hl], a
 	jr z, .upper
 	ld de, NameInputLower
-	call NamingScreen_ApplyTextInputMode
-	ret
+	jp NamingScreen_ApplyTextInputMode
 
 .upper
 	ld de, NameInputUpper
-	call NamingScreen_ApplyTextInputMode
-	ret
+	jp NamingScreen_ApplyTextInputMode
 
 .GetCursorPosition:
 	ld hl, wNamingScreenCursorObjectPointer
@@ -560,8 +543,7 @@ NamingScreen_AnimateCursor:
 	jr nz, .left
 	ld a, [hl]
 	and D_RIGHT
-	jr nz, .right
-	ret
+	ret z
 
 .right
 	call NamingScreen_GetCursorPosition
@@ -629,19 +611,19 @@ NamingScreen_AnimateCursor:
 	ld a, [hl]
 	call NamingScreen_IsTargetBox
 	jr nz, .not_box
-	cp $5
+	cp 5
 	jr nc, .wrap_up
 	inc [hl]
 	ret
 
 .not_box
-	cp $4
+	cp 4
 	jr nc, .wrap_up
 	inc [hl]
 	ret
 
 .wrap_up
-	ld [hl], $0
+	ld [hl], 0
 	ret
 
 .up
@@ -654,14 +636,12 @@ NamingScreen_AnimateCursor:
 	ret
 
 .wrap_down
-	ld [hl], $4
+	ld [hl], 4
 	call NamingScreen_IsTargetBox
 	ret nz
 	inc [hl]
 	ret
 
-NamingScreen_TryAddCharacter:
-	ld a, [wNamingScreenLastCharacter] ; lost
 MailComposition_TryAddCharacter:
 	ld a, [wNamingScreenMaxNameLength]
 	ld c, a
@@ -807,9 +787,10 @@ NamingScreen_GetLastCharacter:
 	add hl, bc
 	add [hl]
 	sub $10
-	srl a
-	srl a
-	srl a
+	rrca
+	rrca
+	rrca
+	and %00011111
 	ld d, a
 	hlcoord 0, 0
 	ld bc, SCREEN_WIDTH
@@ -1069,9 +1050,6 @@ INCBIN "gfx/icons/mail_big.2bpp"
 .process_joypad
 	ld hl, hJoyPressed
 	ld a, [hl]
-	and A_BUTTON
-	jr nz, .a
-	ld a, [hl]
 	and B_BUTTON
 	jr nz, .b
 	ld a, [hl]
@@ -1080,15 +1058,17 @@ INCBIN "gfx/icons/mail_big.2bpp"
 	ld a, [hl]
 	and SELECT
 	jr nz, .select
-	ret
+	ld a, [hl]
+	and A_BUTTON
+	ret z
 
-.a
+;.a
 	call NamingScreen_PressedA_GetCursorCommand
-	cp $1
+	dec a
 	jr z, .select
-	cp $2
+	dec a
 	jr z, .b
-	cp $3
+	dec a
 	jr z, .finished
 	call NamingScreen_GetLastCharacter
 	call MailComposition_TryAddLastCharacter
@@ -1111,10 +1091,10 @@ INCBIN "gfx/icons/mail_big.2bpp"
 	ld b, [hl]
 	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
-	ld [hl], $9
+	ld [hl], 9
 	ld hl, SPRITEANIMSTRUCT_VAR2
 	add hl, bc
-	ld [hl], $5
+	ld [hl], 5
 	ret
 
 .b
@@ -1143,13 +1123,11 @@ INCBIN "gfx/icons/mail_big.2bpp"
 	ld [hl], a
 	jr nz, .switch_to_lowercase
 	ld de, MailEntry_Uppercase
-	call .PlaceMailCharset
-	ret
+	jp .PlaceMailCharset
 
 .switch_to_lowercase
 	ld de, MailEntry_Lowercase
-	call .PlaceMailCharset
-	ret
+	jp .PlaceMailCharset
 
 ; called from engine/gfx/sprite_anims.asm
 
@@ -1216,17 +1194,17 @@ ComposeMail_AnimateCursor:
 	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	ld a, [hl]
-	cp $9
+	cp 9
 	jr nc, .wrap_around_letter_right
 	inc [hl]
 	ret
 
 .wrap_around_letter_right
-	ld [hl], $0
+	ld [hl], 0
 	ret
 
 .case_del_done_right
-	cp $3
+	cp 3
 	jr nz, .wrap_around_command_right
 	xor a
 .wrap_around_command_right
@@ -1251,15 +1229,14 @@ ComposeMail_AnimateCursor:
 	ret
 
 .wrap_around_letter_left
-	ld [hl], $9
+	ld [hl], 9
 	ret
 
 .caps_del_done_left
-	cp $1
+	dec a ; cp 1
 	jr nz, .wrap_around_command_left
-	ld a, $4
+	ld a, 4
 .wrap_around_command_left
-	dec a
 	dec a
 	ld e, a
 	add a
@@ -1273,13 +1250,13 @@ ComposeMail_AnimateCursor:
 	ld hl, SPRITEANIMSTRUCT_VAR2
 	add hl, bc
 	ld a, [hl]
-	cp $5
+	cp 5
 	jr nc, .wrap_around_down
 	inc [hl]
 	ret
 
 .wrap_around_down
-	ld [hl], $0
+	ld [hl], 0
 	ret
 
 .up
@@ -1292,7 +1269,7 @@ ComposeMail_AnimateCursor:
 	ret
 
 .wrap_around_up
-	ld [hl], $5
+	ld [hl], 5
 	ret
 
 NamingScreen_PressedA_GetCursorCommand:
@@ -1305,24 +1282,24 @@ ComposeMail_GetCursorPosition:
 	ld hl, SPRITEANIMSTRUCT_VAR2
 	add hl, bc
 	ld a, [hl]
-	cp $5
+	cp 5
 	jr nz, .letter
 	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	ld a, [hl]
-	cp $3
+	cp 3
 	jr c, .case
-	cp $6
+	cp 6
 	jr c, .del
-	ld a, $3
+	ld a, 3
 	ret
 
 .case
-	ld a, $1
+	ld a, 1
 	ret
 
 .del
-	ld a, $2
+	ld a, 2
 	ret
 
 .letter

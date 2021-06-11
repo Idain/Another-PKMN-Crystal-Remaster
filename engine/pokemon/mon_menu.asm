@@ -219,7 +219,7 @@ GiveTakePartyMonItem:
 	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 	ld a, [wMenuCursorY]
-	cp 1
+	dec a ; cp 1
 	jr nz, .take
 
 	call LoadStandardMenuHeader
@@ -233,9 +233,6 @@ GiveTakePartyMonItem:
 
 .take
 	call TakePartyItem
-	ld a, 3
-	ret
-
 .cancel
 	ld a, 3
 	ret
@@ -248,7 +245,7 @@ GiveTakePartyMonItem:
 
 	ld a, [wPackUsedItem]
 	and a
-	jr z, .quit
+	ret z
 
 	ld a, [wCurPocket]
 	cp KEY_ITEM_POCKET
@@ -257,18 +254,12 @@ GiveTakePartyMonItem:
 	call CheckTossableItem
 	ld a, [wItemAttributeValue]
 	and a
-	jr nz, .next
-
-	call TryGiveItemToPartymon
-	jr .quit
+	jr z, TryGiveItemToPartymon
 
 .next
 	ld hl, ItemCantHeldText
 	call MenuTextboxBackup
 	jr .loop
-
-.quit
-	ret
 
 TryGiveItemToPartymon:
 	call SpeechTextbox
@@ -290,20 +281,18 @@ TryGiveItemToPartymon:
 	call GiveItemToPokemon
 	ld hl, PokemonHoldItemText
 	call MenuTextboxBackup
-	call GivePartyItem
-	ret
+	jr GivePartyItem
 
 .please_remove_mail
 	ld hl, PokemonRemoveMailText
-	call MenuTextboxBackup
-	ret
+	jp MenuTextboxBackup
 
 .already_holding_item
 	ld [wNamedObjectIndex], a
 	call GetItemName
 	ld hl, PokemonAskSwapItemText
 	call StartMenuYesNo
-	jr c, .abort
+	ret c
 
 	call GiveItemToPokemon
 	ld a, [wNamedObjectIndex]
@@ -319,18 +308,14 @@ TryGiveItemToPartymon:
 	call MenuTextboxBackup
 	ld a, [wNamedObjectIndex]
 	ld [wCurItem], a
-	call GivePartyItem
-	ret
+	jr GivePartyItem
 
 .bag_full
 	ld a, [wNamedObjectIndex]
 	ld [wCurItem], a
 	call ReceiveItemFromPokemon
 	ld hl, ItemStorageFullText
-	call MenuTextboxBackup
-
-.abort
-	ret
+	jp MenuTextboxBackup
 
 GivePartyItem:
 	call GetPartyItemLocation
@@ -338,11 +323,8 @@ GivePartyItem:
 	ld [hl], a
 	ld d, a
 	farcall ItemIsMail
-	jr nc, .done
-	call ComposeMailMessage
-
-.done
-	ret
+	ret nc
+	jp ComposeMailMessage
 
 TakePartyItem:
 	call SpeechTextbox
@@ -362,20 +344,15 @@ TakePartyItem:
 	ld [hl], NO_ITEM
 	call GetItemName
 	ld hl, PokemonTookItemText
-	call MenuTextboxBackup
-	jr .done
+	jp MenuTextboxBackup
 
 .not_holding_item
 	ld hl, PokemonNotHoldingText
-	call MenuTextboxBackup
-	jr .done
+	jp MenuTextboxBackup
 
 .item_storage_full
 	ld hl, ItemStorageFullText
-	call MenuTextboxBackup
-
-.done
-	ret
+	jp MenuTextboxBackup
 
 GiveTakeItemMenuData:
 	db MENU_SPRITE_ANIMS | MENU_BACKUP_TILES ; flags
@@ -471,8 +448,7 @@ ComposeMailMessage:
 	ld a, BANK(sPartyMail)
 	call OpenSRAM
 	call CopyBytes
-	call CloseSRAM
-	ret
+	jp CloseSRAM
 
 MonMailAction:
 ; If in the time capsule or trade center,
@@ -491,17 +467,17 @@ MonMailAction:
 	call ExitMenu
 
 ; Interpret the menu.
-	jp c, .done
+	jr c, .done
 	ld a, [wMenuCursorY]
-	cp $1
+	dec a ; cp 1
 	jr z, .read
-	cp $2
+	dec a ; cp 2
 	jr z, .take
-	jp .done
+	jr .done
 
 .read
 	farcall ReadPartyMonMail
-	ld a, $0
+	ld a, 0
 	ret
 
 .take
@@ -540,10 +516,9 @@ MonMailAction:
 .BagIsFull:
 	ld hl, .MailNoSpaceText
 	call MenuTextboxBackup
-	jr .done
 
 .done
-	ld a, $3
+	ld a, 3
 	ret
 
 .MenuHeader:
@@ -599,90 +574,82 @@ OpenPartyStats:
 MonMenu_Cut:
 	farcall CutFunction
 	ld a, [wFieldMoveSucceeded]
-	cp $1
+	dec a ; cp 1
 	jr nz, .Fail
-	ld b, $4
-	ld a, $2
+	ld b, 4
+	ld a, 2
 	ret
 
 .Fail:
-	ld a, $3
+	ld a, 3
 	ret
 
 MonMenu_Fly:
 	farcall FlyFunction
 	ld a, [wFieldMoveSucceeded]
-	cp $2
+	cp 2
 	jr z, .Fail
-	cp $0
-	jr z, .Error
-	farcall StubbedTrainerRankings_Fly
-	ld b, $4
-	ld a, $2
+	and a
+	ret z ; Error
+;	farcall StubbedTrainerRankings_Fly
+	ld b, 4
+	ld a, 2
 	ret
 
 .Fail:
-	ld a, $3
-	ret
-
-.Error:
-	ld a, $0
-	ret
-
-.NoReload: ; unreferenced
-	ld a, $1
+	ld a, 3
 	ret
 
 MonMenu_Flash:
 	farcall FlashFunction
 	ld a, [wFieldMoveSucceeded]
-	cp $1
+	dec a ; cp 1
 	jr nz, .Fail
-	ld b, $4
-	ld a, $2
+	ld b, 4
+	ld a, 2
 	ret
 
 .Fail:
-	ld a, $3
+	ld a, 3
 	ret
 
 MonMenu_Strength:
 	farcall StrengthFunction
 	ld a, [wFieldMoveSucceeded]
-	cp $1
+	dec a
 	jr nz, .Fail
-	ld b, $4
-	ld a, $2
+	ld b, 4
+	ld a, 2
 	ret
 
 .Fail:
-	ld a, $3
+	ld a, 3
 	ret
 
 MonMenu_Whirlpool:
 	farcall WhirlpoolFunction
 	ld a, [wFieldMoveSucceeded]
-	cp $1
+	dec a
 	jr nz, .Fail
-	ld b, $4
-	ld a, $2
+	ld b, 4
+	ld a, 2
 	ret
 
 .Fail:
-	ld a, $3
+	ld a, 3
 	ret
 
 MonMenu_Waterfall:
 	farcall WaterfallFunction
 	ld a, [wFieldMoveSucceeded]
-	cp $1
+	dec a
 	jr nz, .Fail
-	ld b, $4
-	ld a, $2
+	ld b, 4
+	ld a, 2
 	ret
 
 .Fail:
-	ld a, $3
+	ld a, 3
 	ret
 
 MonMenu_Teleport:
@@ -690,12 +657,12 @@ MonMenu_Teleport:
 	ld a, [wFieldMoveSucceeded]
 	and a
 	jr z, .Fail
-	ld b, $4
-	ld a, $2
+	ld b, 4
+	ld a, 2
 	ret
 
 .Fail:
-	ld a, $3
+	ld a, 3
 	ret
 
 MonMenu_Surf:
@@ -703,25 +670,25 @@ MonMenu_Surf:
 	ld a, [wFieldMoveSucceeded]
 	and a
 	jr z, .Fail
-	ld b, $4
-	ld a, $2
+	ld b, 4
+	ld a, 2
 	ret
 
 .Fail:
-	ld a, $3
+	ld a, 3
 	ret
 
 MonMenu_Dig:
 	farcall DigFunction
 	ld a, [wFieldMoveSucceeded]
-	cp $1
+	dec a
 	jr nz, .Fail
-	ld b, $4
-	ld a, $2
+	ld b, 4
+	ld a, 2
 	ret
 
 .Fail:
-	ld a, $3
+	ld a, 3
 	ret
 
 MonMenu_Softboiled_MilkDrink:
@@ -768,33 +735,33 @@ MonMenu_Softboiled_MilkDrink:
 MonMenu_Headbutt:
 	farcall HeadbuttFunction
 	ld a, [wFieldMoveSucceeded]
-	cp $1
+	dec a
 	jr nz, .Fail
-	ld b, $4
-	ld a, $2
+	ld b, 4
+	ld a, 2
 	ret
 
 .Fail:
-	ld a, $3
+	ld a, 3
 	ret
 
 MonMenu_RockSmash:
 	farcall RockSmashFunction
 	ld a, [wFieldMoveSucceeded]
-	cp $1
+	dec a
 	jr nz, .Fail
-	ld b, $4
-	ld a, $2
+	ld b, 4
+	ld a, 2
 	ret
 
 .Fail:
-	ld a, $3
+	ld a, 3
 	ret
 
 MonMenu_SweetScent:
 	farcall SweetScentFromMenu
-	ld b, $4
-	ld a, $2
+	ld b, 4
+	ld a, 2
 	ret
 
 ChooseMoveToDelete:
@@ -872,7 +839,7 @@ ManagePokemonMoves:
 	call ClearBGPalettes
 
 .egg
-	ld a, $0
+	ld a, 0
 	ret
 
 MoveScreenLoop:
@@ -919,7 +886,7 @@ MoveScreenLoop:
 	hlcoord 1, 12
 	ld de, String_MoveWhere
 	call PlaceString
-	jp .joy_loop
+	jr .joy_loop
 .b_button
 	call PlayClickSFX
 	call WaitSFX
@@ -934,7 +901,7 @@ MoveScreenLoop:
 	hlcoord 1, 2
 	lb bc, 8, SCREEN_WIDTH - 2
 	call ClearBox
-	jp .loop
+	jr .loop
 
 .d_right
 	ld a, [wSwappingMove]
@@ -948,7 +915,7 @@ MoveScreenLoop:
 	pop bc
 	ld a, [wCurPartyMon]
 	cp b
-	jp z, .joy_loop
+	jr z, .joy_loop
 	jp MoveScreenLoop
 
 .d_left

@@ -1,7 +1,6 @@
 _Multiply::
 ; hMultiplier is one byte.
-	ld a, 8
-	ld b, a
+	ld b, 8
 
 	xor a
 	ldh [hMultiplicand - 1], a
@@ -87,8 +86,7 @@ _Divide::
 	ldh [hMathBuffer + 3], a
 	ldh [hMathBuffer + 4], a
 
-	ld a, 9
-	ld e, a
+	ld e, 9
 
 .loop
 	ldh a, [hMathBuffer + 0]
@@ -116,7 +114,7 @@ _Divide::
 
 .next
 	ld a, b
-	cp 1
+	dec a
 	jr z, .done
 
 	ldh a, [hMathBuffer + 4]
@@ -155,7 +153,7 @@ _Divide::
 
 .next2
 	ld a, e
-	cp 1
+	dec a ; cp 1
 	jr nz, .okay
 	dec b
 

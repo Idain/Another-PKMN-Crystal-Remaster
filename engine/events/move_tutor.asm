@@ -24,14 +24,12 @@ MoveTutor:
 	jr nc, .loop
 	xor a ; FALSE
 	ld [wScriptVar], a
-	jr .quit
+	jp CloseSubmenu
 
 .cancel
 	ld a, -1
 	ld [wScriptVar], a
-.quit
-	call CloseSubmenu
-	ret
+	jp CloseSubmenu
 
 .GetMoveTutorMove:
 	ld a, [wScriptVar]

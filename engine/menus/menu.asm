@@ -72,7 +72,7 @@ Mobile_GetMenuSelection:
 	jr z, .skip
 	call GetMenuJoypad
 	bit SELECT_F, a
-	jr nz, .quit1
+	jr nz, .quit
 
 .skip
 	ld a, [wMenuDataFlags]
@@ -80,7 +80,7 @@ Mobile_GetMenuSelection:
 	jr nz, .skip2
 	call GetMenuJoypad
 	bit B_BUTTON_F, a
-	jr nz, .quit2
+	jr nz, .quit
 
 .skip2
 	ld a, [w2DMenuNumCols]
@@ -95,11 +95,7 @@ Mobile_GetMenuSelection:
 	and a
 	ret
 
-.quit1
-	scf
-	ret
-
-.quit2
+.quit
 	scf
 	ret
 

@@ -2783,8 +2783,7 @@ Function17e1a1:
 	ld h, a
 
 .asm_17e250
-	call Function17e40f
-	ret
+	jp Function17e40f
 
 Function17e254:
 	call IncCrashCheckPointer
@@ -2794,8 +2793,7 @@ Function17e254:
 	ld d, a
 	ld a, [hli]
 	ld [de], a
-	call HlToCrashCheckPointer
-	ret
+	jp HlToCrashCheckPointer
 
 Function17e261:
 	call IncCrashCheckPointer
@@ -2807,8 +2805,7 @@ Function17e261:
 	add [hl]
 	ld [de], a
 	inc hl
-	call HlToCrashCheckPointer
-	ret
+	jp HlToCrashCheckPointer
 
 Function17e270:
 	call IncCrashCheckPointer
@@ -2820,8 +2817,7 @@ Function17e270:
 	sub [hl]
 	ld [de], a
 	inc hl
-	call HlToCrashCheckPointer
-	ret
+	jp HlToCrashCheckPointer
 
 Function17e27f:
 	call IncCrashCheckPointer
@@ -2877,8 +2873,7 @@ Function17e2a7:
 	jr z, .asm_17e2f7
 	cp $b
 	jr z, .asm_17e300
-	call Function17e309
-	ret
+	jr Function17e309
 
 .asm_17e2d8
 	call Function17d60b
@@ -2891,8 +2886,7 @@ Function17e2a7:
 	ld de, $aa7f
 	ld bc, $c
 	call CopyBytes
-	call CloseSRAM
-	ret
+	jp CloseSRAM
 
 .asm_17e2f7
 	call Function17e349
@@ -2930,8 +2924,7 @@ Function17e32b:
 	ld hl, wBGMapBuffer
 	ld bc, $5b
 	call CopyBytes
-	call CloseSRAM
-	ret
+	jp CloseSRAM
 
 Function17e349:
 	ld a, $5
@@ -2943,12 +2936,10 @@ Function17e349:
 	ld de, wBGMapBuffer
 	ld bc, $5b
 	call CopyBytes
-	call CloseSRAM
-	ret
+	jp CloseSRAM
 
 inc_crash_check_pointer_farcall: MACRO
 	call IncCrashCheckPointer
-	call HlToCrashCheckPointer ; redundant
 	ldh a, [rSVBK]
 	push af
 	ld a, $1
@@ -2984,8 +2975,7 @@ Function17e3e0:
 	call HlToCrashCheckPointer
 	ld a, $1
 	ldh [hBGMapMode], a
-	call DelayFrames
-	ret
+	jp DelayFrames
 
 Function17e3f0:
 	call IncCrashCheckPointer
@@ -3541,12 +3531,8 @@ RunMobileScript::
 	inc de
 .loop
 	call _RunMobileScript
-	jr c, .finished
+	jp c, CloseSRAM
 	jr .loop
-
-.finished
-	call CloseSRAM
-	ret
 
 _RunMobileScript:
 	ld a, [de]
@@ -4444,13 +4430,9 @@ DisplayMobileError:
 	call .RunJumptable
 	ld a, [wc303]
 	bit 7, a
-	jr nz, .quit
+	jr nz, .deinit
 	farcall HDMATransferAttrmapAndTilemapToWRAMBank3
 	jr .loop
-
-.quit
-	call .deinit
-	ret
 
 .deinit
 	ld a, [wMobileErrorCodeBuffer]
@@ -4610,8 +4592,7 @@ Function17f5e4:
 
 .asm_17f67d
 	hlcoord 2, 6
-	call PlaceString
-	ret
+	jp PlaceString
 
 .asm_17f684
 	sub $d0
@@ -4625,8 +4606,7 @@ Function17f5e4:
 	ld a, [hl]
 	ld d, a
 	hlcoord 2, 6
-	call PlaceString
-	ret
+	jp PlaceString
 
 Table_17f699:
 	dw MobileErrorCode_101_000_Text

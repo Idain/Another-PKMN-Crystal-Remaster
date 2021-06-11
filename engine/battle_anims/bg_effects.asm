@@ -226,12 +226,8 @@ BattleBGEffect_FlashContinue:
 BattleBGEffect_WhiteHues:
 	ld de, .Pals
 	call BattleBGEffect_GetNthDMGPal
-	jr c, .quit
+	jp c, EndBattleBGEffect
 	ld [wBGP], a
-	ret
-
-.quit
-	call EndBattleBGEffect
 	ret
 
 .Pals:
@@ -243,12 +239,8 @@ BattleBGEffect_WhiteHues:
 BattleBGEffect_BlackHues:
 	ld de, .Pals
 	call BattleBGEffect_GetNthDMGPal
-	jr c, .quit
+	jp c, EndBattleBGEffect
 	ld [wBGP], a
-	ret
-
-.quit
-	call EndBattleBGEffect
 	ret
 
 .Pals:
@@ -260,13 +252,9 @@ BattleBGEffect_BlackHues:
 BattleBGEffect_AlternateHues:
 	ld de, .Pals
 	call BattleBGEffect_GetNthDMGPal
-	jr c, .quit
+	jp c, EndBattleBGEffect
 	ld [wBGP], a
 	ld [wOBP1], a
-	ret
-
-.quit
-	call EndBattleBGEffect
 	ret
 
 .Pals:

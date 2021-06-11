@@ -2445,7 +2445,7 @@ BattleCommand_CheckFaint:
 ; checkfaint
 
 ; Faint the opponent if its HP reached zero
-;  and faint the user along with it if it used Destiny Bond.
+; and faint the user along with it if it used Destiny Bond.
 ; Ends the move effect if the opponent faints.
 
 	ld hl, wEnemyMonHP
@@ -2475,7 +2475,7 @@ BattleCommand_CheckFaint:
 	jr nz, .got_max_hp
 	ld hl, wBattleMonMaxHP + 1
 	bccoord 10, 9 ; hp bar
-	ld a, 1
+	inc a
 
 .got_max_hp
 	ld [wWhichHPBar], a
@@ -2533,9 +2533,6 @@ BattleCommand_CheckFaint:
 BattleCommand_BuildOpponentRage:
 ; buildopponentrage
 
-;	jp .start
-
-;.start
 	ld a, [wAttackMissed]
 	and a
 	ret nz
@@ -4768,14 +4765,14 @@ TryLowerStat:
 	ld a, c
 	add e
 	ld e, a
-	jr nc, .no_carry
-	inc d
-.no_carry
+	adc d
+	sub e
+	ld d, a
 	pop bc
 
 ; The lowest possible stat is 1.
 	ld a, [hld]
-	sub 1
+	dec a
 	jr nz, .not_min
 	ld a, [hl]
 	and a
@@ -5926,15 +5923,21 @@ BattleCommand_Recoil:
 	ld a, BATTLE_VARS_MOVE_ANIM
 	call GetBattleVar
 	ld d, a
-; get 1/2 damage or 1 HP, whichever is higher
+;	cp STRUGGLE
+;	jr z, .StruggleRecoil
+	cp DOUBLE_EDGE
+	jr z, .OneThirdRecoil
+
+; get 1/4 damage or 1 HP, whichever is higher
 	ld a, [wCurDamage]
 	ld b, a
 	ld a, [wCurDamage + 1]
 	ld c, a
 	srl b
 	rr c
-;	srl b
-;	rr c
+	srl b
+	rr c
+.FloorBC
 	ld a, b
 	or c
 	jr nz, .min_damage
@@ -5977,6 +5980,27 @@ BattleCommand_Recoil:
 	call RefreshBattleHuds
 	ld hl, RecoilText
 	jp StdBattleTextbox
+
+.OneThirdRecoil ; Get one third damage
+	ld a, [wCurDamage]
+	ldh [hDividend], a
+	ld a, [wCurDamage + 1]
+	ldh [hDividend + 1], a
+	ld a, 3
+	ldh [hDivisor], a
+	ld b, 2
+	call Divide
+	ldh a, [hQuotient + 3]
+	ld c, a
+	ldh a, [hQuotient + 2]
+	ld b, a
+	jr .FloorBC
+
+;.StruggleRecoil
+;	push hl
+;	call GetQuarterMaxHP
+;	pop hl
+;	jr .min_damage
 
 BattleCommand_ConfuseTarget:
 ; confusetarget
@@ -6220,12 +6244,11 @@ DoubleDamage:
 	sla [hl]
 	dec hl
 	rl [hl]
-	jr nc, .quit
+	ret nc
 
 	ld a, $ff
 	ld [hli], a
 	ld [hl], a
-.quit
 	ret
 
 INCLUDE "engine/battle/move_effects/mimic.asm"
@@ -6604,8 +6627,6 @@ INCLUDE "engine/battle/move_effects/foresight.asm"
 
 INCLUDE "engine/battle/move_effects/perish_song.asm"
 
-INCLUDE "engine/battle/move_effects/sandstorm.asm"
-
 INCLUDE "engine/battle/move_effects/rollout.asm"
 
 INCLUDE "engine/battle/move_effects/fury_cutter.asm"
@@ -6733,15 +6754,68 @@ BattleCommand_WeatherBasedHeal:
 
 INCLUDE "engine/battle/move_effects/hidden_power.asm"
 
-INCLUDE "engine/battle/move_effects/rain_dance.asm"
-
-INCLUDE "engine/battle/move_effects/sunny_day.asm"
-
 INCLUDE "engine/battle/move_effects/belly_drum.asm"
 
 INCLUDE "engine/battle/move_effects/psych_up.asm"
 
 INCLUDE "engine/battle/move_effects/mirror_coat.asm"
+
+BattleCommand_StartHail:
+; starthail
+	ld b, WEATHER_HAIL
+	jr BattleCommand_StartWeather
+
+BattleCommand_StartRain:
+; startrain
+	ld b, WEATHER_RAIN
+	jr BattleCommand_StartWeather
+
+BattleCommand_StartSandstorm:
+; startsandstorm
+	ld b, WEATHER_SANDSTORM
+	jr BattleCommand_StartWeather
+
+BattleCommand_StartSun:
+; startsun
+	ld b, WEATHER_SUN
+	; fallthrough
+
+BattleCommand_StartWeather:
+;  Initialize weather
+	ld a, [wBattleWeather]
+	cp b
+	jr z, .failed
+
+	ld a, b
+	; WEATHER_RAIN
+	ld hl, DownpourText
+	dec a
+	jr z, .start
+
+	; WEATHER_SUN
+	ld hl, SunGotBrightText
+	dec a
+	jr z, .start
+
+	; WEATHER_SANDSTORM
+	ld hl, SandstormBrewedText
+	dec a
+	jr z, .start
+	
+	; WEATHER_HAIL
+	ld hl, ItStartedToHailText
+
+.start
+	ld a, b
+	ld [wBattleWeather], a
+	ld a, 5
+	ld [wWeatherCount], a
+	call AnimateCurrentMove
+	jp StdBattleTextbox
+
+.failed
+	call AnimateFailedMove
+	jp PrintButItFailed
 
 BattleCommand_DoubleMinimizeDamage:
 ; doubleminimizedamage
@@ -6776,8 +6850,6 @@ BattleCommand_SkipSunCharge:
 INCLUDE "engine/battle/move_effects/future_sight.asm"
 
 INCLUDE "engine/battle/move_effects/thunder.asm"
-
-INCLUDE "engine/battle/move_effects/hail.asm"
 
 CheckHiddenOpponent:
 	xor a

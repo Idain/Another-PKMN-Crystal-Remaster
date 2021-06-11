@@ -9,9 +9,6 @@ AÑADIDOS:
 	-- Hay un NPC en Blackthorn City que menciona la existencia de este.
 - Tu madre te da un tutorial muy breve de cómo correr en el juego.
 - ¡NUEVO MOVIMIENTO! Hail (Granizo), y también es la nueva TM51. Se vende en el 3er piso de Celadon Department Store por $10,000.
-	-- Por nivel: Seel, Dewgong, Articuno
-	-- Por TM: Squirtle, Wartortle, Blastoise, Psyduck, Golduck, Poliwag, Poliwhirl, Poliwrath, Tentacool, Tentacruel, Slowpoke, Slowbro,
-Seel, Dewgong, Shellder, Cloyster, Mew, Sneasel
 
 CAMBIOS:
 - ¡Ahora es más mucho rápido salvar la partida!
@@ -36,17 +33,18 @@ CAMBIOS:
 	-- Los catálogos de los Poké Marts se irá expandiendo a medida que el jugador progrese en la historia. (Gen 4)
 	-- Los objetos Mails de la 2da Gen que solo se conseguían por evento ahora pueden ser comprados en Mt. Moon Square.
 	-- Los precios de todas las TMs en los Dept. Store es ahora $10,000. También, Celadon Dept. Store ya no vende los puños elementales, dado que ya se podían conseguir en Goldenrod Dept. Store.
+
 - Movimientos:
 	-- Corte ya no permite cortar la hierba alta (Gen 4+).
 	-- Foresight ahora solo ignora los cambios en la evasión del oponente si esta es mayor o igual a +1. (Gen 4+)
 	-- La precisión de algunos movimientos ha sido actualizada.
-	-- Bide ahora siempre almacena energía por 2 turnos en vez de variar (2-3 turnos).
+	-- Bide ahora siempre almacena energía por 2 turnos en vez de variar (antes era 2-3 turnos).
 	-- El efecto secundario de movimientos atrapantes (Bind, Wrap, etc.) ahora durará 4-5 turnos en vez de 2-5.
 	-- Si el usuario es tipo Veneno, Toxic nunca fallará, aunque el oponente esté en un estado semi-invunerable, como en el 1er turno de Vuelo o Excavar.
 	-- Rapid Spin ahora sube la velocidad un nivel (Gen 8).
 	-- Sleep Talk no puede seleccionar Rest, Metronome ni Mirror Move (Gen 3+).
 	-- Mimic ahora también copia los Max PPs del movimiento copiado, en vez de solo darte 5 PPs.
-	-- Rayo Solar hace menos daño durante una Tormenta de Arena. (Gen 3+).
+	-- Rayo Solar hace menos daño durante una Tormenta de Arena y Granizo. (Gen 3+).
 	-- Los movimientos OHKO no toman en cuenta los niveles de la Precisión del usuario y la Evasión del oponente. (Gen 3+)
 	-- Pokémon salvajes/entrenadores NPCs ya no podrán robarle objetos al jugador al usar Thief.
 	-- Sky Attack ahora tiene un 30% de hacer al oponente retroceder y tiene una alta probabilidad de ser un golpe crítico (Gen 3+).
