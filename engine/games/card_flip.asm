@@ -443,11 +443,6 @@ CardFlip_DisplayCardFaceUp:
 	jr nz, .row
 	pop hl
 
-	; Pointless CGB check
-	ldh a, [hCGB]
-	and a
-	ret z
-
 	; Set the attributes
 	ld de, wAttrmap - wTilemap
 	add hl, de

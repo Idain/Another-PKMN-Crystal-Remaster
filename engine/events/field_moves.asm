@@ -124,7 +124,7 @@ OWCutAnimation:
 .loop
 	ld a, [wJumptableIndex]
 	bit 7, a
-	jr nz, .finish
+	ret nz
 	ld a, 36 * SPRITEOAMSTRUCT_LENGTH
 	ld [wCurSpriteOAMAddr], a
 	callfar DoNextFrameForAllSprites
@@ -132,11 +132,7 @@ OWCutAnimation:
 	call DelayFrame
 	jr .loop
 
-.finish
-	ret
-
 .LoadCutGFX:
-	callfar ClearSpriteAnims ; pointless to farcall
 	ld de, CutGrassGFX
 	ld hl, vTiles0 tile FIELDMOVE_GRASS
 	lb bc, BANK(CutGrassGFX), 4

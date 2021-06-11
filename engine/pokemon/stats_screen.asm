@@ -13,8 +13,8 @@ BattleStatsScreenInit:
 
 	ld a, [wBattleMode]
 	and a
-	jr z, StatsScreenInit
-	jr _MobileStatsScreenInit
+	jr nz, _MobileStatsScreenInit
+	; fallthrough
 
 StatsScreenInit:
 	ld hl, StatsScreenMain
@@ -22,7 +22,6 @@ StatsScreenInit:
 
 _MobileStatsScreenInit:
 	ld hl, StatsScreenMobile
-	jr StatsScreenInit_gotaddress
 
 StatsScreenInit_gotaddress:
 	ldh a, [hMapAnims]
@@ -62,10 +61,6 @@ StatsScreenInit_gotaddress:
 StatsScreenMain:
 	xor a
 	ld [wJumptableIndex], a
-; ???
-	ld [wStatsScreenFlags], a
-	ld a, [wStatsScreenFlags]
-	and $ff ^ STAT_PAGE_MASK
 	or PINK_PAGE ; first_page
 	ld [wStatsScreenFlags], a
 .loop
@@ -82,10 +77,6 @@ StatsScreenMain:
 StatsScreenMobile:
 	xor a
 	ld [wJumptableIndex], a
-; ???
-	ld [wStatsScreenFlags], a
-	ld a, [wStatsScreenFlags]
-	and $ff ^ STAT_PAGE_MASK
 	or PINK_PAGE ; first_page
 	ld [wStatsScreenFlags], a
 .loop
@@ -103,7 +94,7 @@ StatsScreenMobile:
 	ret
 
 StatsScreenPointerTable:
-	dw MonStatsInit       ; regular pokémon
+	dw MonStatsInit       ; regular Pokémon
 	dw EggStatsInit       ; egg
 	dw StatsScreenWaitCry
 	dw EggStatsJoypad
@@ -1053,9 +1044,8 @@ StatsScreen_AnimateEgg:
 	jr c, .animate
 	ld e, $8
 	cp 11
-	jr c, .animate
-	ret
-
+	ret nc
+	; fallthrough
 .animate
 	push de
 	ld a, $1
@@ -1106,8 +1096,6 @@ StatsScreen_LoadPageIndicators:
 CopyNickname:
 	ld de, wStringBuffer1
 	ld bc, MON_NAME_LENGTH
-	jr .okay ; utterly pointless
-.okay
 	ld a, [wMonType]
 	cp BOXMON
 	jr nz, .partymon

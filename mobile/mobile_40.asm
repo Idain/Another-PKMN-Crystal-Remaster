@@ -6459,8 +6459,7 @@ Function102dec:
 	call FarCopyWRAM
 	farcall Function49742
 	call SetPalettes
-	call DelayFrame
-	ret
+	jp DelayFrame
 
 Function102e07:
 	hlcoord 3, 10
@@ -6473,10 +6472,6 @@ Function102e07:
 	jr .okay
 
 .link_battle
-; the next three operations are pointless
-	hlcoord 3, 10
-	ld b,  1
-	ld c, 11
 	ld d, h
 	ld e, l
 	farcall _LinkTextbox
@@ -6484,8 +6479,7 @@ Function102e07:
 .okay
 	ld de, .waiting
 	hlcoord 4, 11
-	call PlaceString
-	ret
+	jp PlaceString
 
 .waiting
 	db "Waiting...!@"
@@ -6493,8 +6487,7 @@ Function102e07:
 Function102e3e:
 	ld de, .CancelString
 	hlcoord 10, 17
-	call PlaceString
-	ret
+	jp PlaceString
 
 .CancelString:
 	db "CANCEL@"
@@ -6517,8 +6510,6 @@ Function102e4f:
 	call .PlaceSpeciesNames
 	hlcoord 7, 9
 	ld de, wOTPartySpecies
-	call .PlaceSpeciesNames
-	ret
 
 .PlaceSpeciesNames:
 	ld c, 0
@@ -7068,8 +7059,7 @@ Function10342c:
 	ld [wd1f2], a
 	call Function103490
 	call Function10343c
-	call Function1034a7
-	ret
+	jr Function1034a7
 
 Function10343c:
 	ld a, [wd1f3]
@@ -7105,15 +7095,12 @@ Function10343c:
 .asm_10347d
 	call Function10350f
 	ld bc, 11
-	call Function103487
-	ret
-
 Function103487:
 	push de
 	call Function1034f7
 	pop de
-	call PlaceString
-	ret
+	jp PlaceString
+	
 
 Function103490:
 	hlcoord 0, 15
@@ -7123,8 +7110,8 @@ Function103490:
 	ld bc, 6
 	call Function10350f
 	hlcoord 1, 16
-	call PlaceString
-	ret
+	jp PlaceString
+	
 
 Function1034a7:
 	ld a, [wd1f1]
@@ -7157,8 +7144,7 @@ Function1034be:
 	pop af
 	dec a
 	jr nz, .asm_1034ca
-	call Function103490
-	ret
+	jr Function103490
 
 Function1034e0:
 	push bc
@@ -7169,8 +7155,7 @@ Function1034e0:
 	add hl, bc
 	pop bc
 	ld a, $06
-	call FillBoxWithByte
-	ret
+	jp FillBoxWithByte
 
 Function1034f1:
 	ld a, [wd1f0]
@@ -7185,8 +7170,7 @@ Function1034f7:
 	ld a, [wd1f2]
 	dec a
 	ld bc, 40
-	call AddNTimes
-	ret
+	jp AddNTimes
 
 Function10350f:
 	ld a, [wd1f3]

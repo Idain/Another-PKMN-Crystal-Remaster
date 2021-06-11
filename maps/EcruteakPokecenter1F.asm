@@ -39,9 +39,6 @@ EcruteakPokecenter1F_MapScripts:
 	opentext
 	writetext EcruteakPokecenter1F_BillText1
 	promptbutton
-	sjump .PointlessJump
-
-.PointlessJump:
 	writetext EcruteakPokecenter1F_BillText2
 	waitbutton
 	closetext

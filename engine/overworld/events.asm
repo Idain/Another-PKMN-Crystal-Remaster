@@ -335,7 +335,6 @@ CheckTileEvent:
 
 	call RandomEncounter
 	ret c
-	jr .ok ; pointless
 
 .ok
 	xor a
@@ -469,11 +468,6 @@ CheckTimeEvents:
 	ld a, BANK(BugCatchingContestOverScript)
 	ld hl, BugCatchingContestOverScript
 	call CallScript
-	scf
-	ret
-
-.unused ; unreferenced
-	ld a, $8 ; ???
 	scf
 	ret
 
