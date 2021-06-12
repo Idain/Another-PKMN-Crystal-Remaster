@@ -203,8 +203,7 @@ ShortHPBarAnim_UpdateTiles:
 	push de
 	call HPBarAnim_RedrawHPBar
 	pop de
-	call HPBarAnim_PaletteUpdate
-	ret
+	jr HPBarAnim_PaletteUpdate
 
 LongHPBarAnim_UpdateTiles:
 	call HPBarAnim_UpdateHPRemaining
@@ -225,33 +224,29 @@ LongHPBarAnim_UpdateTiles:
 	push de
 	call HPBarAnim_RedrawHPBar
 	pop de
-	call HPBarAnim_PaletteUpdate
-	ret
+	jr HPBarAnim_PaletteUpdate
 
 HPBarAnim_RedrawHPBar:
 	ld a, [wWhichHPBar]
 	cp $2
-	jr nz, .skip
+	jp nz, DrawBattleHPBar
 	ld a, 2 * SCREEN_WIDTH
 	add l
 	ld l, a
 	ld a, 0
 	adc h
 	ld h, a
-.skip
-	call DrawBattleHPBar
-	ret
+	jp DrawBattleHPBar
 
 HPBarAnim_UpdateHPRemaining:
 	ld a, [wWhichHPBar]
 	and a
 	ret z
-	cp $1
-	jr z, .load_15
+	dec a
 	ld de, SCREEN_WIDTH + 2
-	jr .loaded_de
+	jr nz, .loaded_de
 
-.load_15
+;load_15
 	ld de, SCREEN_WIDTH + 1
 .loaded_de
 	push hl
@@ -287,73 +282,68 @@ HPBarAnim_BGMapUpdate:
 	and a
 	jr nz, .cgb
 	call DelayFrame
-	call DelayFrame
-	ret
+	jp DelayFrame
 
 .cgb
 	ld a, [wWhichHPBar]
 	and a
 	jr z, .load_0
-	cp $1
+	dec a
 	jr z, .load_1
 	ld a, [wCurPartyMon]
-	cp $3
-	jr nc, .bottom_half_of_screen
-	ld c, $0
-	jr .got_third
+	cp 3
+	ld c, 0
+	jr c, .got_third
 
-.bottom_half_of_screen
-	ld c, $1
+;bottom_half_of_screen
+	ld c, 1
 .got_third
 	push af
-	cp $2
+	cp 2
 	jr z, .skip_delay
-	cp $5
+	cp 5
 	jr z, .skip_delay
-	ld a, $2
+	ld a, 2
 	ldh [hBGMapMode], a
 	ld a, c
 	ldh [hBGMapThird], a
 	call DelayFrame
 .skip_delay
-	ld a, $1
+	ld a, 1
 	ldh [hBGMapMode], a
 	ld a, c
 	ldh [hBGMapThird], a
 	call DelayFrame
 	pop af
-	cp $2
+	cp 2
 	jr z, .two_frames
-	cp $5
-	jr z, .two_frames
-	ret
+	cp 5
+	ret nz
 
 .two_frames
 	inc c
-	ld a, $2
+	ld a, 2
 	ldh [hBGMapMode], a
 	ld a, c
 	ldh [hBGMapThird], a
 	call DelayFrame
-	ld a, $1
+	ld a, 1
 	ldh [hBGMapMode], a
 	ld a, c
 	ldh [hBGMapThird], a
-	call DelayFrame
-	ret
+	jp DelayFrame
 
 .load_0
-	ld c, $0
+	ld c, 0
 	jr .finish
 
 .load_1
-	ld c, $1
+	ld c, 1
 .finish
 	call DelayFrame
 	ld a, c
 	ldh [hBGMapThird], a
-	call DelayFrame
-	ret
+	jp DelayFrame
 
 ShortHPBar_CalcPixelFrame:
 	ld a, [wCurHPAnimMaxHP]
@@ -392,7 +382,7 @@ ShortHPBar_CalcPixelFrame:
 	sub HP_BAR_LENGTH_PX
 	ld l, a
 	ld a, h
-	sbc $0
+	sbc 0
 	ld h, a
 	jr c, .no_carry
 	inc b
