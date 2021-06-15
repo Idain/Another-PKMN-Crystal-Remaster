@@ -6456,7 +6456,7 @@ LoadEnemyMon:
 	jr c, .Happiness
 ; Try again if length < 1024 mm (i.e. if HIGH(length) < 3 feet)
 	ld a, [wMagikarpLength]
-	cp HIGH(1024) ; should be "cp 3", since 1024 mm = 3'4", but HIGH(1024) = 4
+	cp 3
 	jr c, .GenerateDVs ; try again
 
 ; Finally done with DVs

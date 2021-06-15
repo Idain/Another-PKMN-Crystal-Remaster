@@ -99,7 +99,7 @@ GeneratePartyMonStats:
 	; Copy the item if it's a wild mon
 	ld a, [wBattleMode]
 	and a
-	ld a, $0
+	ld a, 0
 	jr z, .skipitem
 	ld a, [wEnemyMonItem]
 .skipitem
@@ -165,7 +165,7 @@ endr
 	ld [de], a
 	inc de
 
-	; Initialize stat experience.
+	; Initialize EVs.
 	xor a
 	ld b, MON_DVS - MON_EVS
 .loop
@@ -1151,7 +1151,7 @@ GiveEgg::
 	ld a, [wCurPartySpecies]
 	dec a
 	ld c, a
-	ld d, $0
+	ld d, 0
 	ld hl, wPokedexCaught
 	ld b, RESET_FLAG
 	predef SmallFarFlagAction
@@ -1345,7 +1345,7 @@ RemoveMonFromPartyOrBox:
 	ld hl, wPartyCount
 	ld a, [wCurPartyMon]
 	cp [hl]
-	jr z, .close_sram
+	jp z, CloseSRAM
 	; Shift our mail messages up.
 	ld hl, sPartyMail
 	ld bc, MAIL_STRUCT_LENGTH
@@ -1370,7 +1370,6 @@ RemoveMonFromPartyOrBox:
 	ld a, [wPartyCount]
 	cp b
 	jr nz, .loop2
-.close_sram
 	jp CloseSRAM
 
 ComputeNPCTrademonStats:

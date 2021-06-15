@@ -11,3 +11,4 @@ Substitute (y todas sus propiedades)
 * Editar learnsets.
 * Editar rematch teams.
 * Crear script Prof. Oak donde te da a Bulbasaur, Charmander y Squirtle.
+* Modify Shiny chances
