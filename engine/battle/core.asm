@@ -1038,7 +1038,6 @@ ResidualDamage:
 	ld hl, HurtByBurnText
 	ld de, ANIM_BRN
 .got_anim
-
 	push de
 	call StdBattleTextbox
 	pop de
@@ -1053,7 +1052,6 @@ ResidualDamage:
 	jr z, .check_toxic
 	ld de, wEnemyToxicCount
 .check_toxic
-
 	ld a, BATTLE_VARS_SUBSTATUS5
 	call GetBattleVar
 	bit SUBSTATUS_TOXIC, a
@@ -1070,10 +1068,8 @@ ResidualDamage:
 	ld b, h
 	ld c, l
 .did_toxic
-
 	call SubtractHPFromUser
 .did_psn_brn
-
 	call HasUserFainted
 	jp z, .fainted
 
@@ -2765,8 +2761,7 @@ IsGymLeader:
 IsGymLeaderCommon:
 	push de
 	ld a, [wOtherTrainerClass]
-	ld de, 1
-	call IsInArray
+	call IsInByteArray
 	pop de
 	ret
 
@@ -3008,8 +3003,7 @@ JumpToPartyMenuAndPrintText:
 	farcall PrintPartyMenuText
 	call WaitBGMap
 	call SetPalettes
-	call DelayFrame
-	ret
+	jp DelayFrame
 
 SelectBattleMon:
 	call IsMobileBattle
@@ -3113,9 +3107,7 @@ LostBattle:
 
 	ld a, [wDebugFlags]
 	bit DEBUG_BATTLE_F, a
-	jr nz, .skip_win_loss_text
-	call PrintWinLossText
-.skip_win_loss_text
+	jp z, PrintWinLossText
 	ret
 
 .battle_tower
@@ -3133,8 +3125,7 @@ LostBattle:
 	farcall BattleTowerText
 	call WaitPressAorB_BlinkCursor
 	call ClearTilemap
-	call ClearBGPalettes
-	ret
+	jp ClearBGPalettes
 
 .no_loss_text
 	ld a, [wLinkMode]
@@ -3165,7 +3156,6 @@ LostBattle:
 
 .text
 	call StdBattleTextbox
-
 .end
 	scf
 	ret
@@ -3304,8 +3294,7 @@ ForceEnemySwitch:
 	call ResetEnemyStatLevels
 	call ShowSetEnemyMonAndSendOutAnimation
 	call BreakAttraction
-	call ResetBattleParticipants
-	ret
+	jp ResetBattleParticipants
 
 EnemySwitch:
 	call CheckWhetherToAskSwitch
@@ -3460,10 +3449,10 @@ LookUpTheEffectivenessOfEveryMove:
 	ld e, NUM_MOVES + 1
 .loop
 	dec e
-	jr z, .done
+	ret z
 	ld a, [hli]
 	and a
-	jr z, .done
+	ret z
 	push hl
 	push de
 	push bc
@@ -3484,8 +3473,6 @@ LookUpTheEffectivenessOfEveryMove:
 	jr c, .loop
 	ld hl, wEnemyEffectivenessVsPlayerMons
 	set 0, [hl]
-	ret
-.done
 	ret
 
 IsThePlayerMonTypesEffectiveAgainstOTMon:
@@ -4081,8 +4068,7 @@ InitBattleMon:
 	ld de, wPlayerStats
 	ld bc, PARTYMON_STRUCT_LENGTH - MON_ATK
 	call CopyBytes
-	call ApplyStatusEffectOnPlayerStats
-	ret
+	jp ApplyStatusEffectOnPlayerStats
 
 BattleCheckPlayerShininess:
 	call GetPartyMonDVs
@@ -4323,12 +4309,9 @@ SpikesDamage:
 	call SubtractHPFromTarget
 
 	pop hl
-	call .hl
+	call _hl_
 
 	jp WaitBGMap
-
-.hl
-	jp hl
 
 PursuitSwitch:
 	ld a, BATTLE_VARS_MOVE
@@ -8115,8 +8098,8 @@ PlaceExpBar:
 	ld a, $6a ; full bar
 	ld [hld], a
 	dec c
-	jr z, .finish
-	jr .loop1
+	jr nz, .loop1
+	ret
 
 .next
 	add $8
@@ -8126,14 +8109,11 @@ PlaceExpBar:
 
 .loop2
 	ld a, $62 ; empty bar
-
 .skip
 	ld [hld], a
 	ld a, $62 ; empty bar
 	dec c
 	jr nz, .loop2
-
-.finish
 	ret
 
 GetBattleMonBackpic:
@@ -8380,8 +8360,7 @@ InitEnemyWildmon:
 	ldh [hGraphicStartTile], a
 	hlcoord 12, 0
 	lb bc, 7, 7
-	predef PlaceGraphic
-	ret
+	predef_jump PlaceGraphic
 
 FillEnemyMovesFromMoveIndicesBuffer: ; unreferenced
 	ld hl, wEnemyMonMoves
@@ -8436,8 +8415,7 @@ FillEnemyMovesFromMoveIndicesBuffer: ; unreferenced
 
 ExitBattle:
 	call .HandleEndOfBattle
-	call CleanUpBattleRAM
-	ret
+	jr CleanUpBattleRAM
 
 .HandleEndOfBattle:
 	ld a, [wLinkMode]
@@ -8446,8 +8424,7 @@ ExitBattle:
 	call ShowLinkBattleParticipantsAfterEnd
 	ld c, 150
 	call DelayFrames
-	call DisplayLinkBattleResult
-	ret
+	jp DisplayLinkBattleResult
 
 .not_linked
 	ld a, [wBattleResult]
@@ -8489,8 +8466,7 @@ CleanUpBattleRAM:
 	ld [hli], a
 	dec b
 	jr nz, .loop
-	call WaitSFX
-	ret
+	jp WaitSFX
 
 CheckPayDay:
 	ld hl, wPayDayMoney
@@ -8524,8 +8500,7 @@ CheckPayDay:
 	and a
 	ret z
 	call ClearTilemap
-	call ClearBGPalettes
-	ret
+	jp ClearBGPalettes
 
 ShowLinkBattleParticipantsAfterEnd:
 	farcall StubbedTrainerRankings_LinkBattles
@@ -8570,8 +8545,6 @@ DisplayLinkBattleResult:
 .lose
 	farcall StubbedTrainerRankings_ColosseumLosses
 	ld de, .YouLose
-	jr .store_result
-
 .store_result
 	hlcoord 6, 8
 	call PlaceString
@@ -8590,14 +8563,12 @@ DisplayLinkBattleResult:
 	call IsMobileBattle2
 	jr z, .mobile
 	call WaitPressAorB_BlinkCursor
-	call ClearTilemap
-	ret
+	jp ClearTilemap
 
 .mobile
 	ld c, 200
 	call DelayFrames
-	call ClearTilemap
-	ret
+	jp ClearTilemap
 
 .YouWin:
 	db "YOU WIN@"
@@ -8640,8 +8611,7 @@ _DisplayLinkRecord:
 	call SetPalettes
 	ld c, 8
 	call DelayFrames
-	call WaitPressAorB_BlinkCursor
-	ret
+	jp WaitPressAorB_BlinkCursor
 
 ReadAndPrintLinkBattleRecord:
 	call ClearTilemap
@@ -9312,5 +9282,4 @@ BattleStartMessage:
 
 	ld c, $2 ; start
 	farcall Mobile_PrintOpponentBattleMessage
-
 	ret

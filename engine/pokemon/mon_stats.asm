@@ -177,17 +177,29 @@ GetGender:
 	call z, OpenSRAM
 
 ; Attack DV
-	ld a, [hli]
-	and $f0
-	ld b, a
-; Speed DV
 	ld a, [hl]
-	and $f0
+	cpl
+	and $10
 	swap a
-
-; Put our DVs together.
-	or b
-	ld b, a
+	add a     ; ~(Atk DV & 1) << 1
+	ld b, a   ; Store it in register b
+; Defense DV
+	ld a, [hli]
+	and $1
+	add a     ; Def DV << 1
+	add a     ; Def DV << 2
+	or b      ; ~(Atk DV & 1) << 1 | (Def DV & 1) << 2
+	ld b, a   ; Store result in b.
+; Special DV
+	ld a, [hl]
+	cpl
+	and $1
+	add a     ; ~(Spc DV & 1) << 1
+	add a     ; ~(Spc DV & 1) << 2
+	add a     ; ~(Spc DV & 1) << 3
+	or b      ; ~(Atk DV & 1) << 1 | (Def DV & 1) << 2 | ~(Spc DV & 1) << 3
+	swap a
+	ld b, a   ; Again, stored in b.
 
 ; Close SRAM if we were dealing with a sBoxMon.
 	ld a, [wMonType]
@@ -266,7 +278,7 @@ ListMovePP:
 .loop
 	ld a, [hli]
 	and a
-	jr z, .done
+	ret z
 	push bc
 	push hl
 	push de
@@ -311,8 +323,6 @@ ListMovePP:
 	ld a, b
 	cp NUM_MOVES
 	jr nz, .loop
-
-.done
 	ret
 
 .load_loop
@@ -423,7 +433,6 @@ PlaceNonFaintStatus:
 	call CopyStatusString
 	ld a, TRUE
 	and a
-
 .no_status
 	pop de
 	ret
@@ -468,8 +477,8 @@ ListMoves:
 	pop de
 	ld a, b
 	cp NUM_MOVES
-	jr z, .done
-	jr .moves_loop
+	jr nz, .moves_loop
+	ret
 
 .no_more_moves
 	ld a, b
@@ -484,6 +493,4 @@ ListMoves:
 	inc a
 	cp NUM_MOVES
 	jr nz, .nonmove_loop
-
-.done
 	ret

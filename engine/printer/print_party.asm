@@ -225,8 +225,7 @@ PrintPartyMonPage1:
 	call WaitBGMap
 	ld b, SCGB_STATS_SCREEN_HP_PALS
 	call GetSGBLayout
-	call SetPalettes
-	ret
+	jp SetPalettes
 
 PrintPartyMonPage2:
 	call ClearBGPalettes
@@ -276,13 +275,11 @@ PrintPartyMonPage2:
 	call WaitBGMap
 	ld b, SCGB_STATS_SCREEN_HP_PALS
 	call GetSGBLayout
-	call SetPalettes
-	ret
+	jp SetPalettes
 
 .PrintTempMonStats:
 	lb bc, 2, 3
-	call PrintNum
-	ret
+	jp PrintNum
 
 GetCurPartyMonName:
 	ld bc, NAME_LENGTH
@@ -304,8 +301,7 @@ PlaceMoveNameString:
 	ld de, PrintParty_NoMoveString
 
 .got_string
-	call PlaceString
-	ret
+	jp PlaceString
 
 PlaceGenderAndShininess:
 	farcall GetGender

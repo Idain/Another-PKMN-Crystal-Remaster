@@ -15,30 +15,35 @@ CheckShininess:
 ; Attack
 	ld a, [hl]
 	and $f0
-	cp 1 << 4
-	jr z, .defense
 	cp 14 << 4
 	jr c, .not_shiny
 
 ; Defense
-.defense
 	ld a, [hli]
 	and $f
+	cp 10
+	jr z, .speed
 	cp 14
 	jr c, .not_shiny
 
 ; Speed
+.speed
 	ld a, [hl]
+	cp 10 << 4
+	jr z, .special
 	cp 14 << 4
 	jr c, .not_shiny
 
 ; Special
+.special
 	ld a, [hl]
 	and $f
+	cp 10
+	jr z, .shiny
 	cp 14
 	jr c, .not_shiny
 
-; shiny
+.shiny
 	scf
 	ret
 

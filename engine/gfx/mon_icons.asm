@@ -10,8 +10,7 @@ LoadOverworldMonIcon:
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]
-	call GetIconBank
- 	ret
+	jp GetIconBank
 
 SetMenuMonIconColor:
 	push hl
@@ -136,8 +135,7 @@ LoadMenuMonIcon:
 Unused_GetPartyMenuMonIcon:
 	call InitPartyMenuIcon
 	call .GetPartyMonItemGFX
-	call SetPartyMonIconAnimSpeed
-	ret
+	jp SetPartyMonIconAnimSpeed
 
 .GetPartyMonItemGFX:
 	push bc
@@ -210,8 +208,7 @@ Mobile_InitPartyMenuBGPal71:
 PartyMenu_InitAnimatedMonIcon:
 	call InitPartyMenuIcon
 	call .SpawnItemIcon
-	call SetPartyMonIconAnimSpeed
-	ret
+	jr SetPartyMonIconAnimSpeed
 
 .SpawnItemIcon:
 	push bc
@@ -345,8 +342,7 @@ Trade_LoadMonIconGFX:
 	ld [wCurIcon], a
 	ld a, $62
 	ld [wCurIconTile], a
-	call GetMemIconGFX
-	ret
+	jr GetMemIconGFX
 
 GetSpeciesIcon:
 ; Load species icon into VRAM at tile a
@@ -369,8 +365,7 @@ FlyFunction_GetMonIcon:
 	ld [wCurIcon], a
 	pop de
 	ld a, e
-	call GetIcon_a
-	ret
+	jr GetIcon_a
 
 GetMonIconDE: ; unreferenced
 	push de
@@ -378,8 +373,7 @@ GetMonIconDE: ; unreferenced
 	call ReadMonMenuIcon
 	ld [wCurIcon], a
 	pop de
-	call GetIcon_de
-	ret
+	jr GetIcon_de
 
 GetMemIconGFX:
 	ld a, [wCurIconTile]
@@ -466,14 +460,10 @@ FreezeMonIcons:
 	and a
 	jr z, .next
 	cp d
+	ld a, SPRITE_ANIM_SEQ_PARTY_MON_SWITCH ; loadwithtwo
 	jr z, .loadwithtwo
 	ld a, SPRITE_ANIM_SEQ_NULL
-	jr .ok
-
-.loadwithtwo
-	ld a, SPRITE_ANIM_SEQ_PARTY_MON_SWITCH
-
-.ok
+; ok
 	push hl
 	ld c, l
 	ld b, h
