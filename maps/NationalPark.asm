@@ -306,11 +306,9 @@ NationalParkLassText:
 	done
 
 NationalParkPokefanFText:
-	text "This is a Mail I"
-	line "got from my daugh-"
-	cont "ter."
-	
-	para "It cheers me up."
+	text "I got this Mail"
+	line "from my daughter."
+	cont "It cheers me up!"
 	done
 
 NationalParkTeacher1Text:

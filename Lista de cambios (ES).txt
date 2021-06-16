@@ -11,9 +11,13 @@ AÑADIDOS:
 - ¡NUEVO MOVIMIENTO! Hail (Granizo), y también es la nueva TM51. Se vende en el 3er piso de Celadon Department Store por $10,000.
 
 CAMBIOS:
+- ¡Curva de dificultad ajustada!
+
 - ¡Ahora es más mucho rápido salvar la partida!
 
 - Removido modificador de medallas que boosteaban ataques y stats.
+
+- Ahora se necesitan 7 medallas de Kanto antes de poder enfrentar a Blue.
 
 - Obediencia: Ahora funciona como en HG/SS, con la Zephyr Badge afectando obediencia hasta el Nv. 20 y la Mineral Badge reemplazando a la Storm Badge para obediencia hasta Nv. 70.
 	-- El sistema ahora también afecta a los Pokémon que sean originalmente del jugador.

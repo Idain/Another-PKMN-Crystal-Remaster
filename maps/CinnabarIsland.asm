@@ -14,13 +14,41 @@ CinnabarIsland_MapScripts:
 CinnabarIslandBlue:
 	faceplayer
 	opentext
+	checkflag ENGINE_EARTHBADGE
+	iftrue .Cheating
+	checkevent EVENT_MET_BLUE
+	iftrue .AlreadyMetBlue
 	writetext CinnabarIslandBlueText
+	promptbutton
+	readvar VAR_KANTO_BADGES
+	ifless 7, .NotEnoughBadges
+.GotEnoughBadges
+	writetext CinnabarIslandEqual15Badges
 	waitbutton
 	closetext
 	playsound SFX_WARP_TO
 	applymovement CINNABARISLAND_BLUE, CinnabarIslandBlueTeleport
 	disappear CINNABARISLAND_BLUE
 	clearevent EVENT_VIRIDIAN_GYM_BLUE
+	end
+
+.AlreadyMetBlue
+	writetext CinnabarAlreadyMetBlue
+	promptbutton
+	readvar VAR_KANTO_BADGES
+	ifequal 7, .GotEnoughBadges
+	; fallthrough
+.NotEnoughBadges
+	writetext CinnabarIslandLessThan15Badges
+	waitbutton
+	closetext
+	setevent EVENT_MET_BLUE
+	end
+
+.Cheating
+	writetext CinnabarIslandPlayerCheating
+	waitbutton
+	closetext
 	end
 
 CinnabarIslandGymSign:
@@ -44,18 +72,15 @@ CinnabarIslandBlueText:
 
 	para "Well, it's plain"
 	line "to see that you're"
-	cont "a trainer…"
+	cont "a Trainer…"
 
-	para "My name's BLUE."
+	para "My name's Blue."
 
 	para "I was once the"
-	line "CHAMPION, although"
+	line "Champion, although"
 
-	para "it was for only a"
-	line "short time…"
-
-	para "That meddling RED"
-	line "did me in…"
+	para "it was short-lived"
+	line "thanks to Red…"
 
 	para "Anyway, what do"
 	line "you want? You want"
@@ -81,11 +106,12 @@ CinnabarIslandBlueText:
 	para "We can go on win-"
 	line "ning and losing in"
 
-	para "#MON. But if"
+	para "#mon. But if"
 	line "nature so much as"
 
 	para "twitches, we can"
-	line "lose in a second."
+	line "be overwhelmed"
+	cont "in a second."
 
 	para "…"
 
@@ -93,36 +119,85 @@ CinnabarIslandBlueText:
 	line "is…"
 
 	para "But, anyway, I'm"
-	line "still a trainer."
+	line "still a Trainer."
 
 	para "If I see a strong"
 	line "opponent, it makes"
 	cont "me want to battle."
 
 	para "If you want to"
-	line "battle me, come to"
-	cont "the VIRIDIAN GYM."
+	line "battle me, show me"
 
-	para "I'll take you on"
-	line "then."
+	para "how many Kanto"
+	line "Badges you've got."
+	done
+
+CinnabarAlreadyMetBlue:
+	text "Hey, buddy."
+
+	para "Have you finally"
+	line "collected enough"
+	cont "Kanto Badges?"
+	done
+	
+CinnabarIslandLessThan15Badges:
+	text "…"
+
+	para "You're not ready"
+	line "to battle me…"
+	done
+
+CinnabarIslandEqual15Badges:
+	text "…"
+
+	para "Yup, you've got 7"
+	line "out of 8 Badges."
+
+	para "If you want to"
+	line "battle me, come to"
+	cont "the Viridian Gym."
+
+	para "I'll be waiting for"
+	line "you!"
+	done
+
+CinnabarIslandPlayerCheating:
+	text "Hey. Before any-"
+	line "thing, I want to"
+	cont "ask you something."
+
+	para "Why do you have"
+	line "the Earth Badge?"
+
+	para "Are you so weak"
+	line "that you need to"
+	cont "rely on cheats?"
+
+	para "Pathetic… and you"
+	line "are the Johto"
+	cont "Champion?"
+
+	para "Come back when you"
+	line "decide to play"
+	cont "fair."
 	done
 
 CinnabarIslandGymSignText:
 	text "There's a notice"
 	line "here…"
 
-	para "CINNABAR GYM has"
-	line "relocated to SEA-"
-	cont "FOAM ISLANDS."
+	para "Cinnabar Gym has"
+	line "relocated to Sea-"
+	cont "foam Islands."
 
-	para "BLAINE"
+	para "Blaine"
 	done
 
 CinnabarIslandSignText:
-	text "CINNABAR ISLAND"
+	text "Cinnabar Island"
 
-	para "The Fiery Town of"
-	line "Burning Desire"
+	para "The Ravaged Town"
+	line "of the Past"
 	done
 
 CinnabarIsland_MapEvents:

@@ -35,7 +35,7 @@ RedsHouse1FBookshelf:
 RedsMomText1:
 	text "Hi!"
 
-	para "RED's been away"
+	para "Red's been away"
 	line "for a long time."
 
 	para "He hasn't called"
@@ -45,31 +45,29 @@ RedsMomText1:
 	line "is or what he's"
 	cont "been doing."
 
-	para "They say that no"
-	line "word is proof that"
+	para "They say no news"
+	line "is good news, but"
 
-	para "he's doing fine,"
-	line "but I do worry"
-	cont "about him."
+	para "I do worry about"
+	line "him."
 	done
 
 RedsMomText2:
-	text "I worry about RED"
+	text "I worry about Red"
 	line "getting hurt or"
 
 	para "sick, but he's a"
 	line "boy. I'm proud"
 
-	para "that he is doing"
+	para "that he's doing"
 	line "what he wants to"
-
-	para "do."
+	cont "do."
 	done
 
 RedsHouse1FTVText:
 	text "They have programs"
 	line "that aren't shown"
-	cont "in JOHTO…"
+	cont "in Johto…"
 	done
 
 RedsHouse1F_MapEvents:

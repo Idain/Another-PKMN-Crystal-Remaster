@@ -208,6 +208,7 @@
 ; Kanto story events
 	const EVENT_GOT_NUGGET_FROM_GUY
 	const EVENT_RETURNED_MACHINE_PART
+	const EVENT_MET_BLUE ; new EVENT
 	const EVENT_MET_MANAGER_AT_POWER_PLANT
 	const EVENT_MET_ROCKET_GRUNT_AT_CERULEAN_GYM
 	const EVENT_MET_REDS_MOM
@@ -268,7 +269,7 @@
 	const EVENT_DANA_GAVE_THUNDERSTONE
 	const EVENT_TULLY_GAVE_WATER_STONE
 	const EVENT_TIFFANY_GAVE_PINK_BOW
-; Unused: next 339 events
+; Unused: next 338 events
 
 	const_next 600
 ; Kurt Apricorn events

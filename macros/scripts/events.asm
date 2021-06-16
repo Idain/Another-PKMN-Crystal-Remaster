@@ -77,6 +77,20 @@ ifless: MACRO
 	dw \2 ; pointer
 ENDM
 
+	const iflessorequal_command ; $0c
+iflessorequal: MACRO
+	db iflessorequal_command
+	db \1 ; byte
+	dw \2 ; pointer
+ENDM
+
+	const ifgreaterorequal_command ; $0d
+ifgreaterorequal: MACRO
+	db ifgreaterorequal_command
+	db \1 ; byte
+	dw \2 ; pointer
+ENDM
+
 	const jumpstd_command ; $0c
 jumpstd: MACRO
 	db jumpstd_command

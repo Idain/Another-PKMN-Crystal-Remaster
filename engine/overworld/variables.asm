@@ -17,16 +17,12 @@ _GetVarAction::
 	ld b, [hl]
 	ld a, b
 	and RETVAR_EXECUTE
-	jr nz, .call
+	jp nz, _de_
 	ld a, b
 	and RETVAR_ADDR_DE
 	ret nz
 	ld a, [de]
 	jr .loadstringbuffer2
-
-.call
-	call _de_
-	ret
 
 .loadstringbuffer2
 	ld de, wStringBuffer2
@@ -46,6 +42,8 @@ _GetVarAction::
 	dwb .CountCaughtMons,               RETVAR_EXECUTE
 	dwb .CountSeenMons,                 RETVAR_EXECUTE
 	dwb .CountBadges,                   RETVAR_EXECUTE
+	dwb .CountJohtoBadges,				RETVAR_EXECUTE
+	dwb .CountKantoBadges,				RETVAR_EXECUTE
 	dwb wPlayerState,                   RETVAR_ADDR_DE
 	dwb .PlayerFacing,                  RETVAR_EXECUTE
 	dwb hHours,                         RETVAR_STRBUF2
@@ -84,9 +82,25 @@ _GetVarAction::
 	jp .loadstringbuffer2
 
 .CountBadges:
-; Number of owned badges.
+; Number of total owned badges.
 	ld hl, wBadges
 	ld b, 2
+	call CountSetBits
+	ld a, [wNumSetBits]
+	jp .loadstringbuffer2
+
+.CountJohtoBadges:
+; Number of owned Johto badges.
+	ld hl, wJohtoBadges
+	ld b, 1
+	call CountSetBits
+	ld a, [wNumSetBits]
+	jp .loadstringbuffer2
+
+.CountKantoBadges:
+; Number of owned Kanto badges.
+	ld hl, wKantoBadges
+	ld b, 1
 	call CountSetBits
 	ld a, [wNumSetBits]
 	jp .loadstringbuffer2

@@ -6,8 +6,8 @@ HandleNewMap:
 	call ResetBikeFlags
 	ld a, MAPCALLBACK_NEWMAP
 	call RunMapCallback
+	; fallthrough
 HandleContinueMap:
-
 	xor a
 	ld [wStoneTableAddress], a
 	ld [wStoneTableAddress+1], a
@@ -22,13 +22,48 @@ EnterMapConnection:
 	ld a, [wPlayerStepDirection]
 	and a ; DOWN
 	jp z, .south
-	cp UP
+	dec a ; UP
 	jp z, .north
-	cp LEFT
-	jp z, .west
-	cp RIGHT
-	jp z, .east
-	ret
+	dec a ; LEFT
+	jr z, .west
+	dec a ; RIGHT
+	ret nz
+	; fallthrough
+.east
+	ld a, [wEastConnectedMapGroup]
+	ld [wMapGroup], a
+	ld a, [wEastConnectedMapNumber]
+	ld [wMapNumber], a
+	ld a, [wEastConnectionStripXOffset]
+	ld [wXCoord], a
+	ld a, [wEastConnectionStripYOffset]
+	ld hl, wYCoord
+	add [hl]
+	ld [hl], a
+	ld c, a
+	ld hl, wEastConnectionWindow
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	srl c
+	jr z, .skip_to_load
+	ld a, [wEastConnectedMapWidth]
+
+.before_loop
+	add 6
+	ld e, a
+	ld d, 0
+.loop
+	add hl, de
+	dec c
+	jr nz, .loop
+
+.skip_to_load
+	ld a, l
+	ld [wOverworldMapAnchor], a
+	ld a, h
+	ld [wOverworldMapAnchor + 1], a
+	jp .done
 
 .west
 	ld a, [wWestConnectedMapGroup]
@@ -49,56 +84,7 @@ EnterMapConnection:
 	srl c
 	jr z, .skip_to_load
 	ld a, [wWestConnectedMapWidth]
-	add 6
-	ld e, a
-	ld d, 0
-
-.loop
-	add hl, de
-	dec c
-	jr nz, .loop
-
-.skip_to_load
-	ld a, l
-	ld [wOverworldMapAnchor], a
-	ld a, h
-	ld [wOverworldMapAnchor + 1], a
-	jp .done
-
-.east
-	ld a, [wEastConnectedMapGroup]
-	ld [wMapGroup], a
-	ld a, [wEastConnectedMapNumber]
-	ld [wMapNumber], a
-	ld a, [wEastConnectionStripXOffset]
-	ld [wXCoord], a
-	ld a, [wEastConnectionStripYOffset]
-	ld hl, wYCoord
-	add [hl]
-	ld [hl], a
-	ld c, a
-	ld hl, wEastConnectionWindow
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	srl c
-	jr z, .skip_to_load2
-	ld a, [wEastConnectedMapWidth]
-	add 6
-	ld e, a
-	ld d, 0
-
-.loop2
-	add hl, de
-	dec c
-	jr nz, .loop2
-
-.skip_to_load2
-	ld a, l
-	ld [wOverworldMapAnchor], a
-	ld a, h
-	ld [wOverworldMapAnchor + 1], a
-	jp .done
+	jr .before_loop
 
 .north
 	ld a, [wNorthConnectedMapGroup]
@@ -123,7 +109,7 @@ EnterMapConnection:
 	ld [wOverworldMapAnchor], a
 	ld a, h
 	ld [wOverworldMapAnchor + 1], a
-	jp .done
+	jr .done
 
 .south
 	ld a, [wSouthConnectedMapGroup]
@@ -186,8 +172,8 @@ EnterMapWarp:
 	ret z
 	cp MAP_TIN_TOWER_ROOF
 	ret z
-.not_mt_moon_square_or_tin_tower_roof
 
+.not_mt_moon_square_or_tin_tower_roof
 	ld a, [wPrevWarp]
 	ld [wDigWarpNumber], a
 	ld a, [wPrevMapGroup]
@@ -218,10 +204,8 @@ EnterMapWarp:
 	cp TILESET_POKECENTER
 	jr z, .pokecenter_pokecom
 	cp TILESET_POKECOM_CENTER
-	jr z, .pokecenter_pokecom
-	ret
+	ret nz
 .pokecenter_pokecom
-
 	ld a, [wPrevMapGroup]
 	ld [wLastSpawnMapGroup], a
 	ld a, [wPrevMapNumber]
@@ -231,14 +215,13 @@ EnterMapWarp:
 LoadMapTimeOfDay:
 	ld hl, wVramState
 	res 6, [hl]
-	ld a, $1
+	ld a, 1
 	ld [wSpriteUpdatesEnabled], a
 	farcall ReplaceTimeOfDayPals
 	farcall UpdateTimeOfDayPal
 	call OverworldTextModeSwitch
 	call .ClearBGMap
-	call .PushAttrmap
-	ret
+	jr .PushAttrmap
 
 .ClearBGMap:
 	ld a, HIGH(vBGMap0)
@@ -265,8 +248,7 @@ LoadMapTimeOfDay:
 	ld a, "■"
 	ld bc, vBGMap1 - vBGMap0
 	hlbgcoord 0, 0
-	call ByteFill
-	ret
+	jp ByteFill
 
 .PushAttrmap:
 	decoord 0, 0
@@ -335,16 +317,23 @@ RefreshMapSprites:
 
 CheckMovingOffEdgeOfMap::
 	ld a, [wPlayerStepDirection]
-	cp STANDING
-	ret z
 	and a ; DOWN
 	jr z, .down
-	cp UP
+	dec a ; UP
 	jr z, .up
-	cp LEFT
+	dec a ; LEFT
 	jr z, .left
-	cp RIGHT
-	jr z, .right
+	dec a ; RIGHT
+	ret nz 
+
+.right
+	ld a, [wPlayerStandingMapX]
+	sub 4
+	ld b, a
+	ld a, [wMapWidth]
+	add a
+	cp b
+	jr z, .ok
 	and a
 	ret
 
@@ -371,17 +360,6 @@ CheckMovingOffEdgeOfMap::
 	ld a, [wPlayerStandingMapX]
 	sub 4
 	cp -1
-	jr z, .ok
-	and a
-	ret
-
-.right
-	ld a, [wPlayerStandingMapX]
-	sub 4
-	ld b, a
-	ld a, [wMapWidth]
-	add a
-	cp b
 	jr z, .ok
 	and a
 	ret

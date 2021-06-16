@@ -53,6 +53,8 @@ STRING_BUFFER_LENGTH EQU 19
 	const VAR_DEXCAUGHT        ; 05
 	const VAR_DEXSEEN          ; 06
 	const VAR_BADGES           ; 07
+	const VAR_JOHTO_BADGES
+	const VAR_KANTO_BADGES
 	const VAR_MOVEMENT         ; 08
 	const VAR_FACING           ; 09
 	const VAR_HOUR             ; 0a

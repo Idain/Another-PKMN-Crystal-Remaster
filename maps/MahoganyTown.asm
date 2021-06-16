@@ -225,8 +225,7 @@ MahoganyTownLassText:
 MahoganyTownSignText:
 	text "Mahogany Town"
 
-	para "Welcome to the"
-	line "Home of the Ninja"
+	para "Home of the Ninja"
 	done
 
 MahoganyTownRagecandybarSignText:

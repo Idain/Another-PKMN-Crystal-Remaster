@@ -1011,9 +1011,9 @@ SendMonIntoBox:
 	ld [de], a
 	inc de
 
-	; Set all 5 Experience Values to 0
+	; Set all 6 EVs + Padding to 0
 	xor a
-	ld b, 2 * 5
+	ld b, 2 * NUM_EXP_STATS
 .loop2
 	ld [de], a
 	inc de
