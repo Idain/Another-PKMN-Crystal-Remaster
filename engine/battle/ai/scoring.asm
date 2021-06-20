@@ -196,8 +196,7 @@ AI_Types:
 	and TYPE_MASK
 	ld d, a
 	ld hl, wEnemyMonMoves
-	ld b, NUM_MOVES + 1
-	ld c, 0
+	lb bc, (NUM_MOVES + 1), 0
 .checkmove2
 	dec b
 	jr z, .movesdone
@@ -213,9 +212,8 @@ AI_Types:
 	jr z, .checkmove2
 	ld a, [wEnemyMoveStruct + MOVE_POWER]
 	and a
-	jr nz, .damaging
-	jr .checkmove2
-
+	jr z, .checkmove2
+	; fallthrough
 .damaging
 	ld c, a
 .movesdone
@@ -1381,8 +1379,7 @@ AI_Smart_Mimic:
 AI_Smart_Counter:
 	push hl
 	ld hl, wPlayerUsedMoves
-	ld c, NUM_MOVES
-	ld b, 0
+	lb bc, 0, NUM_MOVES
 
 .playermoveloop
 	ld a, [hli]
@@ -1415,26 +1412,24 @@ AI_Smart_Counter:
 
 	ld a, [wLastPlayerCounterMove]
 	and a
-	jr z, .done
+	ret z
 
 	call AIGetEnemyMove
 
 	ld a, [wEnemyMoveStruct + MOVE_POWER]
 	and a
-	jr z, .done
+	ret z
 
 	ld a, [wEnemyMoveStruct + MOVE_TYPE]
 	cp SPECIAL
-	jr nc, .done
+	ret nc
 
 .encourage
 	call Random
 	cp 39 percent + 1
-	jr c, .done
+	ret c
 
 	dec [hl]
-
-.done
 	ret
 
 .discourage
@@ -2540,8 +2535,7 @@ AI_Smart_BellyDrum:
 AI_Smart_PsychUp:
 	push hl
 	ld hl, wEnemyAtkLevel
-	ld b, NUM_LEVEL_STATS
-	ld c, 100
+	lb bc, NUM_LEVEL_STATS, 100
 
 ; Calculate the sum of all enemy's stat level modifiers. Add 100 first to prevent underflow.
 ; Put the result in c. c will range between 58 and 142.
@@ -2597,8 +2591,7 @@ AI_Smart_PsychUp:
 AI_Smart_MirrorCoat:
 	push hl
 	ld hl, wPlayerUsedMoves
-	ld c, NUM_MOVES
-	ld b, 0
+	lb bc, 0, NUM_MOVES
 
 .playermoveloop
 	ld a, [hli]
@@ -2631,25 +2624,23 @@ AI_Smart_MirrorCoat:
 
 	ld a, [wLastPlayerCounterMove]
 	and a
-	jr z, .done
+	ret z
 
 	call AIGetEnemyMove
 
 	ld a, [wEnemyMoveStruct + MOVE_POWER]
 	and a
-	jr z, .done
+	ret z
 
 	ld a, [wEnemyMoveStruct + MOVE_TYPE]
 	cp SPECIAL
-	jr c, .done
+	ret c
 
 .encourage
 	call Random
 	cp 39 percent + 1
-	jr c, .done
+	ret c
 	dec [hl]
-
-.done
 	ret
 
 .discourage
@@ -2980,12 +2971,12 @@ AI_Opportunist:
 .checkmove
 	inc hl
 	dec c
-	jr z, .done
+	ret z
 
 	ld a, [de]
 	inc de
 	and a
-	jr z, .done
+	ret z
 
 	push hl
 	push de
@@ -3001,8 +2992,6 @@ AI_Opportunist:
 
 	inc [hl]
 	jr .checkmove
-
-.done
 	ret
 
 INCLUDE "data/battle/ai/stall_moves.asm"
@@ -3065,7 +3054,7 @@ AI_Aggressive:
 ; Nothing we can do if no attacks did damage.
 	ld a, c
 	and a
-	jr z, .done
+	ret z
 
 ; Discourage moves that do less damage unless they're reckless too.
 	ld hl, wEnemyAIMoveScores - 1
@@ -3075,7 +3064,7 @@ AI_Aggressive:
 	inc b
 	ld a, b
 	cp NUM_MOVES + 1
-	jr z, .done
+	ret z
 
 ; Ignore this move if it is the highest damaging one.
 	cp c
@@ -3109,9 +3098,6 @@ AI_Aggressive:
 ; If we made it this far, discourage this move.
 	inc [hl]
 	jr .checkmove2
-
-.done
-	ret
 
 INCLUDE "data/battle/ai/reckless_moves.asm"
 

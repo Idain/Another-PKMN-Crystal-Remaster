@@ -9,8 +9,7 @@ ShowLinkBattleParticipants:
 	ld c, 150
 	call DelayFrames
 	call ClearTilemap
-	call ClearSprites
-	ret
+	jp ClearSprites
 
 FindFirstAliveMonAndStartBattle:
 	xor a
@@ -77,7 +76,6 @@ PlayBattleMusic:
 	cp RED
 	jr z, .done
 
-	; They should have included EXECUTIVEM, EXECUTIVEF, and SCIENTIST too...
 	ld de, MUSIC_ROCKET_BATTLE
 	cp GRUNTM
 	jr z, .done

@@ -17,6 +17,14 @@ CAMBIOS:
 
 - Removido modificador de medallas que boosteaban ataques y stats.
 
+- La fórmula para determinar el género de un Pokémon ha sido retrabajada para que ciertos Pokémon hembra puedan tener mejores DVs en Ataque.
+
+- Shiny Pokémon. La fórmula ha sido retrabajada de nuevo, dando un chande de ~1/1213:
+	-- Attack DV:  14, 15
+	-- Defense DV: 10, 14, 15
+	-- Speed DV:   10, 14, 15
+	-- Special DV: 10, 14, 15
+
 - Ahora se necesitan 7 medallas de Kanto antes de poder enfrentar a Blue.
 
 - Obediencia: Ahora funciona como en HG/SS, con la Zephyr Badge afectando obediencia hasta el Nv. 20 y la Mineral Badge reemplazando a la Storm Badge para obediencia hasta Nv. 70.

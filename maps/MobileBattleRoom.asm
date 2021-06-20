@@ -39,7 +39,6 @@ MobileBattleRoomConsoleScript:
 	special RestartMapMusic
 	refreshscreen
 .two_
-	special StubbedTrainerRankings_Healings
 	special HealParty
 	special Function10383c
 	iftrue .false
@@ -59,7 +58,7 @@ MobileBattleRoom_EstablishingCommsText:
 	done
 
 MobileBattleRoom_HealText:
-	text "Your #MON will"
+	text "Your #mon will"
 	line "be fully healed"
 	cont "before battle."
 	done

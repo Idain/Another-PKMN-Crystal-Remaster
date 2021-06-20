@@ -104,7 +104,6 @@ CheckForLuckyNumberWinners:
 	and a
 	ret z ; found nothing
 
-	farcall StubbedTrainerRankings_LuckyNumberShow
 	ld a, [wTempByteValue]
 	and a
 	push af

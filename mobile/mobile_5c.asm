@@ -32,8 +32,7 @@ Function170000:
 	ld hl, $c608
 	ld de, $d800
 	ld bc, $008f
-	call CopyBytes
-	ret
+	jp CopyBytes
 
 Function17005a:
 	ld a, $5
@@ -68,8 +67,7 @@ Function17005a:
 	ld [wOTTrademonCaughtData], a
 	ld a, [wcd81]
 	ld [wc74e], a
-	call CloseSRAM
-	ret
+	jp CloseSRAM
 
 INCLUDE "engine/events/battle_tower/battle_tower.asm"
 
@@ -80,8 +78,7 @@ Function170be4:
 	ld hl, s5_a894
 	ld bc, 6 + 2
 	call ByteFill
-	call CloseSRAM
-	ret
+	jp CloseSRAM
 
 Clears5_a89a:
 	ld a, BANK(s5_a89a)
@@ -90,8 +87,7 @@ Clears5_a89a:
 	xor a
 	ld [hli], a
 	ld [hl], a
-	call CloseSRAM
-	ret
+	jp CloseSRAM
 
 Function170c06: ; unreferenced
 	ld a, BANK(s5_a894)
@@ -152,7 +148,6 @@ Function170c06: ; unreferenced
 
 .asm_170c58
 	ld de, -1
-
 .asm_170c5b
 	pop hl
 	inc hl
@@ -192,8 +187,7 @@ Function170c06: ; unreferenced
 	ld a, [hl]
 	add c
 	ld [hl], a
-	call CloseSRAM
-	ret
+	jp CloseSRAM
 
 Function170c8b:
 	ld hl, wLastEnemyCounterMove
@@ -342,8 +336,7 @@ Function171a11:
 	jr .loop
 .done
 	farcall ClearSpriteAnims
-	call ClearSprites
-	ret
+	jp ClearSprites
 
 Function171a36:
 	jumptable Jumptable_171a45, wcd49
@@ -516,10 +509,10 @@ Function171b85:
 	ld hl, hJoyPressed
 	ld a, [hl]
 	and $2
-	jp nz, Function171b9f
+	jr nz, Function171b9f
 	ld a, [hl]
 	and $1
-	jp nz, Function171bbd
+	jr nz, Function171bbd
 	ld a, [hl]
 	and $40
 	jr nz, asm_171ba5
@@ -566,7 +559,7 @@ Function171bcc:
 	jp nz, Function171bdc
 	ld a, [hl]
 	and $1
-	jp nz, Function171beb
+	jr nz, Function171beb
 	ret
 
 Function171bdc:
@@ -594,11 +587,9 @@ Function171beb:
 	call PlaceString
 	ld a, [wcd4a]
 	cp $2
-	jr z, .asm_171c1f
-	ld a, $8
-	jr .asm_171c21
-.asm_171c1f
 	ld a, $c
+	jr z, .asm_171c21
+	ld a, $8
 .asm_171c21
 	ld [wcd24], a
 	ld a, $1e
@@ -623,7 +614,6 @@ Function171c41:
 	dec [hl]
 	ret nz
 	call ClearBGPalettes
-	farcall Stubbed_Function106462
 	farcall Function106464
 	ld a, $2
 	ld [wc303], a
@@ -671,8 +661,7 @@ Function171c87:
 	call PlaceString
 	hlcoord 3, 16
 	ld de, String_172e3f
-	call PlaceString
-	ret
+	jp PlaceString
 
 Function171ccd:
 	ldh a, [rSVBK]
@@ -743,8 +732,7 @@ Function171d2b:
 	call PlaceString
 	hlcoord 14, 16
 	ld de, String_172e58
-	call PlaceString
-	ret
+	jp PlaceString
 
 MobilePasswordPalettes:
 INCLUDE "gfx/mobile/mobile_password.pal"
@@ -807,8 +795,7 @@ Function172e78:
 	ld hl, Stadium2N64Attrmap
 	decoord 0, 0, wAttrmap
 	ld bc, $168
-	call CopyBytes
-	ret
+	jp CopyBytes
 
 Function172eb9:
 	ldh a, [rSVBK]

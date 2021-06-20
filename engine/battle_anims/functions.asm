@@ -1,15 +1,10 @@
 DoBattleAnimFrame:
 	ld hl, BATTLEANIMSTRUCT_FUNCTION
 	add hl, bc
-	ld e, [hl]
-	ld d, 0
+	ld a, [hl]
 	ld hl, .Jumptable
-	add hl, de
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp hl
+	rst JumpTable
+	ret
 
 .Jumptable:
 ; entries correspond to BATTLEANIMFUNC_* constants
@@ -678,14 +673,13 @@ BattleAnimFunction_Shake:
 	ld hl, BATTLEANIMSTRUCT_XOFFSET
 	add hl, bc
 	ld a, [hl]
-	xor $ff
+	cpl
 	inc a
 	ld [hl], a
 	ret
 
 .two
-	call DeinitBattleAnimation
-	ret
+	jp DeinitBattleAnimation
 
 BattleAnimFunction_FireBlast:
 	call BattleAnim_AnonJumptable
@@ -2309,7 +2303,7 @@ BattleAnimFunction_Sound:
 	ld hl, BATTLEANIMSTRUCT_PARAM
 	add hl, bc
 	ld a, [hl]
-	xor $ff
+	cpl
 	add $3
 	ld [hl], a
 .got_turn
@@ -2321,24 +2315,17 @@ BattleAnimFunction_Sound:
 	add hl, bc
 	ld a, BATTLEANIMFRAMESET_59
 	add [hl] ; BATTLEANIMFRAMESET_5A BATTLEANIMFRAMESET_5B
-	call ReinitBattleAnimFrameset
-	ret
+	jp ReinitBattleAnimFrameset
 
 .one
 	ld hl, BATTLEANIMSTRUCT_VAR1
 	add hl, bc
 	ld a, [hl]
 	and a
-	jr z, .done_anim
+	jp z, DeinitBattleAnimation
 	dec [hl]
-	call .SoundWaveMotion
-	ret
 
-.done_anim
-	call DeinitBattleAnimation
-	ret
-
-.SoundWaveMotion:
+; SoundWaveMotion
 	ld hl, BATTLEANIMSTRUCT_VAR2
 	add hl, bc
 	ld a, [hl]
@@ -2368,7 +2355,7 @@ BattleAnimFunction_Sound:
 	ld hl, BATTLEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld a, d
-	xor $ff
+	cpl
 	inc a
 	ld [hl], a
 	ret
@@ -2658,7 +2645,7 @@ BattleAnimFunction_Paralyzed:
 .right
 	ld a, e
 	and $f
-	xor $ff
+	cpl
 	inc a
 	ld [hl], a
 	ld a, BATTLEANIMFRAMESET_6E
@@ -2684,7 +2671,7 @@ BattleAnimFunction_Paralyzed:
 	ld hl, BATTLEANIMSTRUCT_XOFFSET
 	add hl, bc
 	ld a, [hl]
-	xor $ff
+	cpl
 	inc a
 	ld [hl], a
 	ret
@@ -2934,7 +2921,7 @@ BattleAnimFunction_PresentSmokescreen:
 	call BattleAnim_Sine
 	bit 7, a
 	jr nz, .negative
-	xor $ff
+	cpl
 	inc a
 .negative
 	ld hl, BATTLEANIMSTRUCT_YOFFSET
@@ -3009,7 +2996,7 @@ BattleAnimFunction_Horn:
 	add hl, bc
 	ld [hl], a
 	sra a
-	xor $ff
+	cpl
 	inc a
 	ld hl, BATTLEANIMSTRUCT_VAR1
 	add hl, bc
@@ -3481,7 +3468,7 @@ BattleAnimFunction_StrengthSeismicToss:
 	ld hl, BATTLEANIMSTRUCT_VAR1
 	add hl, bc
 	ld a, [hl]
-	xor $ff
+	cpl
 	inc a
 	ld [hl], a
 	ld hl, BATTLEANIMSTRUCT_YOFFSET
@@ -3798,7 +3785,7 @@ BattleAnimFunction_BatonPass:
 	call BattleAnim_Sine
 	bit 7, a
 	jr nz, .negative
-	xor $ff
+	cpl
 	inc a
 .negative
 	ld hl, BATTLEANIMSTRUCT_YOFFSET
@@ -4176,8 +4163,7 @@ BattleAnimFunction_Cotton:
 	ld hl, BATTLEANIMSTRUCT_PARAM
 	add hl, bc
 	add [hl]
-	call BattleAnim_StepCircle
-	ret
+	jr BattleAnim_StepCircle
 
 BattleAnimFunction_AncientPower:
 ; Object moves up and down in an arc for $20 frames and then disappear
@@ -4186,21 +4172,17 @@ BattleAnimFunction_AncientPower:
 	add hl, bc
 	ld a, [hl]
 	cp $20
-	jr nc, .done
+	jp nc, DeinitBattleAnimation
 	inc [hl]
 	ld hl, BATTLEANIMSTRUCT_PARAM
 	add hl, bc
 	ld d, [hl]
 	call BattleAnim_Sine
-	xor $ff
+	cpl
 	inc a
 	ld hl, BATTLEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld [hl], a
-	ret
-
-.done
-	call DeinitBattleAnimation
 	ret
 
 BattleAnim_StepCircle:

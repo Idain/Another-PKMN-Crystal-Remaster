@@ -1292,7 +1292,7 @@ LinkTradeOTPartymonMenuLoop:
 	jp LinkTradeOTPartymonMenuCheckCancel
 
 LinkTrade_PlayerPartyMenu:
-	farcall InitMG_Mobile_LinkTradePalMap
+	farcall _InitMG_Mobile_LinkTradePalMap
 	xor a
 	ld [wMonType], a
 	ld a, A_BUTTON | D_UP | D_DOWN
@@ -1997,7 +1997,6 @@ LinkTrade:
 
 .save
 	farcall SaveAfterLinkTrade
-	farcall StubbedTrainerRankings_Trades
 	farcall BackupMobileEventIndex
 	ld c, 40
 	call DelayFrames
@@ -2047,9 +2046,8 @@ LoadTradeScreenBorderGFX:
 	ret
 
 SetTradeRoomBGPals:
-	farcall LoadTradeRoomBGPals ; just a nested farcall; so wasteful
-	call SetPalettes
-	ret
+	farcall _LoadTradeRoomBGPals
+	jp SetPalettes
 
 PlaceTradeScreenTextbox: ; unreferenced
 	hlcoord 0, 0

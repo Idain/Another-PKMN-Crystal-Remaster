@@ -344,7 +344,6 @@ MobileTradeAnim_JumptableLoop:
 	ldh [hWY], a
 	call LoadStandardFont
 	call LoadFontsBattleExtra
-	farcall Stubbed_Function106462
 	farcall Function106464
 	scf
 	ret

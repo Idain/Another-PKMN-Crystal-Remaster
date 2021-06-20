@@ -591,7 +591,6 @@ MonMenu_Fly:
 	jr z, .Fail
 	and a
 	ret z ; Error
-;	farcall StubbedTrainerRankings_Fly
 	ld b, 4
 	ld a, 2
 	ret

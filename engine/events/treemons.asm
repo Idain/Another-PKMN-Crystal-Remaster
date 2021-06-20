@@ -1,6 +1,4 @@
 TreeMonEncounter:
-	farcall StubbedTrainerRankings_TreeEncounters
-
 	xor a
 	ld [wTempWildMonSpecies], a
 	ld [wCurPartyLevel], a
@@ -45,15 +43,11 @@ RockMonEncounter:
 	jr nc, .no_battle
 
 	call SelectTreeMon
-	jr nc, .no_battle
-
-	ret
+	ret c
 
 .no_battle
 	xor a
 	ret
-
-	db $05 ; ????
 
 GetTreeMonSet:
 ; Return carry and treemon set in a
@@ -126,13 +120,12 @@ GetTreeMon:
 	push hl
 	call GetTreeScore
 	pop hl
-	and a ; TREEMON_SCORE_BAD
-	jr z, .bad
 	cp TREEMON_SCORE_GOOD
 	jr z, .good
 	cp TREEMON_SCORE_RARE
 	jr z, .rare
-	ret
+	and a ; TREEMON_SCORE_BAD
+	ret nz
 
 .bad
 	; 10% chance of an encounter
@@ -156,14 +149,11 @@ GetTreeMon:
 	call RandomRange
 	cp 8
 	jr nc, NoTreeMon
-	jr .skip
 .skip
 	ld a, [hli]
 	cp -1
 	jr nz, .skip
-	call SelectTreeMon
-	ret
-
+	; fallthrough
 SelectTreeMon:
 ; Read a TreeMons table and pick one monster at random.
 
@@ -235,8 +225,8 @@ GetTreeScore:
 	add hl, bc
 	dec a
 	jr nz, .loop
-.next
 
+.next
 	add hl, bc
 	ld c, d
 	add hl, bc

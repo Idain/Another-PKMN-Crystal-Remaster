@@ -76,8 +76,7 @@ DebugColorPicker:
 	ldh [hInMenu], a
 	call LoadFontsExtra
 	call LoadStandardFont
-	call SetPalettes
-	ret
+	jp SetPalettes
 
 DebugColor_InitMonOrTrainerColor:
 	ld a, [wDebugColorIsTrainer]
@@ -85,7 +84,6 @@ DebugColor_InitMonOrTrainerColor:
 	jr nz, DebugColor_InitTrainerColor
 	ld hl, PokemonPalettes
 	; fallthrough
-
 DebugColor_InitMonColor:
 	ld de, wDebugOriginalColors
 	ld c, NUM_POKEMON + 1
@@ -156,8 +154,7 @@ DebugColor_InitVRAM:
 	xor a
 	call ByteFill
 
-	call ClearSprites
-	ret
+	jp ClearSprites
 
 DebugColor_LoadGFX:
 	ld hl, DebugColor_GFX
@@ -176,7 +173,7 @@ DebugColor_LoadGFX:
 	ld bc, $80 tiles
 .loop
 	ld a, [hl]
-	xor $ff
+	cpl
 	ld [hli], a
 	dec bc
 	ld a, c
@@ -354,12 +351,10 @@ DebugColor_InitScreen:
 
 	ld a, [wDebugColorIsShiny]
 	and a
-	jr z, .normal
+	ld de, .NormalText
+	jr z, .place_text
 ; shiny
 	ld de, .ShinyText
-	jr .place_text
-.normal
-	ld de, .NormalText
 .place_text
 	hlcoord 10, 17
 	call PlaceString
@@ -421,8 +416,7 @@ DebugColor_LoadRGBMeter:
 	ld h, d
 	pop af
 	ld bc, 20 * 2
-	call ByteFill
-	ret
+	jp ByteFill
 
 DebugColor_SetRGBMeter:
 	ld a, [wDebugColorCurMon]
@@ -440,8 +434,7 @@ DebugColor_SetRGBMeter:
 	ld [wDebugColorRGBJumptableIndex], a
 	ld [wDebugColorCurColor], a
 	ld de, wDebugLightColor
-	call DebugColor_CalculateRGB
-	ret
+	jp DebugColor_CalculateRGB
 
 DebugColor_UpdateScreen:
 	ldh a, [hCGB]
@@ -617,15 +610,13 @@ DebugColor_SelectColorBox:
 	xor a ; FALSE
 	ld [wDebugColorCurColor], a
 	ld de, wDebugLightColor
-	call DebugColor_CalculateRGB
-	ret
+	jp DebugColor_CalculateRGB
 
 .dark
 	ld a, TRUE
 	ld [wDebugColorCurColor], a
 	ld de, wDebugDarkColor
-	call DebugColor_CalculateRGB
-	ret
+	jp DebugColor_CalculateRGB
 
 DebugColor_ChangeRedValue:
 	ld hl, hJoyLast
@@ -718,9 +709,7 @@ DebugColor_TMHMJoypad:
 
 	ld a, [hl]
 	and B_BUTTON
-	jr nz, .cancel
-	call .scroll
-	ret
+	jr z, .scroll
 
 .cancel
 	ld a, DEBUGCOLORMAIN_INITSCREEN
@@ -762,12 +751,9 @@ DebugColor_TMHMJoypad:
 
 .wrap_up
 	ld a, NUM_TM_HM_TUTOR - 1
-
 .done
 	ld [wDebugColorCurTMHM], a
-	call DebugColor_PrintTMHMMove
-	ret
-
+	; fallthrough
 DebugColor_PrintTMHMMove:
 	hlcoord 8, 11
 	call .ClearRow
@@ -799,8 +785,7 @@ DebugColor_PrintTMHMMove:
 	ld de, .NotAbleText
 .place_string
 	hlcoord 8, 14
-	call PlaceString
-	ret
+	jp PlaceString
 
 .AbleText:
 	db "Can", DEBUGTEST_BLACK, "Learn@" ; Learnable"
@@ -821,8 +806,7 @@ DebugColor_PrintTMHMMove:
 .ClearRow:
 	ld bc, 12
 	ld a, DEBUGTEST_BLACK
-	call ByteFill
-	ret
+	jp ByteFill
 
 DebugColor_CalculatePalette:
 	ld a, [wDebugRedChannel]
@@ -899,8 +883,7 @@ DebugColor_BackupSpriteColors:
 	ld d, h
 	ld hl, wDebugMiddleColors
 	ld bc, 4
-	call CopyBytes
-	ret
+	jp CopyBytes
 
 DebugColor_LoadPalettes_White_Col1_Col2_Black:
 .loop
@@ -1010,7 +993,7 @@ DebugColor_PlaceCursor:
 
 	ld a, [wJumptableIndex]
 	cp DEBUGCOLORMAIN_JOYPAD
-	jr nz, .clearsprites
+	jp nz, ClearSprites
 
 	ld a, [wDebugColorRGBJumptableIndex]
 	and a
@@ -1033,17 +1016,13 @@ DebugColor_PlaceCursor:
 .place
 	ld [hl], "▶"
 
-	ld b, $70 ; initial tile id
-	ld c, 5 ; initial palette
+	lb bc, $70, 5 ; initial tile id and initial palette
 	ld hl, wVirtualOAM
 	ld de, wDebugRedChannel
 	call .placesprite
 	ld de, wDebugGreenChannel
 	call .placesprite
 	ld de, wDebugBlueChannel
-	call .placesprite
-	ret
-
 .placesprite:
 	ld a, b
 	ld [hli], a ; y
@@ -1060,10 +1039,6 @@ DebugColor_PlaceCursor:
 	add b
 	ld b, a
 	inc c
-	ret
-
-.clearsprites:
-	call ClearSprites
 	ret
 
 DebugColor_AreYouFinishedString:
@@ -1172,8 +1147,7 @@ DebugTileset_LoadRGBMeter:
 	ld [hli], a
 	ld bc, 15
 	ld a, DEBUGTEST_TICKS_2
-	call ByteFill
-	ret
+	jp ByteFill
 
 DebugTileset_LoadPalettes:
 	ldh a, [rSVBK]
@@ -1207,8 +1181,7 @@ DebugColorMain2: ; unreferenced
 	ld a, [hl]
 	and B_BUTTON
 	jr nz, .cancel
-	call DebugTileset_Joypad
-	ret
+	jp DebugTileset_Joypad
 
 .next_palette
 	ld hl, wDebugTilesetCurPalette
@@ -1295,8 +1268,7 @@ DebugTileset_UpdatePalettes:
 	ld a, TRUE
 	ldh [hCGBPalUpdate], a
 
-	call DelayFrame
-	ret
+	jp DelayFrame
 
 DebugTileset_Joypad:
 	ld a, [wDebugTilesetRGBJumptableIndex]
@@ -1323,12 +1295,10 @@ DebugTileset_SelectColorBox:
 	and D_DOWN
 	jr nz, DebugTileset_NextRGBColor
 	ld a, [hl]
-	and D_LEFT
-	jr nz, .left
-	ld a, [hl]
 	and D_RIGHT
 	jr nz, .right
-	ret
+	and D_LEFT
+	ret z
 
 .left
 	ld a, [wDebugTilesetCurColor]
@@ -1349,8 +1319,7 @@ DebugTileset_SelectColorBox:
 	add hl, de
 	ld e, l
 	ld d, h
-	call DebugColor_CalculateRGB
-	ret
+	jp DebugColor_CalculateRGB
 
 DebugTileset_ChangeRedValue:
 	ld hl, hJoyLast
@@ -1406,8 +1375,7 @@ DebugTileset_UpdateRGBColor:
 
 .done
 	call DebugTileset_CalculatePalette
-	call DebugTileset_UpdatePalettes
-	ret
+	jp DebugTileset_UpdatePalettes
 
 DebugTileset_PreviousRGBColor:
 	ld hl, wDebugTilesetRGBJumptableIndex

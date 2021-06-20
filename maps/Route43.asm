@@ -305,13 +305,13 @@ Route43MaxEther:
 	itemball MAX_ETHER
 
 PokemaniacBenSeenText:
-	text "I love #MON!"
+	text "I love #mon!"
 
 	para "That's why I"
 	line "started--and why"
 
 	para "I'll keep on col-"
-	line "lecting #MON!"
+	line "lecting #mon!"
 	done
 
 PokemaniacBenBeatenText:
@@ -322,26 +322,26 @@ PokemaniacBenBeatenText:
 PokemaniacBenAfterBattleText:
 	text "What else do I"
 	line "like besides"
-	cont "#MON?"
+	cont "#mon?"
 
-	para "MARY on the radio."
+	para "Mary on the radio."
 	line "I bet she's cute!"
 	done
 
 PokemaniacBrentSeenText:
 	text "Hey! Do you have"
-	line "any rare #MON?"
+	line "any rare #mon?"
 	done
 
 PokemaniacBrentBeatenText:
 	text "Oh, my poor #-"
-	line "MON! Darlings!"
+	line "mon! Darlings!"
 	done
 
 PokemaniacBrentAfterBattleText:
 	text "I'd be happy just"
 	line "to own a single"
-	cont "rare #MON."
+	cont "rare #mon."
 	done
 
 PokemaniacRonSeenText:
@@ -350,14 +350,14 @@ PokemaniacRonSeenText:
 
 	para "Some <RIVAL> guy"
 	line "made fun of my"
-	cont "#MON!"
+	cont "#mon!"
 
 	para "Darn it! My #-"
-	line "MON's great!"
+	line "mon's great!"
 	done
 
 PokemaniacRonBeatenText:
-	text "My NIDOKING did"
+	text "My Nidoking did"
 	line "pretty right on!"
 	done
 
@@ -366,9 +366,9 @@ PokemaniacRonAfterBattleText:
 	line "people to like"
 
 	para "different types"
-	line "of #MON."
+	line "of #mon."
 
-	para "#MON isn't just"
+	para "#mon isn't just"
 	line "about having the"
 	cont "most powerful one."
 	done
@@ -389,20 +389,20 @@ FisherMarvinBeatenText:
 	done
 
 FisherMarvinAfterBattleText:
-	text "KURT's LURE BALL"
+	text "Kurt's Lure Ball"
 	line "is the best for"
 
 	para "catching hooked"
-	line "#MON."
+	line "#mon."
 
 	para "It's much more"
 	line "effective than a"
-	cont "ULTRA BALL."
+	cont "Ultra Ball."
 	done
 
 CamperSpencerSeenText:
 	text "I can do so much"
-	line "with my #MON--"
+	line "with my #mon--"
 	cont "it's super-fun!"
 	done
 
@@ -413,7 +413,7 @@ CamperSpencerBeatenText:
 
 CamperSpencerAfterBattleText:
 	text "What is going on"
-	line "at LAKE OF RAGE?"
+	line "at Lake of Rage?"
 
 	para "We were planning"
 	line "to camp there."
@@ -421,7 +421,7 @@ CamperSpencerAfterBattleText:
 
 PicnickerTiffanySeenText:
 	text "Are you going to"
-	line "LAKE OF RAGE too?"
+	line "Lake of Rage too?"
 
 	para "Let's play for a "
 	line "little while!"
@@ -433,35 +433,35 @@ PicnickerTiffanyBeatenText:
 
 PicnickerTiffanyWantsPicnicText:
 	text "I'm having a pic-"
-	line "nic with #MON."
+	line "nic with #mon."
 
 	para "Won't you join us?"
 	done
 
 PicnickerTiffanyClefairyText:
-	text "Isn't my CLEFAIRY"
+	text "Isn't my Clefairy"
 	line "just the most"
 	cont "adorable thing?"
 	done
 
 Route43Sign1Text:
-	text "ROUTE 43"
+	text "Route 43"
 
-	para "LAKE OF RAGE -"
-	line "MAHOGANY TOWN"
+	para "Lake of Rage -"
+	line "Mahogany Town"
 	done
 
 Route43Sign2Text:
-	text "ROUTE 43"
+	text "Route 43"
 
-	para "LAKE OF RAGE -"
-	line "MAHOGANY TOWN"
+	para "Lake of Rage -"
+	line "Mahogany Town"
 	done
 
 Route43TrainerTipsText:
 	text "TRAINER TIPS"
 
-	para "All #MON have"
+	para "All #mon have"
 	line "pros and cons"
 
 	para "depending on their"
@@ -470,14 +470,14 @@ Route43TrainerTipsText:
 	para "If their types"
 	line "differ, a higher-"
 
-	para "level #MON may"
+	para "level #mon may"
 	line "lose in battle."
 
 	para "Learn which types"
 	line "are strong and"
 
 	para "weak against your"
-	line "#MON's type."
+	line "#mon's type."
 	done
 
 Route43_MapEvents:

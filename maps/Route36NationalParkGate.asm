@@ -486,9 +486,9 @@ Route36NationalParkGateOfficer1AskToParticipateText:
 	line "ple."
 
 	para "Using one of your"
-	line "#MON, catch a"
+	line "#mon, catch a"
 
-	para "bug #MON to be"
+	para "bug #mon to be"
 	line "judged."
 
 	para "Would you like to"
@@ -496,37 +496,37 @@ Route36NationalParkGateOfficer1AskToParticipateText:
 	done
 
 Route36NationalParkGateOfficer1GiveParkBallsText:
-	text "Here are the PARK"
-	line "BALLS for the"
+	text "Here are the Park"
+	line "Balls for the"
 	cont "Contest."
 	done
 
 Route36NationalParkGatePlayerReceivedParkBallsText:
 	text "<PLAYER> received"
-	line "{d:BUG_CONTEST_BALLS} PARK BALLS."
+	line "{d:BUG_CONTEST_BALLS} Park Balls."
 	done
 
 Route36NationalParkGateOfficer1ExplainsRulesText:
 	text "The person who"
 	line "gets the strong-"
-	cont "est bug #MON"
+	cont "est bug #mon"
 	cont "is the winner."
 
 	para "You have {d:BUG_CONTEST_MINUTES}"
 	line "minutes."
 
 	para "If you run out of"
-	line "PARK BALLS, you're"
+	line "Park Balls, you're"
 	cont "done."
 
 	para "You can keep the"
-	line "last #MON you"
+	line "last #mon you"
 	cont "catch as your own."
 
 	para "Go out and catch"
 	line "the strongest bug"
 
-	para "#MON you can"
+	para "#mon you can"
 	line "find!"
 	done
 
@@ -534,14 +534,14 @@ Route36NationalParkGateOfficer1AskToUseFirstMonText:
 	text "Uh-oh…"
 
 	para "You have more than"
-	line "one #MON."
+	line "one #mon."
 
 	para "You'll have to use"
 	line "@"
 	text_ram wStringBuffer3
 	text ", the"
 
-	para "first #MON in"
+	para "first #mon in"
 	line "your party."
 
 	para "Is that OK with"
@@ -550,19 +550,19 @@ Route36NationalParkGateOfficer1AskToUseFirstMonText:
 
 Route36NationalParkGateOfficer1WellHoldYourMonText:
 	text "Fine, we'll hold"
-	line "your other #MON"
+	line "your other #mon"
 	cont "while you compete."
 	done
 
 Route36NationalParkGatePlayersMonLeftWithHelperText:
-	text "<PLAYER>'s #MON"
+	text "<PLAYER>'s #mon"
 	line "were left with the"
-	cont "CONTEST HELPER."
+	cont "Contest Helper."
 	done
 
 Route36NationalParkGateOfficer1ChooseMonAndComeBackText:
 	text "Please choose the"
-	line "#MON to be used"
+	line "#mon to be used"
 
 	para "in the Contest,"
 	line "then come see me."
@@ -576,13 +576,13 @@ Route36NationalParkGateOfficer1TakePartInFutureText:
 
 Route36NationalParkGateOfficer1FirstMonCantBattleText:
 	text "Uh-oh…"
-	line "The first #MON"
+	line "The first #mon"
 
 	para "in your party"
 	line "can't battle."
 
 	para "Please switch it"
-	line "with the #MON"
+	line "with the #mon"
 
 	para "you want to use,"
 	line "then come see me."
@@ -592,29 +592,29 @@ Route36NationalParkGateOfficer1MakeRoomText:
 	text "Uh-oh…"
 	line "Both your party"
 
-	para "and your PC BOX"
+	para "and your PC Box"
 	line "are full."
 
 	para "You have no room"
 	line "to put the bug"
-	cont "#MON you catch."
+	cont "#mon you catch."
 
 	para "Please make room"
 	line "in your party or"
 
-	para "your PC BOX, then"
+	para "your PC Box, then"
 	line "come see me."
 	done
 
 Route36NationalParkGateOfficer1EggAsFirstMonText:
 	text "Uh-oh…"
-	line "You have an EGG as"
+	line "You have an Egg as"
 
-	para "the first #MON"
+	para "the first #mon"
 	line "in your party."
 
 	para "Please switch it"
-	line "with the #MON"
+	line "with the #mon"
 
 	para "you want to use,"
 	line "then come see me."
@@ -653,89 +653,89 @@ Route36NationalParkGateOfficer1ContestIsOverText:
 	done
 
 Route36NationalParkGateOfficer1SomeMonOnlySeenInParkText:
-	text "Some #MON can"
+	text "Some #mon can"
 	line "only be seen in"
-	cont "the PARK."
+	cont "the Park."
 	done
 
 BugCatchingContestant1BText:
-	text "DON: Wow, you beat"
+	text "Don: Wow, you beat"
 	line "me. You're pretty"
 	cont "good."
 	done
 
 BugCatchingContestant1BStillCompetingText:
-	text "DON: Luck plays a"
+	text "Don: Luck plays a"
 	line "big part in this."
 
 	para "You never know"
-	line "what #MON will"
+	line "what #mon will"
 	cont "appear."
 	done
 
 BugCatchingContestant2BText:
-	text "ED: I envy you."
+	text "Ed: I envy you."
 	line "I just couldn't"
 	cont "do it this time."
 	done
 
 BugCatchingContestant2BStillCompetingText:
-	text "ED: Maybe you win"
-	line "with big #MON?"
+	text "Ed: Maybe you win"
+	line "with big #mon?"
 	done
 
 BugCatchingContestant3BText:
-	text "NICK: Well done!"
+	text "Nick: Well done!"
 	line "I'm going to raise"
-	cont "my #MON better."
+	cont "my #mon better."
 	done
 
 BugCatchingContestant3BStillCompetingText:
-	text "NICK: Maybe you"
+	text "Nick: Maybe you"
 	line "get a higher score"
 
-	para "for a #MON of"
+	para "for a #mon of"
 	line "an unusual color."
 	done
 
 BugCatchingContestant4BText:
-	text "WILLIAM: You're"
+	text "William: You're"
 	line "the winner? What"
 	cont "did you catch?"
 	done
 
 BugCatchingContestant4BStillCompetingText:
-	text "WILLIAM: Well, I'm"
+	text "William: Well, I'm"
 	line "satisfied because"
 
-	para "I caught a #MON"
+	para "I caught a #mon"
 	line "that I wanted."
 	done
 
 BugCatchingContestant5BText:
-	text "BENNY: Congrats!"
+	text "Benny: Congrats!"
 	line "You have earned my"
 	cont "respect!"
 	done
 
 BugCatchingContestant5BStillCompetingText:
-	text "BENNY: I caught a"
-	line "SCYTHER before,"
+	text "Benny: I caught a"
+	line "Scyther before,"
 	cont "but I didn't win."
 	done
 
 BugCatchingContestant6BText:
-	text "BARRY: That #-"
-	line "MON you caught…"
+	text "Barry: That #-"
+	line "mon you caught…"
 	cont "it's awesome!"
 	done
 
 BugCatchingContestant6BStillCompetingText:
-	text "BARRY: It's easier"
+	text "Barry: It's easier"
 	line "to win if you get"
 
 	para "a high-level bug"
-	line "#MON."
+	line "#mon."
 
 	para "But I think they"
 	line "also consider some"
@@ -743,44 +743,44 @@ BugCatchingContestant6BStillCompetingText:
 	done
 
 BugCatchingContestant7BText:
-	text "CINDY: You won?"
+	text "Cindy: You won?"
 	line "That's great!"
 
 	para "Do you feel like"
 	line "looking for bug"
-	cont "#MON with me?"
+	cont "#mon with me?"
 	done
 
 BugCatchingContestant7BStillCompetingText:
-	text "CINDY: I really"
-	line "love bug #MON!"
+	text "Cindy: I really"
+	line "love bug #mon!"
 	done
 
 BugCatchingContestant8BText:
-	text "JOSH: I… I can't"
+	text "Josh: I… I can't"
 	line "believe I lost at"
 	cont "bug-catching…"
 	done
 
 BugCatchingContestant8BStillCompetingText:
-	text "JOSH: I heard that"
+	text "Josh: I heard that"
 	line "somebody won with"
-	cont "a CATERPIE!"
+	cont "a Caterpie!"
 	done
 
 BugCatchingContestant9BText:
-	text "SAMUEL: Next time,"
+	text "Samuel: Next time,"
 	line "I'm going to win."
 	done
 
 BugCatchingContestant9BStillCompetingText:
-	text "SAMUEL: Darn."
+	text "Samuel: Darn."
 	line "I thought I would"
 	cont "score higher…"
 	done
 
 BugCatchingContestant10BText:
-	text "KIPP: Could you"
+	text "Kipp: Could you"
 	line "give me some tips?"
 
 	para "I want to study"
@@ -788,7 +788,7 @@ BugCatchingContestant10BText:
 	done
 
 BugCatchingContestant10BStillCompetingText:
-	text "KIPP: I study a"
+	text "Kipp: I study a"
 	line "lot, but that's"
 
 	para "not good enough to"
@@ -829,7 +829,7 @@ UnusedBugCatchingContestExplanationText:
 	done
 
 Route36NationalParkGateOfficer1WellHoldPrizeText:
-	text "Uh-oh… Your PACK"
+	text "Uh-oh… Your Pack"
 	line "is full."
 
 	para "We'll hold on to"

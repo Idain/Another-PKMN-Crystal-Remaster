@@ -7,18 +7,8 @@ GetCrystalCGBLayout:
 	push af
 	farcall ResetBGPals
 	pop af
-	ld l, a
-	ld h, 0
-	add hl, hl
-	ld de, .Jumptable
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	ld de, .done
-	push de
-	jp hl
-.done:
+	ld hl, .Jumptable
+	rst JumpTable
 	ret
 
 .Jumptable:
@@ -48,8 +38,7 @@ Crystal_WipeAttrmap:
 	hlcoord 0, 0, wAttrmap
 	ld bc, SCREEN_HEIGHT * SCREEN_WIDTH
 	xor a
-	call ByteFill
-	ret
+	jp ByteFill
 
 MG_Mobile_Layout_LoadPals:
 	ld de, wBGPals1
@@ -61,8 +50,7 @@ MG_Mobile_Layout_LoadPals:
 	ld hl, Palette_TextBG7
 	ld bc, 1 palettes
 	ld a, BANK(wBGPals1)
-	call FarCopyWRAM
-	ret
+	jp FarCopyWRAM
 
 _CrystalCGB_MobileLayout0:
 	call MG_Mobile_Layout_LoadPals
@@ -106,8 +94,7 @@ MG_Mobile_Layout_CreatePalBoxes:
 	hlcoord 0, 12, wAttrmap
 	ld bc, 6 * SCREEN_WIDTH
 	ld a, $7
-	call ByteFill
-	ret
+	jp ByteFill
 
 Palette_MysteryGiftMobile:
 INCLUDE "gfx/mystery_gift/mg_mobile.pal"
@@ -117,8 +104,7 @@ LoadOW_BGPal7::
 	ld de, wBGPals1 palette PAL_BG_TEXT
 	ld bc, 1 palettes
 	ld a, BANK(wBGPals1)
-	call FarCopyWRAM
-	ret
+	jp FarCopyWRAM
 
 Palette_TextBG7:
 INCLUDE "gfx/font/bg_text.pal"
@@ -128,8 +114,7 @@ Function49420::
 	ld de, wBGPals1 palette PAL_BG_ROOF
 	ld bc, 1 palettes
 	ld a, BANK(wBGPals1)
-	call FarCopyWRAM
-	ret
+	jp FarCopyWRAM
 
 _CrystalCGB_MobileLayout1:
 	call MG_Mobile_Layout_LoadPals
@@ -204,8 +189,7 @@ _CrystalCGB_NameCard:
 	ld de, wOBPals1
 	ld bc, 1 palettes
 	ld a, BANK(wOBPals1)
-	call FarCopyWRAM
-	ret
+	jp FarCopyWRAM
 
 .BGPalette:
 INCLUDE "gfx/mystery_gift/name_card_bg.pal"
@@ -273,8 +257,7 @@ _InitMG_Mobile_LinkTradePalMap:
 	hlcoord 2, 17, wAttrmap
 	ld a, $3
 	ld bc, 6
-	call ByteFill
-	ret
+	jp ByteFill
 
 _LoadTradeRoomBGPals:
 	ld hl, TradeRoomPalette
@@ -287,7 +270,3 @@ _LoadTradeRoomBGPals:
 
 TradeRoomPalette:
 INCLUDE "gfx/trade/border.pal"
-
-InitMG_Mobile_LinkTradePalMap:
-	call _InitMG_Mobile_LinkTradePalMap
-	ret

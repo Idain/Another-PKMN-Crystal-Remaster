@@ -41,8 +41,7 @@ AI_SwitchOrTryItem:
 	; fallthrough
 
 DontSwitch:
-	call AI_TryItem
-	ret
+	jp AI_TryItem
 
 SwitchOften:
 	callfar CheckAbleToSwitch
@@ -56,16 +55,16 @@ SwitchOften:
 	cp 50 percent + 1
 	jr c, .switch
 	jp DontSwitch
-.not_10
 
+.not_10
 	cp $20
 	jr nz, .not_20
 	call Random
 	cp 79 percent - 1
 	jr c, .switch
 	jp DontSwitch
-.not_20
 
+.not_20
 	; $30
 	call Random
 	cp 4 percent
@@ -91,16 +90,16 @@ SwitchRarely:
 	cp 8 percent
 	jr c, .switch
 	jp DontSwitch
-.not_10
 
+.not_10
 	cp $20
 	jr nz, .not_20
 	call Random
 	cp 12 percent
 	jr c, .switch
 	jp DontSwitch
-.not_20
 
+.not_20
 	; $30
 	call Random
 	cp 79 percent - 1
@@ -125,16 +124,16 @@ SwitchSometimes:
 	cp 20 percent - 1
 	jr c, .switch
 	jp DontSwitch
-.not_10
 
+.not_10
 	cp $20
 	jr nz, .not_20
 	call Random
 	cp 50 percent + 1
 	jr c, .switch
 	jp DontSwitch
-.not_20
 
+.not_20
 	; $30
 	call Random
 	cp 20 percent - 1
@@ -405,7 +404,7 @@ AI_Items:
 .UnusedHealItem: ; unreferenced
 ; This has similar conditions to .HealItem
 	callfar AICheckEnemyMaxHP
-	jr c, .dont_use
+	jp c, .DontUse
 	push bc
 	ld de, wEnemyMonMaxHP + 1
 	ld hl, wEnemyMonHP + 1
@@ -433,9 +432,6 @@ AI_Items:
 	cp 50 percent + 1
 	jp c, .Use
 
-.dont_use
-	jp .DontUse
-
 .check_40_percent
 	pop bc
 	ld a, [bc]
@@ -452,49 +448,49 @@ AI_Items:
 	call .XItem
 	jp c, .DontUse
 	call EnemyUsedXAccuracy
-	jp .Use
+	jr .Use
 
 .GuardSpec:
 	call .XItem
 	jp c, .DontUse
 	call EnemyUsedGuardSpec
-	jp .Use
+	jr .Use
 
 .DireHit:
 	call .XItem
 	jp c, .DontUse
 	call EnemyUsedDireHit
-	jp .Use
+	jr .Use
 
 .XAttack:
 	call .XItem
 	jp c, .DontUse
 	call EnemyUsedXAttack
-	jp .Use
+	jr .Use
 
 .XDefend:
 	call .XItem
 	jp c, .DontUse
 	call EnemyUsedXDefend
-	jp .Use
+	jr .Use
 
 .XSpeed:
 	call .XItem
 	jp c, .DontUse
 	call EnemyUsedXSpeed
-	jp .Use
+	jr .Use
 
 .XSpecial:
 	call .XItem
 	jp c, .DontUse
 	call EnemyUsedXSpecial
-	jp .Use
+	jr .Use
 
 .XSpDef:
 	call .XItem
 	jp c, .DontUse
 	call EnemyUsedXSpDef
-	jp .Use
+	jr .Use
 
 .XItem:
 	ld a, [wEnemyTurnsTaken]
@@ -511,17 +507,17 @@ AI_Items:
 	jp nz, .Use
 	call Random
 	cp 50 percent + 1
-	jp c, .DontUse
-	jp .Use
+	jr c, .DontUse
+	jr .Use
+
 .notfirstturnout
 	ld a, [bc]
 	bit ALWAYS_USE_F, a
 	jp z, .DontUse
 	call Random
 	cp 20 percent - 1
-	jp nc, .DontUse
-	jp .Use
-
+	jr c, .Use
+	; fallthrough
 .DontUse:
 	scf
 	ret
@@ -793,7 +789,6 @@ AICheckEnemyFractionMaxHP: ; unreferenced
 	ld e, a
 	ld a, [hl]
 	ld d, a
-	ld a, d
 	sub b
 	ret nz
 	ld a, e

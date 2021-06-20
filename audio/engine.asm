@@ -294,8 +294,7 @@ UpdateChannels:
 	and %10001110 ; ch1 off
 	ldh [rNR52], a
 	ld hl, rNR10
-	call ClearChannel
-	ret
+	jp ClearChannel
 
 .ch1_noise_sampling
 	ld hl, wCurTrackDuty
@@ -354,8 +353,7 @@ UpdateChannels:
 	and %10001101 ; ch2 off
 	ldh [rNR52], a
 	ld hl, rNR20
-	call ClearChannel
-	ret
+	jp ClearChannel
 
 .ch2_noise_sampling
 	ld hl, wCurTrackDuty
@@ -400,8 +398,7 @@ UpdateChannels:
 	and %10001011 ; ch3 off
 	ldh [rNR52], a
 	ld hl, rNR30
-	call ClearChannel
-	ret
+	jp ClearChannel
 
 .ch3_noise_sampling
 	ld a, $3f ; sound length
@@ -422,14 +419,14 @@ UpdateChannels:
 	push hl
 	ld a, [wCurTrackVolumeEnvelope]
 	and $f ; only 0-9 are valid
-	ld l, a
-	ld h, 0
 	; hl << 4
 	; each wavepattern is $f bytes long
 	; so seeking is done in $10s
 rept 4
-	add hl, hl
+	add a
 endr
+	ld l, a
+	ld h, 0
 	ld de, WaveSamples
 	add hl, de
 	; load wavepattern into rWave_0-rWave_f
@@ -492,8 +489,7 @@ endr
 	and %10000111 ; ch4 off
 	ldh [rNR52], a
 	ld hl, rNR40
-	call ClearChannel
-	ret
+	jp ClearChannel
 
 .ch4_noise_sampling
 	ld a, $3f ; sound length
@@ -544,9 +540,7 @@ PlayDanger:
 
 	; Play the low tone
 	cp 16
-	jr z, .halfway
-
-	jr .increment
+	jr nz, .increment
 
 .halfway
 	ld hl, DangerSoundLow
@@ -554,7 +548,6 @@ PlayDanger:
 
 .begin
 	ld hl, DangerSoundHigh
-
 .applychannel
 	xor a
 	ldh [rNR10], a
@@ -981,13 +974,9 @@ ApplyPitchSlide:
 	add hl, bc
 	add [hl]
 	ld [hl], a
-	; could have done "jr nc, .no_rollover / inc de / .no_rollover"
-	ld a, 0
-	adc e
-	ld e, a
-	ld a, 0
-	adc d
-	ld d, a
+	jr nc, .no_rollover
+	inc de
+.no_rollover
 	; Compare the dw at [Channel*PitchSlideTarget] to de.
 	; If frequency is greater, we're finished.
 	; Otherwise, load the frequency and set two flags.
@@ -1022,13 +1011,9 @@ ApplyPitchSlide:
 	ld a, [hl]
 	add a
 	ld [hl], a
-	; could have done "jr nc, .no_rollover / dec de / .no_rollover"
-	ld a, e
-	sbc 0
-	ld e, a
-	ld a, d
-	sbc 0
-	ld d, a
+	jr nc, .no_rollover2
+	dec de
+.no_rollover2
 	; Compare the dw at [Channel*PitchSlideTarget] to de.
 	; If frequency is lower, we're finished.
 	; Otherwise, load the frequency and set two flags.
@@ -1907,8 +1892,7 @@ Music_NoteType:
 	cp CHAN4
 	ret z
 	; volume envelope
-	call Music_VolumeEnvelope
-	ret
+	jr Music_VolumeEnvelope
 
 Music_PitchSweep:
 ; update pitch sweep
@@ -1951,8 +1935,7 @@ Music_Tempo:
 	ld d, a
 	call GetMusicByte
 	ld e, a
-	call SetGlobalTempo
-	ret
+	jp SetGlobalTempo
 
 Music_Octave8:
 Music_Octave7:
@@ -1986,10 +1969,8 @@ Music_StereoPanning:
 	; stereo on?
 	ld a, [wOptions]
 	bit STEREO, a
-	jr nz, Music_ForceStereoPanning
 	; skip param
-	call GetMusicByte
-	ret
+	jp z, GetMusicByte
 
 Music_ForceStereoPanning:
 ; force panning
@@ -2025,13 +2006,10 @@ Music_TempoRelative:
 	ld e, a
 	; check sign
 	cp $80
-	jr nc, .negative
-;positive
-	ld d, 0
-	jr .ok
-
-.negative
 	ld d, -1
+	jr nc, .ok
+; positive
+	ld d, 0
 .ok
 	ld hl, CHANNEL_TEMPO
 	add hl, bc
@@ -2041,8 +2019,7 @@ Music_TempoRelative:
 	add hl, de
 	ld e, l
 	ld d, h
-	call SetGlobalTempo
-	ret
+	jp SetGlobalTempo
 
 Music_SFXPriorityOn:
 ; turn sfx priority on
@@ -2352,8 +2329,7 @@ _PlayMusic::
 	ld [wNoiseSampleAddress + 1], a
 	ld [wNoiseSampleDelay], a
 	ld [wMusicNoiseSampleSet], a
-	call MusicOn
-	ret
+	jp MusicOn
 
 _PlayCry::
 ; Play cry de using parameters:
@@ -2463,8 +2439,7 @@ _PlayCry::
 .end
 	ld a, 1 ; stop playing music
 	ld [wSFXPriority], a
-	call MusicOn
-	ret
+	jp MusicOn
 
 _PlaySFX::
 ; clear channels if they aren't already
@@ -2663,8 +2638,7 @@ PlayStereoSFX::
 	jr nz, .loop
 
 ; we're done
-	call MusicOn
-	ret
+	jp MusicOn
 
 LoadChannel:
 ; input: de = audio pointer
@@ -2845,5 +2819,4 @@ PlayTrainerEncounterMusic::
 	ld hl, TrainerEncounterMusic
 	add hl, de
 	ld e, [hl]
-	call PlayMusic
-	ret
+	jp PlayMusic

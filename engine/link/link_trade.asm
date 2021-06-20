@@ -110,7 +110,7 @@ _LinkTextbox:
 InitTradeSpeciesList:
 	call _LoadTradeScreenBorderGFX
 	call LoadCableTradeBorderTilemap
-	farcall InitMG_Mobile_LinkTradePalMap
+	farcall _InitMG_Mobile_LinkTradePalMap
 	farcall PlaceTradePartnerNamesAndParty
 	hlcoord 10, 17
 	ld de, .CancelString
@@ -127,10 +127,6 @@ LinkComms_LoadPleaseWaitTextboxBorderGFX:
 	ld hl, vTiles2 tile $76
 	lb bc, BANK(LinkCommsBorderGFX), 8
 	jp Get2bpp
-
-LoadTradeRoomBGPals:
-	farcall _LoadTradeRoomBGPals
-	ret
 
 LoadCableTradeBorderTilemap:
 	call LoadMobileTradeBorderTilemap

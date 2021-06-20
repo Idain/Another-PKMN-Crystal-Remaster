@@ -64,7 +64,6 @@ LoadPartyMenuMonIconColors:
 	add hl, de
 	pop af
 	; fallthrough
-
 _ApplyMenuMonIconColor:
 	ld c, 4
 	ld de, 4
@@ -159,7 +158,6 @@ Unused_GetPartyMenuMonIcon:
 .not_mail
 	ld a, $05
 	; fallthrough
-
 .no_item
 	ld a, $04
 .got_tile
@@ -226,13 +224,10 @@ PartyMenu_InitAnimatedMonIcon:
 	callfar ItemIsMail
 	pop bc
 	pop hl
+	ld a, SPRITE_ANIM_FRAMESET_PARTY_MON_WITH_MAIL
 	jr c, .mail
 	ld a, SPRITE_ANIM_FRAMESET_PARTY_MON_WITH_ITEM
-	jr .okay
-
 .mail
-	ld a, SPRITE_ANIM_FRAMESET_PARTY_MON_WITH_MAIL
-.okay
 	ld hl, SPRITEANIMSTRUCT_FRAMESET_ID
 	add hl, bc
 	ld [hl], a
@@ -355,8 +350,7 @@ GetSpeciesIcon:
 	ld [wCurIcon], a
 	pop de
 	ld a, e
-	call GetIconGFX
-	ret
+	jr GetIconGFX
 
 FlyFunction_GetMonIcon:
 	push de
@@ -460,10 +454,10 @@ FreezeMonIcons:
 	and a
 	jr z, .next
 	cp d
-	ld a, SPRITE_ANIM_SEQ_PARTY_MON_SWITCH ; loadwithtwo
+	ld a, SPRITE_ANIM_SEQ_PARTY_MON_SWITCH
 	jr z, .loadwithtwo
 	ld a, SPRITE_ANIM_SEQ_NULL
-; ok
+.loadwithtwo
 	push hl
 	ld c, l
 	ld b, h
@@ -510,13 +504,10 @@ HoldSwitchmonIcon:
 	and a
 	jr z, .next
 	cp d
+	ld a, SPRITE_ANIM_SEQ_PARTY_MON_SWITCH
 	jr z, .is_switchmon
 	ld a, SPRITE_ANIM_SEQ_PARTY_MON_SELECTED
-	jr .join_back
-
 .is_switchmon
-	ld a, SPRITE_ANIM_SEQ_PARTY_MON_SWITCH
-.join_back
 	push hl
 	ld c, l
 	ld b, h

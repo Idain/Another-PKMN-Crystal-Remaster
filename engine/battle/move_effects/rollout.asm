@@ -74,12 +74,11 @@ BattleCommand_RolloutPower:
 	ld a, BATTLE_VARS_SUBSTATUS2
 	call GetBattleVar
 	bit SUBSTATUS_CURLED, a
-	jr z, .not_curled
+	jr z, .loop ; not_curled
 	inc b
-.not_curled
 .loop
 	dec b
-	jr z, .done_damage
+	ret z
 
 	ld hl, wCurDamage + 1
 	sla [hl]
@@ -90,6 +89,4 @@ BattleCommand_RolloutPower:
 	ld a, $ff
 	ld [hli], a
 	ld [hl], a
-
-.done_damage
 	ret

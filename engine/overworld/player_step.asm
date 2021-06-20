@@ -18,8 +18,7 @@ _HandlePlayerStep::
 
 .update_player_coords
 	call UpdatePlayerCoords
-	jr .finish
-
+	; fallthrough
 .finish
 	call HandlePlayerStep
 	ld a, [wPlayerStepVectorX]
@@ -61,23 +60,8 @@ HandlePlayerStep:
 .Jumptable:
 	dw GetMovementPermissions
 	dw BufferScreen
-	dw .mobile
 	dw .fail2
-; The rest are never used.  Ever.
-	dw .fail1
-	dw .fail1
-	dw .fail1
-	dw .fail1
-	dw .fail1
-	dw .fail1
-	dw .fail1
-
-.fail1
-	ret
-
-.mobile
-	farcall StubbedTrainerRankings_StepCount
-	ret
+	dw .fail2
 
 .fail2
 	ret
@@ -113,39 +97,34 @@ UpdatePlayerCoords:
 
 UpdateOverworldMap:
 	ld a, [wPlayerStepDirection]
-	and a
-	jr z, .step_down
 	cp UP
 	jr z, .step_up
 	cp LEFT
 	jr z, .step_left
 	cp RIGHT
 	jr z, .step_right
-	ret
+	and a
+	ret nz
 
-.step_down
+;step_down
 	call .ScrollOverworldMapDown
 	call LoadMapPart
-	call ScrollMapDown
-	ret
+	jp ScrollMapDown
 
 .step_up
 	call .ScrollOverworldMapUp
 	call LoadMapPart
-	call ScrollMapUp
-	ret
+	jp ScrollMapUp
 
 .step_left
 	call .ScrollOverworldMapLeft
 	call LoadMapPart
-	call ScrollMapLeft
-	ret
+	jp ScrollMapLeft
 
 .step_right
 	call .ScrollOverworldMapRight
 	call LoadMapPart
-	call ScrollMapRight
-	ret
+	jp ScrollMapRight
 
 .ScrollOverworldMapDown:
 	ld a, [wBGMapAnchor]
@@ -162,12 +141,9 @@ UpdateOverworldMap:
 	inc [hl]
 	ld a, [hl]
 	cp 2 ; was 1
-	jr nz, .done_down
+	ret nz
 	ld [hl], 0
-	call .ScrollMapDataDown
-.done_down
-	ret
-
+	; fallthrough
 .ScrollMapDataDown:
 	ld hl, wOverworldMapAnchor
 	ld a, [wMapWidth]
@@ -193,11 +169,8 @@ UpdateOverworldMap:
 	dec [hl]
 	ld a, [hl]
 	cp -1 ; was 0
-	jr nz, .done_up
+	ret nz
 	ld [hl], $1
-	call .ScrollMapDataUp
-.done_up
-	ret
 
 .ScrollMapDataUp:
 	ld hl, wOverworldMapAnchor
@@ -225,11 +198,8 @@ UpdateOverworldMap:
 	dec [hl]
 	ld a, [hl]
 	cp -1
-	jr nz, .done_left
+	ret nz
 	ld [hl], 1
-	call .ScrollMapDataLeft
-.done_left
-	ret
 
 .ScrollMapDataLeft:
 	ld hl, wOverworldMapAnchor
@@ -254,11 +224,8 @@ UpdateOverworldMap:
 	inc [hl]
 	ld a, [hl]
 	cp 2
-	jr nz, .done_right
+	ret nz
 	ld [hl], 0
-	call .ScrollMapDataRight
-.done_right
-	ret
 
 .ScrollMapDataRight:
 	ld hl, wOverworldMapAnchor

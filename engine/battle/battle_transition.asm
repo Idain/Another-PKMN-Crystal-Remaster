@@ -59,8 +59,7 @@ DoBattleTransition:
 	ldh [rSVBK], a
 	pop af
 	ldh [hVBlank], a
-	call DelayFrame
-	ret
+	jp DelayFrame
 
 .InitGFX:
 	ld a, [wLinkMode]
@@ -70,7 +69,7 @@ DoBattleTransition:
 	call UpdateSprites
 	call DelayFrame
 	call .NonMobile_LoadPokeballTiles
-	call BattleStart_CopyTilemapAtOnce
+	call CGBOnly_CopyTilemapAtOnce
 	jr .resume
 
 .mobile
@@ -87,22 +86,19 @@ DoBattleTransition:
 	ld [hli], a
 	ld [hli], a
 	ld [hl], a
-	call WipeLYOverrides
-	ret
+	jp WipeLYOverrides
 
 .NonMobile_LoadPokeballTiles:
 	call LoadTrainerBattlePokeballTiles
 	hlbgcoord 0, 0
-	call ConvertTrainerBattlePokeballTilesTo2bpp
-	ret
+	jr ConvertTrainerBattlePokeballTilesTo2bpp
 
 LoadTrainerBattlePokeballTiles:
 ; Load the tiles used in the Pokeball Graphic that fills the screen
 ; at the start of every Trainer battle.
 	ld de, TrainerBattlePokeballTiles
 	ld hl, vTiles0 tile BATTLETRANSITION_SQUARE
-	ld b, BANK(TrainerBattlePokeballTiles)
-	ld c, 2
+	lb bc, BANK(TrainerBattlePokeballTiles), 2
 	call Request2bpp
 
 	ldh a, [rVBK]
@@ -112,8 +108,7 @@ LoadTrainerBattlePokeballTiles:
 
 	ld de, TrainerBattlePokeballTiles
 	ld hl, vTiles3 tile BATTLETRANSITION_SQUARE
-	ld b, BANK(TrainerBattlePokeballTiles)
-	ld c, 2
+	lb bc, BANK(TrainerBattlePokeballTiles), 2
 	call Request2bpp
 
 	pop af
@@ -130,8 +125,8 @@ ConvertTrainerBattlePokeballTilesTo2bpp:
 	ld bc, $28 tiles
 
 .loop
-	ld [hl], -1
-	inc hl
+	ld a, -1
+	ld [hli], a
 	dec bc
 	ld a, c
 	or b
@@ -139,8 +134,7 @@ ConvertTrainerBattlePokeballTilesTo2bpp:
 
 	pop hl
 	ld de, wDecompressScratch
-	ld b, BANK(@)
-	ld c, $28
+	lb bc, BANK(@), $28
 	call Request2bpp
 	pop af
 	ldh [rSVBK], a
@@ -284,8 +278,7 @@ StartTrainerBattle_SetUpBGMap:
 StartTrainerBattle_Flash:
 	call .DoFlashAnimation
 	ret nc
-	call StartTrainerBattle_NextScene
-	ret
+	jr StartTrainerBattle_NextScene
 
 .DoFlashAnimation:
 	ld a, [wTimeOfDayPalset]
@@ -348,11 +341,9 @@ StartTrainerBattle_SetUpForWavyOutro:
 StartTrainerBattle_SineWave:
 	ld a, [wBattleTransitionCounter]
 	cp $60
-	jr nc, .end
-	call .DoSineWave
-	ret
+	jr c, .DoSineWave
 
-.end
+; end
 	ld a, BATTLETRANSITION_FINISH
 	ld [wJumptableIndex], a
 	ret
@@ -600,7 +591,7 @@ StartTrainerBattle_SpeckleToBlack:
 StartTrainerBattle_LoadPokeBallGraphics:
 	ld a, [wOtherTrainerClass]
 	and a
-	jp z, .nextscene ; don't need to be here if wild
+	jp z, StartTrainerBattle_NextScene ; don't need to be here if wild
 
 	xor a
 	ldh [hBGMapMode], a
@@ -668,7 +659,7 @@ StartTrainerBattle_LoadPokeBallGraphics:
 	ldh [hBGMapMode], a
 	call DelayFrame
 	call DelayFrame
-	jr .nextscene
+	jp StartTrainerBattle_NextScene
 
 .cgb
 	ld hl, .pals
@@ -695,11 +686,8 @@ StartTrainerBattle_LoadPokeBallGraphics:
 	ld a, TRUE
 	ldh [hCGBPalUpdate], a
 	call DelayFrame
-	call BattleStart_CopyTilemapAtOnce
-
-.nextscene
-	call StartTrainerBattle_NextScene
-	ret
+	call CGBOnly_CopyTilemapAtOnce
+	jp StartTrainerBattle_NextScene
 
 .copypals
 	ld de, wBGPals1 palette PAL_BG_TEXT

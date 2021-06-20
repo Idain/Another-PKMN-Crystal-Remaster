@@ -127,11 +127,11 @@ LoadBattleAnimGFX:
 
 .LoadBallPalette:
 	; save the current WRAM bank
-	ld a, [rSVBK]
+	ldh a, [rSVBK]
 	push af
 	; switch to the WRAM bank of wCurItem so we can read it
 	ld a, BANK(wCurItem)
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	; store the current item in b
 	ld a, [wCurItem]
 	ld b, a
@@ -150,7 +150,7 @@ endr
 .done
 	; switch to the WRAM bank of wOBPals2 so we can write to it
 	ld a, BANK(wOBPals2)
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	; load the RGB colors into the middle two colors of PAL_BATTLE_OB_RED
 	ld de, wOBPals2 palette PAL_BATTLE_OB_RED color 1
 rept PAL_COLOR_SIZE * 2 - 1
@@ -165,7 +165,7 @@ endr
 	ldh [hCGBPalUpdate], a
 	; restore the previous WRAM bank
 	pop af
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	; restore the graphics index to be loaded
 	ld a, ANIM_GFX_POKE_BALL
 	ret

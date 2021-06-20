@@ -285,7 +285,7 @@ HatchEggs:
 	ld a, [de]
 	inc de
 	cp -1
-	jp z, .done
+	ret z
 	push de
 	push hl
 	cp EGG
@@ -298,7 +298,6 @@ HatchEggs:
 	push de
 
 	farcall SetEggMonCaughtData
-	farcall StubbedTrainerRankings_EggsHatched
 	ld a, [wCurPartyMon]
 	ld hl, wPartyMon1Species
 	ld bc, PARTYMON_STRUCT_LENGTH
@@ -311,7 +310,7 @@ HatchEggs:
 	ld a, [wCurPartySpecies]
 	cp TOGEPI
 	jr nz, .nottogepi
-	; set the event flag for hatching togepi
+	; set the event flag for hatching Togepi
 	ld de, EVENT_TOGEPI_HATCHED
 	ld b, SET_FLAG
 	call EventFlagAction
@@ -423,9 +422,6 @@ HatchEggs:
 	pop de
 	jp .loop
 
-.done
-	ret
-
 .Text_HatchEgg:
 	; Huh? @ @
 	text_far Text_BreedHuh
@@ -468,7 +464,7 @@ InitEggMoves:
 .loop
 	ld a, [de]
 	and a
-	jr z, .done
+	ret z
 	ld hl, wEggMonMoves
 	ld c, NUM_MOVES
 .next
@@ -486,8 +482,6 @@ InitEggMoves:
 	inc de
 	dec b
 	jr nz, .loop
-
-.done
 	ret
 
 GetEggMove:

@@ -1001,10 +1001,6 @@ Function106453:
 	ld [wcf64], a
 	ret
 
-Stubbed_Function106462:
-	ret
-	ret
-
 Function106464::
 	ld de, MobileDialingFrameGFX
 	ld hl, vTiles2 tile $62

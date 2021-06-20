@@ -37,7 +37,6 @@ Function100022:
 	ld a, b
 	ld [wcd24], a
 	farcall Function10127e
-	farcall Stubbed_Function106462
 	farcall Function106464 ; load broken gfx
 	farcall Function11615a ; init RAM
 	ld hl, wVramState
@@ -2901,10 +2900,8 @@ Function10138b:
 	sla c
 	ld a, [wcd21]
 	cp $01
-	jr z, .asm_1013a9
+	ret z
 	inc c
-
-.asm_1013a9
 	ret
 
 Function1013aa:
@@ -2913,22 +2910,15 @@ Function1013aa:
 	call ReloadTilesetAndPalettes
 	farcall Function106464
 	call UpdateSprites
-	call FinishExitMenu
-	ret
+	jp FinishExitMenu
 
 Function1013c0:
 	farcall BlankScreen
-	farcall Stubbed_Function106462
 	farcall Function106464
-	call FinishExitMenu
-	ret
+	jp FinishExitMenu
 
 Function1013d6:
 	farcall HDMATransferAttrmapAndTilemapToWRAMBank3
-	ret
-
-Function1013dd:
-	call CGBOnly_CopyTilemapAtOnce
 	ret
 
 Function1013e1: ; unreferenced
@@ -3955,7 +3945,7 @@ Function101b2b:
 	ld a, [wcd26]
 	bit 7, a
 	ret z
-	call Function1013dd
+	call CGBOnly_CopyTilemapAtOnce
 	ld a, 0
 	ld [wcd26], a
 	ld a, [wMenuCursorY]
@@ -4005,7 +3995,7 @@ Function101b8f:
 	ld a, [wcd26]
 	bit 7, a
 	ret z
-	call Function1013dd
+	call CGBOnly_CopyTilemapAtOnce
 	ld a, 0
 	ld [wcd26], a
 	ld a, [wMenuCursorY]
@@ -4032,7 +4022,7 @@ Function101bc8:
 	ld e, $08
 	call Function101ee4
 	call Function102048
-	call Function1013dd
+	call CGBOnly_CopyTilemapAtOnce
 	ld a, 0
 	ld [wcd26], a
 	ld a, [wMobileCommsJumptableIndex]
@@ -4047,7 +4037,7 @@ Function101be5:
 	ld a, [wcd26]
 	bit 7, a
 	ret z
-	call Function1013dd
+	call CGBOnly_CopyTilemapAtOnce
 	ld a, 0
 	ld [wcd26], a
 	ld a, [wMenuCursorY]
@@ -5136,7 +5126,6 @@ Function102423:
 	call Function102921
 	ret nc
 	farcall SaveAfterLinkTrade
-	farcall StubbedTrainerRankings_Trades
 	farcall BackupMobileEventIndex
 	ld hl, wcd4b
 	set 1, [hl]
@@ -6224,36 +6213,31 @@ Function102c07:
 	call Function102c14
 	call Function102c3b
 	call Function102c21
-	call Function102c2e
-	ret
+	jr Function102c2e
 
 Function102c14:
 	ld hl, wPartySpecies
 	ld de, wOTPartySpecies
 	ld bc, 1
-	call Function102c71
-	ret
+	jr Function102c71
 
 Function102c21:
 	ld hl, wPartyMonNicknames
 	ld de, wOTPartyMonNicknames
 	ld bc, 11
-	call Function102c71
-	ret
+	jr Function102c71
 
 Function102c2e:
 	ld hl, wPartyMonOTs
 	ld de, wOTPartyMonOTs
 	ld bc, 11
-	call Function102c71
-	ret
+	jr Function102c71
 
 Function102c3b:
 	ld hl, wPartyMon1
 	ld de, wOTPartyMon1
 	ld bc, $30
-	call Function102c71
-	ret
+	jr Function102c71
 
 Function102c48:
 	farcall Function10165a
@@ -6268,8 +6252,7 @@ Function102c48:
 	ld de, w5_da00
 	ld bc, $1e0
 	ld a, $05
-	call FarCopyWRAM
-	ret
+	jp FarCopyWRAM
 
 Function102c71:
 	ld a, [wcd4c]
@@ -6282,8 +6265,7 @@ Function102c71:
 	dec a
 	call AddNTimes
 	pop de
-	call SwapBytes
-	ret
+	jp SwapBytes
 
 Function102c87:
 	ld a, [wJumptableIndex]
@@ -6358,20 +6340,17 @@ Function102cee:
 	ld e, l
 	ld hl, wd002
 	ld bc, $2f
-	call CopyBytes
-	ret
+	jp CopyBytes
 
 Function102d34:
 	ld hl, wc608
 	ld bc, $2f
-	call AddNTimes
-	ret
+	jp AddNTimes
 
 Function102d3e:
 	call OpenSRAM
 	call CopyBytes
-	call CloseSRAM
-	ret
+	jp CloseSRAM
 
 Function102d48:
 	ld a, [wcd4c]

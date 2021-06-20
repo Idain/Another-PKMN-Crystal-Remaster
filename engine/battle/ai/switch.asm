@@ -12,8 +12,7 @@ CheckPlayerMoveTypeMatchups:
 	and a
 	jr z, .unknown_moves
 
-	ld d, NUM_MOVES
-	ld e, 0
+	lb de, NUM_MOVES, 0
 .loop
 	ld a, [hli]
 	and a
@@ -65,8 +64,7 @@ CheckPlayerMoveTypeMatchups:
 	call .IncreaseScore
 	ld a, e
 	and a
-	jr nz, .done
-	call .IncreaseScore
+	call z, .IncreaseScore
 	jr .done
 
 .unknown_moves
@@ -76,19 +74,15 @@ CheckPlayerMoveTypeMatchups:
 	call CheckTypeMatchup
 	ld a, [wTypeMatchup]
 	cp EFFECTIVE + 1 ; 1.0 + 0.1
-	jr c, .ok
-	call .DecreaseScore
+	call nc, .DecreaseScore
 .ok
 	ld a, [wBattleMonType2]
 	cp b
-	jr z, .ok2
+	jr z, .done
 	call CheckTypeMatchup
 	ld a, [wTypeMatchup]
 	cp EFFECTIVE + 1 ; 1.0 + 0.1
-	jr c, .ok2
-	call .DecreaseScore
-.ok2
-
+	call nc, .DecreaseScore
 .done
 	call .CheckEnemyMoveMatchups
 	pop bc
@@ -98,8 +92,7 @@ CheckPlayerMoveTypeMatchups:
 
 .CheckEnemyMoveMatchups:
 	ld de, wEnemyMonMoves
-	ld b, NUM_MOVES + 1
-	ld c, 0
+	lb bc, (NUM_MOVES + 1), 0
 
 	ld a, [wTypeMatchup]
 	push af
@@ -296,8 +289,7 @@ FindAliveEnemyMons:
 
 	ld d, a
 	ld e, 0
-	ld b, 1 << (PARTY_LENGTH - 1)
-	ld c, 0
+	lb bc, (1 << (PARTY_LENGTH - 1)), 0
 	ld hl, wOTPartyMon1HP
 
 .loop
@@ -410,8 +402,7 @@ FindAliveEnemyMonsWithASuperEffectiveMove:
 	ld a, [wOTPartyCount]
 	ld e, a
 	ld hl, wOTPartyMon1HP
-	ld b, 1 << (PARTY_LENGTH - 1)
-	ld c, 0
+	lb bc, (1 << (PARTY_LENGTH - 1)), 0
 .loop
 	ld a, [hli]
 	or [hl]
@@ -436,14 +427,12 @@ FindAliveEnemyMonsWithASuperEffectiveMove:
 	and c
 	ld c, a
 	; fallthrough
-
 FindEnemyMonsWithASuperEffectiveMove:
 	ld a, -1
 	ld [wEnemyAISwitchScore], a
 	ld hl, wOTPartyMon1Moves
 	ld b, 1 << (PARTY_LENGTH - 1)
-	ld d, 0
-	ld e, 0
+	ld de, 0
 .loop
 	ld a, b
 	and c
@@ -452,8 +441,7 @@ FindEnemyMonsWithASuperEffectiveMove:
 	push hl
 	push bc
 	; for move on mon:
-	ld b, NUM_MOVES
-	ld c, 0
+	lb bc, NUM_MOVES, 0
 .loop3
 	; if move is None: break
 	ld a, [hli]
@@ -492,7 +480,6 @@ FindEnemyMonsWithASuperEffectiveMove:
 	pop hl
 	dec b
 	jr nz, .loop3
-
 	jr .done
 
 .break3
@@ -510,8 +497,7 @@ FindEnemyMonsWithASuperEffectiveMove:
 	ld a, d
 	or b
 	ld d, a
-	jr .next ; such a long jump
-
+	; fallthrough
 .next
 	; next pokemon?
 	push bc
@@ -546,8 +532,7 @@ FindEnemyMonsWithASuperEffectiveMove:
 FindEnemyMonsThatResistPlayer:
 	push bc
 	ld hl, wOTPartySpecies
-	ld b, 1 << (PARTY_LENGTH - 1)
-	ld c, 0
+	lb bc, 1 << ((PARTY_LENGTH - 1)), 0
 
 .loop
 	ld a, [hli]
@@ -607,8 +592,7 @@ FindEnemyMonsThatResistPlayer:
 FindEnemyMonsWithAtLeastQuarterMaxHP:
 	push bc
 	ld de, wOTPartySpecies
-	ld b, 1 << (PARTY_LENGTH - 1)
-	ld c, 0
+	lb bc, (1 << (PARTY_LENGTH - 1)), 0
 	ld hl, wOTPartyMon1HP
 
 .loop

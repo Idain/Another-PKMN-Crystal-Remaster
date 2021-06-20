@@ -28,8 +28,8 @@ DetermineLinkBattleResult:
 	pop hl
 	ld a, d
 	cp h
-	jr c, .victory
 	jr z, .compare_lo
+	jr c, .victory
 	jr .defeat
 
 .compare_lo
@@ -59,8 +59,7 @@ DetermineLinkBattleResult:
 	ret
 
 .CountMonsRemaining:
-	ld c, 0
-	ld b, 3
+	lb bc, 3, 0
 	ld de, PARTYMON_STRUCT_LENGTH - 1
 .loop
 	ld a, [hli]
@@ -94,9 +93,9 @@ DetermineLinkBattleResult:
 	ld b, a
 	ld a, [hld]
 	srl b
-	rr a
+	rra
 	srl b
-	rr a
+	rra
 	ldh [hDivisor], a
 	ld b, $4
 	call Divide

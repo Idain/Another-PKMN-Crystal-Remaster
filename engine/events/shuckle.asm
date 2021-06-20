@@ -5,10 +5,10 @@ GiveShuckle:
 	xor a ; PARTYMON
 	ld [wMonType], a
 
-; Level 15 Shuckle.
+; Level 20 Shuckle.
 	ld a, SHUCKLE
 	ld [wCurPartySpecies], a
-	ld a, 15
+	ld a, 20
 	ld [wCurPartyLevel], a
 
 	predef TryAddMonToParty
@@ -66,10 +66,10 @@ GiveShuckle:
 	ret
 
 SpecialShuckleOT:
-	db "MANIA@"
+	db "Kirk@"
 
 SpecialShuckleNickname:
-	db "SHUCKIE@"
+	db "Shuckie@"
 
 ReturnShuckie:
 	farcall SelectMonFromParty

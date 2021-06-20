@@ -169,12 +169,6 @@ PlaceStartCancelBoxBorder:
 	ret
 
 UnownPuzzleJumptable:
-	jumptable .Jumptable, wJumptableIndex
-
-.Jumptable: ; redundant one-entry jumptable
-	dw .Function
-
-.Function:
 	ldh a, [hJoyPressed]
 	and START
 	jp nz, UnownPuzzle_Quit
@@ -182,9 +176,6 @@ UnownPuzzleJumptable:
 	and A_BUTTON
 	jp nz, UnownPuzzle_A
 	ld hl, hJoyLast
-	ld a, [hl]
-	and D_UP
-	jr nz, .d_up
 	ld a, [hl]
 	and D_DOWN
 	jr nz, .d_down
@@ -194,7 +185,9 @@ UnownPuzzleJumptable:
 	ld a, [hl]
 	and D_RIGHT
 	jr nz, .d_right
-	ret
+	ld a, [hl]
+	and D_UP
+	ret z
 
 .d_up
 	ld hl, wUnownPuzzleCursorPosition

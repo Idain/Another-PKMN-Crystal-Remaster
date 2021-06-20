@@ -69,10 +69,10 @@ DoMove:
 
 .ReadMoveEffectCommand:
 ; ld a, [wBattleScriptBufferAddress++]
-	ld a, [wBattleScriptBufferAddress]
+	ld hl, wBattleScriptBufferAddress
+	ld a, [hli]
+	ld h, [hl]
 	ld l, a
-	ld a, [wBattleScriptBufferAddress + 1]
-	ld h, a
 
 	ld a, [hli]
 
@@ -674,26 +674,33 @@ BattleCommand_CheckObedience:
 
 .obeylevel
 	; The maximum obedience level is constrained by owned badges:
-	ld hl, wJohtoBadges
+	ld hl, wKantoBadges
+
+	; earthbadge
+	bit EARTHBADGE, [hl]
+	ld a, MAX_LEVEL
+	jr nz, .getlevel
+
+	dec hl ; wJothoBadges
 
 	; risingbadge
 	bit RISINGBADGE, [hl]
-	ld a, MAX_LEVEL + 1
-	jr nz, .getlevel
-
-	; stormbadge
-	bit MINERALBADGE, [hl]
-	ld a, 70
+	ld a, 65
 	jr nz, .getlevel
 
 	; fogbadge
 	bit FOGBADGE, [hl]
-	ld a, 50
+	ld a, 40
+	jr nz, .getlevel
+
+	; plainbadge
+	bit PLAINBADGE, [hl]
+	ld a, 30
 	jr nz, .getlevel
 
 	; hivebadge
 	bit HIVEBADGE, [hl]
-	ld a, 30
+	ld a, 25
 	jr nz, .getlevel
 
 	; zephyrbadge
@@ -825,8 +832,7 @@ BattleCommand_CheckObedience:
 
 	ld hl, wBattleMonPP
 	ld de, wBattleMonMoves
-	ld b, 0
-	ld c, NUM_MOVES
+	lb bc, 0, NUM_MOVES
 
 .GetTotalPP:
 	ld a, [hli]
@@ -1063,8 +1069,7 @@ BattleCommand_DoTurn:
 
 .mimic
 	ld hl, wWildMonPP
-	call .consume_pp
-	ret
+	jr .consume_pp
 
 .out_of_pp
 	call BattleCommand_MoveDelay
@@ -1659,16 +1664,14 @@ BattleCommand_CheckHit:
 
 	call BattleRandom
 	cp b
-	jr nc, .Miss
-	ret
+	ret c
 
 .Miss:
 ; Keep the damage value intact if we're using (Hi) Jump Kick.
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
 	cp EFFECT_JUMP_KICK
-	jr z, .Missed
-	call ResetDamage
+	call nz, ResetDamage
 
 .Missed:
 	ld a, 1
@@ -2189,8 +2192,7 @@ BattleCommand_FailureText:
 	cp EFFECT_POISON_MULTI_HIT
 	jr z, .multihit
 	cp EFFECT_BEAT_UP
-	jr z, .multihit
-	jp EndMoveEffect
+	jp nz, EndMoveEffect
 
 .multihit
 	call BattleCommand_RaiseSub
@@ -2587,10 +2589,10 @@ BattleCommand_RageDamage:
 	ret
 
 EndMoveEffect:
-	ld a, [wBattleScriptBufferAddress]
+	ld hl, wBattleScriptBufferAddress
+	ld a, [hli]
+	ld h, [hl]
 	ld l, a
-	ld a, [wBattleScriptBufferAddress + 1]
-	ld h, a
 	ld a, endmove_command
 	ld [hli], a
 	ld [hli], a
@@ -2725,8 +2727,7 @@ PlayerAttackDamage:
     ld l, [hl]
     ld h, a
     jr nc, .end_atk_boost_items
-    sla l
-    rl h
+	add hl, hl
 
 	ld a, HIGH(MAX_STAT_VALUE)
 	cp h
@@ -2749,8 +2750,7 @@ PlayerAttackDamage:
     ld a, [hli]
     ld l, [hl]
     ld h, a
-    sla l
-    rl h
+	add hl, hl
 
 	ld a, HIGH(MAX_STAT_VALUE)
 	cp h
@@ -2900,8 +2900,7 @@ ThickClubBoost:
 ; it's holding a Thick Club, double it.
 	push bc
 	push de
-	ld b, CUBONE
-	ld c, MAROWAK
+	lb bc, CUBONE, MAROWAK
 	ld d, THICK_CLUB
 	call SpeciesItemBoost
 	pop de
@@ -2915,8 +2914,7 @@ LightBallBoost:
 ; holding a Light Ball, double it.
 	push bc
 	push de
-	ld b, PIKACHU
-	ld c, PIKACHU
+	lb bc, PIKACHU, PIKACHU
 	ld d, LIGHT_BALL
 	call SpeciesItemBoost
 	pop de
@@ -3029,8 +3027,7 @@ EnemyAttackDamage:
 	ld l, [hl]
 	ld h, a
 	jr nc, .end_atk_boost_items
-	sla l
-	rl h
+	add hl, hl
 
 	ld a, HIGH(MAX_STAT_VALUE)
 	cp h
@@ -3052,8 +3049,7 @@ EnemyAttackDamage:
 	ld a, [hli]
 	ld l, [hl]
 	ld h, a
-	sla l
-	rl h
+	add hl, hl
 
 	ld a, HIGH(MAX_STAT_VALUE)
 	cp h
@@ -3358,7 +3354,7 @@ DAMAGE_CAP EQU MAX_DAMAGE - MIN_DAMAGE
 	ldh [hQuotient + 3], a
 
 	ldh a, [hQuotient + 2]
-	rl a
+	rla
 	ldh [hQuotient + 2], a
 
 ; Cap at $ffff.
@@ -3432,7 +3428,7 @@ BattleCommand_ConstantDamage:
 	srl a
 	ld b, a
 	ld a, [hl]
-	rr a
+	rra
 	push af
 	ld a, b
 	pop bc
@@ -3442,8 +3438,6 @@ BattleCommand_ConstantDamage:
 	ld a, 0
 	jr nz, .got_power
 	ld b, 1
-	jr .got_power
-
 .got_power
 	ld hl, wCurDamage
 	ld [hli], a
@@ -3477,17 +3471,17 @@ BattleCommand_ConstantDamage:
 
 	ldh a, [hProduct + 4]
 	srl b
-	rr a
+	rra
 	srl b
-	rr a
+	rra
 	ldh [hDivisor], a
 	ldh a, [hProduct + 2]
 	ld b, a
 	srl b
 	ldh a, [hProduct + 3]
-	rr a
+	rra
 	srl b
-	rr a
+	rra
 	ldh [hDividend + 3], a
 	ld a, b
 	ldh [hDividend + 2], a
@@ -4053,7 +4047,7 @@ SapHealth:
 	ldh [hDividend], a
 	ld b, a
 	ld a, [hl]
-	rr a
+	rra
 	ldh [hDividend + 1], a
 	or b
 	jr nz, .at_least_one
@@ -4364,8 +4358,7 @@ BattleCommand_AccuracyUp2:
 BattleCommand_EvasionUp2:
 ; evasionup2
 	ld b, $10 | EVASION
-	jr BattleCommand_StatUp
-
+	; fallthrough
 BattleCommand_StatUp:
 ; statup
 	call RaiseStat
@@ -4428,9 +4421,9 @@ RaiseStat:
 	ld a, c
 	add e
 	ld e, a
-	jr nc, .no_carry
-	inc d
-.no_carry
+	adc d
+	sub e
+	ld d, a
 	pop bc
 	ld a, [hld]
 	sub LOW(MAX_STAT_VALUE)
@@ -5197,13 +5190,13 @@ BattleCommand_ForceSwitch:
 
 	ld a, [wBattleType]
 	cp BATTLETYPE_SHINY
-	jp z, .fail
+	jr z, .missed
 	cp BATTLETYPE_TRAP
-	jp z, .fail
+	jr z, .missed
 	cp BATTLETYPE_CELEBI
-	jp z, .fail
+	jr z, .missed
 	cp BATTLETYPE_SUICUNE
-	jp z, .fail
+	jr z, .missed
 	ldh a, [hBattleTurn]
 	and a
 	jp nz, .force_player_switch
@@ -5249,10 +5242,10 @@ BattleCommand_ForceSwitch:
 	and a
 	jr z, .switch_fail
 	call UpdateEnemyMonInParty
-	ld a, $1
+	ld a, 1
 	ld [wBattleAnimParam], a
 	call AnimateCurrentMove
-	ld c, $14
+	ld c, 20
 	call DelayFrames
 	hlcoord 1, 0
 	lb bc, 4, 10
@@ -5266,7 +5259,7 @@ BattleCommand_ForceSwitch:
 ; select a random enemy mon to switch to
 .random_loop_trainer
 	call BattleRandom
-	and $7
+	and 7
 	cp b
 	jr nc, .random_loop_trainer
 	cp c
@@ -5297,7 +5290,7 @@ BattleCommand_ForceSwitch:
 .force_player_switch
 	ld a, [wAttackMissed]
 	and a
-	jr nz, .player_miss
+	jp nz, .fail
 
 	ld a, [wBattleMode]
 	dec a
@@ -5320,10 +5313,7 @@ BattleCommand_ForceSwitch:
 	srl b
 	srl b
 	cp b
-	jr nc, .wild_succeed_playeristarget
-
-.player_miss
-	jr .fail
+	jr c, .fail
 
 .wild_succeed_playeristarget
 	call UpdateBattleMonInParty
@@ -5341,7 +5331,7 @@ BattleCommand_ForceSwitch:
 
 	ld a, [wEnemyGoesFirst]
 	cp $1
-	jr z, .switch_fail
+	jr z, .fail
 
 	call UpdateBattleMonInParty
 	ld a, $1
@@ -5406,9 +5396,8 @@ BattleCommand_ForceSwitch:
 
 	ld hl, FledInFearText
 	cp ROAR
-	jr z, .do_text
+	jp z, StdBattleTextbox
 	ld hl, BlownAwayText
-.do_text
 	jp StdBattleTextbox
 
 CheckPlayerHasMonToSwitchTo:
@@ -5548,8 +5537,7 @@ BattleCommand_EndLoop:
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
 	cp EFFECT_BEAT_UP
-	jr z, .beat_up_2
-	call StdBattleTextbox
+	call nz, StdBattleTextbox
 .beat_up_2
 
 	pop bc
@@ -5558,9 +5546,9 @@ BattleCommand_EndLoop:
 	ret
 
 .loop_back_to_critical
-	ld a, [wBattleScriptBufferAddress + 1]
-	ld h, a
-	ld a, [wBattleScriptBufferAddress]
+	ld hl, wBattleScriptBufferAddress
+	ld a, [hli]
+	ld h, [hl]
 	ld l, a
 .not_critical
 	ld a, [hld]
@@ -5805,28 +5793,26 @@ BattleCommand_Charge:
 	call GetBattleVar
 	cp RAZOR_WIND
 	ld hl, .BattleMadeWhirlwindText
-	jr z, .done
+	ret z
 
 	cp SOLARBEAM
 	ld hl, .BattleTookSunlightText
-	jr z, .done
+	ret z
 
 	cp SKULL_BASH
 	ld hl, .BattleLoweredHeadText
-	jr z, .done
+	ret z
 
 	cp SKY_ATTACK
 	ld hl, .BattleGlowingText
-	jr z, .done
+	ret z
 
 	cp FLY
 	ld hl, .BattleFlewText
-	jr z, .done
+	ret z
 
 	cp DIG
 	ld hl, .BattleDugText
-
-.done
 	ret
 
 .BattleMadeWhirlwindText:
@@ -6074,8 +6060,7 @@ BattleCommand_FinishConfusingTarget:
 	cp EFFECT_SNORE
 	jr z, .got_effect
 	cp EFFECT_SWAGGER
-	jr z, .got_effect
-	call AnimateCurrentMove
+	call nz, AnimateCurrentMove
 
 .got_effect
 	ld de, ANIM_CONFUSED
@@ -6691,17 +6676,15 @@ BattleCommand_WeatherBasedHeal:
 	ld de, wEnemyMonHP
 
 .start
-; Index for .Multipliers
-; Default restores half max HP.
-	ld c, 1
+	ld c, 2 ; HP is a 2-byte value, so we need to compare two bytes.
 
 ; Don't bother healing if HP is already full.
-	inc c ; Temporarily increase c to compare bytes correctly.
-	push bc
 	call CompareBytes
-	pop bc
 	jr z, .Full
-	dec c  ; Return c to its original value.
+
+; Index for .Multipliers
+; Default restores 1/2 max HP.
+	ld c, 1
 
 .Weather:
 	ld a, [wBattleWeather]
@@ -7027,9 +7010,9 @@ BattleCommand_ClearText:
 
 SkipToBattleCommand:
 ; Skip over commands until reaching command b.
-	ld a, [wBattleScriptBufferAddress + 1]
-	ld h, a
-	ld a, [wBattleScriptBufferAddress]
+	ld hl, wBattleScriptBufferAddress
+	ld a, [hli]
+	ld h, [hl]
 	ld l, a
 .loop
 	ld a, [hli]

@@ -22,7 +22,7 @@ CianwoodLugiaSpeechHouseBookshelf:
 
 CianwoodLugiaSpeechHouseTeacherText:
 	text "You came from"
-	line "OLIVINE?"
+	line "Olivine?"
 
 	para "Do you remember"
 	line "the four islands"
@@ -38,8 +38,8 @@ CianwoodLugiaSpeechHouseLassText:
 	text "I heard that you"
 	line "can only see it if"
 
-	para "you have a SILVER"
-	line "WING."
+	para "you have a Silver"
+	line "Wing."
 
 	para "It must have the"
 	line "same scent as the"
