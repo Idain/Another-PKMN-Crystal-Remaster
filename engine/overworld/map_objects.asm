@@ -168,15 +168,10 @@ CallObjectAction:
 	ld hl, OBJECT_ACTION
 	add hl, bc
 	ld a, [hl]
-	ld l, a
-	ld h, 0
-	add hl, hl
-	add hl, hl
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	call _hl_
+	add a
+	ld l, e
+	ld h, d
+	rst JumpTable
 	ret
 
 INCLUDE "engine/overworld/map_object_action.asm"
@@ -664,7 +659,6 @@ MovementFunction_Strength:
 	add hl, bc
 	ld a, [hl]
 	and %00000011
-	or 0
 	call InitStep
 	call CanObjectMoveInDirection
 	jr c, .ok2
@@ -715,12 +709,9 @@ MovementFunction_FollowNotExact:
 	ld a, [hl]
 	cp d
 	jr z, .equal
-	jr c, .less
-	ld a, 3
-	jr .done
-
-.less
-	ld a, 2
+	; carry ? 2 : 3
+	sbc a
+	add 3
 	jr .done
 
 .equal
@@ -729,12 +720,9 @@ MovementFunction_FollowNotExact:
 	ld a, [hl]
 	cp e
 	jr z, .standing
-	jr c, .less2
-	ld a, 0
-	jr .done
-
-.less2
-	ld a, 1
+	; carry ? 1 : 0
+	sbc a
+	and 1
 .done
 	ld d, a
 	ld hl, OBJECT_DIRECTION_WALKING
@@ -814,8 +802,7 @@ _MovementSpinRepeat:
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
 	ld [hl], STEP_TYPE_SLEEP
-	call ObjectMovementByte_IncAnonJumptableIndex
-	ret
+	jp ObjectMovementByte_IncAnonJumptableIndex
 
 _MovementSpinTurnLeft:
 	ld de, .facings_counterclockwise
@@ -853,8 +840,7 @@ _MovementSpinNextFacing:
 	ld a, [hl]
 	pop hl
 	ld [hl], a
-	call ObjectMovementByte_DecAnonJumptableIndex
-	ret
+	jp ObjectMovementByte_DecAnonJumptableIndex
 
 MovementFunction_Shadow:
 	call InitMovementField1dField1e
@@ -866,7 +852,6 @@ MovementFunction_Shadow:
 	ld a, [hl]
 	inc a
 	add a
-	add 0
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld [hl], a
@@ -1139,8 +1124,7 @@ StepFunction_NPCJump:
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
 	res OVERHEAD_F, [hl]
-	call Field1c_IncAnonJumptableIndex
-	ret
+	jp Field1c_IncAnonJumptableIndex
 
 .Land:
 	call AddStepVector
@@ -1181,8 +1165,7 @@ StepFunction_PlayerJump:
 	ld hl, wPlayerStepFlags
 	set PLAYERSTEP_STOP_F, [hl]
 	set PLAYERSTEP_MIDAIR_F, [hl]
-	call Field1c_IncAnonJumptableIndex
-	ret
+	jp Field1c_IncAnonJumptableIndex
 
 .initland
 	call GetNextTile
@@ -1290,8 +1273,7 @@ StepFunction_TeleportTo:
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld [hl], 16
-	call Field1c_IncAnonJumptableIndex
-	ret
+	jp Field1c_IncAnonJumptableIndex
 
 .DoWait:
 	ld hl, OBJECT_STEP_DURATION
@@ -1309,8 +1291,7 @@ StepFunction_TeleportTo:
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld [hl], 16
-	call Field1c_IncAnonJumptableIndex
-	ret
+	jp Field1c_IncAnonJumptableIndex
 
 .DoDescent:
 	ld hl, OBJECT_ACTION
@@ -1336,8 +1317,7 @@ StepFunction_TeleportTo:
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld [hl], 16
-	call Field1c_IncAnonJumptableIndex
-	ret
+	jp Field1c_IncAnonJumptableIndex
 
 .DoFinalSpin:
 	ld hl, OBJECT_ACTION
@@ -1727,7 +1707,7 @@ StepFunction_ScreenShake:
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	dec [hl]
-	jr z, .ok
+	jp z, DeleteMapObject
 	ld a, [hl]
 	call .GetSign
 	ld hl, OBJECT_1D
@@ -1737,10 +1717,6 @@ StepFunction_ScreenShake:
 	ld a, [wPlayerStepVectorY]
 	add d
 	ld [wPlayerStepVectorY], a
-	ret
-
-.ok
-	call DeleteMapObject
 	ret
 
 .GetSign:
@@ -2169,9 +2145,8 @@ UpdateAllObjectsFrozen::
 .loop
 	ldh [hMapObjectIndex], a
 	call DoesObjectHaveASprite
-	jr z, .ok
-	call UpdateObjectFrozen
-.ok
+	call nz, UpdateObjectFrozen
+;ok
 	ld hl, OBJECT_LENGTH
 	add hl, bc
 	ld b, h
@@ -2195,15 +2170,13 @@ RespawnPlayerAndOpponent:
 	jr z, .skip_opponent
 	call RespawnObject
 .skip_opponent
-	call _UpdateSprites
-	ret
+	jp _UpdateSprites
 
 RespawnPlayer:
 	call HideAllObjects
 	ld a, PLAYER
 	call RespawnObject
-	call _UpdateSprites
-	ret
+	jp _UpdateSprites
 
 RespawnObject:
 	cp NUM_OBJECTS
@@ -2218,8 +2191,7 @@ RespawnObject:
 	ret nc
 	call GetObjectStruct
 	call DoesObjectHaveASprite
-	ret z
-	call UpdateRespawnedObjectFrozen
+	jr nz, UpdateRespawnedObjectFrozen
 	ret
 
 HideAllObjects:
@@ -2337,9 +2309,10 @@ CheckObjectCoveredByTextbox:
 .ok2
 ; Convert pixels to tiles.
 	ld a, [hl]
-	srl a
-	srl a
-	srl a
+	rrca 
+	rrca
+	rrca 
+	and %00011111
 	cp SCREEN_WIDTH
 	jr c, .ok3
 	sub BG_MAP_WIDTH
@@ -2370,9 +2343,10 @@ CheckObjectCoveredByTextbox:
 .ok5
 ; Convert pixels to tiles.
 	ld a, [hl]
-	srl a
-	srl a
-	srl a
+	rrca 
+	rrca
+	rrca 
+	and %00011111
 	cp SCREEN_HEIGHT
 	jr c, .ok6
 	sub BG_MAP_HEIGHT
@@ -2434,8 +2408,7 @@ CheckObjectCoveredByTextbox:
 
 HandleNPCStep::
 	call ResetStepVector
-	call DoStepsForAllObjects
-	ret
+	jr DoStepsForAllObjects
 
 ResetStepVector:
 	xor a
@@ -2475,16 +2448,14 @@ RefreshPlayerSprite:
 	call TryResetPlayerAction
 	farcall CheckWarpFacingDown
 	call c, SpawnInFacingDown
-	call SpawnInCustomFacing
-	ret
+	jr SpawnInCustomFacing
 
 TryResetPlayerAction:
 	ld hl, wPlayerSpriteSetupFlags
 	bit PLAYERSPRITESETUP_RESET_ACTION_F, [hl]
-	jr nz, .ok
-	ret
+	ret z
 
-.ok
+;ok
 	ld a, OBJECT_ACTION_00
 	ld [wPlayerAction], a
 	ret
@@ -2503,8 +2474,7 @@ SpawnInFacingDown:
 	ld a, DOWN
 _ContinueSpawnFacing:
 	ld bc, wPlayerStruct
-	call SetSpriteDirection
-	ret
+	jp SetSpriteDirection
 
 _SetPlayerPalette:
 	ld a, d
@@ -2549,8 +2519,7 @@ SetLeaderIfVisible:
 
 StopFollow::
 	call ResetLeader
-	call ResetFollower
-	ret
+	jr ResetFollower
 
 ResetLeader:
 	ld a, -1

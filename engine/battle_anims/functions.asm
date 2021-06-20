@@ -95,15 +95,14 @@ BattleAnimFunction_Null:
 	dw .zero
 	dw .one
 .one
-	call DeinitBattleAnimation
+	jp DeinitBattleAnimation
 .zero
 	ret
 
 BattleAnimFunction_ThrowFromUserToTargetAndDisappear:
 	call BattleAnimFunction_ThrowFromUserToTarget
 	ret c
-	call DeinitBattleAnimation
-	ret
+	jp DeinitBattleAnimation
 
 BattleAnimFunction_ThrowFromUserToTarget:
 	; If x coord at $88 or beyond, abort.
@@ -4221,17 +4220,12 @@ BattleAnim_StepToTarget:
 	ret
 
 BattleAnim_AnonJumptable:
-	pop de
 	ld hl, BATTLEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
-	ld l, [hl]
-	ld h, $0
-	add hl, hl
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp hl
+	ld a, [hl]
+	pop hl
+	rst JumpTable
+	ret
 
 BattleAnim_IncAnonJumptableIndex:
 	ld hl, BATTLEANIMSTRUCT_JUMPTABLE_INDEX

@@ -91,7 +91,10 @@ StringOptions:
 	db "CANCEL@"
 
 GetOptionPointer:
-	jumptable .Pointers, wJumptableIndex
+	ld a, [wJumptableIndex]
+	ld hl, .Pointers
+	rst JumpTable
+	ret
 
 .Pointers:
 ; entries correspond to OPT_* constants

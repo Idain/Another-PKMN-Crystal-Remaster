@@ -19,6 +19,10 @@ BattleCommand_Encore:
 	jp z, .failed
 	cp MIRROR_MOVE
 	jp z, .failed
+	cp METRONOME
+	jp z, .failed
+	cp SLEEP_TALK
+	jp z, .failed
 	ld b, a
 
 .got_move
@@ -39,11 +43,7 @@ BattleCommand_Encore:
 	bit SUBSTATUS_ENCORED, [hl]
 	jp nz, .failed
 	set SUBSTATUS_ENCORED, [hl]
-	call BattleRandom
-	and $3
-	inc a
-	inc a
-	inc a
+	ld a, 4
 	ld [de], a
 	call CheckOpponentWentFirst
 	jr nz, .finish_move

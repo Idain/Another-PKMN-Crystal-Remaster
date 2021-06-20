@@ -56,7 +56,10 @@ _MemoryGame:
 	ret
 
 .ExecuteJumptable:
-	jumptable .Jumptable, wJumptableIndex
+	ld a, [wJumptableIndex]
+	ld hl, .Jumptable
+	rst JumpTable
+	ret
 
 .Jumptable:
 	dw .RestartGame

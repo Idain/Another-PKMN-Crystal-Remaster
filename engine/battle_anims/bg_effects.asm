@@ -67,15 +67,10 @@ EndBattleBGEffect:
 DoBattleBGEffectFunction:
 	ld hl, BG_EFFECT_STRUCT_FUNCTION
 	add hl, bc
-	ld e, [hl]
-	ld d, 0
+	ld a, [hl]
 	ld hl, BattleBGEffects
-	add hl, de
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp hl
+	rst JumpTable
+	ret
 
 BattleBGEffects:
 ; entries correspond to ANIM_BG_* constants
@@ -137,30 +132,13 @@ BattleBGEffects:
 BattleBGEffect_End:
 	jp EndBattleBGEffect
 
-BatttleBGEffects_GetNamedJumptablePointer:
-	ld hl, BG_EFFECT_STRUCT_JT_INDEX
-	add hl, bc
-	ld l, [hl]
-	ld h, 0
-	add hl, hl
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	ret
-
 BattleBGEffects_AnonJumptable:
-	pop de
 	ld hl, BG_EFFECT_STRUCT_JT_INDEX
 	add hl, bc
-	ld l, [hl]
-	ld h, 0
-	add hl, hl
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp hl
+	ld a, [hl]
+	pop hl
+	rst JumpTable
+	ret
 
 BattleBGEffects_IncAnonJumptableIndex:
 	ld hl, BG_EFFECT_STRUCT_JT_INDEX
@@ -1982,9 +1960,7 @@ BattleBGEffect_FadeMonsToBlackRepeating:
 	ret
 
 .cgb
-	ld de, .Jumptable
-	call BatttleBGEffects_GetNamedJumptablePointer
-	jp hl
+	call BattleBGEffects_AnonJumptable
 
 .Jumptable:
 	dw .cgb_zero
@@ -2022,8 +1998,7 @@ BattleBGEffect_FadeMonsToBlackRepeating:
 	call BGEffects_LoadBGPal1_OBPal0
 	pop hl
 	ld a, [hl]
-	call BGEffects_LoadBGPal0_OBPal1
-	ret
+	jp BGEffects_LoadBGPal0_OBPal1
 
 .player_2
 	ld hl, .CGB_DMGEnemyData
@@ -2103,8 +2078,7 @@ BattleBGEffect_CycleMonLightDarkRepeating:
 BattleBGEffect_FlashMonRepeating: ; unused
 ; BG_EFFECT_STRUCT_BATTLE_TURN = BG_EFFECT_TARGET or BG_EFFECT_USER
 	ld de, .Pals
-	call BGEffect_RapidCyclePals
-	ret
+	jp BGEffect_RapidCyclePals
 
 .Pals:
 	db $e4, $fc, $e4, $00, $fe
@@ -2112,8 +2086,7 @@ BattleBGEffect_FlashMonRepeating: ; unused
 BattleBGEffect_FadeMonToWhiteWaitFadeBack:
 ; BG_EFFECT_STRUCT_BATTLE_TURN = BG_EFFECT_TARGET or BG_EFFECT_USER
 	ld de, .Pals
-	call BGEffect_RapidCyclePals
-	ret
+	jp BGEffect_RapidCyclePals
 
 .Pals:
 	db $e4, $90, $40, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $00, $40, $90, $e4, $ff
@@ -2121,8 +2094,7 @@ BattleBGEffect_FadeMonToWhiteWaitFadeBack:
 BattleBGEffect_FadeMonFromWhite: ; unused
 ; BG_EFFECT_STRUCT_BATTLE_TURN = BG_EFFECT_TARGET or BG_EFFECT_USER
 	ld de, .Pals
-	call BGEffect_RapidCyclePals
-	ret
+	jp BGEffect_RapidCyclePals
 
 .Pals:
 	db $00, $40, $90, $e4, $ff
@@ -2207,8 +2179,7 @@ BattleBGEffect_WobblePlayer:
 	ret
 
 .two
-	call BattleAnim_ResetLCDStatCustom
-	ret
+	jp BattleAnim_ResetLCDStatCustom
 
 BattleBGEffect_Rollout:
 	call BattleBGEffects_GetShakeAmount
@@ -2312,8 +2283,7 @@ BattleBGEffect_GetNthDMGPal:
 	ld hl, BG_EFFECT_STRUCT_PARAM
 	add hl, bc
 	ld a, [hl]
-	call BattleBGEffect_GetNextDMGPal
-	ret
+	jp BattleBGEffect_GetNextDMGPal
 
 .zero
 	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
@@ -2322,19 +2292,14 @@ BattleBGEffect_GetNthDMGPal:
 	ld hl, BG_EFFECT_STRUCT_JT_INDEX
 	add hl, bc
 	ld [hl], a
-	call BattleBGEffect_GetFirstDMGPal
-	ret
+	jp BattleBGEffect_GetFirstDMGPal
 
 BGEffect_RapidCyclePals:
 ; Last index in DE: $fe signals a loop, $ff signals end
 	ldh a, [hCGB]
 	and a
 	jr nz, .cgb
-	push de
-	ld de, .Jumptable_DMG
-	call BatttleBGEffects_GetNamedJumptablePointer
-	pop de
-	jp hl
+	call BattleBGEffects_AnonJumptable
 
 .Jumptable_DMG:
 	dw .zero_dmg
@@ -2374,9 +2339,7 @@ BGEffect_RapidCyclePals:
 	or [hl]
 	ld [hl], a
 	call BattleBGEffect_GetFirstDMGPal
-	jr c, .okay_2_dmg
-	call BGEffect_FillLYOverridesBackup
-	ret
+	jp nc, BGEffect_FillLYOverridesBackup
 
 .okay_2_dmg
 	ld hl, BG_EFFECT_STRUCT_PARAM
@@ -2391,11 +2354,7 @@ BGEffect_RapidCyclePals:
 	jp EndBattleBGEffect
 
 .cgb
-	push de
-	ld de, .Jumptable_CGB
-	call BatttleBGEffects_GetNamedJumptablePointer
-	pop de
-	jp hl
+	call BattleBGEffects_AnonJumptable
 
 .Jumptable_CGB:
 	dw .zero_cgb

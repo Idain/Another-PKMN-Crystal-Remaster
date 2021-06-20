@@ -210,17 +210,11 @@ _UpdateSound::
 	ret
 
 UpdateChannels:
-	ld hl, .ChannelFunctions
 	ld a, [wCurChannel]
 	maskbits NUM_CHANNELS
-	add a
-	ld e, a
-	ld d, 0
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp hl
+	ld hl, .ChannelFunctions
+	rst JumpTable
+	ret
 
 .ChannelFunctions:
 	table_width 2, UpdateChannels.ChannelFunctions
@@ -419,12 +413,8 @@ UpdateChannels:
 	push hl
 	ld a, [wCurTrackVolumeEnvelope]
 	and $f ; only 0-9 are valid
-	; hl << 4
-	; each wavepattern is $f bytes long
-	; so seeking is done in $10s
-rept 4
-	add a
-endr
+	; each wavepattern is $f bytes long, so seeking is done in $10s
+	swap a ; a << 4
 	ld l, a
 	ld h, 0
 	ld de, WaveSamples

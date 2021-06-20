@@ -4,7 +4,7 @@ move: MACRO
 	db \1 ; animation
 	db \2 ; effect
 	db \3 ; power
-	db \4 | \5 ; type
+	db \4 | \5 ; type and category
 	db \6 percent ; accuracy
 	db \7 ; pp
 	db \8 percent ; effect chance

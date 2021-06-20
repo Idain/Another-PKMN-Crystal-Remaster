@@ -1,15 +1,10 @@
 DoAnimFrame:
 	ld hl, SPRITEANIMSTRUCT_ANIM_SEQ_ID
 	add hl, bc
-	ld e, [hl]
-	ld d, 0
+	ld a, [hl]
 	ld hl, .Jumptable
-	add hl, de
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp hl
+	rst JumpTable
+	ret
 
 .Jumptable:
 ; entries correspond to SPRITE_ANIM_SEQ_* constants (see constants/sprite_anim_constants.asm)
@@ -133,8 +128,13 @@ AnimSeq_PartyMonSelected:
 	ret
 
 AnimSeq_GSTitleTrail:
-	call AnimSeqs_AnonJumptable
-	jp hl
+	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
+	add hl, bc
+	ld a, [hl]
+	ld hl, .anon_dw
+	rst JumpTable
+	ret
+
 .anon_dw
 	dw .zero
 	dw .one
@@ -414,8 +414,13 @@ AnimSeq_MemoryGameCursor:
 	ret
 
 AnimSeq_TradePokeBall:
-	call AnimSeqs_AnonJumptable
-	jp hl
+	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
+	add hl, bc
+	ld a, [hl]
+	ld hl, .anon_dw
+	rst JumpTable
+	ret
+
 .anon_dw
 	dw .zero
 	dw .one
@@ -842,24 +847,6 @@ AnimSeq_EZChatCursor:
 
 AnimSeq_Celebi:
 	farcall UpdateCelebiPosition
-	ret
-
-AnimSeqs_AnonJumptable:
-	ld hl, sp+0
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	inc de
-
-	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
-	add hl, bc
-	ld l, [hl]
-	ld h, 0
-	add hl, hl
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
 	ret
 
 AnimSeqs_IncAnonJumptableIndex:

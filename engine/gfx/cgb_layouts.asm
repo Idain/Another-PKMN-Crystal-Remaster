@@ -14,18 +14,8 @@ LoadSGBLayoutCGB:
 	cp SCGB_PARTY_MENU_HP_BARS
 	jp z, CGB_ApplyPartyMenuHPPals
 	call ResetBGPals
-	ld l, a
-	ld h, 0
-	add hl, hl
-	ld de, CGBLayoutJumptable
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	ld de, .done
-	push de
-	jp hl
-.done:
+	ld hl, CGBLayoutJumptable
+	rst JumpTable
 	ret
 
 CGBLayoutJumptable:

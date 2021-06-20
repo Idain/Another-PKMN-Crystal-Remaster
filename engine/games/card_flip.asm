@@ -76,7 +76,10 @@ _CardFlip:
 	ret
 
 .CardFlip:
-	jumptable .Jumptable, wJumptableIndex
+	ld a, [wJumptableIndex]
+	ld hl, .Jumptable
+	rst JumpTable
+	ret
 
 .Jumptable:
 	dw .AskPlayWithThree
@@ -99,8 +102,7 @@ _CardFlip:
 	call YesNoBox
 	jr c, .SaidNo
 	call CardFlip_ShuffleDeck
-	call .Increment
-	ret
+	jr .Increment
 
 .SaidNo:
 	ld a, 7
@@ -143,8 +145,7 @@ _CardFlip:
 	ld a, $1
 	ldh [hBGMapMode], a
 	call WaitSFX
-	call .Increment
-	ret
+	jr .Increment
 
 .CardFlipNotEnoughCoinsText:
 	text_far _CardFlipNotEnoughCoinsText
@@ -219,8 +220,7 @@ _CardFlip:
 	call CardFlip_FillGreenBox
 	pop af
 	ld [wCardFlipWhichCard], a
-	call .Increment
-	ret
+	jp .Increment
 
 .CardFlipChooseACardText:
 	text_far _CardFlipChooseACardText
@@ -240,8 +240,7 @@ _CardFlip:
 	jr .betloop
 
 .betdone
-	call .Increment
-	ret
+	jp .Increment
 
 .CardFlipPlaceYourBetText:
 	text_far _CardFlipPlaceYourBetText
@@ -273,14 +272,12 @@ _CardFlip:
 	call GetCoordsOfChosenCard
 	call CardFlip_DisplayCardFaceUp
 	call WaitBGMap2
-	call .Increment
-	ret
+	jp .Increment
 
 .TabulateTheResult:
 	call CardFlip_CheckWinCondition
 	call WaitPressAorB_BlinkCursor
-	call .Increment
-	ret
+	jp .Increment
 
 .PlayAgain:
 	call ClearSprites
@@ -288,8 +285,7 @@ _CardFlip:
 	call CardFlip_UpdateCoinBalanceDisplay
 	call YesNoBox
 	jr nc, .Continue
-	call .Increment
-	ret
+	jp .Increment
 
 .Continue:
 	ld a, [wCardFlipNumCardsPlayed]
@@ -351,8 +347,7 @@ CardFlip_ShuffleDeck:
 	ld [wCardFlipNumCardsPlayed], a
 	ld hl, wDiscardPile
 	ld bc, CARDFLIP_DECK_SIZE
-	call ByteFill
-	ret
+	jp ByteFill
 
 CollapseCursorPosition:
 	ld hl, 0
@@ -450,8 +445,7 @@ CardFlip_DisplayCardFaceUp:
 	and 3
 	inc a
 	lb bc, 6, 5
-	call CardFlip_FillBox
-	ret
+	jp CardFlip_FillBox
 
 .FaceUpCardTilemap:
 	db $18, $19, $19, $19, $1a
@@ -478,9 +472,7 @@ CardFlip_UpdateCoinBalanceDisplay:
 	call Textbox
 	pop hl
 	call PrintTextboxText
-	call CardFlip_PrintCoinBalance
-	ret
-
+	; fallthrough
 CardFlip_PrintCoinBalance:
 	hlcoord 9, 15
 	ld b, 1
@@ -492,8 +484,7 @@ CardFlip_PrintCoinBalance:
 	hlcoord 15, 16
 	ld de, wCoins
 	lb bc, PRINTNUM_LEADINGZEROS | 2, 4
-	call PrintNum
-	ret
+	jp PrintNum
 
 .CoinStr:
 	db "COIN@"
@@ -511,8 +502,7 @@ CardFlip_InitTilemap:
 	call CardFlip_CopyToBox
 	hlcoord 0, 12
 	lb bc, 4, 18
-	call Textbox
-	ret
+	jp Textbox
 
 CardFlip_FillGreenBox:
 	ld a, $29
@@ -602,15 +592,10 @@ CardFlip_BlankDiscardedCardSlot:
 	ld a, e
 	and $1c ; get level
 	srl a
-	add LOW(.Jumptable)
-	ld l, a
-	ld a, 0
-	adc HIGH(.Jumptable)
-	ld h, a
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp hl
+	srl a
+	ld hl, .Jumptable
+	rst JumpTable
+	ret
 
 .Jumptable:
 	dw .Level1
@@ -772,13 +757,10 @@ CardFlip_BlankDiscardedCardSlot:
 
 CardFlip_CheckWinCondition:
 	call CollapseCursorPosition
-	add hl, hl
-	ld de, .Jumptable
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp hl
+	ld a, l
+	ld hl, .Jumptable
+	rst JumpTable
+	ret
 
 .Jumptable:
 	dw .Impossible

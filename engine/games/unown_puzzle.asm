@@ -62,7 +62,7 @@ _UnownPuzzle:
 	ld a, [wJumptableIndex]
 	bit 7, a
 	jr nz, .quit
-	call UnownPuzzleJumptable
+	call UnownPuzzle_Input
 	ld a, [wHoldingUnownPuzzlePiece]
 	and a
 	jr nz, .holding_piece
@@ -168,7 +168,7 @@ PlaceStartCancelBoxBorder:
 	ld [hl], a
 	ret
 
-UnownPuzzleJumptable:
+UnownPuzzle_Input:
 	ldh a, [hJoyPressed]
 	and START
 	jp nz, UnownPuzzle_Quit
@@ -188,7 +188,7 @@ UnownPuzzleJumptable:
 	ld a, [hl]
 	and D_UP
 	ret z
-
+	; fallthrough
 .d_up
 	ld hl, wUnownPuzzleCursorPosition
 	ld a, [hl]

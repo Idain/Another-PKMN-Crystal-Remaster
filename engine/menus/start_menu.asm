@@ -59,14 +59,8 @@ StartMenu::
 ; Menu items have different return functions.
 ; For example, saving exits the menu.
 	ld hl, .MenuReturns
-	ld e, a
-	ld d, 0
-	add hl, de
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp hl
+	rst JumpTable
+	ret
 
 .MenuReturns:
 	dw .Reopen
@@ -89,8 +83,7 @@ StartMenu::
 	call ExitMenu
 .ReturnEnd2:
 	call CloseText
-	call UpdateTimePals
-	ret
+	jp UpdateTimePals
 
 .GetInput:
 ; Return carry on exit, and no-carry on selection.
@@ -107,9 +100,8 @@ StartMenu::
 	cp B_BUTTON
 	jr z, .b
 	cp A_BUTTON
-	jr z, .a
-	jr .loop
-.a
+	jr nz, .loop
+;a
 	call PlayClickSFX
 	and a
 	ret
@@ -151,8 +143,7 @@ StartMenu::
 	call DrawVariableLengthMenuBox
 	call .DrawBugContestStatus
 	call UpdateSprites
-	call FinishExitMenu
-	ret
+	jp FinishExitMenu
 
 .MenuHeader:
 	db MENU_BACKUP_TILES ; flags
@@ -249,8 +240,7 @@ StartMenu::
 	ld d, [hl]
 	ld e, a
 	pop hl
-	call PlaceString
-	ret
+	jp PlaceString
 
 .MenuDesc:
 	push de
@@ -265,8 +255,7 @@ endr
 	ld d, [hl]
 	ld e, a
 	pop hl
-	call PlaceString
-	ret
+	jp PlaceString
 .none
 	pop de
 	ret
@@ -360,7 +349,7 @@ endr
 	ret
 
 .DrawMenuAccount:
-	jp ._DrawMenuAccount
+	jr ._DrawMenuAccount
 
 .PrintMenuAccount:
 	call .IsMenuAccountOn
@@ -395,8 +384,7 @@ endr
 .DrawBugContestStatus:
 	ld hl, wStatusFlags2
 	bit STATUSFLAGS2_BUG_CONTEST_TIMER_F, [hl]
-	jr nz, .contest
-	ret
+	ret z
 .contest
 	farcall StartMenu_PrintBugContestStatus
 	ret

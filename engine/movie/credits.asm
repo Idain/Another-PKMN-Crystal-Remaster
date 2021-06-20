@@ -145,15 +145,9 @@ Credits_HandleBButton:
 Credits_Jumptable:
 	ld a, [wJumptableIndex]
 	and $f
-	ld e, a
-	ld d, 0
 	ld hl, .Jumptable
-	add hl, de
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp hl
+	rst JumpTable
+	ret
 
 .Jumptable:
 	dw ParseCredits
@@ -185,7 +179,7 @@ Credits_LoopBack:
 Credits_PrepBGMapUpdate:
 	xor a
 	ldh [hBGMapMode], a
-	jp Credits_Next
+	jr Credits_Next
 
 Credits_UpdateGFXRequestPath:
 	call Credits_LoadBorderGFX
@@ -204,7 +198,7 @@ Credits_RequestGFX:
 	ldh [hBGMapMode], a
 	ld a, 8
 	ld [wRequested2bppSize], a
-	jp Credits_Next
+	jr Credits_Next
 
 Credits_LYOverride:
 	ldh a, [rLY]
@@ -218,7 +212,7 @@ Credits_LYOverride:
 	call .Fill
 	ld hl, wLYOverrides + $87
 	call .Fill
-	jp Credits_Next
+	jr Credits_Next
 
 .Fill:
 	ld c, $8
@@ -449,8 +443,7 @@ ConstructCreditsTilemap:
 	ldh [hBGMapAddress], a
 	hlcoord 0, 0
 	call .InitTopPortion
-	call WaitBGMap2
-	ret
+	jp WaitBGMap2
 
 .InitTopPortion:
 	ld b, 5
@@ -535,8 +528,7 @@ GetCreditsPalette:
 	adc HIGH(wBGPals2)
 	ld d, a
 	ld bc, 24
-	call CopyBytes
-	ret
+	jp CopyBytes
 
 CreditsPalettes:
 INCLUDE "gfx/credits/credits.pal"

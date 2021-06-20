@@ -9,17 +9,12 @@ LoadSGBLayout:
 .not_default
 	cp SCGB_PARTY_MENU_HP_BARS
 	jp z, SGB_ApplyPartyMenuHPPals
-	ld l, a
-	ld h, 0
-	add hl, hl
-	ld de, SGBLayoutJumptable
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	ld de, _LoadSGBLayout_ReturnFromJumptable
+	ld hl, SGBLayoutJumptable
+	rst JumpTable
 	push de
-	jp hl
+	call PushSGBPals
+	pop hl
+	jp PushSGBPals
 
 SGBLayoutJumptable:
 	table_width 2, SGBLayoutJumptable
@@ -565,9 +560,3 @@ endr
 	ret
 
 INCLUDE "data/maps/sgb_roof_pal_inds.asm"
-
-_LoadSGBLayout_ReturnFromJumptable:
-	push de
-	call PushSGBPals
-	pop hl
-	jp PushSGBPals

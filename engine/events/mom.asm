@@ -18,7 +18,10 @@ BankOfMom:
 	ret
 
 .RunJumptable:
-	jumptable .dw, wJumptableIndex
+	ld a, [wJumptableIndex]
+	ld hl, .dw
+	rst JumpTable
+	ret
 
 .dw
 	dw .CheckIfBankInitialized
@@ -94,13 +97,13 @@ BankOfMom:
 	call CloseWindow
 	jr c, .cancel
 	ld a, [wMenuCursorY]
-	cp $1
+	dec a
 	jr z, .withdraw
-	cp $2
+	dec a
 	jr z, .deposit
-	cp $3
+	dec a
 	jr z, .stopsaving
-
+	; fallthrough
 .cancel
 	ld a, $7
 	jr .done_3
@@ -171,13 +174,11 @@ BankOfMom:
 
 .InsufficientFundsInWallet:
 	ld hl, MomInsufficientFundsInWalletText
-	call PrintText
-	ret
+	jp PrintText
 
 .NotEnoughRoomInBank:
 	ld hl, MomNotEnoughRoomInBankText
-	call PrintText
-	ret
+	jp PrintText
 
 .CancelDeposit:
 	ld a, $7
@@ -237,13 +238,11 @@ BankOfMom:
 
 .InsufficientFundsInBank:
 	ld hl, MomHaventSavedThatMuchText
-	call PrintText
-	ret
+	jp PrintText
 
 .NotEnoughRoomInWallet:
 	ld hl, MomNotEnoughRoomInWalletText
-	call PrintText
-	ret
+	jp PrintText
 
 .CancelWithdraw:
 	ld a, $7
@@ -306,8 +305,8 @@ DSTChecks:
 	call .ClearBox
 	bccoord 1, 14
 	ld hl, .MomLostGearBookletText
-	call PlaceHLTextAtBC
-	ret
+	jp PlaceHLTextAtBC
+
 
 .loop
 	call .ClearBox
@@ -326,8 +325,7 @@ DSTChecks:
 	call .ClearBox
 	bccoord 1, 14
 	ld hl, .TimesetNotDSTText
-	call PlaceHLTextAtBC
-	ret
+	jp PlaceHLTextAtBC
 
 .SetDST:
 	ld hl, .TimesetAskDSTText
@@ -341,8 +339,7 @@ DSTChecks:
 	call .ClearBox
 	bccoord 1, 14
 	ld hl, .TimesetDSTText
-	call PlaceHLTextAtBC
-	ret
+	jp PlaceHLTextAtBC
 
 .SetClockForward:
 	ld a, [wStartHour]
@@ -376,8 +373,7 @@ DSTChecks:
 .ClearBox:
 	hlcoord 1, 14
 	lb bc, 3, 18
-	call ClearBox
-	ret
+	jp ClearBox
 
 .TimesetAskAdjustDSTText:
 	text_far _TimesetAskAdjustDSTText
@@ -438,13 +434,11 @@ Mom_ContinueMenuSetup:
 	lb bc, PRINTNUM_MONEY | PRINTNUM_LEADINGZEROS | 3, 6
 	call PrintNum
 	call UpdateSprites
-	call CGBOnly_CopyTilemapAtOnce
-	ret
+	jp CGBOnly_CopyTilemapAtOnce
 
 Mom_Wait10Frames:
 	ld c, 10
-	call DelayFrames
-	ret
+	jp DelayFrames
 
 Mom_WithdrawDepositMenuJoypad:
 .loop
@@ -502,8 +496,14 @@ Mom_WithdrawDepositMenuJoypad:
 	jr nz, .movecursorleft
 	ld a, [hl]
 	and D_RIGHT
-	jr nz, .movecursorright
-	and a
+	ret z
+
+.movecursorright
+	ld hl, wMomBankDigitCursorPosition
+	ld a, [hl]
+	cp 5
+	ret nc
+	inc [hl]
 	ret
 
 .movecursorleft
@@ -512,14 +512,6 @@ Mom_WithdrawDepositMenuJoypad:
 	and a
 	ret z
 	dec [hl]
-	ret
-
-.movecursorright
-	ld hl, wMomBankDigitCursorPosition
-	ld a, [hl]
-	cp 5
-	ret nc
-	inc [hl]
 	ret
 
 .incrementdigit

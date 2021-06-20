@@ -67,8 +67,7 @@ PokeGear:
 	ldh [hBGMapAddress + 1], a
 	ld a, SCREEN_HEIGHT_PX
 	ldh [hWY], a
-	call ExitPokegearRadio_HandleMusic
-	ret
+	jp ExitPokegearRadio_HandleMusic
 
 .InitTilemap:
 	call ClearBGPalettes
@@ -108,8 +107,7 @@ PokeGear:
 	and a
 	ret z
 	ld a, %11100100
-	call DmgToCgbObjPal0
-	ret
+	jp DmgToCgbObjPal0
 
 Pokegear_LoadGFX:
 	call ClearVBank1
@@ -149,15 +147,13 @@ Pokegear_LoadGFX:
 	add hl, de
 	ld de, vTiles0 tile $14
 	ld bc, 4 tiles
-	call FarCopyBytes
-	ret
+	jp FarCopyBytes
 
 .ssaqua
 	ld hl, FastShipGFX
 	ld de, vTiles0 tile $10
 	ld bc, 8 tiles
-	call CopyBytes
-	ret
+	jp CopyBytes
 
 FastShipGFX:
 INCBIN "gfx/pokegear/fast_ship.2bpp"
@@ -201,8 +197,7 @@ TownMap_GetCurrentLandmark:
 	ld b, a
 	ld a, [wBackupMapNumber]
 	ld c, a
-	call GetWorldMapLocation
-	ret
+	jp GetWorldMapLocation
 
 TownMap_InitCursorAndPlayerIconPositions:
 	ld a, [wMapGroup]
@@ -246,19 +241,9 @@ InitPokegearTilemap:
 	call ByteFill
 	ld a, [wPokegearCard]
 	maskbits NUM_POKEGEAR_CARDS
-	add a
-	ld e, a
-	ld d, 0
 	ld hl, .Jumptable
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	ld de, .return_from_jumptable
-	push de
-	jp hl
+	rst JumpTable
 
-.return_from_jumptable
 	call Pokegear_FinishTilemap
 	farcall TownMapPals
 	ld a, [wPokegearMapRegion]
@@ -291,14 +276,12 @@ InitPokegearTilemap:
 .UpdateBGMap:
 	ldh a, [hCGB]
 	and a
-	jr z, .dmg
+	jp z, WaitBGMap
 	ld a, $2
 	ldh [hBGMapMode], a
 	ld c, 3
 	call DelayFrames
-.dmg
-	call WaitBGMap
-	ret
+	jp WaitBGMap
 
 .Jumptable:
 ; entries correspond to POKEGEARCARD_* constants
@@ -316,8 +299,7 @@ InitPokegearTilemap:
 	hlcoord 0, 12
 	lb bc, 4, 18
 	call Textbox
-	call Pokegear_UpdateClock
-	ret
+	jp Pokegear_UpdateClock
 
 .switch
 	db " SWITCH▶@"
@@ -325,15 +307,11 @@ InitPokegearTilemap:
 .Map:
 	ld a, [wPokegearMapPlayerIconLandmark]
 	cp LANDMARK_FAST_SHIP
-	jr z, .johto
+	ld e, 0 ; Johto
+	jr z, .ok
 	cp KANTO_LANDMARK
-	jr nc, .kanto
-.johto
-	ld e, 0
-	jr .ok
-
-.kanto
-	ld e, 1
+	jr c, .ok
+	ld e, 1 ; Kanto
 .ok
 	farcall PokegearMap
 	ld a, $07
@@ -345,16 +323,14 @@ InitPokegearTilemap:
 	hlcoord 19, 2
 	ld [hl], $17
 	ld a, [wPokegearMapCursorLandmark]
-	call PokegearMap_UpdateLandmarkName
-	ret
+	jp PokegearMap_UpdateLandmarkName
 
 .Radio:
 	ld de, RadioTilemapRLE
 	call Pokegear_LoadTilemapRLE
 	hlcoord 0, 12
 	lb bc, 4, 18
-	call Textbox
-	ret
+	jp Textbox
 
 .Phone:
 	ld de, PhoneTilemapRLE
@@ -363,8 +339,7 @@ InitPokegearTilemap:
 	lb bc, 4, 18
 	call Textbox
 	call .PlacePhoneBars
-	call PokegearPhone_UpdateDisplayList
-	ret
+	jp PokegearPhone_UpdateDisplayList
 
 .PlacePhoneBars:
 	hlcoord 17, 1
@@ -403,8 +378,7 @@ Pokegear_FinishTilemap:
 	call nz, .PlaceRadioIcon
 	hlcoord 0, 0
 	ld a, $46
-	call .PlacePokegearCardIcon
-	ret
+	jr .PlacePokegearCardIcon
 
 .PlaceMapIcon:
 	hlcoord 2, 0
@@ -432,7 +406,10 @@ Pokegear_FinishTilemap:
 	ret
 
 PokegearJumptable:
-	jumptable .Jumptable, wJumptableIndex
+	ld a, [wJumptableIndex]
+	ld hl, .Jumptable
+	rst JumpTable
+	ret
 
 .Jumptable:
 ; entries correspond to POKEGEARSTATE_* constants
@@ -456,8 +433,7 @@ PokegearClock_Init:
 	call PrintText
 	ld hl, wJumptableIndex
 	inc [hl]
-	call ExitPokegearRadio_HandleMusic
-	ret
+	jp ExitPokegearRadio_HandleMusic
 
 PokegearClock_Joypad:
 	call .UpdateClock
@@ -490,8 +466,7 @@ PokegearClock_Joypad:
 	ld c, POKEGEARSTATE_RADIOINIT
 	ld b, POKEGEARCARD_RADIO
 .done
-	call Pokegear_SwitchPage
-	ret
+	jp Pokegear_SwitchPage
 
 .quit
 	ld hl, wJumptableIndex
@@ -518,8 +493,7 @@ Pokegear_UpdateClock:
 	farcall PrintHoursMins
 	ld hl, .GearTodayText
 	bccoord 6, 6
-	call PlaceHLTextAtBC
-	ret
+	jp PlaceHLTextAtBC
 
 	db "ごぜん@"
 	db "ごご@"
@@ -537,14 +511,12 @@ PokegearMap_CheckRegion:
 .johto
 	ld a, POKEGEARSTATE_JOHTOMAPINIT
 	jr .done
-	ret
 
 .kanto
 	ld a, POKEGEARSTATE_KANTOMAPINIT
 .done
 	ld [wJumptableIndex], a
-	call ExitPokegearRadio_HandleMusic
-	ret
+	jp ExitPokegearRadio_HandleMusic
 
 PokegearMap_Init:
 	call InitPokegearTilemap
@@ -573,15 +545,13 @@ PokegearMap_ContinueMap:
 	and B_BUTTON
 	jr nz, .cancel
 	ld a, [hl]
-	and D_RIGHT
-	jr nz, .right
-	ld a, [hl]
 	and D_LEFT
 	jr nz, .left
-	call .DPad
-	ret
+	ld a, [hl]
+	and D_RIGHT
+	jr z, .DPad
 
-.right
+;right
 	ld a, [wPokegearFlags]
 	bit POKEGEAR_PHONE_CARD_F, a
 	jr z, .no_phone
@@ -601,8 +571,7 @@ PokegearMap_ContinueMap:
 	ld c, POKEGEARSTATE_CLOCKINIT
 	ld b, POKEGEARCARD_CLOCK
 .done
-	call Pokegear_SwitchPage
-	ret
+	jp Pokegear_SwitchPage
 
 .cancel
 	ld hl, wJumptableIndex
@@ -649,8 +618,7 @@ PokegearMap_ContinueMap:
 	ld a, [wPokegearMapCursorObjectPointer + 1]
 	ld b, a
 	ld a, [wPokegearMapCursorLandmark]
-	call PokegearMap_UpdateCursorPosition
-	ret
+	jr PokegearMap_UpdateCursorPosition
 
 PokegearMap_InitPlayerIcon:
 	push af
@@ -788,8 +756,7 @@ PokegearRadio_Joypad:
 	ld c, POKEGEARSTATE_CLOCKINIT
 	ld b, POKEGEARCARD_CLOCK
 .switch_page
-	call Pokegear_SwitchPage
-	ret
+	jp Pokegear_SwitchPage
 
 .cancel
 	ld hl, wJumptableIndex
@@ -806,8 +773,7 @@ PokegearPhone_Init:
 	call InitPokegearTilemap
 	call ExitPokegearRadio_HandleMusic
 	ld hl, PokegearAskWhoCallText
-	call PrintText
-	ret
+	jp PrintText
 
 PokegearPhone_Joypad:
 	ld hl, hJoyPressed
@@ -819,15 +785,13 @@ PokegearPhone_Joypad:
 	jr nz, .a
 	ld hl, hJoyLast
 	ld a, [hl]
-	and D_LEFT
-	jr nz, .left
-	ld a, [hl]
 	and D_RIGHT
 	jr nz, .right
-	call PokegearPhone_GetDPad
-	ret
+	ld a, [hl]
+	and D_LEFT
+	jp z, PokegearPhone_GetDPad
 
-.left
+;left
 	ld a, [wPokegearFlags]
 	bit POKEGEAR_MAP_CARD_F, a
 	jr z, .no_map
@@ -847,8 +811,7 @@ PokegearPhone_Joypad:
 	ld c, POKEGEARSTATE_RADIOINIT
 	ld b, POKEGEARCARD_RADIO
 .switch_page
-	call Pokegear_SwitchPage
-	ret
+	jp Pokegear_SwitchPage
 
 .b
 	ld hl, wJumptableIndex
@@ -924,8 +887,7 @@ PokegearPhone_MakePhoneCall:
 	ld a, POKEGEARSTATE_PHONEJOYPAD
 	ld [wJumptableIndex], a
 	ld hl, PokegearAskWhoCallText
-	call PrintText
-	ret
+	jp PrintText
 
 .GearEllipseText:
 	text_far _GearEllipseText
@@ -943,20 +905,18 @@ PokegearPhone_FinishPhoneCall:
 	ld a, POKEGEARSTATE_PHONEJOYPAD
 	ld [wJumptableIndex], a
 	ld hl, PokegearAskWhoCallText
-	call PrintText
-	ret
+	jp PrintText
 
 PokegearPhone_GetDPad:
 	ld hl, hJoyLast
 	ld a, [hl]
-	and D_UP
-	jr nz, .up
-	ld a, [hl]
 	and D_DOWN
 	jr nz, .down
-	ret
+	ld a, [hl]
+	and D_UP
+	ret z
 
-.up
+;up
 	ld hl, wPokegearPhoneCursorPosition
 	ld a, [hl]
 	and a
@@ -986,21 +946,18 @@ PokegearPhone_GetDPad:
 	cp CONTACT_LIST_SIZE - PHONE_DISPLAY_HEIGHT
 	ret nc
 	inc [hl]
-	jr .done_joypad_update_page
+	; fallthrough
+.done_joypad_update_page
+	xor a
+	ldh [hBGMapMode], a
+	call PokegearPhone_UpdateDisplayList
+	jp WaitBGMap
 
 .done_joypad_same_page
 	xor a
 	ldh [hBGMapMode], a
 	call PokegearPhone_UpdateCursor
-	call WaitBGMap
-	ret
-
-.done_joypad_update_page
-	xor a
-	ldh [hBGMapMode], a
-	call PokegearPhone_UpdateDisplayList
-	call WaitBGMap
-	ret
+	jp WaitBGMap
 
 PokegearPhone_UpdateCursor:
 	ld a, " "
@@ -1055,8 +1012,7 @@ PokegearPhone_UpdateDisplayList:
 	ld [wPokegearPhoneDisplayPosition], a
 	cp PHONE_DISPLAY_HEIGHT
 	jr c, .loop
-	call PokegearPhone_UpdateCursor
-	ret
+	jr PokegearPhone_UpdateCursor
 
 PokegearPhone_DeletePhoneNumber:
 	ld hl, wPhoneList
@@ -1097,14 +1053,11 @@ PokegearPhoneContactSubmenu:
 	farcall CheckCanDeletePhoneNumber
 	ld a, c
 	and a
-	jr z, .cant_delete
-	ld hl, .CallDeleteCancelJumptable
-	ld de, .CallDeleteCancelStrings
-	jr .got_menu_data
-
-.cant_delete
 	ld hl, .CallCancelJumptable
 	ld de, .CallCancelStrings
+	jr z, .got_menu_data ; can't delete
+	ld hl, .CallDeleteCancelJumptable
+	ld de, .CallDeleteCancelStrings
 .got_menu_data
 	xor a
 	ldh [hBGMapMode], a
@@ -1183,14 +1136,8 @@ PokegearPhoneContactSubmenu:
 	and B_BUTTON
 	jr nz, .Cancel
 	ld a, [wPokegearPhoneSubmenuCursor]
-	ld e, a
-	ld d, 0
-	add hl, de
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp hl
+	rst JumpTable
+	ret
 
 .Cancel:
 	ld hl, PokegearAskWhoCallText

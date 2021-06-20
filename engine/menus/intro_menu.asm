@@ -1003,15 +1003,9 @@ StartTitleScreen:
 	jr c, .ok
 	xor a
 .ok
-	ld e, a
-	ld d, 0
 	ld hl, .dw
-	add hl, de
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp hl
+	rst JumpTable
+	ret
 
 .dw
 	dw Intro_MainMenu
@@ -1050,15 +1044,9 @@ UnusedTitlePerspectiveScroll: ; unreferenced
 	jp ByteFill
 
 TitleScreenScene:
-	ld e, a
-	ld d, 0
 	ld hl, .scenes
-	add hl, de
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp hl
+	rst JumpTable
+	ret
 
 .scenes
 	dw TitleScreenEntrance

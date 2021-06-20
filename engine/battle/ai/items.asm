@@ -200,13 +200,11 @@ AI_TryItem:
 
 	push hl
 	push de
-	ld de, .callback
-	push de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	jp hl
-.callback
+	call _hl_
+
 	pop de
 	pop hl
 

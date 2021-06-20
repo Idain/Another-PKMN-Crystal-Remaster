@@ -6,8 +6,7 @@ NAMINGSCREEN_UNDERLINE  EQU "☎" ; $d9
 _NamingScreen:
 	call DisableSpriteUpdates
 	call NamingScreen
-	call ReturnToMapWithSpeechTextbox
-	ret
+	jp ReturnToMapWithSpeechTextbox
 
 NamingScreen:
 	ld hl, wNamingScreenDestinationPointer
@@ -59,15 +58,9 @@ NamingScreen:
 .GetNamingScreenSetup:
 	ld a, [wNamingScreenType]
 	maskbits NUM_NAME_TYPES
-	ld e, a
-	ld d, 0
 	ld hl, .Jumptable
-	add hl, de
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp hl
+	rst JumpTable
+	ret
 
 .Jumptable:
 ; entries correspond to NAME_* constants
@@ -354,7 +347,10 @@ NamingScreenJoypadLoop:
 	ret
 
 .RunJumptable:
-	jumptable .Jumptable, wJumptableIndex
+	ld a, [wJumptableIndex]
+	ld hl, .Jumptable
+	rst JumpTable
+	ret
 
 .Jumptable:
 	dw .InitCursor
@@ -1023,7 +1019,10 @@ INCBIN "gfx/icons/mail_big.2bpp"
 	ret
 
 .DoJumptable:
-	jumptable .Jumptable, wJumptableIndex
+	ld a, [wJumptableIndex]
+	ld hl, .Jumptable
+	rst JumpTable
+	ret
 
 .Jumptable:
 	dw .init_blinking_cursor

@@ -9176,11 +9176,9 @@ BattleStartMessage:
 .skip_cry
 	ld a, [wBattleType]
 	cp BATTLETYPE_FISH
-	jr nz, .NotFishing
-
 	ld hl, HookedPokemonAttackedText
-	jr .PlaceBattleStartText
-
+	jr z, .PlaceBattleStartText
+	; fallthrough
 .NotFishing:
 	ld hl, PokemonFellFromTreeText
 	cp BATTLETYPE_TREE

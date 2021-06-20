@@ -160,8 +160,7 @@ MagnetTrain_LoadGFX_PlayMusic:
 	ld [hli], a ; wMagnetTrainWaitCounter
 
 	ld de, MUSIC_MAGNET_TRAIN
-	call PlayMusic2
-	ret
+	jp PlayMusic2
 
 DrawMagnetTrain:
 	hlbgcoord 0, 0
@@ -189,9 +188,7 @@ DrawMagnetTrain:
 	hlbgcoord 0, 9
 	ld de, MagnetTrainTilemap + (SCREEN_WIDTH * 3)
 	ld c, SCREEN_WIDTH
-	call .FillLine
-	ret
-
+	; fallthrough
 .FillLine:
 	ld a, [de]
 	inc de
@@ -272,7 +269,10 @@ SetMagnetTrainPals:
 	ret
 
 MagnetTrain_Jumptable:
-	jumptable .Jumptable, wJumptableIndex
+	ld a, [wJumptableIndex]
+	ld hl, .Jumptable
+	rst JumpTable
+	ret
 
 .Jumptable:
 	dw .InitPlayerSpriteAnim
@@ -346,8 +346,7 @@ MagnetTrain_Jumptable:
 	ret
 
 .DoneWaiting:
-	call .Next
-	ret
+	jr .Next
 
 .MoveTrain2:
 	ld hl, wMagnetTrainFinalPosition
@@ -372,18 +371,14 @@ MagnetTrain_Jumptable:
 	ld [hl], a
 	ret
 
-	ret
-
 .PrepareToFinishAnim:
-	call .Next
-	ret
+	jp .Next
 
 .TrainArrived:
 	ld a, $80
 	ld [wJumptableIndex], a
 	ld de, SFX_TRAIN_ARRIVED
-	call PlaySFX
-	ret
+	jp PlaySFX
 
 MagnetTrain_Jumptable_FirstRunThrough:
 	farcall PlaySpriteAnimations

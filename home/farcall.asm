@@ -6,12 +6,8 @@ FarCall_de::
 	push af
 	ldh a, [hTempBank]
 	rst Bankswitch
-	call FarCall_JumpToDE
+	call _de_
 	jr ReturnFarCall
-
-FarCall_JumpToDE:
-	push de
-	ret
 
 FarCall_hl::
 ; Call a:hl.
@@ -21,7 +17,7 @@ FarCall_hl::
 	push af
 	ldh a, [hTempBank]
 	rst Bankswitch
-	call FarCall_JumpToHL
+	call _hl_
 	; fallthrough
 
 ReturnFarCall::
@@ -43,6 +39,3 @@ ReturnFarCall::
 	ld a, [wFarCallBC + 1]
 	ld c, a
 	ret
-
-FarCall_JumpToHL::
-	jp hl

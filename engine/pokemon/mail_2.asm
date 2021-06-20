@@ -67,10 +67,9 @@ ReadAnyMail:
 	and A_BUTTON | B_BUTTON | START
 	jr z, .loop
 	and START
-	jr nz, .pressed_start
-	ret
+	ret z
 
-.pressed_start
+;pressed_start
 	ld a, [wJumptableIndex]
 	push af
 	callfar PrintMailAndExit ; printer
@@ -114,15 +113,11 @@ ReadAnyMail:
 .got_pointer
 	ld a, c
 	ld [wCurMailIndex], a
+	pop bc
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld de, .done
-	pop bc
-	push de
 	jp hl
-.done
-	ret
 
 MailGFXPointers:
 ; entries correspond to *MAIL_INDEX constants

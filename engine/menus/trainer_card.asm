@@ -79,7 +79,10 @@ TrainerCard:
 	ret
 
 .RunJumptable:
-	jumptable .Jumptable, wJumptableIndex
+	ld a, [wJumptableIndex]
+	ld hl, .Jumptable
+	rst JumpTable
+	ret
 
 .Jumptable:
 ; entries correspond to TRAINERCARDSTATE_* constants
@@ -112,16 +115,14 @@ TrainerCard_Page1_LoadGFX:
 	lb bc, BANK(CardStatusGFX), 86
 	call Request2bpp
 	call TrainerCard_Page1_PrintDexCaught_GameTime
-	call TrainerCard_IncrementJumptable
-	ret
+	jr TrainerCard_IncrementJumptable
 
 TrainerCard_Page1_Joypad:
 	call TrainerCard_Page1_PrintGameTime
 	ld hl, hJoyLast
 	ld a, [hl]
 	and D_RIGHT | A_BUTTON
-	jr nz, .pressed_right_a
-	ret
+	ret z
 
 .pressed_right_a
 	ld a, TRAINERCARDSTATE_PAGE2_LOADGFX
@@ -151,8 +152,7 @@ TrainerCard_Page2_LoadGFX:
 	lb bc, BANK(BadgeGFX), 44
 	call Request2bpp
 	call TrainerCard_Page2_3_InitObjectsAndStrings
-	call TrainerCard_IncrementJumptable
-	ret
+	jr TrainerCard_IncrementJumptable
 
 TrainerCard_Page2_Joypad:
 	ld hl, TrainerCard_JohtoBadgesOAM
@@ -163,8 +163,7 @@ TrainerCard_Page2_Joypad:
 	jr nz, .Quit
 	ld a, [hl]
 	and D_LEFT
-	jr nz, .d_left
-	ret
+	ret z
 
 .d_left
 	ld a, TRAINERCARDSTATE_PAGE1_LOADGFX
@@ -199,8 +198,7 @@ TrainerCard_Page3_LoadGFX:
 	lb bc, BANK(BadgeGFX2), 44
 	call Request2bpp
 	call TrainerCard_Page2_3_InitObjectsAndStrings
-	call TrainerCard_IncrementJumptable
-	ret
+	jp TrainerCard_IncrementJumptable
 
 TrainerCard_Page3_Joypad:
 	ld hl, TrainerCard_JohtoBadgesOAM
@@ -211,16 +209,15 @@ TrainerCard_Page3_Joypad:
 	jr nz, .left
 	ld a, [hl]
 	and D_RIGHT
-	jr nz, .right
+	ret z
+
+.right
+	ld a, TRAINERCARDSTATE_PAGE1_LOADGFX
+	ld [wJumptableIndex], a
 	ret
 
 .left
 	ld a, TRAINERCARDSTATE_PAGE2_LOADGFX
-	ld [wJumptableIndex], a
-	ret
-
-.right
-	ld a, TRAINERCARDSTATE_PAGE1_LOADGFX
 	ld [wJumptableIndex], a
 	ret
 
@@ -252,8 +249,7 @@ TrainerCard_PrintTopHalfOfCard:
 	lb bc, 5, 7
 	xor a
 	ldh [hGraphicStartTile], a
-	predef PlaceGraphic
-	ret
+	predef_jump PlaceGraphic
 
 .Name_Money:
 	db   "NAME/"
@@ -289,8 +285,7 @@ TrainerCard_Page1_PrintDexCaught_GameTime:
 	ret nz
 	hlcoord 1, 9
 	lb bc, 2, 17
-	call ClearBox
-	ret
+	jp ClearBox
 
 .Dex_PlayTime:
 	db   "POKéDEX"
@@ -332,8 +327,7 @@ endr
 	xor a
 	ld [wTrainerCardBadgeFrameCounter], a
 	ld hl, TrainerCard_JohtoBadgesOAM
-	call TrainerCard_Page2_3_OAMUpdate
-	ret
+	jp TrainerCard_Page2_3_OAMUpdate
 
 .BadgesTilemap:
 	db $79, $7a, $7b, $7c, $7d, -1 ; "BADGES"
@@ -467,8 +461,7 @@ TrainerCard_Page2_3_AnimateBadges:
 	inc a
 	and %111
 	ld [wTrainerCardBadgeFrameCounter], a
-	jr TrainerCard_Page2_3_OAMUpdate
-
+	; fallthrough
 TrainerCard_Page2_3_OAMUpdate:
 ; copy flag array pointer
 	ld a, [hli]
