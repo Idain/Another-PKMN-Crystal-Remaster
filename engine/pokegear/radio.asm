@@ -1504,7 +1504,7 @@ GetBuenasPassword:
 	and $f
 	ld c, a
 	push hl
-	ld hl, .StringFunctionJumpTable
+	ld hl, .StringFunctionJumptable
 	ld e, b
 	add hl, de
 	add hl, de
@@ -1517,12 +1517,14 @@ GetBuenasPassword:
 	ld c, [hl]
 	ret
 
-.StringFunctionJumpTable:
+.StringFunctionJumptable:
 ; entries correspond to BUENA_* constants
+	table_width 2, GetBuenasPassword.StringFunctionJumptable
 	dw .Mon       ; BUENA_MON
 	dw .Item      ; BUENA_ITEM
 	dw .Move      ; BUENA_MOVE
 	dw .RawString ; BUENA_STRING
+	assert_table_length NUM_BUENA_FUNCTIONS
 
 .Mon:
 	call .GetTheIndex
