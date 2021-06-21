@@ -917,23 +917,13 @@ _SpaceSpaceColonText:: ; unreferenced
 	text "  :"
 	done
 
-_PasswordAskResetText::
-	text "Password OK."
-	line "Select CONTINUE &"
-	cont "reset settings."
+_ClockResetText::
+	text "Select CONTINUE &"
+	line "reset settings."
 	prompt
 
-_PasswordWrongText::
-	text "Wrong password!"
-	prompt
-
-_PasswordAskResetClockText::
+_AskResetClockText::
 	text "Reset the clock?"
-	done
-
-_PasswordAskEnterText::
-	text "Please enter the"
-	line "password."
 	done
 
 _ClearAllSaveDataText::
