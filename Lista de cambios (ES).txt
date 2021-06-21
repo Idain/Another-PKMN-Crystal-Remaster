@@ -60,7 +60,7 @@ CAMBIOS:
 	-- Los movimientos OHKO no toman en cuenta los niveles de la Precisión del usuario y la Evasión del oponente. (Gen 3+)
 	-- Pokémon salvajes/entrenadores NPCs ya no podrán robarle objetos al jugador al usar Thief.
 	-- Sky Attack ahora tiene un 30% de hacer al oponente retroceder y tiene una alta probabilidad de ser un golpe crítico (Gen 3+).
-	-- Encore ahora siempre actúa por 3 turnos (Gen 5) y no tiene efecto si el último movimiento usado por el oponente fue Metronome o Sleep Talk (Gen 7+).
+	-- Encore ahora siempre actúa por 3 turnos (Gen 5, no cuenta turno donde el oponente es afectado) y no tiene efecto si el último movimiento usado por el oponente fue Metronome o Sleep Talk (Gen 7+).
 
 - HMs. Algunos Pokémon aprenden nuevas HMs, basado en HG/SS:
 	-- Cut: Rattata, Nidoran♀, Nidorina, Nidoqueen, Nidoran♂, Nidorino, Nidoking, Meowth, Persian, Rhydon, Kangaskhan, Dragonite, Celebi.

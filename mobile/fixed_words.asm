@@ -927,7 +927,7 @@ Function11c658:
 	ld de, Unknown_11cfc2
 	call Function11d035
 	call Function11c9ab
-	call Function11c7bc
+;	call Function11c7bc
 	call Function11c86e
 	ld hl, wcd24
 	res 3, [hl]
@@ -982,7 +982,7 @@ Function11c675:
 	ld [wMobileCommsJumptableIndex], a
 .asm_11c6c4
 	call Function11c992
-	call Function11c7bc
+;	call Function11c7bc
 	call Function11c86e
 	ret
 
@@ -1176,7 +1176,7 @@ Function11c7bc:
 	ret
 
 .asm_11c7e9
-	ld hl, wListPointer
+;	ld hl, wListPointer
 	ld a, [wcd26]
 	ld e, a
 	add hl, de
@@ -1403,7 +1403,7 @@ Function11c8f6:
 	add [hl]
 	ld c, a
 	ld b, 0
-	ld hl, wListPointer
+;	ld hl, wListPointer
 	add hl, bc
 	ld a, [hl]
 	jr .asm_11c911

@@ -28,11 +28,11 @@ Multiply::
 ; Multiply hMultiplicand (3 bytes) by hMultiplier. Result in hProduct.
 ; All values are big endian.
 	push hl
+	push de
 	push bc
-
-	callfar _Multiply
-
+	homecall _Multiply
 	pop bc
+	pop de
 	pop hl
 	ret
 
