@@ -1290,15 +1290,9 @@ Function1709bb: ; BattleTowerAction $10
 	call CloseSRAM
 	cp 6
 	jr nc, .invalid
-	ld e, a
-	ld d, 0
 	ld hl, .Jumptable
-	add hl, de
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp hl
+	rst JumpTable
+	ret
 
 .invalid
 	ld a, BANK(s5_a800)

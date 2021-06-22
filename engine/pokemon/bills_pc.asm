@@ -240,8 +240,7 @@ BillsPCClearThreeBoxes: ; unreferenced
 	hlcoord 0, 14
 	ld b, 2
 	ld c, 8
-	call ClearBox
-	ret
+	jp ClearBox
 
 _WithdrawPKMN:
 	ld hl, wOptions
@@ -936,8 +935,7 @@ BillsPC_PlaceString:
 	call Textbox
 	pop de
 	hlcoord 1, 16
-	call PlaceString
-	ret
+	jp PlaceString
 
 BillsPC_MoveMonWOMail_BoxNameAndArrows:
 	call BillsPC_BoxName
@@ -974,8 +972,7 @@ BillsPC_BoxName:
 	ld de, .PartyPKMN
 .print
 	hlcoord 10, 1
-	call PlaceString
-	ret
+	jp PlaceString
 
 .PartyPKMN:
 	db "PARTY <PK><MN>@"
@@ -1127,8 +1124,7 @@ BillsPC_LoadMonStats:
 	inc de
 	ld a, [hl]
 	ld [de], a
-	call CloseSRAM
-	ret
+	jp CloseSRAM
 
 .party
 	ld hl, wPartyMon1Level
@@ -1183,8 +1179,7 @@ BillsPC_LoadMonStats:
 	ld a, [hl]
 	ld [de], a
 
-	call CloseSRAM
-	ret
+	jp CloseSRAM
 
 BillsPC_RefreshTextboxes:
 	hlcoord 8, 2
@@ -1234,8 +1229,7 @@ BillsPC_RefreshTextboxes:
 	cp -1
 	jr nz, .get_nickname
 	ld de, .CancelString
-	call PlaceString
-	ret
+	jp PlaceString
 
 .get_nickname
 	inc de
@@ -1274,8 +1268,7 @@ BillsPC_RefreshTextboxes:
 	call CloseSRAM
 	pop hl
 	ld de, wStringBuffer1
-	call PlaceString
-	ret
+	jp PlaceString
 
 .boxfail
 	call CloseSRAM
@@ -1299,8 +1292,7 @@ BillsPC_RefreshTextboxes:
 	call CopyBytes
 	pop hl
 	ld de, wStringBuffer1
-	call PlaceString
-	ret
+	jp PlaceString
 
 .partyfail
 	pop hl
@@ -1326,16 +1318,14 @@ BillsPC_RefreshTextboxes:
 	call CloseSRAM
 	pop hl
 	ld de, wStringBuffer1
-	call PlaceString
-	ret
+	jp PlaceString
 
 .sBoxFail
 	call CloseSRAM
 	pop hl
 .placeholder_string
 	ld de, .Placeholder
-	call PlaceString
-	ret
+	jp PlaceString
 
 .Placeholder:
 	db "-----@"
@@ -1626,20 +1616,18 @@ BillsPC_StatsScreen:
 	ld [wMonType], a
 	predef StatsScreenInit
 	call BillsPC_InitGFX
-	call MaxVolume
-	ret
+	jp MaxVolume
 
 StatsScreenDPad:
 	ld hl, hJoyPressed
 	ld a, [hl]
 	and A_BUTTON | B_BUTTON | D_RIGHT | D_LEFT
 	ld [wMenuJoypad], a
-	jr nz, .pressed_a_b_right_left
+	ret nz
 	ld a, [hl]
 	and D_DOWN | D_UP
 	ld [wMenuJoypad], a
-	jr nz, .pressed_down_up
-	jr .pressed_a_b_right_left
+	ret z
 
 .pressed_down_up
 	call _StatsScreenDPad
@@ -1654,9 +1642,7 @@ StatsScreenDPad:
 	ld hl, wTempMonDVs
 	predef GetUnownLetter
 	call GetBaseData
-	call BillsPC_CopyMon
-.pressed_a_b_right_left
-	ret
+	jr BillsPC_CopyMon
 
 .did_nothing
 	xor a
@@ -1705,8 +1691,7 @@ BillsPC_CopyMon:
 	call AddNTimes
 	ld de, wBufferMon
 	ld bc, PARTYMON_STRUCT_LENGTH
-	call CopyBytes
-	ret
+	jp CopyBytes
 
 .box
 	ld b, a
@@ -1885,8 +1870,7 @@ ReleasePKMN_ByePKMN:
 	ld h, b
 	ld [hl], "!"
 	ld c, 50
-	call DelayFrames
-	ret
+	jp DelayFrames
 
 MovePKMNWitoutMail_InsertMon:
 	push hl
@@ -1924,11 +1908,7 @@ MovePKMNWitoutMail_InsertMon:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld de, .dw_return
-	push de
-	jp hl
-
-.dw_return
+	call _hl_
 	pop af
 	ld e, a
 	farcall MoveMonWOMail_InsertMon_SaveGame
@@ -1949,14 +1929,12 @@ MovePKMNWitoutMail_InsertMon:
 	cp [hl]
 	jr z, .same_box
 	call .CopyFromBox
-	call .CopyToBox
-	ret
+	jp .CopyToBox
 
 .same_box
 	call .CopyFromBox
 	call .CheckTrivialMove
-	call .CopyToBox
-	ret
+	jp .CopyToBox
 
 .PartyToBox:
 	call .CopyFromParty
@@ -1965,19 +1943,16 @@ MovePKMNWitoutMail_InsertMon:
 	farcall SaveGameData
 	xor a
 	ld [wGameLogicPaused], a
-	call .CopyToBox
-	ret
+	jr .CopyToBox
 
 .BoxToParty:
 	call .CopyFromBox
-	call .CopyToParty
-	ret
+	jp .CopyToParty
 
 .PartyToParty:
 	call .CopyFromParty
 	call .CheckTrivialMove
-	call .CopyToParty
-	ret
+	jp .CopyToParty
 
 .CheckTrivialMove:
 	ld a, [wBillsPC_CursorPosition]
@@ -2085,8 +2060,7 @@ CopyNicknameToTemp:
 	call AddNTimes
 	ld de, wBufferMonNickname
 	ld bc, MON_NAME_LENGTH
-	call CopyBytes
-	ret
+	jp CopyBytes
 
 CopyOTNameToTemp:
 	ld bc, NAME_LENGTH
@@ -2094,15 +2068,13 @@ CopyOTNameToTemp:
 	call AddNTimes
 	ld de, wBufferMonOT
 	ld bc, NAME_LENGTH
-	call CopyBytes
-	ret
+	jp CopyBytes
 
 CopyMonToTemp:
 	ld a, [wCurPartyMon]
 	call AddNTimes
 	ld de, wBufferMon
-	call CopyBytes
-	ret
+	jp CopyBytes
 
 GetBoxPointer:
 	dec b
@@ -2174,15 +2146,15 @@ PCString_MoveToWhere: db "Move to where?@"
 PCString_ItsYourLastPKMN: db "It's your last <PK><MN>!@"
 PCString_TheresNoRoom: db "There's no room!@"
 PCString_NoMoreUsablePKMN: db "No more usable <PK><MN>!@"
-PCString_RemoveMail: db "Remove MAIL.@"
+PCString_RemoveMail: db "Remove Mail.@"
 PCString_ReleasedPKMN: db "Released <PK><MN>.@"
 PCString_Bye: db "Bye,@"
 PCString_Stored: db "Stored @"
 PCString_Got: db "Got @"
 PCString_Non: db "Non.@" ; unreferenced
-PCString_BoxFull: db "The BOX is full.@"
+PCString_BoxFull: db "The Box is full.@"
 PCString_PartyFull: db "The party's full!@"
-PCString_NoReleasingEGGS: db "No releasing EGGS!@"
+PCString_NoReleasingEGGS: db "No releasing Eggs!@"
 
 _ChangeBox:
 	call LoadStandardMenuHeader

@@ -2,13 +2,22 @@ Nuevas características de "ANOTHER POKÉMON CRYSTAL GAME" (NOMBRE SUJETO A CAMB
 
 V1.2.0
 AÑADIDOS:
-- Ahora ciertos Pokémon aprenden movimientos al evolucionar, basado en la Gen 7.
+
+- TMS:
+	-- ¡El total de TMs ha sido expandido a 60! Estos son: Light Screen, Reflect, Safeguard, False Swipe, Explosion, Thunder Wave, Swords Dance, Rock Slide, Substitute y...
+	-- ¡...El NUEVO MOVIMIENTO! Hail (Granizo), y también es la nueva TM07. La entrega Pryce al derrotarlo.
+		
+		Notas:
+		--- El orden de las TMs ha sido cambiado.
+		--- Todas pueden ser compradas en Goldenrod o Celadon Dept. Store, salvo por Rock Slide.
+		Esta se consigue al derrotar a Brock.
+
+- Ahora ciertos Pokémon aprenden movimientos al evolucionar (Gen 7+)
 - La tormenta de arena ahora boostea la Defensa Especial de los Pokémon tipo Roca en un 50% (Gen 4+).
 - El género del Pokémon ahora es visible en el menú del equipo.
 - ¡NUEVO MOVE REMINDER! Está localizado en Blackthorn City, en la misma casa del Move Deleter.
 	-- Hay un NPC en Blackthorn City que menciona la existencia de este.
 - Tu madre te da un tutorial muy breve de cómo correr en el juego.
-- ¡NUEVO MOVIMIENTO! Hail (Granizo), y también es la nueva TM51. Se vende en el 3er piso de Celadon Department Store por $10,000.
 
 CAMBIOS:
 - ¡Curva de dificultad ajustada!
@@ -27,8 +36,15 @@ CAMBIOS:
 
 - Ahora se necesitan 7 medallas de Kanto antes de poder enfrentar a Blue.
 
-- Obediencia: Ahora funciona como en HG/SS, con la Zephyr Badge afectando obediencia hasta el Nv. 20 y la Mineral Badge reemplazando a la Storm Badge para obediencia hasta Nv. 70.
-	-- El sistema ahora también afecta a los Pokémon que sean originalmente del jugador.
+- Obediencia: Ha sido cambiado para que también afecte a Pokémon que sean propios del jugador. También, las medallas que aumentan el límite fueron cambiadas:
+	* Sin medallas: 	Pokémon hasta el Nv. 15 te obedecerán.
+	* Zephyr Badge: 	Pokémon hasta el Nv. 20 te obedecerán.
+	* Hive Badge: 		Pokémon hasta el Nv. 25 te obedecerán.
+	* Plain Badge: 		Pokémon hasta el Nv. 30 te obedecerán.
+	* Fog Badge: 		Pokémon hasta el Nv. 40 te obedecerán.
+	* Glacier Badge: 	Pokémon hasta el Nv. 45 te obedecerán.
+	* Rising Badge: 	Pokémon hasta el Nv. 65 te obedecerán.
+	* Earth Badge: 		Todos los Pokémon te obedecerán sin importar el nivel.
 
 - X Accuracy aumenta la precisión dos puntos (2x) en vez de uno (1.5x). Ahora puede usarse varias veces.
 
@@ -61,6 +77,7 @@ CAMBIOS:
 	-- Pokémon salvajes/entrenadores NPCs ya no podrán robarle objetos al jugador al usar Thief.
 	-- Sky Attack ahora tiene un 30% de hacer al oponente retroceder y tiene una alta probabilidad de ser un golpe crítico (Gen 3+).
 	-- Encore ahora siempre actúa por 3 turnos (Gen 5, no cuenta turno donde el oponente es afectado) y no tiene efecto si el último movimiento usado por el oponente fue Metronome o Sleep Talk (Gen 7+).
+	-- Si (Hi) Jump Kick falla, daña al usuario equivalente a 1/2 del daño que hubiese causado al oponente (Gen 3).
 
 - HMs. Algunos Pokémon aprenden nuevas HMs, basado en HG/SS:
 	-- Cut: Rattata, Nidoran♀, Nidorina, Nidoqueen, Nidoran♂, Nidorino, Nidoking, Meowth, Persian, Rhydon, Kangaskhan, Dragonite, Celebi.
@@ -102,6 +119,7 @@ CAMBIOS:
 
 - Ya no tendremos que esperar un día para que Kurt nos entregue las Balls que le pedimos; con solo salir y volver a entrar a la casa basta.
 
+- Para reiniciar el reloj hay que presionar Down + B + Select en la pantalla de inicio (como en Gold/Silver).
 - Los nombres de los movimientos ahora están en Capital en vez de MAYÚSCULA.
 - Los nombres de los entrenadores y sus clases ahora están en Capital.
 - Los nombres de los bolsillos también están en capital.

@@ -1345,19 +1345,9 @@ Slots_CheckMatchedFirstTwoReels:
 	call Slots_CopyReelState
 	ld a, [wSlotBet]
 	and 3
-	ld e, a
-	ld d, 0
 	ld hl, .Jumptable
-	add hl, de
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	ld de, .return
-	push de
-	jp hl
+	rst JumpTable
 
-.return
 	ld a, [wFirstTwoReelsMatching]
 	and a
 	ret z
@@ -1416,8 +1406,7 @@ Slots_CheckMatchedFirstTwoReels:
 	ld hl, wCurReelStopped + 2
 	ld a, [wReel1Stopped + 2]
 	cp [hl]
-	call z, .StoreResult
-	ret
+	ret nz
 
 .StoreResult:
 	ld [wSlotBuildingMatch], a
@@ -1438,19 +1427,9 @@ Slots_CheckMatchedAllThreeReels:
 	call Slots_CopyReelState
 	ld a, [wSlotBet]
 	and 3
-	ld e, a
-	ld d, 0
 	ld hl, .Jumptable
-	add hl, de
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	ld de, .return
-	push de
-	jp hl
+	rst JumpTable
 
-.return
 	ld a, [wSlotMatched]
 	cp SLOTS_NO_MATCH
 	jr nz, .matched_nontrivial
@@ -1835,11 +1814,8 @@ Slots_PayoutText:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld de, .return
-	push de
-	jp hl
+	call _hl_
 
-.return
 	ld hl, .Text_PrintPayout
 	jp PrintText
 

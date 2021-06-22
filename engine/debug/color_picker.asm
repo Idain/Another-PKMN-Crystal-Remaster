@@ -552,15 +552,9 @@ DebugColor_Joypad:
 
 	ld a, [wDebugColorRGBJumptableIndex]
 	maskbits 4 ; .PointerTable length
-	ld e, a
-	ld d, 0
 	ld hl, .PointerTable
-	add hl, de
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp hl
+	rst JumpTable
+	ret
 
 .tmhm
 ; Enter the TM/HM checker.
@@ -1273,15 +1267,9 @@ DebugTileset_UpdatePalettes:
 DebugTileset_Joypad:
 	ld a, [wDebugTilesetRGBJumptableIndex]
 	maskbits 4 ; .PointerTable length
-	ld e, a
-	ld d, 0
 	ld hl, .PointerTable
-	add hl, de
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp hl
+	rst JumpTable
+	ret
 
 .PointerTable:
 	dw DebugTileset_SelectColorBox

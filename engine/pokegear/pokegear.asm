@@ -1356,26 +1356,18 @@ UpdateRadioStation:
 .loop
 	ld a, [hli]
 	cp -1
-	jr z, .nostation
+	jp z, NoRadioStation
 	cp d
 	jr z, .foundstation
 	inc hl
 	inc hl
 	jr .loop
 
-.nostation
-	call NoRadioStation
-	ret
-
 .foundstation
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld de, .returnafterstation
-	push de
-	jp hl
-
-.returnafterstation
+	call _hl_
 	ld a, [wPokegearRadioChannelBank]
 	and a
 	ret z
@@ -1687,15 +1679,15 @@ NoRadioName:
 	call Textbox
 	ret
 
-OaksPKMNTalkName:     db "OAK's <PK><MN> Talk@"
-PokedexShowName:      db "#DEX Show@"
-PokemonMusicName:     db "#MON Music@"
+OaksPKMNTalkName:     db "Oak's <PK><MN> Talk@"
+PokedexShowName:      db "#dex Show@"
+PokemonMusicName:     db "#mon Music@"
 LuckyChannelName:     db "Lucky Channel@"
 UnownStationName:     db "?????@"
 
 PlacesAndPeopleName:  db "Places & People@"
 LetsAllSingName:      db "Let's All Sing!@"
-PokeFluteStationName: db "# FLUTE@"
+PokeFluteStationName: db "# Flute@"
 
 _TownMap:
 	ld hl, wOptions
@@ -1906,11 +1898,7 @@ PlayRadio:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld de, .jump_return
-	push de
-	jp hl
-
-.jump_return
+	call _hl_
 	push de
 	hlcoord 0, 12
 	lb bc, 4, 18
@@ -1923,8 +1911,7 @@ PlayRadio:
 	ld h, b
 	ld l, c
 	ld [hl], "”"
-	call WaitBGMap
-	ret
+	jp WaitBGMap
 
 PlayRadioStationPointers:
 ; entries correspond to MAPRADIO_* constants
@@ -1943,28 +1930,23 @@ PlayRadioStationPointers:
 LoadStation_PokemonChannel:
 	call IsInJohto
 	and a
-	jr nz, .kanto
+	jp nz, LoadStation_PlacesAndPeople
 	call UpdateTime
 	ld a, [wTimeOfDay]
 	and a
 	jp z, LoadStation_PokedexShow
 	jp LoadStation_OaksPokemonTalk
 
-.kanto:
-	jp LoadStation_PlacesAndPeople
-
 PokegearMap:
 	ld a, e
 	and a
 	jr nz, .kanto
 	call LoadTownMapGFX
-	call FillJohtoMap
-	ret
+	jp FillJohtoMap
 
 .kanto
 	call LoadTownMapGFX
-	call FillKantoMap
-	ret
+	jp FillKantoMap
 
 _FlyMap:
 	call ClearBGPalettes

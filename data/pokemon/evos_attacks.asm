@@ -3012,6 +3012,10 @@ UnownEvosAttacks:
 
 WobbuffetEvosAttacks:
 	db 0 ; no more evolutions
+	db 1, SPLASH
+	db 1, CHARM
+	db 1, ENCORE
+	db 1, AMNESIA
 	db 1, COUNTER
 	db 1, MIRROR_COAT
 	db 1, SAFEGUARD

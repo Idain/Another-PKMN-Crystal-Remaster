@@ -220,7 +220,7 @@ StartMenu::
 
 .QuitDesc:
 	db   "Quit and"
-	next "be judged.@"
+	next "be judged@"
 
 .OpenMenu:
 	ld a, [wMenuSelection]

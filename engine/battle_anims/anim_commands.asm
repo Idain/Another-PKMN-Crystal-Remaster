@@ -289,15 +289,9 @@ RunBattleAnimCommand:
 	ld a, [wBattleAnimByte]
 	sub anim_obj_command
 
-	ld e, a
-	ld d, 0
 	ld hl, BattleAnimCommands
-	add hl, de
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp hl
+	rst JumpTable
+	ret
 
 BattleAnimCommands::
 ; entries correspond to anim_* constants (see macros/scripts/battle_anims.asm)

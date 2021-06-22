@@ -656,19 +656,6 @@ BattleCommand_CheckObedience:
 	and a
 	ret nz
 
-	; If the monster's id doesn't match the player's,
-	; some conditions need to be met.
-;	ld a, MON_ID
-;	call BattlePartyAttr
-;
-;	ld a, [wPlayerID]
-;	cp [hl]
-;	jr nz, .obeylevel
-;	inc hl
-;	ld a, [wPlayerID + 1]
-;	cp [hl]
-;	ret z
-
 .obeylevel
 	; The maximum obedience level is constrained by owned badges:
 	ld hl, wKantoBadges
@@ -683,6 +670,11 @@ BattleCommand_CheckObedience:
 	; risingbadge
 	bit RISINGBADGE, [hl]
 	ld a, 65
+	jr nz, .getlevel
+
+	; glacierbadge
+	bit GLACIERBADGE, [hl]
+	ld a, 45
 	jr nz, .getlevel
 
 	; fogbadge
@@ -2330,10 +2322,11 @@ GetFailureResultText:
 	ld hl, wCurDamage
 	ld a, [hli]
 	ld b, [hl]
-rept 3
+	
+; 1/2 of damage dealt
 	srl a
 	rr b
-endr
+
 	ld [hl], b
 	dec hl
 	ld [hli], a

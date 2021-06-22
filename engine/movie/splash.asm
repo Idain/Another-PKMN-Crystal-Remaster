@@ -201,15 +201,10 @@ GameFreakPresents_WaitForTimer:
 GameFreakLogoSpriteAnim:
 	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
-	ld e, [hl]
-	ld d, 0
+	ld a, [hl]
 	ld hl, .scenes
-	add hl, de
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp hl
+	rst JumpTable
+	ret
 
 .scenes:
 	dw GameFreakLogo_Init

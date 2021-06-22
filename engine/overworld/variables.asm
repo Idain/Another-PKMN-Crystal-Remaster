@@ -22,7 +22,6 @@ _GetVarAction::
 	and RETVAR_ADDR_DE
 	ret nz
 	ld a, [de]
-	jr .loadstringbuffer2
 
 .loadstringbuffer2
 	ld de, wStringBuffer2

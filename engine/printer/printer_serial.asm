@@ -444,15 +444,9 @@ PrinterDataPacket6: ; unreferenced
 
 _PrinterReceive::
 	ld a, [wPrinterOpcode]
-	add a
-	ld e, a
-	ld d, 0
 	ld hl, .Jumptable
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp hl
+	rst JumpTable
+	ret
 
 .Jumptable:
 	dw Printer_DoNothing ; 00

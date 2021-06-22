@@ -25,7 +25,6 @@ ItemDescriptions:
 	dw FireStoneDesc
 	dw ThunderStoneDesc
 	dw WaterStoneDesc
-	dw TeruSamaDesc
 	dw HPUpDesc
 	dw ProteinDesc
 	dw IronDesc
@@ -45,7 +44,6 @@ ItemDescriptions:
 	dw SuperRepelDesc
 	dw MaxRepelDesc
 	dw DireHitDesc
-	dw TeruSamaDesc
 	dw FreshWaterDesc
 	dw SodaPopDesc
 	dw LemonadeDesc
@@ -100,7 +98,6 @@ ItemDescriptions:
 	dw WhtApricornDesc
 	dw BlackbeltDesc
 	dw BlkApricornDesc
-	dw TeruSamaDesc
 	dw PnkApricornDesc
 	dw BlackGlassesDesc
 	dw SlowpokeTailDesc
@@ -120,7 +117,6 @@ ItemDescriptions:
 	dw MiracleSeedDesc
 	dw ThickClubDesc
 	dw FocusBandDesc
-	dw TeruSamaDesc
 	dw EnergyPowderDesc
 	dw EnergyRootDesc
 	dw HealPowderDesc
@@ -135,17 +131,12 @@ ItemDescriptions:
 	dw StarPieceDesc
 	dw BasementKeyDesc
 	dw PassDesc
-	dw TeruSamaDesc
-	dw TeruSamaDesc
 	dw LuckyPunchDesc
 	dw CharcoalDesc
 	dw BerryJuiceDesc
 	dw ScopeLensDesc
-	dw TeruSamaDesc
-	dw TeruSamaDesc
 	dw MetalCoatDesc
 	dw DragonFangDesc
-	dw TeruSamaDesc
 	dw LeftoversDesc
 	dw TeruSamaDesc
 	dw TeruSamaDesc
@@ -194,6 +185,15 @@ ItemDescriptions:
 	dw TeruSamaDesc
 	dw TeruSamaDesc
 	assert_table_length NUM_ITEMS
+	dw TeruSamaDesc
+	dw TeruSamaDesc
+	dw TeruSamaDesc
+	dw TeruSamaDesc
+	dw TeruSamaDesc
+	dw TeruSamaDesc
+	dw TeruSamaDesc
+	dw TeruSamaDesc
+	dw TeruSamaDesc
 	dw TeruSamaDesc
 	dw TeruSamaDesc
 	dw TeruSamaDesc

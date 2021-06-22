@@ -738,13 +738,6 @@ AI_HealStatus:
 	res SUBSTATUS_TOXIC, [hl]
 	ret
 
-;EnemyUsedXAccuracy:
-;	call AIUsedItemSound
-;	ld hl, wEnemySubStatus4
-;	set SUBSTATUS_X_ACCURACY, [hl]
-;	ld a, X_ACCURACY
-;	jp PrintText_UsedItemOn_AND_AIUpdateHUD
-
 EnemyUsedGuardSpec:
 	call AIUsedItemSound
 	ld hl, wEnemyScreens

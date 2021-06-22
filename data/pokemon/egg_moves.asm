@@ -115,6 +115,7 @@ ZubatEggMoves:
 	db -1 ; end
 
 OddishEggMoves:
+	db LEECH_SEED
 	db SWORDS_DANCE
 	db RAZOR_LEAF
 	db FLAIL
@@ -313,13 +314,16 @@ ExeggcuteEggMoves:
 	db -1 ; end
 
 CuboneEggMoves:
+	db CURSE
+	db DETECT
+	db DOUBLE_KICK
+	db LEER
 	db ROCK_SLIDE
 	db ANCIENTPOWER
 	db BELLY_DRUM
 	db SCREECH
 	db SKULL_BASH
 	db PERISH_SONG
-	db SWORDS_DANCE
 	db -1 ; end
 
 LickitungEggMoves:
@@ -436,6 +440,10 @@ AerodactylEggMoves:
 	db -1 ; end
 
 SnorlaxEggMoves:
+	db DOUBLE_EDGE
+	db COUNTER
+	db FISSURE
+	db CURSE
 	db LICK
 	db -1 ; end
 
@@ -474,6 +482,8 @@ TotodileEggMoves:
 	db -1 ; end
 
 SentretEggMoves:
+	db IRON_TAIL
+	db CHARM
 	db DOUBLE_EDGE
 	db PURSUIT
 	db SLASH
@@ -652,13 +662,15 @@ GligarEggMoves:
 	db -1 ; end
 
 SnubbullEggMoves:
+	db DOUBLE_EDGE
+	db MIMIC
+	db SNORE
 	db METRONOME
 	db FAINT_ATTACK
 	db REFLECT
 	db PRESENT
 	db CRUNCH
 	db HEAL_BELL
-	db LICK
 	db LEER
 	db -1 ; end
 
@@ -776,10 +788,14 @@ TyrogueEggMoves:
 	db HI_JUMP_KICK
 	db MACH_PUNCH
 	db MIND_READER
+	db COUNTER
+	db PURSUIT
+	db ENDURE
 	db -1 ; end
 
 SmoochumEggMoves:
 	db MEDITATE
+	db ICE_PUNCH
 	db -1 ; end
 
 ElekidEggMoves:

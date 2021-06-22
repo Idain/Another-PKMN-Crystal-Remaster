@@ -2977,7 +2977,7 @@ wMountMoonSquareSceneID::                         db
 wMobileTradeRoomSceneID::                         db
 wMobileBattleRoomSceneID::                        db
 
-	ds 113
+	ds 104
 
 wEventFlags:: flag_array NUM_EVENTS
 

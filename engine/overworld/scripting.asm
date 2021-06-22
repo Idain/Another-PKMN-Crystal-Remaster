@@ -1430,9 +1430,9 @@ Script_sdefer:
 
 Script_checkscene:
 	call CheckScenes
-	jr z, .no_scene
+	jr nz, .doscene
 	ld a, $ff
-.no_scene
+.doscene
 	ld [wScriptVar], a
 	ret
 

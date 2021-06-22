@@ -38,7 +38,6 @@ ItemEffects:
 	dw EvoStoneEffect      ; FIRE_STONE
 	dw EvoStoneEffect      ; THUNDERSTONE
 	dw EvoStoneEffect      ; WATER_STONE
-	dw NoEffect            ; ITEM_19
 	dw VitaminEffect       ; HP_UP
 	dw VitaminEffect       ; PROTEIN
 	dw VitaminEffect       ; IRON
@@ -58,7 +57,6 @@ ItemEffects:
 	dw SuperRepelEffect    ; SUPER_REPEL
 	dw MaxRepelEffect      ; MAX_REPEL
 	dw DireHitEffect       ; DIRE_HIT
-	dw NoEffect            ; ITEM_2D
 	dw RestoreHPEffect     ; FRESH_WATER
 	dw RestoreHPEffect     ; SODA_POP
 	dw RestoreHPEffect     ; LEMONADE
@@ -113,7 +111,6 @@ ItemEffects:
 	dw NoEffect            ; WHT_APRICORN
 	dw NoEffect            ; BLACKBELT_I
 	dw NoEffect            ; BLK_APRICORN
-	dw NoEffect            ; ITEM_64
 	dw NoEffect            ; PNK_APRICORN
 	dw NoEffect            ; BLACKGLASSES
 	dw NoEffect            ; SLOWPOKETAIL
@@ -133,7 +130,6 @@ ItemEffects:
 	dw NoEffect            ; MIRACLE_SEED
 	dw NoEffect            ; THICK_CLUB
 	dw NoEffect            ; FOCUS_BAND
-	dw NoEffect            ; ITEM_78
 	dw EnergypowderEffect  ; ENERGYPOWDER
 	dw EnergyRootEffect    ; ENERGY_ROOT
 	dw HealPowderEffect    ; HEAL_POWDER
@@ -148,17 +144,12 @@ ItemEffects:
 	dw NoEffect            ; STAR_PIECE
 	dw BasementKeyEffect   ; BASEMENT_KEY
 	dw NoEffect            ; PASS
-	dw NoEffect            ; ITEM_87
-	dw NoEffect            ; ITEM_88
 	dw NoEffect            ; LUCKY_PUNCH
 	dw NoEffect            ; CHARCOAL
 	dw RestoreHPEffect     ; BERRY_JUICE
 	dw NoEffect            ; SCOPE_LENS
-	dw NoEffect            ; ITEM_8D
-	dw NoEffect            ; ITEM_8E
 	dw NoEffect            ; METAL_COAT
 	dw NoEffect            ; DRAGON_FANG
-	dw NoEffect            ; ITEM_91
 	dw NoEffect            ; LEFTOVERS
 	dw NoEffect            ; ITEM_93
 	dw NoEffect            ; ITEM_94
@@ -268,9 +259,7 @@ PokeBallEffect:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld de, .skip_or_return_from_ball_fn
-	push de
-	jp hl
+	call _hl_
 
 .skip_or_return_from_ball_fn
 	ld a, [wCurItem]
@@ -411,16 +400,16 @@ PokeBallEffect:
 	and a
 	jr nz, .caught
 	ld a, [wThrownBallWobbleCount]
-	cp 1
+	dec a ; 1 
 	ld hl, BallBrokeFreeText
 	jp z, .shake_and_break_free
-	cp 2
+	dec a ; 2
 	ld hl, BallAppearedCaughtText
 	jp z, .shake_and_break_free
-	cp 3
+	dec a ; 3
 	ld hl, BallAlmostHadItText
 	jp z, .shake_and_break_free
-	cp 4
+	dec a ; 4
 	ld hl, BallSoCloseText
 	jp z, .shake_and_break_free
 
@@ -921,10 +910,9 @@ MoonBallMultiplier:
 	sla b
 	jr c, .max
 	sla b
-	jr nc, .done
+	ret nc
 .max
 	ld b, $ff
-.done
 	ret
 
 LoveBallMultiplier: ; Cath rate = x4
@@ -980,16 +968,16 @@ LoveBallMultiplier: ; Cath rate = x4
 
 .done2
 	pop de
-
 .done1
 	pop bc
 	ret
 
 FastBallMultiplier:
+; Multiply catch rate by 4 if enemy's speed >=100
 	ld hl, wEnemyMonBaseStats + 3
 	ld a, [hl]
 	cp 100
-	ret c ; If enemy speed < 100, return b as it is.
+	ret c ; If enemy speed < 100, catch rate x1
 
 	sla b ; 2x
 	jr c, .max
@@ -1117,9 +1105,7 @@ EvoStoneEffect:
 
 	ld a, [wMonTriedToEvolve]
 	and a
-	jr z, .NoEffect
-
-	jp UseDisposableItem
+	jp nz, UseDisposableItem
 
 .NoEffect:
 	call WontHaveAnyEffectMessage
@@ -1253,8 +1239,7 @@ RareCandy_StatBooster_GetParameters:
 	call GetBaseData
 	ld a, [wCurPartyMon]
 	ld hl, wPartyMonNicknames
-	call GetNickname
-	ret
+	jp GetNickname
 
 RareCandyEffect:
 	ld b, PARTYMENUACTION_HEALING_ITEM
@@ -1805,7 +1790,7 @@ RestoreHealth:
 	ld a, [hl]
 	adc d
 	ld [hl], a
-	jr c, .full_hp
+	jr c, ReviveFullHP
 	call LoadCurHPIntoBuffer3
 	ld a, MON_HP + 1
 	call GetPartyParamLocation
@@ -1819,10 +1804,7 @@ RestoreHealth:
 	dec hl
 	ld a, [de]
 	sbc [hl]
-	jr c, .finish
-.full_hp
-	call ReviveFullHP
-.finish
+	jr nc, ReviveFullHP
 	ret
 
 RemoveHP:
@@ -1834,13 +1816,11 @@ RemoveHP:
 	ld a, [hl]
 	sbc d
 	ld [hl], a
-	jr nc, .okay
+	jr nc, LoadCurHPIntoBuffer3
 	xor a
 	ld [hld], a
 	ld [hl], a
-.okay
-	call LoadCurHPIntoBuffer3
-	ret
+	jr LoadCurHPIntoBuffer3
 
 IsMonFainted:
 	push de
@@ -2092,13 +2072,6 @@ UseRepel:
 RepelUsedEarlierIsStillInEffectText:
 	text_far _RepelUsedEarlierIsStillInEffectText
 	text_end
-
-;XAccuracyEffect:
-;	ld hl, wPlayerSubStatus4
-;	bit SUBSTATUS_X_ACCURACY, [hl]
-;	jp nz, WontHaveAnyEffect_NotUsedMessage
-;	set SUBSTATUS_X_ACCURACY, [hl]
-;	jp UseItemText
 
 PokeDollEffect:
 	ld a, [wBattleMode]
@@ -2529,10 +2502,6 @@ RestorePP:
 	jr z, .restore_all
 	cp MAX_ETHER
 	jr z, .restore_all
-
-;	ld c, 5
-;	cp MYSTERYBERRY
-;	jr z, .restore_some
 
 	ld c, 10
 

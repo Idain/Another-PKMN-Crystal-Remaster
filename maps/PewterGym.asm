@@ -27,12 +27,19 @@ PewterGymBrockScript:
 	playsound SFX_GET_BADGE
 	waitsfx
 	setflag ENGINE_BOULDERBADGE
+.FightDone
+	checkevent EVENT_GOT_TM59_ROCK_SLIDE
+	iftrue BrockScript_Defeat
 	writetext BrockBoulderBadgeText
+	promptbutton
+	verbosegiveitem TM_ROCK_SLIDE
+	setevent EVENT_GOT_TM59_ROCK_SLIDE
+	writetext BrockTMRockSlideText
 	waitbutton
 	closetext
 	end
 
-.FightDone:
+BrockScript_Defeat:
 	writetext BrockFightDoneText
 	waitbutton
 	closetext
@@ -74,19 +81,19 @@ PewterGymStatue:
 	jumpstd GymStatue2Script
 
 BrockIntroText:
-	text "BROCK: Wow, it's"
+	text "Brock: Wow, it's"
 	line "not often that we"
 
 	para "get a challenger"
-	line "from JOHTO."
+	line "from Johto."
 
-	para "I'm BROCK, the"
-	line "PEWTER GYM LEADER."
+	para "I'm Brock, the"
+	line "Pewter Gym Leader."
 
 	para "I'm an expert on"
-	line "rock-type #MON."
+	line "Rock-type #mon."
 
-	para "My #MON are im-"
+	para "My #mon are im-"
 	line "pervious to most"
 
 	para "physical attacks."
@@ -99,8 +106,8 @@ BrockIntroText:
 	done
 
 BrockWinLossText:
-	text "BROCK: Your #-"
-	line "MON's powerful at-"
+	text "Brock: Your #-"
+	line "mon's powerful at-"
 	cont "tacks overcame my"
 	cont "rock-hard defense…"
 
@@ -108,31 +115,37 @@ BrockWinLossText:
 	line "than I expected…"
 
 	para "Go ahead--take"
-	line "this BADGE."
+	line "this Badge."
 	done
 
 ReceivedBoulderBadgeText:
 	text "<PLAYER> received"
-	line "BOULDERBADGE."
+	line "Boulder Badge."
 	done
 
 BrockBoulderBadgeText:
-	text "BROCK: <PLAY_G>,"
+	text "Brock: <PLAY_G>,"
 	line "thanks. I enjoyed"
 
 	para "battling you, even"
 	line "though I am a bit"
 	cont "upset."
 
-	para "That BOULDERBADGE"
-	line "will make your"
+	para "I'll give you this"
+	line "TM, too."
+	done
 
-	para "#MON even more"
-	line "powerful."
+BrockTMRockSlideText:
+	text "This is the move"
+	line "Rock Slide."
+
+	para "It can sometimes"
+	line "cause your foe"
+	cont "to flinch."
 	done
 
 BrockFightDoneText:
-	text "BROCK: The world"
+	text "Brock: The world"
 	line "is huge. There are"
 
 	para "still many strong"
@@ -146,11 +159,11 @@ BrockFightDoneText:
 
 CamperJerrySeenText:
 	text "The trainers of"
-	line "this GYM use rock-"
-	cont "type #MON."
+	line "this Gym use rock-"
+	cont "type #mon."
 
 	para "The rock-type has"
-	line "high DEFENSE."
+	line "high Defense."
 
 	para "Battles could end"
 	line "up going a long"
@@ -166,7 +179,7 @@ CamperJerryBeatenText:
 
 CamperJerryAfterBattleText:
 	text "Hey, you! Trainer"
-	line "from JOHTO! BROCK"
+	line "from Johto, Brock"
 
 	para "is tough. He'll"
 	line "punish you if you"
@@ -176,25 +189,25 @@ CamperJerryAfterBattleText:
 	done
 
 PewterGymGuideText:
-	text "Yo! CHAMP in"
+	text "Yo! Champ in"
 	line "making! You're"
 
 	para "really rocking."
 	line "Are you battling"
 
-	para "the GYM LEADERS of"
-	line "KANTO?"
+	para "the Gym Leaders of"
+	line "Kanto?"
 
 	para "They're strong and"
 	line "dedicated people,"
 
-	para "just like JOHTO's"
-	line "GYM LEADERS."
+	para "just like Johto's"
+	line "Gym Leaders."
 	done
 
 PewterGymGuideWinText:
-	text "Yo! CHAMP in"
-	line "making! That GYM"
+	text "Yo! Champ in"
+	line "making! That Gym"
 
 	para "didn't give you"
 	line "much trouble."

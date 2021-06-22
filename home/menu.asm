@@ -609,18 +609,15 @@ RunMenuItemPrintingFunction::
 	ld d, h
 	ld e, l
 	ld hl, wMenuDataDisplayFunctionPointer
-	call ._hl_
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	call _hl_
 	pop hl
 	ld de, 2 * SCREEN_WIDTH
 	add hl, de
 	pop de
 	jr .loop
-
-._hl_
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp hl
 
 InitMenuCursorAndButtonPermissions::
 	call InitVerticalMenuCursor
