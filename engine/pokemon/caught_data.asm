@@ -204,8 +204,7 @@ SetBoxMonCaughtData:
 	call OpenSRAM
 	ld hl, sBoxMon1CaughtLevel
 	call SetBoxmonOrEggmonCaughtData
-	call CloseSRAM
-	ret
+	jp CloseSRAM
 
 SetGiftBoxMonCaughtData:
 	push bc
@@ -214,8 +213,7 @@ SetGiftBoxMonCaughtData:
 	ld hl, sBoxMon1CaughtLevel
 	pop bc
 	call SetGiftMonCaughtData
-	call CloseSRAM
-	ret
+	jp CloseSRAM
 
 SetGiftPartyMonCaughtData:
 	ld a, [wPartyCount]

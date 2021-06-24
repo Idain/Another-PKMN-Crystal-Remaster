@@ -28,7 +28,7 @@ DrawHP:
 	ld e, a
 	ld a, 6
 	ld d, a
-	jp .fainted
+	jr .fainted
 
 .at_least_1_hp
 	ld a, [wTempMonMaxHP]
@@ -360,7 +360,7 @@ Unused_PlaceEnemyHPLevel:
 	pop hl
 	ld a, [wCurPartySpecies]
 	cp EGG
-	jr z, .egg
+	ret z
 	push hl
 	ld bc, -12
 	add hl, bc
@@ -372,8 +372,6 @@ Unused_PlaceEnemyHPLevel:
 	push de
 	call PrintLevel
 	pop de
-
-.egg
 	ret
 
 PlaceStatusString:

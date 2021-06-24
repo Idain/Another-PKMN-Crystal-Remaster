@@ -117,17 +117,14 @@ PokemonActionSubmenu:
 	ld hl, .Actions
 	ld de, 3
 	call IsInArray
-	jr nc, .nothing
+	ld a, 0
+	ret nc
 
 	inc hl
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	jp hl
-
-.nothing
-	ld a, 0
-	ret
 
 .Actions:
 	dbw MONMENUITEM_CUT,        MonMenu_Cut
@@ -198,8 +195,7 @@ SwitchPartyMons:
 .DontSwitch:
 	xor a
 	ld [wPartyMenuActionText], a
-	call CancelPokemonAction
-	ret
+	jp CancelPokemonAction
 
 GiveTakePartyMonItem:
 ; Eggs can't hold items!
@@ -792,12 +788,12 @@ ChooseMoveToDelete:
 	bit B_BUTTON_F, a
 	jp nz, .b_button
 	bit A_BUTTON_F, a
-	jp nz, .a_button
+	jr nz, .a_button
 
 .enter_loop
 	call PrepareToPlaceMoveData
 	call PlaceMoveData
-	jp .loop
+	jr .loop
 
 .a_button
 	and a
@@ -1075,12 +1071,10 @@ SetUpMoveScreenBG:
 	ld e, MONICON_MOVES
 	farcall LoadMenuMonIcon
 	hlcoord 0, 1
-	ld b, 9
-	ld c, 18
+	lb bc, 9, 18
 	call Textbox
 	hlcoord 0, 11
-	ld b, 5
-	ld c, 18
+	lb bc, 5, 18
 	call Textbox
 	hlcoord 2, 0
 	lb bc, 2, 3
@@ -1126,8 +1120,7 @@ SetUpMoveList:
 	inc a
 	ld [w2DMenuNumRows], a
 	hlcoord 0, 11
-	ld b, 5
-	ld c, 18
+	lb bc, 5, 18
 	jp Textbox
 
 PrepareToPlaceMoveData:
@@ -1167,8 +1160,8 @@ PlaceMoveData:
 	ld a, [wCurSpecies]
 	ld b, a
 	hlcoord 1, 12
-	ld [hl], "/"
-	inc hl	
+	ld a, "/"
+	ld [hli], a
 	predef PrintMoveType
 	ld a, [wCurSpecies]
 	dec a
@@ -1208,8 +1201,7 @@ String_MoveNoPower:
 
 PlaceMoveScreenArrows:
 	call PlaceMoveScreenLeftArrow
-	call PlaceMoveScreenRightArrow
-	ret
+	jr PlaceMoveScreenRightArrow
 
 PlaceMoveScreenLeftArrow:
 	ld a, [wCurPartyMon]

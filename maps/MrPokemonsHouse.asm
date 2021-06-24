@@ -263,13 +263,13 @@ MrPokemonsHouse_OakText1:
 	para "Hm, I see!"
 
 	para "I understand why"
-	line "PROF.ELM gave you"
+	line "Prof.Elm gave you"
 
 	para "a #mon for this"
 	line "errand."
 
 	para "To researchers"
-	line "like Prof.Elmand"
+	line "like Prof.Elm and"
 
 	para "I, #mon are our"
 	line "friends."
@@ -304,7 +304,7 @@ MrPokemonsHouse_OakText1:
 
 MrPokemonsHouse_GetDexText:
 	text "<PLAYER> received"
-	line "#DEX!"
+	line "#dex!"
 	done
 
 MrPokemonsHouse_OakText2:

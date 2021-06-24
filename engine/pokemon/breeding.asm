@@ -53,9 +53,6 @@ CheckBreedmonCompatibility:
 	jr z, .done
 
 .compute
-;	call .CheckDVs
-;	ld c, 255
-;	jp z, .done
 	ld a, [wBreedMon2Species]
 	ld b, a
 	ld a, [wBreedMon1Species]
@@ -83,25 +80,7 @@ CheckBreedmonCompatibility:
 	ld a, c
 	ld [wBreedingCompatibility], a
 	ret
-/*
-.CheckDVs:
-; If Defense DVs match and the lower 3 bits of the Special DVs match,
-; avoid breeding
-	ld a, [wBreedMon1DVs]
-	and %1111
-	ld b, a
-	ld a, [wBreedMon2DVs]
-	and %1111
-	cp b
-	ret nz
-	ld a, [wBreedMon1DVs + 1]
-	and %111
-	ld b, a
-	ld a, [wBreedMon2DVs + 1]
-	and %111
-	cp b
-	ret
-*/
+
 .CheckBreedingGroupCompatibility:
 ; If either mon is in the No Eggs group,
 ; they are not compatible.
@@ -139,9 +118,7 @@ CheckBreedmonCompatibility:
 	cp DITTO
 	jr z, .Compatible
 	ld [wCurSpecies], a
-	push bc
 	call GetBaseData
-	pop bc
 	ld a, [wBaseEggGroups]
 	push af
 	and $f
@@ -173,7 +150,7 @@ CheckBreedmonCompatibility:
 
 ;---------------------------------------------
 CheckBattleEggGroupCompatibility:
-; Copy of CheckBreedingEggGroupCompatibility, but with battling mons.
+; Similar to CheckBreedingEggGroupCompatibility, but with battling mons.
 
 ; Ditto is automatically discarded.
 ; If not Ditto, load the breeding groups into b/c and d/e.
@@ -202,9 +179,7 @@ CheckBattleEggGroupCompatibility:
 	jr z, .Incompatible
 
 	ld [wCurSpecies], a
-	push bc
 	call GetBaseData
-	pop bc
 	ld a, [wBaseEggGroups]
 	push af
 	and $f
@@ -233,9 +208,8 @@ CheckBattleEggGroupCompatibility:
 
 .pop_incompatible:
 	pop af
-
 .Incompatible:
-	xor a
+	and a
 	ret
 
 .Compatible:
@@ -423,7 +397,7 @@ HatchEggs:
 	jp .loop
 
 .Text_HatchEgg:
-	; Huh? @ @
+	; Huh? @_@
 	text_far Text_BreedHuh
 	text_asm
 	ld hl, wVramState
@@ -763,8 +737,7 @@ EggHatch_AnimationSequence:
 	call PlayMusic
 	call EnableLCD
 	hlcoord 7, 4
-	ld b, HIGH(vBGMap0)
-	ld c, $31 ; Egg tiles start here
+	lb bc, HIGH(vBGMap0), $31 ; Egg tiles start here
 	ld a, EGG
 	call Hatch_UpdateFrontpicBGMapCenter
 	ld c, 80
@@ -812,8 +785,7 @@ EggHatch_AnimationSequence:
 	call ClearSprites
 	call Hatch_InitShellFragments
 	hlcoord 6, 3
-	ld b, HIGH(vBGMap0)
-	ld c, $00 ; Hatchling tiles start here
+	lb bc, HIGH(vBGMap0), $00 ; Hatchling tiles start here
 	ld a, [wJumptableIndex]
 	call Hatch_UpdateFrontpicBGMapCenter
 	call Hatch_ShellFragmentLoop
@@ -821,8 +793,7 @@ EggHatch_AnimationSequence:
 	ld a, [wJumptableIndex]
 	ld [wCurPartySpecies], a
 	hlcoord 6, 3
-	ld d, $0
-	ld e, ANIM_MON_HATCH
+	lb de, 0, ANIM_MON_HATCH
 	predef AnimateFrontpic
 	pop af
 	ld [wCurSpecies], a
@@ -830,8 +801,7 @@ EggHatch_AnimationSequence:
 
 Hatch_LoadFrontpicPal:
 	ld [wPlayerHPPal], a
-	ld b, SCGB_EVOLUTION
-	ld c, $0
+	lb bc, SCGB_EVOLUTION, 0
 	jp GetSGBLayout
 
 EggHatch_CrackShell:
@@ -898,8 +868,7 @@ Hatch_InitShellFragments:
 .done
 	ld de, SFX_EGG_HATCH
 	call PlaySFX
-	call EggHatch_DoAnimFrame
-	ret
+	jp EggHatch_DoAnimFrame
 
 shell_fragment: MACRO
 ; y tile, y pxl, x tile, x pxl, frameset offset, ???
@@ -972,26 +941,17 @@ DayCareMonCompatibilityText:
 	call CheckBreedmonCompatibility
 	pop bc
 	ld a, [wBreedingCompatibility]
-;	ld hl, .BreedBrimmingWithEnergyText
-;	cp -1
-;	jr z, .done
 	ld hl, .BreedNoInterestText
 	and a
-	jr z, .done
+	ret z
 	ld hl, .BreedAppearsToCareForText
 	cp 230
-	jr nc, .done
+	ret nc
 	cp 70
 	ld hl, .BreedFriendlyText
-	jr nc, .done
+	ret nc
 	ld hl, .BreedShowsInterestText
-
-.done
 	ret
-
-;.BreedBrimmingWithEnergyText:
-;	text_far _BreedBrimmingWithEnergyText
-;	text_end
 
 .BreedNoInterestText:
 	text_far _BreedNoInterestText

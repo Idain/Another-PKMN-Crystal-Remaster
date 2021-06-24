@@ -306,15 +306,15 @@ MT01 EQU const_value
 	add_mt FLAMETHROWER
 	add_mt THUNDERBOLT
 	add_mt ICE_BEAM
-	add_mt BODY_SLAM
-	add_mt COUNTER
-	add_mt DOUBLE_EDGE
-	add_mt METRONOME
-	add_mt MIMIC
-	add_mt SEISMIC_TOSS
-	add_mt SOFTBOILED
-	add_mt MEGA_PUNCH
-	add_mt MEGA_KICK
+;	add_mt BODY_SLAM
+;	add_mt COUNTER
+;	add_mt DOUBLE_EDGE
+;	add_mt METRONOME
+;	add_mt MIMIC
+;	add_mt SEISMIC_TOSS
+;	add_mt SOFTBOILED
+;	add_mt MEGA_PUNCH
+;	add_mt MEGA_KICK
 NUM_TUTORS = __tmhm_value__ - NUM_TMS - NUM_HMS - 1
 
 NUM_TM_HM_TUTOR EQU NUM_TMS + NUM_HMS + NUM_TUTORS

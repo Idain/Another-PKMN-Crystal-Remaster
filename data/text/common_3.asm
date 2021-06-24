@@ -458,8 +458,6 @@ _CongratulationsYourPokemonText::
 	text_ram wStringBuffer2
 	text_end
 
-	text_end ; unreferenced
-
 _EvolvedIntoText::
 	text_start
 
@@ -491,7 +489,7 @@ _MartFinalPriceText::
 	text_decimal wItemQuantityChange, 1, 2
 	text " @"
 	text_ram wStringBuffer2
-	text "(S)"
+	text "(s)"
 	line "will be ¥@"
 	text_decimal hMoneyTemp, 3, 6
 	text "."
@@ -506,7 +504,7 @@ _HerbShopLadyIntroText::
 	para "They're good, but"
 	line "a trifle bitter."
 
-	para "Your #MON may"
+	para "Your #mon may"
 	line "not like them."
 
 	para "Hehehehe…"
@@ -520,7 +518,7 @@ _HerbalLadyFinalPriceText::
 	text_decimal wItemQuantityChange, 1, 2
 	text " @"
 	text_ram wStringBuffer2
-	text "(S)"
+	text "(s)"
 	line "will be ¥@"
 	text_decimal hMoneyTemp, 3, 6
 	text "."
@@ -532,7 +530,7 @@ _HerbalLadyThanksText::
 	done
 
 _HerbalLadyPackFullText::
-	text "Oh? Your PACK is"
+	text "Oh? Your Pack is"
 	line "full, dear."
 	done
 
@@ -570,7 +568,7 @@ _BargainShopThanksText::
 	done
 
 _BargainShopPackFullText::
-	text "Uh-oh, your PACK"
+	text "Uh-oh, your Pack"
 	line "is chock-full."
 	done
 
@@ -603,7 +601,7 @@ _PharmacyFinalPriceText::
 	text_decimal wItemQuantityChange, 1, 2
 	text " @"
 	text_ram wStringBuffer2
-	text "(S)"
+	text "(s)"
 	line "will cost ¥@"
 	text_decimal hMoneyTemp, 3, 6
 	text "."
@@ -686,7 +684,7 @@ _MartBoughtText::
 	text " for"
 	line "@"
 	text_ram wStringBuffer2
-	text "(S)."
+	text "(s)."
 	done
 
 _SlotsBetHowManyCoinsText::
