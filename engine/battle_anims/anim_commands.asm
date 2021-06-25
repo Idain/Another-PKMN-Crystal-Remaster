@@ -147,7 +147,7 @@ BattleAnimRestoreHuds:
 	ld a, BANK(wCurBattleMon) ; aka BANK(wTempMon), BANK(wPartyMon1), and several others
 	ldh [rSVBK], a
 
-	call UpdateBattleHUDs
+	farcall UpdateBattleHUDs
 
 	pop af
 	ldh [rSVBK], a

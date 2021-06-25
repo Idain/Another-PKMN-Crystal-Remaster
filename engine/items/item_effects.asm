@@ -1745,8 +1745,7 @@ StatusHealer_ExitMenu:
 	xor a
 	ld [wItemEffectSucceeded], a
 StatusHealer_ClearPalettes:
-	call ClearPalettes
-	ret
+	jp ClearPalettes
 
 IsItemUsedOnBattleMon:
 	ld a, [wBattleMode]
