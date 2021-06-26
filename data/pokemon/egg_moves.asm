@@ -379,6 +379,7 @@ HorseaEggMoves:
 	db DISABLE
 	db SPLASH
 	db DRAGON_RAGE
+	db OUTRAGE
 	db -1 ; end
 
 GoldeenEggMoves:
@@ -434,6 +435,8 @@ KabutoEggMoves:
 	db -1 ; end
 
 AerodactylEggMoves:
+	db CURSE
+	db STEEL_WING
 	db WHIRLWIND
 	db PURSUIT
 	db FORESIGHT
@@ -455,15 +458,17 @@ DratiniEggMoves:
 	db -1 ; end
 
 ChikoritaEggMoves:
+	db BODY_SLAM
 	db VINE_WHIP
 	db LEECH_SEED
 	db COUNTER
 	db ANCIENTPOWER
 	db FLAIL
-	db SWORDS_DANCE
 	db -1 ; end
 
 CyndaquilEggMoves:
+	db DOUBLE_EDGE
+	db DOUBLE_KICK
 	db FURY_SWIPES
 	db QUICK_ATTACK
 	db REVERSAL

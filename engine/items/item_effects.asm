@@ -262,11 +262,6 @@ PokeBallEffect:
 	call _hl_
 
 .skip_or_return_from_ball_fn
-	ld a, [wCurItem]
-	cp LEVEL_BALL
-	ld a, b
-	jp z, .skip_hp_calc
-
 	ld a, b
 	ldh [hMultiplicand + 2], a
 
@@ -303,7 +298,7 @@ PokeBallEffect:
 	ld a, c
 	and a
 	jr nz, .okay_1
-	ld c, $1
+	ld c, 1
 .okay_1
 	ld b, e
 
@@ -359,8 +354,6 @@ PokeBallEffect:
 	jr nc, .max_2
 	ld a, $ff
 .max_2
-
-.skip_hp_calc
 	ld b, a
 	ld [wFinalCatchRate], a
 	call Random
@@ -915,13 +908,14 @@ MoonBallMultiplier:
 	ld b, $ff
 	ret
 
-LoveBallMultiplier: ; Cath rate = x4
+LoveBallMultiplier: ; Catch rate = x4
+	; Check if the player's and enemy's Egg Groups are compatible
 	push bc
 	farcall CheckBattleEggGroupCompatibility
 	pop bc
 	ret nc
 
-	; check player mon species
+	; Check player mon species
 	push bc
 	ld a, [wTempBattleMonSpecies]
 	ld [wCurPartySpecies], a
@@ -937,7 +931,7 @@ LoveBallMultiplier: ; Cath rate = x4
 	inc d   ; female
 
 .playermale
-	; check wild mon species
+	; Check wild mon species
 	push de
 	ld a, [wTempEnemyMonSpecies]
 	ld [wCurPartySpecies], a

@@ -1329,17 +1329,10 @@ ParseMusicCommand:
 	ld a, [wCurMusicByte]
 	; get command #
 	sub FIRST_MUSIC_CMD
-	ld e, a
-	ld d, 0
-	; seek command pointer
+	; seek command pointer and jump to it.
 	ld hl, MusicCommands
-	add hl, de
-	add hl, de
-	; jump to the new pointer
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp hl
+	rst JumpTable
+	ret
 
 MusicCommands:
 ; entries correspond to audio constants (see macros/scripts/audio.asm)

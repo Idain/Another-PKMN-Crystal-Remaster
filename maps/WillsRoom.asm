@@ -49,9 +49,12 @@ WillScript_Battle:
 	waitbutton
 	closetext
 	winlosstext WillScript_WillBeatenText, 0
+	readvar VAR_BADGES
+	ifequal 16, .WillScript_16Badges
 	loadtrainer WILL, WILL1
 	startbattle
 	reloadmapafterbattle
+.AfterBattle:
 	setevent EVENT_BEAT_ELITE_4_WILL
 	opentext
 	writetext WillScript_WillDefeatText
@@ -64,6 +67,12 @@ WillScript_Battle:
 	setevent EVENT_WILLS_ROOM_EXIT_OPEN
 	waitsfx
 	end
+
+.WillScript_16Badges:
+	loadtrainer WILL, WILL2
+	startbattle
+	reloadmapafterbattle
+	sjump .AfterBattle
 
 WillScript_AfterBattle:
 	writetext WillScript_WillDefeatText
@@ -89,7 +98,7 @@ WillScript_WillBeforeText:
 	para "I have trained all"
 	line "around the world,"
 
-	para "making my psychic"
+	para "making my Psychic"
 	line "#mon powerful."
 
 	para "And, at last, I've"

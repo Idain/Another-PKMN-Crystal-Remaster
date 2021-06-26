@@ -5610,7 +5610,7 @@ Function11acb7:
 	ld [wcd4a], a
 	inc hl
 	ld a, [hl]
-	cp $ff
+	inc a ; cp -1
 	ret nz
 	xor a
 	ld [wcd4a], a
@@ -5653,8 +5653,8 @@ Function11ad1b:
 Function11ad6e:
 	ld a, [wJumptableIndex]
 	ld hl, Jumptable_11ad78
-	call Function11b239
-	jp hl
+	rst JumpTable
+	ret
 
 Jumptable_11ad78:
 	dw Function11b082
@@ -6417,16 +6417,6 @@ CheckSeenMemMon:
 
 Function11b236:
 	jp FillBoxWithByte
-
-Function11b239:
-	ld e, a
-	ld d, 0
-	add hl, de
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	ret
 
 Function11b242:
 	hlcoord 3, 4

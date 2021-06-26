@@ -690,6 +690,7 @@ KRIS EQU __trainer_class__
 
 	trainerclass RED ; 3f
 	const RED1
+	const RED2
 
 	trainerclass BLUE ; 40
 	const BLUE1

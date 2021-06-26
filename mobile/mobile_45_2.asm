@@ -39,15 +39,9 @@ Function11659d:
 	ld a, [wc314]
 	cp $12
 	ret nc
-	ld e, a
-	ld d, 0
 	ld hl, Jumptable_1165af
-	add hl, de
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp hl
+	rst JumpTable
+	ret
 
 Jumptable_1165af:
 	dw Function11677e

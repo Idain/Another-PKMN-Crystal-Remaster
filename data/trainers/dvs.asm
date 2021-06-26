@@ -64,7 +64,7 @@ TrainerClassDVs:
 	dn  6, 15, 15, 15 ; KIMONO_GIRL
 	dn  6, 15, 15, 15 ; TWINS
 	dn  6, 15, 15, 15 ; POKEFANF
-	dn 14, 12, 15, 15 ; RED
+	dn 13, 15, 15, 15 ; RED
 	dn 13, 15, 15, 15 ; BLUE
 	dn  9, 15, 15, 15 ; OFFICER
 	dn  7, 15, 15, 15 ; GRUNTF

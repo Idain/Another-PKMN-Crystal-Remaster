@@ -49,9 +49,12 @@ KogaScript_Battle:
 	waitbutton
 	closetext
 	winlosstext KogaScript_KogaBeatenText, 0
+	readvar VAR_BADGES
+	ifequal 16, .KogaScript_16Badges
 	loadtrainer KOGA, KOGA1
 	startbattle
 	reloadmapafterbattle
+.AfterBattle:
 	setevent EVENT_BEAT_ELITE_4_KOGA
 	opentext
 	writetext KogaScript_KogaDefeatText
@@ -64,6 +67,12 @@ KogaScript_Battle:
 	setevent EVENT_KOGAS_ROOM_EXIT_OPEN
 	waitsfx
 	end
+
+.KogaScript_16Badges:
+	loadtrainer KOGA, KOGA2
+	startbattle
+	reloadmapafterbattle
+	sjump .AfterBattle
 
 KogaScript_AfterBattle:
 	writetext KogaScript_KogaDefeatText

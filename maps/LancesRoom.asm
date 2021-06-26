@@ -57,10 +57,13 @@ LancesRoomLanceScript:
 	closetext
 	winlosstext LanceBattleWinText, 0
 	setlasttalked LANCESROOM_LANCE
+	readvar VAR_BADGES
+	ifequal 16, .LanceScript_16Badges
 	loadtrainer CHAMPION, LANCE
 	startbattle
 	dontrestartmapmusic
 	reloadmapafterbattle
+.AfterBattle:
 	setevent EVENT_BEAT_CHAMPION_LANCE
 	opentext
 	writetext LanceBattleAfterText
@@ -127,6 +130,13 @@ LancesRoomLanceScript:
 	pause 15
 	warpfacing UP, HALL_OF_FAME, 4, 13
 	end
+
+.LanceScript_16Badges:
+	loadtrainer CHAMPION, LANCE2
+	startbattle
+	dontrestartmapmusic
+	reloadmapafterbattle
+	sjump .AfterBattle
 
 LancesRoom_EnterMovement:
 	step UP

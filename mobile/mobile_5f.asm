@@ -538,8 +538,7 @@ Function17d2ce:
 	ld [wMusicFadeID + 1], a
 	call PlayMusic
 	call ReturnToMapFromSubmenu
-	call CloseSubmenu
-	ret
+	jp CloseSubmenu
 
 Function17d314:
 	ld a, $5
@@ -641,8 +640,7 @@ Function17d370:
 	ld de, wBGPals1
 	ld bc, $1000
 	call CopyBytes
-	call CloseSRAM
-	ret
+	jp CloseSRAM
 
 Function17d3f6:
 	call ClearBGPalettes
@@ -702,7 +700,10 @@ Function17d45a:
 	ret
 
 Function17d474:
-	jumptable Jumptable_17d483, wcd77
+	ld a, [wcd77]
+	ld hl, Jumptable_17d483
+	rst JumpTable
+	ret
 
 Jumptable_17d483:
 	dw Function17d48d
@@ -1031,8 +1032,7 @@ Function17d60b:
 	ld a, [$b1b2]
 	ld b, a
 	call CopyBytes
-	call CloseSRAM
-	ret
+	jp CloseSRAM
 
 Function17d6a1:
 	push hl
@@ -1099,15 +1099,9 @@ Function17d711:
 .crash_loop
 	cp $31
 	jr nc, .crash_loop
-	ld e, a
-	ld d, 0
 	ld hl, Jumptable17d72a
-	add hl, de
-	add hl, de
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	jp hl
+	rst JumpTable
+	ret
 
 asm_17d721:
 	call Function17e5af
