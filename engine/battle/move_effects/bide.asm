@@ -89,12 +89,9 @@ BattleCommand_UnleashEnergy:
 	ld [de], a
 	ld [wPlayerMoveStructEffect], a
 	ld [wEnemyMoveStructEffect], a
-;	call BattleRandom
-;	and 1
 	inc a
+	ld [wBattleAnimParam], a ; 1
 	inc a
-	ld [bc], a
-	ld a, 1
-	ld [wBattleAnimParam], a
+	ld [bc], a ; 2 turns
 	call AnimateCurrentMove
 	jp EndMoveEffect

@@ -2706,14 +2706,17 @@ AI_Smart_Stomp:
 
 AI_Smart_Solarbeam:
 ; 80% chance to encourage this move when it's sunny.
-; 90% chance to discourage this move when it's raining.
+; 90% chance to discourage this move in any other weather.
+; If there's no weather active, do nothing.
 
 	ld a, [wBattleWeather]
+	and a
+	ret z
+
 	cp WEATHER_SUN
 	jr z, .encourage
 
-	cp WEATHER_RAIN
-	ret nz
+	; Discourage otherwise.
 
 	call Random
 	cp 10 percent
