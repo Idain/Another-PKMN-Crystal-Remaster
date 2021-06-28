@@ -192,7 +192,7 @@ ALL_STATUS EQU (1 << PSN) | (1 << BRN) | (1 << FRZ) | (1 << PAR) | SLP
 
 ; wPlayerSubStatus4 or wEnemySubStatus4 bit flags
 	const_def
-	const SUBSTATUS_X_ACCURACY
+	const_skip
 	const_skip
 	const SUBSTATUS_FOCUS_ENERGY
 	const_skip
