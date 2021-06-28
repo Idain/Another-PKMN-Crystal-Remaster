@@ -10,16 +10,12 @@ VioletMart_MapScripts:
 
 VioletMartClerkScript:
 	opentext
-	checkflag ENGINE_RISINGBADGE
-	iftrue .EightBadgesStock
-	checkflag ENGINE_GLACIERBADGE
-	iftrue .SevenBadgesStock
-	checkflag ENGINE_MINERALBADGE
-	iftrue .FiveBadgesStock
-	checkflag ENGINE_PLAINBADGE
-	iftrue .ThreeBadgesStock
-	checkflag ENGINE_ZEPHYRBADGE
-	iftrue .OneBadgeStock
+	readvar VAR_JOHTO_BADGES
+	ifequal 8, .EightBadgesStock
+	ifequal 7, .SevenBadgesStock
+	ifequal 5, .FiveBadgesStock
+	ifequal 3, .ThreeBadgesStock
+	ifequal 1, .OneBadgeStock
 	pokemart MARTTYPE_STANDARD, MART_VIOLET
 	closetext
 	end

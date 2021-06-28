@@ -182,13 +182,13 @@ MortyIntroText:
 	line "to have come."
 
 	para "Here in Ecruteak,"
-	line "#MON have long"
+	line "#mon have long"
 	cont "been revered."
 
 	para "It's said that a"
 	line "rainbow-colored"
 
-	para "#MON will come"
+	para "#mon will come"
 	line "down to appear"
 
 	para "before a truly"
@@ -208,7 +208,7 @@ MortyIntroText:
 	line "the person who"
 	
 	para "will make the"
-	line "#MON appear."
+	line "#mon appear."
 
 	para "I believe that"
 	line "person is me!"
@@ -233,12 +233,12 @@ Text_ReceivedFogBadge:
 
 MortyText_FogBadgeSpeech:
 	text "By having the Fog"
-	line "Badge, #MON up"
+	line "Badge, #mon up"
 
-	para "to Lv. 50 will"
+	para "to Lv. 40 will"
 	line "obey you."
 
-	para "Also, #MON will"
+	para "Also, #mon will"
 	line "be able to use" 
 	cont "Surf."
 
@@ -277,7 +277,7 @@ MortyFightDoneText:
 
 SageJeffreySeenText:
 	text "I spent the spring"
-	line "with my #MON."
+	line "with my #mon."
 
 	para "Then summer, fall"
 	line "and winter…"
@@ -295,14 +295,14 @@ SageJeffreyBeatenText:
 	done
 
 SageJeffreyAfterBattleText:
-	text "Where did #MON"
+	text "Where did #mon"
 	line "come from?"
 	done
 
 SagePingSeenText:
 	text "Can you inflict"
 	line "any damage on our"
-	cont "#MON?"
+	cont "#mon?"
 	done
 
 SagePingBeatenText:
@@ -310,8 +310,8 @@ SagePingBeatenText:
 	done
 
 SagePingAfterBattleText:
-	text "We use only ghost-"
-	line "type #MON."
+	text "We use only Ghost-"
+	line "type #mon."
 
 	para "No normal-type"
 	line "attack can harm"
@@ -363,7 +363,7 @@ EcruteakGymGuideText:
 	line "may tell you some"
 
 	para "deep secrets about"
-	line "ECRUTEAK."
+	line "Ecruteak."
 	done
 
 EcruteakGymGuideWinText:
@@ -376,8 +376,8 @@ EcruteakGymGuideWinText:
 	done
 
 EcruteakGymClosedText:
-	text "MORTY, the GYM"
-	line "LEADER, is absent."
+	text "Morty, the Gym"
+	line "Leader, is absent."
 
 	para "Sorry, but you'll"
 	line "have to leave."

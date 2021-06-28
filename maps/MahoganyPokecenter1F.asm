@@ -22,17 +22,17 @@ MahoganyPokecenter1FCooltrainerFScript:
 	jumptextfaceplayer MahoganyPokecenter1FCooltrainerFText
 
 MahoganyPokecenter1FPokefanMText:
-	text "What's this? TEAM"
-	line "ROCKET has come"
+	text "What's this? Team"
+	line "Rocket has come"
 	cont "back?"
 
 	para "I saw some men in"
-	line "black at LAKE OF"
-	cont "RAGE…"
+	line "black at Lake of"
+	cont "Rage…"
 	done
 
 MahoganyPokecenter1FYoungsterText:
-	text "I stop my #MON"
+	text "I stop my #mon"
 	line "from evolving too"
 	cont "early."
 
@@ -43,7 +43,7 @@ MahoganyPokecenter1FYoungsterText:
 	done
 
 MahoganyPokecenter1FCooltrainerFText:
-	text "#MON do become"
+	text "#mon do become"
 	line "stronger when they"
 
 	para "evolve, but they"

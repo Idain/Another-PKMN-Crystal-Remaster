@@ -66,13 +66,8 @@ BlackthornGymClairScript:
 	iftrue .GotTM24
 	writetext BlackthornGymClairText_YouKeptMeWaiting
 	promptbutton
-	giveitem TM_DRAGONBREATH
+	verbosegiveitem TM_DRAGONBREATH
 	iffalse .BagFull
-	getitemname STRING_BUFFER_3, TM_DRAGONBREATH
-	writetext BlackthornGymText_ReceivedTM24
-	playsound SFX_ITEM
-	waitsfx
-	itemnotify
 	setevent EVENT_GOT_TM24_DRAGONBREATH
 	writetext BlackthornGymClairText_DescribeTM24
 	promptbutton
@@ -156,7 +151,7 @@ ClairIntroText:
 	para "I can hold my own"
 	line "against even the"
 
-	para "#MON League's"
+	para "#mon League's"
 	line "Elite Four."
 
 	para "Do you still want"
@@ -188,7 +183,7 @@ ClairText_GoToDragonsDen:
 	line "but you're still"
 
 	para "not ready for the"
-	line "#MON League."
+	line "#mon League."
 
 	para "I know. You should"
 	line "take the Dragon-"
@@ -227,11 +222,6 @@ BlackthornGymClairText_YouKeptMeWaiting:
 	para "Here! Take this!"
 	done
 
-BlackthornGymText_ReceivedTM24:
-	text "<PLAYER> received"
-	line "TM24 DragonBreath."
-	done
-
 BlackthornGymClairText_DescribeTM24:
 	text "That contains"
 	line "DragonBreath."
@@ -254,7 +244,7 @@ BlackthornGymClairText_League:
 	text "What's the matter?"
 
 	para "Aren't you headed"
-	line "to the #MON"
+	line "to the #mon"
 	cont "League?"
 
 	para "Don't you know"
@@ -269,7 +259,7 @@ BlackthornGymClairText_League:
 
 	para "Don't you dare"
 	line "lose at the #-"
-	cont "MON League!"
+	cont "mon League!"
 
 	para "If you do, I'll"
 	line "feel even worse"
@@ -322,7 +312,7 @@ CooltrainermMikeAfterBattleText:
 
 CooltrainerfLolaSeenText:
 	text "Dragons are sacred"
-	line "#MON."
+	line "#mon."
 
 	para "They are full of"
 	line "life energy."
@@ -340,7 +330,7 @@ CooltrainerfLolaBeatenText:
 
 CooltrainerfLolaAfterBattleText:
 	text "Dragons are weak"
-	line "against dragon-"
+	line "against Dragon-"
 	cont "type moves."
 	done
 
@@ -356,8 +346,8 @@ BlackthornGymGuideText:
 
 	para "Clair uses the"
 	line "mythical and sac-"
-	cont "red dragon-type"
-	cont "#MON."
+	cont "red Dragon-type"
+	cont "#mon."
 
 	para "You can't damage"
 	line "them very easily."
@@ -366,7 +356,7 @@ BlackthornGymGuideText:
 	line "they're supposed"
 
 	para "to be weak against"
-	line "ice-type moves."
+	line "Ice-type moves."
 	done
 
 BlackthornGymGuideWinText:
@@ -374,12 +364,12 @@ BlackthornGymGuideWinText:
 	line "beat Clair!"
 
 	para "All that's left is"
-	line "the #MON League"
+	line "the #mon League"
 	cont "challenge."
 
 	para "You're on the way"
 	line "to becoming the"
-	cont "#MON Champion!"
+	cont "#mon Champion!"
 	done
 
 BlackthornGym1F_MapEvents:

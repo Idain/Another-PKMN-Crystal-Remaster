@@ -16,7 +16,11 @@ OlivineGymJasmineScript:
 	waitbutton
 	closetext
 	winlosstext Jasmine_BetterTrainer, 0
-	loadtrainer JASMINE, JASMINE1
+	readvar VAR_JOHTO_BADGES
+	ifequal 6, .SixBadgesBattle
+	ifequal 5, .FiveBadgesBattle
+	loadtrainer JASMINE, JASMINE2
+.StartGymBattle:
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_JASMINE
@@ -39,6 +43,14 @@ OlivineGymJasmineScript:
 	waitbutton
 	closetext
 	end
+
+.SixBadgesBattle:
+	loadtrainer JASMINE, JASMINE3
+	sjump .StartGymBattle
+
+.FiveBadgesBattle:
+	loadtrainer JASMINE, JASMINE1
+	sjump .StartGymBattle
 
 .GotIronTail:
 	writetext Jasmine_GoodLuck
@@ -137,30 +149,19 @@ Text_ReceivedMineralBadge:
 	done
 
 Jasmine_BadgeSpeech:
-	text "With that Badge,"
-	line "all #MON, in-" 
-	
-	para "cluding traded" 
-	line "#MON up to"
-
-	para "Lv. 70, will obey"
-	line "you, without ques-"
-	cont "tion."
+	text "Congratulations"
+	line "for winning the" 
+	cont "Mineral Badge…"
 
 	para "…Um… Please take"
 	line "this too…"
-	done
-
-Text_ReceivedTM09: ; unreferenced
-	text "<PLAYER> received"
-	line "TM09."
 	done
 
 Jasmine_IronTailSpeech:
 	text "It's called Iron"
 	line "Tail…"
 
-	para "Your #MON will"
+	para "Your #mon will"
 	line "hit the target"
 
 	para "with its hard" 
@@ -199,10 +200,10 @@ OlivineGymGuideWinText:
 OlivineGymGuidePreText:
 	text "Jasmine, the Gym"
 	line "Leader, is at the"
-	cont "LIGHTHOUSE."
+	cont "Lighthouse."
 
 	para "She's been tending"
-	line "to a sick #MON."
+	line "to a sick #mon."
 
 	para "A strong trainer"
 	line "has to be compas-"

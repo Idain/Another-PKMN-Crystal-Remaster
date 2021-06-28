@@ -186,10 +186,10 @@ WhitneyBeforeText:
 	text "Hi! I'm Whitney!"
 
 	para "Everyone was into"
-	line "#MON, so I got"
+	line "#mon, so I got"
 	cont "into it too!"
 
-	para "#MON are"
+	para "#mon are"
 	line "super cute!"
 
 	para "You want to bat-"
@@ -225,7 +225,7 @@ WhitneyWhatDoYouWantText:
 
 	para "Oh, right."
 	line "I forgot. Here's"
-	cont "Pllain Badge."
+	cont "the Plain Badge."
 	done
 
 PlayerReceivedPlainBadgeText:
@@ -234,11 +234,20 @@ PlayerReceivedPlainBadgeText:
 	done
 
 WhitneyPlainBadgeText:
-	text "The Plain Badge"
-	line "lets your #MON"
+	text "With this Badge,"
+	line "#mon, including"
+	
+	para "traded #mon up"
+	line "to Lv. 30, will"
 
-	para "use Strength out-"
-	line "side of battle."
+	para "obey you without"
+	line "question."
+
+	para "Also, it lets"
+	line "your #mon use"
+
+	para "Strength outside"
+	line "of battle."
 
 	para "Oh, you can have"
 	line "this, too!"
@@ -248,7 +257,7 @@ WhitneyAttractText:
 	text "It's Attract!"
 	line "It makes full use"
 
-	para "of a #MON's"
+	para "of a #mon's"
 	line "charm."
 
 	para "Isn't it just per-"
@@ -266,7 +275,7 @@ WhitneyGoodCryText:
 
 LassCarrieSeenText:
 	text "Don't let my"
-	line "#MON's cute"
+	line "#mon's cute"
 
 	para "looks fool you."
 	line "They can whip you!"
@@ -278,17 +287,17 @@ LassCarrieBeatenText:
 	done
 
 LassCarrieAfterBattleText:
-	text "Do my #MON"
+	text "Do my #mon"
 	line "think I'm cute?"
 	done
 
 LassBridgetSeenText:
 	text "I like cute #-"
-	line "MON better than"
-	cont "strong #MON."
+	line "mon better than"
+	cont "strong #mon."
 
 	para "But I have strong"
-	line "and cute #MON!"
+	line "and cute #mon!"
 	done
 
 LassBridgetBeatenText:
@@ -359,12 +368,12 @@ GoldenrodGymGuideText:
 	line "making!"
 
 	para "This Gym is home"
-	line "to normal-type"
-	cont "#MON trainers."
+	line "to Normal-type"
+	cont "#mon trainers."
 
 	para "I recommend you"
 	line "use Fighting-type"
-	cont "#MON."
+	cont "#mon."
 	done
 
 GoldenrodGymGuideWinText:

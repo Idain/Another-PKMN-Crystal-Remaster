@@ -130,6 +130,19 @@ LeaderBlueAfterText:
 
 	para "Don't you forget"
 	line "it!"
+
+	para "Ah, before I for-"
+	line "get, with the Ris-"
+
+	para "sing Badge all"
+	line "#mon will obey"
+
+	para "you without ques-"
+	line "tion."
+
+	para "Of course, this"
+	line "includes traded"
+	cont "#mon."
 	done
 
 LeaderBlueEpilogueText:

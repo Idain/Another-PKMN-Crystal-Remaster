@@ -10,14 +10,11 @@ AzaleaMart_MapScripts:
 
 AzaleaMartClerkScript:
 	opentext
-	checkflag ENGINE_RISINGBADGE
-	iftrue .EightBadgesStock
-	checkflag ENGINE_GLACIERBADGE
-	iftrue .SevenBadgesStock
-	checkflag ENGINE_MINERALBADGE
-	iftrue .FiveBadgesStock
-	checkflag ENGINE_PLAINBADGE
-	iftrue .ThreeBadgesStock
+	readvar VAR_JOHTO_BADGES
+	ifequal 8, .EightBadgesStock
+	ifequal 7, .SevenBadgesStock
+	ifequal 5, .FiveBadgesStock
+	ifequal 3, .ThreeBadgesStock
 	pokemart MARTTYPE_STANDARD, MART_AZALEA
 	closetext
 	end

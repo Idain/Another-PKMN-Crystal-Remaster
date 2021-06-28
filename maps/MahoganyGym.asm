@@ -21,7 +21,12 @@ MahoganyGymPryceScript:
 	waitbutton
 	closetext
 	winlosstext PryceText_Impressed, 0
-	loadtrainer PRYCE, PRYCE1
+	readvar VAR_JOHTO_BADGES
+	ifequal 6, .SixBadgesBattle
+	ifequal 5, .FiveBadgesBattle
+; At least 4 Johto Badges.
+	loadtrainer PRYCE, PRYCE2
+.StartGymBattle:
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_PRYCE
@@ -49,6 +54,14 @@ MahoganyGymPryceScript:
 	waitbutton
 	closetext
 	end
+
+.SixBadgesBattle:
+	loadtrainer PRYCE, PRYCE1
+	sjump .StartGymBattle
+
+.FiveBadgesBattle:
+	loadtrainer PRYCE, PRYCE3
+	sjump .StartGymBattle
 
 PryceScript_Defeat:
 	writetext PryceText_CherishYourPokemon
@@ -198,12 +211,22 @@ Text_ReceivedGlacierBadge:
 	done
 
 PryceText_GlacierBadgeSpeech:
-	text "That Badge will"
-	line "let your #mon"
+	text "Thanks to this"
+	line "Badge, #mon"
 
-	para "use Whirlpool to"
-	line "get across real"
-	cont "whirlpools."
+	para "up to Lv. 45"
+	line "will obey you"
+
+	para "without question,"
+	line "including traded"
+	cont "#mon."
+
+	para "Also, this Badge"
+	line "will let your" 
+	
+	para "#mon use Whirl-"
+	line "pool to get across"
+	cont "real whirlpools."
 
 	para "And this… This is"
 	line "a gift from me!"
@@ -212,9 +235,6 @@ PryceText_GlacierBadgeSpeech:
 PryceText_HailSpeech:
 	text "That TM contains"
 	line "Hail."
-
-	para "It inflicts damage"
-	line "and lowers speed."
 
 	para "It summons a hail-"
 	line "storm that lasts"

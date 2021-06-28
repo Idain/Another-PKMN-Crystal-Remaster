@@ -112,37 +112,37 @@ VioletGymStatue:
 
 FalknerIntroText:
 	text "I'm Falkner, the"
-	line "Violet #MON Gym"
+	line "Violet #mon Gym"
 	cont "leader!"
 
 	para "People say you can"
 	line "clip Flying-type"
 
-	para "#MON's wings"
+	para "#mon's wings"
 	line "with a jolt of"
 	cont "electricity…"
 
 	para "I won't allow such"
 	line "insults to bird"
-	cont "#MON!"
+	cont "#mon!"
 
 	para "I'll show you the"
 	line "real power of the"
 
 	para "magnificent bird"
-	line "#MON!"
+	line "#mon!"
 	done
 
 FalknerWinLossText:
 	text "…Darn! My dad's"
 	line "cherished bird"
-	cont "#MON…"
+	cont "#mon…"
 
 	para "All right."
 	line "Take this."
 
 	para "It's the official"
-	line "#MON League"
+	line "#mon League"
 	cont "Zephyr Badge."
 	done
 
@@ -153,16 +153,16 @@ ReceivedZephyrBadgeText:
 
 FalknerZephyrBadgeText:
 	text "With that Badge,"
-	line "#MON, including"
+	line "#mon, including"
 	
-	para "traded #MON up"
-	line "to Lv. 20 will"
+	para "traded #mon up"
+	line "to Lv. 20, will"
 
 	para "obey you without"
 	line "question."
 
 	text "It also enables"
-	line "#MON to use"
+	line "#mon to use"
 
 	para "Flash, if they"
 	line "have it, anytime."
@@ -173,7 +173,7 @@ FalknerZephyrBadgeText:
 
 FalknerTMMudSlapText:
 	text "By using a TM, a"
-	line "#MON will"
+	line "#mon will"
 
 	para "instantly learn a"
 	line "new move."
@@ -182,7 +182,7 @@ FalknerTMMudSlapText:
 	line "as many times as"
 	cont "you like."
 
-	para "TM31 contains"
+	para "This one contains"
 	line "Mud-Slap."
 
 	para "It reduces the"
@@ -197,7 +197,7 @@ FalknerTMMudSlapText:
 	done
 
 FalknerFightDoneText:
-	text "There are #MON"
+	text "There are #mon"
 	line "Gyms in cities and"
 	cont "towns ahead."
 

@@ -10,12 +10,10 @@ EcruteakMart_MapScripts:
 
 EcruteakMartClerkScript:
 	opentext
-	checkflag ENGINE_RISINGBADGE
-	iftrue .EightBadgesStock
-	checkflag ENGINE_GLACIERBADGE
-	iftrue .SevenBadgesStock
-	checkflag ENGINE_MINERALBADGE
-	iftrue .FiveBadgesStock
+	readvar VAR_JOHTO_BADGES
+	ifequal 8, .EightBadgesStock
+	ifequal 7, .SevenBadgesStock
+	ifequal 5, .FiveBadgesStock
 	pokemart MARTTYPE_STANDARD, MART_ECRUTEAK
 	closetext
 	end

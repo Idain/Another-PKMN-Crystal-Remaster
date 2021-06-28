@@ -10,8 +10,8 @@ BlackthornMart_MapScripts:
 
 BlackthornMartClerkScript:
 	opentext
-	checkflag ENGINE_RISINGBADGE
-	iftrue .EightBadgesStock
+	readvar VAR_JOHTO_BADGES
+	ifequal 8, .EightBadgesStock
 	pokemart MARTTYPE_STANDARD, MART_BLACKTHORN
 	closetext
 	end

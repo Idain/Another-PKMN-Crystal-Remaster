@@ -38,7 +38,12 @@ CianwoodGymChuckScript:
 	waitbutton
 	closetext
 	winlosstext ChuckLossText, 0
+	readvar VAR_JOHTO_BADGES
+	ifequal 6, .SixBadgesBattle
+	ifequal 5, .FiveBadgesBattle
+; At least 4 Johto badges.
 	loadtrainer CHUCK, CHUCK1
+.StartGymBattle:
 	startbattle
 	reloadmapafterbattle
 	setevent EVENT_BEAT_CHUCK
@@ -65,6 +70,14 @@ CianwoodGymChuckScript:
 	waitbutton
 	closetext
 	end
+
+.SixBadgesBattle:
+	loadtrainer CHUCK, CHUCK3
+	sjump .StartGymBattle
+
+.FiveBadgesBattle:
+	loadtrainer CHUCK, CHUCK2
+	sjump .StartGymBattle
 
 .AlreadyGotTM:
 	writetext ChuckAfterText

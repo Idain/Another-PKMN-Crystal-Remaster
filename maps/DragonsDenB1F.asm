@@ -53,13 +53,8 @@ DragonsDenB1F_ClairScene:
 	opentext
 	writetext ClairText_GiveDragonbreathDragonDen
 	promptbutton
-	giveitem TM_DRAGONBREATH
+	verbosegiveitem TM_DRAGONBREATH
 	iffalse .BagFull
-	getitemname STRING_BUFFER_3, TM_DRAGONBREATH
-	writetext Text_ReceivedTM24
-	playsound SFX_ITEM
-	waitsfx
-	itemnotify
 	setevent EVENT_GOT_TM24_DRAGONBREATH
 	writetext ClairText_DescribeDragonbreathDragonDen
 	promptbutton
@@ -125,30 +120,8 @@ TrainerTwinsLeaandpia2:
 	closetext
 	end
 
-DragonsDenB1FDragonFangScript:
-; This whole script is written out rather than as an itemball
-; because it's left over from the GS event.
-	giveitem DRAGON_FANG
-	iffalse .BagFull
-	disappear DRAGONSDENB1F_POKE_BALL1
-	opentext
-	getitemname STRING_BUFFER_3, DRAGON_FANG
-	writetext Text_FoundDragonFang
-	playsound SFX_ITEM
-	waitsfx
-	itemnotify
-	closetext
-	end
-
-.BagFull:
-	opentext
-	getitemname STRING_BUFFER_3, DRAGON_FANG
-	writetext Text_FoundDragonFang
-	promptbutton
-	writetext Text_NoRoomForDragonFang
-	waitbutton
-	closetext
-	end
+DragonsDenB1FDragonFang:
+	itemball DRAGON_FANG
 
 DragonsDenB1FSilverScript:
 	playmusic MUSIC_RIVAL_ENCOUNTER
@@ -207,21 +180,16 @@ ClairText_Wait:
 	done
 
 ClairText_GiveDragonbreathDragonDen:
-	text "CLAIR: I'm sorry"
+	text "Clair: I'm sorry"
 	line "about this."
 
 	para "Here, take this as"
 	line "my apology."
 	done
 
-Text_ReceivedTM24:
-	text "<PLAYER> received"
-	line "TM24 DRAGONBREATH."
-	done
-
 ClairText_DescribeDragonbreathDragonDen:
 	text "That contains"
-	line "DRAGONBREATH."
+	line "DragonBreath."
 
 	para "No, it doesn't"
 	line "have anything to"
@@ -237,34 +205,34 @@ ClairText_NoRoom:
 	line "any room for this."
 
 	para "I'm going back to"
-	line "the GYM, so make"
+	line "the Gym, so make"
 
 	para "room, then come"
 	line "see me there."
 	done
 
 ClairText_WhatsTheMatterDragonDen:
-	text "CLAIR: What's the"
+	text "Clair: What's the"
 	line "matter? Aren't you"
 
 	para "going on to the"
-	line "#MON LEAGUE?"
+	line "#mon League?"
 
 	para "Do you know how to"
 	line "get there?"
 
 	para "From here, go to"
-	line "NEW BARK TOWN."
+	line "New Bark Town."
 
-	para "Then SURF east to"
-	line "#MON LEAGUE."
+	para "Then Surf east to"
+	line "#mon League."
 
 	para "The route there is"
 	line "very tough."
 
 	para "Don't you dare"
 	line "lose at the #-"
-	cont "MON LEAGUE!"
+	cont "mon League!"
 
 	para "If you do, I'll"
 	line "feel even worse"
@@ -277,13 +245,13 @@ ClairText_WhatsTheMatterDragonDen:
 	done
 
 DragonShrineSignpostText:
-	text "DRAGON SHRINE"
+	text "Dragon Shrine"
 
 	para "A shrine honoring"
-	line "the dragon #MON"
+	line "the dragon #mon"
 
 	para "said to have lived"
-	line "in DRAGON'S DEN."
+	line "in Dragon's Den."
 	done
 
 SilverText_Training1:
@@ -293,7 +261,7 @@ SilverText_Training1:
 	para "…No, I won't"
 	line "battle you now…"
 
-	para "My #MON aren't"
+	para "My #mon aren't"
 	line "ready to beat you."
 
 	para "I can't push them"
@@ -303,7 +271,7 @@ SilverText_Training1:
 	line "ciplined to become"
 
 	para "the greatest #-"
-	line "MON trainer…"
+	line "mon trainer…"
 	done
 
 SilverText_Training2:
@@ -325,10 +293,10 @@ CooltrainermDarinBeatenText:
 	done
 
 CooltrainermDarinAfterBattleText:
-	text "The SHRINE ahead"
+	text "The Shrine ahead"
 	line "is home to the"
 
-	para "MASTER of our"
+	para "Master of our"
 	line "dragon-user clan."
 
 	para "You're not allowed"
@@ -348,7 +316,7 @@ CooltrainerfCaraAfterBattleText:
 	text "Soon I'm going to"
 	line "get permission"
 
-	para "from our MASTER to"
+	para "from our Master to"
 	line "use dragons."
 
 	para "When I do, I'm"
@@ -357,7 +325,7 @@ CooltrainerfCaraAfterBattleText:
 	para "admirable dragon"
 	line "trainer and gain"
 
-	para "our MASTER's"
+	para "our Master's"
 	line "approval."
 	done
 
@@ -372,7 +340,7 @@ TwinsLeaandpia1BeatenText:
 
 TwinsLeaandpia1AfterBattleText:
 	text "It was like having"
-	line "to battle LANCE."
+	line "to battle Lance."
 	done
 
 TwinsLeaandpia2SeenText:
@@ -386,21 +354,8 @@ TwinsLeaandpia2BeatenText:
 TwinsLeaandpia2AfterBattleText:
 	text "We'll tell on you."
 
-	para "MASTER will be"
+	para "Master will be"
 	line "angry with you."
-	done
-
-Text_FoundDragonFang:
-	text "<PLAYER> found"
-	line "@"
-	text_ram wStringBuffer3
-	text "!"
-	done
-
-Text_NoRoomForDragonFang:
-	text "But <PLAYER> can't"
-	line "carry any more"
-	cont "items."
 	done
 
 DragonsDenB1F_MapEvents:
@@ -420,7 +375,7 @@ DragonsDenB1F_MapEvents:
 	bg_event 31, 15, BGEVENT_ITEM, DragonsDenB1FHiddenMaxElixer
 
 	def_object_events
-	object_event 35, 16, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DragonsDenB1FDragonFangScript, EVENT_DRAGONS_DEN_B1F_DRAGON_FANG
+	object_event 35, 16, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, DragonsDenB1FDragonFang, EVENT_DRAGONS_DEN_B1F_DRAGON_FANG
 	object_event 14, 30, SPRITE_CLAIR, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_DRAGONS_DEN_CLAIR
 	object_event 20, 23, SPRITE_SILVER, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, DragonsDenB1FSilverScript, EVENT_RIVAL_DRAGONS_DEN
 	object_event 20,  8, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 4, TrainerCooltrainermDarin, -1
