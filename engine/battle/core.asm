@@ -2259,19 +2259,14 @@ UpdateBattleStateAndExperienceAfterEnemyFaint:
 	ld [wBattleResult], a ; WIN
 	call IsAnyMonHoldingExpShare
 	jr z, .skip_exp
-	ld hl, wEnemyMonBaseStats
-	ld b, wEnemyMonEnd - wEnemyMonBaseStats
-.loop
+	ld hl, wEnemyMonBaseExp
 	srl [hl]
-	inc hl
-	dec b
-	jr nz, .loop
 
 .skip_exp
-	ld hl, wEnemyMonBaseStats
-	ld de, wBackupEnemyMonBaseStats
-	ld bc, wEnemyMonEnd - wEnemyMonBaseStats
-	call CopyBytes
+	ld hl, wEnemyMonBaseExp
+	ld de, wBackupEnemyMonBaseExp
+	ld a, [hl]
+	ld [de], a
 	xor a
 	ld [wGivingExperienceToExpShareHolders], a
 	call GiveExperiencePoints
@@ -2282,10 +2277,10 @@ UpdateBattleStateAndExperienceAfterEnemyFaint:
 	push af
 	ld a, d
 	ld [wBattleParticipantsNotFainted], a
-	ld hl, wBackupEnemyMonBaseStats
-	ld de, wEnemyMonBaseStats
-	ld bc, wEnemyMonEnd - wEnemyMonBaseStats
-	call CopyBytes
+	ld hl, wBackupEnemyMonBaseExp
+	ld de, wEnemyMonBaseExp
+	ld a, [hl]
+	ld [de], a
 	ld a, $1
 	ld [wGivingExperienceToExpShareHolders], a
 	call GiveExperiencePoints
@@ -2296,19 +2291,14 @@ UpdateBattleStateAndExperienceAfterEnemyFaint:
 ApplyExperienceAfterEnemyCaught:
 	call IsAnyMonHoldingExpShare
 	jr z, .skip_exp
-	ld hl, wEnemyMonBaseStats
-	ld b, wEnemyMonEnd - wEnemyMonBaseStats
-.loop
+	ld hl, wEnemyMonBaseExp
 	srl [hl]
-	inc hl
-	dec b
-	jr nz, .loop
 
 .skip_exp
-	ld hl, wEnemyMonBaseStats
-	ld de, wBackupEnemyMonBaseStats
-	ld bc, wEnemyMonEnd - wEnemyMonBaseStats
-	call CopyBytes
+	ld hl, wEnemyMonBaseExp
+	ld de, wBackupEnemyMonBaseExp
+	ld a, [hl]
+	ld [de], a
 	xor a
 	ld [wGivingExperienceToExpShareHolders], a
 	call GiveExperiencePoints
@@ -2319,10 +2309,10 @@ ApplyExperienceAfterEnemyCaught:
 	push af
 	ld a, d
 	ld [wBattleParticipantsNotFainted], a
-	ld hl, wBackupEnemyMonBaseStats
-	ld de, wEnemyMonBaseStats
-	ld bc, wEnemyMonEnd - wEnemyMonBaseStats
-	call CopyBytes
+	ld hl, wBackupEnemyMonBaseExp
+	ld de, wEnemyMonBaseExp
+	ld a, [hl]
+	ld [de], a
 	ld a, $1
 	ld [wGivingExperienceToExpShareHolders], a
 	call GiveExperiencePoints
@@ -4123,7 +4113,7 @@ InitEnemyMon:
 	ld [de], a
 	ld hl, wBaseStats
 	ld de, wEnemyMonBaseStats
-	ld b, 5
+	ld b, wBaseEVs - wBaseStats
 .loop
 	ld a, [hli]
 	ld [de], a
@@ -6382,7 +6372,12 @@ LoadEnemyMon:
 
 .Happiness:
 ; Set happiness
+	ld a, [wBattleMode]
+	dec a
+	ld a, $ff ; Max happiness
+	jr nz, .load_happiness ; If it's a Trainer battle, give all Pokémon max happiness.
 	ld a, BASE_HAPPINESS
+.load_happiness
 	ld [wEnemyMonHappiness], a
 ; Set level
 	ld a, [wCurPartyLevel]
@@ -7434,16 +7429,13 @@ GiveExperiencePoints:
 	ld a, [wCurPartyMon]
 	inc a
 	cp b
-	jr z, .done
+	jp z, ResetBattleParticipants
 	ld [wCurPartyMon], a
 	ld a, MON_SPECIES
 	call GetPartyParamLocation
 	ld b, h
 	ld c, l
 	jp .loop
-
-.done
-	jp ResetBattleParticipants
 
 .EvenlyDivideExpAmongParticipants:
 ; count number of battle participants
@@ -7482,8 +7474,7 @@ GiveExperiencePoints:
 	ret c
 
 	ld [wTempByteValue], a
-	ld hl, wEnemyMonBaseExp ; Only divide Exp, not EVs.
-.base_stat_division_loop
+	ld hl, wEnemyMonBaseExp
 	xor a
 	ldh [hDividend + 0], a
 	ld a, [hl]
