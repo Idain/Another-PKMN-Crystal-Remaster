@@ -33,7 +33,6 @@ RadioTower1FLuckyNumberManScript:
 	writetext RadioTower1FLuckyNumberManAskToPlayText
 	promptbutton
 	checkflag ENGINE_LUCKY_NUMBER_SHOW
-;	special CheckLuckyNumberShowFlag
 	iftrue .skip
 	special ResetLuckyNumberShowFlag
 
@@ -184,7 +183,7 @@ RadioTower1FRadioCardWomanScript:
 	end
 
 .RadioCardText:
-	db "RADIO CARD@"
+	db "Radio Card@"
 
 .ReceiveItem:
 	jumpstd ReceiveItemScript
@@ -254,7 +253,7 @@ RadioTower1FLuckyNumberManAskToPlayText:
 
 	para "Want me to check"
 	line "the ID numbers of"
-	cont "your #MON?"
+	cont "your #mon?"
 
 	para "If you get lucky,"
 	line "you win a prize."
@@ -357,7 +356,7 @@ RadioTower1FRadioCardWomanOfferQuizText:
 	cont "win a Radio Card."
 
 	para "Slide it into your"
-	line "#GEAR to play"
+	line "#gear to play"
 
 	para "the radio anytime,"
 	line "anywhere."
@@ -369,7 +368,7 @@ RadioTower1FRadioCardWomanOfferQuizText:
 RadioTower1FRadioCardWomanQuestion1Text:
 	text "Question 1:"
 
-	para "Is there a #MON"
+	para "Is there a #mon"
 	line "that appears only"
 	cont "in the morning?"
 	done
@@ -402,7 +401,7 @@ RadioTower1FRadioCardWomanQuestion4Text:
 	line "Violet Gym Leader"
 
 	para "who uses bird"
-	line "#MON?"
+	line "#mon?"
 	done
 
 RadioTower1FRadioCardWomanQuestion5Text:
@@ -426,7 +425,7 @@ RadioTower1FRadioCardWomanYouWinText:
 	done
 
 RadioTower1FPokegearIsARadioText:
-	text "<PLAYER>'s #GEAR"
+	text "<PLAYER>'s #gear"
 	line "can now double as"
 	cont "a radio!"
 	done
@@ -460,7 +459,7 @@ RadioTower1FLassText:
 
 RadioTower1FYoungsterText:
 	text "I love Mary, from"
-	line "#MON Talk."
+	line "#mon Talk."
 
 	para "I only know what"
 	line "she sounds like,"
@@ -509,10 +508,10 @@ RadioTower1FDirectoryText:
 RadioTower1FLuckyChannelSignText:
 	text "Lucky Channel!"
 
-	para "Win with #MON"
+	para "Win with #mon"
 	line "ID numbers!"
 
-	para "Trade your #MON"
+	para "Trade your #mon"
 	line "to collect differ-"
 	cont "ent ID numbers!"
 	done

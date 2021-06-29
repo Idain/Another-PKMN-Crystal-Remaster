@@ -18,9 +18,13 @@ CinnabarIslandBlue:
 	iftrue .Cheating
 	checkevent EVENT_MET_BLUE
 	iftrue .AlreadyMetBlue
+	setevent EVENT_MET_BLUE
 	writetext CinnabarIslandBlueText
 	promptbutton
 	readvar VAR_KANTO_BADGES
+	getnum STRING_BUFFER_3
+	ifequal 0, .NoKantoBadges
+	ifequal 1, .OnlyOneKantoBadge
 	ifless 7, .NotEnoughBadges
 .GotEnoughBadges
 	writetext CinnabarIslandEqual15Badges
@@ -36,13 +40,27 @@ CinnabarIslandBlue:
 	writetext CinnabarAlreadyMetBlue
 	promptbutton
 	readvar VAR_KANTO_BADGES
+	getnum STRING_BUFFER_3
+	ifequal 0, .NoKantoBadges
+	ifequal 1, .OnlyOneKantoBadge
 	ifequal 7, .GotEnoughBadges
 	; fallthrough
 .NotEnoughBadges
 	writetext CinnabarIslandLessThan15Badges
 	waitbutton
 	closetext
-	setevent EVENT_MET_BLUE
+	end
+
+.NoKantoBadges:
+	writetext CinnabarIslandNoKantoBadges
+	waitbutton
+	closetext
+	end
+
+.OnlyOneKantoBadge:
+	writetext CinnabarIslandOnlyOneKantoBadge
+	waitbutton
+	closetext
 	end
 
 .Cheating
@@ -140,8 +158,30 @@ CinnabarAlreadyMetBlue:
 	cont "Kanto Badges?"
 	done
 	
+CinnabarIslandNoKantoBadges:
+	text "…"
+
+	para "So no Badges…"
+
+	para "You're not ready"
+	line "to battle me…"
+	done
+
+CinnabarIslandOnlyOneKantoBadge:
+	text "…"
+
+	para "Only one Badge…"
+
+	para "You're not ready"
+	line "to battle me…"
+	done
+
 CinnabarIslandLessThan15Badges:
 	text "…"
+
+	para "@"
+	text_ram wStringBuffer3
+	text " Kanto Badges…"
 
 	para "You're not ready"
 	line "to battle me…"
@@ -150,8 +190,8 @@ CinnabarIslandLessThan15Badges:
 CinnabarIslandEqual15Badges:
 	text "…"
 
-	para "Yup, you've got 7"
-	line "out of 8 Badges."
+	para "Yup, you've got"
+	line "enough Badges."
 
 	para "If you want to"
 	line "battle me, come to"

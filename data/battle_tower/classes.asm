@@ -17,7 +17,7 @@ BattleTowerTrainers:
 	db "Erickson@@", BIKER
 	db "Fairfield@", JUGGLER
 	db "Hunter@@@@", POKEFANF
-	db "Hill@@@@@", FIREBREATHER
+	db "Hill@@@@@@", FIREBREATHER
 	db "Javier@@@@", SWIMMERF
 	db "Kaufman@@@", SWIMMERM
 	db "Lancaster@", SKIER
