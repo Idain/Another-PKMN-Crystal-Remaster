@@ -8,8 +8,7 @@ SelectMonFromParty:
 	call SetPalettes
 	call DelayFrame
 	call PartyMenuSelect
-	call ReturnToMapWithSpeechTextbox
-	ret
+	jp ReturnToMapWithSpeechTextbox
 
 SelectTradeOrDayCareMon:
 	ld a, b
@@ -23,16 +22,14 @@ SelectTradeOrDayCareMon:
 	call SetPalettes
 	call DelayFrame
 	call PartyMenuSelect
-	call ReturnToMapWithSpeechTextbox
-	ret
+	jp ReturnToMapWithSpeechTextbox
 
 InitPartyMenuLayout:
 	call LoadPartyMenuGFX
 	call InitPartyMenuWithCancel
 	call InitPartyMenuGFX
 	call WritePartyMenuTilemap
-	call PrintPartyMenuText
-	ret
+	jp PrintPartyMenuText
 
 LoadPartyMenuGFX:
 	call LoadFontsBattleExtra
@@ -107,8 +104,7 @@ PlacePartyNicknames:
 	dec hl
 	dec hl
 	ld de, .CancelString
-	call PlaceString
-	ret
+	jp PlaceString
 
 .CancelString:
 	db "CANCEL@"
@@ -152,8 +148,7 @@ PlacePartyHPBar:
 	dec c
 	jr nz, .loop
 	ld b, SCGB_PARTY_MENU
-	call GetSGBLayout
-	ret
+	jp GetSGBLayout
 
 PlacePartymonHPBar:
 	ld a, b
@@ -178,8 +173,7 @@ PlacePartymonHPBar:
 	ld d, a
 	ld a, [hli]
 	ld e, a
-	predef ComputeHPBarPixels
-	ret
+	predef_jump ComputeHPBarPixels
 
 PlacePartyMenuHPDigits:
 	ld a, [wPartyCount]
@@ -333,13 +327,10 @@ PlacePartyMonTMHMCompatibility:
 .PlaceAbleNotAble:
 	ld a, c
 	and a
-	jr nz, .able
-	ld de, .string_not_able
-	ret
-
-.able
 	ld de, .string_able
-	ret
+	ret nz ; Able
+	ld de, .string_not_able
+	ret ; Not Able
 
 .string_able
 	db "ABLE@"
@@ -506,8 +497,7 @@ PlacePartyMonMobileBattleSelection:
 	ld h, a
 	ld de, .String_Kettei_Yameru
 	call PlaceString
-	ld b, $3
-	ld c, $0
+	lb bc, 3, 0
 	ld hl, wd002
 	ld a, [hl]
 .loop2
@@ -605,7 +595,6 @@ PlacePartyMonGenderStats:
     db "@"
 ; function end
 
-
 PartyMenuCheckEgg:
 	ld a, LOW(wPartySpecies)
 	add b
@@ -620,7 +609,8 @@ PartyMenuCheckEgg:
 GetPartyMenuQualityIndexes:
 	ld a, [wPartyMenuActionText]
 	and $f0
-	jr nz, .skip
+	ld hl, PartyMenuQualityPointers.Default
+	ret nz ; skip
 	ld a, [wPartyMenuActionText]
 	and $f
 	ld e, a
@@ -631,10 +621,6 @@ GetPartyMenuQualityIndexes:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ret
-
-.skip
-	ld hl, PartyMenuQualityPointers.Default
 	ret
 
 INCLUDE "data/party_menu_qualities.asm"
@@ -684,7 +670,6 @@ InitPartyMenuWithCancel:
 
 .skip
 	ld a, 1
-
 .done
 	ld [wMenuCursorY], a
 	ld a, A_BUTTON | B_BUTTON
@@ -800,7 +785,7 @@ PartyMenuStrings:
 	dw ToWhichPKMNString
 
 ChooseAMonString:
-	db "Choose a #MON.@"
+	db "Choose a #mon.@"
 
 UseOnWhichPKMNString:
 	db "Use on which <PK><MN>?@"
@@ -833,8 +818,7 @@ PrintPartyMenuActionText:
 	ld a, [wPartyMenuActionText]
 	and $f
 	ld hl, .MenuActionTexts
-	call .PrintText
-	ret
+	jr .PrintText
 
 .MenuActionTexts:
 ; entries correspond to PARTYMENUTEXT_* constants

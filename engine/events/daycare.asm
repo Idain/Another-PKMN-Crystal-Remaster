@@ -35,8 +35,7 @@ DayCareMan:
 	ld hl, wDayCareMan
 	set DAYCAREMAN_HAS_MON_F, [hl]
 	call DayCare_DepositPokemonText
-	call DayCare_InitBreeding
-	ret
+	jp DayCare_InitBreeding
 
 .AskWithdrawMon:
 	farcall GetBreedMon1LevelGrowth
@@ -73,8 +72,7 @@ DayCareLady:
 	ld hl, wDayCareLady
 	set DAYCARELADY_HAS_MON_F, [hl]
 	call DayCare_DepositPokemonText
-	call DayCare_InitBreeding
-	ret
+	jp DayCare_InitBreeding
 
 .AskWithdrawMon:
 	farcall GetBreedMon2LevelGrowth
@@ -95,8 +93,7 @@ DayCareLady:
 
 .cancel
 	ld a, DAYCARETEXT_COME_AGAIN
-	call PrintDayCareText
-	ret
+	jp PrintDayCareText
 
 DayCareLadyIntroText:
 	bit DAYCARELADY_ACTIVE_F, [hl]
@@ -105,14 +102,12 @@ DayCareLadyIntroText:
 	inc a
 .okay
 	call PrintDayCareText
-	call YesNoBox
-	ret
+	jp YesNoBox
 
 DayCareManIntroText:
 	set DAYCAREMAN_ACTIVE_F, [hl]
 	call PrintDayCareText
-	call YesNoBox
-	ret
+	jp YesNoBox
 
 DayCareAskDepositPokemon:
 	ld a, [wPartyCount]
@@ -172,8 +167,7 @@ DayCare_DepositPokemonText:
 	ld a, [wCurPartySpecies]
 	call PlayMonCry
 	ld a, DAYCARETEXT_COME_BACK_LATER
-	call PrintDayCareText
-	ret
+	jp PrintDayCareText
 
 DayCare_AskWithdrawBreedMon:
 	ld a, [wStringBuffer2 + 1]
@@ -230,8 +224,7 @@ DayCare_GetBackMonForMoney:
 	ld a, [wCurPartySpecies]
 	call PlayMonCry
 	ld a, DAYCARETEXT_GOT_BACK
-	call PrintDayCareText
-	ret
+	jr PrintDayCareText
 
 GetPriceToRetrieveBreedmon:
 	ld a, b
@@ -264,8 +257,7 @@ PrintDayCareText:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	call PrintText
-	ret
+	jp PrintText
 
 .TextTable:
 ; entries correspond to DAYCARETEXT_* constants
@@ -375,8 +367,7 @@ DayCareManOutside:
 	bit DAYCAREMAN_HAS_EGG_F, [hl]
 	jr nz, .AskGiveEgg
 	ld hl, .NotYetText
-	call PrintText
-	ret
+	jp PrintText
 
 .NotYetText:
 	text_far _NotYetText
@@ -530,8 +521,6 @@ DayCare_InitBreeding:
 	ld a, [wBreedingCompatibility]
 	and a
 	ret z
-;	inc a
-;	ret z
 	ld hl, wDayCareMan
 	set DAYCAREMAN_MONS_COMPATIBLE_F, [hl]
 .loop
@@ -589,19 +578,10 @@ DayCare_InitBreeding:
 ; to either gender of Nidoran.
 	ld a, [wCurPartySpecies]
 	cp NIDORAN_F
-	jr z, .NidoranRandomSpecies
-	cp NIDORINA
-	jr z, .NidoranRandomSpecies
-	cp NIDOQUEEN
-	jr z, .NidoranRandomSpecies
-	cp NIDORAN_M
-	jr z, .NidoranRandomSpecies
-	cp NIDORINO
-	jr z, .NidoranRandomSpecies
-	cp NIDOKING
-	jr nz, .GotEggSpecies
-
-.NidoranRandomSpecies
+	jr c, .GotEggSpecies
+	cp NIDOKING + 1
+	jr nc, .GotEggSpecies
+; Determine which Nidoran we get.
 	call Random
 	cp 50 percent + 1
 	ld a, NIDORAN_F

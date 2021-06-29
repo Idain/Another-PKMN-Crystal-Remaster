@@ -7,23 +7,7 @@ MoveReminder:
 	call PrintText
 	call YesNoBox
 	jp c, .cancel
-/*
-	call JoyWaitAorB
 
-	ld hl, .cost_to_relearn
-	ld de, hMoneyTemp
-	ld bc, 3
-	call CopyBytes
-	ld bc, hMoneyTemp
-	ld de, wMoney
-	farcall CompareMoney
-	jp c, .not_enough_money
-
-	ld hl, Text_MoveReminderPrompt
-	call PrintText
-	call YesNoBox
-	jp c, .cancel
-*/
 	ld hl, Text_MoveReminderWhichMon
 	call PrintText
 	call JoyWaitAorB
@@ -61,47 +45,24 @@ MoveReminder:
 	ld a, b
 	and a
 	jr z, .skip_learn
-
-;	ld hl, .cost_to_relearn
-;	ld de, hMoneyTemp
-;	ld bc, 3
-;	call CopyBytes
-;	ld bc, hMoneyTemp
-;	ld de, wMoney
-;	farcall TakeMoney
-	ld de, SFX_TRANSACTION
-	call PlaySFX
-	call WaitSFX
-
+	; fallthrough
 .skip_learn
 	call ReturnToMapWithSpeechTextbox
 .cancel
 	ld hl, Text_MoveReminderCancel
-	call PrintText
-	ret
+	jp PrintText
 
 .egg
 	ld hl, Text_MoveReminderEgg
-	call PrintText
-	ret
-
-;.not_enough_money
-;	ld hl, Text_MoveReminderNoGoldLeaf
-;	call PrintText
-;	ret
+	jp PrintText
 
 .no_mon
 	ld hl, Text_MoveReminderNoMon
-	call PrintText
-	ret
+	jp PrintText
 
 .no_moves
 	ld hl, Text_MoveReminderNoMoves
-	call PrintText
-	ret
-
-;.cost_to_relearn
-;	dt 500
+	jp PrintText
 
 GetRemindableMoves:
 ; Get moves remindable by CurPartyMon
@@ -126,16 +87,15 @@ GetRemindableMoves:
 	ld b, 0
 	ld de, wd002 + 1
 
-; Based on GetEggMove in engine/breeding/egg.asm
+; Based on GetEggMove in engine/pokemon/breeding.asm
 	ld a, [wCurPartySpecies]
 	dec a
 	push bc
 	ld b, 0
 	ld c, a
 	ld hl, EvosAttacksPointers
-REPT 2
 	add hl, bc
-ENDR
+	add hl, bc
 	ld a, BANK(EvosAttacksPointers)
 	call GetFarWord
 .skip_evos
@@ -269,8 +229,7 @@ ChooseMoveToLearn:
 	ld [wd265], a
 	call GetMoveName
 	pop hl
-	call PlaceString
-	ret
+	jp PlaceString
 
 .PrintDetails
 	ld hl, wStringBuffer1
@@ -424,17 +383,12 @@ ENDC
 	dec a
 	ld [wCurSpecies], a
 	hlcoord 1, 14
-	predef PrintMoveDescription
-	ret
+	predef_jump PrintMoveDescription
 
 
 Text_MoveReminderIntro:
 	text_far _MoveReminderIntro
 	text_end
-
-;Text_MoveReminderPrompt:
-;	text_far _MoveReminderPrompt
-;	text_end
 	
 Text_MoveReminderWhichMon:
 	text_far _MoveReminderWhichMon
@@ -451,10 +405,6 @@ Text_MoveReminderCancel:
 Text_MoveReminderEgg:
 	text_far _MoveReminderEgg
 	text_end
-
-;Text_MoveReminderNoGoldLeaf:
-;	text_far _MoveReminderNoPay
-;	text_end
 
 Text_MoveReminderNoMon:
 	text_far _MoveReminderNoMon
