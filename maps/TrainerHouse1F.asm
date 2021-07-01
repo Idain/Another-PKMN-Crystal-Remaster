@@ -35,11 +35,11 @@ TrainerHouseIllegibleBook:
 	jumptext TrainerHouseIllegibleText
 
 TrainerHouse1FReceptionistText:
-	text "Welcome to TRAINER"
-	line "HOUSE, the newest"
+	text "Welcome to Trainer"
+	line "House, the newest"
 
 	para "and most happening"
-	line "place in VIRIDIAN."
+	line "place in Viridian."
 
 	para "We're open to"
 	line "trainers only."
@@ -52,9 +52,9 @@ TrainerHouse1FReceptionistText:
 	done
 
 TrainerHouse1FCooltrainerMText:
-	text "VIRIDIAN is the"
+	text "Viridian is the"
 	line "town closest to"
-	cont "INDIGO PLATEAU."
+	cont "Indigo Plateau."
 
 	para "They built this"
 	line "place because so"
@@ -62,8 +62,8 @@ TrainerHouse1FCooltrainerMText:
 	para "many trainers pass"
 	line "through on their"
 
-	para "way up to INDIGO"
-	line "PLATEAU."
+	para "way up to Indigo"
+	line "Plateau."
 	done
 
 TrainerHouse1FCooltrainerFText:
@@ -74,13 +74,13 @@ TrainerHouse1FCooltrainerFText:
 	para "I would love to"
 	line "see how well a"
 
-	para "trainer from JOHTO"
+	para "trainer from Johto"
 	line "battles."
 	done
 
 TrainerHouse1FYoungsterText:
 	text "I guess you can't"
-	line "become the CHAMP"
+	line "become the Champ"
 
 	para "unless you go all"
 	line "over the place and"
@@ -88,16 +88,16 @@ TrainerHouse1FYoungsterText:
 	para "battle all kinds"
 	line "of people."
 
-	para "The CHAMPION from"
-	line "PALLET traveled to"
+	para "The Champion from"
+	line "Pallet traveled to"
 
 	para "all the cities and"
-	line "towns in KANTO."
+	line "towns in Kanto."
 	done
 
 TrainerHouse1FGentlemanText:
 	text "Whew… I'm taking a"
-	line "rest from #MON"
+	line "rest from #mon"
 	cont "battles."
 	done
 
@@ -105,7 +105,7 @@ TrainerHouseSign1Text:
 	text "Practice battles"
 	line "are held in the"
 
-	para "TRAINING HALL"
+	para "Training Hall"
 	line "downstairs."
 
 	para "Skilled trainers"
@@ -129,7 +129,7 @@ TrainerHouseIllegibleText:
 	line "A strategy memo?"
 
 	para "This writing looks"
-	line "like ONIX tracks…"
+	line "like Onix tracks…"
 
 	para "It's completely"
 	line "illegible…"

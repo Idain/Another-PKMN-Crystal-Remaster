@@ -50,8 +50,8 @@ GivePokerusAndConvertBerries:
 	ld a, b
 	and $7
 	inc a
+	ld b, a
 .load_pkrs
-	ld b, a ; this should come before the label
 	swap b
 	and $3
 	inc a
@@ -65,7 +65,7 @@ GivePokerusAndConvertBerries:
 	ret nc ; 1/3 chance
 
 	ld a, [wPartyCount]
-	cp 1
+	dec a
 	ret z ; only one mon, nothing to do
 
 	ld c, [hl]
@@ -128,7 +128,7 @@ ConvertBerriesToBerryJuice:
 	bit STATUSFLAGS2_REACHED_GOLDENROD_F, [hl]
 	ret z
 	call Random
-	cp 1 out_of 16 ; 6.25% chance
+	cp 1 out_of 8 ; 12.5% chance
 	ret nc
 	ld hl, wPartyMons
 	ld a, [wPartyCount]

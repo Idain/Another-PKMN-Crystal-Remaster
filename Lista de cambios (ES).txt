@@ -4,13 +4,13 @@ V1.2.0
 AÑADIDOS:
 
 - TMS:
-	-- ¡El total de TMs ha sido expandido a 60! Estos son: Light Screen, Reflect, Safeguard, False Swipe, Explosion, Thunder Wave, Swords Dance, Rock Slide, Substitute y...
-	-- ¡...El NUEVO MOVIMIENTO! Hail (Granizo), y también es la nueva TM07. La entrega Pryce al derrotarlo.
+-- ¡El total de TMs ha sido expandido a 60! Estos son: Light Screen, Reflect, Safeguard, False Swipe, Explosion, Thunder Wave, Swords Dance, Rock Slide, Substitute y...
+-- ¡...El NUEVO MOVIMIENTO! Hail (Granizo), y también es la nueva TM07. La entrega Pryce al derrotarlo.
 		
-		Notas:
-		--- El orden de las TMs ha sido cambiado.
-		--- Todas pueden ser compradas en Goldenrod o Celadon Dept. Store, salvo por Rock Slide.
-		Esta se consigue al derrotar a Brock.
+	Notas:
+	--- El orden de las TMs ha sido cambiado.
+	--- Todas pueden ser compradas en Goldenrod o Celadon Dept. Store, salvo por Rock Slide.
+	Esta se consigue al derrotar a Brock.
 
 - Ahora ciertos Pokémon aprenden movimientos al evolucionar (Gen 7+)
 - La tormenta de arena ahora boostea la Defensa Especial de los Pokémon tipo Roca en un 50% (Gen 4+).
@@ -55,7 +55,9 @@ CAMBIOS:
 - Mist ahora solo dura cinco turnos y el efecto no desaparece aunque cambiemos de Pokémon (Gen 3+).
 	-- Esto también afecta indirectamente el objeto Guard Spec.
 
-- Status: Ahora el estado Dormido dura entre 1-3 turnos (sin contar el turno donde el Pokémon fue afectado).
+- Status: 
+	-- Ahora el estado Dormido dura entre 1-3 turnos (sin contar el turno donde el Pokémon fue afectado).
+	-- La probabilidad de golpearte a ti mismo si estás confundido ha sido revertida a 50% (petición popular).
 
 - Mercados:
 	-- Los catálogos de los Poké Marts se irá expandiendo a medida que el jugador progrese en la historia. (Gen 4)
@@ -93,7 +95,7 @@ CAMBIOS:
 - Ajustada prioridad de movimientos para asemejarse más a la Gen 8.
 
 - Los movesets de los siguientes Pokémon han sido cambiados para asemejarse a generaciones recientes: 
-	-- Bulbasaur, Ivysaur, Venusaur, Charmander, Charmeleon, Charizard, Squirtle, Wartortle, Blastoise, Caterpie, Metapod, Butterfree, Weedle, Kakuna, Beedrill, Pidgey, Pidgeotto, Pidgeot, Rattata, Raticate, Spearow, Fearow,
+	Bulbasaur, Ivysaur, Venusaur, Charmander, Charmeleon, Charizard, Squirtle, Wartortle, Blastoise, Caterpie, Metapod, Butterfree, Weedle, Kakuna, Beedrill, Pidgey, Pidgeotto, Pidgeot, Rattata, Raticate, Spearow, Fearow,
 	Ekans, Arbok, Pikachu, Raichu, Sandshrew, Sandslash, Nidoran♀, Nidorina, Nidoqueen, Nidoran♂, Nidorino, Nidoking, Clefairy, Clefable, Jigglypuff, Wigglytuff, Oddish, Gloom, Vileplume, Diglett, Dugtrio, Meowth, Persian, Mankey, Primeape, Growlithe, Arcanine,
 	Poliwag, Poliwhirl, Poliwrath, Kadabra, Alakazam, Machop, Machoke, Machamp, Ponyta, Rapidash, Slowpoke, Slowbro, Magneton, Farfetch'd, Doduo, Dodrio, Shellder, Cloyster,
 	Onix, Drowzee, Hypno, Krabby, Kingler, Voltorb, Electrode, Exeggcute, Exeggutor, Cubone, Marowak, Hitmonlee, Hitmonchan, Lickitung, Koffing, Weezing, Electabuzz, Magmar, Magikarp, Gyarados, Lapras, Eevee, Vaporeon, 
@@ -107,16 +109,13 @@ CAMBIOS:
 - Si un Pokémon es afectado por un problema de estado, ahora este se muestra al lado del nivel en vez de reemplazarlo.
 
 - Equipos Pokémon:
-	-- Falkner ahora tiene un Hoothoot como 3er Pokémon. 
-	-- Los Metapod y Kakuna de Bugsy han evolucionado a Butterfree y Beedrill, respectivamente.
-	-- Whitney ahora tiene un Jigglypuff para complementar su colección de Pokémon bonitos.
-	-- Uno de los Haunter de Morty ha sido reemplazado por Misdreavus.
-	-- Uno de los Magnemite de Jasmine ha evolucionado a Magneton.
-	-- Chuck ahora tiene un Hitmontop.
-	-- Algunos Pokémon de Brock han evolucionado.
-	-- Sabrina tiene un Venomoth.
-	-- Blaine ahora tiene un Arcanine.
+	-- Los equipos de algunos líderes de gimnasio han sido ligeramente modificados.
+	-- Los equipos de Chuck, Jasmine y Pryce cambian dependiendo de cuántas medallas tenga el jugador.
+	-- Elite Four, Lance tienen nuevos equipos una vez tengamos 16 medallas.
 
+
+Miscellaneous:
+- La probabilidad de que Shuckle convierta una Oran Berry en Berry Juice aumentó de 1/16 a 1/8.
 - Ya no tendremos que esperar un día para que Kurt nos entregue las Balls que le pedimos; con solo salir y volver a entrar a la casa basta.
 
 - Para reiniciar el reloj hay que presionar Down + B + Select en la pantalla de inicio (como en Gold/Silver).
@@ -131,6 +130,8 @@ CAMBIOS:
 - Tu rival imprimirá un texto de victoria en caso de que pierdas en una batalla.
 - El texto imprimirá "Rival <nombre que le pusimos>" en vez de solo el nombre del rival cuando batallemos contra él.
 - Moomoo, el Miltank enfermo de la granja Moomoo, ahora solo necesita seis bayas para ser curada en vez de siete.
+- 
+
 
 FIXES:
 - Algunos items no podían ser seleccionados/tenían el efecto equivocado.
