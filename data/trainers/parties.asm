@@ -5,6 +5,7 @@
 ;    * with TRAINERTYPE_NICKNAME: db "NICKNAME@"
 ;    * with TRAINERTYPE_DVS:      db atk|def dv, spd|spc dv
 ;    * with TRAINERTYPE_EVS: 	  db hp, atk, def, spd, sat, sdf 
+;	 * with TRAINERTYPE_HAPPINESS db happiness 
 ;    * with TRAINERTYPE_ITEM:     db item
 ;    * with TRAINERTYPE_MOVES:    db move 1, move 2, move 3, move 4
 ;    (TRAINERTYPE_ITEM_MOVES is just TRAINERTYPE_ITEM | TRAINERTYPE_MOVES)

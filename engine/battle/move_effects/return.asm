@@ -20,6 +20,10 @@ BattleCommand_HappinessPower:
 	ld b, 4
 	call Divide
 	ldh a, [hQuotient + 3]
+	and a
+	jr nz, .calc_done
+	inc a ; At least 1 Power.
+.calc_done
 	ld d, a
 	pop bc
 	ret

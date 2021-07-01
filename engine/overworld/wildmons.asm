@@ -51,15 +51,14 @@ FindNest:
 	ld hl, JohtoWaterWildMons
 	call .FindWater
 	call .RoamMon1
-	call .RoamMon2
-	ret
+	jp .RoamMon2
 
 .kanto
 	decoord 0, 0
 	ld hl, KantoGrassWildMons
 	call .FindGrass
 	ld hl, KantoWaterWildMons
-	jp .FindWater
+	jr .FindWater
 
 .FindGrass:
 	ld a, [hl]
@@ -124,8 +123,7 @@ FindNest:
 
 .found
 	pop af
-	jp .AppendNest
-
+	; fallthrough
 .AppendNest:
 	push de
 	call GetWorldMapLocation
@@ -331,15 +329,12 @@ ChooseWildEncounter:
 	jr c, .nowildbattle
 
 	cp UNOWN
-	jr nz, .done
+	jr nz, .loadwildmon
 
 	ld a, [wUnlockedUnowns]
 	and a
-	jr z, .nowildbattle
-
-.done
-	jr .loadwildmon
-
+	jr nz, .loadwildmon
+	; fallthrough
 .nowildbattle
 	ld a, 1
 	and a
@@ -348,7 +343,6 @@ ChooseWildEncounter:
 .loadwildmon
 	ld a, b
 	ld [wTempWildMonSpecies], a
-
 .startwildbattle
 	xor a
 	ret
@@ -529,7 +523,6 @@ InitRoamMons:
 	xor a ; generate new stats
 	ld [wRoamMon1HP], a
 	ld [wRoamMon2HP], a
-
 	ret
 
 CheckEncounterRoamMon:
@@ -608,7 +601,7 @@ UpdateRoamMons:
 .SkipEntei:
 	ld a, [wRoamMon3MapGroup]
 	cp GROUP_N_A
-	jr z, .Finished
+	jp z, _BackUpMapIndices
 	ld b, a
 	ld a, [wRoamMon3MapNumber]
 	ld c, a
@@ -617,8 +610,6 @@ UpdateRoamMons:
 	ld [wRoamMon3MapGroup], a
 	ld a, c
 	ld [wRoamMon3MapNumber], a
-
-.Finished:
 	jp _BackUpMapIndices
 
 .Update:
@@ -701,14 +692,12 @@ JumpRoamMons:
 .SkipEntei:
 	ld a, [wRoamMon3MapGroup]
 	cp GROUP_N_A
-	jr z, .Finished
+	jp z, _BackUpMapIndices
 	call JumpRoamMon
 	ld a, b
 	ld [wRoamMon3MapGroup], a
 	ld a, c
 	ld [wRoamMon3MapNumber], a
-
-.Finished:
 	jp _BackUpMapIndices
 
 JumpRoamMon:
@@ -947,6 +936,11 @@ RandomPhoneMon:
 	add c
 	ld c, a
 .no_evs
+; TRAINERTYPE_HAPPINESS uses 1 more byte
+	bit TRAINERTYPE_HAPPINESS_F, b
+	jr z, .no_happiness
+	inc c
+.no_happiness
 ; TRAINERTYPE_ITEM uses 1 more byte
 	bit TRAINERTYPE_ITEM_F, b
 	jr z, .no_item
@@ -973,21 +967,19 @@ RandomPhoneMon:
 	cp -1
 	jr nz, .count_mon
 	pop hl
-
 .rand
 	call Random
 	maskbits PARTY_LENGTH
 	cp e
 	jr nc, .rand
-
 	inc a
 .get_mon
 	dec a
 	jr z, .got_mon
 	add hl, bc
 	jr .get_mon
-.got_mon
 
+.got_mon
 	inc hl ; species
 	ld a, [wTrainerGroupBank]
 	call GetFarByte

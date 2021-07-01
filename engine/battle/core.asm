@@ -6374,9 +6374,14 @@ LoadEnemyMon:
 ; Set happiness
 	ld a, [wBattleMode]
 	dec a
-	ld a, $ff ; Max happiness
-	jr nz, .load_happiness ; If it's a Trainer battle, give all Pokémon max happiness.
 	ld a, BASE_HAPPINESS
+	jr z, .load_happiness
+
+	ld a, [wCurPartyMon]
+	ld hl, wOTPartyMon1Happiness
+	call GetPartyLocation
+	ld a, [hl]
+
 .load_happiness
 	ld [wEnemyMonHappiness], a
 ; Set level
