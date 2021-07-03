@@ -854,13 +854,13 @@ MoveScreenLoop:
 .joy_loop
 	call ScrollingMenuJoypad
 	bit 1, a
-	jp nz, .b_button
+	jr nz, .b_button
 	bit 0, a
 	jp nz, .a_button
 	bit 4, a
-	jp nz, .d_right
+	jr nz, .d_right
 	bit 5, a
-	jp nz, .d_left
+	jr nz, .d_left
 
 .skip_joy
 	call PrepareToPlaceMoveData

@@ -355,8 +355,8 @@ Pokedex_UpdateDexEntryScreen:
 	and SELECT
 	jr nz, .toggle_shininess
 	call Pokedex_NextOrPreviousDexEntry
-	jp c, Pokedex_IncrementDexPointer
-	ret
+	ret nc
+	jp Pokedex_IncrementDexPointer
 
 .do_menu_action
 	ld a, [wDexArrowCursorPosIndex]
@@ -845,7 +845,7 @@ Pokedex_UnownModeHandleDPadInput:
 	and D_RIGHT
 	ret z
 
-.right
+;right
 	ld a, [wDexUnownCount]
 	ld e, a
 	ld hl, wDexCurUnownIndex
@@ -936,9 +936,8 @@ Pokedex_NextOrPreviousDexEntry:
 	jr nc, .nope
 	call Pokedex_GetSelectedMon
 	call Pokedex_CheckSeen
-	jr nz, .yep
-	jr .down
-
+	jr z, .down
+	; fallthrough
 .yep
 	scf
 	ret
@@ -1597,6 +1596,7 @@ Pokedex_OrderMonsByMode:
 	ld a, [wCurDexMode]
 	ld hl, .Jumptable
 	rst JumpTable
+	ret
 
 .Jumptable:
 	dw .NewMode

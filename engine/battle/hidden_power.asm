@@ -36,7 +36,6 @@ HiddenPowerDamage:
 	add UNUSED_TYPES_END - UNUSED_TYPES
 
 .done
-
 ; Overwrite the current move type.
 	push af
 	ld a, BATTLE_VARS_MOVE_TYPE
@@ -44,5 +43,4 @@ HiddenPowerDamage:
 	pop af
 	or SPECIAL
 	ld [hl], a
-;	farcall BattleCommand_DamageStats ; damagestats
 	ret

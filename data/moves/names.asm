@@ -134,7 +134,7 @@ MoveNames::
 	li "Constrict"
 	li "Amnesia"
 	li "Kinesis"
-	li "Softboiled"
+	li "Soft-Boiled"
 	li "Hi Jump Kick"
 	li "Glare"
 	li "Dream Eater"

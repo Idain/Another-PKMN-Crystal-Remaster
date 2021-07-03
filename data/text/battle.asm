@@ -119,7 +119,7 @@ BattleText_TargetWasHitByFutureSight:
 	prompt
 
 BattleText_MistFaded:
-	text "<USER>'s mist"
+	text "<USER>'s Mist"
 	line "has dissipated!"
 	prompt
 
@@ -213,21 +213,21 @@ SentSomeToMomText:
 	text_decimal wBattleReward, 3, 6
 	text_start
 	line "for winning!"
-	cont "Sent some to MOM!"
+	cont "Sent some to Mom!"
 	prompt
 
 SentHalfToMomText:
-	text "Sent half to MOM!"
+	text "Sent half to Mom!"
 	prompt
 
 SentAllToMomText:
-	text "Sent all to MOM!"
+	text "Sent all to Mom!"
 	prompt
 
 UnusedRivalLossText: ; unreferenced
 	text "<RIVAL>: Huh? I"
 	line "should've chosen"
-	cont "your #MON!"
+	cont "your #mon!"
 	prompt
 
 BattleText_MonFainted:
@@ -237,13 +237,13 @@ BattleText_MonFainted:
 	prompt
 
 BattleText_UseNextMon:
-	text "Use next #MON?"
+	text "Use next #mon?"
 	done
 
 UnusedRivalWinText: ; unreferenced
 	text "<RIVAL>: Yes!"
 	line "I guess I chose a"
-	cont "good #MON!"
+	cont "good #mon!"
 	prompt
 
 LostAgainstText:
@@ -259,7 +259,7 @@ BattleText_EnemyIsAboutToUseWillPlayerChangeMon:
 	text "."
 
 	para "Will <PLAYER>"
-	line "change #MON?"
+	line "change #mon?"
 	done
 
 BattleText_PluralEnemyAreAboutToUseWillPlayerChangeMon:
@@ -270,7 +270,7 @@ BattleText_PluralEnemyAreAboutToUseWillPlayerChangeMon:
 	text "."
 
 	para "Will <PLAYER>"
-	line "change #MON?"
+	line "change #mon?"
 	done
 
 BattleText_EnemySentOut:
@@ -287,7 +287,7 @@ BattleText_TheresNoWillToBattle:
 	prompt
 
 BattleText_AnEGGCantBattle:
-	text "An EGG can't"
+	text "An Egg can't"
 	line "battle!"
 	prompt
 
