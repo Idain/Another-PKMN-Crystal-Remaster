@@ -497,7 +497,7 @@ BattleAnimFunction_MoveFromUserToTargetSpinAround:
 	add hl, bc
 	ld a, [hl]
 	cp $80
-	jr c .SetCoords
+	jr c, .SetCoords
 
 ; next
 	call BattleAnim_IncAnonJumptableIndex
@@ -3520,7 +3520,7 @@ BattleAnimFunction_LockOnMindReader:
 	dec [hl]
 	and a
 	ret nz
-	JackPhoneFullText DeinitBattleAnimation
+	jp DeinitBattleAnimation
 
 BattleAnimFunction_HealBellNotes:
 ; Object moves horizontally in a sine wave, while also moving left every other frame and downwards for $38 frames after which it disappears
@@ -3669,7 +3669,7 @@ BattleAnimFunction_HiddenPower:
 	add hl, bc
 	ld a, [hl]
 	inc [hl]
-	jr .step_circle
+	jp BattleAnim_StepCircle
 
 .one
 	call BattleAnim_IncAnonJumptableIndex
@@ -4011,7 +4011,7 @@ BattleAnim_AbsSinePrecise: ; unreferenced
 
 BattleAnim_AbsCosinePrecise: ; unreferenced
 	ld a, e
-	call BattleAnim_Cosine
+	call Cosine
 	ld e, l
 	ld d, h
 	ret

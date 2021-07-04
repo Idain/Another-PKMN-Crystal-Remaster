@@ -3,8 +3,7 @@ BattleCommand_Spite:
 
 	ld a, [wAttackMissed]
 	and a
-	jp nz, .failed
-	ld bc, PARTYMON_STRUCT_LENGTH ; unused
+	jr nz, .failed
 	ld hl, wEnemyMonMoves
 	ldh a, [hBattleTurn]
 	and a
@@ -36,12 +35,8 @@ BattleCommand_Spite:
 	jr z, .failed
 	push bc
 	call GetMoveName
-	; lose 2-5 PP
-	call BattleRandom
-	and %11
-	inc a
-	inc a
-	ld b, a
+	; lose 4 PP
+	ld b, 4
 	ld a, [hl]
 	and PP_MASK
 	cp b

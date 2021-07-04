@@ -533,7 +533,7 @@ AnimSeq_TradeTubeBulge:
 	inc [hl]
 	inc [hl]
 	cp $b0
-	jr nc, DeinitializeSprite
+	jp nc, DeinitializeSprite
 	and $3
 	ret nz
 	ld de, SFX_POKEBALLS_PLACED_ON_TABLE

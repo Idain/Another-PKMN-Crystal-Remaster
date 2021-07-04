@@ -21,7 +21,6 @@ INCLUDE "engine/events/haircut.asm"
 SECTION "bank2", ROMX
 
 INCLUDE "engine/overworld/player_object.asm"
-INCLUDE "engine/math/sine.asm"
 INCLUDE "engine/predef.asm"
 INCLUDE "engine/gfx/color.asm"
 

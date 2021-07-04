@@ -2047,7 +2047,7 @@ BattleBGEffect_WobblePlayer:
 	add hl, bc
 	ld a, [hl]
 	cp $40
-	jr nc, .two
+	jp nc, BattleAnim_ResetLCDStatCustom
 	ld d, $6
 	call Sine
 	call BGEffect_FillLYOverridesBackup
