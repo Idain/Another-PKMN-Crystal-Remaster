@@ -759,7 +759,7 @@ RestorePPOfDepositedPokemon:
 	ld a, [wTempPP]
 	ld b, a
 	ld a, [de]
-	and %11000000
+	and PP_UP_MASK
 	add b
 	ld [de], a
 	pop bc

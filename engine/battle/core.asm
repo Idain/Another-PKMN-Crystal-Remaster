@@ -54,9 +54,9 @@ DoBattle:
 	call SafeLoadTempTilemapToTilemap
 	ld a, [wBattleType]
 	cp BATTLETYPE_DEBUG
-	jp z, .tutorial_debug
+	jp z, BattleMenu ; tutorial_debug
 	cp BATTLETYPE_TUTORIAL
-	jp z, .tutorial_debug
+	jp z, BattleMenu
 	xor a
 	ld [wCurPartyMon], a
 .loop2
@@ -108,12 +108,9 @@ DoBattle:
 	call EnemySwitch
 	call SetEnemyTurn
 	call SpikesDamage
-
+	; fallthrough
 .not_linked_2
 	jp BattleTurn
-
-.tutorial_debug
-	jp BattleMenu
 
 WildFled_EnemyFled_LinkBattleCanceled:
 	call SafeLoadTempTilemapToTilemap
@@ -993,7 +990,7 @@ HasEnemyFainted:
 
 HasPlayerFainted:
 	ld hl, wBattleMonHP
-
+	; fallthrough
 CheckIfHPIsZero:
 	ld a, [hli]
 	or [hl]
@@ -1333,7 +1330,7 @@ HandleMysteryberry:
 	call SetPlayerTurn
 
 .do_it
-	callfar GetUserItem
+	farcall GetUserItem
 	ld a, b
 	cp HELD_RESTORE_PP
 	ret nz
@@ -1345,14 +1342,20 @@ HandleMysteryberry:
 	ld hl, wPartyMon1Moves
 	ld a, [wCurBattleMon]
 	call GetPartyLocation
+	xor a ; PARTYMON
+	ld [wMonType], a
 	ldh a, [hBattleTurn]
 	and a
 	jr z, .wild
+
 	ld de, wWildMonPP
 	ld hl, wWildMonMoves
+	ld a, WILDMON
+	ld [wMonType], a
 	ld a, [wBattleMode]
 	dec a
 	jr z, .wild
+
 	ld hl, wOTPartyMon1PP
 	ld a, [wCurOTMon]
 	call GetPartyLocation
@@ -1361,6 +1364,8 @@ HandleMysteryberry:
 	ld hl, wOTPartyMon1Moves
 	ld a, [wCurOTMon]
 	call GetPartyLocation
+	ld a, OTPARTYMON
+	ld [wMonType], a
 
 .wild
 	ld c, $0
@@ -1370,7 +1375,7 @@ HandleMysteryberry:
 	ret z
 	ld a, [de]
 	and PP_MASK
-	jr z, .restore
+	jr z, .start_restore
 	inc hl
 	inc de
 	inc c
@@ -1379,17 +1384,33 @@ HandleMysteryberry:
 	jr nz, .loop
 	ret
 
-.restore
-	; lousy hack
-	ld a, [hl]
-	cp SKETCH
-	ld b, 1
-	jr z, .sketch
-	ld b, 5
-.sketch
+.start_restore
+	push bc
+	push de
+	push hl
+	farcall SimpleGetMaxPPOfMove
+	pop hl
+	pop de
+	pop bc
+
+	ld a, [wTempPP]
+	ld b, a
+
 	ld a, [de]
-	add b
+	and PP_MASK
+	add 10
+	cp b
+	jr nc, .restore_all
+	ld b, a
+.restore_all
+	ld a, [de]
+	and PP_UP_MASK
+	or b
 	ld [de], a
+
+	and PP_MASK
+	ld b, a
+
 	push bc
 	push bc
 	ld a, [hl]
@@ -6392,8 +6413,8 @@ LoadEnemyMon:
 	ld b, FALSE
 	ld hl, wEnemyMonDVs - (MON_DVS - MON_EVS + 1)
 	ld a, [wBattleMode]
-	cp TRAINER_BATTLE
-	jr nz, .no_evs
+	dec a
+	jr z, .no_evs
 	ld a, [wCurPartyMon]
 	ld hl, wOTPartyMon1EVs - 1
 	call GetPartyLocation
@@ -6492,8 +6513,8 @@ LoadEnemyMon:
 	ld de, wEnemyMonMoves
 ; Are we in a trainer battle?
 	ld a, [wBattleMode]
-	cp TRAINER_BATTLE
-	jr nz, .WildMoves
+	dec a
+	jr z, .WildMoves
 ; Then copy moves from the party struct
 	ld hl, wOTPartyMon1Moves
 	ld a, [wCurPartyMon]
@@ -6518,8 +6539,8 @@ LoadEnemyMon:
 .PP:
 ; Trainer battle?
 	ld a, [wBattleMode]
-	cp TRAINER_BATTLE
-	jr z, .TrainerPP
+	dec a
+	jr nz, .TrainerPP
 
 ; Fill wild PP
 	ld hl, wEnemyMonMoves
