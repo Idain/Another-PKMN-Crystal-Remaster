@@ -50,7 +50,7 @@ BattleAnimations::
 	dw BattleAnim_Roar
 	dw BattleAnim_Sing
 	dw BattleAnim_Supersonic
-	dw BattleAnim_Sonicboom
+	dw BattleAnim_Sonicboom_JP
 	dw BattleAnim_Disable
 	dw BattleAnim_Acid
 	dw BattleAnim_Ember
@@ -272,6 +272,9 @@ BattleAnimations::
 	dw BattleAnim_Par
 	dw BattleAnim_InLove
 	dw BattleAnim_InSandstorm
+	dw BattleAnim_InRain
+	dw BattleAnim_InSun
+	dw BattleAnim_InHail
 	dw BattleAnim_InNightmare
 	dw BattleAnim_InWhirlpool
 	dw BattleAnim_Miss
@@ -282,7 +285,6 @@ BattleAnimations::
 	dw BattleAnim_Wobble
 	dw BattleAnim_Shake
 	dw BattleAnim_HitConfusion
-	dw BattleAnim_InHail
 	assert_table_length NUM_BATTLE_ANIMS + 1
 
 BattleAnim_0:
@@ -1318,17 +1320,17 @@ BattleAnim_RazorWind:
 	anim_wait 24
 	anim_ret
 
-BattleAnim_Sonicboom_JP: ; unreferenced
+BattleAnim_Sonicboom_JP:
 	anim_2gfx ANIM_GFX_WHIP, ANIM_GFX_HIT
 .loop
 	anim_sound 3, 0, SFX_RAZOR_WIND
-	anim_obj ANIM_OBJ_SONICBOOM_JP, 64, 80, $3
+	anim_obj ANIM_OBJ_SONICBOOM_JP_UNUSED, 64, 80, $3
 	anim_wait 8
 	anim_sound 3, 0, SFX_RAZOR_WIND
-	anim_obj ANIM_OBJ_SONICBOOM_JP, 64, 88, $2
+	anim_obj ANIM_OBJ_SONICBOOM_JP_UNUSED, 64, 88, $2
 	anim_wait 8
 	anim_sound 3, 0, SFX_RAZOR_WIND
-	anim_obj ANIM_OBJ_SONICBOOM_JP, 64, 96, $4
+	anim_obj ANIM_OBJ_SONICBOOM_JP_UNUSED, 64, 96, $4
 	anim_wait 8
 	anim_loop 2, .loop
 	anim_wait 32
@@ -1343,7 +1345,6 @@ BattleAnim_Sonicboom_JP: ; unreferenced
 	anim_ret
 
 BattleAnim_Gust:
-BattleAnim_Sonicboom:
 	anim_2gfx ANIM_GFX_WIND, ANIM_GFX_HIT
 .loop
 	anim_sound 0, 1, SFX_RAZOR_WIND
@@ -1917,10 +1918,10 @@ BattleAnim_ConfuseRay:
 	anim_ret
 
 BattleAnim_Leer:
-	anim_1gfx ANIM_GFX_BEAM
-	anim_bgeffect ANIM_BG_CYCLE_OBPALS_GRAY_AND_YELLOW, $0, $2, $0
-	anim_call BattleAnimSub_EyeBeams
-	anim_wait 16
+	anim_1gfx ANIM_GFX_SPEED
+	anim_sound 6, 2, SFX_SHINE
+	anim_obj ANIM_OBJ_LEER_SHINE, 64, 84, $0
+	anim_wait 8
 	anim_ret
 
 BattleAnim_Reflect:
@@ -2361,12 +2362,20 @@ BattleAnim_Transform:
 BattleAnim_PetalDance:
 	anim_sound 0, 0, SFX_MENU
 	anim_2gfx ANIM_GFX_FLOWER, ANIM_GFX_HIT
+	anim_sound 0, 1, SFX_SHINE
 .loop
 	anim_obj ANIM_OBJ_PETAL_DANCE, 48, 56, $0
+	anim_wait 7
+	anim_loop 4, .loop
 	anim_wait 11
-	anim_loop 8, .loop
-	anim_wait 128
-	anim_wait 64
+	anim_sound 0, 1, SFX_SHINE
+	anim_wait 39
+	anim_sound 0, 1, SFX_SHINE
+	anim_wait 39
+	anim_sound 0, 1, SFX_SHINE
+	anim_wait 39
+	anim_sound 0, 1, SFX_SHINE
+	anim_wait 32
 	anim_sound 0, 1, SFX_COMET_PUNCH
 	anim_obj ANIM_OBJ_HIT_BIG_YFIX, 136, 56, $0
 	anim_wait 16
@@ -4408,6 +4417,7 @@ BattleAnim_Twister:
 	anim_ret
 
 BattleAnim_RainDance:
+BattleAnim_InRain:
 	anim_1gfx ANIM_GFX_WATER
 	anim_bgp $f8
 	anim_obp0 $7c
@@ -4421,15 +4431,15 @@ BattleAnim_RainDance:
 	anim_ret
 
 BattleAnim_SunnyDay:
-	anim_1gfx ANIM_GFX_WATER
+BattleAnim_InSun:
+	anim_1gfx ANIM_GFX_SHINE
 	anim_bgp $90
 	anim_sound 0, 1, SFX_MORNING_SUN
-	anim_obj ANIM_OBJ_RAIN, 88, 0, $2
-	anim_wait 8
-	anim_obj ANIM_OBJ_RAIN, 88, 0, $2
-	anim_wait 8
-	anim_obj ANIM_OBJ_RAIN, 88, 0, $2
-	anim_wait 128
+.loop
+	anim_obj ANIM_OBJ_SUNNY_DAY, 16, 24, $88
+	anim_wait 6
+	anim_loop 5, .loop
+	anim_wait 32
 	anim_ret
 
 BattleAnim_MirrorCoat:

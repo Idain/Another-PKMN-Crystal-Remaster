@@ -1407,7 +1407,6 @@ HandleMysteryberry:
 	and PP_UP_MASK
 	or b
 	ld [de], a
-
 	and PP_MASK
 	ld b, a
 
@@ -1502,7 +1501,7 @@ HandleFutureSight:
 	ret z
 	dec a
 	ld [hl], a
-	cp $1
+	dec a
 	ret nz
 
 	ld hl, BattleText_TargetWasHitByFutureSight
@@ -1750,6 +1749,23 @@ HandleWeather:
 	ret
 
 .continues
+;	ld a, [wBattleWeather]
+	dec a ; WEATHER_RAIN
+	ld de, ANIM_IN_RAIN
+	jr z, .anim_weather
+
+	dec a ; WEATHER_SUN
+	ld de, ANIM_IN_SUN
+	jr z, .anim_weather
+
+	dec a ; WEATHER_SANDSTORM
+	ld de, ANIM_IN_SANDSTORM
+	jr z, .anim_weather
+
+	ld de, ANIM_IN_HAIL
+	; fallthrough
+.anim_weather
+	call Call_PlayBattleAnim
 	ld hl, .WeatherMessages
 	call .PrintWeatherMessage
 
@@ -1803,8 +1819,6 @@ HandleWeather:
 	call SwitchTurnCore
 	xor a
 	ld [wNumHits], a
-	ld de, ANIM_IN_SANDSTORM
-	call Call_PlayBattleAnim
 	call SwitchTurnCore
 	call GetEighthMaxHP
 	call SubtractHPFromUser
@@ -1855,8 +1869,6 @@ HandleWeather:
 	call SwitchTurnCore
 	xor a
 	ld [wNumHits], a
-	ld de, ANIM_IN_HAIL
-	call Call_PlayBattleAnim
 	call SwitchTurnCore
 
 	call GetSixteenthMaxHP

@@ -187,6 +187,7 @@ BattleAnimFrameData:
 	dw .Frameset_b7 ; BATTLEANIMFRAMESET_B7
 	dw .Frameset_b8 ; BATTLEANIMFRAMESET_B8
 	dw .Frameset_Hail ; BATTLEANIMFRAMESET_HAIL
+	dw .Frameset_ba ; BATTLEANIMFRAMESET_BA
 	assert_table_length NUM_BATTLEANIMFRAMESETS
 
 .Frameset_00:
@@ -1273,3 +1274,8 @@ BattleAnimFrameData:
 .Frameset_Hail:
 	frame BATTLEANIMOAMSET_HAIL, 32
 	endanim
+
+.Frameset_ba:
+	frame BATTLEANIMOAMSET_75,  6
+	frame BATTLEANIMOAMSET_74,  6
+	delanim

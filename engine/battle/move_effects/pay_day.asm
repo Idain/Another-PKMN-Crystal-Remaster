@@ -11,8 +11,10 @@ BattleCommand_PayDay:
 	jr z, .ok
 	ld a, [wEnemyMonLevel]
 .ok
-
+	ld b, a
 	add a
+	add a
+	add b ; 5x
 	ld hl, wPayDayMoney + 2
 	add [hl]
 	ld [hld], a
