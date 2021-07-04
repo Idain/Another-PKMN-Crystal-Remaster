@@ -425,7 +425,7 @@ SlotsAction_FlashScreen:
 	ret z
 
 	ldh a, [rOBP0]
-	xor $ff
+	cpl
 	ld e, a
 	ld d, a
 	jp DmgToCgbObjPals
@@ -1970,7 +1970,7 @@ Slots_AnimateGolem:
 	ld hl, SPRITEANIMSTRUCT_VAR2
 	add hl, bc
 	ld a, [hl]
-	xor $ff
+	cpl
 	inc a
 	ld [hl], a
 	ldh [hSCY], a

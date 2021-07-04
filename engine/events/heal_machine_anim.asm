@@ -22,8 +22,7 @@ HealMachineAnim:
 	ld [wHealMachineTempOBP1], a
 	call .DoJumptableFunctions
 	ld a, [wHealMachineTempOBP1]
-	call DmgToCgbObjPal1
-	ret
+	jp DmgToCgbObjPal1
 
 .DoJumptableFunctions:
 	xor a
@@ -45,13 +44,10 @@ HealMachineAnim:
 	add hl, de
 	ld a, [hl]
 	cp HEALMACHINESTATE_FINISH
-	jr z, .finish
+	ret z
 	ld hl, .Jumptable
 	rst JumpTable
 	jr .jumptable_loop
-
-.finish
-	ret
 
 .Pointers:
 ; entries correspond to HEALMACHINE_* constants
@@ -86,8 +82,7 @@ ENDM
 	ld de, .HealMachineGFX
 	ld hl, vTiles0 tile $7c
 	lb bc, BANK(.HealMachineGFX), 2
-	call Request2bpp
-	ret
+	jp Request2bpp
 
 .PC_LoadBallsOntoMachine:
 	ld hl, wVirtualOAMSprite32
@@ -126,8 +121,7 @@ ENDM
 	call .FlashPalettes8Times
 	call WaitSFX
 	ld de, SFX_BOOT_PC
-	call PlaySFX
-	ret
+	jp PlaySFX
 
 .PC_ElmsLab_OAM:
 	dbsprite   4,   4, 2, 0, $7c, PAL_OW_TREE | OBP_NUM

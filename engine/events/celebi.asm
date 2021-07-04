@@ -51,8 +51,7 @@ CelebiShrineEvent:
 	pop af
 	ld [wVramState], a
 	call .RestorePlayerSprite_DespawnLeaves
-	call CelebiEvent_SetBattleType
-	ret
+	jp CelebiEvent_SetBattleType
 
 .RestorePlayerSprite_DespawnLeaves:
 	ld hl, wVirtualOAMSprite00TileID
@@ -69,8 +68,7 @@ endr
 	ld hl, wVirtualOAMSprite04
 	ld bc, wVirtualOAMEnd - wVirtualOAMSprite04
 	xor a
-	call ByteFill
-	ret
+	jp ByteFill
 
 LoadCelebiGFX:
 	farcall ClearSpriteAnims
@@ -107,7 +105,7 @@ CelebiEvent_SpawnLeaf: ; unreferenced
 	ret nz
 	ld a, [hl]
 	and $18
-	sla a
+	add a
 	add $40
 	ld d, a
 	ld e, $0
@@ -207,24 +205,20 @@ UpdateCelebiPosition:
 	ld hl, SPRITEANIMSTRUCT_FRAMESET_ID
 	add hl, bc
 	ld a, SPRITE_ANIM_FRAMESET_CELEBI_RIGHT
-	call ReinitSpriteAnimFrame
-	jr .done
+	jp ReinitSpriteAnimFrame
 
 .left
 	ld hl, SPRITEANIMSTRUCT_FRAMESET_ID
 	add hl, bc
 	ld a, SPRITE_ANIM_FRAMESET_CELEBI_LEFT
-	call ReinitSpriteAnimFrame
-.done
-	ret
+	jp ReinitSpriteAnimFrame
 
 .FreezeCelebiPosition:
 	pop af
 	ld hl, SPRITEANIMSTRUCT_FRAMESET_ID
 	add hl, bc
 	ld a, SPRITE_ANIM_FRAMESET_CELEBI_LEFT
-	call ReinitSpriteAnimFrame
-	ret
+	jp ReinitSpriteAnimFrame
 
 GetCelebiSpriteTile:
 	push hl
@@ -233,7 +227,7 @@ GetCelebiSpriteTile:
 	ld a, d
 	ld d, $3
 	ld e, d
-	cp $0
+	and a
 	jr z, .Frame1
 	cp d
 	jr z, .Frame2
@@ -299,11 +293,9 @@ CheckCaughtCelebi:
 	jr z, .false
 	ld a, TRUE
 	ld [wScriptVar], a
-	jr .done
+	ret
 
 .false
 	xor a ; FALSE
 	ld [wScriptVar], a
-
-.done
 	ret

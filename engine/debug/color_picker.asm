@@ -249,7 +249,10 @@ DebugColorMain:
 	jr nz, .PreviousMon
 
 .no_start_select
-	jumptable .Jumptable, wJumptableIndex
+	ld a, [wJumptableIndex]
+	ld hl, .Jumptable
+	rst JumpTable
+	ret
 
 .NextMon:
 	call DebugColor_BackupSpriteColors
@@ -308,15 +311,15 @@ DebugColor_InitScreen:
 	hlcoord 1, 3
 	lb bc, 7, 18
 	ld a, DEBUGTEST_WHITE
-	call DebugColor_FillBoxWithByte
+	call FillBoxWithByte
 	hlcoord 11, 0
 	lb bc, 2, 3
 	ld a, DEBUGTEST_LIGHT
-	call DebugColor_FillBoxWithByte
+	call FillBoxWithByte
 	hlcoord 16, 0
 	lb bc, 2, 3
 	ld a, DEBUGTEST_DARK
-	call DebugColor_FillBoxWithByte
+	call FillBoxWithByte
 	call DebugColor_LoadRGBMeter
 	call DebugColor_SetRGBMeter
 	ld a, [wDebugColorCurMon]
@@ -593,14 +596,13 @@ DebugColor_SelectColorBox:
 	and D_DOWN
 	jr nz, DebugColor_NextRGBColor
 	ld a, [hl]
-	and D_LEFT
-	jr nz, .light
-	ld a, [hl]
 	and D_RIGHT
 	jr nz, .dark
-	ret
+	ld a, [hl]
+	and D_LEFT
+	ret z
 
-.light
+;light
 	xor a ; FALSE
 	ld [wDebugColorCurColor], a
 	ld de, wDebugLightColor
@@ -644,14 +646,13 @@ DebugColor_ChangeBlueValue:
 
 DebugColor_UpdateRGBColor:
 	ldh a, [hJoyLast]
-	and D_RIGHT
-	jr nz, .increment
-	ldh a, [hJoyLast]
 	and D_LEFT
 	jr nz, .decrement
-	ret
+	ldh a, [hJoyLast]
+	and D_RIGHT
+	ret z
 
-.increment
+;increment
 	ld a, [hl]
 	cp 31
 	ret nc
@@ -718,12 +719,11 @@ DebugColor_TMHMJoypad:
 .scroll:
 	ld hl, hJoyLast
 	ld a, [hl]
-	and D_UP
-	jr nz, .up
-	ld a, [hl]
 	and D_DOWN
 	jr nz, .down
-	ret
+	ld a, [hl]
+	and D_UP
+	ret z
 
 .up
 	ld a, [wDebugColorCurTMHM]
@@ -808,19 +808,19 @@ DebugColor_CalculatePalette:
 	ld e, a
 	ld a, [wDebugGreenChannel]
 	and %00000111
-	sla a
+	add a
 	swap a
 	or e
 	ld e, a
 	ld a, [wDebugGreenChannel]
 	and %00011000
-	sla a
+	add a
 	swap a
 	ld d, a
 	ld a, [wDebugBlueChannel]
 	and %00011111
-	sla a
-	sla a
+	add a
+	add a
 	or d
 	ld d, a
 	ld a, [wDebugColorCurColor]
@@ -895,23 +895,6 @@ endr
 	ld [hli], a
 	dec c
 	jr nz, .loop
-	ret
-
-DebugColor_FillBoxWithByte:
-; For some reason, we have another copy of FillBoxWithByte here
-.row
-	push bc
-	push hl
-.col
-	ld [hli], a
-	dec c
-	jr nz, .col
-	pop hl
-	ld bc, SCREEN_WIDTH
-	add hl, bc
-	pop bc
-	dec b
-	jr nz, .row
 	ret
 
 DebugColor_PushSGBPals:
@@ -1341,13 +1324,12 @@ DebugTileset_ChangeBlueValue:
 
 DebugTileset_UpdateRGBColor:
 	ldh a, [hJoyLast]
-	and D_RIGHT
-	jr nz, .increment
-	ldh a, [hJoyLast]
 	and D_LEFT
 	jr nz, .decrement
-	ret
-
+	ldh a, [hJoyLast]
+	and D_RIGHT
+	ret z
+	; fallthrough
 .increment
 	ld a, [hl]
 	cp 31
@@ -1381,19 +1363,19 @@ DebugTileset_CalculatePalette:
 	ld e, a
 	ld a, [wDebugGreenChannel]
 	and %0000111
-	sla a
+	add a
 	swap a
 	or e
 	ld e, a
 	ld a, [wDebugGreenChannel]
 	and %00011000
-	sla a
+	add a
 	swap a
 	ld d, a
 	ld a, [wDebugBlueChannel]
 	and %00011111
-	sla a
-	sla a
+	add a
+	add a
 	or d
 	ld d, a
 	ld a, [wDebugTilesetCurColor]

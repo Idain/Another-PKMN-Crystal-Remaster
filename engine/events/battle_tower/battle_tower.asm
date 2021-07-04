@@ -36,8 +36,8 @@ Function1700c4:
 	ld a, [hl]
 	inc [hl]
 	inc hl
-	sla a
-	sla a
+	add a
+	add a
 	ld e, a
 	ld d, 0
 	add hl, de
@@ -65,8 +65,7 @@ Function170114:
 	ld bc, 246
 	call CopyBytes
 	call CloseSRAM
-	call Function170c8b
-	ret
+	jp Function170c8b
 
 Function170139: ; unreferenced
 ; Convert the 4-digit decimal number at s5_aa41 into binary
@@ -180,8 +179,7 @@ Function170139: ; unreferenced
 BattleTowerBattle:
 	xor a ; FALSE
 	ld [wBattleTowerBattleEnded], a
-	call _BattleTowerBattle
-	ret
+	jr _BattleTowerBattle
 
 InitBattleTowerChallengeRAM:
 	xor a
@@ -201,7 +199,10 @@ _BattleTowerBattle:
 	ret
 
 .do_dw
-	jumptable .dw, wBattleTowerBattleEnded
+	ld a, [wBattleTowerBattleEnded]
+	ld hl, .dw
+	rst JumpTable
+	ret
 
 .dw
 	dw RunBattleTowerTrainer
@@ -601,7 +602,10 @@ Function1704e1:
 	jr .loop
 
 .DoJumptable:
-	jumptable .dw, wJumptableIndex
+	ld a, [wJumptableIndex]
+	ld hl, .dw
+	rst JumpTable
+	ret
 
 .dw
 	dw .Jumptable_0
@@ -833,7 +837,10 @@ Function1704e1:
 	db "れきだいりーダーいちらん@"
 
 BattleTowerAction:
-	jumptable .dw, wScriptVar
+	ld a, [wScriptVar]
+	ld hl, .dw
+	rst JumpTable
+	ret
 
 .dw
 	dw BattleTowerAction_CheckExplanationRead
@@ -1499,11 +1506,11 @@ LoadOpponentTrainerAndPokemonWithOTSprite:
 ; because s/he is chosen randomly and appears out of nowhere
 	ld a, [wScriptVar]
 	dec a
-	sla a
+	add a
 	ld e, a
-	sla a
-	sla a
-	sla a
+	add a
+	add a
+	add a
 	ld c, a
 	ld b, 0
 	ld d, 0

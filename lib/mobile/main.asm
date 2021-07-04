@@ -271,10 +271,10 @@ Function110115:
 	jr z, .asm_1101a4
 	swap a
 	and $f
-	cp $1
-	jr z, .asm_11016a
-	cp $0
+	and a
 	jr z, .asm_11015d
+	dec a
+	jr z, .asm_11016a
 .asm_110158
 	ld hl, 0
 .asm_11015b
@@ -4718,7 +4718,7 @@ PacketSendBytes:
 	call Function1100b4
 	ret c
 	ld a, [$c800]
-	cp $0
+	and a
 	jr z, .asm_111f17
 	call Function110226
 	scf
@@ -4833,7 +4833,7 @@ Function111f97:
 	and $f
 	cp $1
 	jr z, .asm_111fcb
-	cp $0
+	and a
 	jr z, .asm_111fcb
 	cp $8
 	jr nz, .asm_111fcd
@@ -6980,7 +6980,7 @@ Function112d33:
 	jr nz, .asm_112e21
 	ld hl, $c98b
 	ld a, [hli]
-	cp $0
+	and a
 	ret nz
 	ld a, $2
 	cp [hl]
@@ -7073,7 +7073,7 @@ Function112d33:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	cp $0
+	and a
 	jr nz, .asm_112ec1
 	ld a, $2
 	cp h
@@ -7113,7 +7113,7 @@ Function112d33:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	cp $0
+	and a
 	jp nz, .asm_112e6c
 	ld a, $2
 	cp h
@@ -8034,7 +8034,7 @@ Function1134cb:
 
 .asm_1134d9
 	ld a, [$ca40]
-	cp $0
+	and a
 	jr z, .asm_1134f0
 	cp $ff
 	jr z, .asm_1134f0
@@ -9109,13 +9109,13 @@ Function113c8e:
 	call Function113d47
 	ld [hli], a
 	ld a, [$cc10]
-	cp $0
+	and a
 	jp nz, .asm_113ca0
 	ld a, [$cc11]
-	cp $0
+	and a
 	jp nz, .asm_113ca0
 	ld a, [$cc16]
-	cp $0
+	and a
 	jr z, .asm_113d43
 	push hl
 	dec hl

@@ -107,15 +107,13 @@ _TitleScreen:
 ; Draw Pokemon logo
 	hlcoord 0, 3
 	lb bc, 7, 20
-	ld d, $80
-	ld e, 20
+	lb de, $80, 20
 	call DrawTitleGraphic
 
 ; Draw copyright text
 	hlbgcoord 3, 0, vBGMap1
 	lb bc, 1, 13
-	ld d, $c
-	ld e, 16
+	lb de, $c, 16
 	call DrawTitleGraphic
 
 ; Initialize running Suicune?
@@ -210,9 +208,7 @@ _TitleScreen:
 ; Play starting sound effect
 	call SFXChannelsOff
 	ld de, SFX_TITLE_SCREEN_ENTRANCE
-	call PlaySFX
-
-	ret
+	jp PlaySFX
 
 SuicuneFrameIterator:
 	ld hl, wSuicuneFrame
@@ -226,7 +222,7 @@ SuicuneFrameIterator:
 
 	ld a, c
 	and %11000
-	sla a
+	add a
 	swap a
 	ld e, a
 	ld d, 0
@@ -358,7 +354,6 @@ rept SPRITEOAMSTRUCT_LENGTH - 1
 endr
 	dec c
 	jr nz, .loop
-
 	ret
 
 TitleSuicuneGFX:

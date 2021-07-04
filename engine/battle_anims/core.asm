@@ -17,8 +17,7 @@ QueueBattleAnimation:
 	ld b, h
 	ld hl, wLastAnimObjectIndex
 	inc [hl]
-	call InitBattleAnimation
-	ret
+	jr InitBattleAnimation
 
 DeinitBattleAnimation:
 	ld hl, BATTLEANIMSTRUCT_INDEX
@@ -121,7 +120,7 @@ BattleAnimOAMUpdate:
 	bit OAM_Y_FLIP, [hl]
 	jr z, .no_yflip
 	add $8
-	xor $ff
+	cpl
 	inc a
 .no_yflip
 	pop hl
@@ -142,7 +141,7 @@ BattleAnimOAMUpdate:
 	bit OAM_X_FLIP, [hl]
 	jr z, .no_xflip
 	add $8
-	xor $ff
+	cpl
 	inc a
 .no_xflip
 	pop hl
@@ -188,7 +187,6 @@ BattleAnimOAMUpdate:
 
 .delete
 	call DeinitBattleAnimation
-
 .done
 	and a
 	ret
@@ -279,7 +277,7 @@ InitBattleAnimBuffer:
 .done
 	ld [wBattleAnimTempYCoord], a
 	ld a, [hli]
-	xor $ff
+	cpl
 	inc a
 	ld [wBattleAnimTempXOffset], a
 	ret
@@ -305,14 +303,6 @@ GetBattleAnimTileOffset:
 .done
 	pop bc
 	pop hl
-	ret
-
-_ExecuteBGEffects:
-	callfar ExecuteBGEffects
-	ret
-
-_QueueBGEffect:
-	callfar QueueBGEffect
 	ret
 
 INCLUDE "data/battle_anims/objects.asm"

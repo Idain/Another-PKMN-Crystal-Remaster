@@ -91,7 +91,7 @@ AnimSeq_PartyMonSwitch:
 	ld a, e
 	and a
 	jr z, .load_minus_two
-	cp $1
+	dec a
 	jr z, .load_minus_one
 .load_zero
 	xor a
@@ -162,7 +162,7 @@ AnimSeq_GSTitleTrail:
 	add hl, bc
 	ld a, [hl]
 	cp $a4
-	jr nc, .delete
+	jp nc, DeinitializeSprite
 
 	ld hl, SPRITEANIMSTRUCT_VAR2
 	add hl, bc
@@ -179,8 +179,8 @@ AnimSeq_GSTitleTrail:
 	ld hl, SPRITEANIMSTRUCT_VAR2
 	add hl, bc
 	ld a, [hl]
-	sla a
-	sla a
+	add a
+	add a
 
 	ld d, 2
 	ld hl, SPRITEANIMSTRUCT_VAR1
@@ -188,15 +188,11 @@ AnimSeq_GSTitleTrail:
 	ld a, [hl]
 	add 3
 	ld [hl], a
-	call AnimSeqs_Sine
+	call Sine
 
 	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld [hl], a
-	ret
-
-.delete
-	call DeinitializeSprite
 	ret
 
 AnimSeq_GSIntroHoOhLugia:
@@ -206,7 +202,7 @@ AnimSeq_GSIntroHoOhLugia:
 	inc a
 	ld [hl], a
 	ld d, 2
-	call AnimSeqs_Sine
+	call Sine
 
 	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
@@ -247,14 +243,14 @@ AnimSeq_GSGameFreakLogoStar:
 	ld a, [hl]
 	push af
 	push de
-	call AnimSeqs_Sine
+	call Sine
 
 	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld [hl], a
 	pop de
 	pop af
-	call AnimSeqs_Cosine
+	call Cosine
 
 	ld hl, SPRITEANIMSTRUCT_XOFFSET
 	add hl, bc
@@ -273,15 +269,14 @@ AnimSeq_GSGameFreakLogoStar:
 .delete
 	ld a, 1
 	ld [wIntroSceneFrameCounter], a
-	call DeinitializeSprite
-	ret
+	jp DeinitializeSprite
 
 AnimSeq_GSGameFreakLogoSparkle:
 	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	ld a, [hli]
 	or [hl]
-	jr z, .delete
+	jp z, DeinitializeSprite
 
 	ld hl, SPRITEANIMSTRUCT_VAR4
 	add hl, bc
@@ -292,14 +287,14 @@ AnimSeq_GSGameFreakLogoSparkle:
 	ld a, [hl]
 	push af
 	push de
-	call AnimSeqs_Sine
+	call Sine
 
 	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld [hl], a
 	pop de
 	pop af
-	call AnimSeqs_Cosine
+	call Cosine
 
 	ld hl, SPRITEANIMSTRUCT_XOFFSET
 	add hl, bc
@@ -349,10 +344,6 @@ AnimSeq_GSGameFreakLogoSparkle:
 	ld [hl], a
 	ret
 
-.delete
-	call DeinitializeSprite
-	ret
-
 AnimSeq_SlotsGolem:
 	callfar Slots_AnimateGolem
 	ret
@@ -365,8 +356,7 @@ AnimSeq_SlotsChansey:
 	ret nz
 	ld [hl], $3
 	ld a, SPRITE_ANIM_FRAMESET_SLOTS_CHANSEY_2
-	call _ReinitSpriteAnimFrame
-	ret
+	jp _ReinitSpriteAnimFrame
 
 AnimSeq_SlotsChanseyEgg:
 	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
@@ -394,7 +384,7 @@ AnimSeq_SlotsChanseyEgg:
 .move_vertical
 	ld a, e
 	ld d, 32
-	call AnimSeqs_Sine
+	call Sine
 
 	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
@@ -427,7 +417,7 @@ AnimSeq_TradePokeBall:
 	dw .two
 	dw .three
 	dw .four
-	dw .delete
+	dw DeinitializeSprite
 
 .zero
 	ld a, SPRITE_ANIM_FRAMESET_TRADE_POKE_BALL_WOBBLE
@@ -466,7 +456,7 @@ AnimSeq_TradePokeBall:
 	jr c, .done
 	dec [hl]
 	ld d, 40
-	call AnimSeqs_Sine
+	call Sine
 
 	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
@@ -476,7 +466,7 @@ AnimSeq_TradePokeBall:
 .done
 	ld de, SFX_GOT_SAFARI_BALLS
 	call PlaySFX
-	jr .delete
+	jp DeinitializeSprite
 
 .one
 	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
@@ -526,8 +516,7 @@ AnimSeq_TradePokeBall:
 	sub $c
 	ld [hl], a
 	ld de, SFX_SWITCH_POKEMON
-	call PlaySFX
-	ret
+	jp PlaySFX
 
 .done2
 	xor a
@@ -535,12 +524,7 @@ AnimSeq_TradePokeBall:
 	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld [hl], a
-	call AnimSeqs_IncAnonJumptableIndex
-	ret
-
-.delete
-	call DeinitializeSprite
-	ret
+	jp AnimSeqs_IncAnonJumptableIndex
 
 AnimSeq_TradeTubeBulge:
 	ld hl, SPRITEANIMSTRUCT_XCOORD
@@ -549,16 +533,11 @@ AnimSeq_TradeTubeBulge:
 	inc [hl]
 	inc [hl]
 	cp $b0
-	jr nc, .delete
+	jr nc, DeinitializeSprite
 	and $3
 	ret nz
 	ld de, SFX_POKEBALLS_PLACED_ON_TABLE
-	call PlaySFX
-	ret
-
-.delete
-	call DeinitializeSprite
-	ret
+	jp PlaySFX
 
 AnimSeq_TrademonInTube:
 	callfar TradeAnim_AnimateTrademonInTube
@@ -569,7 +548,7 @@ AnimSeq_RevealNewMon:
 	add hl, bc
 	ld a, [hl]
 	cp $80
-	jr nc, .finish_EggShell
+	jp nc, DeinitializeSprite
 	ld d, a
 	add 8
 	ld [hl], a
@@ -582,7 +561,7 @@ AnimSeq_RevealNewMon:
 
 	push af
 	push de
-	call AnimSeqs_Sine
+	call Sine
 
 	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
@@ -590,15 +569,11 @@ AnimSeq_RevealNewMon:
 
 	pop de
 	pop af
-	call AnimSeqs_Cosine
+	call Cosine
 
 	ld hl, SPRITEANIMSTRUCT_XOFFSET
 	add hl, bc
 	ld [hl], a
-	ret
-
-.finish_EggShell
-	call DeinitializeSprite
 	ret
 
 AnimSeq_RadioTuningKnob:
@@ -630,14 +605,14 @@ AnimSeq_CutLeaves:
 	inc [hl]
 	push af
 	push de
-	call AnimSeqs_Sine
+	call Sine
 
 	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld [hl], a
 	pop de
 	pop af
-	call AnimSeqs_Cosine
+	call Cosine
 
 	ld hl, SPRITEANIMSTRUCT_XOFFSET
 	add hl, bc
@@ -676,7 +651,7 @@ AnimSeq_FlyFrom:
 	add hl, bc
 	ld a, [hl]
 	inc [hl]
-	call AnimSeqs_Cosine
+	call Cosine
 
 	ld hl, SPRITEANIMSTRUCT_XOFFSET
 	add hl, bc
@@ -688,7 +663,7 @@ AnimSeq_FlyLeaf:
 	add hl, bc
 	ld a, [hl]
 	cp -9 * 8
-	jr nc, .delete_leaf
+	jp nc, DeinitializeSprite
 	inc [hl]
 	inc [hl]
 
@@ -701,15 +676,11 @@ AnimSeq_FlyLeaf:
 	add hl, bc
 	ld a, [hl]
 	inc [hl]
-	call AnimSeqs_Cosine
+	call Cosine
 
 	ld hl, SPRITEANIMSTRUCT_XOFFSET
 	add hl, bc
 	ld [hl], a
-	ret
-
-.delete_leaf
-	call DeinitializeSprite
 	ret
 
 AnimSeq_FlyTo:
@@ -737,7 +708,7 @@ AnimSeq_FlyTo:
 	add hl, bc
 	ld a, [hl]
 	inc [hl]
-	call AnimSeqs_Cosine
+	call Cosine
 
 	ld hl, SPRITEANIMSTRUCT_XOFFSET
 	add hl, bc
@@ -755,9 +726,8 @@ AnimSeq_MobileTradeOTPulse:
 AnimSeq_IntroSuicune:
 	ld a, [wIntroSceneTimer]
 	and a
-	jr nz, .continue
-	ret
-
+	ret z
+	; fallthrough
 .continue
 	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
@@ -768,35 +738,33 @@ AnimSeq_IntroSuicune:
 	ld a, [hl]
 	add 2
 	ld [hl], a
-	xor $ff
+	cpl
 	inc a
 	ld d, 32
-	call AnimSeqs_Sine
+	call Sine
 
 	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld [hl], a
 	ld a, SPRITE_ANIM_FRAMESET_INTRO_SUICUNE_2
-	call _ReinitSpriteAnimFrame
-	ret
+	jp _ReinitSpriteAnimFrame
 
 AnimSeq_IntroPichuWooper:
 	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
 	ld a, [hl]
 	cp 20
-	jr nc, .done
+	ret nc
 	add 2
 	ld [hl], a
-	xor $ff
+	cpl
 	inc a
 	ld d, 32
-	call AnimSeqs_Sine
+	call Sine
 
 	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld [hl], a
-.done
 	ret
 
 AnimSeq_IntroUnown:
@@ -811,14 +779,14 @@ AnimSeq_IntroUnown:
 	ld a, [hl]
 	push af
 	push de
-	call AnimSeqs_Sine
+	call Sine
 
 	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld [hl], a
 	pop de
 	pop af
-	call AnimSeqs_Cosine
+	call Cosine
 
 	ld hl, SPRITEANIMSTRUCT_XOFFSET
 	add hl, bc
@@ -830,8 +798,7 @@ AnimSeq_IntroUnownF:
 	cp $40
 	ret nz
 	ld a, SPRITE_ANIM_FRAMESET_INTRO_UNOWN_F_2
-	call _ReinitSpriteAnimFrame
-	ret
+	jp _ReinitSpriteAnimFrame
 
 AnimSeq_IntroSuicuneAway:
 	ld hl, SPRITEANIMSTRUCT_YCOORD
@@ -853,12 +820,4 @@ AnimSeqs_IncAnonJumptableIndex:
 	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
 	inc [hl]
-	ret
-
-AnimSeqs_Sine:
-	call Sine
-	ret
-
-AnimSeqs_Cosine:
-	call Cosine
 	ret

@@ -113,7 +113,7 @@ EvolutionAnimation:
 	call .PlayEvolvedSFX
 	farcall ClearSpriteAnims
 	call .check_statused
-	jr c, .no_anim
+	ret c
 
 	ld a, [wBoxAlignment]
 	push af
@@ -135,9 +135,6 @@ EvolutionAnimation:
 	ld [wBoxAlignment], a
 	ret
 
-.no_anim
-	ret
-
 .cancel_evo
 	ld a, TRUE
 	ld [wEvolutionCanceled], a
@@ -154,8 +151,7 @@ EvolutionAnimation:
 	ret c
 
 	ld a, [wPlayerHPPal]
-	call PlayMonCry
-	ret
+	jp PlayMonCry
 
 .GetSGBLayout:
 	ld b, SCGB_EVOLUTION
@@ -317,7 +313,7 @@ EvolutionAnimation:
 	add hl, bc
 	ld a, [wJumptableIndex]
 	and %1110
-	sla a
+	add a
 	pop de
 	add e
 	ld [hl], a
@@ -352,8 +348,7 @@ endr
 	dec c
 	jr nz, .loop6
 	pop bc
-	call DelayFrame
-	ret
+	jp DelayFrame
 
 .GFX:
 INCBIN "gfx/evo/bubble_large.2bpp"

@@ -1532,7 +1532,7 @@ Function118d35: ; unreferenced
 	cp $96
 	jr nz, .asm_118d7b
 	ld a, [hl]
-	cp $0
+	and a
 	jr nz, .asm_118d7b
 
 .asm_118d78
@@ -4594,7 +4594,7 @@ BattleTowerRoomMenu2_UpdateYesNoMenu:
 	call ExitMenu
 	farcall ReloadMapPart
 	ld a, [wMobileInactivityTimerFrames]
-	cp $0
+	and a
 	jr z, .asm_11a2b4
 	ld a, [wcd47]
 	jr .exit_carry
@@ -5276,7 +5276,7 @@ Function11a90f:
 	ld a, [hli]
 	cp $57
 	jr z, .asm_11a94f
-	cp $0
+	and a
 	jr z, .asm_11a92c
 	cp $50
 	jr z, .asm_11a92c
@@ -6237,7 +6237,7 @@ Function11b0ff:
 	and a
 	jr z, .asm_11b16c
 	ld a, [wcf65]
-	cp $0
+	and a
 	jr z, .asm_11b163
 	cp $fe
 	jr z, .asm_11b167

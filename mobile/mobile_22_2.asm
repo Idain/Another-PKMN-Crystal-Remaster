@@ -511,7 +511,7 @@ Function8b664:
 	ld de, $4
 .asm_8b668
 	ld a, [bc]
-	cp $0
+	and a
 	jr nz, .asm_8b66e
 	inc d
 .asm_8b66e
@@ -531,8 +531,7 @@ Function8b677:
 	call Function8b6ed
 	call EnableLCD
 	call Function891ab
-	call SetPalettes
-	ret
+	jp SetPalettes
 
 Function8b690:
 	ld hl, MobileCardListGFX
@@ -549,8 +548,7 @@ Function8b690:
 	ld de, vTiles0 tile $ee
 	ld bc, 1 tiles
 	ld a, BANK(MobileCardListGFX)
-	call FarCopyBytes
-	ret
+	jp FarCopyBytes
 
 Function8b6bb:
 	ldh a, [rSVBK]
@@ -563,8 +561,7 @@ Function8b6bb:
 	call CopyBytes
 	pop af
 	ldh [rSVBK], a
-	call Function8949c
-	ret
+	jp Function8949c
 
 Palette_8b6d5:
 	RGB 31, 31, 31
@@ -588,8 +585,7 @@ Function8b6ed:
 	hlcoord 0, 14, wAttrmap
 	ld bc, $0050
 	ld a, $7
-	call ByteFill
-	ret
+	jp ByteFill
 
 Function8b703:
 	call Mobile22_SetBGMapMode0
