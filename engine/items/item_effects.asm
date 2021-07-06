@@ -1200,7 +1200,7 @@ StatStrings:
 
 GetEVRelativePointer:
 	ld a, [wCurItem]
-	ld hl, StatExpItemPointerOffsets
+	ld hl, EVItemPointerOffsets
 .next
 	cp [hl]
 	inc hl
@@ -1214,8 +1214,8 @@ GetEVRelativePointer:
 	ld b, 0
 	ret
 
-StatExpItemPointerOffsets:
-	db HP_UP,    MON_HP_EV - MON_EVS
+EVItemPointerOffsets:
+	db HP_UP,   MON_HP_EV  - MON_EVS
 	db PROTEIN, MON_ATK_EV - MON_EVS
 	db IRON,    MON_DEF_EV - MON_EVS
 	db CARBOS,  MON_SPD_EV - MON_EVS
@@ -1303,8 +1303,7 @@ RareCandyEffect:
 	predef CopyMonToTempMon
 
 	hlcoord 9, 0
-	ld b, 10
-	ld c, 9
+	lb bc, 10, 9
 	call Textbox
 
 	hlcoord 11, 1
@@ -1333,15 +1332,13 @@ HealPowderEffect:
 
 	call UseStatusHealer
 	cp FALSE
-	jr nz, .not_used
+	jp nz, StatusHealer_Jumptable ; not_used
 
 	ld c, HAPPINESS_BITTERPOWDER
 	farcall ChangeHappiness
 	call LooksBitterMessage
 
 	ld a, $0
-
-.not_used
 	jp StatusHealer_Jumptable
 
 StatusHealingEffect:
@@ -1444,7 +1441,7 @@ GetItemHealingAction:
 	inc hl
 	ld a, [hl]
 	ld c, a
-	cp %11111111
+	cp -1
 	pop hl
 	ret
 
@@ -1467,15 +1464,13 @@ RevivalHerbEffect:
 
 	call RevivePokemon
 	cp FALSE
-	jr nz, .not_used
+	jr nz, StatusHealer_Jumptable ; not used
 
 	ld c, HAPPINESS_REVIVALHERB
 	farcall ChangeHappiness
 	call LooksBitterMessage
 
 	ld a, $0
-
-.not_used
 	jp StatusHealer_Jumptable
 
 ReviveEffect:
@@ -1572,7 +1567,7 @@ BitterBerryEffect:
 	ld hl, wPlayerSubStatus3
 	bit SUBSTATUS_CONFUSED, [hl]
 	ld a, 1
-	jr z, .done
+	jp z, StatusHealer_Jumptable
 
 	res SUBSTATUS_CONFUSED, [hl]
 	xor a
@@ -1583,8 +1578,6 @@ BitterBerryEffect:
 	call StdBattleTextbox
 
 	ld a, 0
-
-.done
 	jp StatusHealer_Jumptable
 
 RestoreHPEffect:
@@ -2252,8 +2245,7 @@ GoodRodEffect:
 
 SuperRodEffect:
 	ld e, $2
-	jr UseRod
-
+	; fallthrough
 UseRod:
 	farcall FishFunction
 	ret

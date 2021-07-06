@@ -474,15 +474,12 @@ BattleAnimFunction_Drop:
 	ld hl, BATTLEANIMSTRUCT_PARAM
 	add hl, bc
 	sub [hl]
-	jr z, .done
-	jr c, .done
+	jp z, DeinitBattleAnimation
+	jp c, DeinitBattleAnimation
 	ld hl, BATTLEANIMSTRUCT_VAR2
 	add hl, bc
 	ld [hl], a
 	ret
-
-.done
-	jp DeinitBattleAnimation
 
 BattleAnimFunction_MoveFromUserToTargetSpinAround:
 ; Object moves from user to target target and spins around it once. Example: Fire Spin, Swift
@@ -2095,15 +2092,12 @@ BattleAnimFunction_Egg:
 	add hl, bc
 	ld a, [hl]
 	cp $30
-	jr c, .done_top_shell
+	jp c, BattleAnim_IncAnonJumptableIndex ; done_top_shell
 	dec [hl]
 .four
 .ten
 .thirteen
 	ret
-
-.done_top_shell
-	jp BattleAnim_IncAnonJumptableIndex
 
 .EggVerticalWaveMotion:
 	ld hl, BATTLEANIMSTRUCT_VAR1

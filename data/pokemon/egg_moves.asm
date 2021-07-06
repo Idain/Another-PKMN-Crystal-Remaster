@@ -68,6 +68,9 @@ EkansEggMoves:
 	db SPITE
 	db BEAT_UP
 	db CRUNCH
+	db IRON_TAIL
+	db DISABLE
+	db SCARY_FACE
 	db -1 ; end
 
 SandshrewEggMoves:
@@ -86,6 +89,9 @@ NidoranFEggMoves:
 	db CHARM
 	db COUNTER
 	db BEAT_UP
+	db IRON_TAIL
+	db ENDURE
+	db PURSUIT
 	db -1 ; end
 
 NidoranMEggMoves:
@@ -96,6 +102,8 @@ NidoranMEggMoves:
 	db AMNESIA
 	db COUNTER
 	db BEAT_UP
+	db IRON_TAIL
+	db ENDURE
 	db -1 ; end
 
 VulpixEggMoves:
@@ -153,6 +161,9 @@ MeowthEggMoves:
 	db CHARM
 	db HYPNOSIS
 	db AMNESIA
+	db TAIL_WHIP
+	db IRON_TAIL
+	db FLAIL
 	db -1 ; end
 
 PsyduckEggMoves:
@@ -181,6 +192,10 @@ GrowlitheEggMoves:
 	db CRUNCH
 	db THRASH
 	db FIRE_SPIN
+	db IRON_TAIL
+	db MORNING_SUN
+	db DOUBLE_KICK
+	db DOUBLE_EDGE
 	db -1 ; end
 
 PoliwagEggMoves:
@@ -265,6 +280,8 @@ SeelEggMoves:
 	db PECK
 	db SLAM
 	db ENCORE
+	db HORN_DRILL
+	db IRON_TAIL
 	db -1 ; end
 
 GrimerEggMoves:
@@ -344,10 +361,9 @@ RhyhornEggMoves:
 	db CRUNCH
 	db REVERSAL
 	db ROCK_SLIDE
-	db THRASH
-	db PURSUIT
 	db COUNTER
 	db MAGNITUDE
+	db CURSE
 	db -1 ; end
 
 ChanseyEggMoves:
@@ -455,6 +471,9 @@ DratiniEggMoves:
 	db MIST
 	db HAZE
 	db SUPERSONIC
+	db EXTREMESPEED
+	db DRAGONBREATH
+	db IRON_TAIL
 	db -1 ; end
 
 ChikoritaEggMoves:
@@ -566,12 +585,14 @@ NatuEggMoves:
 	db -1 ; end
 
 MareepEggMoves:
-	db THUNDERBOLT
 	db TAKE_DOWN
 	db BODY_SLAM
 	db SAFEGUARD
 	db SCREECH
 	db REFLECT
+	db AGILITY
+	db IRON_TAIL
+	db SAND_ATTACK
 	db -1 ; end
 
 MarillEggMoves:
@@ -676,7 +697,6 @@ SnubbullEggMoves:
 	db PRESENT
 	db CRUNCH
 	db HEAL_BELL
-	db LEER
 	db -1 ; end
 
 QwilfishEggMoves:
@@ -817,6 +837,11 @@ MagbyEggMoves:
 	db BARRIER
 	db SCREECH
 	db CROSS_CHOP
+	db DYNAMICPUNCH
+	db THUNDERPUNCH
+	db MACH_PUNCH
+	db FOCUS_ENERGY
+	db IRON_TAIL
 	db -1 ; end
 
 MiltankEggMoves:
@@ -826,11 +851,12 @@ MiltankEggMoves:
 	db -1 ; end
 
 LarvitarEggMoves:
-	db PURSUIT
 	db STOMP
 	db OUTRAGE
 	db FOCUS_ENERGY
 	db ANCIENTPOWER
+	db CURSE
+	db IRON_TAIL
 	db -1 ; end
 
 NoEggMoves:
