@@ -253,15 +253,13 @@ MoveDescriptions::
 	dw WhirlpoolDescription
 	dw BeatUpDescription
 	dw HailDescription
+	dw PlayRoughDescription
+	dw MoonblastDescription
 	assert_table_length NUM_ATTACKS
-	dw MoveFDDescription
-	dw MoveFEDescription
 	dw MoveFFDescription
 	dw Move00Description
 	assert_table_length $100
 
-MoveFDDescription:
-MoveFEDescription:
 MoveFFDescription:
 Move00Description:
 	db "?@"
@@ -531,6 +529,7 @@ ConstrictDescription:
 	next "lower Speed.@"
 
 AuroraBeamDescription:
+PlayRoughDescription:
 	db   "An attack that may"
 	next "lower Attack.@"
 
@@ -839,7 +838,7 @@ SnoreDescription:
 
 CurseDescription:
 	db   "Works differently"
-	next "for ghost-types.@"
+	next "for Ghost-types.@"
 
 FlailDescription:
 ReversalDescription:
@@ -1060,3 +1059,7 @@ FutureSightDescription:
 BeatUpDescription:
 	db   "Party #mon join"
 	next "in the attack.@"
+
+MoonblastDescription:
+	db 	 "An attack that may"
+	next "lower Sp.Atk.@"

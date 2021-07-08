@@ -7154,7 +7154,7 @@ GiveExperiencePoints:
 ; t = sat, f = sdf, 0 = unused bits
 	ld a, [wBaseHPAtkDefSpdEVs]
 	ld b, a
-	ld c, 6 ; six EVs
+	ld c, NUM_STATS ; six EVs
 .ev_loop
 	rlc b
 	rlc b

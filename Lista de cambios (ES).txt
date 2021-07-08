@@ -9,10 +9,13 @@ AÑADIDOS:
 		
 	Notas:
 	--- El orden de las TMs ha sido cambiado.
-	--- Todas pueden ser compradas en Goldenrod o Celadon Dept. Store, salvo por Rock Slide.
+	--- Todas las nuevas TMs pueden ser compradas en Goldenrod o Celadon Dept. Store, salvo por Rock Slide.
 	Esta se consigue al derrotar a Brock.
 
-- Ahora ciertos Pokémon aprenden movimientos al evolucionar (Gen 7+)
+- Movimientos:
+	- ¡Carantoña y Fuerza Lunar (Play Rough & Moonblast) han sido añadidos al juego! Y con ello nuevas animaciones.
+
+- Ahora ciertos Pokémon aprenden movimientos al evolucionar (Gen 7+).
 - La tormenta de arena ahora boostea la Defensa Especial de los Pokémon tipo Roca en un 50% (Gen 4+).
 - El género del Pokémon ahora es visible en el menú del equipo.
 - ¡NUEVO MOVE REMINDER! Está localizado en Blackthorn City, en la misma casa del Move Deleter.
@@ -80,11 +83,18 @@ CAMBIOS:
 	-- Sky Attack ahora tiene un 30% de hacer al oponente retroceder y tiene una alta probabilidad de ser un golpe crítico (Gen 3+).
 	-- Encore ahora siempre actúa por 3 turnos (Gen 5, no cuenta turno donde el oponente es afectado) y no tiene efecto si el último movimiento usado por el oponente fue Metronome o Sleep Talk (Gen 7+).
 	-- Si (Hi) Jump Kick falla, daña al usuario equivalente a 1/2 del daño que hubiese causado al oponente (Gen 3).
+	-- Spite ahora remueve 4PPs de forma fija en vez de variar (Gen 4+).
+	-- Pay Day da dinero equivalente a 5x el nivel del usuario (Gen 3+).
+
+- Animaciones:
+	-- Si hay un clima activo, al final de cada turno se mostrará la animación de este.
+	-- Las animaciones de Sonic Boom, Leer, Petal Dance y Sunny Day han sido cambiadas.
+		-- Rain Dance y Vine Whip recibieron cambios muy ligeros.
 
 - HMs. Algunos Pokémon aprenden nuevas HMs, basado en HG/SS:
 	-- Cut: Rattata, Nidoran♀, Nidorina, Nidoqueen, Nidoran♂, Nidorino, Nidoking, Meowth, Persian, Rhydon, Kangaskhan, Dragonite, Celebi.
 	-- Fly: Zubat, Golbat.
-	-- Surf: Pikachu (8va gen), Raichu (8va gen), Kabuto, Pichu.
+	-- Surf: Pikachu (Gen 8), Raichu (Gen 8), Kabuto, Pichu (Gen 8).
 	-- Strength: Bulbasaur, Ivysaur, Venusaur, Nidoran♀, Nidoran♂, Growlithe, Arcanine, Ponyta, Rapidash, Grimer, Muk, Vaporeon, Jolteon, Flareon, Aerodactyl, Ledian, Marill.
 	-- Flash: Beedrill, Venonat, Meowth, Persian, Koffing, Weezing, Jynx, Skarmory, Smoochum, Lugia.
 	-- Waterfall: Tentacool, Tentacruel, Lapras, Omanyte, Omastar, Kabuto, Kabutops, Totodile, Croconaw, Feraligatr, Wooper, Quagsire, Remoraid, Octillery.
@@ -94,14 +104,14 @@ CAMBIOS:
 - El daño secundario de movimientos atrapantes (Wrap, Bind, etc.) al final de cada turno ha aumentado de 1/16 MAX HP a 1/8 MAX HP.
 - Ajustada prioridad de movimientos para asemejarse más a la Gen 8.
 
-- Los movesets de los siguientes Pokémon han sido cambiados para asemejarse a generaciones recientes: 
+- Los movesets por nivel de los siguientes Pokémon han sido cambiados para asemejarse a generaciones recientes: 
 	Bulbasaur, Ivysaur, Venusaur, Charmander, Charmeleon, Charizard, Squirtle, Wartortle, Blastoise, Caterpie, Metapod, Butterfree, Weedle, Kakuna, Beedrill, Pidgey, Pidgeotto, Pidgeot, Rattata, Raticate, Spearow, Fearow,
 	Ekans, Arbok, Pikachu, Raichu, Sandshrew, Sandslash, Nidoran♀, Nidorina, Nidoqueen, Nidoran♂, Nidorino, Nidoking, Clefairy, Clefable, Jigglypuff, Wigglytuff, Oddish, Gloom, Vileplume, Diglett, Dugtrio, Meowth, Persian, Mankey, Primeape, Growlithe, Arcanine,
 	Poliwag, Poliwhirl, Poliwrath, Kadabra, Alakazam, Machop, Machoke, Machamp, Ponyta, Rapidash, Slowpoke, Slowbro, Magneton, Farfetch'd, Doduo, Dodrio, Shellder, Cloyster,
 	Onix, Drowzee, Hypno, Krabby, Kingler, Voltorb, Electrode, Exeggcute, Exeggutor, Cubone, Marowak, Hitmonlee, Hitmonchan, Lickitung, Koffing, Weezing, Electabuzz, Magmar, Magikarp, Gyarados, Lapras, Eevee, Vaporeon, 
 	Jolteon, Flareon, Porygon, Omanyte, Omastar, Kabuto, Kabutops, Snorlax, Dratini, Dragonair, Dragonite, Mewtwo, Mew, Sentret, Furret, Hoothoot, Noctowl, Cleffa, Igglybuff, Natu, Xatu, Mareep, 
-	Flaaffy, Ampharos, Bellossom, Sudowoodo, Politoed, Hoppip, Skiploom, Jumpluff, Wooper, Quagsire, Espeon, Umbreon, Steelix, Heracross, Murkrow, Slowking, Misdreavus, Swinub, Piloswine, Remoraid, Octillery, 
-	Delibird, Houndour, Houndoom, Phanpy, Donphan, Tyrogue, Porygon2, Elekid, Magby, Hitmontop, Raikou, Entei, Suicune, Lugia, Ho-Oh, Celebi.
+	Flaaffy, Ampharos, Bellossom, Sudowoodo, Politoed, Hoppip, Skiploom, Jumpluff, Marill, Azumarill, Wooper, Quagsire, Espeon, Umbreon, Steelix, Snubbull, Granbull, Heracross, Murkrow, Slowking, Misdreavus, Swinub, Piloswine, Remoraid, Octillery, 
+	Delibird, Houndour, Houndoom, Phanpy, Donphan, Tyrogue, Porygon2, Elekid, Magby, Hitmontop, Miltank, Raikou, Entei, Suicune, Lugia, Ho-Oh, Celebi.
 
 - Raikou y Entei ya no tendrán Roar cuando los encuentres rondando por Johto.
 - El dinero que dan los entrenadores ha sido ajustado basado en HeartGold/SoulSilver.
@@ -112,7 +122,6 @@ CAMBIOS:
 	-- Los equipos de algunos líderes de gimnasio han sido ligeramente modificados.
 	-- Los equipos de Chuck, Jasmine y Pryce cambian dependiendo de cuántas medallas tenga el jugador.
 	-- Elite Four, Lance tienen nuevos equipos una vez tengamos 16 medallas.
-
 
 Miscellaneous:
 - La probabilidad de que Shuckle convierta una Oran Berry en Berry Juice aumentó de 1/16 a 1/8.
@@ -130,11 +139,11 @@ Miscellaneous:
 - Tu rival imprimirá un texto de victoria en caso de que pierdas en una batalla.
 - El texto imprimirá "Rival <nombre que le pusimos>" en vez de solo el nombre del rival cuando batallemos contra él.
 - Moomoo, el Miltank enfermo de la granja Moomoo, ahora solo necesita seis bayas para ser curada en vez de siete.
-- 
 
 
 FIXES:
 - Algunos items no podían ser seleccionados/tenían el efecto equivocado.
+- Si un Pokémon usaba una Leppa Berry como objeto equipable restauraba 5PP en vez de 10PP.
 
 
 V1.1.2

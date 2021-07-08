@@ -254,9 +254,9 @@ BattleAnimations::
 	dw BattleAnim_Whirlpool
 	dw BattleAnim_BeatUp
 	dw BattleAnim_Hail
+	dw BattleAnim_PlayRough
+	dw BattleAnim_Moonblast
 	assert_table_length NUM_ATTACKS + 1
-	dw BattleAnim_253
-	dw BattleAnim_254
 	dw BattleAnim_SweetScent2
 	assert_table_length $100
 ; $100
@@ -4851,4 +4851,84 @@ BattleAnim_InHail:
 	anim_wait 8
 	anim_loop 8, .loop
 	anim_wait 8
+	anim_ret
+
+BattleAnim_Moonblast:
+	anim_3gfx ANIM_GFX_MOON, ANIM_GFX_SHINE, ANIM_GFX_CHARGE
+	anim_bgp $1b
+	anim_obj ANIM_OBJ_MOON, 44, 104, $1
+	anim_obj ANIM_OBJ_MOON_CHARGE, 44, 88, $30
+	anim_obj ANIM_OBJ_MOON_CHARGE, 44, 88, $31
+	anim_obj ANIM_OBJ_MOON_CHARGE, 44, 88, $32
+	anim_obj ANIM_OBJ_MOON_CHARGE, 44, 88, $33
+	anim_obj ANIM_OBJ_MOON_CHARGE, 44, 88, $34
+	anim_obj ANIM_OBJ_MOON_CHARGE, 44, 88, $35
+	anim_obj ANIM_OBJ_MOON_CHARGE, 44, 88, $36
+	anim_obj ANIM_OBJ_MOON_CHARGE, 44, 88, $37
+	anim_wait 1
+	anim_sound 0, 0, SFX_MOONLIGHT
+	anim_wait 96
+	anim_clearobjs
+	anim_sound 3, 0, SFX_RAZOR_WIND
+	anim_obj ANIM_OBJ_MOONBLAST, 64, 92, $4
+	anim_wait 16
+	anim_sound 0, 0, SFX_METRONOME
+	anim_obj ANIM_OBJ_GLIMMER, 132, 28, $0
+	anim_wait 5
+	anim_obj ANIM_OBJ_GLIMMER, 112, 60, $0
+	anim_wait 5
+	anim_obj ANIM_OBJ_GLIMMER, 144, 68, $0
+	anim_wait 21
+	anim_ret
+
+BattleAnim_PlayRough:
+	anim_3gfx ANIM_GFX_SPEED, ANIM_GFX_HIT, ANIM_GFX_OBJECTS
+	anim_bgeffect ANIM_BG_HIDE_MON, $0, BG_EFFECT_USER, $0
+	anim_sound 0, 0, SFX_MENU
+	anim_obj ANIM_OBJ_SPEED_LINE, 24, 88, $2
+	anim_obj ANIM_OBJ_SPEED_LINE, 32, 88, $1
+	anim_obj ANIM_OBJ_SPEED_LINE, 40, 88, $0
+	anim_obj ANIM_OBJ_SPEED_LINE, 48, 88, $80
+	anim_obj ANIM_OBJ_SPEED_LINE, 56, 88, $81
+	anim_obj ANIM_OBJ_SPEED_LINE, 64, 88, $82
+	anim_wait 12
+
+	anim_sound 0, 1, SFX_POUND
+	anim_obj ANIM_OBJ_PALM, 120, 72, $0
+	anim_obj ANIM_OBJ_HIT_BIG_YFIX, 120, 72, $0
+	anim_obj ANIM_OBJ_ENCORE_STAR, 120, 38, $2c
+	anim_wait 8
+
+	anim_sound 0, 1, SFX_MOVE_PUZZLE_PIECE
+	anim_obj ANIM_OBJ_PUNCH, 136, 56, $0
+	anim_obj ANIM_OBJ_HIT_BIG_YFIX, 136, 56, $0
+	anim_obj ANIM_OBJ_ENCORE_STAR, 152, 38, $34
+	anim_wait 8
+
+	anim_sound 0, 1, SFX_DOUBLE_KICK
+	anim_obj ANIM_OBJ_KICK, 152, 40, $0
+	anim_obj ANIM_OBJ_HIT_BIG_YFIX, 152, 40, $0
+	anim_obj ANIM_OBJ_ENCORE_STAR, 120, 38, $2c
+	anim_wait 8
+
+	anim_sound 0, 1, SFX_POUND
+	anim_obj ANIM_OBJ_PALM, 152, 72, $0
+	anim_obj ANIM_OBJ_HIT_BIG_YFIX, 152, 72, $0
+	anim_obj ANIM_OBJ_ENCORE_STAR, 152, 38, $34
+	anim_wait 8
+
+	anim_sound 0, 1, SFX_MOVE_PUZZLE_PIECE
+	anim_obj ANIM_OBJ_PUNCH, 136, 56, $0
+	anim_obj ANIM_OBJ_HIT_BIG_YFIX, 136, 56, $0
+	anim_obj ANIM_OBJ_ENCORE_STAR, 120, 38, $2c
+	anim_wait 8
+
+	anim_sound 0, 1, SFX_DOUBLE_KICK
+	anim_obj ANIM_OBJ_KICK, 120, 40, $0
+	anim_obj ANIM_OBJ_HIT_BIG_YFIX, 120, 40, $0
+	anim_obj ANIM_OBJ_ENCORE_STAR, 152, 38, $34
+	anim_wait 8
+
+	anim_bgeffect ANIM_BG_SHOW_MON, $0, BG_EFFECT_USER, $0
+	anim_wait 16
 	anim_ret

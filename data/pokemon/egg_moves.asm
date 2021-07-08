@@ -728,9 +728,11 @@ TeddiursaEggMoves:
 	db CRUNCH
 	db TAKE_DOWN
 	db SEISMIC_TOSS
-	db FOCUS_ENERGY
 	db COUNTER
 	db METAL_CLAW
+	db PLAY_ROUGH
+	db CROSS_CHOP
+	db DOUBLE_EDGE
 	db -1 ; end
 
 SlugmaEggMoves:
@@ -797,7 +799,10 @@ PhanpyEggMoves:
 	db FOCUS_ENERGY
 	db BODY_SLAM
 	db ANCIENTPOWER
-	db WATER_GUN
+	db PLAY_ROUGH
+	db FISSURE
+	db MUD_SLAP
+	db SNORE
 	db -1 ; end
 
 StantlerEggMoves:

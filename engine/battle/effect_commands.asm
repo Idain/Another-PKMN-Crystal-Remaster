@@ -5000,7 +5000,7 @@ CalcPlayerStats:
 	ld de, wPlayerStats
 	ld bc, wBattleMonAttack
 
-	ld a, 5
+	ld a, NUM_BATTLE_STATS
 	call CalcBattleStats
 
 	call BattleCommand_SwitchTurn
@@ -5018,7 +5018,7 @@ CalcEnemyStats:
 	ld de, wEnemyStats
 	ld bc, wEnemyMonAttack
 
-	ld a, 5
+	ld a, NUM_BATTLE_STATS
 	call CalcBattleStats
 
 	call BattleCommand_SwitchTurn
@@ -5097,7 +5097,6 @@ CalcBattleStats:
 	pop af
 	dec a
 	jr nz, .loop
-
 	ret
 
 INCLUDE "engine/battle/move_effects/bide.asm"
@@ -5130,7 +5129,7 @@ BattleCommand_CheckRampage:
 
 	set SUBSTATUS_CONFUSED, [hl]
 	call BattleRandom
-	and %00000001
+	and 1
 	inc a
 	inc a
 	inc de ; ConfuseCount
@@ -5159,7 +5158,7 @@ BattleCommand_Rampage:
 	set SUBSTATUS_RAMPAGE, [hl]
 ; Rampage for 1 or 2 more turns
 	call BattleRandom
-	and %00000001
+	and 1
 	inc a
 	ld [de], a
 	ld a, 1
@@ -5227,10 +5226,10 @@ BattleCommand_ForceSwitch:
 
 .trainer
 	call FindAliveEnemyMons
-	jr c, .switch_fail
+	jp c, .fail
 	ld a, [wEnemyGoesFirst]
 	and a
-	jr z, .switch_fail
+	jp z, .fail
 	call UpdateEnemyMonInParty
 	ld a, 1
 	ld [wBattleAnimParam], a
@@ -5273,9 +5272,6 @@ BattleCommand_ForceSwitch:
 
 	ld hl, SpikesDamage
 	jp CallBattleCore
-
-.switch_fail
-	jp .fail
 
 .force_player_switch
 	ld a, [wAttackMissed]
@@ -5320,7 +5316,7 @@ BattleCommand_ForceSwitch:
 	jr c, .fail
 
 	ld a, [wEnemyGoesFirst]
-	cp $1
+	dec a
 	jr z, .fail
 
 	call UpdateBattleMonInParty
@@ -5411,7 +5407,6 @@ CheckPlayerHasMonToSwitchTo:
 	inc e
 	dec d
 	jr nz, .loop
-
 	scf
 	ret
 

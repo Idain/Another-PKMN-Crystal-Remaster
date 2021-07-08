@@ -258,10 +258,11 @@
 	const WHIRLPOOL    ; fa
 	const BEAT_UP      ; fb
 	const HAIL		   ; fc
+	const PLAY_ROUGH   ; fd
+	const MOONBLAST	   ; fe
 NUM_ATTACKS EQU const_value - 1
 
 ; Battle animations use the same constants as the moves up to this point
-	const_next $ff
 	const ANIM_SWEET_SCENT_2     ; ff
 	const ANIM_THROW_POKE_BALL   ; 100
 	const ANIM_SEND_OUT_MON      ; 101
