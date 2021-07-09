@@ -14,11 +14,11 @@ AI_SwitchOrTryItem:
 
 	ld a, [wPlayerSubStatus5]
 	bit SUBSTATUS_CANT_RUN, a
-	jr nz, DontSwitch
+	jp nz, AI_TryItem
 
 	ld a, [wEnemyWrapCount]
 	and a
-	jr nz, DontSwitch
+	jp nz, AI_TryItem
 
 	; always load the first trainer class in wTrainerClass for Battle Tower trainers
 	ld hl, TrainerClassAttributes + TRNATTR_AI_ITEM_SWITCH
@@ -32,29 +32,25 @@ AI_SwitchOrTryItem:
 	call AddNTimes
 
 .ok
-	bit SWITCH_OFTEN_F, [hl]
-	jp nz, SwitchOften
 	bit SWITCH_RARELY_F, [hl]
-	jp nz, SwitchRarely
+	jr nz, SwitchRarely
 	bit SWITCH_SOMETIMES_F, [hl]
 	jp nz, SwitchSometimes
+	bit SWITCH_OFTEN_F, [hl]	
+	jp z, AI_TryItem
 	; fallthrough
-
-DontSwitch:
-	jp AI_TryItem
-
 SwitchOften:
 	callfar CheckAbleToSwitch
 	ld a, [wEnemySwitchMonParam]
 	and $f0
-	jp z, DontSwitch
+	jp z, AI_TryItem
 
 	cp $10
 	jr nz, .not_10
 	call Random
 	cp 50 percent + 1
 	jr c, .switch
-	jp DontSwitch
+	jp AI_TryItem
 
 .not_10
 	cp $20
@@ -62,13 +58,13 @@ SwitchOften:
 	call Random
 	cp 79 percent - 1
 	jr c, .switch
-	jp DontSwitch
+	jp AI_TryItem
 
 .not_20
 	; $30
 	call Random
 	cp 4 percent
-	jp c, DontSwitch
+	jp c, AI_TryItem
 
 .switch
 	ld a, [wEnemySwitchMonParam]
@@ -82,14 +78,14 @@ SwitchRarely:
 	callfar CheckAbleToSwitch
 	ld a, [wEnemySwitchMonParam]
 	and $f0
-	jp z, DontSwitch
+	jr z, AI_TryItem
 
 	cp $10
 	jr nz, .not_10
 	call Random
 	cp 8 percent
 	jr c, .switch
-	jp DontSwitch
+	jr AI_TryItem
 
 .not_10
 	cp $20
@@ -97,13 +93,13 @@ SwitchRarely:
 	call Random
 	cp 12 percent
 	jr c, .switch
-	jp DontSwitch
+	jr AI_TryItem
 
 .not_20
 	; $30
 	call Random
 	cp 79 percent - 1
-	jp c, DontSwitch
+	jr c, AI_TryItem
 
 .switch
 	ld a, [wEnemySwitchMonParam]
@@ -116,14 +112,14 @@ SwitchSometimes:
 	callfar CheckAbleToSwitch
 	ld a, [wEnemySwitchMonParam]
 	and $f0
-	jp z, DontSwitch
+	jr z, AI_TryItem
 
 	cp $10
 	jr nz, .not_10
 	call Random
 	cp 20 percent - 1
 	jr c, .switch
-	jp DontSwitch
+	jr AI_TryItem
 
 .not_10
 	cp $20
@@ -131,13 +127,13 @@ SwitchSometimes:
 	call Random
 	cp 50 percent + 1
 	jr c, .switch
-	jp DontSwitch
+	jr AI_TryItem
 
 .not_20
 	; $30
 	call Random
 	cp 20 percent - 1
-	jp c, DontSwitch
+	jr c, AI_TryItem
 
 .switch
 	ld a, [wEnemySwitchMonParam]
@@ -145,11 +141,6 @@ SwitchSometimes:
 	inc a
 	ld [wEnemySwitchMonIndex], a
 	jp AI_TrySwitch
-
-CheckSubstatusCantRun: ; unreferenced
-	ld a, [wEnemySubStatus5]
-	bit SUBSTATUS_CANT_RUN, a
-	ret
 
 AI_TryItem:
 	; items are not allowed in the Battle Tower
@@ -257,8 +248,6 @@ AI_TryItem:
 	ld a, [hl]
 	cp e
 	jr nc, .yes
-
-.no ; unreferenced
 	and a
 	ret
 
@@ -269,9 +258,17 @@ AI_TryItem:
 AI_Items:
 	dbw FULL_RESTORE, .FullRestore
 	dbw MAX_POTION,   .MaxPotion
-	dbw HYPER_POTION, .HyperPotion
-	dbw SUPER_POTION, .SuperPotion
-	dbw POTION,       .Potion
+	dbw HYPER_POTION, .HealingItem
+	dbw SUPER_POTION, .HealingItem
+	dbw POTION,       .HealingItem
+	dbw FRESH_WATER,  .HealingItem
+	dbw SODA_POP,     .HealingItem
+	dbw LEMONADE,     .HealingItem
+	dbw MOOMOO_MILK,  .HealingItem
+	dbw BERRY,        .HealingItem
+	dbw ENERGYPOWDER, .HealingItem
+	dbw ENERGY_ROOT,  .HealingItem
+	dbw BERRY_JUICE,  .HealingItem
 	dbw X_ACCURACY,   .XAccuracy
 	dbw FULL_HEAL,    .FullHeal
 	dbw GUARD_SPEC,   .GuardSpec
@@ -350,10 +347,10 @@ AI_Items:
 	bit UNKNOWN_USE_F, a
 	jp nz, .CheckQuarterHP
 	callfar AICheckEnemyQuarterHP
-	jp nc, .UseHealItem
+	jp nc, .Use
 	call Random
 	cp 50 percent + 1
-	jp c, .UseHealItem
+	jp c, .Use
 	jp .DontUse
 
 .CheckQuarterHP:
@@ -362,39 +359,22 @@ AI_Items:
 	call Random
 	cp 20 percent - 1
 	jp c, .DontUse
-	jr .UseHealItem
+	jp .Use
 
 .CheckHalfOrQuarterHP:
 	callfar AICheckEnemyHalfHP
 	jp c, .DontUse
 	callfar AICheckEnemyQuarterHP
-	jp nc, .UseHealItem
+	jp nc, .Use
 	call Random
 	cp 20 percent - 1
 	jp nc, .DontUse
-
-.UseHealItem:
 	jp .Use
 
-.HyperPotion:
+.HealingItem:
 	call .HealItem
 	jp c, .DontUse
-	ld b, 120
-	call EnemyUsedHyperPotion
-	jp .Use
-
-.SuperPotion:
-	call .HealItem
-	jp c, .DontUse
-	ld b, 60
-	call EnemyUsedSuperPotion
-	jp .Use
-
-.Potion:
-	call .HealItem
-	jp c, .DontUse
-	ld b, 20
-	call EnemyUsedPotion
+	call EnemyUsedHealingItem
 	jp .Use
 
 ; Everything up to "End unused" is unused
@@ -444,49 +424,49 @@ AI_Items:
 
 .XAccuracy:
 	call .XItem
-	jp c, .DontUse
+	jr c, .DontUse
 	call EnemyUsedXAccuracy
 	jr .Use
 
 .GuardSpec:
 	call .XItem
-	jp c, .DontUse
+	jr c, .DontUse
 	call EnemyUsedGuardSpec
 	jr .Use
 
 .DireHit:
 	call .XItem
-	jp c, .DontUse
+	jr c, .DontUse
 	call EnemyUsedDireHit
 	jr .Use
 
 .XAttack:
 	call .XItem
-	jp c, .DontUse
+	jr c, .DontUse
 	call EnemyUsedXAttack
 	jr .Use
 
 .XDefend:
 	call .XItem
-	jp c, .DontUse
+	jr c, .DontUse
 	call EnemyUsedXDefend
 	jr .Use
 
 .XSpeed:
 	call .XItem
-	jp c, .DontUse
+	jr c, .DontUse
 	call EnemyUsedXSpeed
 	jr .Use
 
 .XSpecial:
 	call .XItem
-	jp c, .DontUse
+	jr c, .DontUse
 	call EnemyUsedXSpecial
 	jr .Use
 
 .XSpDef:
 	call .XItem
-	jp c, .DontUse
+	jr c, .DontUse
 	call EnemyUsedXSpDef
 	jr .Use
 
@@ -496,13 +476,13 @@ AI_Items:
 	jr nz, .notfirstturnout
 	ld a, [bc]
 	bit ALWAYS_USE_F, a
-	jp nz, .Use
+	jr nz, .Use
 	call Random
 	cp 50 percent + 1
-	jp c, .DontUse
+	jr c, .DontUse
 	ld a, [bc]
 	bit CONTEXT_USE_F, a
-	jp nz, .Use
+	jr nz, .Use
 	call Random
 	cp 50 percent + 1
 	jr c, .DontUse
@@ -576,24 +556,27 @@ FullRestoreContinue:
 	ld [de], a
 	ld [wCurHPAnimMaxHP + 1], a
 	ld [wEnemyMonHP], a
-	jr EnemyPotionFinish
+	jr EnemyHealingFinish
 
-EnemyUsedPotion:
-	ld a, POTION
-	ld b, 20
-	jr EnemyPotionContinue
-
-EnemyUsedSuperPotion:
-	ld a, SUPER_POTION
-	ld b, 60
-	jr EnemyPotionContinue
-
-EnemyUsedHyperPotion:
-	ld a, HYPER_POTION
-	ld b, 120
-
-EnemyPotionContinue:
+EnemyUsedHealingItem:
+	ld a, [de]
 	ld [wCurEnemyItem], a
+	ld b, a
+	ld hl, HealingHPAmounts
+.next
+	ld a, BANK(HealingHPAmounts)
+	call GetFarByte
+	inc hl
+	cp b
+	jr z, .done
+	inc hl
+	inc hl
+	jr .next
+
+.done
+	ld a, BANK(HealingHPAmounts)
+	call GetFarByte
+	ld b, a
 	ld hl, wEnemyMonHP + 1
 	ld a, [hl]
 	ld [wCurHPAnimOldHP], a
@@ -621,7 +604,7 @@ EnemyPotionContinue:
 	ld a, [de]
 	ld [wCurHPAnimMaxHP + 1], a
 	sbc b
-	jr nc, EnemyPotionFinish
+	jr nc, EnemyHealingFinish
 	inc de
 	ld a, [de]
 	dec de
@@ -631,7 +614,7 @@ EnemyPotionContinue:
 	ld [hl], a
 	ld [wCurHPAnimNewHP + 1], a
 
-EnemyPotionFinish:
+EnemyHealingFinish:
 	call PrintText_UsedItemOn
 	hlcoord 2, 2
 	xor a
@@ -664,7 +647,7 @@ AI_TrySwitch:
 
 	ld a, d
 	cp 2
-	jp nc, AI_Switch
+	jr nc, AI_Switch
 	and a
 	ret
 

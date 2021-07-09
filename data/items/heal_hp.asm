@@ -1,4 +1,4 @@
-HealingHPAmounts:
+HealingHPAmounts::
 	dbw FRESH_WATER,   30
 	dbw SODA_POP,      50
 	dbw LEMONADE,      70
