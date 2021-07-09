@@ -46,7 +46,7 @@ _ReceiveItem::
 
 _TossItem::
 	call DoesHLEqualNumItems
-	jr nz, .remove
+	jp nz, RemoveItemFromPocket
 	push hl
 	call CheckItemPocket
 	pop de
@@ -88,13 +88,11 @@ _TossItem::
 .Item:
 	ld h, d
 	ld l, e
-
-.remove
 	jp RemoveItemFromPocket
 
 _CheckItem::
 	call DoesHLEqualNumItems
-	jr nz, .nope
+	jp nz, CheckTheItem
 	push hl
 	call CheckItemPocket
 	pop de
@@ -136,8 +134,6 @@ _CheckItem::
 .Item:
 	ld h, d
 	ld l, e
-
-.nope
 	jp CheckTheItem
 
 DoesHLEqualNumItems:
@@ -250,7 +246,6 @@ PutItemInPocket:
 	ld h, d
 	ld l, e
 	inc [hl]
-
 .done
 	scf
 	ret
@@ -471,7 +466,7 @@ TossTMHM:
 
 CheckTMHM:
 	dec c
-	ld b, $0
+	ld b, 0
 	ld hl, wTMsHMs
 	add hl, bc
 	ld a, [hl]

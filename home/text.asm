@@ -309,11 +309,11 @@ PlaceEnemysName::
 	jr nz, .print_trainer_name
 
 	ld a, [wOtherTrainerID]
-	cp RIVAL1_1_CHIKORITA
+	dec a ; RIVAL1_1_CHIKORITA
 	jr z, .rival_first_battle
-	cp RIVAL1_1_CYNDAQUIL
+	dec a ; RIVAL1_1_CYNDAQUIL
 	jr z, .rival_first_battle
-	cp RIVAL1_1_TOTODILE
+	dec a ; RIVAL1_1_TOTODILE
 	jr z, .rival_first_battle
 
 .print_trainer_name

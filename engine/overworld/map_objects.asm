@@ -30,8 +30,7 @@ HandleObjectStep:
 	call CheckObjectStillVisible
 	ret c
 	call HandleStepType
-	call HandleObjectAction
-	ret
+	jp HandleObjectAction
 
 CheckObjectStillVisible:
 	ld hl, OBJECT_FLAGS2
@@ -42,7 +41,7 @@ CheckObjectStillVisible:
 	ld hl, OBJECT_NEXT_MAP_X
 	add hl, bc
 	ld a, [hl]
-	add 1
+	inc a
 	sub e
 	jr c, .ok
 	cp MAPOBJECT_SCREEN_WIDTH
@@ -56,9 +55,8 @@ CheckObjectStillVisible:
 	sub e
 	jr c, .ok
 	cp MAPOBJECT_SCREEN_HEIGHT
-	jr nc, .ok
-	jr .yes
-
+	jr c, .yes
+	; fallthrough
 .ok
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
@@ -68,7 +66,7 @@ CheckObjectStillVisible:
 	ld hl, OBJECT_INIT_X
 	add hl, bc
 	ld a, [hl]
-	add 1
+	inc a
 	sub e
 	jr c, .ok2
 	cp MAPOBJECT_SCREEN_WIDTH
@@ -112,7 +110,7 @@ HandleStepType:
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
 	bit FROZEN_F, [hl]
-	jr nz, .frozen
+	ret nz ; frozen
 	cp STEP_TYPE_FROM_MOVEMENT
 	jr z, .one
 	jr .ok3
@@ -122,7 +120,7 @@ HandleStepType:
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
 	bit FROZEN_F, [hl]
-	jr nz, .frozen
+	ret nz ; frozen
 .one
 	call StepFunction_FromMovement
 	ld hl, OBJECT_STEP_TYPE
@@ -135,9 +133,6 @@ HandleStepType:
 .ok3
 	ld hl, StepTypesJumptable
 	rst JumpTable
-	ret
-
-.frozen
 	ret
 
 HandleObjectAction:
@@ -603,6 +598,7 @@ MovementFunction_Standing:
 	ret
 
 MovementFunction_ObeyDPad:
+MovementFunction_0d:
 	ld hl, GetPlayerNextMovementByte
 	jp HandleMovementData
 
@@ -615,20 +611,11 @@ MovementFunction_Indexed2:
 	jp HandleMovementData
 
 MovementFunction_0a:
-	jp _GetMovementObject
-
 MovementFunction_0b:
-	jp _GetMovementObject
-
 MovementFunction_0c:
-	jp _GetMovementObject
-
-MovementFunction_0d:
-	ld hl, GetPlayerNextMovementByte
-	jp HandleMovementData
-
 MovementFunction_0e:
-	jp _GetMovementObject
+	ld hl, GetMovementObject
+	jp HandleMovementData
 
 MovementFunction_Follow:
 	ld hl, GetFollowerNextMovementByte
@@ -950,7 +937,7 @@ MovementFunction_ShakingGrass:
 	ld hl, OBJECT_STEP_DURATION
 	add hl, de
 	ld a, [hl]
-	add -1
+	dec a
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	ld [hl], a
@@ -1661,7 +1648,7 @@ StepFunction_TrackingObject:
 	add hl, de
 	ld a, [hl]
 	and a
-	jr z, .nope
+	jp z, DeleteMapObject
 	ld hl, OBJECT_SPRITE_X
 	add hl, de
 	ld a, [hl]
@@ -1680,9 +1667,8 @@ StepFunction_TrackingObject:
 	and a
 	ret z
 	dec [hl]
-	ret nz
-.nope
-	jp DeleteMapObject
+	jp z, DeleteMapObject
+	ret
 
 StepFunction_14:
 StepFunction_ScreenShake:
@@ -1832,8 +1818,7 @@ GetPlayerNextMovementByte:
 
 GetMovementByte:
 	ld hl, wMovementDataBank
-	call _GetMovementByte
-	ret
+	jp _GetMovementByte
 
 GetIndexedMovementByte1:
 	ld hl, OBJECT_MOVEMENT_BYTE_INDEX
@@ -1862,10 +1847,6 @@ GetIndexedMovementByte2:
 	add hl, de
 	ld a, [hl]
 	ret
-
-_GetMovementObject:
-	ld hl, GetMovementObject
-	jp HandleMovementData
 
 GetMovementObject:
 	ld a, [wMovementObject]
@@ -2218,14 +2199,14 @@ UpdateObjectFrozen:
 	call CheckObjectOnScreen
 	jr c, SetFacing_Standing
 	call UpdateObjectNextTile
-	farcall HandleFrozenObjectAction ; no need to farcall
+	call HandleFrozenObjectAction
 	xor a
 	ret
 
 UpdateRespawnedObjectFrozen:
 	call CheckObjectOnScreen
 	jr c, SetFacing_Standing
-	farcall HandleFrozenObjectAction ; no need to farcall
+	call HandleFrozenObjectAction
 	xor a
 	ret
 
@@ -2249,8 +2230,7 @@ UpdateObjectNextTile:
 	ld hl, OBJECT_NEXT_TILE
 	add hl, bc
 	ld [hl], a
-	farcall UpdateTallGrassFlags ; no need to farcall
-	ret
+	jp UpdateTallGrassFlags
 
 CheckObjectOnScreen:
 	ld hl, OBJECT_NEXT_MAP_X
@@ -2398,7 +2378,6 @@ CheckObjectCoveredByTextbox:
 .ok9
 	dec e
 	jr nz, .loop
-
 	and a
 	ret
 
@@ -2652,7 +2631,7 @@ ResetObject:
 	add hl, bc
 	ld a, [hl]
 	cp -1
-	jp z, .set_standing ; a jr would have been appropriate here
+	jr z, .set_standing
 	push bc
 	call GetMapObject
 	ld hl, MAPOBJECT_MOVEMENT
@@ -2779,8 +2758,7 @@ InitSprites:
 	ld c, PRIORITY_NORM
 	call .InitSpritesByPriority
 	ld c, PRIORITY_LOW
-	call .InitSpritesByPriority
-	ret
+	jr .InitSpritesByPriority
 
 .DeterminePriorities:
 	xor a

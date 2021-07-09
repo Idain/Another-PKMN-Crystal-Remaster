@@ -25,11 +25,7 @@ GetOTName:
 	and a
 	jr nz, .ok
 
-;	ld hl, wRivalName
 	ld a, c
-;	cp RIVAL1
-;	jr z, .ok
-
 	ld [wCurSpecies], a
 	ld a, TRAINER_NAME
 	ld [wNamedObjectType], a
