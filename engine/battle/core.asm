@@ -233,13 +233,21 @@ HandleBetweenTurnEffects:
 	call HandleFutureSight
 	call CheckFaint_PlayerThenEnemy
 	ret c
+	call HandleHPHealingItem
 	call HandleWeather
 	call CheckFaint_PlayerThenEnemy
 	ret c
+	call HandleHPHealingItem
 	call HandleWrap
 	call CheckFaint_PlayerThenEnemy
 	ret c
+	call HandleHPHealingItem
 	call HandlePerishSong
+	call CheckFaint_PlayerThenEnemy
+	ret c
+	call HandleLeftovers
+	call HandleHealingItems
+	call ResidualDamage
 	call CheckFaint_PlayerThenEnemy
 	ret c
 	jr .NoMoreFaintingConditions
@@ -250,25 +258,32 @@ HandleBetweenTurnEffects:
 	call HandleFutureSight
 	call CheckFaint_EnemyThenPlayer
 	ret c
+	call HandleHPHealingItem
 	call HandleWeather
 	call CheckFaint_EnemyThenPlayer
 	ret c
+	call HandleHPHealingItem
 	call HandleWrap
 	call CheckFaint_EnemyThenPlayer
 	ret c
+	call HandleHPHealingItem
 	call HandlePerishSong
+	call CheckFaint_EnemyThenPlayer
+	ret c
+	call HandleLeftovers
+	call HandleHealingItems
+	call ResidualDamage
 	call CheckFaint_EnemyThenPlayer
 	ret c
 
 .NoMoreFaintingConditions:
-	call HandleLeftovers
-	call HandleMysteryberry
+	call HandleLeppaBerry
 	call HandleDefrost
 	call HandleMist
 	call HandleSafeguard
 	call HandleScreens
 	call HandleStatBoostingHeldItems
-	call HandleHealingItems
+	call HandleHPHealingItem
 	call UpdateBattleMonInParty
 	call LoadTilemapToTempTilemap
 	jp HandleEncore
@@ -882,9 +897,6 @@ Battle_EnemyFirst:
 	jp z, HandleEnemyMonFaint
 
 .switch_item
-	call SetEnemyTurn
-	call ResidualDamage
-	jp z, HandleEnemyMonFaint
 	call RefreshBattleHuds
 	call PlayerTurn_EndOpponentProtectEndureDestinyBond
 	call CheckMobileBattleError
@@ -895,9 +907,6 @@ Battle_EnemyFirst:
 	call HasEnemyFainted
 	jp z, HandleEnemyMonFaint
 	call HasPlayerFainted
-	jp z, HandlePlayerMonFaint
-	call SetPlayerTurn
-	call ResidualDamage
 	jp z, HandlePlayerMonFaint
 	call RefreshBattleHuds
 	xor a ; BATTLEPLAYERACTION_USEMOVE
@@ -922,11 +931,6 @@ Battle_PlayerFirst:
 	call HasPlayerFainted
 	jp z, HandlePlayerMonFaint
 	push bc
-	call SetPlayerTurn
-	call ResidualDamage
-	pop bc
-	jp z, HandlePlayerMonFaint
-	push bc
 	call RefreshBattleHuds
 	pop af
 	jr c, .switched_or_used_item
@@ -945,9 +949,6 @@ Battle_PlayerFirst:
 	jp z, HandleEnemyMonFaint
 
 .switched_or_used_item
-	call SetEnemyTurn
-	call ResidualDamage
-	jp z, HandleEnemyMonFaint
 	call RefreshBattleHuds
 	xor a ; BATTLEPLAYERACTION_USEMOVE
 	ld [wBattlePlayerAction], a
@@ -1001,6 +1002,19 @@ ResidualDamage:
 ; or as a result of residual damage.
 ; For Sandstorm damage, see HandleWeather.
 
+	ldh a, [hSerialConnectionStatus]
+	cp USING_EXTERNAL_CLOCK
+	jr z, .DoEnemyFirst
+	call SetPlayerTurn
+	call .do_it
+	call SetEnemyTurn
+	jr .do_it
+
+.DoEnemyFirst:
+	call SetEnemyTurn
+	call .do_it
+	call SetPlayerTurn
+.do_it
 	call HasUserFainted
 	ret z
 
@@ -1124,9 +1138,7 @@ ResidualDamage:
 .fainted
 	call RefreshBattleHuds
 	ld c, 20
-	call DelayFrames
-	xor a
-	ret
+	jp DelayFrames
 
 HandlePerishSong:
 	ldh a, [hSerialConnectionStatus]
@@ -1135,7 +1147,7 @@ HandlePerishSong:
 	call SetPlayerTurn
 	call .do_it
 	call SetEnemyTurn
-	jp .do_it
+	jr .do_it
 
 .EnemyFirst:
 	call SetEnemyTurn
@@ -1203,7 +1215,7 @@ HandleWrap:
 	call SetPlayerTurn
 	call .do_it
 	call SetEnemyTurn
-	jp .do_it
+	jr .do_it
 
 .EnemyFirst:
 	call SetEnemyTurn
@@ -1315,7 +1327,7 @@ HandleLeftovers:
 	ld hl, BattleText_TargetRecoveredWithItem
 	jp StdBattleTextbox
 
-HandleMysteryberry:
+HandleLeppaBerry:
 	ldh a, [hSerialConnectionStatus]
 	cp USING_EXTERNAL_CLOCK
 	jr z, .DoEnemyFirst
@@ -1481,7 +1493,7 @@ HandleFutureSight:
 	call SetPlayerTurn
 	call .do_it
 	call SetEnemyTurn
-	jp .do_it
+	jr .do_it
 
 .enemy_first
 	call SetEnemyTurn
@@ -4400,25 +4412,35 @@ HandleHealingItems:
 	cp USING_EXTERNAL_CLOCK
 	jr z, .player_1
 	call SetPlayerTurn
-	call HandleHPHealingItem
 	call UseHeldStatusHealingItem
 	call UseConfusionHealingItem
 	call SetEnemyTurn
-	call HandleHPHealingItem
 	call UseHeldStatusHealingItem
 	jp UseConfusionHealingItem
 
 .player_1
 	call SetEnemyTurn
-	call HandleHPHealingItem
 	call UseHeldStatusHealingItem
 	call UseConfusionHealingItem
 	call SetPlayerTurn
-	call HandleHPHealingItem
 	call UseHeldStatusHealingItem
 	jp UseConfusionHealingItem
 
 HandleHPHealingItem:
+	ldh a, [hSerialConnectionStatus]
+	cp USING_EXTERNAL_CLOCK
+	jr z, .player_1
+	call SetPlayerTurn
+	call .start_healing
+	call SetEnemyTurn
+	jr .start_healing
+
+.player_1
+	call SetEnemyTurn
+	call .start_healing
+	call SetPlayerTurn
+	; fallthrough
+.start_healing
 	callfar GetOpponentItem
 	ld a, b
 	cp HELD_BERRY
