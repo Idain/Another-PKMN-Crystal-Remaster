@@ -84,18 +84,18 @@ CeladonMansion3FReferenceMaterial:
 GameFreakGameDesignerText:
 	text "Is that right?"
 
-	para "I'm the GAME"
-	line "DESIGNER!"
+	para "I'm the Game"
+	line "Designer!"
 
 	para "Filling up your"
-	line "#DEX is tough,"
+	line "#dex is tough,"
 	cont "but don't give up!"
 	done
 
 GameFreakGameDesignerCompletedPokedexText:
 	text "Wow! Excellent!"
 	line "You completed your"
-	cont "#DEX!"
+	cont "#dex!"
 
 	para "Congratulations!"
 	done
@@ -105,36 +105,36 @@ GameFreakGameDesignerPauseForDiplomaText:
 	done
 
 GameFreakGameDesignerAfterDiplomaText:
-	text "The GRAPHIC ARTIST"
+	text "The Graphic Artist"
 	line "will print out a"
-	cont "DIPLOMA for you."
+	cont "diploma for you."
 
 	para "You should go show"
 	line "it off."
 	done
 
 GameFreakGraphicArtistText:
-	text "I'm the GRAPHIC"
-	line "ARTIST."
+	text "I'm the Graphic"
+	line "Artist."
 
 	para "I drew you!"
 	done
 
 GameFreakGraphicArtistPrintDiplomaText:
-	text "I'm the GRAPHIC"
-	line "ARTIST."
+	text "I'm the Graphic"
+	line "Artist."
 
 	para "Oh, you completed"
-	line "your #DEX?"
+	line "your #dex?"
 
 	para "Want me to print"
-	line "out your DIPLOMA?"
+	line "out your diploma?"
 	done
 
 GameFreakGraphicArtistRefusedText:
 	text "Give me a shout if"
 	line "you want your"
-	cont "DIPLOMA printed."
+	cont "diploma printed."
 	done
 
 GameFreakGraphicArtistErrorText:
@@ -145,17 +145,17 @@ GameFreakGraphicArtistErrorText:
 
 GameFreakProgrammerText:
 	text "Who, me? I'm the"
-	line "PROGRAMMER."
+	line "Programmer."
 
 	para "Play the slot"
 	line "machines!"
 	done
 
 GameFreakCharacterDesignerText:
-	text "Aren't the TWINS"
+	text "Aren't the Twins"
 	line "adorable?"
 
-	para "JASMINE's pretty"
+	para "Jasmine's pretty"
 	line "too."
 
 	para "Oh, I love them!"
@@ -184,7 +184,7 @@ CeladonMansion3FReferenceMaterialText:
 	text "It's crammed with"
 	line "reference materi-"
 	cont "als. There's even"
-	cont "a # DOLL."
+	cont "a # Doll."
 	done
 
 CeladonMansion3F_MapEvents:

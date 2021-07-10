@@ -482,15 +482,13 @@ Printer_CopyTilemapToBuffer:
 	hlcoord 0, 0
 	ld de, wPrinterTilemapBuffer
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
-	call CopyBytes
-	ret
+	jp CopyBytes
 
 Printer_CopyBufferToTilemap:
 	ld hl, wPrinterTilemapBuffer
 	decoord 0, 0
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
-	call CopyBytes
-	ret
+	jp CopyBytes
 
 Printer_ResetJoypadRegisters:
 	xor a
@@ -502,8 +500,7 @@ Printer_ResetJoypadRegisters:
 
 Printer_PlayMusic:
 	ld de, MUSIC_PRINTER
-	call PlayMusic2
-	ret
+	jp PlayMusic2
 
 CheckPrinterStatus:
 ; Check for printer errors

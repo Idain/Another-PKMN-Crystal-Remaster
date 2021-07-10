@@ -33,14 +33,12 @@ GameCornerPrizeMonCheckDex:
 	ld a, [wScriptVar]
 	ld [wNamedObjectIndex], a
 	farcall NewPokedexEntry
-	call ExitAllMenus
-	ret
+	jp ExitAllMenus
 
 UnusedSetSeenMon:
 	ld a, [wScriptVar]
 	dec a
-	call SetSeenMon
-	ret
+	jp SetSeenMon
 
 FindPartyMonAboveLevel:
 	ld a, [wScriptVar]
@@ -86,8 +84,7 @@ NameRival:
 	farcall _NamingScreen
 	ld hl, wRivalName
 	ld de, .DefaultName
-	call InitName
-	ret
+	jp InitName
 
 .DefaultName:
 	db "Silver@"
@@ -99,20 +96,17 @@ NameRater:
 OverworldTownMap:
 	call FadeToMenu
 	farcall _TownMap
-	call ExitAllMenus
-	ret
+	jp ExitAllMenus
 
 UnownPrinter:
 	call FadeToMenu
 	farcall _UnownPrinter
-	call ExitAllMenus
-	ret
+	jp ExitAllMenus
 
 DisplayLinkRecord:
 	call FadeToMenu
 	farcall _DisplayLinkRecord
-	call ExitAllMenus
-	ret
+	jp ExitAllMenus
 
 PlayersHousePC:
 	xor a
@@ -129,11 +123,9 @@ CheckMysteryGift:
 	and a
 	jr z, .no
 	inc a
-
 .no
 	ld [wScriptVar], a
-	call CloseSRAM
-	ret
+	jp CloseSRAM
 
 GetMysteryGiftItem:
 	ld a, BANK(sMysteryGiftItem)
@@ -184,33 +176,28 @@ UnownPuzzle:
 	farcall _UnownPuzzle
 	ld a, [wSolvedUnownPuzzle]
 	ld [wScriptVar], a
-	call ExitAllMenus
-	ret
+	jp ExitAllMenus
 
 SlotMachine:
 	call CheckCoinsAndCoinCase
 	ret c
 	ld a, BANK(_SlotMachine)
 	ld hl, _SlotMachine
-	call StartGameCornerGame
-	ret
+	jr StartGameCornerGame
 
 CardFlip:
 	call CheckCoinsAndCoinCase
 	ret c
 	ld a, BANK(_CardFlip)
 	ld hl, _CardFlip
-	call StartGameCornerGame
-	ret
+	jr StartGameCornerGame
 
 UnusedMemoryGame:
 	call CheckCoinsAndCoinCase
 	ret c
 	ld a, BANK(_MemoryGame)
 	ld hl, _MemoryGame
-	call StartGameCornerGame
-	ret
-
+	; fallthrough
 StartGameCornerGame:
 	call FarQueueScript
 	call FadeToMenu
@@ -222,8 +209,7 @@ StartGameCornerGame:
 	ld l, a
 	pop af
 	rst FarCall
-	call ExitAllMenus
-	ret
+	jp ExitAllMenus
 
 CheckCoinsAndCoinCase:
 	ld hl, wCoins
@@ -308,9 +294,6 @@ CheckPokerus:
 	jp ScriptReturnCarry
 
 ResetLuckyNumberShowFlag:
-;	farcall RestartLuckyNumberCountdown
-;	ld hl, wLuckyNumberShowFlag
-;	res LUCKYNUMBERSHOW_GAME_OVER_F, [hl]
 	farcall LoadOrRegenerateLuckyIDNumber
 	ret
 	
@@ -319,8 +302,6 @@ CheckLuckyNumberShowFlag:
 	ld hl, wLuckyNumberShowFlag
 	bit LUCKYNUMBERSHOW_GAME_OVER_F, [hl]
 	ret
-;	farcall _CheckLuckyNumberShowFlag
-;	jp ScriptReturnCarry
 
 SnorlaxAwake:
 ; Check if the Poké Flute channel is playing, and if the player is standing
@@ -409,14 +390,12 @@ FadeOutMusic:
 Diploma:
 	call FadeToMenu
 	farcall _Diploma
-	call ExitAllMenus
-	ret
+	jp ExitAllMenus
 
 PrintDiploma:
 	call FadeToMenu
 	farcall _PrintDiploma
-	call ExitAllMenus
-	ret
+	jp ExitAllMenus
 
 TrainerHouse:
 	ld a, BANK(sMysteryGiftTrainerHouseFlag)
