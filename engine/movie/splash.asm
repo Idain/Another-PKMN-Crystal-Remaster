@@ -26,7 +26,7 @@ SplashScreen:
 ; Draw copyright screen
 	callfar Copyright
 	call WaitBGMap
-	ld c, 100
+	ld c, 60
 	call DelayFrames
 	call ClearTilemap
 
@@ -117,7 +117,7 @@ GameFreakPresentsEnd:
 	farcall ClearSpriteAnims
 	call ClearTilemap
 	call ClearSprites
-	ld c, 16
+	ld c, 10
 	jp DelayFrames
 
 GameFreakPresentsScene:
@@ -135,8 +135,6 @@ GameFreakPresentsScene:
 GameFreakPresents_NextScene:
 	ld hl, wJumptableIndex
 	inc [hl]
-	ret
-
 GameFreakPresents_WaitSpriteAnim:
 	ret
 
@@ -216,6 +214,7 @@ GameFreakLogo_Init:
 	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
 	add hl, bc
 	inc [hl]
+GameFreakLogo_Done:
 	ret
 
 GameFreakLogo_Bounce:
@@ -327,9 +326,6 @@ GameFreakLogo_Transform:
 	add hl, bc
 	inc [hl]
 	jp GameFreakPresents_NextScene
-
-GameFreakLogo_Done:
-	ret
 
 GameFreakDittoPaletteFade:
 INCLUDE "gfx/splash/ditto_fade.pal"

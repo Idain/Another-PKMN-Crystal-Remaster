@@ -6075,7 +6075,7 @@ Function102a3b:
 	ret
 
 Function102b12:
-	ld c, 100
+	ld c, 60
 	call DelayFrames
 	call Function102d9a
 	call LoadFontsBattleExtra

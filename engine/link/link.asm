@@ -321,7 +321,7 @@ Gen2ToGen2LinkComms:
 	jr z, .loop3
 	dec hl
 	ld de, wLinkOTMail
-	ld bc, wLinkDataEnd - wLinkOTMail ; should be wLinkOTMailEnd - wLinkOTMail
+	ld bc, wLinkOTMailEnd - wLinkOTMail
 	call CopyBytes
 	ld hl, wLinkOTMail
 	ld bc, (MAIL_MSG_LENGTH + 1) * PARTY_LENGTH
@@ -530,8 +530,7 @@ LinkTimeout:
 	call ClearScreen
 	ld b, SCGB_DIPLOMA
 	call GetSGBLayout
-	call WaitBGMap2
-	ret
+	jp WaitBGMap2
 
 .LinkTimeoutText:
 	text_far _LinkTimeoutText
@@ -621,7 +620,7 @@ FixDataForLinkTransfer:
 
 	ld hl, (wLinkData + SERIAL_PREAMBLE_LENGTH + NAME_LENGTH + 1 + PARTY_LENGTH + 1) - 1
 	ld de, wPlayerPatchLists + 10 ; ???
-	lb bc, 0, 0
+	ld bc, 0
 .loop2
 	inc c
 	ld a, c
@@ -1468,7 +1467,7 @@ LinkTrade_TradeStatsMenu:
 	jp z, InitTradeMenuDisplay
 	ld [wCurOTTradePartyMon], a
 	call LinkTradePlaceArrow
-	ld c, 100
+	ld c, 60
 	call DelayFrames
 	farcall ValidateOTTrademon
 	jr c, .abnormal
@@ -1519,7 +1518,7 @@ LinkTrade_TradeStatsMenu:
 	ld a, $1
 	ld [wPlayerLinkAction], a
 	farcall PrintWaitingTextAndSyncAndExchangeNybble
-	ld c, 100
+	ld c, 60
 	call DelayFrames
 	jp InitTradeMenuDisplay
 
@@ -1536,7 +1535,7 @@ LinkTrade_TradeStatsMenu:
 
 LinkTradeOTPartymonMenuCheckCancel:
 	ld a, [wMenuCursorY]
-	cp 1
+	dec a
 	jp nz, LinkTradePartiesMenuMasterLoop
 	call HideCursor
 
@@ -1908,7 +1907,7 @@ LinkTrade:
 	ld a, [hl]
 	ld [wCurOTTradePartyMon], a
 
-	ld c, 100
+	ld c, 60
 	call DelayFrames
 	call ClearTilemap
 	call LoadFontsBattleExtra
@@ -2009,7 +2008,7 @@ LinkTrade:
 	jp Gen2ToGen2LinkComms
 
 InitTradeMenuDisplay_Delay:
-	ld c, 100
+	ld c, 60
 	call DelayFrames
 	jp InitTradeMenuDisplay
 
@@ -2249,9 +2248,8 @@ WaitForLinkedFriend:
 	ldh [rSC], a
 	ld a, (1 << rSC_ON) | (0 << rSC_CLOCK)
 	ldh [rSC], a
-	call DelayFrame
-	call DelayFrame
-	call DelayFrame
+	ld c, 3
+	call DelayFrames
 
 .no_link_action
 	ld a, $2
@@ -2299,7 +2297,7 @@ WaitForLinkedFriend:
 	call LinkDataReceived
 	ld c, 50
 	call DelayFrames
-	ld a, $1
+	ld a, 1
 	ld [wScriptVar], a
 	ret
 
@@ -2404,7 +2402,6 @@ Link_CheckCommunicationError:
 
 .load_true
 	ld a, TRUE
-
 .done
 	ld [wScriptVar], a
 	ld hl, wLinkTimeoutFrames

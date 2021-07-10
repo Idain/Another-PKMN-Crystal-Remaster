@@ -225,7 +225,7 @@ Credits_LYOverride:
 ParseCredits:
 	ld hl, wJumptableIndex
 	bit 7, [hl]
-	jp nz, .done
+	jr nz, Credits_Next
 
 ; Wait until the timer has run out to parse the next command.
 	ld hl, wCreditsTimer
@@ -235,7 +235,7 @@ ParseCredits:
 
 ; One tick has passed.
 	dec [hl]
-	jp .done
+	jr Credits_Next
 
 .parse
 ; First, let's clear the current text display,
@@ -345,7 +345,7 @@ ParseCredits:
 ; Wait for some amount of ticks.
 	call .get
 	ld [wCreditsTimer], a
-	jr .done
+	jp Credits_Next
 
 .wait
 ; Wait for some amount of ticks, and do something else.
@@ -356,8 +356,6 @@ ParseCredits:
 	ldh [hBGMapThird], a
 	ld a, 1
 	ldh [hBGMapMode], a
-
-.done
 	jp Credits_Next
 
 .end

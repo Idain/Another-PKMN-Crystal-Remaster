@@ -54,8 +54,7 @@ InitClock:
 	ld hl, OakTimeWhatTimeIsItText
 	call PrintText
 	hlcoord 3, 7
-	ld b, 2
-	ld c, 15
+	lb bc, 2, 15
 	call Textbox
 	hlcoord 11, 7
 	ld [hl], $1
@@ -276,8 +275,7 @@ DisplayMinutesWithMinString:
 	call PrintTwoDigitNumberLeftAlign
 	inc hl
 	ld de, String_min
-	call PlaceString
-	ret
+	jp PlaceString
 
 PrintTwoDigitNumberLeftAlign:
 	push hl
@@ -286,8 +284,7 @@ PrintTwoDigitNumberLeftAlign:
 	ld [hl], a
 	pop hl
 	lb bc, PRINTNUM_LEFTALIGN | 1, 2
-	call PrintNum
-	ret
+	jp PrintNum
 
 OakTimeWokeUpText:
 	text_far _OakTimeWokeUpText
@@ -414,8 +411,7 @@ SetDayOfWeek:
 	ld hl, .OakTimeWhatDayIsItText
 	call PrintText
 	hlcoord 9, 3
-	ld b, 2
-	ld c, 9
+	lb bc, 2, 9
 	call Textbox
 	hlcoord 14, 3
 	ld [hl], TIMESET_UP_ARROW
@@ -511,8 +507,7 @@ SetDayOfWeek:
 	ld d, [hl]
 	ld e, a
 	pop hl
-	call PlaceString
-	ret
+	jp PlaceString
 
 .WeekdayStrings:
 ; entries correspond to wCurDay constants (see constants/wram_constants.asm)
@@ -556,8 +551,7 @@ InitialSetDSTFlag:
 	lb bc, 3, 18
 	call ClearBox
 	ld hl, .Text
-	call PlaceHLTextAtBC
-	ret
+	jp PlaceHLTextAtBC
 
 .Text:
 	text_asm
@@ -583,8 +577,7 @@ InitialClearDSTFlag:
 	lb bc, 3, 18
 	call ClearBox
 	ld hl, .Text
-	call PlaceHLTextAtBC
-	ret
+	jp PlaceHLTextAtBC
 
 .Text:
 	text_asm
@@ -607,55 +600,52 @@ MrChrono: ; unreferenced
 	lb bc, 3, SCREEN_WIDTH - 2
 	call ClearBox
 	ld hl, .Text
-	call PlaceHLTextAtBC
-	ret
+	jp PlaceHLTextAtBC
 
 .Text:
 	text_asm
 	call UpdateTime
 
 	hlcoord 1, 14
-	ld [hl], "R"
-	inc hl
-	ld [hl], "T"
-	inc hl
-	ld [hl], " "
-	inc hl
+	ld a, "R"
+	ld [hli], a
+	ld a, "T"
+	ld [hli], a
+	ld a, " "
+	ld [hli], a
 
 	ld de, hRTCDayLo
 	call .PrintTime
 
 	hlcoord 1, 16
-	ld [hl], "D"
-	inc hl
-	ld [hl], "F"
-	inc hl
-	ld [hl], " "
-	inc hl
+	ld a, "D"
+	ld [hli], a
+	ld a, "F"
+	ld [hli], a
+	ld a, " "
+	ld [hli], a
 
 	ld de, wStartDay
 	call .PrintTime
-
-	ld [hl], " "
-	inc hl
+	ld a, " "
+	ld [hli], a
 
 	ld a, [wDST]
 	bit 7, a
 	jr z, .off
 
-	ld [hl], "O"
-	inc hl
-	ld [hl], "N"
-	inc hl
+	ld a, "O"
+	ld [hli], a
+	ld a, "N"
+	ld [hli], a
 	jr .done
 
 .off
-	ld [hl], "O"
-	inc hl
-	ld [hl], "F"
-	inc hl
-	ld [hl], "F"
-	inc hl
+	ld a, "O"
+	ld [hli], a
+	ld a, "F"
+	ld [hli], a
+	ld [hli], a
 
 .done
 	ld hl, .NowOnDebug
@@ -669,17 +659,16 @@ MrChrono: ; unreferenced
 .PrintTime:
 	lb bc, 1, 3
 	call PrintNum
-	ld [hl], "."
-	inc hl
+	ld a, "."
+	ld [hli], a
 	inc de
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	call PrintNum
-	ld [hl], ":"
-	inc hl
+	ld a, ":"
+	ld [hli], a
 	inc de
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
-	call PrintNum
-	ret
+	jp PrintNum
 
 PrintHour:
 	ld l, e
@@ -694,8 +683,7 @@ PrintHour:
 	call AdjustHourForAMorPM
 	ld [wTextDecimalByte], a
 	ld de, wTextDecimalByte
-	call PrintTwoDigitNumberLeftAlign
-	ret
+	jp PrintTwoDigitNumberLeftAlign
 
 GetTimeOfDayString:
 	ld a, c

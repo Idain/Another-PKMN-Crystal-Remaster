@@ -6,8 +6,7 @@ _2DMenu_::
 	call Draw2DMenu
 	call UpdateSprites
 	call ApplyTilemap
-	call Get2DMenuSelection
-	ret
+	jr Get2DMenuSelection
 
 _InterpretBattleMenu::
 	ld hl, CopyMenuData
@@ -18,8 +17,7 @@ _InterpretBattleMenu::
 	farcall MobileTextBorder
 	call UpdateSprites
 	call ApplyTilemap
-	call Get2DMenuSelection
-	ret
+	jr Get2DMenuSelection
 
 _InterpretMobileMenu::
 	ld hl, CopyMenuData
@@ -43,8 +41,7 @@ _InterpretMobileMenu::
 	ld a, [wMenuJoypadFilter]
 	and c
 	jr z, .loop
-	call Mobile_GetMenuSelection
-	ret
+	jr Mobile_GetMenuSelection
 
 .quit
 	ld a, [w2DMenuNumCols]
@@ -59,8 +56,7 @@ Draw2DMenu:
 	xor a
 	ldh [hBGMapMode], a
 	call MenuBox
-	call Place2DMenuItemStrings
-	ret
+	jr Place2DMenuItemStrings
 
 Get2DMenuSelection:
 	call Init2DMenuCursorPosition
@@ -272,21 +268,19 @@ Function241d5: ; unreferenced
 	call Place2DMenuCursor
 .loop
 	call Move2DMenuCursor
-	call HDMATransferTilemapToWRAMBank3 ; BUG: This function is in another bank.
+	farcall HDMATransferTilemapToWRAMBank3
 	call .loop2
-	jr nc, .done
+	ret nc
 	call _2DMenuInterpretJoypad
-	jr c, .done
+	ret c
 	ld a, [w2DMenuFlags1]
 	bit 7, a
-	jr nz, .done
+	ret nz
 	call GetMenuJoypad
 	ld c, a
 	ld a, [wMenuJoypadFilter]
 	and c
 	jr z, .loop
-
-.done
 	ret
 
 .loop2
@@ -294,7 +288,7 @@ Function241d5: ; unreferenced
 	ret c
 	ld c, 1
 	ld b, 3
-	call AdvanceMobileInactivityTimerAndCheckExpired ; BUG: This function is in another bank.
+	farcall AdvanceMobileInactivityTimerAndCheckExpired
 	ret c
 	farcall Function100337
 	ret c
@@ -309,19 +303,17 @@ MenuJoypadLoop:
 	call Move2DMenuCursor
 	call .BGMap_OAM
 	call Do2DMenuRTCJoypad
-	jr nc, .done
+	ret nc
 	call _2DMenuInterpretJoypad
-	jr c, .done
+	ret c
 	ld a, [w2DMenuFlags1]
 	bit 7, a
-	jr nz, .done
+	ret nz
 	call GetMenuJoypad
 	ld b, a
 	ld a, [wMenuJoypadFilter]
 	and b
 	jr z, .loop
-
-.done
 	ret
 
 .BGMap_OAM:
@@ -402,7 +394,7 @@ _2DMenuInterpretJoypad:
 	bit 5, a
 	jr nz, .wrap_around_down
 	bit 3, a
-	jp nz, .set_bit_7
+	jr nz, .set_bit_7
 	xor a
 	ret
 
@@ -425,7 +417,7 @@ _2DMenuInterpretJoypad:
 	bit 5, a
 	jr nz, .wrap_around_up
 	bit 2, a
-	jp nz, .set_bit_7
+	jr nz, .set_bit_7
 	xor a
 	ret
 
@@ -449,7 +441,7 @@ _2DMenuInterpretJoypad:
 	bit 4, a
 	jr nz, .wrap_around_left
 	bit 1, a
-	jp nz, .set_bit_7
+	jr nz, .set_bit_7
 	xor a
 	ret
 
@@ -473,7 +465,7 @@ _2DMenuInterpretJoypad:
 	bit 4, a
 	jr nz, .wrap_around_right
 	bit 0, a
-	jp nz, .set_bit_7
+	jr nz, .set_bit_7
 	xor a
 	ret
 
@@ -600,7 +592,6 @@ _PushWindow::
 
 .done
 	pop hl
-	call .ret ; empty function
 	ld a, h
 	ld [de], a
 	dec de
@@ -622,8 +613,6 @@ _PushWindow::
 	call GetMenuBoxDims
 	inc b
 	inc c
-	call .ret ; empty function
-
 .row
 	push bc
 	push hl
@@ -641,10 +630,6 @@ _PushWindow::
 	pop bc
 	dec b
 	jr nz, .row
-
-	ret
-
-.ret
 	ret
 
 _ExitMenu::
@@ -715,8 +700,7 @@ RestoreOverworldMapTiles: ; unreferenced
 	ld a, c
 	or b
 	jr nz, .loop
-	call CloseSRAM
-	ret
+	jp CloseSRAM
 
 Error_Cant_ExitMenu:
 	ld hl, .WindowPoppingErrorText

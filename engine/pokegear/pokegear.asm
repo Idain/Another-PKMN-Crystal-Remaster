@@ -1237,8 +1237,7 @@ Pokegear_SwitchPage:
 	ld [wJumptableIndex], a
 	ld a, b
 	ld [wPokegearCard], a
-	call DeleteSpriteAnimStruct2ToEnd
-	ret
+	jr DeleteSpriteAnimStruct2ToEnd
 
 ExitPokegearRadio_HandleMusic:
 	ld a, [wPokegearRadioMusicPlaying]
@@ -1472,8 +1471,7 @@ RadioChannels:
 	jp LoadStation_EvolutionRadio
 
 .NoSignal:
-	call NoRadioStation
-	ret
+	jp NoRadioStation
 
 .InJohto:
 ; if in Johto or on the S.S. Aqua, set carry
@@ -1627,8 +1625,7 @@ RadioMusicRestartDE:
 	pop de
 	ld a, e
 	ld [wMapMusic], a
-	call PlayMusic
-	ret
+	jp PlayMusic
 
 RadioMusicRestartPokemonChannel:
 	push de
@@ -1638,8 +1635,7 @@ RadioMusicRestartPokemonChannel:
 	call PlayMusic
 	pop de
 	ld de, MUSIC_POKEMON_CHANNEL
-	call PlayMusic
-	ret
+	jp PlayMusic
 
 Radio_BackUpFarCallParams:
 	ld [wPokegearRadioChannelBank], a
@@ -1676,8 +1672,7 @@ NoRadioName:
 	call ClearBox
 	hlcoord 0, 12
 	lb bc, 4, 18
-	call Textbox
-	ret
+	jp Textbox
 
 OaksPKMNTalkName:     db "Oak's <PK><MN> Talk@"
 PokedexShowName:      db "#dex Show@"
@@ -1760,8 +1755,7 @@ _TownMap:
 	ldh [hInMenu], a
 	pop af
 	ld [wOptions], a
-	call ClearBGPalettes
-	ret
+	jp ClearBGPalettes
 
 .loop
 	call JoyTextDelay
@@ -1826,12 +1820,9 @@ _TownMap:
 .InitTilemap:
 	ld a, [wTownMapPlayerIconLandmark]
 	cp KANTO_LANDMARK
-	jr nc, .kanto2
-	ld e, JOHTO_REGION
-	jr .okay_tilemap
-
-.kanto2
 	ld e, KANTO_REGION
+	jr nc, .okay_tilemap ; kanto2
+	ld e, JOHTO_REGION
 .okay_tilemap
 	farcall PokegearMap
 	ld a, $07
@@ -1863,7 +1854,7 @@ PlayRadio:
 	push af
 	set NO_TEXT_SCROLL, [hl]
 	call .PlayStation
-	ld c, 100
+	ld c, 60
 	call DelayFrames
 .loop
 	call JoyTextDelay
@@ -2116,8 +2107,7 @@ TownMapBubble:
 	farcall GetLandmarkName
 	hlcoord 2, 1
 	ld de, wStringBuffer1
-	call PlaceString
-	ret
+	jp PlaceString
 
 GetMapCursorCoordinates:
 	ld a, [wTownMapPlayerIconLandmark]
@@ -2200,8 +2190,7 @@ FlyMap:
 	call FillJohtoMap
 	call .MapHud
 	pop af
-	call TownMapPlayerIcon
-	ret
+	jp TownMapPlayerIcon
 
 .KantoFlyMap:
 ; The event that there are no flypoints enabled in a map is not
@@ -2227,8 +2216,7 @@ FlyMap:
 	call FillKantoMap
 	call .MapHud
 	pop af
-	call TownMapPlayerIcon
-	ret
+	jp TownMapPlayerIcon
 
 .NoKanto:
 ; If Indigo Plateau hasn't been visited, we use Johto's map instead
@@ -2319,13 +2307,12 @@ Pokedex_GetArea:
 
 .LeftRightInput:
 	ld a, [hl]
-	and D_LEFT
-	jr nz, .left
-	ld a, [hl]
 	and D_RIGHT
 	jr nz, .right
-	ret
-
+	ld a, [hl]
+	and D_LEFT
+	ret z
+	; fallthrough
 .left
 	ldh a, [hWY]
 	cp SCREEN_HEIGHT_PX
@@ -2334,8 +2321,7 @@ Pokedex_GetArea:
 	ld a, SCREEN_HEIGHT_PX
 	ldh [hWY], a
 	xor a ; JOHTO_REGION
-	call .GetAndPlaceNest
-	ret
+	jr .GetAndPlaceNest
 
 .right
 	ld a, [wStatusFlags]
@@ -2348,8 +2334,7 @@ Pokedex_GetArea:
 	xor a
 	ldh [hWY], a
 	ld a, KANTO_REGION
-	call .GetAndPlaceNest
-	ret
+	jr .GetAndPlaceNest
 
 .BlinkNestIcons:
 	ldh a, [hVBlankCounter]
@@ -2358,16 +2343,13 @@ Pokedex_GetArea:
 	ret nz
 	ld a, e
 	and $10
-	jr nz, .copy_sprites
-	call ClearSprites
-	ret
-
+	jp z, ClearSprites
+	; fallthrough
 .copy_sprites
 	hlcoord 0, 0
 	ld de, wVirtualOAM
 	ld bc, wVirtualOAMEnd - wVirtualOAM
-	call CopyBytes
-	ret
+	jp CopyBytes
 
 .PlaceString_MonsNest:
 	hlcoord 0, 0
@@ -2387,8 +2369,7 @@ Pokedex_GetArea:
 	ld h, b
 	ld l, c
 	ld de, .String_SNest
-	call PlaceString
-	ret
+	jp PlaceString
 
 .String_SNest:
 	db "'S NEST@"
@@ -2428,8 +2409,7 @@ Pokedex_GetArea:
 	ld hl, wVirtualOAM
 	decoord 0, 0
 	ld bc, wVirtualOAMEnd - wVirtualOAM
-	call CopyBytes
-	ret
+	jp CopyBytes
 
 .HideNestsShowPlayer:
 	call .CheckPlayerLocation
@@ -2472,8 +2452,7 @@ Pokedex_GetArea:
 	ld hl, wVirtualOAMSprite04
 	ld bc, wVirtualOAMEnd - wVirtualOAMSprite04
 	xor a
-	call ByteFill
-	ret
+	jp ByteFill
 
 .PlayerOAM:
 	; y pxl, x pxl, tile offset
@@ -2698,8 +2677,7 @@ LoadTownMapGFX:
 	ld hl, TownMapGFX
 	ld de, vTiles2
 	lb bc, BANK(TownMapGFX), 48
-	call DecompressRequest2bpp
-	ret
+	jp DecompressRequest2bpp
 
 JohtoMap:
 INCBIN "gfx/pokegear/johto.bin"
@@ -2795,13 +2773,12 @@ EntireFlyMap: ; unreferenced
 .HandleDPad:
 	ld hl, hJoyLast
 	ld a, [hl]
-	and D_DOWN | D_RIGHT
-	jr nz, .ScrollNext
-	ld a, [hl]
 	and D_UP | D_LEFT
 	jr nz, .ScrollPrev
-	ret
-
+	ld a, [hl]
+	and D_DOWN | D_RIGHT
+	ret z
+	; fallthrough
 .ScrollNext:
 	ld hl, wTownMapPlayerIconLandmark
 	ld a, [hl]

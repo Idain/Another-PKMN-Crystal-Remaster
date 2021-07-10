@@ -2922,7 +2922,6 @@ SimpleGetMaxPPOfMove:
 	and a
 
 	push bc
-
 	ld hl, wPartyMon1Moves
 	ld bc, PARTYMON_STRUCT_LENGTH
 	jr z, .got_partymon ; PARTYMON

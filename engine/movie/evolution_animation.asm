@@ -174,7 +174,7 @@ EvolutionAnimation:
 
 .AnimationSequence:
 	call ClearJoypad
-	lb bc, 1, 2 * 7 ; flash b times, wait c frames in between
+	lb bc, 1, (2 * 7) ; flash b times, wait c frames in between
 .loop
 	push bc
 	call .WaitFrames_CheckPressedB

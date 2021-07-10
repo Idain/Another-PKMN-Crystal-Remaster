@@ -430,14 +430,12 @@ IntroScene9:
 	call ByteFill
 	ld a, $2
 	ldh [hBGMapMode], a
-	call DelayFrame
-	call DelayFrame
-	call DelayFrame
+	ld c, 3
+	call DelayFrames
 	ld a, LOW(vBGMap0 + $c) ; $c
 	ldh [hBGMapAddress], a
-	call DelayFrame
-	call DelayFrame
-	call DelayFrame
+	ld c, 3
+	call DelayFrames
 	xor a
 	ldh [hBGMapMode], a
 	ldh [hBGMapAddress], a
