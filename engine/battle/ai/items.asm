@@ -304,7 +304,8 @@ AI_Items:
 
 .StatusCheckContext:
 	ld a, [wEnemySubStatus5]
-	bit SUBSTATUS_TOXIC, a
+	ld a, [wEnemyMonStatus]
+	bit TOX, a
 	jr z, .FailToxicCheck
 	ld a, [wEnemyToxicCount]
 	cp 4
@@ -717,8 +718,6 @@ AI_HealStatus:
 	res SUBSTATUS_NIGHTMARE, [hl]
 	ld hl, wEnemySubStatus3
 	res SUBSTATUS_CONFUSED, [hl]
-	ld hl, wEnemySubStatus5
-	res SUBSTATUS_TOXIC, [hl]
 	ret
 
 EnemyUsedGuardSpec:

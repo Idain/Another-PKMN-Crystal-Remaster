@@ -1044,9 +1044,9 @@ ResidualDamage:
 	jr z, .check_toxic
 	ld de, wEnemyToxicCount
 .check_toxic
-	ld a, BATTLE_VARS_SUBSTATUS5
+	ld a, BATTLE_VARS_STATUS
 	call GetBattleVar
-	bit SUBSTATUS_TOXIC, a
+	bit TOX, a
 	jr z, .did_toxic
 	call GetSixteenthMaxHP
 	ld a, [de]
@@ -2532,7 +2532,7 @@ WinTrainerBattle:
 	and a
 	ld a, b
 	call z, PlayVictoryMusic
-	callfar Battle_GetTrainerName
+	farcall Battle_GetTrainerName
 	ld hl, BattleText_PluralEnemyWereDefeated
 	call IsPluralTrainer
 	jr z, .got_defeat_phrase	
@@ -3779,6 +3779,7 @@ endr
 	ld [wEnemyDisableCount], a
 	ld [wEnemyFuryCutterCount], a
 	ld [wEnemyProtectCount], a
+	ld [wEnemyToxicCount], a
 	ld [wEnemyRageCounter], a
 	ld [wEnemyDisabledMove], a
 	ld [wEnemyMinimized], a
@@ -3787,6 +3788,18 @@ endr
 	ld [wEnemyTurnsTaken], a
 	ld hl, wPlayerSubStatus5
 	res SUBSTATUS_CANT_RUN, [hl]
+	ret
+
+RemoveToxicAfterBattle::
+; Remove Toxic status from all Pokémon after battle.
+	ld a, [wPartyCount]
+	ld hl, wPartyMon1Status
+	ld bc, PARTYMON_STRUCT_LENGTH
+.loop
+	res TOX, [hl]
+	add hl, bc
+	dec a
+	jr nz, .loop
 	ret
 
 ResetEnemyStatLevels:
@@ -4260,6 +4273,7 @@ endr
 	ld [wPlayerDisableCount], a
 	ld [wPlayerFuryCutterCount], a
 	ld [wPlayerProtectCount], a
+	ld [wPlayerToxicCount], a
 	ld [wPlayerRageCounter], a
 	ld [wDisabledMove], a
 	ld [wPlayerMinimized], a
@@ -4588,10 +4602,6 @@ UseHeldStatusHealingItem:
 	push bc
 	call UpdateOpponentInParty
 	pop bc
-	ld a, BATTLE_VARS_SUBSTATUS5_OPP
-	call GetBattleVarAddr
-	and [hl]
-	res SUBSTATUS_TOXIC, [hl]
 	ld a, BATTLE_VARS_SUBSTATUS1_OPP
 	call GetBattleVarAddr
 	and [hl]

@@ -1088,9 +1088,8 @@ TryTileCollisionEvent::
 
 .surf
 	farcall TrySurfOW
-	jr nc, .noevent
-	jr .done
-
+	jr c, .done
+	; fallthrough
 .noevent
 	xor a
 	ret

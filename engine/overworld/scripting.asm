@@ -1176,7 +1176,7 @@ Script_catchtutorial:
 	ld [wBattleType], a
 	call BufferScreen
 	farcall CatchTutorial
-	jp Script_reloadmap
+	jr Script_reloadmap
 
 Script_reloadmapafterbattle:
 	ld hl, wBattleScriptFlags
@@ -1193,20 +1193,20 @@ Script_reloadmapafterbattle:
 	jp ScriptJump
 
 .notblackedout
+	farcall RemoveToxicAfterBattle
 	bit 0, d
 	jr z, .was_wild
 	farcall MomTriesToBuySomething
-	jr .done
+	jr Script_reloadmap
 
 .was_wild
 	ld a, [wBattleResult]
 	bit BATTLERESULT_BOX_FULL, a
-	jr z, .done
+	jr z, Script_reloadmap
 	ld b, BANK(Script_SpecialBillCall)
 	ld de, Script_SpecialBillCall
 	farcall LoadScriptBDE
-.done
-	jp Script_reloadmap
+	; fallthrough
 
 Script_reloadmap:
 	xor a
@@ -1215,8 +1215,7 @@ Script_reloadmap:
 	ldh [hMapEntryMethod], a
 	ld a, MAPSTATUS_ENTER
 	call LoadMapStatus
-	call StopScript
-	ret
+	jp StopScript
 
 Script_scall:
 	ld a, [wScriptBank]
@@ -1249,12 +1248,6 @@ Script_memcall:
 	; fallthrough
 
 ScriptCall:
-; Bug: The script stack has a capacity of 5 scripts, yet there is
-; nothing to stop you from pushing a sixth script.  The high part
-; of the script address can then be overwritten by modifications
-; to wScriptDelay, causing the script to return to the rst/interrupt
-; space.
-
 	ld hl, wScriptStackSize
 	ld a, [hl]
 	cp 5

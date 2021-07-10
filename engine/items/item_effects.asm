@@ -589,7 +589,6 @@ PokeBallEffect:
 	pop hl
 	ld de, wStringBuffer1
 	call InitName
-
 	jp .return_from_capture
 
 .SendToPC:
@@ -1408,13 +1407,11 @@ HealStatus:
 	ret nc
 	xor a
 	ld [wBattleMonStatus], a
-	ld hl, wPlayerSubStatus5
-	res SUBSTATUS_TOXIC, [hl]
 	ld hl, wPlayerSubStatus1
 	res SUBSTATUS_NIGHTMARE, [hl]
 	call GetItemHealingAction
 	ld a, c
-	cp %11111111
+	cp -1
 	jr nz, .not_full_heal
 	ld hl, wPlayerSubStatus3
 	res SUBSTATUS_CONFUSED, [hl]
