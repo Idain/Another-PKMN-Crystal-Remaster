@@ -1734,11 +1734,11 @@ Pokedex_DisplayChangingModesMessage:
 	call PlaceString
 	ld a, $1
 	ldh [hBGMapMode], a
-	ld c, 64
+	ld c, 40
 	call DelayFrames
 	ld de, SFX_CHANGE_DEX_MODE
 	call PlaySFX
-	ld c, 64
+	ld c, 40
 	jp DelayFrames
 
 String_ChangingModesPleaseWait:
@@ -1933,7 +1933,7 @@ Pokedex_DisplayTypeNotFoundMessage:
 	call PlaceString
 	ld a, $1
 	ldh [hBGMapMode], a
-	ld c, $80
+	ld c, 90
 	jp DelayFrames
 
 .TypeNotFound:

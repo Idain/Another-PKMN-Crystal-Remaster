@@ -740,7 +740,7 @@ EggHatch_AnimationSequence:
 	lb bc, HIGH(vBGMap0), $31 ; Egg tiles start here
 	ld a, EGG
 	call Hatch_UpdateFrontpicBGMapCenter
-	ld c, 80
+	ld c, 60
 	call DelayFrames
 	xor a
 	ld [wFrameCounter], a
@@ -771,7 +771,7 @@ EggHatch_AnimationSequence:
 	call DelayFrames
 	dec e
 	jr nz, .loop
-	ld c, 16
+	ld c, 15
 	call DelayFrames
 	call EggHatch_CrackShell
 	jr .outerloop

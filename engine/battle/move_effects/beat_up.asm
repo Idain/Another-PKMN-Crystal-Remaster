@@ -10,7 +10,7 @@ BattleCommand_BeatUp:
 	bit SUBSTATUS_IN_LOOP, a
 	jr nz, .next_mon
 
-	ld c, 20
+	ld c, 15
 	call DelayFrames
 	xor a
 	ld [wPlayerRolloutCount], a

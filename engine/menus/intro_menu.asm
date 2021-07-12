@@ -339,7 +339,7 @@ Continue:
 	call DisplaySaveInfoOnContinue
 	ld a, $1
 	ldh [hBGMapMode], a
-	ld c, 20
+	ld c, 15
 	call DelayFrames
 	call ConfirmContinue
 	jr nc, .Check1Pass
@@ -362,7 +362,7 @@ Continue:
 	call Continue_MobileAdapterMenu
 	call CloseWindow
 	call ClearTilemap
-	ld c, 20
+	ld c, 15
 	call DelayFrames
 	farcall JumpRoamMons
 	farcall CopyMysteryGiftReceivedDecorationsToPC
@@ -834,8 +834,7 @@ ShrinkPlayer:
 	call DelayFrames
 
 	hlcoord 6, 5
-	ld b, 7
-	ld c, 7
+	lb bc, 7, 7
 	call ClearBox
 
 	ld c, 3
@@ -844,7 +843,7 @@ ShrinkPlayer:
 	call Intro_PlacePlayerSprite
 	call LoadFontsExtra
 
-	ld c, 50
+	ld c, 30
 	call DelayFrames
 
 	call RotateThreePalettesRight

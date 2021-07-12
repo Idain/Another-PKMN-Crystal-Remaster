@@ -42,7 +42,7 @@ DoBattle:
 	call EnemySwitch
 
 .wild
-	ld c, 40
+	ld c, 30
 	call DelayFrames
 
 .player_2
@@ -1176,7 +1176,7 @@ ResidualDamage:
 
 .fainted
 	call RefreshBattleHuds
-	ld c, 20
+	ld c, 15
 	jp DelayFrames
 
 HandlePerishSong:

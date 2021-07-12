@@ -632,7 +632,7 @@ TradeAnim_EnterLinkTube2:
 	ret
 
 .done
-	ld c, 80
+	ld c, 60
 	call DelayFrames
 	jp TradeAnim_AdvanceScriptPointer
 
@@ -1114,13 +1114,11 @@ TradeAnim_SentToOTText:
 	jr z, .time_capsule
 	ld hl, .MonNameSentToText
 	call PrintText
-	ld c, 189
+	ld c, 120
 	call DelayFrames
 	ld hl, .MonWasSentToText
 	call PrintText
 	call TradeAnim_Wait80Frames
-	ld c, 128
-	call DelayFrames
 	jp TradeAnim_AdvanceScriptPointer
 
 .time_capsule

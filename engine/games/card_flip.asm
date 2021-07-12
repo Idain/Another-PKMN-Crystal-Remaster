@@ -164,13 +164,13 @@ _CardFlip:
 	ld [hl], CARDFLIP_LIGHT_ON
 	ld a, $1
 	ldh [hBGMapMode], a
-	ld c, 20
+	ld c, 15
 	call DelayFrames
 	hlcoord 2, 0
 	call PlaceCardFaceDown
 	ld a, $1
 	ldh [hBGMapMode], a
-	ld c, 20
+	ld c, 15
 	call DelayFrames
 	hlcoord 2, 6
 	call PlaceCardFaceDown

@@ -17,7 +17,7 @@ PlaceWaitingText::
 	hlcoord 4, 11
 	ld de, .Waiting
 	call PlaceString
-	ld c, 50
+	ld c, 30
 	jp DelayFrames
 
 .Waiting:

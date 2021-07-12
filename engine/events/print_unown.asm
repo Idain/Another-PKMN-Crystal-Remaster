@@ -186,7 +186,7 @@ _UnownPrinter:
 	ld b, a
 	call Get2bpp
 	call CloseSRAM
-	ld c, 20
+	ld c, 15
 	jp DelayFrames
 
 AlphRuinsStampString:

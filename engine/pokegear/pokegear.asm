@@ -1854,7 +1854,7 @@ PlayRadio:
 	push af
 	set NO_TEXT_SCROLL, [hl]
 	call .PlayStation
-	ld c, 60
+	ld c, 30
 	call DelayFrames
 .loop
 	call JoyTextDelay
@@ -1876,8 +1876,7 @@ PlayRadio:
 .stop
 	pop af
 	ld [wOptions], a
-	call ExitPokegearRadio_HandleMusic
-	ret
+	jp ExitPokegearRadio_HandleMusic
 
 .PlayStation:
 	ld a, ENTER_MAP_MUSIC

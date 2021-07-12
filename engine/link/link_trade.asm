@@ -159,7 +159,7 @@ PrintWaitingTextAndSyncAndExchangeNybble:
 	call PlaceString
 	call WaitBGMap
 	call WaitBGMap2
-	ld c, 50
+	ld c, 30
 	jp DelayFrames
 
 .Waiting:

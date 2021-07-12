@@ -1731,7 +1731,7 @@ Slots_AskPlayAgain:
 	jr nz, .you_have_coins
 	ld hl, .SlotsRanOutOfCoinsText
 	call PrintText
-	ld c, 60
+	ld c, 30
 	call DelayFrames
 	jr .exit_slots
 
@@ -2054,7 +2054,7 @@ Slots_AnimateChansey:
 
 Slots_WaitSFX:
 	push bc
-	ld c, 16
+	ld c, 15
 	call DelayFrames
 	pop bc
 	ret

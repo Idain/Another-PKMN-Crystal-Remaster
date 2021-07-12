@@ -1,6 +1,6 @@
 LinkCommunications:
 	call ClearBGPalettes
-	ld c, 80
+	ld c, 60
 	call DelayFrames
 	call ClearScreen
 	call ClearSprites
@@ -8,7 +8,7 @@ LinkCommunications:
 	xor a
 	ldh [hSCX], a
 	ldh [hSCY], a
-	ld c, 80
+	ld c, 60
 	call DelayFrames
 	call ClearScreen
 	call UpdateSprites
@@ -17,8 +17,7 @@ LinkCommunications:
 	farcall LinkComms_LoadPleaseWaitTextboxBorderGFX
 	call WaitBGMap2
 	hlcoord 3, 8
-	ld b, 2
-	ld c, 12
+	lb bc, 2, 12
 	ld d, h
 	ld e, l
 	farcall LinkTextbox2
@@ -186,7 +185,7 @@ Gen2ToGen1LinkComms:
 	call PlayMusic
 	ldh a, [hSerialConnectionStatus]
 	cp USING_INTERNAL_CLOCK
-	ld c, 66
+	ld c, 40
 	call z, DelayFrames
 	ld de, MUSIC_ROUTE_30
 	call PlayMusic
@@ -441,7 +440,7 @@ Gen2ToGen2LinkComms:
 	call PlayMusic
 	ldh a, [hSerialConnectionStatus]
 	cp USING_INTERNAL_CLOCK
-	ld c, 66
+	ld c, 40
 	call z, DelayFrames
 	ld a, [wLinkMode]
 	cp LINK_COLOSSEUM
@@ -1467,7 +1466,7 @@ LinkTrade_TradeStatsMenu:
 	jp z, InitTradeMenuDisplay
 	ld [wCurOTTradePartyMon], a
 	call LinkTradePlaceArrow
-	ld c, 60
+	ld c, 40
 	call DelayFrames
 	farcall ValidateOTTrademon
 	jr c, .abnormal
@@ -1518,7 +1517,7 @@ LinkTrade_TradeStatsMenu:
 	ld a, $1
 	ld [wPlayerLinkAction], a
 	farcall PrintWaitingTextAndSyncAndExchangeNybble
-	ld c, 60
+	ld c, 40
 	call DelayFrames
 	jp InitTradeMenuDisplay
 
@@ -1907,7 +1906,7 @@ LinkTrade:
 	ld a, [hl]
 	ld [wCurOTTradePartyMon], a
 
-	ld c, 60
+	ld c, 40
 	call DelayFrames
 	call ClearTilemap
 	call LoadFontsBattleExtra
@@ -2000,7 +1999,7 @@ LinkTrade:
 	ld de, String_TradeCompleted
 	call PlaceString
 	farcall Link_WaitBGMap
-	ld c, 50
+	ld c, 40
 	call DelayFrames
 	ld a, [wLinkMode]
 	cp LINK_TIMECAPSULE
@@ -2008,7 +2007,7 @@ LinkTrade:
 	jp Gen2ToGen2LinkComms
 
 InitTradeMenuDisplay_Delay:
-	ld c, 60
+	ld c, 40
 	call DelayFrames
 	jp InitTradeMenuDisplay
 
@@ -2295,7 +2294,7 @@ WaitForLinkedFriend:
 	call LinkDataReceived
 	call DelayFrame
 	call LinkDataReceived
-	ld c, 50
+	ld c, 30
 	call DelayFrames
 	ld a, 1
 	ld [wScriptVar], a

@@ -403,7 +403,7 @@ ColorPickerOptionBox::
 	call LoadMenuHeader
 	call VerticalMenu
 	push af
-	ld c, $f
+	ld c, 15
 	call DelayFrames
 	call CloseWindow
 	pop af
@@ -447,7 +447,7 @@ PlaceYesNoBox::
 InterpretTwoOptionMenu::
 	call VerticalMenu
 	push af
-	ld c, $f
+	ld c, 15
 	call DelayFrames
 	call CloseWindow
 	pop af

@@ -78,7 +78,7 @@ PrintDexEntry:
 	jr c, .skip_second_page ; canceled or got an error
 
 	call Printer_CleanUpAfterSend
-	ld c, 12
+	ld c, 10
 	call DelayFrames
 	xor a
 	ldh [hBGMapMode], a
@@ -155,7 +155,7 @@ PrintPCBox:
 	jr c, .cancel
 
 	call Printer_CleanUpAfterSend
-	ld c, 12
+	ld c, 10
 	call DelayFrames
 	xor a
 	ldh [hBGMapMode], a
@@ -166,7 +166,7 @@ PrintPCBox:
 	jr c, .cancel
 
 	call Printer_CleanUpAfterSend
-	ld c, 12
+	ld c, 10
 	call DelayFrames
 
 	xor a
@@ -178,7 +178,7 @@ PrintPCBox:
 	jr c, .cancel
 
 	call Printer_CleanUpAfterSend
-	ld c, 12
+	ld c, 10
 	call DelayFrames
 
 	xor a
@@ -350,7 +350,7 @@ PrintPartymon:
 	jr c, .cancel
 
 	call Printer_CleanUpAfterSend
-	ld c, 12
+	ld c, 10
 	call DelayFrames
 
 	xor a
@@ -410,7 +410,7 @@ _PrintDiploma:
 	call SendScreenToPrinter
 	jr c, .cancel
 	call Printer_CleanUpAfterSend
-	ld c, 12
+	ld c, 10
 	call DelayFrames
 
 	call LoadTilemapToTempTilemap

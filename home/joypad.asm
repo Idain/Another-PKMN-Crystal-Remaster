@@ -395,7 +395,7 @@ PromptButton::
 	ret
 
 .link
-	ld c, 65
+	ld c, 40
 	jp DelayFrames
 
 .wait_input

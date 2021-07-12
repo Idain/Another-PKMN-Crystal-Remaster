@@ -104,7 +104,7 @@ ENDM
 	ld de, SFX_SECOND_PART_OF_ITEMFINDER
 	call PlaySFX
 	pop de
-	ld c, 30
+	ld c, 20
 	call DelayFrames
 	dec b
 	jr nz, .party_loop

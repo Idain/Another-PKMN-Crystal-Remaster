@@ -506,16 +506,13 @@ DebugFight_StartButton:
 
 ; Clear three times just to be safe
 	hlcoord 0, 3
-	ld b, 15
-	ld c, 20
+	lb bc, 15, 20
 	call ClearBox
 	hlcoord 0, 3
-	ld b, 15
-	ld c, 20
+	lb bc, 15, 20
 	call ClearBox
 	hlcoord 0, 3
-	ld b, 15
-	ld c, 20
+	lb bc, 15, 20
 	call ClearBox
 ; Give time to clear
 	ld c, 20
@@ -543,8 +540,7 @@ DebugFight_StartButton:
 	call PlaceString
 
 	hlcoord 0, 9
-	ld b, 9
-	ld c, 20
+	lb bc, 9, 20
 	call ClearBox
 
 	ld a, [wEnemyMonSpecies]
