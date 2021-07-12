@@ -110,7 +110,7 @@ DoBattle:
 	call SpikesDamage
 	; fallthrough
 .not_linked_2
-	jp BattleTurn
+	jr BattleTurn
 
 WildFled_EnemyFled_LinkBattleCanceled:
 	call SafeLoadTempTilemapToTilemap
@@ -225,16 +225,36 @@ BattleTurn:
 	jp .loop
 
 HandleBetweenTurnEffects:
-	ldh a, [hSerialConnectionStatus]
-	cp USING_EXTERNAL_CLOCK
-	jr z, .CheckEnemyFirst
+	ld a, [wPlayerIsSwitching]
+	and a
+	jr nz, .do_speed_check
+	ld a, [wEnemyIsSwitching]
+	and a
+	jr z, .speed_check_done
+	; fallthrough
+
+.do_speed_check
+	call CheckWhichMonIsFaster
+.speed_check_done
+	ld a, [wEnemyIsFaster]
+	and a
+	jr nz, .CheckEnemyFirst
+	; fallthrough
+
+.CheckPlayerFirst
 	call CheckFaint_PlayerThenEnemy
 	ret c
+	call HandleWeather
+	call CheckFaint_PlayerThenEnemy
+	ret c
+	call HandleHPHealingItem
 	call HandleFutureSight
 	call CheckFaint_PlayerThenEnemy
 	ret c
 	call HandleHPHealingItem
-	call HandleWeather
+	call HandleLeftovers
+	call HandleHealingItems
+	call ResidualDamage
 	call CheckFaint_PlayerThenEnemy
 	ret c
 	call HandleHPHealingItem
@@ -243,11 +263,6 @@ HandleBetweenTurnEffects:
 	ret c
 	call HandleHPHealingItem
 	call HandlePerishSong
-	call CheckFaint_PlayerThenEnemy
-	ret c
-	call HandleLeftovers
-	call HandleHealingItems
-	call ResidualDamage
 	call CheckFaint_PlayerThenEnemy
 	ret c
 	jr .NoMoreFaintingConditions
@@ -255,11 +270,17 @@ HandleBetweenTurnEffects:
 .CheckEnemyFirst:
 	call CheckFaint_EnemyThenPlayer
 	ret c
+	call HandleWeather
+	call CheckFaint_EnemyThenPlayer
+	ret c
+	call HandleHPHealingItem
 	call HandleFutureSight
 	call CheckFaint_EnemyThenPlayer
 	ret c
 	call HandleHPHealingItem
-	call HandleWeather
+	call HandleLeftovers
+	call HandleHealingItems
+	call ResidualDamage
 	call CheckFaint_EnemyThenPlayer
 	ret c
 	call HandleHPHealingItem
@@ -268,11 +289,6 @@ HandleBetweenTurnEffects:
 	ret c
 	call HandleHPHealingItem
 	call HandlePerishSong
-	call CheckFaint_EnemyThenPlayer
-	ret c
-	call HandleLeftovers
-	call HandleHealingItems
-	call ResidualDamage
 	call CheckFaint_EnemyThenPlayer
 	ret c
 
@@ -283,7 +299,6 @@ HandleBetweenTurnEffects:
 	call HandleSafeguard
 	call HandleScreens
 	call HandleStatBoostingHeldItems
-	call HandleHPHealingItem
 	call UpdateBattleMonInParty
 	call LoadTilemapToTempTilemap
 	jp HandleEncore
@@ -358,9 +373,9 @@ CheckFaint_EnemyThenPlayer:
 	ret
 
 HandleBerserkGene:
-	ldh a, [hSerialConnectionStatus]
-	cp USING_EXTERNAL_CLOCK
-	jr z, .reverse
+	ld a, [wEnemyIsFaster]
+	and a
+	jr nz, .reverse ; enemy first
 
 	call .player
 	jr .enemy
@@ -461,6 +476,8 @@ EnemyTriesToFlee:
 	ret
 
 DetermineMoveOrder:
+	call CheckWhichMonIsFaster
+
 	ld a, [wLinkMode]
 	and a
 	jr z, .use_move
@@ -493,15 +510,15 @@ DetermineMoveOrder:
 	callfar AI_Switch
 	call SetEnemyTurn
 	call SpikesDamage
-	jp .enemy_first
+	jr .enemy_first
 
 .use_move
 	ld a, [wBattlePlayerAction]
 	and a ; BATTLEPLAYERACTION_USEMOVE?
-	jp nz, .player_first
+	jr nz, .player_first
 	call CompareMovePriority
 	jr z, .equal_priority
-	jr c, .player_first ; player goes first
+	jr c, .player_first
 	jr .enemy_first
 
 .equal_priority
@@ -536,7 +553,7 @@ DetermineMoveOrder:
 	jr z, .player_2b
 	call BattleRandom
 	cp c
-	jp c, .enemy_first
+	jr c, .enemy_first
 	call BattleRandom
 	cp e
 	jr c, .player_first
@@ -545,33 +562,16 @@ DetermineMoveOrder:
 .player_2b
 	call BattleRandom
 	cp e
-	jp c, .player_first
+	jr c, .player_first
 	call BattleRandom
 	cp c
 	jr c, .enemy_first
 
 .speed_check
-	ld de, wBattleMonSpeed
-	ld hl, wEnemyMonSpeed
-	ld c, 2
-	call CompareBytes
-	jr z, .speed_tie
-	jr nc, .player_first
-	jr .enemy_first
-
-.speed_tie
-	ldh a, [hSerialConnectionStatus]
-	cp USING_INTERNAL_CLOCK
-	jr z, .player_2c
-	call BattleRandom
-	cp 50 percent + 1
-	jr c, .player_first
-	jr .enemy_first
-
-.player_2c
-	call BattleRandom
-	cp 50 percent + 1
-	jr c, .enemy_first
+	ld a, [wEnemyIsFaster]
+	and a
+	jr nz, .enemy_first
+	; fallthrough
 .player_first
 	scf
 	ret
@@ -718,13 +718,15 @@ ParsePlayerAction:
 	ret
 
 HandleEncore:
-	ldh a, [hSerialConnectionStatus]
-	cp USING_EXTERNAL_CLOCK
-	jr z, .player_1
+	ld a, [wEnemyIsFaster]
+	and a
+	jr nz, .enemy_1
+	; fallthrough
+.player_1
 	call .do_player
 	jr .do_enemy
 
-.player_1
+.enemy_1
 	call .do_enemy
 .do_player
 	ld hl, wPlayerSubStatus5
@@ -997,14 +999,51 @@ CheckIfHPIsZero:
 	or [hl]
 	ret
 
+CheckWhichMonIsFaster:
+	ld de, wBattleMonSpeed
+	ld hl, wEnemyMonSpeed
+	ld c, 2
+	call CompareBytes
+	jr z, .speed_tie
+	jr nc, .player_goes_first
+	jr .enemy_goes_first
+
+.speed_tie
+	ldh a, [hSerialConnectionStatus]
+	cp USING_INTERNAL_CLOCK
+	jr z, .player_2c
+	call BattleRandom
+	cp 50 percent + 1
+	jr c, .player_goes_first
+	jr .enemy_goes_first
+
+.player_2c
+	call BattleRandom
+	cp 50 percent + 1
+	jr c, .enemy_goes_first
+	; fallthrough
+
+.player_goes_first
+	xor a
+	ld [wEnemyIsFaster], a
+	ret
+
+.enemy_goes_first
+	ld a, 1
+	ld [wEnemyIsFaster], a
+	ret
+
+
 ResidualDamage:
 ; Return z if the user fainted before
 ; or as a result of residual damage.
 ; For Sandstorm damage, see HandleWeather.
 
-	ldh a, [hSerialConnectionStatus]
-	cp USING_EXTERNAL_CLOCK
-	jr z, .DoEnemyFirst
+	ld a, [wEnemyIsFaster]
+	and a
+	jr nz, .DoEnemyFirst
+	; fallthrough
+.DoPlayerFirst
 	call SetPlayerTurn
 	call .do_it
 	call SetEnemyTurn
@@ -1141,9 +1180,11 @@ ResidualDamage:
 	jp DelayFrames
 
 HandlePerishSong:
-	ldh a, [hSerialConnectionStatus]
-	cp USING_EXTERNAL_CLOCK
-	jr z, .EnemyFirst
+	ld a, [wEnemyIsFaster]
+	and a
+	jr nz, .EnemyFirst
+	; fallthrough
+.PlayerFirst
 	call SetPlayerTurn
 	call .do_it
 	call SetEnemyTurn
@@ -1209,9 +1250,11 @@ HandlePerishSong:
 	ret
 
 HandleWrap:
-	ldh a, [hSerialConnectionStatus]
-	cp USING_EXTERNAL_CLOCK
-	jr z, .EnemyFirst
+	ld a, [wEnemyIsFaster]
+	and a
+	jr nz, .EnemyFirst
+	; fallthrough
+.PlayerFirst
 	call SetPlayerTurn
 	call .do_it
 	call SetEnemyTurn
@@ -1279,13 +1322,15 @@ SwitchTurnCore:
 	ret
 
 HandleLeftovers:
-	ldh a, [hSerialConnectionStatus]
-	cp USING_EXTERNAL_CLOCK
-	jr z, .DoEnemyFirst
+	ld a, [wEnemyIsFaster]
+	and a
+	jr nz, .DoEnemyFirst
+	; fallthrough
+.DoPlayerFirst:
 	call SetPlayerTurn
 	call .do_it
 	call SetEnemyTurn
-	jp .do_it
+	jr .do_it
 
 .DoEnemyFirst:
 	call SetEnemyTurn
@@ -1328,9 +1373,11 @@ HandleLeftovers:
 	jp StdBattleTextbox
 
 HandleLeppaBerry:
-	ldh a, [hSerialConnectionStatus]
-	cp USING_EXTERNAL_CLOCK
-	jr z, .DoEnemyFirst
+	ld a, [wEnemyIsFaster]
+	and a
+	jr nz, .DoEnemyFirst
+	; fallthrough
+.DoPlayerFirst
 	call SetPlayerTurn
 	call .do_it
 	call SetEnemyTurn
@@ -1487,9 +1534,11 @@ HandleLeppaBerry:
 	jp StdBattleTextbox
 
 HandleFutureSight:
-	ldh a, [hSerialConnectionStatus]
-	cp USING_EXTERNAL_CLOCK
-	jr z, .enemy_first
+	ld a, [wEnemyIsFaster]
+	and a
+	jr nz, .enemy_first
+	; fallthrough
+.player_first
 	call SetPlayerTurn
 	call .do_it
 	call SetEnemyTurn
@@ -1545,9 +1594,11 @@ HandleFutureSight:
 	jp UpdateEnemyMonInParty
 
 HandleDefrost:
-	ldh a, [hSerialConnectionStatus]
-	cp USING_EXTERNAL_CLOCK
-	jr z, .enemy_first
+	ld a, [wEnemyIsFaster]
+	and a
+	jr nz, .enemy_first
+	; fallthrough
+.player_first
 	call .do_player_turn
 	jr .do_enemy_turn
 
@@ -1605,13 +1656,15 @@ HandleDefrost:
 
 
 HandleMist:
-	ldh a, [hSerialConnectionStatus]
-	cp USING_EXTERNAL_CLOCK
-	jr z, .player1
+	ld a, [wEnemyIsFaster]
+	and a
+	jr nz, .enemy1
+	; fallthrough
+.player1
 	call .CheckPlayer
 	jr .CheckEnemy
 
-.player1
+.enemy1
 	call .CheckEnemy
 .CheckPlayer:
 	ld a, [wPlayerScreens]
@@ -1643,13 +1696,15 @@ HandleMist:
 
 
 HandleSafeguard:
-	ldh a, [hSerialConnectionStatus]
-	cp USING_EXTERNAL_CLOCK
-	jr z, .player1
+	ld a, [wEnemyIsFaster]
+	and a
+	jr nz, .enemy1
+	; fallthrough
+.player1
 	call .CheckPlayer
 	jr .CheckEnemy
 
-.player1
+.enemy1
 	call .CheckEnemy
 .CheckPlayer:
 	ld a, [wPlayerScreens]
@@ -1680,15 +1735,17 @@ HandleSafeguard:
 	jp StdBattleTextbox
 
 HandleScreens:
-	ldh a, [hSerialConnectionStatus]
-	cp USING_EXTERNAL_CLOCK
-	jr z, .Both
+	ld a, [wEnemyIsFaster]
+	and a
+	jr nz, .EnemyFirst
+	; fallthrough
+.PlayerFirst:
 	call .CheckPlayer
 	jr .CheckEnemy
 
-.Both:
+.EnemyFirst:
 	call .CheckEnemy
-
+	; fallthrough
 .CheckPlayer:
 	call SetPlayerTurn
 	ld de, .Your
@@ -1785,11 +1842,11 @@ HandleWeather:
 	cp WEATHER_SANDSTORM
 	jr nz, .check_hail
 
-	ldh a, [hSerialConnectionStatus]
-	cp USING_EXTERNAL_CLOCK
-	jr z, .enemy_first
-
-; player first
+	ld a, [wEnemyIsFaster]
+	and a
+	jr nz, .enemy_first
+	; fallthrough
+.player_first
 	call SetPlayerTurn
 	call .SandstormDamage
 	call SetEnemyTurn
@@ -1843,11 +1900,11 @@ HandleWeather:
 	cp WEATHER_HAIL
 	ret nz
 
-	ldh a, [hSerialConnectionStatus]
-	cp USING_EXTERNAL_CLOCK
-	jr z, .enemy_first_hail
-
-; player first
+	ld a, [wEnemyIsFaster]
+	and a
+	jr nz, .enemy_first_hail
+	; fallthrough
+.player_first_hail
 	call SetPlayerTurn
 	call .HailDamage
 	call SetEnemyTurn
@@ -2057,25 +2114,6 @@ GetMaxHP:
 	ld a, [hl]
 	ld [wHPBuffer1], a
 	ld c, a
-	ret
-
-GetHalfHP: ; unreferenced
-	ld hl, wBattleMonHP
-	ldh a, [hBattleTurn]
-	and a
-	jr z, .ok
-	ld hl, wEnemyMonHP
-.ok
-	ld a, [hli]
-	ld b, a
-	ld a, [hli]
-	ld c, a
-	srl b
-	rr c
-	ld a, [hli]
-	ld [wHPBuffer1 + 1], a
-	ld a, [hl]
-	ld [wHPBuffer1], a
 	ret
 
 CheckUserHasEnoughHP:
@@ -2918,7 +2956,7 @@ ForcePlayerMonChoice:
 .enemy_fainted_mobile_error
 	call ClearSprites
 	call ClearBGPalettes
-	call _LoadHPBar
+	farcall LoadHPBar
 	call ExitMenu
 	call LoadTilemapToTempTilemap
 	call WaitBGMap
@@ -2939,7 +2977,7 @@ ForcePlayerMonChoice:
 	call ResetPlayerStatLevels
 	call ClearPalettes
 	call DelayFrame
-	call _LoadHPBar
+	farcall LoadHPBar
 	call CloseWindow
 	call GetMemSGBLayout
 	call SetPalettes
@@ -3679,7 +3717,7 @@ OfferSwitch:
 	ld [wCurBattleMon], a
 	call ClearPalettes
 	call DelayFrame
-	call _LoadHPBar
+	farcall LoadHPBar
 	pop af
 	ld [wCurPartyMon], a
 	xor a
@@ -3691,7 +3729,7 @@ OfferSwitch:
 .canceled_switch
 	call ClearPalettes
 	call DelayFrame
-	call _LoadHPBar
+	farcall LoadHPBar
 
 .said_no
 	pop af
@@ -4422,9 +4460,11 @@ RecallPlayerMon:
 	ret
 
 HandleHealingItems:
-	ldh a, [hSerialConnectionStatus]
-	cp USING_EXTERNAL_CLOCK
-	jr z, .player_1
+	ld a, [wEnemyIsFaster]
+	and a
+	jr nz, .enemy_1
+	; fallthrough
+.player_1
 	call SetPlayerTurn
 	call UseHeldStatusHealingItem
 	call UseConfusionHealingItem
@@ -4432,7 +4472,7 @@ HandleHealingItems:
 	call UseHeldStatusHealingItem
 	jp UseConfusionHealingItem
 
-.player_1
+.enemy_1
 	call SetEnemyTurn
 	call UseHeldStatusHealingItem
 	call UseConfusionHealingItem
@@ -4441,15 +4481,17 @@ HandleHealingItems:
 	jp UseConfusionHealingItem
 
 HandleHPHealingItem:
-	ldh a, [hSerialConnectionStatus]
-	cp USING_EXTERNAL_CLOCK
-	jr z, .player_1
+	ld a, [wEnemyIsFaster]
+	and a
+	jr nz, .enemy_1
+	; fallthrough
+.player_1
 	call SetPlayerTurn
 	call .start_healing
 	call SetEnemyTurn
 	jr .start_healing
 
-.player_1
+.enemy_1
 	call SetEnemyTurn
 	call .start_healing
 	call SetPlayerTurn
@@ -4676,13 +4718,15 @@ UseConfusionHealingItem:
 
 HandleStatBoostingHeldItems:
 ; The effects handled here are not used in-game.
-	ldh a, [hSerialConnectionStatus]
-	cp USING_EXTERNAL_CLOCK
-	jr z, .player_1
-	call .DoPlayer
-	jp .DoEnemy
-
+	ld a, [wEnemyIsFaster]
+	and a
+	jr nz, .enemy_1
+	; fallthrough
 .player_1
+	call .DoPlayer
+	jr .DoEnemy
+
+.enemy_1
 	call .DoEnemy
 .DoPlayer:
 	call GetPartymonItem
@@ -5172,7 +5216,7 @@ BattleMenu_Pack:
 .didnt_use_item
 	call ClearPalettes
 	call DelayFrame
-	call _LoadBattleFontsHPBar
+	farcall LoadBattleFontsHPBar
 	call GetBattleMonBackpic
 	call GetEnemyMonFrontpic
 	call ExitMenu
@@ -5198,7 +5242,7 @@ BattleMenu_Pack:
 .ball
 	xor a
 	ldh [hBGMapMode], a
-	call _LoadBattleFontsHPBar
+	farcall LoadBattleFontsHPBar
 	call ClearSprites
 	ld a, [wBattleType]
 	cp BATTLETYPE_TUTORIAL
@@ -5258,7 +5302,7 @@ BattleMenuPKMN_Loop:
 	call ClearSprites
 	call ClearPalettes
 	call DelayFrame
-	call _LoadHPBar
+	farcall LoadHPBar
 	call CloseWindow
 	call LoadTilemapToTempTilemap
 	call GetMemSGBLayout
@@ -5354,7 +5398,7 @@ TryPlayerSwitch:
 	call ClearPalettes
 	call DelayFrame
 	call ClearSprites
-	call _LoadHPBar
+	farcall LoadHPBar
 	call CloseWindow
 	call GetMemSGBLayout
 	call SetPalettes
@@ -6020,24 +6064,24 @@ ParseEnemyAction:
 	jp nz, .skip_load
 	ld a, [wEnemySubStatus3]
 	and 1 << SUBSTATUS_CHARGED | 1 << SUBSTATUS_RAMPAGE | 1 << SUBSTATUS_BIDE
-	jp nz, .skip_load
+	jr nz, .skip_load
 
 	ld hl, wEnemySubStatus5
 	bit SUBSTATUS_ENCORED, [hl]
 	ld a, [wLastEnemyMove]
-	jp nz, .finish
+	jr nz, .finish
 	ld hl, wEnemyMonMoves
 	ld b, 0
 	add hl, bc
 	ld a, [hl]
-	jp .finish
+	jr .finish
 
 .not_linked
 	ld hl, wEnemySubStatus5
 	bit SUBSTATUS_ENCORED, [hl]
 	jr z, .skip_encore
 	ld a, [wLastEnemyMove]
-	jp .finish
+	jr .finish
 
 .skip_encore
 	call CheckEnemyLockedIn
@@ -6742,16 +6786,16 @@ CheckUnownLetter:
 
 INCLUDE "data/wild/unlocked_unowns.asm"
 
-SwapBattlerLevels: ; unreferenced
-	push bc
-	ld a, [wBattleMonLevel]
-	ld b, a
-	ld a, [wEnemyMonLevel]
-	ld [wBattleMonLevel], a
-	ld a, b
-	ld [wEnemyMonLevel], a
-	pop bc
-	ret
+;SwapBattlerLevels: ; unreferenced
+;	push bc
+;	ld a, [wBattleMonLevel]
+;	ld b, a
+;	ld a, [wEnemyMonLevel]
+;	ld [wBattleMonLevel], a
+;	ld a, b
+;	ld [wEnemyMonLevel], a
+;	pop bc
+;	ret
 
 BattleWinSlideInEnemyTrainerFrontpic:
 	xor a
@@ -6859,8 +6903,6 @@ ApplyPrzEffectOnSpeed:
 	ld a, [hl]
 	srl a
 	rr b
-;	srl a
-;	rr b
 	ld [hli], a
 	or b
 	jr nz, .enemy_ok
@@ -7004,27 +7046,19 @@ ApplyStatLevelMultiplier:
 
 INCLUDE "data/battle/stat_multipliers_2.asm"
 
-_LoadBattleFontsHPBar:
-	callfar LoadBattleFontsHPBar
-	ret
-
-_LoadHPBar:
-	callfar LoadHPBar
-	ret
-
-LoadHPExpBarGFX: ; unreferenced
-	ld de, EnemyHPBarBorderGFX
-	ld hl, vTiles2 tile $6c
-	lb bc, BANK(EnemyHPBarBorderGFX), 4
-	call Get1bpp
-	ld de, HPExpBarBorderGFX
-	ld hl, vTiles2 tile $73
-	lb bc, BANK(HPExpBarBorderGFX), 6
-	call Get1bpp
-	ld de, ExpBarGFX
-	ld hl, vTiles2 tile $55
-	lb bc, BANK(ExpBarGFX), 8
-	jp Get2bpp
+;LoadHPExpBarGFX: ; unreferenced
+;	ld de, EnemyHPBarBorderGFX
+;	ld hl, vTiles2 tile $6c
+;	lb bc, BANK(EnemyHPBarBorderGFX), 4
+;	call Get1bpp
+;	ld de, HPExpBarBorderGFX
+;	ld hl, vTiles2 tile $73
+;	lb bc, BANK(HPExpBarBorderGFX), 6
+;	call Get1bpp
+;	ld de, ExpBarGFX
+;	ld hl, vTiles2 tile $55
+;	lb bc, BANK(ExpBarGFX), 8
+;	jp Get2bpp
 
 EmptyBattleTextbox:
 	ld hl, .empty
@@ -7937,45 +7971,45 @@ GoodComeBackText:
 	text_far _GoodComeBackText
 	text_end
 
-TextJump_ComeBack: ; unreferenced
-	ld hl, ComeBackText
-	ret
+;TextJump_ComeBack: ; unreferenced
+;	ld hl, ComeBackText
+;	ret
 
 ComeBackText:
 	text_far _ComeBackText
 	text_end
 
-HandleSafariAngerEatingStatus: ; unreferenced
-	ld hl, wSafariMonEating
-	ld a, [hl]
-	and a
-	jr z, .angry
-	dec [hl]
-	ld hl, BattleText_WildMonIsEating
-	jr .finish
-
-.angry
-	dec hl
-	assert wSafariMonEating - 1 == wSafariMonAngerCount
-	ld a, [hl]
-	and a
-	ret z
-	dec [hl]
-	ld hl, BattleText_WildMonIsAngry
-	jr nz, .finish
-	push hl
-	ld a, [wEnemyMonSpecies]
-	ld [wCurSpecies], a
-	call GetBaseData
-	ld a, [wBaseCatchRate]
-	ld [wEnemyMonCatchRate], a
-	pop hl
-
-.finish
-	push hl
-	call SafeLoadTempTilemapToTilemap
-	pop hl
-	jp StdBattleTextbox
+;HandleSafariAngerEatingStatus: ; unreferenced
+;	ld hl, wSafariMonEating
+;	ld a, [hl]
+;	and a
+;	jr z, .angry
+;	dec [hl]
+;	ld hl, BattleText_WildMonIsEating
+;	jr .finish
+;
+;.angry
+;	dec hl
+;	assert wSafariMonEating - 1 == wSafariMonAngerCount
+;	ld a, [hl]
+;	and a
+;	ret z
+;	dec [hl]
+;	ld hl, BattleText_WildMonIsAngry
+;	jr nz, .finish
+;	push hl
+;	ld a, [wEnemyMonSpecies]
+;	ld [wCurSpecies], a
+;	call GetBaseData
+;	ld a, [wBaseCatchRate]
+;	ld [wEnemyMonCatchRate], a
+;	pop hl
+;
+;.finish
+;	push hl
+;	call SafeLoadTempTilemapToTilemap
+;	pop hl
+;	jp StdBattleTextbox
 
 FillInExpBar:
 	push hl
@@ -8354,56 +8388,56 @@ InitEnemyWildmon:
 	lb bc, 7, 7
 	predef_jump PlaceGraphic
 
-FillEnemyMovesFromMoveIndicesBuffer: ; unreferenced
-	ld hl, wEnemyMonMoves
-	ld de, wListMoves_MoveIndicesBuffer
-	ld b, NUM_MOVES
-.loop
-	ld a, [de]
-	inc de
-	ld [hli], a
-	and a
-	jr z, .clearpp
-
-	push bc
-	push hl
-
-	push hl
-	dec a
-	ld hl, Moves + MOVE_PP
-	ld bc, MOVE_LENGTH
-	call AddNTimes
-	ld a, BANK(Moves)
-	call GetFarByte
-	pop hl
-
-	ld bc, wEnemyMonPP - (wEnemyMonMoves + 1)
-	add hl, bc
-	ld [hl], a
-
-	pop hl
-	pop bc
-
-	dec b
-	jr nz, .loop
-	ret
-
-.clear
-	xor a
-	ld [hli], a
-
-.clearpp
-	push bc
-	push hl
-	ld bc, wEnemyMonPP - (wEnemyMonMoves + 1)
-	add hl, bc
-	xor a
-	ld [hl], a
-	pop hl
-	pop bc
-	dec b
-	jr nz, .clear
-	ret
+;FillEnemyMovesFromMoveIndicesBuffer: ; unreferenced
+;	ld hl, wEnemyMonMoves
+;	ld de, wListMoves_MoveIndicesBuffer
+;	ld b, NUM_MOVES
+;.loop
+;	ld a, [de]
+;	inc de
+;	ld [hli], a
+;	and a
+;	jr z, .clearpp
+;
+;	push bc
+;	push hl
+;
+;	push hl
+;	dec a
+;	ld hl, Moves + MOVE_PP
+;	ld bc, MOVE_LENGTH
+;	call AddNTimes
+;	ld a, BANK(Moves)
+;	call GetFarByte
+;	pop hl
+;
+;	ld bc, wEnemyMonPP - (wEnemyMonMoves + 1)
+;	add hl, bc
+;	ld [hl], a
+;
+;	pop hl
+;	pop bc
+;
+;	dec b
+;	jr nz, .loop
+;	ret
+;
+;.clear
+;	xor a
+;	ld [hli], a
+;
+;.clearpp
+;	push bc
+;	push hl
+;	ld bc, wEnemyMonPP - (wEnemyMonMoves + 1)
+;	add hl, bc
+;	xor a
+;	ld [hl], a
+;	pop hl
+;	pop bc
+;	dec b
+;	jr nz, .clear
+;	ret
 
 ExitBattle:
 	call .HandleEndOfBattle
@@ -9039,7 +9073,7 @@ InitBattleDisplay:
 	lb bc, 3, 7
 	call ClearBox
 	call LoadStandardFont
-	call _LoadBattleFontsHPBar
+	farcall LoadBattleFontsHPBar
 	call .BlankBGMap
 	xor a
 	ldh [hMapAnims], a

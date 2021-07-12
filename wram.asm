@@ -582,6 +582,12 @@ wEffectFailed:: db
 wFailedMessage:: db
 wEnemyGoesFirst:: db
 
+wEnemyIsFaster::
+; Used by CheckWhichMonIsFaster
+; 00: Player is faster
+; 01: Enemy is faster
+	db
+
 wPlayerIsSwitching:: db
 wEnemyIsSwitching::  db
 
@@ -603,7 +609,7 @@ wEnemyFutureSightCount:: db
 
 wGivingExperienceToExpShareHolders:: db
 
-	ds 7
+	ds 6
 
 wBackupEnemyMonBaseExp:: db
 
