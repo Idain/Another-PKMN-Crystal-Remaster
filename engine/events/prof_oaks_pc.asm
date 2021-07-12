@@ -8,8 +8,7 @@ ProfOaksPC:
 	ld hl, OakPCText4
 	call PrintText
 	call JoyWaitAorB
-	call ExitMenu
-	ret
+	jp ExitMenu
 
 ProfOaksPCBoot:
 	ld hl, OakPCText2
@@ -17,8 +16,7 @@ ProfOaksPCBoot:
 	call Rate
 	call PlaySFX ; sfx loaded by previous Rate function call
 	call JoyWaitAorB
-	call WaitSFX
-	ret
+	jp WaitSFX
 
 ProfOaksPCRating:
 	call Rate
@@ -28,8 +26,7 @@ ProfOaksPCRating:
 	pop de
 	call PlaySFX
 	call JoyWaitAorB
-	call WaitSFX
-	ret
+	jp WaitSFX
 
 Rate:
 ; calculate Seen/Owned
@@ -61,9 +58,7 @@ Rate:
 	call .UpdateRatingBuffer
 	ld hl, wStringBuffer4
 	ld de, wTempPokedexCaughtCount
-	call .UpdateRatingBuffer
-	ret
-
+	; fallthrough
 .UpdateRatingBuffer:
 	push hl
 	ld a, "@"
@@ -71,8 +66,7 @@ Rate:
 	call ByteFill
 	pop hl
 	lb bc, PRINTNUM_LEFTALIGN | 1, 3
-	call PrintNum
-	ret
+	jp PrintNum
 
 FindOakRating:
 ; return sound effect in de

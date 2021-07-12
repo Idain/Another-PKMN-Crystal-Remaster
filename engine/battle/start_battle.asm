@@ -6,7 +6,7 @@ ShowLinkBattleParticipants:
 	ret z
 
 	farcall _ShowLinkBattleParticipants
-	ld c, 150
+	ld c, 120
 	call DelayFrames
 	call ClearTilemap
 	jp ClearSprites
@@ -16,7 +16,7 @@ FindFirstAliveMonAndStartBattle:
 	ldh [hMapAnims], a
 	call DelayFrame
 	predef DoBattleTransition
-	farcall _LoadBattleFontsHPBar
+	farcall LoadBattleFontsHPBar
 	ld a, 1
 	ldh [hBGMapMode], a
 	call ClearSprites

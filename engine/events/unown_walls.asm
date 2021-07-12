@@ -2,22 +2,18 @@ HoOhChamber:
 	ld hl, wPartySpecies
 	ld a, [hl]
 	cp HO_OH ; is Ho-oh the first Pokémon in the party?
-	jr nz, .done ; if not, we're done
-	call GetMapAttributesPointer ; pointless?
+	ret nz ; if not, we're done
 	ld de, EVENT_WALL_OPENED_IN_HO_OH_CHAMBER
 	ld b, SET_FLAG
-	call EventFlagAction
-.done
-	ret
+	jp EventFlagAction
 
 OmanyteChamber:
-	call GetMapAttributesPointer ; pointless?
 	ld de, EVENT_WALL_OPENED_IN_OMANYTE_CHAMBER
 	ld b, CHECK_FLAG
 	call EventFlagAction
 	ld a, c
 	and a
-	jr nz, .nope
+	ret nz
 
 	ld a, WATER_STONE
 	ld [wCurItem], a
@@ -30,7 +26,7 @@ OmanyteChamber:
 	inc b
 .loop
 	dec b
-	jr z, .nope
+	ret z
 	ld a, b
 	dec a
 	ld [wCurPartyMon], a
@@ -43,13 +39,9 @@ OmanyteChamber:
 	jr nz, .loop
 
 .open
-	call GetMapAttributesPointer ; pointless?
 	ld de, EVENT_WALL_OPENED_IN_OMANYTE_CHAMBER
 	ld b, SET_FLAG
-	call EventFlagAction
-
-.nope
-	ret
+	jp EventFlagAction
 
 SpecialAerodactylChamber:
 	push de
@@ -72,7 +64,6 @@ SpecialAerodactylChamber:
 
 .nope
 	and a
-
 .done
 	pop bc
 	pop de
@@ -105,8 +96,7 @@ DisplayUnownWords:
 	and a
 	jr z, .load
 
-	ld d, 0
-	ld e, 5
+	lb de, 0, 5
 .loop
 	add hl, de
 	dec a
@@ -121,8 +111,7 @@ DisplayUnownWords:
 	call ApplyTilemap
 	call MenuBoxCoord2Tile
 	inc hl
-	ld d, 0
-	ld e, SCREEN_WIDTH
+	lb de, 0, SCREEN_WIDTH
 	add hl, de
 	add hl, de
 	ld a, [wScriptVar]
@@ -145,8 +134,7 @@ DisplayUnownWords:
 	call WaitBGMap2
 	call JoyWaitAorB
 	call PlayClickSFX
-	call CloseWindow
-	ret
+	jp CloseWindow
 
 INCLUDE "data/events/unown_walls.asm"
 

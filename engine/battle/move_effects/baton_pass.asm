@@ -3,7 +3,7 @@ BattleCommand_BatonPass:
 
 	ldh a, [hBattleTurn]
 	and a
-	jp nz, .Enemy
+	jr nz, .Enemy
 
 ; Need something to switch to
 	call CheckAnyOtherAlivePartyMons
@@ -12,7 +12,7 @@ BattleCommand_BatonPass:
 	call UpdateBattleMonInParty
 	call AnimateCurrentMove
 
-	ld c, 50
+	ld c, 30
 	call DelayFrames
 
 ; Transition into switchmon menu
@@ -23,7 +23,7 @@ BattleCommand_BatonPass:
 
 ; Return to battle scene
 	call ClearPalettes
-	farcall _LoadBattleFontsHPBar
+	farcall LoadBattleFontsHPBar
 	call CloseWindow
 	call ClearSprites
 	hlcoord 1, 0

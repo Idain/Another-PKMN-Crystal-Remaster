@@ -95,8 +95,7 @@ _UnownPrinter:
 	ld [wOptions], a
 	pop af
 	ldh [hInMenu], a
-	call ReturnToMapFromSubmenu
-	ret
+	jp ReturnToMapFromSubmenu
 
 .LeftRight:
 	ldh a, [hJoyLast]
@@ -104,9 +103,8 @@ _UnownPrinter:
 	jr nz, .press_right
 	ldh a, [hJoyLast]
 	and D_LEFT
-	jr nz, .press_left
-	ret
-
+	ret z
+	; fallthrough
 .press_left
 	ld hl, wJumptableIndex
 	ld a, [hl]
@@ -115,7 +113,7 @@ _UnownPrinter:
 	ld [hl], NUM_UNOWN + 1
 .wrap_around_left
 	dec [hl]
-	jr .return
+	jr .UpdateUnownFrontpic
 
 .press_right
 	ld hl, wJumptableIndex
@@ -125,11 +123,7 @@ _UnownPrinter:
 	ld [hl], -1
 .wrap_around_right
 	inc [hl]
-
-.return
-	call .UpdateUnownFrontpic
-	ret
-
+	; fallthrough
 .UpdateUnownFrontpic:
 	ld a, [wJumptableIndex]
 	cp NUM_UNOWN
@@ -193,8 +187,7 @@ _UnownPrinter:
 	call Get2bpp
 	call CloseSRAM
 	ld c, 20
-	call DelayFrames
-	ret
+	jp DelayFrames
 
 AlphRuinsStampString:
 	db " ALPH RUINS STAMP@"
@@ -226,5 +219,4 @@ PlaceUnownPrinterFrontpic:
 	ld a, $31
 	ldh [hGraphicStartTile], a
 	lb bc, 7, 7
-	predef PlaceGraphic
-	ret
+	predef_jump PlaceGraphic

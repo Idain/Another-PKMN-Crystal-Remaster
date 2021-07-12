@@ -33,8 +33,6 @@ BuenasPassword:
 	dw .MenuData
 	db 1 ; default option
 
-	db 0
-
 .MenuData:
 	db STATICMENU_CURSOR | STATICMENU_DISABLE_B ; flags
 	db 0 ; items
@@ -58,8 +56,7 @@ endr
 	ld c, a
 	farcall GetBuenasPassword
 	pop hl
-	call PlaceString
-	ret
+	jp PlaceString
 
 BuenaPrize:
 	xor a
@@ -141,8 +138,7 @@ BuenaPrize:
 	ld hl, .BuenaComeAgainText
 	call PrintText
 	call JoyWaitAorB
-	call PlayClickSFX
-	ret
+	jp PlayClickSFX
 
 .BuenaAskWhichPrizeText:
 	text_far _BuenaAskWhichPrizeText
@@ -175,9 +171,7 @@ Buena_DisplayBlueCardBalance:
 
 PrintBlueCardBalance:
 	ld de, wBlueCardBalance
-	call .DrawBox
-	ret
-
+	; fallthrough
 .DrawBox:
 	push de
 	xor a
@@ -199,8 +193,7 @@ PrintBlueCardBalance:
 	ld [hld], a
 	pop de
 	lb bc, 1, 2
-	call PrintNum
-	ret
+	jp PrintNum
 
 .Points_string:
 	db "Points@"
@@ -211,8 +204,7 @@ BlueCardBalanceMenuHeader:
 
 Buena_PlacePrizeMenuBox:
 	ld hl, .MenuHeader
-	call LoadMenuHeader
-	ret
+	jp LoadMenuHeader
 
 .MenuHeader
 	db MENU_BACKUP_TILES ; flags
@@ -250,8 +242,6 @@ Buena_PrizeMenu:
 	dw .MenuData
 	db 1 ; default option
 
-	db 0
-
 .MenuData:
 	db SCROLLINGMENU_DISPLAY_ARROWS ; flags
 	db 4, 13 ; rows, columns
@@ -275,8 +265,7 @@ endr
 	ld [wNamedObjectIndex], a
 	call GetItemName
 	pop hl
-	call PlaceString
-	ret
+	jp PlaceString
 
 .PrintPrizePoints:
 	ld a, [wMenuSelection]

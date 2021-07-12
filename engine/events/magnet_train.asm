@@ -341,18 +341,15 @@ MagnetTrain_Jumptable:
 	ld hl, wMagnetTrainWaitCounter
 	ld a, [hl]
 	and a
-	jr z, .DoneWaiting
+	jr z, .Next
 	dec [hl]
 	ret
-
-.DoneWaiting:
-	jr .Next
 
 .MoveTrain2:
 	ld hl, wMagnetTrainFinalPosition
 	ld a, [wMagnetTrainPosition]
 	cp [hl]
-	jr z, .PrepareToFinishAnim
+	jr z, .Next
 	ld e, a
 	ld a, [wMagnetTrainDirection]
 	cpl
@@ -370,9 +367,6 @@ MagnetTrain_Jumptable:
 	add d
 	ld [hl], a
 	ret
-
-.PrepareToFinishAnim:
-	jp .Next
 
 .TrainArrived:
 	ld a, $80

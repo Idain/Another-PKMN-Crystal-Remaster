@@ -24,5 +24,4 @@ PlaySlowCry:
 	ld a, h
 	ld [wCryLength + 1], a
 	farcall _PlayCry
-	call WaitSFX
-	ret
+	jp WaitSFX

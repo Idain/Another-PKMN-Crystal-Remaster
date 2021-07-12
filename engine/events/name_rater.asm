@@ -61,22 +61,19 @@ _NameRater:
 	ld hl, NameRaterNamedText
 	call PrintText
 	pop hl
-	jr .done
+	jp PrintText
 
 .traded
 	ld hl, NameRaterPerfectNameText
-	jr .done
+	jp PrintText
 
 .cancel
 	ld hl, NameRaterComeAgainText
-	jr .done
+	jp PrintText
 
 .egg
 	ld hl, NameRaterEggText
-
-.done
-	call PrintText
-	ret
+	jp PrintText
 
 CheckIfMonIsYourOT:
 ; Checks to see if the partymon loaded in [wCurPartyMon] has the different OT as you.  Returns carry if not.

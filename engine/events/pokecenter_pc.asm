@@ -37,8 +37,7 @@ PokemonCenterPC:
 .shutdown
 	call PC_PlayShutdownSound
 	call ExitMenu
-	call CloseWindow
-	ret
+	jp CloseWindow
 
 .TopMenu:
 	db MENU_BACKUP_TILES | MENU_NO_CLICK_SFX ; flags
@@ -234,8 +233,7 @@ _PlayersPC:
 	ld hl, PlayersPCAskWhatDoText
 	call PC_DisplayTextWaitMenu
 	call .PlayersPC
-	call ExitMenu
-	ret
+	jp ExitMenu
 
 .PlayersPC:
 	xor a
@@ -249,14 +247,11 @@ _PlayersPC:
 	jr c, .turn_off
 	call MenuJumptable
 	jr nc, .loop
-	jr .done
+	jp ExitMenu
 
 .turn_off
 	xor a
-
-.done
-	call ExitMenu
-	ret
+	jp ExitMenu
 
 PlayersPCMenuData:
 	db MENU_BACKUP_TILES ; flags
@@ -357,7 +352,7 @@ PlayerWithdrawItemMenu:
 	farcall SelectQuantityToToss
 	call ExitMenu
 	call ExitMenu
-	jr c, .done
+	ret c
 
 .withdraw
 	ld a, [wItemQuantityChange]
@@ -378,16 +373,11 @@ PlayerWithdrawItemMenu:
 	call MenuTextbox
 	xor a
 	ldh [hBGMapMode], a
-	call ExitMenu
-	ret
+	jp ExitMenu
 
 .PackFull:
 	ld hl, .PlayersPCNoRoomWithdrawText
-	call MenuTextboxBackup
-	ret
-
-.done
-	ret
+	jp MenuTextboxBackup
 
 .PlayersPCHowManyWithdrawText:
 	text_far _PlayersPCHowManyWithdrawText
@@ -446,7 +436,6 @@ PlayerDepositItemMenu:
 
 .close
 	call CloseSubmenu
-
 .nope
 	xor a
 	ret
@@ -536,13 +525,11 @@ PlayerDepositItemMenu:
 	call TossItem
 	predef PartyMonItemName
 	ld hl, .PlayersPCDepositItemsText
-	call PrintText
-	ret
+	jp PrintText
 
 .NoRoomInPC:
 	ld hl, .PlayersPCNoRoomDepositText
-	call PrintText
-	ret
+	jp PrintText
 
 .DeclinedToDeposit:
 	and a

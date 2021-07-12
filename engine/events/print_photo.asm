@@ -16,18 +16,15 @@ PhotoStudio:
 	and a
 	jr nz, .cancel
 	ld hl, .PrestoAllDoneText
-	jr .print_text
+	jp PrintText
 
 .cancel
 	ld hl, .NoPhotoText
-	jr .print_text
+	jp PrintText
 
 .egg
 	ld hl, .EggPhotoText
-
-.print_text
-	call PrintText
-	ret
+	jp PrintText
 
 .WhichMonPhotoText:
 	text_far _WhichMonPhotoText

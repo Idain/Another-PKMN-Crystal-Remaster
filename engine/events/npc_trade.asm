@@ -47,7 +47,6 @@ NPCTrade::
 	call RestartMapMusic
 
 	ld a, TRADE_DIALOG_COMPLETE
-
 .done
 	jp PrintTradeText
 
