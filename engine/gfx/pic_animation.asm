@@ -5,46 +5,32 @@ Unused_AnimateMon_Slow_Normal:
 	ld a, [wBattleMode]
 	cp WILD_BATTLE
 	jr z, .wild
-	ld e, ANIM_MON_SLOW
-	ld d, $0
-	call AnimateFrontpic
-	ret
+	lb de, 0, ANIM_MON_SLOW
+	jr AnimateFrontpic
 
 .wild
-	ld e, ANIM_MON_NORMAL
-	ld d, $0
-	call AnimateFrontpic
-	ret
+	lb de, 0, ANIM_MON_NORMAL
+	jr AnimateFrontpic
 
 AnimateMon_Menu:
-	ld e, ANIM_MON_MENU
-	ld d, $0
-	call AnimateFrontpic
-	ret
+	lb de, 0, ANIM_MON_MENU
+	jr AnimateFrontpic
 
 AnimateMon_Trade:
-	ld e, ANIM_MON_TRADE
-	ld d, $0
-	call AnimateFrontpic
-	ret
+	lb de, 0, ANIM_MON_TRADE
+	jr AnimateFrontpic
 
 AnimateMon_Evolve:
-	ld e, ANIM_MON_EVOLVE
-	ld d, $0
-	call AnimateFrontpic
-	ret
+	lb de, 0, ANIM_MON_EVOLVE
+	jr AnimateFrontpic
 
 AnimateMon_Hatch:
-	ld e, ANIM_MON_HATCH
-	ld d, $0
-	call AnimateFrontpic
-	ret
+	lb de, 0, ANIM_MON_HATCH
+	jr AnimateFrontpic
 
 AnimateMon_HOF:
-	ld e, ANIM_MON_HOF
-	ld d, $0
-	call AnimateFrontpic
-	ret
+	lb de, 0,ANIM_MON_HOF
+	jr AnimateFrontpic
 
 pokeanim: MACRO
 rept _NARG
@@ -99,8 +85,7 @@ LoadMonAnimation:
 	ld b, [hl]
 	ld c, a
 	pop hl
-	call PokeAnim_InitPicAttributes
-	ret
+	jp PokeAnim_InitPicAttributes
 
 SetUpPokeAnim:
 	ldh a, [rSVBK]
@@ -386,8 +371,7 @@ PokeAnim_DoAnimScript:
 	dec a
 	ld [wPokeAnimWaitCounter], a
 	ret nz
-	call PokeAnim_StopWaitAnim
-	ret
+	jr PokeAnim_StopWaitAnim
 
 .SetRepeat:
 	ld a, [wPokeAnimParameter]
@@ -437,8 +421,7 @@ PokeAnim_GetFrame:
 	push hl
 	call PokeAnim_CopyBitmaskToBuffer
 	pop hl
-	call PokeAnim_ConvertAndApplyBitmask
-	ret
+	jp PokeAnim_ConvertAndApplyBitmask
 
 PokeAnim_StartWaitAnim:
 	ld a, [wPokeAnimJumptableIndex]
@@ -515,8 +498,7 @@ PokeAnim_CopyBitmaskToBuffer:
 	pop bc
 	ld de, wPokeAnimBitmaskBuffer
 	ld a, [wPokeAnimBitmaskBank]
-	call FarCopyBytes
-	ret
+	jp FarCopyBytes
 
 .GetSize:
 	push hl
@@ -615,6 +597,9 @@ PokeAnim_ConvertAndApplyBitmask:
 	add [hl]
 	pop hl
 	ld [hl], a
+	cp $7f
+	ret c
+	inc [hl]
 	ret
 
 .GetCoord:
@@ -630,7 +615,7 @@ PokeAnim_ConvertAndApplyBitmask:
 	ld e, a
 	ld d, 0
 	add hl, de
-	jr .done
+	ret
 
 .subtract
 	; hl -= [wPokeAnimBitmaskCurCol]
@@ -642,8 +627,6 @@ PokeAnim_ConvertAndApplyBitmask:
 	ld a, h
 	sbc 0
 	ld h, a
-
-.done
 	ret
 
 .UnusedSizeData: ; unreferenced
@@ -786,8 +769,7 @@ PokeAnim_PlaceGraphic:
 	ld h, [hl]
 	ld l, a
 	add hl, bc
-	ld c, 7
-	ld b, 7
+	lb bc, 7, 7
 	ld a, [wPokeAnimGraphicStartTile]
 .loop
 	push bc
@@ -813,10 +795,8 @@ PokeAnim_PlaceGraphic:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld b, 7
-	ld c, 7
-	call ClearBox
-	ret
+	lb bc, 7, 7
+	jp ClearBox
 
 PokeAnim_SetVBank1:
 	ldh a, [rSVBK]
@@ -833,8 +813,7 @@ PokeAnim_SetVBank1:
 
 .SetFlag:
 	call PokeAnim_GetAttrmapCoord
-	ld b, 7
-	ld c, 7
+	lb bc, 7, 7
 	ld de, SCREEN_WIDTH
 .row
 	push bc
@@ -855,8 +834,7 @@ PokeAnim_SetVBank1:
 
 PokeAnim_SetVBank0:
 	call PokeAnim_GetAttrmapCoord
-	ld b, 7
-	ld c, 7
+	lb bc, 7, 7
 	ld de, SCREEN_WIDTH
 .row
 	push bc

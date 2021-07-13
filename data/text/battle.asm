@@ -907,17 +907,17 @@ TransformedText:
 
 LightScreenEffectText:
 	text "<USER>'s"
-	line "SP.DEF rose!"
+	line "Sp.Def rose!"
 	prompt
 
 ReflectEffectText:
 	text "<USER>'s"
-	line "DEFENSE rose!"
+	line "Defense rose!"
 	prompt
 
 NothingHappenedText:
 	text "But nothing"
-	line "happened."
+	line "happened!"
 	prompt
 
 ButItFailedText:
