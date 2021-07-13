@@ -2655,7 +2655,6 @@ ENDU
 
 wOtherTrainerType:: db
 wTrainerGroupBank:: db
-	ds 2
 
 wd430:: ; mobile
 wBattleAction:: db
@@ -2667,7 +2666,6 @@ wMapEventStatus:: db
 wScriptFlags::
 ; bit 3: run deferred script
 	db
-	ds 1
 wScriptFlags2::
 ; bit 0: count steps
 ; bit 1: coord events
@@ -2683,7 +2681,6 @@ wScriptPos:: dw
 
 wScriptStackSize:: db
 wScriptStack:: ds 3 * 5
-	ds 1
 wScriptDelay:: db
 
 wDeferredScriptBank::
@@ -2696,10 +2693,8 @@ wWildBattlePanic:: db
 wWildEncounterCooldown:: db
 
 wXYComparePointer:: dw
-	ds 4
 
 wBattleScriptFlags:: db
-	ds 1
 wPlayerSpriteSetupFlags::
 ; bit 7: if set, cancel wPlayerAction
 ; bit 6: RefreshMapSprites doesn't reload player sprite
@@ -2712,22 +2707,18 @@ wMapReentryScriptQueueFlag:: db
 wMapReentryScriptBank:: db
 wMapReentryScriptAddress:: dw
 
-	ds 4
 
 wTimeCyclesSinceLastCall:: db
 wReceiveCallDelay_MinsRemaining:: db
 wReceiveCallDelay_StartTime:: ds 3
 
-	ds 3
 
 wBugContestMinsRemaining:: db
 wBugContestSecsRemaining:: db
 
-	ds 2
 
 wMapStatusEnd::
 
-	ds 2
 
 wCrystalData::
 wPlayerGender::
@@ -2766,7 +2757,6 @@ wStartSecond:: db
 
 wRTC:: ds 4
 
-	ds 4
 
 wDST::
 ; bit 7: dst
@@ -2779,11 +2769,9 @@ wGameTimeMinutes:: db
 wGameTimeSeconds:: db
 wGameTimeFrames::  db
 
-	ds 2
 
 wCurDay:: db
 
-	ds 1
 
 wObjectFollow_Leader:: db
 wObjectFollow_Follower:: db
@@ -2813,14 +2801,11 @@ wObjectMasks:: ds NUM_OBJECTS
 wVariableSprites:: ds $100 - SPRITE_VARS
 
 wEnteredMapFromContinue:: db
-	ds 2
 wTimeOfDayPal:: db
-	ds 4
 wTimeOfDayPalFlags:: db
 wTimeOfDayPalset:: db
 wCurTimeOfDay:: db
 
-	ds 1
 
 wSecretID:: dw
 wStatusFlags::
