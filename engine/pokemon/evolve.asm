@@ -103,9 +103,11 @@ EvolveAfterBattle_MasterLoop:
 	call CompareBytes
 	ld a, ATK_EQ_DEF
 	jr z, .got_tyrogue_evo
+
 	ld a, ATK_LT_DEF
-	jr c, .got_tyrogue_evo
-	ld a, ATK_GT_DEF
+	ccf
+	sbc a
+	add ATK_LT_DEF ; If carry, then ATK_LT_DEF, else ATK_GT_DEF
 .got_tyrogue_evo
 	pop hl
 

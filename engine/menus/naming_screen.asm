@@ -699,8 +699,8 @@ NamingScreen_DeleteCharacter:
 	ret z
 	dec [hl]
 	call NamingScreen_GetTextCursorPosition
-	ld [hl], NAMINGSCREEN_UNDERLINE
-	inc hl
+	ld a, NAMINGSCREEN_UNDERLINE
+	ld [hli], a
 	ld a, [hl]
 	cp NAMINGSCREEN_UNDERLINE
 	ret nz
@@ -726,8 +726,8 @@ NamingScreen_InitNameEntry:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld [hl], NAMINGSCREEN_UNDERLINE
-	inc hl
+	ld a, NAMINGSCREEN_UNDERLINE
+	ld [hli], a
 	ld a, [wNamingScreenMaxNameLength]
 	dec a
 	ld c, a
@@ -772,9 +772,10 @@ NamingScreen_GetLastCharacter:
 	add hl, bc
 	add [hl]
 	sub $8
-	srl a
-	srl a
-	srl a
+	rrca
+	rrca
+	rrca
+	and %00011111
 	ld e, a
 	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
@@ -1183,9 +1184,8 @@ ComposeMail_AnimateCursor:
 	jr nz, .left
 	ld a, [hl]
 	and D_RIGHT
-	jr nz, .right
-	ret
-
+	ret z
+	; fallthrough
 .right
 	call ComposeMail_GetCursorPosition
 	and a

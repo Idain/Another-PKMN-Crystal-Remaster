@@ -346,10 +346,14 @@ BattleAnimCommands::
 	dw BattleAnimCmd_Ret
 	assert_table_length $100 - FIRST_BATTLE_ANIM_CMD
 
+BattleAnimCmd_E7:
 BattleAnimCmd_EA:
 BattleAnimCmd_EB:
 BattleAnimCmd_EC:
 BattleAnimCmd_ED:
+BattleAnimCmd_F5:
+BattleAnimCmd_F6:
+BattleAnimCmd_F7:
 	ret
 
 BattleAnimCmd_Ret:
@@ -848,9 +852,6 @@ BattleAnimCmd_CheckPokeball:
 	ld [wBattleAnimVar], a
 	ret
 
-BattleAnimCmd_E7:
-	ret
-
 BattleAnimCmd_Transform:
 	ldh a, [rSVBK]
 	push af
@@ -1126,15 +1127,6 @@ BattleAnimCmd_OAMOff:
 BattleAnimCmd_KeepSprites:
 	ld hl, wBattleAnimFlags
 	set BATTLEANIM_KEEPSPRITES_F, [hl]
-	ret
-
-BattleAnimCmd_F5:
-	ret
-
-BattleAnimCmd_F6:
-	ret
-
-BattleAnimCmd_F7:
 	ret
 
 BattleAnimCmd_Sound:

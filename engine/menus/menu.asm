@@ -255,8 +255,7 @@ MobileMenuJoypad:
 	push af
 	call Move2DMenuCursor
 	call Do2DMenuRTCJoypad
-	jr nc, .skip_joypad
-	call _2DMenuInterpretJoypad
+	call c, _2DMenuInterpretJoypad
 .skip_joypad
 	pop af
 	ldh [hBGMapMode], a
@@ -286,8 +285,7 @@ Function241d5: ; unreferenced
 .loop2
 	call Menu_WasButtonPressed
 	ret c
-	ld c, 1
-	ld b, 3
+	lb bc, 3, 1
 	farcall AdvanceMobileInactivityTimerAndCheckExpired
 	ret c
 	farcall Function100337
@@ -661,8 +659,7 @@ _ExitMenu::
 	call GetWindowStackTop
 	ld a, h
 	or l
-	jr z, .done
-	call PopWindow
+	call nz, PopWindow
 
 .done
 	pop af

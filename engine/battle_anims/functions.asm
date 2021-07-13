@@ -306,9 +306,8 @@ BattleAnimFunction_PokeBall:
 	ld [hl], a
 	ld hl, BATTLEANIMSTRUCT_VAR1
 	add hl, bc
+	dec [hl]
 	ld a, [hl]
-	dec a
-	ld [hl], a
 	and $1f
 	ret nz
 	ld [hl], a
@@ -353,9 +352,8 @@ BattleAnimFunction_PokeBall:
 	ld [hl], a
 	ld hl, BATTLEANIMSTRUCT_VAR1
 	add hl, bc
+	dec [hl]
 	ld a, [hl]
-	dec a
-	ld [hl], a
 	and $1f
 	jp z, DeinitBattleAnimation
 	and $f
@@ -655,8 +653,7 @@ BattleAnimFunction_FireBlast:
 	cp $7
 	jr z, .seven
 	ld a, BATTLEANIMFRAMESET_11
-	call ReinitBattleAnimFrameset
-	ret
+	jp ReinitBattleAnimFrameset
 
 .seven
 	ld hl, BATTLEANIMSTRUCT_XCOORD
@@ -1144,10 +1141,7 @@ BattleAnimFunction_Sing:
 	add hl, bc
 	ld a, [hl]
 	cp $b8
-	jr c, .move
-	call DeinitBattleAnimation
-	ret
-
+	jp nc, DeinitBattleAnimation
 .move
 	ld a, $2
 	call BattleAnim_StepToTarget
@@ -1469,12 +1463,9 @@ BattleAnimFunction_Bite:
 	add hl, bc
 	ld [hl], a
 	bit 7, a
-	jr nz, .flipped2
-	ld a, BATTLEANIMFRAMESET_3D
-	jr .got_frameset
-
-.flipped2
 	ld a, BATTLEANIMFRAMESET_3C
+	jr nz, .got_frameset
+	ld a, BATTLEANIMFRAMESET_3D
 .got_frameset
 	call ReinitBattleAnimFrameset
 	ld hl, BATTLEANIMSTRUCT_VAR1

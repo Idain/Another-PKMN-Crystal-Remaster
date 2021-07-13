@@ -205,12 +205,9 @@ MainMenu_GetWhichMenu:
 	ld a, [sNumDailyMysteryGiftPartnerIDs]
 	inc a ; locked?
 	call CloseSRAM
-	jr nz, .mystery_gift
-	ld a, MAINMENU_CONTINUE
-	ret
-
-.mystery_gift
 	ld a, MAINMENU_MYSTERY
+	ret nz ; mystery_gift
+	ld a, MAINMENU_CONTINUE
 	ret
 
 MainMenuJoypadLoop:

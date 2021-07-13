@@ -406,13 +406,11 @@ MailboxPC:
 	call LoadMenuHeader
 	call VerticalMenu
 	call ExitMenu
-	jr c, .subexit
+	ret c
 	ld a, [wMenuCursorY]
 	dec a
 	ld hl, .Jumptable
 	rst JumpTable
-
-.subexit
 	ret
 
 .Jumptable:
@@ -493,7 +491,7 @@ MailboxPC:
 	call SetPalettes
 	call DelayFrame
 	farcall PartyMenuSelect
-	jr c, .exit2
+	jp c, CloseSubmenu
 	ld a, [wCurPartySpecies]
 	cp EGG
 	jr z, .egg
@@ -518,8 +516,6 @@ MailboxPC:
 	call MoveMailFromPCToParty
 	ld hl, .MailMovedFromBoxText
 	call PrintText
-
-.exit2
 	jp CloseSubmenu
 
 .MailAlreadyHoldingItemText:

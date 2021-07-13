@@ -230,16 +230,13 @@ BillsPCDepositMenuHeader:
 
 BillsPCClearThreeBoxes: ; unreferenced
 	hlcoord 0, 0
-	ld b, 4
-	ld c, 8
+	lb bc, 4, 8
 	call ClearBox
 	hlcoord 0, 4
-	ld b, 10
-	ld c, 9
+	lb bc, 10, 9
 	call ClearBox
 	hlcoord 0, 14
-	ld b, 2
-	ld c, 8
+	lb bc, 2, 8
 	jp ClearBox
 
 _WithdrawPKMN:
@@ -1414,11 +1411,9 @@ BillsPC_GetSelectedPokemonSpecies:
 BillsPC_UpdateSelectionCursor:
 	ld a, [wBillsPC_NumMonsInBox]
 	and a
-	jr nz, .place_cursor
-	call ClearSprites
-	ret
+	jp z, ClearSprites
 
-.place_cursor
+;place_cursor
 	ld hl, .OAM
 	ld de, wVirtualOAMSprite00
 .loop
@@ -1526,12 +1521,9 @@ BillsPC_CheckSpaceInDestination:
 ; Exceeding box or party capacity is a big no-no.
 	ld a, [wBillsPC_LoadedBox]
 	and a
-	jr z, .party
-	ld e, MONS_PER_BOX + 1
-	jr .compare
-
-.party
 	ld e, PARTY_LENGTH + 1
+	jr z, .compare
+	ld e, MONS_PER_BOX + 1
 .compare
 	ld a, [wBillsPC_NumMonsInBox]
 	cp e

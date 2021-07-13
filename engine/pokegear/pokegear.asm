@@ -447,24 +447,21 @@ PokegearClock_Joypad:
 	ld a, [wPokegearFlags]
 	bit POKEGEAR_MAP_CARD_F, a
 	jr z, .no_map_card
-	ld c, POKEGEARSTATE_MAPCHECKREGION
-	ld b, POKEGEARCARD_MAP
+	lb bc, POKEGEARCARD_MAP, POKEGEARSTATE_MAPCHECKREGION
 	jr .done
 
 .no_map_card
 	ld a, [wPokegearFlags]
 	bit POKEGEAR_PHONE_CARD_F, a
 	jr z, .no_phone_card
-	ld c, POKEGEARSTATE_PHONEINIT
-	ld b, POKEGEARCARD_PHONE
+	lb bc, POKEGEARCARD_PHONE, POKEGEARSTATE_PHONEINIT
 	jr .done
 
 .no_phone_card
 	ld a, [wPokegearFlags]
 	bit POKEGEAR_RADIO_CARD_F, a
 	ret z
-	ld c, POKEGEARSTATE_RADIOINIT
-	ld b, POKEGEARCARD_RADIO
+	lb bc, POKEGEARCARD_RADIO, POKEGEARSTATE_RADIOINIT
 .done
 	jp Pokegear_SwitchPage
 
@@ -537,8 +534,7 @@ PokegearMap_KantoMap:
 	jr PokegearMap_ContinueMap
 
 PokegearMap_JohtoMap:
-	ld d, LANDMARK_SILVER_CAVE
-	ld e, LANDMARK_NEW_BARK_TOWN
+	lb de, LANDMARK_SILVER_CAVE, LANDMARK_NEW_BARK_TOWN
 PokegearMap_ContinueMap:
 	ld hl, hJoyLast
 	ld a, [hl]
@@ -555,21 +551,18 @@ PokegearMap_ContinueMap:
 	ld a, [wPokegearFlags]
 	bit POKEGEAR_PHONE_CARD_F, a
 	jr z, .no_phone
-	ld c, POKEGEARSTATE_PHONEINIT
-	ld b, POKEGEARCARD_PHONE
+	lb bc, POKEGEARCARD_PHONE, POKEGEARSTATE_PHONEINIT
 	jr .done
 
 .no_phone
 	ld a, [wPokegearFlags]
 	bit POKEGEAR_RADIO_CARD_F, a
 	ret z
-	ld c, POKEGEARSTATE_RADIOINIT
-	ld b, POKEGEARCARD_RADIO
+	lb bc, POKEGEARCARD_RADIO, POKEGEARSTATE_RADIOINIT
 	jr .done
 
 .left
-	ld c, POKEGEARSTATE_CLOCKINIT
-	ld b, POKEGEARCARD_CLOCK
+	lb bc, POKEGEARCARD_CLOCK, POKEGEARSTATE_CLOCKINIT
 .done
 	jp Pokegear_SwitchPage
 
@@ -695,14 +688,9 @@ PokegearMap_UpdateCursorPosition:
 TownMap_GetKantoLandmarkLimits:
 	ld a, [wStatusFlags]
 	bit STATUSFLAGS_HALL_OF_FAME_F, a
-	jr z, .not_hof
-	ld d, LANDMARK_ROUTE_28
-	ld e, LANDMARK_PALLET_TOWN
-	ret
-
-.not_hof
-	ld d, LANDMARK_ROUTE_28
-	ld e, LANDMARK_VICTORY_ROAD
+	lb de, LANDMARK_ROUTE_28, LANDMARK_VICTORY_ROAD
+	ret z ; not_hof
+	lb de, LANDMARK_ROUTE_28, LANDMARK_PALLET_TOWN
 	ret
 
 PokegearRadio_Init:
@@ -713,7 +701,7 @@ PokegearRadio_Init:
 	ld hl, SPRITEANIMSTRUCT_TILE_ID
 	add hl, bc
 	ld [hl], $08
-	call _UpdateRadioStation
+	call UpdateRadioStation
 	ld hl, wJumptableIndex
 	inc [hl]
 	ret
@@ -726,10 +714,10 @@ PokegearRadio_Joypad:
 	ld a, [hl]
 	and D_LEFT
 	jr nz, .left
-	ld a, [wPokegearRadioChannelAddr]
+	ld hl, wPokegearRadioChannelAddr
+	ld a, [hli]
+	ld h, [hl]
 	ld l, a
-	ld a, [wPokegearRadioChannelAddr + 1]
-	ld h, a
 	ld a, [wPokegearRadioChannelBank]
 	and a
 	ret z
@@ -740,21 +728,18 @@ PokegearRadio_Joypad:
 	ld a, [wPokegearFlags]
 	bit POKEGEAR_PHONE_CARD_F, a
 	jr z, .no_phone
-	ld c, POKEGEARSTATE_PHONEINIT
-	ld b, POKEGEARCARD_PHONE
+	lb bc, POKEGEARCARD_PHONE, POKEGEARSTATE_PHONEINIT
 	jr .switch_page
 
 .no_phone
 	ld a, [wPokegearFlags]
 	bit POKEGEAR_MAP_CARD_F, a
 	jr z, .no_map
-	ld c, POKEGEARSTATE_MAPCHECKREGION
-	ld b, POKEGEARCARD_MAP
+	lb bc, POKEGEARCARD_MAP, POKEGEARSTATE_MAPCHECKREGION
 	jr .switch_page
 
 .no_map
-	ld c, POKEGEARSTATE_CLOCKINIT
-	ld b, POKEGEARCARD_CLOCK
+	lb bc, POKEGEARCARD_CLOCK, POKEGEARSTATE_CLOCKINIT
 .switch_page
 	jp Pokegear_SwitchPage
 
@@ -795,21 +780,18 @@ PokegearPhone_Joypad:
 	ld a, [wPokegearFlags]
 	bit POKEGEAR_MAP_CARD_F, a
 	jr z, .no_map
-	ld c, POKEGEARSTATE_MAPCHECKREGION
-	ld b, POKEGEARCARD_MAP
+	lb bc, POKEGEARCARD_MAP, POKEGEARSTATE_MAPCHECKREGION
 	jr .switch_page
 
 .no_map
-	ld c, POKEGEARSTATE_CLOCKINIT
-	ld b, POKEGEARCARD_CLOCK
+	lb bc, POKEGEARCARD_CLOCK, POKEGEARSTATE_CLOCKINIT
 	jr .switch_page
 
 .right
 	ld a, [wPokegearFlags]
 	bit POKEGEAR_RADIO_CARD_F, a
 	ret z
-	ld c, POKEGEARSTATE_RADIOINIT
-	ld b, POKEGEARCARD_RADIO
+	lb bc, POKEGEARCARD_RADIO, POKEGEARSTATE_RADIOINIT
 .switch_page
 	jp Pokegear_SwitchPage
 
@@ -1306,9 +1288,6 @@ INCBIN "gfx/pokegear/phone.tilemap.rle"
 ClockTilemapRLE:
 INCBIN "gfx/pokegear/clock.tilemap.rle"
 
-_UpdateRadioStation:
-	jr UpdateRadioStation
-
 ; called from engine/gfx/sprite_anims.asm
 
 AnimateTuningKnob:
@@ -1739,8 +1718,7 @@ _TownMap:
 	ld a, [wTownMapPlayerIconLandmark]
 	cp KANTO_LANDMARK
 	jr nc, .kanto
-	ld d, KANTO_LANDMARK - 1
-	ld e, 1
+	lb de, (KANTO_LANDMARK - 1), 1
 	call .loop
 	jr .resume
 
@@ -1861,10 +1839,10 @@ PlayRadio:
 	ldh a, [hJoyPressed]
 	and A_BUTTON | B_BUTTON
 	jr nz, .stop
-	ld a, [wPokegearRadioChannelAddr]
+	ld hl, wPokegearRadioChannelAddr
+	ld a, [hli]
+	ld h, [hl]
 	ld l, a
-	ld a, [wPokegearRadioChannelAddr + 1]
-	ld h, a
 	ld a, [wPokegearRadioChannelBank]
 	and a
 	jr z, .zero
@@ -2569,8 +2547,8 @@ TownMapPals:
 ; Even-numbered tile ids take the bottom nybble...
 	add l
 	ld l, a
-	ld a, h
-	adc 0
+	adc h
+	sub l
 	ld h, a
 	ld a, [hl]
 	and PALETTE_MASK
@@ -2580,8 +2558,8 @@ TownMapPals:
 ; ...and odd ids take the top.
 	add l
 	ld l, a
-	ld a, h
-	adc 0
+	adc h
+	sub l
 	ld h, a
 	ld a, [hl]
 	swap a

@@ -125,8 +125,7 @@ EvolutionAnimation:
 	ld a, [wPlayerHPPal]
 	ld [wCurPartySpecies], a
 	hlcoord 7, 2
-	ld d, $0
-	ld e, ANIM_MON_EVOLVE
+	lb de, 0, ANIM_MON_EVOLVE
 	predef AnimateFrontpic
 
 	pop af
@@ -295,7 +294,7 @@ EvolutionAnimation:
 	inc [hl]
 	and $1
 	jr nz, .done_balls
-	ld e, $0
+	ld e, a
 	call .GenerateBallOfLight
 	ld e, $10
 	call .GenerateBallOfLight

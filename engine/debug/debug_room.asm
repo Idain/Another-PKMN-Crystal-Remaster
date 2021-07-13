@@ -1711,10 +1711,9 @@ PrintHexNumber:
 	ret
 
 .PrintDigit:
-	ld bc, .HexDigits
-	add c
+	add LOW(.HexDigits)
 	ld c, a
-	adc b
+	adc HIGH(.HexDigits)
 	sub c
 	ld b, a
 	ld a, [bc]

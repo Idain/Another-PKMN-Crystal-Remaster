@@ -17,8 +17,7 @@ _Option:
 	ld [hl], TRUE
 	call ClearBGPalettes
 	hlcoord 0, 0
-	ld b, SCREEN_HEIGHT - 2
-	ld c, SCREEN_WIDTH - 2
+	lb bc, SCREEN_HEIGHT - 2, SCREEN_WIDTH - 2
 	call Textbox
 	hlcoord 2, 2
 	ld de, StringOptions
@@ -209,9 +208,8 @@ Options_BattleScene:
 
 .NonePressed:
 	bit BATTLE_SCENE, [hl]
-	jr z, .ToggleOn
-	jr .ToggleOff
-
+	jr nz, .ToggleOff
+	; fallthrough
 .ToggleOn:
 	res BATTLE_SCENE, [hl]
 	ld de, .On

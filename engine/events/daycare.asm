@@ -52,11 +52,9 @@ DayCareMan:
 
 .print_text
 	call PrintDayCareText
-
 .cancel
 	ld a, DAYCARETEXT_COME_AGAIN
-	call PrintDayCareText
-	ret
+	jp PrintDayCareText
 
 DayCareLady:
 	ld hl, wDayCareLady
@@ -585,8 +583,9 @@ DayCare_InitBreeding:
 	call Random
 	cp 50 percent + 1
 	ld a, NIDORAN_F
-	jr c, .GotEggSpecies
-	ld a, NIDORAN_M
+	sbc a
+	and NIDORAN_F - NIDORAN_M
+	add NIDORAN_M
 .GotEggSpecies:
 	ld [wCurPartySpecies], a
 	ld [wCurSpecies], a

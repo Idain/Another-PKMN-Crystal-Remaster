@@ -112,10 +112,8 @@ CheckForLuckyNumberWinners:
 	call GetPokemonName
 	ld hl, .LuckyNumberMatchPartyText
 	pop af
-	jr z, .print
+	jp z, PrintText
 	ld hl, .LuckyNumberMatchPCText
-
-.print
 	jp PrintText
 
 .CompareLuckyNumberToMonID:
@@ -131,8 +129,7 @@ CheckForLuckyNumberWinners:
 	ld de, wLuckyIDNumber
 	lb bc, PRINTNUM_LEADINGZEROS | 2, 5
 	call PrintNum
-	ld b, 5
-	ld c, 0
+	lb bc, 5, 0
 	ld hl, wLuckyNumberDigitsBuffer + 4
 	ld de, wMonIDDigitsBuffer + 4
 .loop

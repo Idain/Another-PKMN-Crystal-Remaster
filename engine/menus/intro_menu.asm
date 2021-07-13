@@ -205,10 +205,10 @@ endc
 	ld [wWhichMomItem], a
 
 	ld hl, wMomItemTriggerBalance
-	ld [hl], HIGH(MOM_MONEY >> 8)
-	inc hl
-	ld [hl], HIGH(MOM_MONEY) ; mid
-	inc hl
+	ld a, HIGH(MOM_MONEY >> 8)
+	ld [hli], a
+	ld a, HIGH(MOM_MONEY) ; mid
+	ld [hli], a
 	ld [hl], LOW(MOM_MONEY)
 
 	call InitializeNPCNames
@@ -342,16 +342,14 @@ Continue:
 	ld c, 15
 	call DelayFrames
 	call ConfirmContinue
-	jr nc, .Check1Pass
-	jp CloseWindow
+	jp c, CloseWindow
 
-.Check1Pass:
+;Check1Pass
 	call CheckVBA
 	call Continue_CheckRTC_RestartClock
-	jr nc, .Check2Pass
-	jp CloseWindow
+	jp c, CloseWindow
 
-.Check2Pass:
+;Check2Pass
 	ld a, $8
 	ld [wMusicFade], a
 	ld a, LOW(MUSIC_NONE)
@@ -474,10 +472,8 @@ FinishContinueFunction:
 	farcall OverworldLoop
 	ld a, [wSpawnAfterChampion]
 	cp SPAWN_RED
-	jr z, .AfterRed
-	jp Reset
-
-.AfterRed:
+	jp nz, Reset
+;AfterRed
 	call SpawnAfterRed
 	jr .loop
 
@@ -486,16 +482,15 @@ DisplaySaveInfoOnContinue:
 	and %10000000
 	jr z, .clock_ok
 	lb de, 4, 8
-	jp DisplayContinueDataWithRTCError
+	jr DisplayContinueDataWithRTCError
 
 .clock_ok
 	lb de, 4, 8
-	jp DisplayNormalContinueData
+	jr DisplayNormalContinueData
 
 DisplaySaveInfoOnSave:
 	lb de, 4, 0
-	jr DisplayNormalContinueData
-
+	; fallthrough
 DisplayNormalContinueData:
 	call Continue_LoadMenuHeader
 	call Continue_DisplayBadgesDexPlayerName
@@ -620,8 +615,8 @@ Continue_DisplayGameTime:
 	ld de, wGameTimeHours
 	lb bc, 2, 3
 	call PrintNum
-	ld [hl], "<COLON>"
-	inc hl
+	ld a, "<COLON>"
+	ld [hli], a
 	ld de, wGameTimeMinutes
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	jp PrintNum
@@ -1150,9 +1145,8 @@ TitleScreenMain:
 ; Press Start or A to start the game.
 	ld a, [hl]
 	and START | A_BUTTON
-	jr nz, .incave
-	ret
-
+	ret z
+	; fallthrough
 .incave
 	ld a, TITLESCREENOPTION_MAIN_MENU
 	jr .done

@@ -1,10 +1,8 @@
 AskRememberPassword:
 	call .DoMenu
-	ld a, $0
-	jr c, .okay
-	ld a, $1
-
-.okay
+	ld a, 0
+	sbc a
+	inc a
 	ld [wScriptVar], a
 	ret
 

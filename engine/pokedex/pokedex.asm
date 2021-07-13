@@ -485,8 +485,7 @@ DexEntryScreen_MenuActionJumptable:
 	call GetCryIndex
 	ld e, c
 	ld d, b
-	call PlayCry
-	ret
+	jp PlayCry
 
 .Print:
 	call Pokedex_ApplyPrintPals
@@ -513,8 +512,7 @@ DexEntryScreen_MenuActionJumptable:
 	call WaitBGMap
 	ld a, POKEDEX_SCX
 	ldh [hSCX], a
-	call Pokedex_ApplyUsualPals
-	ret
+	jp Pokedex_ApplyUsualPals
 
 Pokedex_RedisplayDexEntry:
 	call Pokedex_DrawDexEntryScreenBG
@@ -1307,8 +1305,7 @@ Pokedex_DrawUnownModeBG:
 	hlcoord 6, 5
 	call Pokedex_PlaceFrontpicAtHL
 	ld de, 0
-	ld b, 0
-	ld c, NUM_UNOWN
+	lb bc, 0, NUM_UNOWN
 .loop
 	ld hl, wUnownDex
 	add hl, de
@@ -1504,9 +1501,8 @@ Pokedex_PrintListing:
 Pokedex_PrintNumberIfOldMode:
 	ld a, [wCurDexMode]
 	cp DEXMODE_OLD
-	jr z, .printnum
-	ret
-
+	ret nz
+	; fallthrough
 .printnum
 	push hl
 	ld de, -SCREEN_WIDTH
@@ -2289,8 +2285,7 @@ Pokedex_ApplyPrintPals:
 	call DmgToCgbBGPals
 	ld a, $ff
 	call DmgToCgbObjPal0
-	call DelayFrame
-	ret
+	jp DelayFrame
 
 Pokedex_GetSGBLayout:
 	ld b, a
@@ -2301,8 +2296,7 @@ Pokedex_ApplyUsualPals:
 	ld a, $e4
 	call DmgToCgbBGPals
 	ld a, $e0
-	call DmgToCgbObjPal0
-	ret
+	jp DmgToCgbObjPal0
 
 Pokedex_LoadSelectedMonTiles:
 ; Loads the tiles of the currently selected Pokémon.
@@ -2336,16 +2330,17 @@ Pokedex_LoadAnyFootprint:
 	ld a, [wTempSpecies]
 	dec a
 	and %11111000
-	srl a
-	srl a
-	srl a
+	rrca
+	rrca
+	rrca
+	and %00011111
 	ld e, 0
 	ld d, a
 	ld a, [wTempSpecies]
 	dec a
 	and %111
 	swap a ; * $10
-	add a, a
+	add a
 	ld l, a
 	ld h, 0
 	add hl, de
@@ -2469,8 +2464,8 @@ _NewPokedexEntry:
 	call Pokedex_DrawDexEntryScreenBG
 	call Pokedex_DrawFootprint
 	hlcoord 0, 17
-	ld [hl], $3b
-	inc hl
+	ld a, $3b
+	ld [hli], a
 	ld bc, 19
 	ld a, " "
 	call ByteFill
@@ -2500,8 +2495,7 @@ Pokedex_SetBGMapMode4:
 Pokedex_SetBGMapMode_3ifDMG_4ifCGB:
 	ldh a, [hCGB]
 	and a
-	jr z, Pokedex_SetBGMapMode3
-	call Pokedex_SetBGMapMode4
+	call nz, Pokedex_SetBGMapMode4
 	jr Pokedex_SetBGMapMode3
 
 Pokedex_ResetBGMapMode:

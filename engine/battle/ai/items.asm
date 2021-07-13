@@ -303,7 +303,6 @@ AI_Items:
 	jp .DontUse
 
 .StatusCheckContext:
-	ld a, [wEnemySubStatus5]
 	ld a, [wEnemyMonStatus]
 	bit TOX, a
 	jr z, .FailToxicCheck

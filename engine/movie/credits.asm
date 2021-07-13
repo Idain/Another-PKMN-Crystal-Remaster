@@ -191,8 +191,7 @@ Credits_UpdateGFXRequestPath:
 	ld [wRequested2bppDest], a
 	ld a, HIGH(vTiles2)
 	ld [wRequested2bppDest + 1], a
-	jr Credits_RequestGFX
-
+	; fallthrough
 Credits_RequestGFX:
 	xor a
 	ldh [hBGMapMode], a
@@ -512,8 +511,8 @@ GetCreditsPalette:
 	push hl
 	add LOW(wBGPals1)
 	ld e, a
-	ld a, 0
 	adc HIGH(wBGPals1)
+	sub e
 	ld d, a
 	ld bc, 24
 	call CopyBytes
@@ -522,8 +521,8 @@ GetCreditsPalette:
 	pop af
 	add LOW(wBGPals2)
 	ld e, a
-	ld a, 0
 	adc HIGH(wBGPals2)
+	sub e
 	ld d, a
 	ld bc, 24
 	jp CopyBytes

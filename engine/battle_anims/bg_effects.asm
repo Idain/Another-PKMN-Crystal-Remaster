@@ -1352,8 +1352,7 @@ Tackle_ReturnMove:
 	add hl, bc
 	ld a, [hl]
 	and a
-	jr nz, .move_back
-	call BattleBGEffects_IncAnonJumptableIndex
+	call z, BattleBGEffects_IncAnonJumptableIndex
 .move_back
 	call Rollout_FillLYOverridesBackup
 	ld hl, BG_EFFECT_STRUCT_BATTLE_TURN
