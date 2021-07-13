@@ -124,7 +124,7 @@ Script_GivePlayerHisPrize:
 	special BattleTowerAction
 	ifequal POTION, Script_YourPackIsStuffedFull
 	getitemname STRING_BUFFER_4, USE_SCRIPT_VAR
-	giveitem ITEM_FROM_MEM, 5
+	giveitem ITEM_FROM_MEM, 10
 	writetext Text_PlayerGotFive
 	setval BATTLETOWERACTION_1D
 	special BattleTowerAction

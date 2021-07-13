@@ -12,8 +12,7 @@ AÑADIDOS:
 	--- Todas las nuevas TMs pueden ser compradas en Goldenrod o Celadon Dept. Store, salvo por Rock Slide.
 	Esta se consigue al derrotar a Brock.
 
-- Movimientos:
-	- ¡Carantoña y Fuerza Lunar (Play Rough & Moonblast) han sido añadidos al juego! Y con ello nuevas animaciones.
+- ¡Carantoña y Fuerza Lunar (Play Rough & Moonblast) han sido añadidos al juego!
 
 - Ahora ciertos Pokémon aprenden movimientos al evolucionar (Gen 7+).
 - La tormenta de arena ahora boostea la Defensa Especial de los Pokémon tipo Roca en un 50% (Gen 4+).
@@ -61,6 +60,7 @@ CAMBIOS:
 - Status: 
 	-- Ahora el estado Dormido dura entre 1-3 turnos (sin contar el turno donde el Pokémon fue afectado).
 	-- La probabilidad de golpearte a ti mismo si estás confundido ha sido revertida a 50% (petición popular).
+	-- El estado de Gravemente Envenenado (producido por Toxic) ahora dura hasta el final del combate (se convertía en Envenenamiento normal si se cambia de Pokémon).
 
 - Mercados:
 	-- Los catálogos de los Poké Marts se irá expandiendo a medida que el jugador progrese en la historia. (Gen 4)
@@ -83,7 +83,7 @@ CAMBIOS:
 	-- Sky Attack ahora tiene un 30% de hacer al oponente retroceder y tiene una alta probabilidad de ser un golpe crítico (Gen 3+).
 	-- Encore ahora siempre actúa por 3 turnos (Gen 5, no cuenta turno donde el oponente es afectado) y no tiene efecto si el último movimiento usado por el oponente fue Metronome o Sleep Talk (Gen 7+).
 	-- Si (Hi) Jump Kick falla, daña al usuario equivalente a 1/2 del daño que hubiese causado al oponente (Gen 3).
-	-- Spite ahora remueve 4PPs de forma fija en vez de variar (Gen 4+).
+	-- Spite ahora remueve 4 PPs de forma fija en vez de variar (Gen 4+).
 	-- Pay Day da dinero equivalente a 5x el nivel del usuario (Gen 3+).
 
 - Animaciones:
@@ -103,6 +103,7 @@ CAMBIOS:
 - Recoil damage ahora hace 1/2 MAX HP, en vez de 1/4.
 - El daño secundario de movimientos atrapantes (Wrap, Bind, etc.) al final de cada turno ha aumentado de 1/16 MAX HP a 1/8 MAX HP.
 - Ajustada prioridad de movimientos para asemejarse más a la Gen 8.
+- El orden de los efectos al final de cada turno ha sido ajustado para asemejarse a Gen 8.
 
 - Los movesets por nivel de los siguientes Pokémon han sido cambiados para asemejarse a generaciones recientes: 
 	Bulbasaur, Ivysaur, Venusaur, Charmander, Charmeleon, Charizard, Squirtle, Wartortle, Blastoise, Caterpie, Metapod, Butterfree, Weedle, Kakuna, Beedrill, Pidgey, Pidgeotto, Pidgeot, Rattata, Raticate, Spearow, Fearow,
@@ -143,7 +144,7 @@ Miscellaneous:
 
 FIXES:
 - Algunos items no podían ser seleccionados/tenían el efecto equivocado.
-- Si un Pokémon usaba una Leppa Berry como objeto equipable restauraba 5PP en vez de 10PP.
+- Si un Pokémon usaba una Leppa Berry como objeto equipable restauraba 5 PP en vez de 10 PP.
 
 
 V1.1.2

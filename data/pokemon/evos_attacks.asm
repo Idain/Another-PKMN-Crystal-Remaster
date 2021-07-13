@@ -163,8 +163,9 @@ BlastoiseEvosAttacks:
 CaterpieEvosAttacks:
 	db EVOLVE_LEVEL, 7, METAPOD
 	db 0 ; no more evolutions
-	db 1, TACKLE
-	db 1, STRING_SHOT
+	db 1, TOXIC
+;	db 1, TACKLE
+;	db 1, STRING_SHOT
 	db 0 ; no more level-up moves
 
 MetapodEvosAttacks:
@@ -192,8 +193,9 @@ ButterfreeEvosAttacks:
 WeedleEvosAttacks:
 	db EVOLVE_LEVEL, 7, KAKUNA
 	db 0 ; no more evolutions
-	db 1, POISON_STING
-	db 1, STRING_SHOT
+	db 1, TOXIC
+;	db 1, POISON_STING
+;	db 1, STRING_SHOT
 	db 0 ; no more level-up moves
 
 KakunaEvosAttacks:
@@ -219,15 +221,16 @@ BeedrillEvosAttacks:
 PidgeyEvosAttacks:
 	db EVOLVE_LEVEL, 18, PIDGEOTTO
 	db 0 ; no more evolutions
-	db 1, TACKLE
-	db 5, SAND_ATTACK
-	db 9, GUST
-	db 13, QUICK_ATTACK
-	db 17, WHIRLWIND
-	db 21, TWISTER
-	db 27, AGILITY
-	db 33, WING_ATTACK
-	db 37, MIRROR_MOVE
+	db 1, TOXIC
+;	db 1, TACKLE
+;	db 5, SAND_ATTACK
+;	db 9, GUST
+;	db 13, QUICK_ATTACK
+;	db 17, WHIRLWIND
+;	db 21, TWISTER
+;	db 27, AGILITY
+;	db 33, WING_ATTACK
+;	db 37, MIRROR_MOVE
 	db 0 ; no more level-up moves
 
 PidgeottoEvosAttacks:
@@ -903,17 +906,18 @@ ArcanineEvosAttacks:
 PoliwagEvosAttacks:
 	db EVOLVE_LEVEL, 25, POLIWHIRL
 	db 0 ; no more evolutions
-	db 1, POUND
-	db 5, WATER_GUN
-	db 8, HYPNOSIS
-	db 11, BUBBLE
-	db 15, DOUBLESLAP
-	db 18, RAIN_DANCE
-	db 21, BODY_SLAM
-	db 25, BUBBLEBEAM
-	db 31, BELLY_DRUM
-	db 35, HYDRO_PUMP
-	db 38, DOUBLE_EDGE
+	db 1, TOXIC
+;	db 1, POUND
+;	db 5, WATER_GUN
+;	db 8, HYPNOSIS
+;	db 11, BUBBLE
+;	db 15, DOUBLESLAP
+;	db 18, RAIN_DANCE
+;	db 21, BODY_SLAM
+;	db 25, BUBBLEBEAM
+;	db 31, BELLY_DRUM
+;	db 35, HYDRO_PUMP
+;	db 38, DOUBLE_EDGE
 	db 0 ; no more level-up moves
 
 PoliwhirlEvosAttacks:
@@ -2490,16 +2494,17 @@ FurretEvosAttacks:
 HoothootEvosAttacks:
 	db EVOLVE_LEVEL, 20, NOCTOWL
 	db 0 ; no more evolutions
-	db 1, TACKLE
-	db 1, GROWL
-	db 5, FORESIGHT
-	db 9, HYPNOSIS
-	db 13, PECK
-	db 17, REFLECT
-	db 21, CONFUSION
-	db 26, TAKE_DOWN
-	db 33, MOONBLAST
-	db 37, DREAM_EATER
+	db 1, TOXIC
+;	db 1, TACKLE
+;	db 1, GROWL
+;	db 5, FORESIGHT
+;	db 9, HYPNOSIS
+;	db 13, PECK
+;	db 17, REFLECT
+;	db 21, CONFUSION
+;	db 26, TAKE_DOWN
+;	db 33, MOONBLAST
+;	db 37, DREAM_EATER
 	db 0 ; no more level-up moves
 
 NoctowlEvosAttacks:
@@ -2830,17 +2835,19 @@ PolitoedEvosAttacks:
 HoppipEvosAttacks:
 	db EVOLVE_LEVEL, 18, SKIPLOOM
 	db 0 ; no more evolutions
-	db 1, ABSORB
-	db 1, TACKLE
-	db 4, SYNTHESIS
-	db 7, TAIL_WHIP
-	db 12, POISONPOWDER
-	db 14, STUN_SPORE
-	db 16, SLEEP_POWDER
-	db 22, LEECH_SEED
-	db 24, MEGA_DRAIN
-	db 28, COTTON_SPORE
-	db 32, GIGA_DRAIN
+	db 1, TOXIC
+;	db 1, SPLASH
+;	db 1, ABSORB
+;	db 1, TACKLE
+;	db 4, SYNTHESIS
+;	db 7, TAIL_WHIP
+;	db 12, POISONPOWDER
+;	db 14, STUN_SPORE
+;	db 16, SLEEP_POWDER
+;	db 22, LEECH_SEED
+;	db 24, MEGA_DRAIN
+;	db 28, COTTON_SPORE
+;	db 32, GIGA_DRAIN
 	db 0 ; no more level-up moves
 
 SkiploomEvosAttacks:
