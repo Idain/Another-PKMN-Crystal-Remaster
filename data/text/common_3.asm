@@ -939,8 +939,6 @@ _LearnedMoveText::
 	text_promptbutton
 	text_end
 
-	text_end ; unreferenced
-
 _MoveAskForgetText::
 	text "Which move should"
 	next "be forgotten?"
@@ -987,8 +985,6 @@ Text_MoveForgetCount::
 	text "1, 2 and…@"
 	text_pause
 	text_end
-
-	text_end ; unreferenced
 
 _MoveForgotText::
 	text " Poof!@"
@@ -1048,8 +1044,6 @@ _CardFlipDarnText::
 _GearTodayText::
 	text_today
 	text_end
-
-	text_end ; unreferenced
 
 _GearEllipseText::
 	text "<……>"
@@ -1218,13 +1212,9 @@ Text_BallCaught::
 	sound_caught_mon
 	text_end
 
-	text_end ; unreferenced
-
 _WaitButtonText::
 	text_promptbutton
 	text_end
-
-	text_end ; unreferenced
 
 _BallSentToPCText::
 	text_ram wMonOrItemNameBuffer
@@ -1240,8 +1230,6 @@ _NewDexDataText::
 	sound_slot_machine_start
 	text_promptbutton
 	text_end
-
-	text_end ; unreferenced
 
 _AskGiveNicknameText::
 	text "Give a nickname to"
@@ -1288,8 +1276,6 @@ Text_PlayedPokeFlute::
 	text_promptbutton
 	text_end
 
-	text_end ; unreferenced
-
 _BlueCardBalanceText::
 	text "You now have"
 	line "@"
@@ -1302,8 +1288,6 @@ _CoinCaseCountText::
 	line "@"
 	text_decimal wCoins, 2, 4
 	text_end
-
-	text_end ; unreferenced
 
 _RaiseThePPOfWhichMoveText::
 	text "Raise the PP of"

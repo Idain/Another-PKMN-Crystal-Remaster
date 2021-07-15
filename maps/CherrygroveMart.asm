@@ -97,13 +97,14 @@ CherrygroveMartYoungsterText:
 	line "soned my #mon!"
 
 	para "I just kept going,"
-	line "but then my"
+	line "but my #mon"
+	cont "gradually lost HP."
 
-	para "#mon got very"
-	line "weak."
+	para "Thankfully, when"
+	line "it was about to"
 
-	para "At least the poi-"
-	line "son faded away."
+	para "faint, the poison"
+	line "faded away."
 
 	para "You should keep an"
 	line "Antidote with you."

@@ -97,8 +97,6 @@ _GrewToLevelText::
 	text_promptbutton
 	text_end
 
-	text_end ; unreferenced
-
 _CameToItsSensesText::
 	text_ram wStringBuffer1
 	text " came"
@@ -440,8 +438,6 @@ _WillTradeText::
 	text_ram wOTTrademonSpeciesName
 	text_end
 
-	text_end ; unreferenced
-
 _ForYourMonWillTradeText::
 	text "for @"
 	text_ram wPlayerTrademonSenderName
@@ -457,8 +453,6 @@ _MobilePlayerWillTradeMonText::
 	line "trade @"
 	text_ram wPlayerTrademonSpeciesName
 	text_end
-
-	text_end ; unreferenced
 
 _MobileForPartnersMonText::
 	text "for @"
@@ -527,8 +521,6 @@ _OPT_OakText1::
 	line "Oak: @"
 	text_ram wMonOrItemNameBuffer
 	text_end
-
-	text_end ; unreferenced
 
 _OPT_OakText2::
 	text_start
@@ -719,8 +711,6 @@ _PokedexShowText::
 	text_ram wStringBuffer1
 	text_end
 
-	text_end ; unreferenced
-
 ; Pokémon Music Channel / Pokémusic
 
 _BenIntroText1::
@@ -870,8 +860,6 @@ _PnP_Text4::
 	text_ram wStringBuffer1
 	text_end
 
-	text_end ; unreferenced
-
 _PnP_CuteText::
 	text_start
 	line "is cute."
@@ -957,8 +945,6 @@ _PnP_Text5::
 	line "@"
 	text_ram wStringBuffer1
 	text_end
-
-	text_end ; unreferenced
 
 _RocketRadioText1::
 	text_start
@@ -1362,8 +1348,6 @@ _ReceiveItemText::
 	text_promptbutton
 	text_end
 
-	text_end ; unreferenced
-
 _NoCoinsText::
 	text "You have no coins."
 	prompt
@@ -1392,8 +1376,6 @@ _NPCTradeFanfareText::
 	sound_dex_fanfare_80_109
 	text_pause
 	text_end
-
-	text_end ; unreferenced
 
 _NPCTradeIntroText1::
 	text "I collect #mon."

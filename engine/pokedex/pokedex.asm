@@ -593,7 +593,7 @@ Pokedex_UpdateOptionScreen:
 
 .MenuAction_ABCMode:
 	ld b, DEXMODE_ABC
-
+	; fallthrough
 .ChangeMode:
 	ld a, [wCurDexMode]
 	cp b
@@ -1455,7 +1455,7 @@ Pokedex_PrintListing:
 	inc a
 	ld b, a
 	ld a, " "
-	call Pokedex_FillBox
+	call FillBoxWithByte
 
 ; Load de with wPokedexOrder + [wDexListingScrollOffset]
 	ld a, [wDexListingScrollOffset]
@@ -1818,7 +1818,7 @@ Pokedex_PlaceSearchScreenTypeStrings:
 	hlcoord 9, 3
 	lb bc, 4, 8
 	ld a, " "
-	call Pokedex_FillBox
+	call FillBoxWithByte
 	ld a, [wDexSearchMonType1]
 	hlcoord 9, 4
 	call Pokedex_PlaceTypeString
@@ -2173,15 +2173,14 @@ Pokedex_MoveArrowCursor:
 	jr c, .no_action
 	ld hl, hJoyLast
 	ld a, [hl]
-	and D_LEFT | D_UP
-	and b
-	jr nz, .move_left_or_up
-	ld a, [hl]
 	and D_RIGHT | D_DOWN
 	and b
 	jr nz, .move_right_or_down
-	jr .no_action
-
+	ld a, [hl]
+	and D_LEFT | D_UP
+	and b
+	jr z, .no_action
+	; fallthrough
 .move_left_or_up
 	ld a, [wDexArrowCursorPosIndex]
 	and a
@@ -2264,9 +2263,6 @@ Pokedex_ArrowCursorDelay:
 	dec [hl]
 	scf
 	ret
-
-Pokedex_FillBox:
-	jp FillBoxWithByte
 
 Pokedex_BlackOutBG:
 	ldh a, [rSVBK]

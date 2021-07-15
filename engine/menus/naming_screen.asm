@@ -666,32 +666,6 @@ NamingScreen_AdvanceCursor_CheckEndOfString:
 	scf
 	ret
 
-AddDakutenToCharacter: ; unreferenced
-	ld a, [wNamingScreenCurNameLength]
-	and a
-	ret z
-	push hl
-	ld hl, wNamingScreenCurNameLength
-	dec [hl]
-	call NamingScreen_GetTextCursorPosition
-	ld c, [hl]
-	pop hl
-
-.loop
-	ld a, [hli]
-	cp -1
-	jr z, NamingScreen_AdvanceCursor_CheckEndOfString
-	cp c
-	jr z, .done
-	inc hl
-	jr .loop
-
-.done
-	ld a, [hl]
-	jr NamingScreen_LoadNextCharacter
-
-INCLUDE "data/text/unused_dakutens.asm"
-
 NamingScreen_DeleteCharacter:
 	ld hl, wNamingScreenCurNameLength
 	ld a, [hl]

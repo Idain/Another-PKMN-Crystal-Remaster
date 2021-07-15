@@ -317,8 +317,6 @@ _BlindingFlashText::
 	text_promptbutton
 	text_end
 
-	text_end ; unreferenced
-
 _UsedSurfText::
 	text_ram wStringBuffer2
 	text " used"
@@ -700,8 +698,6 @@ Text_BattleEffectActivate::
 	text_ram wStringBuffer2
 	text_end
 
-	text_end ; unreferenced
-
 _BattleStatWentWayUpText::
 	text_pause
 	text "<SCROLL>went way up!"
@@ -716,8 +712,6 @@ Text_BattleFoeEffectActivate::
 	line "@"
 	text_ram wStringBuffer2
 	text_end
-
-	text_end ; unreferenced
 
 _BattleStatSharplyFellText::
 	text_pause
@@ -798,8 +792,6 @@ _BreedEggHatchText::
 	sound_caught_mon
 	text_promptbutton
 	text_end
-
-	text_end ; unreferenced
 
 _BreedAskNicknameText::
 	text "Give a nickname to"
@@ -907,8 +899,6 @@ _AnimationTypeText:: ; unreferenced
 	line "Animation type @"
 	text_ram wStringBuffer2
 	text_end
-
-	text_end ; unreferenced
 
 _MonNumberText:: ; unreferenced
 	text "#mon number?"
@@ -1055,8 +1045,6 @@ _KarpGuruRecordText::
 	text_ram wMagikarpRecordHoldersName
 	text_promptbutton
 	text_end
-
-	text_end ; unreferenced
 
 _LuckyNumberMatchPartyText::
 	text "Congratulations!"
@@ -1549,8 +1537,6 @@ _OakText2::
 _OakText3::
 	text_promptbutton
 	text_end
-
-	text_end ; unreferenced
 
 _OakText4::
 	text "People and #mon"

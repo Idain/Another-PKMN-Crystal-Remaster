@@ -448,7 +448,7 @@ endr
 	ld de, PokemonPalettes
 	add hl, de
 	ld a, [wUnusedSGB1eColorOffset]
-	and 3
+	and %111
 	add a
 	add a
 	ld c, a
