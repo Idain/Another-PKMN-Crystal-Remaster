@@ -898,11 +898,11 @@ BattleTower_GiveReward:
 	ld a, [sBattleTowerReward]
 	call CloseSRAM
 	ld [wScriptVar], a
-	ld hl, wNumItems
+	ld hl, wNumMedicines
 	ld a, [hli]
-	cp MAX_ITEMS
+	cp MAX_MEDICINE
 	ret c
-	ld b, MAX_ITEMS
+	ld b, MAX_MEDICINE
 	ld a, [wScriptVar]
 	ld c, a
 .loop
@@ -910,7 +910,7 @@ BattleTower_GiveReward:
 	cp c
 	jr nz, .next
 	ld a, [hl]
-	cp 95
+	cp 90
 	ret c
 .next
 	inc hl

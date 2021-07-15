@@ -6,15 +6,16 @@ DrawKrisPackGFX:
 	ld e, a
 	ld d, [hl]
 	ld hl, vTiles2 tile $50
-	lb bc, BANK(PackFGFX), 15
+	lb bc, BANK(PackFGFX), 20
 	jp Request2bpp
 
 PackFGFXPointers:
-	dw PackFGFX + (15 tiles) * 1 ; ITEM_POCKET
-	dw PackFGFX + (15 tiles) * 3 ; BALL_POCKET
-	dw PackFGFX + (15 tiles) * 4 ; BERRY_POCKET	
-	dw PackFGFX + (15 tiles) * 0 ; KEY_ITEM_POCKET
-	dw PackFGFX + (15 tiles) * 2 ; TM_HM_POCKET
+	dw PackFGFX + (20 tiles) * 0 ; ITEM_POCKET
+	dw PackFGFX + (20 tiles) * 1 ; MEDICINE_POCKET
+	dw PackFGFX + (20 tiles) * 2 ; BALL_POCKET	
+	dw PackFGFX + (20 tiles) * 3 ; TM_HM_POCKET
+	dw PackFGFX + (20 tiles) * 4 ; BERRY_POCKET
+	dw PackFGFX + (20 tiles) * 5 ; KEY_ITEM_POCKET
 
 
 PackFGFX:

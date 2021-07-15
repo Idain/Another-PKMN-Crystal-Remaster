@@ -11,6 +11,9 @@ HasNoItems:
 	ld a, [wNumBerries]
 	and a
 	ret nz
+	ld a, [wNumMedicines]
+	and a
+	ret nz
 	ld hl, wTMsHMs
 	ld b, NUM_TMS + NUM_HMS
 .loop

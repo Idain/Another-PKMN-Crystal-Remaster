@@ -29,10 +29,11 @@ CheckRegisteredItem:
 .Pockets:
 ; entries correspond to *_POCKET constants
 	dw .CheckItem
+	dw .CheckMedicine
 	dw .CheckBall
 	dw .CheckBerry
-	dw .CheckKeyItem
 	dw .CheckTMHM
+	dw .CheckKeyItem
 
 .CheckItem:
 	ld hl, wNumItems
@@ -61,7 +62,6 @@ CheckRegisteredItem:
 
 .CheckBall:
 	ld hl, wNumBalls
-
 .StandardCheck:
 	call .CheckRegisteredNo
 	jr nc, .NoRegisteredItem
@@ -76,6 +76,10 @@ CheckRegisteredItem:
 
 .CheckBerry:
 	ld hl, wNumBerries
+	jr .StandardCheck
+
+.CheckMedicine:
+	ld hl, wNumMedicines
 	jr .StandardCheck
 
 .CheckTMHM:

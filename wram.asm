@@ -2135,6 +2135,7 @@ wKeyItemsPocketCursor:: db
 wBallsPocketCursor::    db
 wTMHMPocketCursor::     db
 wBerryPocketCursor::    db
+wMedicinePocketCursor:: db
 
 wPCItemsScrollPosition::        db
 	ds 1
@@ -2143,6 +2144,7 @@ wKeyItemsPocketScrollPosition:: db
 wBallsPocketScrollPosition::    db
 wTMHMPocketScrollPosition::     db
 wBerryPocketScrollPosition::    db
+wMedicinePocketScrollPosition:: db
 
 wSwitchMon::
 wSwitchItem::
@@ -2645,6 +2647,7 @@ NEXTU
 wDudeNumItems:: db
 wDudeItems:: ds 2 * 4 + 1
 
+wDudeNumMedicines::
 wDudeNumBerries::
 wDudeNumKeyItems:: db
 wDudeKeyItems:: ds 18 + 1
@@ -2860,6 +2863,9 @@ wBalls:: ds MAX_BALLS * 2 + 1
 wNumBerries:: db
 wBerries:: ds MAX_BERRIES * 2 + 1
 
+wNumMedicines:: db
+wMedicines:: ds MAX_MEDICINE * 2 + 1
+
 wNumPCItems:: db
 wPCItems:: ds MAX_PC_ITEMS * 2 + 1
 
@@ -2872,7 +2878,6 @@ wPokegearFlags::
 	db
 wRadioTuningKnob:: db
 wLastDexMode:: db
-	ds 1
 wWhichRegisteredItem:: db
 wRegisteredItem:: db
 
@@ -2968,7 +2973,7 @@ wMountMoonSquareSceneID::                         db
 wMobileTradeRoomSceneID::                         db
 wMobileBattleRoomSceneID::                        db
 
-	ds 104
+	ds 67
 
 wEventFlags:: flag_array NUM_EVENTS
 
@@ -3304,13 +3309,13 @@ w3_d8a2:: ds 1
 w3_d8a3:: ds 1
 ENDU
 
-	ds $1c0
+	ds 448
 
 w3_dc00:: ds SCREEN_WIDTH * SCREEN_HEIGHT
 UNION
 w3_dd68:: ds SCREEN_WIDTH * SCREEN_HEIGHT
 
-	ds $11c
+	ds 284
 
 w3_dfec:: ds $10
 w3_dffc:: ds 4
