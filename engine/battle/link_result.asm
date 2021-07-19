@@ -119,7 +119,7 @@ DetermineLinkBattleResult:
 .BothSides_CheckNumberMonsAtFullHealth:
 	ld hl, wPartyMon1HP
 	call .CheckFaintedOrFullHealth
-	jr nz, .finish ; we have a pokemon that's neither fainted nor at full health
+	jr nz, .finish ; we have a Pokémon that's neither fainted nor at full health
 	ld hl, wOTPartyMon1HP
 	call .CheckFaintedOrFullHealth
 	ld e, $1 ; victory
@@ -129,7 +129,7 @@ DetermineLinkBattleResult:
 	ld hl, wOTPartyMon1HP
 	call .CheckFaintedOrFullHealth
 	ld e, $0 ; drawn
-	ret nz ; we both have pokemon that are neither fainted nor at full health
+	ret nz ; we both have Pokémon that are neither fainted nor at full health
 	ld e, $2 ; defeat
 	ld a, $1 ; not drawn
 	and a

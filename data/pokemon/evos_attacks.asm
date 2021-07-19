@@ -605,7 +605,7 @@ ZubatEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, ABSORB
 	db 5, SUPERSONIC
-	db 11, BITE
+	db 9, BITE
 	db 13, WING_ATTACK
 	db 17, CONFUSE_RAY
 	db 23, SWIFT

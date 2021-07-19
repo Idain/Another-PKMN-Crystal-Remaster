@@ -2349,7 +2349,7 @@ Pokedex_GetArea:
 	jp PlaceString
 
 .String_SNest:
-	db "'S NEST@"
+	db "'s Nest@"
 
 .GetAndPlaceNest:
 	ld [wTownMapCursorLandmark], a

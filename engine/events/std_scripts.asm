@@ -86,7 +86,6 @@ PokecenterNurseScript:
 	sjump .ok
 
 .nite
-
 	farwritetext NurseNiteText
 	promptbutton
 	; fallthrough
@@ -280,7 +279,6 @@ RadioTowerRocketsScript:
 	setevent EVENT_RADIO_TOWER_BLACKBELT_BLOCKS_STAIRS
 	clearevent EVENT_RADIO_TOWER_ROCKET_TAKEOVER
 	clearevent EVENT_USED_THE_CARD_KEY_IN_THE_RADIO_TOWER
-	setevent EVENT_MAHOGANY_TOWN_POKEFAN_M_BLOCKS_EAST
 	specialphonecall SPECIALCALL_WEIRDBROADCAST
 	setmapscene MAHOGANY_TOWN, SCENE_FINISHED
 	end

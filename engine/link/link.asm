@@ -515,8 +515,7 @@ LinkTimeout:
 	ldh [hVBlank], a
 	push de
 	hlcoord 0, 12
-	ld b, 4
-	ld c, 18
+	lb bc, 4, 18
 	push de
 	ld d, h
 	ld e, l
@@ -1370,8 +1369,7 @@ LinkTrade_TradeStatsMenu:
 	ld a, [wMenuCursorY]
 	push af
 	hlcoord 0, 15
-	ld b, 1
-	ld c, 18
+	lb bc, 1, 18
 	call LinkTextboxAtHL
 	hlcoord 2, 16
 	ld de, .String_Stats_Trade
@@ -1476,8 +1474,7 @@ LinkTrade_TradeStatsMenu:
 	ld [wUnusedLinkAction], a
 	ld [wOtherPlayerLinkAction], a
 	hlcoord 0, 12
-	ld b, 4
-	ld c, 18
+	lb bc, 4, 18
 	call LinkTextboxAtHL
 	farcall Link_WaitBGMap
 	ld hl, .LinkTradeCantBattleText
@@ -1498,8 +1495,7 @@ LinkTrade_TradeStatsMenu:
 	ld [wNamedObjectIndex], a
 	call GetPokemonName
 	hlcoord 0, 12
-	ld b, 4
-	ld c, 18
+	lb bc, 4, 18
 	call LinkTextboxAtHL
 	farcall Link_WaitBGMap
 	ld hl, .LinkAbnormalMonText
@@ -1508,8 +1504,7 @@ LinkTrade_TradeStatsMenu:
 
 .cancel_trade
 	hlcoord 0, 12
-	ld b, 4
-	ld c, 18
+	lb bc, 4, 18
 	call LinkTextboxAtHL
 	hlcoord 1, 14
 	ld de, String_TooBadTheTradeWasCanceled
@@ -1601,24 +1596,24 @@ ExitLinkCommunications:
 	ldh [rSC], a
 	ret
 
-GSPlaceTradeScreenFooter: ; unreferenced
-; Fill the screen footer with pattern tile
-	hlcoord 0, 16
-	ld a, $7e
-	ld bc, 2 * SCREEN_WIDTH
-	call ByteFill
-; Clear out area for cancel string
-	hlcoord 1, 16
-	ld a, " "
-	ld bc, SCREEN_WIDTH - 2
-	call ByteFill
-; Place the string
-	hlcoord 2, 16
-	ld de, .CancelString
-	jp PlaceString
-
-.CancelString:
-	db "CANCEL@"
+;GSPlaceTradeScreenFooter: ; unreferenced
+;; Fill the screen footer with pattern tile
+;	hlcoord 0, 16
+;	ld a, $7e
+;	ld bc, 2 * SCREEN_WIDTH
+;	call ByteFill
+;; Clear out area for cancel string
+;	hlcoord 1, 16
+;	ld a, " "
+;	ld bc, SCREEN_WIDTH - 2
+;	call ByteFill
+;; Place the string
+;	hlcoord 2, 16
+;	ld de, .CancelString
+;	jp PlaceString
+;
+;.CancelString:
+;	db "CANCEL@"
 
 LinkTradePlaceArrow:
 ; Indicates which pokemon the other player has selected to trade
@@ -2578,15 +2573,3 @@ CableClubCheckWhichChris:
 
 GSLinkCommsBorderGFX: ; unreferenced
 INCBIN "gfx/trade/unused_gs_border_tiles.2bpp"
-
-CheckSRAM0Flag: ; unreferenced
-; input: hl = unknown flag array in "SRAM Bank 0"
-	ld a, BANK("SRAM Bank 0")
-	call OpenSRAM
-	ld d, 0
-	ld b, CHECK_FLAG
-	predef SmallFarFlagAction
-	call CloseSRAM
-	ld a, c
-	and a
-	ret

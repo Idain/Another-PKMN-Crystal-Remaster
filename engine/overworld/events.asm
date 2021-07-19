@@ -38,40 +38,40 @@ CheckBit5_ScriptFlags2:
 	bit 5, [hl]
 	ret
 
-DisableWarpsConnxns: ; unreferenced
-	ld hl, wScriptFlags2
-	res 2, [hl]
-	ret
-
-DisableCoordEvents: ; unreferenced
-	ld hl, wScriptFlags2
-	res 1, [hl]
-	ret
-
-DisableStepCount: ; unreferenced
-	ld hl, wScriptFlags2
-	res 0, [hl]
-	ret
-
-DisableWildEncounters: ; unreferenced
-	ld hl, wScriptFlags2
-	res 4, [hl]
-	ret
-
-EnableWarpsConnxns: ; unreferenced
-	ld hl, wScriptFlags2
-	set 2, [hl]
-	ret
-
-EnableCoordEvents: ; unreferenced
-	ld hl, wScriptFlags2
-	set 1, [hl]
-	ret
-
-EnableStepCount: ; unreferenced
-	ld hl, wScriptFlags2
-	set 0, [hl]
-	ret
+;DisableWarpsConnxns: ; unreferenced
+;	ld hl, wScriptFlags2
+;	res 2, [hl]
+;	ret
+;
+;DisableCoordEvents: ; unreferenced
+;	ld hl, wScriptFlags2
+;	res 1, [hl]
+;	ret
+;
+;DisableStepCount: ; unreferenced
+;	ld hl, wScriptFlags2
+;	res 0, [hl]
+;	ret
+;
+;DisableWildEncounters: ; unreferenced
+;	ld hl, wScriptFlags2
+;	res 4, [hl]
+;	ret
+;
+;EnableWarpsConnxns: ; unreferenced
+;	ld hl, wScriptFlags2
+;	set 2, [hl]
+;	ret
+;
+;EnableCoordEvents: ; unreferenced
+;	ld hl, wScriptFlags2
+;	set 1, [hl]
+;	ret
+;
+;EnableStepCount: ; unreferenced
+;	ld hl, wScriptFlags2
+;	set 0, [hl]
+;	ret
 
 EnableWildEncounters:
 	ld hl, wScriptFlags2
@@ -134,10 +134,6 @@ EnterMap:
 	ld a, MAPSTATUS_HANDLE
 	ld [wMapStatus], a
 	ret
-
-UnusedWait30Frames: ; unreferenced
-	ld c, 30
-	jp DelayFrames
 
 HandleMap:
 	call ResetOverworldDelay
@@ -564,8 +560,7 @@ ObjectEventTypeArray:
 	ld h, [hl]
 	ld l, a
 	call GetMapScriptsBank
-	call CallScript
-	ret
+	jp CallScript
 
 .itemball
 	ld hl, MAPOBJECT_SCRIPT_POINTER
@@ -957,11 +952,9 @@ PlayerEventScriptPointers:
 	dba InvalidEventScript      ; (NUM_PLAYER_EVENTS)
 	assert_table_length NUM_PLAYER_EVENTS + 1
 
-InvalidEventScript:
-	end
-
 HatchEggScript:
 	callasm OverworldHatchEgg
+InvalidEventScript:
 	end
 
 WarpToNewMapScript:
@@ -1101,28 +1094,22 @@ RandomEncounter::
 	jr nz, .bug_contest
 	farcall TryWildEncounter
 	jr nz, .nope
-	jr .ok
+	ld a, BANK(WildBattleScript)
+	ld hl, WildBattleScript
+	jr .done
 
 .bug_contest
 	call _TryWildEncounter_BugContest
-	jr nc, .nope
-	jr .ok_bug_contest
-
+	jr c, .ok_bug_contest
+	; fallthrough
 .nope
 	ld a, 1
 	and a
 	ret
 
-.ok
-	ld a, BANK(WildBattleScript)
-	ld hl, WildBattleScript
-	jr .done
-
 .ok_bug_contest
 	ld a, BANK(BugCatchingContestBattleScript)
 	ld hl, BugCatchingContestBattleScript
-	jr .done
-
 .done
 	call CallScript
 	scf
@@ -1213,7 +1200,6 @@ ChooseWildEncounter_BugContest::
 
 .GotLevel:
 	ld [wCurPartyLevel], a
-
 	xor a
 	ret
 

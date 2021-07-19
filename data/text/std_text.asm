@@ -92,11 +92,6 @@ NurseGoodbyeText:
 	line "again."
 	done
 
-; not used
-	text "We hope to see you"
-	line "again."
-	done
-
 NursePokerusText:
 	text "Your #mon"
 	line "appear to be"
@@ -189,33 +184,16 @@ TVText:
 	done
 
 HomepageText:
-	text "#Mmon Journal"
+	text "#mon Journal"
 	line "Home Page…"
 
 	para "It hasn't been"
 	line "updated…"
 	done
 
-; not used
-	text "#MON RADIO!"
-
-	para "Call in with your"
-	line "requests now!"
-	done
-
 TrashCanText:
 	text "There's nothing in"
 	line "here…"
-	done
-
-; not used
-	text "A #MON may be"
-	line "able to move this."
-	done
-
-; not used
-	text "Maybe a #MON"
-	line "can break this."
 	done
 
 PokecenterSignText:

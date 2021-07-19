@@ -537,6 +537,7 @@ SpinarakEggMoves:
 	db BATON_PASS
 	db PURSUIT
 	db MEGAHORN
+	db TWINEEDLE
 	db -1 ; end
 
 ChinchouEggMoves:
