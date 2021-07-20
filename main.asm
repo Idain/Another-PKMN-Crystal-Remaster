@@ -124,7 +124,6 @@ INCLUDE "engine/events/kurt_selectquantity_interpretjoypad.asm"
 SECTION "bankA", ROMX
 
 INCLUDE "engine/link/link.asm"
-INCLUDE "engine/overworld/wildmons.asm"
 INCLUDE "engine/battle/link_result.asm"
 
 
@@ -705,3 +704,8 @@ SECTION "Stadium 2 Checksums", ROMX[$7DE0], BANK[$7F]
 SECTION "Evolution Moves", ROMX
 
 INCLUDE "data/pokemon/evolution_moves.asm"
+
+
+SECTION "Overworld Wildmon Data", ROMX
+
+INCLUDE "engine/overworld/wildmons.asm"
