@@ -8,8 +8,6 @@ LoadSpecialMapPalette:
 
 .not_dark
 	ld a, [wMapTileset]
-	cp TILESET_POKECOM_CENTER
-	jr z, .pokecom_2f
 	cp TILESET_BATTLE_TOWER_INSIDE
 	jr z, .battle_tower_inside
 	cp TILESET_ICE_PATH
@@ -20,13 +18,9 @@ LoadSpecialMapPalette:
 	jr z, .radio_tower
 	cp TILESET_MANSION
 	jr z, .mansion_mobile
-	jr .do_nothing
-
-.darkness
-	call LoadDarknessPalette
-	scf
-	ret	
-
+	cp TILESET_POKECOM_CENTER
+	jr nz, .do_nothing
+	; fallthrough
 .pokecom_2f
 	call LoadPokeComPalette
 	scf
@@ -61,6 +55,11 @@ LoadSpecialMapPalette:
 	scf
 	ret
 
+.darkness
+	call LoadDarknessPalette
+	scf
+	ret	
+
 .do_nothing
 	and a
 	ret
@@ -70,8 +69,7 @@ LoadDarknessPalette:
 	ld de, wBGPals1
 	ld hl, DarknessPalette
 	ld bc, 8 palettes
-	call FarCopyWRAM
-	ret
+	jp FarCopyWRAM
 
 DarknessPalette:
 INCLUDE "gfx/tilesets/darkness.pal"
@@ -81,8 +79,7 @@ LoadPokeComPalette:
 	ld de, wBGPals1
 	ld hl, PokeComPalette
 	ld bc, 8 palettes
-	call FarCopyWRAM
-	ret
+	jp FarCopyWRAM
 
 PokeComPalette:
 INCLUDE "gfx/tilesets/pokecom_center.pal"
@@ -92,8 +89,7 @@ LoadBattleTowerInsidePalette:
 	ld de, wBGPals1
 	ld hl, BattleTowerInsidePalette
 	ld bc, 8 palettes
-	call FarCopyWRAM
-	ret
+	jp FarCopyWRAM
 
 BattleTowerInsidePalette:
 INCLUDE "gfx/tilesets/battle_tower_inside.pal"
@@ -103,8 +99,7 @@ LoadIcePathPalette:
 	ld de, wBGPals1
 	ld hl, IcePathPalette
 	ld bc, 8 palettes
-	call FarCopyWRAM
-	ret
+	jp FarCopyWRAM
 
 IcePathPalette:
 INCLUDE "gfx/tilesets/ice_path.pal"
@@ -114,8 +109,7 @@ LoadHousePalette:
 	ld de, wBGPals1
 	ld hl, HousePalette
 	ld bc, 8 palettes
-	call FarCopyWRAM
-	ret
+	jp FarCopyWRAM
 
 HousePalette:
 INCLUDE "gfx/tilesets/house.pal"
@@ -125,8 +119,7 @@ LoadRadioTowerPalette:
 	ld de, wBGPals1
 	ld hl, RadioTowerPalette
 	ld bc, 8 palettes
-	call FarCopyWRAM
-	ret
+	jp FarCopyWRAM
 
 RadioTowerPalette:
 INCLUDE "gfx/tilesets/radio_tower.pal"
@@ -154,8 +147,7 @@ LoadMansionPalette:
 	ld de, wBGPals1 palette PAL_BG_ROOF
 	ld hl, MansionPalette1 palette 8
 	ld bc, 1 palettes
-	call FarCopyWRAM
-	ret
+	jp FarCopyWRAM
 
 MansionPalette2:
 INCLUDE "gfx/tilesets/mansion_2.pal"
@@ -163,14 +155,11 @@ INCLUDE "gfx/tilesets/mansion_2.pal"
 LoadSpecialNPCPalette:
 	call GetMapTimeOfDay
 	bit IN_DARKNESS_F, a
-	jr z, .not_dark
+	jr z, .do_nothing ; not dark
 	ld a, [wStatusFlags]
 	bit STATUSFLAGS_FLASH_F, a
-	jr z, .darkness
-
-.not_dark
-	jr .do_nothing
-
+	jr nz, .do_nothing
+	; fallthrough
 .darkness
 	call LoadNPCDarknessPalette
 	scf
@@ -185,8 +174,7 @@ LoadNPCDarknessPalette:
 	ld de, wOBPals1
 	ld hl, NPCDarknessPalette
 	ld bc, 8 palettes
-	call FarCopyWRAM
-	ret
+	jp FarCopyWRAM
 
 NPCDarknessPalette:
 INCLUDE "gfx/overworld/npc_sprites_darkness.pal"

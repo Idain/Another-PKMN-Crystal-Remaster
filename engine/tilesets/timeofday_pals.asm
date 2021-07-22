@@ -186,16 +186,17 @@ ReplaceTimeOfDayPals:
 	ld a, DARKNESS_PALSET
 	jr .done
 
-.not_dark:
+.not_dark
 	ld hl, .BrightnessLevels
+	ld a, [wMapTimeOfDay]
 	maskbits NUM_MAP_PALETTES
 	add l
 	ld l, a
-	ld a, 0
 	adc h
+	sub l
 	ld h, a
 	ld a, [hl]
-.done:
+.done
 	ld [wTimeOfDayPalset], a
 	ret
 
