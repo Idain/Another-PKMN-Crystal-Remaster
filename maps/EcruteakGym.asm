@@ -235,7 +235,7 @@ MortyText_FogBadgeSpeech:
 	text "By having the Fog"
 	line "Badge, #mon up"
 
-	para "to Lv. 40 will"
+	para "to Lv. 45 will"
 	line "obey you."
 
 	para "Also, #mon will"

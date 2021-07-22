@@ -211,22 +211,12 @@ Text_ReceivedGlacierBadge:
 	done
 
 PryceText_GlacierBadgeSpeech:
-	text "Thanks to this"
-	line "Badge, #mon"
-
-	para "up to Lv. 45"
-	line "will obey you"
-
-	para "without question,"
-	line "including traded"
-	cont "#mon."
-
-	para "Also, this Badge"
-	line "will let your" 
+	text "This Badge will"
+	line "let your #mon" 
 	
-	para "#mon use Whirl-"
-	line "pool to get across"
-	cont "real whirlpools."
+	para "use Whirlpool to"
+	line "get across real"
+	cont "whirlpools."
 
 	para "And this… This is"
 	line "a gift from me!"

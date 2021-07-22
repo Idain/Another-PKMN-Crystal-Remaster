@@ -139,32 +139,32 @@ KantoGrassWildMons:
 	; morn
 	;  %, species,    min, max
 	db 30, GRAVELER,	34, 34
-	db 30, RHYHORN,		32, 32
+	db 25, RHYHORN,		32, 32
 	db 20, ONIX,		33, 33
 	db 10, GOLBAT,		34, 34
 	db  5, SANDSLASH,	35, 35
-	db  4, RHYDON,		35, 35
-	db  1, RHYDON,		35, 35
+	db  5, RHYDON,		35, 35
+	db  5, LARVITAR,	15, 20
 
 	; day
 	;  %, species,    min, max
 	db 30, GRAVELER,	34, 34
-	db 30, RHYHORN,		32, 32
+	db 25, RHYHORN,		32, 32
 	db 20, ONIX,		33, 33
 	db 10, GOLBAT,		34, 34
 	db  5, SANDSLASH,	35, 35
-	db  4, RHYDON,		35, 35
-	db  1, RHYDON,		35, 35
+	db  5, RHYDON,		35, 35
+	db  5, LARVITAR,	15, 20
 
 	; nite
 	;  %, species,    min, max
 	db 30, GOLBAT,		34, 34
-	db 30, GRAVELER,	34, 40
+	db 20, GRAVELER,	34, 40
 	db 20, ONIX,		32, 32
 	db 10, GRAVELER,	34, 40
-	db  5, GRAVELER,	34, 40
-	db  4, GRAVELER,	34, 40
-	db  1, GRAVELER,	34, 40
+	db 10, GRAVELER,	34, 40
+	db  5, MURKROW,		34, 34
+	db  5, HOUNDOUR,	34, 34
 	end_grass_wildmons
 
 	def_grass_wildmons TOHJO_FALLS

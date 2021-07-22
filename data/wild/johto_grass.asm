@@ -391,10 +391,10 @@ JohtoGrassWildMons:
 	;  %, species,    min, max
 	db 30, RATTATA,		14, 14
 	db 30, KOFFING,		12, 16
-	db 20, KOFFING,		12, 16
+	db 19, KOFFING,		12, 16
 	db 10, ZUBAT,		15, 15
 	db  5, MAGMAR, 		14, 14
-	db  4, KOFFING,		12, 16
+	db  5, HOUNDOUR,	15, 15
 	db  1, WEEZING,		16, 16
 	end_grass_wildmons
 
@@ -686,11 +686,11 @@ JohtoGrassWildMons:
 	;  %, species,    min, max
 	db 30, ODDISH,		 5,  7
 	db 30, VENONAT,		 5,  5
-	db 20, ODDISH,		 5,  7
+	db 15, ODDISH,		 5,  7
 	db 10, PSYDUCK,		 7,  7
 	db  5, HOOTHOOT,	 7,  7
-	db  4, PARAS,		 6,  6
-	db  1, PARAS,		 6,  6
+	db  5, PARAS,		 6,  6
+	db  5, MURKROW,		 6,  6
 	end_grass_wildmons
 
 	def_grass_wildmons MOUNT_MORTAR_1F_OUTSIDE

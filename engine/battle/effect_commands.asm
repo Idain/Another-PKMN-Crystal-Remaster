@@ -672,14 +672,9 @@ BattleCommand_CheckObedience:
 	ld a, 65
 	jr nz, .getlevel
 
-	; glacierbadge
-	bit GLACIERBADGE, [hl]
-	ld a, 45
-	jr nz, .getlevel
-
 	; fogbadge
 	bit FOGBADGE, [hl]
-	ld a, 40
+	ld a, 45
 	jr nz, .getlevel
 
 	; plainbadge
