@@ -956,12 +956,6 @@ StrengthFunction:
 	jr c, .Failed
 	jr .UseStrength
 
-.AlreadyUsingStrength: ; unreferenced
-	ld hl, .AlreadyUsingStrengthText
-	call MenuTextboxBackup
-	ld a, $80
-	ret
-
 .AlreadyUsingStrengthText:
 	text_far _AlreadyUsingStrengthText
 	text_end
@@ -1403,13 +1397,9 @@ AskRockSmashText:
 HasRockSmash:
 	ld d, ROCK_SMASH
 	call CheckPartyMove
-	jr nc, .yes
-; no
-	ld a, 1
-	jr .done
-.yes
-	xor a
-.done
+; If carry, a = 1, else a = 0.
+	sbc a 
+	and 1
 	ld [wScriptVar], a
 	ret
 
@@ -1581,7 +1571,7 @@ Script_FishCastRod:
 	callasm LoadFishingGFX
 	loademote EMOTE_SHOCK
 	applymovement PLAYER, MovementData_CastRod
-	pause 40
+	pause 30
 	end
 
 MovementData_CastRod:
@@ -1602,10 +1592,6 @@ RodBiteText:
 
 RodNothingText:
 	text_far _RodNothingText
-	text_end
-
-UnusedNothingHereText: ; unreferenced
-	text_far _UnusedNothingHereText
 	text_end
 
 BikeFunction:
