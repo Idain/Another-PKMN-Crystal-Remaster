@@ -57,7 +57,7 @@ RuinsOfAlphOmanyteChamberPuzzle:
 .PuzzleComplete:
 	setevent EVENT_RUINS_OF_ALPH_INNER_CHAMBER_TOURISTS
 	setevent EVENT_SOLVED_OMANYTE_PUZZLE
-	setflag ENGINE_UNLOCKED_UNOWNS_L_TO_R
+	setflag ENGINE_UNLOCKED_UNOWNS_K_TO_Q
 	setmapscene RUINS_OF_ALPH_INNER_CHAMBER, SCENE_RUINSOFALPHINNERCHAMBER_STRANGE_PRESENCE
 	earthquake 30
 	showemote EMOTE_SHOCK, PLAYER, 15
@@ -113,10 +113,6 @@ RuinsOfAlphOmanyteChamberWallPatternLeftText:
 	line "on the walls…"
 	done
 
-RuinsOfAlphOmanyteChamberUnownText: ; unreferenced
-	text "It's UNOWN text!"
-	done
-
 RuinsOfAlphOmanyteChamberWallPatternRightText:
 	text "Patterns appeared"
 	line "on the walls…"
@@ -130,11 +126,11 @@ RuinsOfAlphOmanyteChamberWallHoleText:
 RuinsOfAlphOmanyteChamberAncientReplicaText:
 	text "It's a replica of"
 	line "an ancient #-"
-	cont "MON."
+	cont "mon."
 	done
 
 RuinsOfAlphOmanyteChamberDescriptionText:
-	text "This #MON"
+	text "This #mon"
 	line "drifted in the"
 
 	para "sea by twisting"

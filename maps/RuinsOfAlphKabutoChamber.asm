@@ -63,7 +63,7 @@ RuinsOfAlphKabutoChamberPuzzle:
 .PuzzleComplete:
 	setevent EVENT_RUINS_OF_ALPH_INNER_CHAMBER_TOURISTS
 	setevent EVENT_SOLVED_KABUTO_PUZZLE
-	setflag ENGINE_UNLOCKED_UNOWNS_A_TO_K
+	setflag ENGINE_UNLOCKED_UNOWNS_A_TO_J
 	setevent EVENT_RUINS_OF_ALPH_KABUTO_CHAMBER_RECEPTIONIST
 	setmapscene RUINS_OF_ALPH_INNER_CHAMBER, SCENE_RUINSOFALPHINNERCHAMBER_STRANGE_PRESENCE
 	earthquake 30
@@ -152,7 +152,7 @@ RuinsOfAlphKabutoChamberReceptionistText:
 	para "There are sliding"
 	line "panels that depict"
 
-	para "a #MON drawn by"
+	para "a #mon drawn by"
 	line "the ancients."
 
 	para "Slide the panels"
@@ -161,7 +161,7 @@ RuinsOfAlphKabutoChamberReceptionistText:
 
 	para "To the right is a"
 	line "description of the"
-	cont "#MON."
+	cont "#mon."
 
 	para "Scientists in the"
 	line "back are examining"
@@ -212,7 +212,7 @@ RuinsOfAlphKabutoChamberUnusedText: ; unreferenced
 	line "some kind."
 
 	para "I think they make"
-	line "#MON appear,"
+	line "#mon appear,"
 
 	para "but it's not clear"
 	line "yet…"
@@ -221,10 +221,6 @@ RuinsOfAlphKabutoChamberUnusedText: ; unreferenced
 RuinsOfAlphKabutoChamberWallPatternLeftText:
 	text "Patterns appeared"
 	line "on the walls…"
-	done
-
-RuinsOfAlphKabutoChamberUnownText: ; unreferenced
-	text "It's UNOWN text!"
 	done
 
 RuinsOfAlphKabutoChamberWallPatternRightText:
@@ -240,11 +236,11 @@ RuinsOfAlphKabutoChamberWallHoleText:
 RuinsOfAlphKabutoChamberAncientReplicaText:
 	text "It's a replica of"
 	line "an ancient #-"
-	cont "MON."
+	cont "mon."
 	done
 
 RuinsOfAlphKabutoChamberDescriptionText:
-	text "A #MON that hid"
+	text "A #mon that hid"
 	line "on the sea floor."
 
 	para "Eyes on its back"

@@ -56,7 +56,7 @@ RuinsOfAlphAerodactylChamberPuzzle:
 .PuzzleComplete:
 	setevent EVENT_RUINS_OF_ALPH_INNER_CHAMBER_TOURISTS
 	setevent EVENT_SOLVED_AERODACTYL_PUZZLE
-	setflag ENGINE_UNLOCKED_UNOWNS_S_TO_W
+	setflag ENGINE_UNLOCKED_UNOWNS_R_TO_V
 	setmapscene RUINS_OF_ALPH_INNER_CHAMBER, SCENE_RUINSOFALPHINNERCHAMBER_STRANGE_PRESENCE
 	earthquake 30
 	showemote EMOTE_SHOCK, PLAYER, 15
@@ -112,10 +112,6 @@ RuinsOfAlphAerodactylChamberWallPatternLeftText:
 	line "on the walls…"
 	done
 
-RuinsOfAlphAerodactylChamberUnownText: ; unreferenced
-	text "It's UNOWN text!"
-	done
-
 RuinsOfAlphAerodactylChamberWallPatternRightText:
 	text "Patterns appeared"
 	line "on the walls…"
@@ -129,12 +125,12 @@ RuinsOfAlphAerodactylChamberWallHoleText:
 RuinsOfAlphAerodactylChamberAncientReplicaText:
 	text "It's a replica of"
 	line "an ancient #-"
-	cont "MON."
+	cont "mon."
 	done
 
 RuinsOfAlphAerodactylChamberDescriptionText:
 	text "This flying #-"
-	line "MON attacked its"
+	line "mon attacked its"
 
 	para "prey with saw-like"
 	line "fangs."
