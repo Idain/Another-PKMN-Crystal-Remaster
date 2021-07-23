@@ -2006,8 +2006,8 @@ EeveeEvosAttacks:
 	db 1, TACKLE
 	db 1, TAIL_WHIP
 	db 5, SAND_ATTACK
-	db 13, QUICK_ATTACK
-	db 17, BITE
+	db 11, QUICK_ATTACK
+	db 14, BITE
 	db 17, SWIFT
 	db 25, TAKE_DOWN
 	db 29, CHARM

@@ -36,4 +36,5 @@ SpriteMons:
 	db GYARADOS
 	db LUGIA
 	db HO_OH
+	db FARFETCH_D
 	assert_table_length NUM_POKEMON_SPRITES

@@ -432,6 +432,9 @@ LaprasEggMoves:
 EeveeEggMoves:
 	db FLAIL
 	db CHARM
+	db ENDURE
+	db DOUBLE_KICK
+	db MUD_SLAP
 	db -1 ; end
 
 OmanyteEggMoves:

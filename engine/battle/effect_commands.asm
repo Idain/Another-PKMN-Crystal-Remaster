@@ -3348,7 +3348,6 @@ DAMAGE_CAP EQU MAX_DAMAGE - MIN_DAMAGE
 	ld a, $ff
 	ldh [hQuotient + 2], a
 	ldh [hQuotient + 3], a
-
 	ret
 
 INCLUDE "data/types/type_boost_items.asm"
@@ -3384,7 +3383,7 @@ BattleCommand_ConstantDamage:
 	ld a, BATTLE_VARS_MOVE_POWER
 	call GetBattleVar
 	ld b, a
-	ld a, $0
+	ld a, 0
 	jr .got_power
 
 .psywave
@@ -3830,18 +3829,12 @@ BattleCommand_SleepTarget:
 	jr nz, .fail
 
 	call AnimateCurrentMove
-;	ld b, SLP
-;	ld a, [wInBattleTowerBattle]
-;	and a
-;	jr z, .random_loop
 	ld b, 3
 
 .random_loop
 	call BattleRandom
 	and b
 	jr z, .random_loop
-;	cp SLP 
-;	jr z, .random_loop
 	inc a
 	ld [de], a
 	call UpdateOpponentInParty
