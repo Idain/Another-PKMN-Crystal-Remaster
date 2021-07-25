@@ -377,51 +377,6 @@ AI_Items:
 	call EnemyUsedHealingItem
 	jp .Use
 
-; Everything up to "End unused" is unused
-
-.UnusedHealItem: ; unreferenced
-; This has similar conditions to .HealItem
-	callfar AICheckEnemyMaxHP
-	jp c, .DontUse
-	push bc
-	ld de, wEnemyMonMaxHP + 1
-	ld hl, wEnemyMonHP + 1
-	ld a, [de]
-	sub [hl]
-	jr z, .check_40_percent
-	dec hl
-	dec de
-	ld c, a
-	sbc [hl]
-	and a
-	jr nz, .check_40_percent
-	ld a, c
-	cp b
-	jp c, .check_50_percent
-	callfar AICheckEnemyQuarterHP
-	jr c, .check_40_percent
-
-.check_50_percent
-	pop bc
-	ld a, [bc]
-	bit UNKNOWN_USE_F, a
-	jp z, .Use
-	call Random
-	cp 50 percent + 1
-	jp c, .Use
-
-.check_40_percent
-	pop bc
-	ld a, [bc]
-	bit UNKNOWN_USE_F, a
-	jp z, .DontUse
-	call Random
-	cp 39 percent + 1
-	jp c, .Use
-	jp .DontUse
-
-; End unused
-
 .XAccuracy:
 	call .XItem
 	jr c, .DontUse
@@ -698,12 +653,6 @@ EnemyWithdrewText:
 	text_far _EnemyWithdrewText
 	text_end
 
-EnemyUsedFullHealRed: ; unreferenced
-	call AIUsedItemSound
-	call AI_HealStatus
-	ld a, FULL_HEAL_RED ; X_SPEED
-	jp PrintText_UsedItemOn_AND_AIUpdateHUD
-
 AI_HealStatus:
 	ld a, [wCurOTMon]
 	ld hl, wOTPartyMon1Status
@@ -736,36 +685,36 @@ EnemyUsedDireHit:
 	ld a, DIRE_HIT
 	jp PrintText_UsedItemOn_AND_AIUpdateHUD
 
-AICheckEnemyFractionMaxHP: ; unreferenced
-; Input: a = divisor
-; Work: bc = [wEnemyMonMaxHP] / a
-; Work: de = [wEnemyMonHP]
-; Output:
-; -  c, nz if [wEnemyMonHP] > [wEnemyMonMaxHP] / a
-; - nc,  z if [wEnemyMonHP] = [wEnemyMonMaxHP] / a
-; - nc, nz if [wEnemyMonHP] < [wEnemyMonMaxHP] / a
-	ldh [hDivisor], a
-	ld hl, wEnemyMonMaxHP
-	ld a, [hli]
-	ldh [hDividend], a
-	ld a, [hl]
-	ldh [hDividend + 1], a
-	ld b, 2
-	call Divide
-	ldh a, [hQuotient + 3]
-	ld c, a
-	ldh a, [hQuotient + 2]
-	ld b, a
-	ld hl, wEnemyMonHP + 1
-	ld a, [hld]
-	ld e, a
-	ld a, [hl]
-	ld d, a
-	sub b
-	ret nz
-	ld a, e
-	sub c
-	ret
+;AICheckEnemyFractionMaxHP: ; unreferenced
+;; Input: a = divisor
+;; Work: bc = [wEnemyMonMaxHP] / a
+;; Work: de = [wEnemyMonHP]
+;; Output:
+;; -  c, nz if [wEnemyMonHP] > [wEnemyMonMaxHP] / a
+;; - nc,  z if [wEnemyMonHP] = [wEnemyMonMaxHP] / a
+;; - nc, nz if [wEnemyMonHP] < [wEnemyMonMaxHP] / a
+;	ldh [hDivisor], a
+;	ld hl, wEnemyMonMaxHP
+;	ld a, [hli]
+;	ldh [hDividend], a
+;	ld a, [hl]
+;	ldh [hDividend + 1], a
+;	ld b, 2
+;	call Divide
+;	ldh a, [hQuotient + 3]
+;	ld c, a
+;	ldh a, [hQuotient + 2]
+;	ld b, a
+;	ld hl, wEnemyMonHP + 1
+;	ld a, [hld]
+;	ld e, a
+;	ld a, [hl]
+;	ld d, a
+;	sub b
+;	ret nz
+;	ld a, e
+;	sub c
+;	ret
 
 EnemyUsedXAttack: 	; Boost by 2 stages
 	ld b, $10 | ATTACK

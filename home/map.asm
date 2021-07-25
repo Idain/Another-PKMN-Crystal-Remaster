@@ -2000,16 +2000,6 @@ SwitchToMapAttributesBank::
 	ld a, [wMapNumber]
 	ld c, a
 SwitchToAnyMapAttributesBank::
-	call GetAnyMapAttributesBank
-	rst Bankswitch
-	ret
-
-GetMapAttributesBank:: ; unreferenced
-	ld a, [wMapGroup]
-	ld b, a
-	ld a, [wMapNumber]
-	ld c, a
-GetAnyMapAttributesBank::
 	push hl
 	push de
 	ld de, MAP_MAPATTRIBUTES_BANK
@@ -2017,6 +2007,8 @@ GetAnyMapAttributesBank::
 	ld a, c
 	pop de
 	pop hl
+
+	rst Bankswitch
 	ret
 
 CopyMapPartial::
@@ -2151,23 +2143,17 @@ GetMapMusic::
 .radiotower
 	ld a, [wStatusFlags2]
 	bit STATUSFLAGS2_ROCKETS_IN_RADIO_TOWER_F, a
+	ld de, MUSIC_GOLDENROD_CITY
 	jr z, .clearedradiotower
 	ld de, MUSIC_ROCKET_OVERTURE
-	jr .done
-
-.clearedradiotower
-	ld de, MUSIC_GOLDENROD_CITY
 	jr .done
 
 .mahoganymart
 	ld a, [wStatusFlags2]
 	bit STATUSFLAGS2_ROCKETS_IN_MAHOGANY_F, a
+	ld de, MUSIC_CHERRYGROVE_CITY
 	jr z, .clearedmahogany
 	ld de, MUSIC_ROCKET_HIDEOUT
-	jr .done
-
-.clearedmahogany
-	ld de, MUSIC_CHERRYGROVE_CITY
 	jr .done
 
 GetMapTimeOfDay::
