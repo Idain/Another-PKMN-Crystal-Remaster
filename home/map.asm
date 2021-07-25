@@ -2144,7 +2144,7 @@ GetMapMusic::
 	ld a, [wStatusFlags2]
 	bit STATUSFLAGS2_ROCKETS_IN_RADIO_TOWER_F, a
 	ld de, MUSIC_GOLDENROD_CITY
-	jr z, .clearedradiotower
+	jr z, .done
 	ld de, MUSIC_ROCKET_OVERTURE
 	jr .done
 
@@ -2152,7 +2152,7 @@ GetMapMusic::
 	ld a, [wStatusFlags2]
 	bit STATUSFLAGS2_ROCKETS_IN_MAHOGANY_F, a
 	ld de, MUSIC_CHERRYGROVE_CITY
-	jr z, .clearedmahogany
+	jr z, .done
 	ld de, MUSIC_ROCKET_HIDEOUT
 	jr .done
 

@@ -149,15 +149,15 @@ FishGroups:
 	db  85 percent + 1, MAGIKARP,   10
 	db 100 percent,     MAGIKARP,   10
 .Dratini_2_Good:
-	db  35 percent,     MAGIKARP,   10
-	db  70 percent,     MAGIKARP,   10
-	db  90 percent + 1, MAGIKARP,   10
+	db  35 percent,     MAGIKARP,   20
+	db  70 percent,     MAGIKARP,   20
+	db  90 percent + 1, MAGIKARP,   20
 	db 100 percent,     DRATINI,    10
 .Dratini_2_Super:
-	db  40 percent,     MAGIKARP,   10
-	db  70 percent,     DRATINI,    10
-	db  90 percent + 1, MAGIKARP,   10
-	db 100 percent,     DRAGONAIR,  10
+	db  40 percent,     MAGIKARP,   40
+	db  70 percent,     DRATINI,    20
+	db  90 percent + 1, MAGIKARP,   40
+	db 100 percent,     DRAGONAIR,  40
 
 .WhirlIslands_Old:
 	db  70 percent + 1, MAGIKARP,   10
