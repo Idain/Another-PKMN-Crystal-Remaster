@@ -118,8 +118,7 @@ EnterMap:
 
 	ldh a, [hMapEntryMethod]
 	cp MAPSETUP_CONNECTION
-	jr nz, .dont_enable
-	call EnableEvents
+	call z, EnableEvents
 .dont_enable
 
 	ldh a, [hMapEntryMethod]
@@ -370,16 +369,6 @@ SetUpFiveStepWildEncounterCooldown:
 	ld [wWildEncounterCooldown], a
 	ret
 
-SetMinTwoStepWildEncounterCooldown:
-; dummied out
-	ret
-	ld a, [wWildEncounterCooldown]
-	cp 2
-	ret nc
-	ld a, 2
-	ld [wWildEncounterCooldown], a
-	ret
-
 RunSceneScript:
 	ld a, [wCurMapSceneScriptCount]
 	and a
@@ -621,8 +610,7 @@ BGEventJumptable:
 
 .left:
 	ld b, OW_LEFT
-	jr .checkdir
-
+	; fallthrough
 .checkdir:
 	ld a, [wPlayerDirection]
 	and %1100
@@ -727,12 +715,7 @@ PlayerMovementPointers:
 
 .normal:
 .finish:
-	xor a
-	ld c, a
-	ret
-
 .jump:
-	call SetMinTwoStepWildEncounterCooldown
 	xor a
 	ld c, a
 	ret
@@ -1023,8 +1006,8 @@ LoadScriptBDE::
 	and a
 	ret nz
 ; Set the flag
-	ld [hl], 1
-	inc hl
+	ld a, 1
+	ld [hli], a
 ; Load the script pointer b:de into (wMapReentryScriptBank):(wMapReentryScriptAddress)
 	ld [hl], b
 	inc hl

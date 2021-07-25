@@ -870,9 +870,9 @@ FillEastConnectionStrip::
 	ldh a, [hConnectedMapWidth]
 	add e
 	ld e, a
-	jr nc, .okay
-	inc d
-.okay
+	adc d
+	sub e
+	ld d, a
 	dec b
 	jr nz, .loop
 	ret
@@ -1477,10 +1477,9 @@ GetMovementPermissions::
 
 	ld a, [wPlayerStandingTile]
 	and 7
-	ld hl, .MovementPermissionsData
-	add l
+	add LOW(.MovementPermissionsData)
 	ld l, a
-	adc h
+	adc HIGH(.MovementPermissionsData)
 	sub l
 	ld h, a
 	ld a, [hl]

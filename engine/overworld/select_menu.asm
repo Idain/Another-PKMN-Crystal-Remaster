@@ -1,8 +1,7 @@
 SelectMenu::
 	call CheckRegisteredItem
-	jr c, .NotRegistered
-	jp UseRegisteredItem
-
+	jp nc, UseRegisteredItem
+	; fallthrough
 .NotRegistered:
 	call OpenText
 	ld b, BANK(MayRegisterItemText)
@@ -83,8 +82,6 @@ CheckRegisteredItem:
 	jr .StandardCheck
 
 .CheckTMHM:
-	jr .NoRegisteredItem
-
 .NoRegisteredItem:
 	xor a
 	ld [wWhichRegisteredItem], a

@@ -7,15 +7,12 @@ _SwitchPartyMons:
 	dec a
 	ld [wSwitchMonTo], a
 	cp b
-	jr z, .skip
+	ret z
 	call .SwapMonAndMail
 	ld a, [wSwitchMonFrom]
 	call .ClearSprite
 	ld a, [wSwitchMonTo]
-	call .ClearSprite
-.skip
-	ret
-
+	; fallthrough
 .ClearSprite:
 	push af
 	hlcoord 0, 1
@@ -36,8 +33,7 @@ _SwitchPartyMons:
 	dec c
 	jr nz, .gfx_loop
 	ld de, SFX_SWITCH_POKEMON
-	call WaitPlaySFX
-	ret
+	jp WaitPlaySFX
 
 .SwapMonAndMail:
 	push hl
@@ -141,5 +137,4 @@ _SwitchPartyMons:
 
 .CopyName:
 	ld bc, NAME_LENGTH
-	call CopyBytes
-	ret
+	jp CopyBytes

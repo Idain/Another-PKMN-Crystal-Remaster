@@ -169,12 +169,12 @@ DisplayDexEntry:
 	call ByteFill
 	; page number
 	hlcoord 1, 9
-	ld [hl], $55
-	inc hl
-	ld [hl], $55
+	ld a, $55
+	ld [hli], a
+	ld [hl], a
 	hlcoord 1, 10
-	ld [hl], $56 ; P.
-	inc hl
+	ld a, $56
+	ld [hli], a  ; P.
 	ld [hl], $57 ; 1
 	pop de
 	inc de
@@ -211,9 +211,6 @@ DisplayDexEntry:
 	pop af
 	hlcoord 2, 11
 	jp PlaceFarString
-
-POKeString: ; unreferenced
-	db "#@"
 
 GetDexEntryPointer:
 ; return dex entry pointer b:de

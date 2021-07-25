@@ -107,8 +107,7 @@ ReadAnyMail:
 	jr .loop2
 
 .invalid
-	ld hl, MailGFXPointers
-	inc hl
+	ld hl, MailGFXPointers + 1
 
 .got_pointer
 	ld a, c
@@ -775,11 +774,6 @@ DrawMailBorder2:
 Mail_Place14TileAlternatingRow:
 	push af
 	ld b, 14 / 2
-	jr Mail_PlaceAlternatingRow
-
-Mail_Place16TileAlternatingRow: ; unreferenced
-	push af
-	ld b, 16 / 2
 	jr Mail_PlaceAlternatingRow
 
 Mail_Place18TileAlternatingRow:

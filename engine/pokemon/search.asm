@@ -33,15 +33,8 @@ MonCheck:
 ; Return the result in wScriptVar.
 
 	call CheckOwnMonAnywhere
-	jr c, .exists
-
-	; doesn't exist
-	xor a
-	ld [wScriptVar], a
-	ret
-
-.exists
-	ld a, 1
+	sbc a
+	and 1
 	ld [wScriptVar], a
 	ret
 
@@ -98,8 +91,7 @@ CheckOwnMonAnywhere:
 	jr nc, .loop
 
 	; found!
-	call CloseSRAM
-	ret
+	jp CloseSRAM
 
 .loop
 	push bc
@@ -162,8 +154,7 @@ CheckOwnMonAnywhere:
 
 	; found!
 	pop bc
-	call CloseSRAM
-	ret
+	jp CloseSRAM
 
 .loopboxmon
 	push bc

@@ -398,8 +398,7 @@ TradeAnim_TubeToOT2:
 	ret nz
 	ld a, TRADEANIMSTATE_1
 	call TradeAnim_TubeAnimJumptable
-	call TradeAnim_IncrementJumptableIndex
-	ret
+	jp TradeAnim_IncrementJumptableIndex
 
 TradeAnim_TubeToOT3:
 	call TradeAnim_FlashBGPals
@@ -518,8 +517,8 @@ TradeAnim_TubeAnimJumptable:
 .Three:
 	call TradeAnim_BlankTilemap
 	hlcoord 9, 3
-	ld [hl], $5b
-	inc hl
+	ld a, $5b
+	ld [hli], a
 	ld bc, 10
 	ld a, $60
 	call ByteFill
@@ -881,8 +880,7 @@ TrademonStats_MonTemplate:
 	ld a, HIGH(vBGMap1)
 	ldh [hBGMapAddress + 1], a
 	hlcoord 3, 0
-	ld b, $6
-	ld c, $d
+	lb bc, $6, $d
 	call Textbox
 	hlcoord 4, 0
 	ld de, .OTMonData
@@ -900,8 +898,7 @@ TrademonStats_Egg:
 	ld a, HIGH(vBGMap1)
 	ldh [hBGMapAddress + 1], a
 	hlcoord 3, 0
-	ld b, 6
-	ld c, 13
+	lb bc, 6, 13
 	call Textbox
 	hlcoord 4, 2
 	ld de, .EggData

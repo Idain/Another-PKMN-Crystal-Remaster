@@ -15,8 +15,7 @@ MonSubmenu:
 	call MonMenuLoop
 	ld [wMenuSelection], a
 
-	call ExitMenu
-	ret
+	jp ExitMenu
 
 .MenuHeader:
 	db MENU_BACKUP_TILES ; flags
@@ -34,8 +33,7 @@ MonSubmenu:
 	sub b
 	inc a
 	ld [wMenuBorderTopCoord], a
-	call MenuBox
-	ret
+	jp MenuBox
 
 MonMenuLoop:
 .loop
@@ -53,10 +51,8 @@ MonMenuLoop:
 	bit A_BUTTON_F, a
 	jr nz, .select
 	bit B_BUTTON_F, a
-	jr nz, .cancel
-	jr .loop
+	jr z, .loop
 
-.cancel
 	ld a, MONMENUITEM_CANCEL
 	ret
 
@@ -101,8 +97,7 @@ GetMonMenuString:
 	inc hl
 	ld a, [hl]
 	ld [wNamedObjectIndex], a
-	call GetMoveName
-	ret
+	jp GetMoveName
 
 .NotMove:
 	inc hl
@@ -136,8 +131,7 @@ GetMonSubmenuItems:
 	push hl
 	call IsFieldMove
 	pop hl
-	jr nc, .next
-	call AddMonMenuItem
+	call c, AddMonMenuItem
 
 .next
 	pop de
@@ -162,23 +156,20 @@ GetMonSubmenuItems:
 	ld d, [hl]
 	farcall ItemIsMail
 	pop hl
-	ld a, MONMENUITEM_MAIL
-	jr c, .ok
-	ld a, MONMENUITEM_ITEM
 
-.ok
+	sbc a
+	and MONMENUITEM_MAIL - MONMENUITEM_ITEM
+	add MONMENUITEM_ITEM
+
 	call AddMonMenuItem
 
 .skip2
 	ld a, [wMonSubmenuCount]
 	cp NUM_MONMENU_ITEMS
-	jr z, .ok2
+	jr z, TerminateMonSubmenu
 	ld a, MONMENUITEM_CANCEL
 	call AddMonMenuItem
-
-.ok2
-	call TerminateMonSubmenu
-	ret
+	jr TerminateMonSubmenu
 
 .egg
 	ld a, MONMENUITEM_STATS
@@ -187,8 +178,7 @@ GetMonSubmenuItems:
 	call AddMonMenuItem
 	ld a, MONMENUITEM_CANCEL
 	call AddMonMenuItem
-	call TerminateMonSubmenu
-	ret
+	jr TerminateMonSubmenu
 
 IsFieldMove:
 	ld b, a
@@ -196,9 +186,9 @@ IsFieldMove:
 .next
 	ld a, [hli]
 	cp -1
-	jr z, .nope
+	ret z
 	cp MONMENU_MENUOPTION
-	jr z, .nope
+	ret z
 	ld d, [hl]
 	inc hl
 	ld a, [hli]
@@ -206,8 +196,6 @@ IsFieldMove:
 	jr nz, .next
 	ld a, d
 	scf
-
-.nope
 	ret
 
 ResetMonSubmenu:
@@ -215,8 +203,7 @@ ResetMonSubmenu:
 	ld [wMonSubmenuCount], a
 	ld hl, wMonSubmenuItems
 	ld bc, NUM_MONMENU_ITEMS + 1
-	call ByteFill
-	ret
+	jp ByteFill
 
 TerminateMonSubmenu:
 	ld a, [wMonSubmenuCount]
@@ -266,7 +253,6 @@ BattleMonMenu:
 	ldh a, [hJoyPressed]
 	bit B_BUTTON_F, a
 	jr z, .clear_carry
-	ret z
 
 .set_carry
 	scf

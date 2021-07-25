@@ -21,8 +21,8 @@ AppendTMHMMoveName::
 ; hl = item name buffer
 	pop hl
 ; append wStringBuffer1 to item name buffer
-	ld [hl], " "
-	inc hl
+	ld a, " "
+	ld [hli], a
 	ld de, wStringBuffer1
 	jp CopyName2
 
@@ -404,10 +404,10 @@ Script_promptbutton:
 
 Script_yesorno:
 	call YesNoBox
-	ld a, FALSE
-	jr c, .no
-	ld a, TRUE
-.no
+	; If carry, FALSE; else, TRUE.
+	ccf 
+	sbc a
+	and TRUE
 	ld [wScriptVar], a
 	ret
 
@@ -522,10 +522,9 @@ Script_verbosegiveitemvar:
 	ld [wItemQuantityChange], a
 	ld hl, wNumItems
 	call ReceiveItem
-	ld a, TRUE
-	jr c, .ok2
-	xor a
-.ok2
+; If carry, TRUE; else, FALSE
+	sbc a
+	and TRUE
 	ld [wScriptVar], a
 	call CurItemName
 	ld de, wStringBuffer1
@@ -937,8 +936,7 @@ ApplyObjectFacing:
 	call SetSpriteDirection
 	ld hl, wVramState
 	bit 6, [hl]
-	jp nz, UpdateSprites
-	call .DisableTextTiles
+	call z, .DisableTextTiles
 	jp UpdateSprites
 
 .not_visible
@@ -1800,15 +1798,11 @@ Script_checkmoney:
 	farcall CompareMoney
 
 CompareMoneyAction:
-	jr c, .less
-	jr z, .exact
-	ld a, HAVE_MORE
-	jr .done
-.exact
-	ld a, HAVE_AMOUNT
-	jr .done
-.less
 	ld a, HAVE_LESS
+	jr c, .done ; less
+	ld a, HAVE_AMOUNT
+	jr z, .done ; exact
+	ld a, HAVE_MORE
 .done
 	ld [wScriptVar], a
 	ret

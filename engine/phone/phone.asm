@@ -67,7 +67,7 @@ GetRemainingSpaceInPhoneList:
 	cp -1
 	jr z, .done
 	cp c
-	jr z, .continue
+	jr z, .loop
 
 	push bc
 	push hl
@@ -79,8 +79,6 @@ GetRemainingSpaceInPhoneList:
 .permanent
 	pop hl
 	pop bc
-
-.continue
 	jr .loop
 
 .done
@@ -476,8 +474,8 @@ PhoneCall::
 .CallerTextboxWithName:
 	call Phone_CallerTextbox
 	hlcoord 1, 2
-	ld [hl], "☎"
-	inc hl
+	ld a, "☎"
+	ld [hli], a
 	inc hl
 	ld a, [wPhoneCaller]
 	ld e, a
@@ -507,10 +505,6 @@ Phone_CallEnd:
 	call HangUp_Wait20Frames
 	call HangUp_BoopOff
 	jr HangUp_Wait20Frames
-
-HangUp_ShutDown: ; unreferenced
-	ld de, SFX_SHUT_DOWN_PC
-	jp PlaySFX
 
 HangUp_Beep:
 	ld hl, PhoneClickText
@@ -553,8 +547,8 @@ Phone_TextboxWithName:
 	push bc
 	call Phone_CallerTextbox
 	hlcoord 1, 1
-	ld [hl], "☎"
-	inc hl
+	ld a, "☎"
+	ld [hli], a
 	inc hl
 	ld d, h
 	ld e, l
@@ -563,8 +557,7 @@ Phone_TextboxWithName:
 
 Phone_CallerTextbox:
 	hlcoord 0, 0
-	ld b, 2
-	ld c, SCREEN_WIDTH - 2
+	lb bc, 2, SCREEN_WIDTH - 2
 	jp Textbox
 
 GetCallerClassAndName:

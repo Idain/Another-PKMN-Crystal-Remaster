@@ -1436,8 +1436,7 @@ CalcMonStatC:
 	ld a, b
 	ld d, a
 	push hl
-	ld hl, wBaseStats
-	dec hl ; has to be decreased, because 'c' begins with 1
+	ld hl, wBaseStats - 1 ; has to be decreased, because 'c' begins with 1
 	ld b, 0
 	add hl, bc
 	ld a, [hl]
@@ -1519,23 +1518,22 @@ CalcMonStatC:
 	and $f
 
 .GotDV:
-	ld d, 0
 	add e
 	ld e, a
-	jr nc, .no_overflow_1
-	inc d
+	adc 0
+	sub e
+	ld d, a
 
-.no_overflow_1
 	sla e
 	rl d
 	srl b
 	srl b
 	ld a, b
 	add e
-	jr nc, .no_overflow_2
-	inc d
+	adc d
+	sub e
+	ld d, a
 
-.no_overflow_2
 	ldh [hMultiplicand + 2], a
 	ld a, d
 	ldh [hMultiplicand + 1], a
@@ -1571,7 +1569,6 @@ CalcMonStatC:
 
 .no_overflow_3
 	ld a, STAT_MIN_HP
-
 .not_hp
 	ld b, a
 	ldh a, [hQuotient + 3]
@@ -1762,8 +1759,7 @@ GivePoke::
 .set_caught_data
 	farcall GiveANickname_YesNo
 	pop de
-	jr c, .skip_nickname
-	call InitNickname
+	call nc, InitNickname
 
 .skip_nickname
 	pop bc

@@ -1,3 +1,5 @@
+INCLUDE "data/maps/setup_scripts.asm"
+
 RunMapSetupScript::
 	ldh a, [hMapEntryMethod]
 	and $f
@@ -10,11 +12,7 @@ RunMapSetupScript::
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	call ReadMapSetupScript
-	ret
-
-INCLUDE "data/maps/setup_scripts.asm"
-
+	; fallthrough
 ReadMapSetupScript:
 .loop
 	ld a, [hli]
@@ -99,12 +97,9 @@ CheckUpdatePlayerSprite:
 	call .CheckSurfing
 	jr c, .ok
 	call .CheckSurfing2
-	jr c, .ok
-	ret
-
+	ret nc
 .ok
-	call UpdatePlayerSprite
-	ret
+	jp UpdatePlayerSprite
 
 .CheckBiking:
 	and a
@@ -132,8 +127,7 @@ CheckUpdatePlayerSprite:
 	cp ENVIRONMENT_5
 	jr z, .no_biking
 	cp DUNGEON
-	jr z, .no_biking
-	jr .nope
+	jr nz, .nope
 .no_biking
 	ld a, [wPlayerState]
 	cp PLAYER_BIKE
@@ -168,30 +162,23 @@ CheckUpdatePlayerSprite:
 
 FadeOutMapMusic:
 	ld a, 6
-	call SkipMusic
-	ret
+	jp SkipMusic
 
 ApplyMapPalettes:
 	farcall _UpdateTimePals
 	ret
 
 FadeMapMusicAndPalettes:
-	ld e, LOW(MUSIC_NONE)
-	ld a, [wMusicFadeID]
-	ld d, HIGH(MUSIC_NONE)
-	ld a, [wMusicFadeID + 1]
+	lb de, HIGH(MUSIC_NONE), LOW(MUSIC_NONE)
 	ld a, $4
 	ld [wMusicFade], a
-	call RotateThreePalettesRight
-	ret
+	jp RotateThreePalettesRight
 
 ForceMapMusic:
 	ld a, [wPlayerState]
 	cp PLAYER_BIKE
-	jr nz, .notbiking
+	jp nz, TryRestartMapMusic ; not biking
 	call MinVolume
 	ld a, $88
 	ld [wMusicFade], a
-.notbiking
-	call TryRestartMapMusic
-	ret
+	jp TryRestartMapMusic

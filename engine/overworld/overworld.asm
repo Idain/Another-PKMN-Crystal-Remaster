@@ -91,14 +91,8 @@ INCLUDE "data/sprites/player_sprites.asm"
 AddMapSprites:
 	call GetMapEnvironment
 	call CheckOutdoorMap
-	jr z, .outdoor
-	call AddIndoorSprites
-	ret
-
-.outdoor
-	call AddOutdoorSprites
-	ret
-
+	jr z, AddOutdoorSprites
+	; fallthrough
 AddIndoorSprites:
 	ld hl, wMap1ObjectSprite
 	ld a, 1
@@ -138,9 +132,7 @@ LoadUsedSpritesGFX:
 	ld a, MAPCALLBACK_SPRITES
 	call RunMapCallback
 	call GetUsedSprites
-	call LoadMiscTiles
-	ret
-
+	; fallthrough
 LoadMiscTiles:
 	ld a, [wSpriteFlags]
 	bit 6, a
@@ -230,8 +222,7 @@ GetMonSprite:
 
 	farcall LoadOverworldMonIcon
 
-	ld l, WALKING_SPRITE
-	ld h, 0
+	lb hl, 0, WALKING_SPRITE
 	scf
 	ret
 
@@ -247,8 +238,7 @@ GetMonSprite:
 
 .NoBreedmon:
 	ld a, WALKING_SPRITE
-	ld l, WALKING_SPRITE
-	ld h, 0
+	lb hl, 0, WALKING_SPRITE
 	and a
 	ret
 
@@ -299,8 +289,7 @@ _GetSpritePalette::
 
 LoadAndSortSprites:
 	call LoadSpriteGFX
-	call ArrangeUsedSprites
-	ret
+	jr ArrangeUsedSprites
 
 AddSpriteGFX:
 ; Add any new sprite ids to a list of graphics to be loaded.
@@ -367,8 +356,7 @@ ArrangeUsedSprites:
 ; Crystal introduces a second table in VRAM bank 0.
 
 	ld hl, wUsedSprites
-	ld c, SPRITE_GFX_LIST_CAPACITY
-	ld b, 0
+	lb bc, 0, SPRITE_GFX_LIST_CAPACITY
 .FirstTableLength:
 ; Keep going until the end of the list.
 	ld a, [hli]
@@ -483,10 +471,7 @@ GetUsedSprite:
 	push bc
 	ld a, [wSpriteFlags]
 	bit 7, a
-	jr nz, .skip
-	call .CopyToVram
-
-.skip
+	call z, .CopyToVram
 	pop bc
 	ld l, c
 	ld h, $0

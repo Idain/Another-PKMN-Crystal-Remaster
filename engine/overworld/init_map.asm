@@ -38,7 +38,7 @@ ReanchorBGMap_NoOAMUpdate::
 	xor a
 	ldh [hBGMapMode], a
 	ldh [hWY], a
-	farcall HDMATransfer_FillBGMap0WithBlack ; no need to farcall
+	call HDMATransfer_FillBGMap0WithBlack
 	ld a, HIGH(vBGMap0)
 	call .LoadBGMapAddrIntoHRAM
 	xor a ; LOW(vBGMap0)
@@ -48,8 +48,7 @@ ReanchorBGMap_NoOAMUpdate::
 	xor a
 	ldh [hSCX], a
 	ldh [hSCY], a
-	call ApplyBGMapAnchorToObjects
-	ret
+	jp ApplyBGMapAnchorToObjects
 
 .LoadBGMapAddrIntoHRAM:
 	ldh [hBGMapAddress + 1], a
@@ -74,8 +73,7 @@ LoadFonts_NoOAMUpdate::
 	ld a, $90
 	ldh [hWY], a
 	call SafeUpdateSprites
-	call LoadStandardFont
-	ret
+	jp LoadStandardFont
 
 HDMATransfer_FillBGMap0WithBlack:
 	ldh a, [rSVBK]

@@ -96,10 +96,10 @@ DoBattle:
 	call SpikesDamage
 	ld a, [wLinkMode]
 	and a
-	jr z, .not_linked_2
+	jr z, BattleTurn
 	ldh a, [hSerialConnectionStatus]
 	cp USING_INTERNAL_CLOCK
-	jr nz, .not_linked_2
+	jr nz, BattleTurn
 	xor a
 	ld [wEnemySwitchMonIndex], a
 	call NewEnemyMonStatus
@@ -108,8 +108,6 @@ DoBattle:
 	call EnemySwitch
 	call SetEnemyTurn
 	call SpikesDamage
-	; fallthrough
-.not_linked_2
 	jr BattleTurn
 
 WildFled_EnemyFled_LinkBattleCanceled:
@@ -6525,14 +6523,13 @@ LoadEnemyMon:
 	jp nz, .Moves
 
 .TreeMon:
-; If we're headbutting trees, some monsters enter battle asleep
+; If we're headbutting trees, some monsters enter battle asleep.
+; Otherwise, no status
 	call CheckSleepingTreeMon
 	ld a, TREEMON_SLEEP_TURNS
-	jr c, .UpdateStatus
-; Otherwise, no status
-	xor a
+	sbc a
+	and TREEMON_SLEEP_TURNS
 
-.UpdateStatus:
 	ld hl, wEnemyMonStatus
 	ld [hli], a
 

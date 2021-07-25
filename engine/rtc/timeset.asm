@@ -336,8 +336,8 @@ OakText_ResponseToSetTime:
 	ld a, [wInitHourBuffer]
 	ld c, a
 	call PrintHour
-	ld [hl], ":"
-	inc hl
+	ld a, ":"
+	ld [hli], a
 	ld de, wInitMinuteBuffer
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	call PrintNum
@@ -345,24 +345,19 @@ OakText_ResponseToSetTime:
 	ld c, l
 	ld a, [wInitHourBuffer]
 	cp MORN_HOUR
+	ld hl, .OakTimeSoDarkText
 	jr c, .nite
 	cp DAY_HOUR + 1
-	jr c, .morn
+	ld hl, .OakTimeOversleptText
+	ret c ; morn
 	cp EVE_HOUR
-	jr c, .day
+	ld hl, .OakTimeYikesText
+	ret c ; day
 	cp NITE_HOUR
-	jr c, .eve
+	ld hl, .OakTimeNappedText
+	ret c ; eve
 .nite
 	ld hl, .OakTimeSoDarkText
-	ret
-.morn
-	ld hl, .OakTimeOversleptText
-	ret
-.day
-	ld hl, .OakTimeYikesText
-	ret
-.eve
-	ld hl, .OakTimeNappedText
 	ret
 
 .OakTimeOversleptText:
@@ -486,8 +481,7 @@ SetDayOfWeek:
 	xor a
 	ldh [hBGMapMode], a
 	hlcoord 10, 4
-	ld b, 2
-	ld c, 9
+	lb bc, 2, 9
 	call ClearBox
 	hlcoord 10, 5
 	call .PlaceWeekdayString

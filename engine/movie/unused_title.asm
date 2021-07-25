@@ -92,9 +92,7 @@ UnusedTitleScreen: ; unreferenced
 	ldh [hCGBPalUpdate], a
 
 	ld de, MUSIC_TITLE
-	call PlayMusic
-
-	ret
+	jp PlayMusic
 
 UnusedTitleBG_GFX:
 INCBIN "gfx/title/old_bg.2bpp"
@@ -163,9 +161,7 @@ TestCrystalTitleScreen: ; unreferenced
 	ldh a, [hJoyLast]
 	ld b, a
 	and A_BUTTON
-	jr nz, .done
+	ret nz
 	call SuicuneFrameIterator
 	call DelayFrame
 	jr .loop
-.done
-	ret

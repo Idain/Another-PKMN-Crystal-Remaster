@@ -83,9 +83,8 @@ DoPlayerMovement::
 	ret c
 	ld a, [wWalkingDirection]
 	cp STANDING
-	jr z, .HitWall
-	call .BumpSound
-.HitWall:
+	call nz, .BumpSound
+;HitWall:
 	call .StandInPlace
 	xor a
 	ret
@@ -98,9 +97,8 @@ DoPlayerMovement::
 ; Walking into an edge warp won't bump.
 	ld a, [wWalkingIntoEdgeWarp]
 	and a
-	jr nz, .CantMove
-	call .BumpSound
-.CantMove:
+	call z, .BumpSound
+;CantMove:
 	call ._WalkInPlace
 	xor a
 	ret
@@ -780,8 +778,7 @@ ENDM
 	call CheckSFX
 	ret c
 	ld de, SFX_BUMP
-	call PlaySFX
-	ret
+	jp PlaySFX
 
 .GetOutOfWater:
 	push bc

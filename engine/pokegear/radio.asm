@@ -735,10 +735,10 @@ PokedexShow8:
 	jp PrintRadioLine
 
 CopyDexEntry:
-	ld a, [wPokedexShowPointerAddr]
+	ld hl, wPokedexShowPointerAddr
+	ld a, [hli]
+	ld h, [hl]
 	ld l, a
-	ld a, [wPokedexShowPointerAddr + 1]
-	ld h, a
 	ld a, [wPokedexShowPointerBank]
 	push af
 	push hl
@@ -749,18 +749,17 @@ CopyDexEntry:
 	call CopyRadioTextToRAM
 	pop hl
 	pop af
-	call CopyDexEntryPart2
-	ret
+	jr CopyDexEntryPart2
 
 CopyDexEntryPart1:
 	ld de, wPokedexShowPointerBank
 	ld bc, SCREEN_WIDTH - 1
 	call FarCopyBytes
 	ld hl, wPokedexShowPointerAddr
-	ld [hl], TX_START
-	inc hl
-	ld [hl], "<LINE>"
-	inc hl
+	ld a, TX_START
+	ld [hli], a
+	ld a, "<LINE>"
+	ld [hli], a
 .loop
 	ld a, [hli]
 	cp "@"
@@ -1061,10 +1060,9 @@ PeoplePlaces3:
 	ld hl, PnP_Text3
 	call Random
 	cp 49 percent - 1
-	ld a, PLACES_AND_PEOPLE_4 ; People
-	jr c, .ok
-	ld a, PLACES_AND_PEOPLE_6 ; Places
-.ok
+; If carry, People; else, Places.
+	sbc a
+	sbc -PLACES_AND_PEOPLE_6
 	jp NextRadioLine
 
 PnP_Text1:
@@ -1098,9 +1096,8 @@ PeoplePlaces4: ; People
 .ok
 	pop af
 	ld c, a
-	ld de, 1
 	push bc
-	call IsInArray
+	call IsInByteArray
 	pop bc
 	jr c, PeoplePlaces4
 	push bc
@@ -1137,13 +1134,12 @@ PeoplePlaces5:
 	call Random
 	cp 4 percent
 	ld a, PLACES_AND_PEOPLE
-	jr c, .ok
+	jp c, NextRadioLine
 	call Random
 	cp 49 percent - 1
-	ld a, PLACES_AND_PEOPLE_4 ; People
-	jr c, .ok
-	ld a, PLACES_AND_PEOPLE_6 ; Places
-.ok
+; If carry, People; else, Places.
+	sbc a
+	sbc -PLACES_AND_PEOPLE_6
 	jp NextRadioLine
 
 .Adjectives:
@@ -1273,13 +1269,12 @@ PeoplePlaces7:
 	call Random
 	cp 4 percent
 	ld a, PLACES_AND_PEOPLE
-	jr c, .ok
+	jp c, PrintRadioLine
 	call Random
 	cp 49 percent - 1
-	ld a, PLACES_AND_PEOPLE_4 ; People
-	jr c, .ok
-	ld a, PLACES_AND_PEOPLE_6 ; Places
-.ok
+; If carry, People; else, Places.
+	sbc a
+	sbc -PLACES_AND_PEOPLE_6
 	jp PrintRadioLine
 
 .Adjectives:
@@ -1531,18 +1526,15 @@ GetBuenasPassword:
 
 .Mon:
 	call .GetTheIndex
-	call GetPokemonName
-	ret
+	jp GetPokemonName
 
 .Item:
 	call .GetTheIndex
-	call GetItemName
-	ret
+	jp GetItemName
 
 .Move:
 	call .GetTheIndex
-	call GetMoveName
-	ret
+	jp GetMoveName
 
 .GetTheIndex:
 	ld h, 0

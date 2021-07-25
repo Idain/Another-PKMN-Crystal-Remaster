@@ -51,7 +51,7 @@ CheckObjectStillVisible:
 	ld hl, OBJECT_NEXT_MAP_Y
 	add hl, bc
 	ld a, [hl]
-	add 1
+	inc a
 	sub e
 	jr c, .ok
 	cp MAPOBJECT_SCREEN_HEIGHT
@@ -76,7 +76,7 @@ CheckObjectStillVisible:
 	ld hl, OBJECT_INIT_Y
 	add hl, bc
 	ld a, [hl]
-	add 1
+	inc a
 	sub e
 	jr c, .ok2
 	cp MAPOBJECT_SCREEN_HEIGHT
@@ -539,9 +539,6 @@ StepFunction_FromMovement:
 	dw MovementFunction_ShakingGrass         ; 1b
 	assert_table_length NUM_SPRITEMOVEFN
 
-MovementFunction_Null:
-	ret
-
 MovementFunction_RandomWalkY:
 	call Random
 	ldh a, [hRandomAdd]
@@ -595,6 +592,7 @@ MovementFunction_Standing:
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
 	ld [hl], STEP_TYPE_RESTORE
+MovementFunction_Null:
 	ret
 
 MovementFunction_ObeyDPad:
@@ -779,9 +777,6 @@ _MovementSpinRepeat:
 	ld hl, OBJECT_ACTION
 	add hl, bc
 	ld [hl], OBJECT_ACTION_STAND
-	ld hl, OBJECT_RANGE
-	add hl, bc
-	ld a, [hl]
 	ld a, $10
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
@@ -1198,8 +1193,7 @@ StepFunction_TeleportFrom:
 	add hl, bc
 	dec [hl]
 	ret nz
-	call Field1c_IncAnonJumptableIndex
-	ret
+	jp Field1c_IncAnonJumptableIndex
 
 .InitSpinRise:
 	ld hl, OBJECT_STEP_FRAME
@@ -2088,10 +2082,9 @@ CopyTempObjectData:
 ; -1, -1, [de], [de + 1], [de + 2], [hMapObjectIndex], [NextMapX], [NextMapY], -1
 ; This spawns the object at the same place as whichever object is loaded into bc.
 	ld hl, wTempObjectCopyMapObjectIndex
-	ld [hl], -1
-	inc hl
-	ld [hl], -1
-	inc hl
+	ld a, -1
+	ld [hli], a
+	ld [hli], a
 	ld a, [de]
 	inc de
 	ld [hli], a
@@ -2145,12 +2138,10 @@ RespawnPlayerAndOpponent:
 	call RespawnObject
 	ld a, [wBattleScriptFlags]
 	bit 7, a
-	jr z, .skip_opponent
+	jp z, _UpdateSprites
 	ldh a, [hLastTalked]
 	and a
-	jr z, .skip_opponent
-	call RespawnObject
-.skip_opponent
+	call nz, RespawnObject
 	jp _UpdateSprites
 
 RespawnPlayer:
@@ -2404,9 +2395,7 @@ DoStepsForAllObjects:
 .loop
 	ldh [hMapObjectIndex], a
 	call DoesObjectHaveASprite
-	jr z, .next
-	call HandleObjectStep
-.next
+	call nz, HandleObjectStep
 	ld hl, OBJECT_LENGTH
 	add hl, bc
 	ld b, h

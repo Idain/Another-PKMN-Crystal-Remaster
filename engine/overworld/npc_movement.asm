@@ -278,8 +278,7 @@ IsObjectFacingSomeoneElse: ; unreferenced
 	ldh a, [hMapObjectIndex]
 	call GetObjectStruct
 	call .GetFacingCoords
-	call IsNPCAtCoord
-	ret
+	jr IsNPCAtCoord
 
 .GetFacingCoords:
 	ld hl, OBJECT_NEXT_MAP_X
@@ -520,8 +519,7 @@ IsNPCAtPlayerCoord: ; unreferenced
 	add hl, bc
 	ld a, [hl]
 	cp d
-	jr nz, .next
-	jr .yes
+	jr z, .yes
 
 .next
 	ld hl, OBJECT_LENGTH

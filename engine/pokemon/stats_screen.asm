@@ -193,8 +193,8 @@ if DEF(_DEBUG)
 	ld bc, PARTYMON_STRUCT_LENGTH
 	ld hl, wPartyMon1Happiness
 	call AddNTimes
-	ld [hl], 1
 	ld a, 1
+	ld [hl], a
 	ld [wTempMonHappiness], a
 	ld a, 127
 	ld [wStepCount], a
@@ -312,9 +312,8 @@ StatsScreen_JoypadAction:
 	bit D_UP_F, a
 	jr nz, .d_up
 	bit D_DOWN_F, a
-	jr nz, .d_down
-	ret
-
+	ret z
+	; fallthrough
 .d_down
 	ld a, [wMonType]
 	cp BOXMON
@@ -372,8 +371,7 @@ StatsScreen_JoypadAction:
 	dec c
 	jr nz, .set_page
 	ld c, BLUE_PAGE ; last page
-	jr .set_page
-
+	; fallthrough
 .set_page
 	ld a, [wStatsScreenFlags]
 	and $ff ^ STAT_PAGE_MASK
@@ -398,10 +396,10 @@ StatsScreen_InitUpperHalf:
 	ld [wTextDecimalByte], a
 	ld [wCurSpecies], a
 	hlcoord 8, 0
-	ld [hl], "№"
-	inc hl
-	ld [hl], "."
-	inc hl
+	ld a, "№"
+	ld [hli], a
+	ld a, "."
+	ld [hli], a
 	hlcoord 10, 0
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 3
 	ld de, wTextDecimalByte
@@ -509,10 +507,8 @@ StatsScreen_LoadGFX:
 	call .LoadPals
 	ld hl, wStatsScreenFlags
 	bit 4, [hl]
-	jr nz, .place_frontpic
-	jp SetPalettes
-
-.place_frontpic
+	jp z, SetPalettes
+; place_frontpic
 	jp StatsScreen_PlaceFrontpic
 
 .ClearBox:
@@ -648,7 +644,6 @@ LoadPinkPage:
 	inc a
 	ld d, a
 	farcall CalcExpAtLevel
-	ld hl, wTempMonExp + 2
 	ld hl, wTempMonExp + 2
 	ldh a, [hQuotient + 3]
 	sub [hl]
@@ -848,8 +843,7 @@ StatsScreen_PlaceFrontpic:
 	ld de, vTiles2 tile $00
 	predef GetAnimatedFrontpic
 	hlcoord 0, 0
-	ld d, $0
-	ld e, ANIM_MON_MENU
+	lb de, 0, ANIM_MON_MENU
 	predef LoadMonAnimation
 	ld hl, wStatsScreenFlags
 	set 6, [hl]

@@ -249,7 +249,7 @@ GetGender:
 ListMovePP:
 	ld a, [wNumMoves]
 	inc a
-	ld c, a
+	ld c, a ; no-optimize a = N - a 
 	ld a, NUM_MOVES
 	sub c
 	ld b, a
@@ -331,47 +331,6 @@ ListMovePP:
 	add hl, de
 	dec c
 	jr nz, .load_loop
-	ret
-
-BrokenPlacePPUnits: ; unreferenced
-; Probably would have these parameters:
-; hl = starting coordinate
-; de = SCREEN_WIDTH or SCREEN_WIDTH * 2
-; c = the number of moves (1-4)
-.loop
-	ld [hl], $32 ; typo for P?
-	inc hl
-	ld [hl], $3e ; P
-	dec hl
-	add hl, de
-	dec c
-	jr nz, .loop
-	ret
-
-Unused_PlaceEnemyHPLevel:
-	push hl
-	push hl
-	ld hl, wPartyMonNicknames
-	ld a, [wCurPartyMon]
-	call GetNickname
-	pop hl
-	call PlaceString
-	call CopyMonToTempMon
-	pop hl
-	ld a, [wCurPartySpecies]
-	cp EGG
-	ret z
-	push hl
-	ld bc, -12
-	add hl, bc
-	ld b, 0
-	call DrawEnemyHP
-	pop hl
-	ld bc, 5
-	add hl, bc
-	push de
-	call PrintLevel
-	pop de
 	ret
 
 PlaceStatusString:

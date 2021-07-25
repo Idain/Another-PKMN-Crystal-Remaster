@@ -204,7 +204,7 @@ UpdateOverworldMap:
 .ScrollMapDataLeft:
 	ld hl, wOverworldMapAnchor
 	ld a, [hl]
-	sub 1
+	sub 1 ; no-optimize a++|a--
 	ld [hli], a
 	ret nc
 	dec [hl]
@@ -230,7 +230,7 @@ UpdateOverworldMap:
 .ScrollMapDataRight:
 	ld hl, wOverworldMapAnchor
 	ld a, [hl]
-	add 1
+	add 1 ; no-optimize a++|a--
 	ld [hli], a
 	ret nc
 	inc [hl]

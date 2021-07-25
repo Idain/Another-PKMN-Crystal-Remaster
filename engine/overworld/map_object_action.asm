@@ -39,8 +39,7 @@ SetFacingStandAction:
 	add hl, bc
 	ld a, [hl]
 	and 1
-	jr nz, SetFacingStepAction
-	jp SetFacingCurrent
+	jr z, SetFacingCurrent
 
 SetFacingStepAction:
 	ld hl, OBJECT_FLAGS1
@@ -226,9 +225,8 @@ SetFacingFreezeBounce:
 SetFacingWeirdTree:
 	ld hl, OBJECT_STEP_FRAME
 	add hl, bc
+	inc [hl]
 	ld a, [hl]
-	inc a
-	ld [hl], a
 	maskbits NUM_DIRECTIONS, 2
 	rrca
 	rrca

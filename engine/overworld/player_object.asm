@@ -13,8 +13,7 @@ BlankScreen:
 	ld a, $7
 	call ByteFill
 	call WaitBGMap2
-	call SetPalettes
-	ret
+	jp SetPalettes
 
 SpawnPlayer:
 	ld a, -1
@@ -79,8 +78,7 @@ PlayerSpawn_ConvertCoords:
 	add 4
 	ld e, a
 	pop bc
-	call CopyDECoordsToMapObject
-	ret
+	jr CopyDECoordsToMapObject
 
 WriteObjectXY::
 	ld a, b
@@ -160,8 +158,7 @@ CopyObjectStruct::
 
 CopyMapObjectToObjectStruct:
 	call .CopyMapObjectToTempObject
-	call CopyTempObjectToObjectStruct
-	ret
+	jp CopyTempObjectToObjectStruct
 
 .CopyMapObjectToTempObject:
 	ldh a, [hObjectStructIndex]
@@ -245,7 +242,7 @@ InitializeVisibleSprites:
 	ld hl, MAPOBJECT_X_COORD
 	add hl, bc
 	ld a, [hl]
-	add 1
+	inc a
 	sub d
 	jr c, .next
 
@@ -255,7 +252,7 @@ InitializeVisibleSprites:
 	ld hl, MAPOBJECT_Y_COORD
 	add hl, bc
 	ld a, [hl]
-	add 1
+	inc a
 	sub e
 	jr c, .next
 
@@ -265,7 +262,7 @@ InitializeVisibleSprites:
 	push bc
 	call CopyObjectStruct
 	pop bc
-	jp c, .ret
+	ret c
 
 .next
 	ld hl, MAPOBJECT_LENGTH
@@ -276,9 +273,6 @@ InitializeVisibleSprites:
 	inc a
 	cp NUM_OBJECTS
 	jr nz, .loop
-	ret
-
-.ret
 	ret
 
 CheckObjectEnteringVisibleRange::
@@ -298,7 +292,7 @@ CheckObjectEnteringVisibleRange::
 
 .Up:
 	ld a, [wYCoord]
-	sub 1
+	dec a
 	jr .Vertical
 
 .Down:
@@ -330,7 +324,7 @@ CheckObjectEnteringVisibleRange::
 	ld hl, MAPOBJECT_X_COORD
 	add hl, bc
 	ld a, [hl]
-	add 1
+	inc a
 	sub e
 	jr c, .next_v
 	cp MAPOBJECT_SCREEN_WIDTH
@@ -354,7 +348,7 @@ CheckObjectEnteringVisibleRange::
 
 .Left:
 	ld a, [wXCoord]
-	sub 1
+	dec a
 	jr .Horizontal
 
 .Right:
@@ -386,7 +380,7 @@ CheckObjectEnteringVisibleRange::
 	ld hl, MAPOBJECT_Y_COORD
 	add hl, bc
 	ld a, [hl]
-	add 1
+	inc a
 	sub d
 	jr c, .next_h
 	cp MAPOBJECT_SCREEN_HEIGHT
@@ -527,8 +521,7 @@ TrainerWalkToPlayer:
 
 .TerminateStep:
 	ld a, movement_step_end
-	call AppendToMovementBuffer
-	ret
+	jp AppendToMovementBuffer
 
 .GetPathToPlayer:
 	push de
@@ -571,8 +564,7 @@ TrainerWalkToPlayer:
 	ld d, a
 
 	pop af
-	call ComputePathToWalkToPlayer
-	ret
+	jp ComputePathToWalkToPlayer
 
 SurfStartStep:
 	ld a, [wPlayerDirection]
@@ -699,8 +691,7 @@ GetRelativeFacing::
 	cp NUM_OBJECT_STRUCTS
 	jr nc, .carry
 	ld e, a
-	call .GetFacing_e_relativeto_d
-	ret
+	jr .GetFacing_e_relativeto_d
 
 .carry
 	scf

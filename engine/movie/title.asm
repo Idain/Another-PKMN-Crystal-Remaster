@@ -158,10 +158,10 @@ _TitleScreen:
 	ld hl, wLYOverrides
 .loop
 ; $00 is the middle position
-	ld [hl], +112 ; coming from the left
-	inc hl
-	ld [hl], -112 ; coming from the right
-	inc hl
+	ld a, +112
+	ld [hli], a ; coming from the left
+	ld a, -112
+	ld [hli], a ; coming from the right
 	dec b
 	jr nz, .loop
 
@@ -258,8 +258,8 @@ LoadSuicuneFrame:
 	ld a, SCREEN_WIDTH - 8
 	add l
 	ld l, a
-	ld a, 0
 	adc h
+	sub l
 	ld h, a
 	ld a, 8
 	add d
@@ -299,8 +299,7 @@ DrawTitleGraphic:
 
 InitializeBackground:
 	ld hl, wVirtualOAMSprite00
-	ld d, -$22
-	ld e, $0
+	lb de, -$22, $0
 	ld c, 5
 .loop
 	push bc
@@ -314,8 +313,7 @@ InitializeBackground:
 	ret
 
 .InitColumn:
-	ld c, $6
-	ld b, $40
+	lb bc, $40, $6
 .loop2
 	ld a, d
 	ld [hli], a ; y
