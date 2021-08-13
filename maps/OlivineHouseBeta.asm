@@ -25,21 +25,19 @@ OlivineHouseBetaBookshelf2:
 	jumpstd MagazineBookshelfScript
 
 OlivineHouseBetaTeacherText:
-	text "When my #MON"
+	text "When my #mon"
 	line "got sick, the"
 
-	para "PHARMACIST in"
-	line "ECRUTEAK made some"
+	para "Pharmacist in"
+	line "Ecruteak made some"
 	cont "medicine for me."
 	done
 
 OlivineHouseBetaRhydonText:
-	text "RHYDON: Gugooh!"
+	text "Rhydon: Gugooh!"
 	done
 
 OlivineHouseBeta_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  2,  7, OLIVINE_CITY, 4
 	warp_event  3,  7, OLIVINE_CITY, 4
@@ -52,4 +50,4 @@ OlivineHouseBeta_MapEvents:
 
 	def_object_events
 	object_event  2,  3, SPRITE_TEACHER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OlivineHouseBetaTeacherScript, -1
-	object_event  6,  4, SPRITE_RHYDON, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 2, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OlivineHouseBetaRhydonScript, -1
+	object_event  6,  4, SPRITE_MONSTER, SPRITEMOVEDATA_WALK_UP_DOWN, 0, 2, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, OlivineHouseBetaRhydonScript, -1

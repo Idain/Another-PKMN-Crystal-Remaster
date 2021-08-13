@@ -117,13 +117,10 @@ TrainerLassDana1:
 .TryGiveThunderstone:
 	scall .Gift
 	verbosegiveitem THUNDERSTONE
-	iffalse .NoRoomForThunderstone
+	iffalse .PackFull
 	clearflag ENGINE_DANA_HAS_THUNDERSTONE
 	setevent EVENT_DANA_GAVE_THUNDERSTONE
 	sjump .NumberAccepted
-
-.NoRoomForThunderstone:
-	sjump .PackFull
 
 .AskNumber1F:
 	jumpstd AskNumber1FScript
@@ -301,7 +298,7 @@ Route38FruitTree:
 BirdKeeperTobySeenText:
 	text "Fly high into the"
 	line "sky, my beloved"
-	cont "bird #MON!"
+	cont "bird #mon!"
 	done
 
 BirdKeeperTobyBeatenText:
@@ -311,10 +308,10 @@ BirdKeeperTobyBeatenText:
 
 BirdKeeperTobyAfterBattleText:
 	text "I plan to train in"
-	line "CIANWOOD CITY to"
+	line "Cianwood City to"
 
-	para "teach my #MON"
-	line "how to FLY."
+	para "teach my #mon"
+	line "how to Fly."
 	done
 
 SchoolboyChad1SeenText:
@@ -333,7 +330,7 @@ SchoolboyChadSoManyTestsText:
 	line "many tests, I"
 
 	para "don't have much"
-	line "time for #MON."
+	line "time for #mon."
 
 	para "So when I do get"
 	line "to play, I really"
@@ -342,7 +339,7 @@ SchoolboyChadSoManyTestsText:
 
 LassDana1SeenText:
 	text "You seem to be"
-	line "good at #MON."
+	line "good at #mon."
 
 	para "If you are, how"
 	line "about giving me"
@@ -358,7 +355,7 @@ LassDanaMoomooMilkText:
 	text "I know something"
 	line "good!"
 
-	para "MOOMOO FARM's milk"
+	para "Moomoo Farm's milk"
 	line "is famous for its"
 	cont "flavor."
 	done
@@ -368,17 +365,17 @@ BeautyValerieSeenText:
 	line "cute trainer!"
 
 	para "May I see your"
-	line "#MON?"
+	line "#mon?"
 	done
 
 BeautyValerieBeatenText:
 	text "I'm glad I got to"
-	line "see your #MON!"
+	line "see your #mon!"
 	done
 
 BeautyValerieAfterBattleText:
 	text "When I see #-"
-	line "MON, it seems to"
+	line "mon, it seems to"
 	cont "soothe my nerves."
 	done
 
@@ -387,7 +384,7 @@ SailorHarrySeenText:
 	line "seas, so I know"
 
 	para "about all sorts of"
-	line "#MON!"
+	line "#mon!"
 	done
 
 SailorHarryBeatenText:
@@ -400,22 +397,22 @@ SailorHarryAfterBattleText:
 	line "ple around the"
 
 	para "world live happily"
-	line "with #MON."
+	line "with #mon."
 	done
 
 BeautyOliviaSeenText:
 	text "Don't you think my"
-	line "#MON and I are"
+	line "#mon and I are"
 	cont "beautiful?"
 	done
 
 BeautyOliviaBeatenText:
-	text "We drink MOOMOO"
-	line "MILK every day."
+	text "We drink Moomoo"
+	line "Milk every day."
 	done
 
 BeautyOliviaAfterBattleText:
-	text "MOOMOO MILK is"
+	text "Moomoo Milk is"
 	line "good for beauty"
 
 	para "and health, but"
@@ -426,16 +423,16 @@ BeautyOliviaAfterBattleText:
 	done
 
 Route38SignText:
-	text "ROUTE 38"
+	text "Route 38"
 
-	para "OLIVINE CITY -"
-	line "ECRUTEAK CITY"
+	para "Olivine City -"
+	line "Ecruteak City"
 	done
 
 Route38TrainerTipsText:
 	text "TRAINER TIPS"
 
-	para "If a #MON is"
+	para "If a #mon is"
 	line "trying to evolve,"
 	cont "you can stop it."
 
@@ -444,13 +441,11 @@ Route38TrainerTipsText:
 	cont "tion."
 
 	para "That startles the"
-	line "#MON and stops"
+	line "#mon and stops"
 	cont "its evolution."
 	done
 
 Route38_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event 35,  8, ROUTE_38_ECRUTEAK_GATE, 1
 	warp_event 35,  9, ROUTE_38_ECRUTEAK_GATE, 2

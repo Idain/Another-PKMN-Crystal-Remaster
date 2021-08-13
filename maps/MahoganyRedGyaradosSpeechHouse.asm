@@ -26,12 +26,6 @@ MahoganyRedGyaradosSpeechHouseTeacherScript:
 	closetext
 	end
 
-MahoganyRedGyaradosSpeechHouseUnusedBookshelf1: ; unreferenced
-	jumpstd PictureBookshelfScript
-
-MahoganyRedGyaradosSpeechHouseUnusedBookshelf2: ; unreferenced
-	jumpstd MagazineBookshelfScript
-
 MahoganyRedGyaradosSpeechHouseBlackBeltText:
 	text "I heard that a red"
 	line "Gyarados appeared"
@@ -59,8 +53,6 @@ MahoganyRedGyaradosSpeechHouseTeacherText_RocketsInRadioTower:
 	done
 
 MahoganyRedGyaradosSpeechHouse_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  2,  7, MAHOGANY_TOWN, 2
 	warp_event  3,  7, MAHOGANY_TOWN, 2

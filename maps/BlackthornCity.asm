@@ -314,8 +314,6 @@ BlackthornCityTrainerTipsText:
 	done
 
 BlackthornCity_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event 18, 11, BLACKTHORN_GYM_1F, 1
 	warp_event 13, 21, BLACKTHORN_DRAGON_SPEECH_HOUSE, 1

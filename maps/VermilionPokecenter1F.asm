@@ -35,9 +35,9 @@ VermilionPokecenter1FBugCatcherScript:
 	jumptextfaceplayer VermilionPokecenter1FBugCatcherText
 
 VermilionPokecenter1FFishingGuruText:
-	text "A sleeping #MON"
+	text "A sleeping #mon"
 	line "is lying in front"
-	cont "of DIGLETT'S CAVE."
+	cont "of Diglett's Cave."
 
 	para "It's a fantastic"
 	line "opportunity to get"
@@ -48,17 +48,17 @@ VermilionPokecenter1FFishingGuruText:
 
 VermilionPokecenter1FFishingGuruText_FoughtSnorlax:
 	text "There used to be a"
-	line "sleeping #MON"
+	line "sleeping #mon"
 
 	para "lying in front of"
-	line "DIGLETT'S CAVE."
+	line "Diglett's Cave."
 
 	para "But it seems to"
 	line "have disappeared."
 	done
 
 VermilionPokecenter1FSailorText:
-	text "The FAST SHIP is a"
+	text "The Fast Ship is a"
 	line "great place to"
 
 	para "meet and battle"
@@ -67,16 +67,14 @@ VermilionPokecenter1FSailorText:
 
 VermilionPokecenter1FBugCatcherText:
 	text "Oh? You have some"
-	line "BADGES I've never"
+	line "Badges I've never"
 	cont "seen before."
 
 	para "Oh, I get it. You"
-	line "got them in JOHTO."
+	line "got them in Johto."
 	done
 
 VermilionPokecenter1F_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  3,  7, VERMILION_CITY, 2
 	warp_event  4,  7, VERMILION_CITY, 2

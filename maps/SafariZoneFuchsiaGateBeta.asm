@@ -4,8 +4,6 @@ SafariZoneFuchsiaGateBeta_MapScripts:
 	def_callbacks
 
 SafariZoneFuchsiaGateBeta_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  4,  0, SAFARI_ZONE_BETA, 1
 	warp_event  5,  0, SAFARI_ZONE_BETA, 2

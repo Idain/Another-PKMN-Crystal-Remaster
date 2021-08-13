@@ -52,7 +52,7 @@ SwimmermSethBeatenText:
 
 SwimmermSethAfterBattleText:
 	text "This arrogant guy"
-	line "was at CINNABAR's"
+	line "was at Cinnabar's"
 	cont "volcano."
 	done
 
@@ -88,8 +88,6 @@ FisherArnoldAfterBattleText:
 	done
 
 Route21_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 
 	def_coord_events

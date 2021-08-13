@@ -41,7 +41,7 @@ GoldenrodDeptStore2FElevatorButton:
 
 GoldenrodDeptStore2FUnusedText1: ; unreferenced
 	text "We intend to sell"
-	line "items for #MON"
+	line "items for #mon"
 	cont "to hold."
 
 	para "This is a free"
@@ -50,7 +50,7 @@ GoldenrodDeptStore2FUnusedText1: ; unreferenced
 	done
 
 GoldenrodDeptStore2FUnusedText2: ; unreferenced
-	text "By giving #MON"
+	text "By giving #mon"
 	line "items to hold, I"
 
 	para "bet trainers will"
@@ -59,7 +59,7 @@ GoldenrodDeptStore2FUnusedText2: ; unreferenced
 	done
 
 GoldenrodDeptStore2FYoungsterText:
-	text "#GEAR can store"
+	text "#gear can store"
 	line "up to ten phone"
 	cont "numbers."
 
@@ -69,18 +69,18 @@ GoldenrodDeptStore2FYoungsterText:
 	done
 
 GoldenrodDeptStore2FCooltrainerFText:
-	text "I got my ABRA at"
-	line "the GAME CORNER."
+	text "I got my Abra at"
+	line "the Game Corner."
 
 	para "Now it's my best"
 	line "partner."
 	done
 
 GoldenrodDeptStore2FGentlemanText:
-	text "This DEPT.STORE"
+	text "This Dept.Store"
 	line "makes me realize"
 
-	para "that GOLDENROD is"
+	para "that Goldenrod is"
 	line "a big city."
 
 	para "The selection here"
@@ -97,8 +97,6 @@ GoldenrodDeptStore2FDirectoryText:
 	done
 
 GoldenrodDeptStore2F_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event 12,  0, GOLDENROD_DEPT_STORE_3F, 1
 	warp_event 15,  0, GOLDENROD_DEPT_STORE_1F, 3

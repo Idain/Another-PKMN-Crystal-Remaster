@@ -111,7 +111,7 @@ CeladonGymStatue:
 	jumpstd GymStatue2Script
 
 ErikaBeforeBattleText:
-	text "ERIKA: Hello…"
+	text "Erika: Hello…"
 	line "Lovely weather,"
 
 	para "isn't it?"
@@ -120,12 +120,12 @@ ErikaBeforeBattleText:
 	para "…I'm afraid I may"
 	line "doze off…"
 
-	para "My name is ERIKA."
-	line "I am the LEADER of"
-	cont "CELADON GYM."
+	para "My name is Erika."
+	line "I am the Leader of"
+	cont "Celadon Gym."
 
 	para "…Oh? All the way"
-	line "from JOHTO, you"
+	line "from Johto, you"
 	cont "say? How nice…"
 
 	para "Oh. I'm sorry, I"
@@ -139,44 +139,44 @@ ErikaBeforeBattleText:
 	done
 
 ErikaBeatenText:
-	text "ERIKA: Oh!"
+	text "Erika: Oh!"
 	line "I concede defeat…"
 
 	para "You are remarkably"
 	line "strong…"
 
 	para "I shall give you"
-	line "RAINBOWBADGE…"
+	line "the Rainbow Badge…"
 	done
 
 PlayerReceivedRainbowBadgeText:
 	text "<PLAYER> received"
-	line "RAINBOWBADGE."
+	line "Rainbow Badge."
 	done
 
 ErikaExplainTMText:
-	text "ERIKA: That was a"
+	text "Erika: That was a"
 	line "delightful match."
 
 	para "I felt inspired."
 	line "Please, I wish you"
 	cont "to have this TM."
 
-	para "It is GIGA DRAIN."
+	para "It is Giga Drain."
 
 	para "It is a wonderful"
 	line "move that drains"
 
 	para "half the damage it"
 	line "inflicts to heal"
-	cont "your #MON."
+	cont "your #mon."
 
 	para "Please use it if"
 	line "it pleases you…"
 	done
 
 ErikaAfterBattleText:
-	text "ERIKA: Losing"
+	text "Erika: Losing"
 	line "leaves a bitter"
 	cont "aftertaste…"
 
@@ -214,7 +214,7 @@ PicnickerTanyaBeatenText:
 
 PicnickerTanyaAfterBattleText:
 	text "Oh, look at all"
-	line "your BADGES. No"
+	line "your Badges. No"
 
 	para "wonder I couldn't"
 	line "win!"
@@ -238,8 +238,8 @@ BeautyJuliaAfterBattleText:
 
 TwinsJoAndZoe1SeenText:
 	text "We'll show you"
-	line "#MON moves that"
-	cont "ERIKA taught us!"
+	line "#mon moves that"
+	cont "Erika taught us!"
 	done
 
 TwinsJoAndZoe1BeatenText:
@@ -247,13 +247,13 @@ TwinsJoAndZoe1BeatenText:
 	done
 
 TwinsJoAndZoe1AfterBattleText:
-	text "ERIKA will get you"
+	text "Erika will get you"
 	line "back for us!"
 	done
 
 TwinsJoAndZoe2SeenText:
 	text "We're going to"
-	line "protect ERIKA!"
+	line "protect Erika!"
 	done
 
 TwinsJoAndZoe2BeatenText:
@@ -261,13 +261,11 @@ TwinsJoAndZoe2BeatenText:
 	done
 
 TwinsJoAndZoe2AfterBattleText:
-	text "ERIKA is much,"
+	text "Erika is much,"
 	line "much stronger!"
 	done
 
 CeladonGym_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  4, 17, CELADON_CITY, 8
 	warp_event  5, 17, CELADON_CITY, 8

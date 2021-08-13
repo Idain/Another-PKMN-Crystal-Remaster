@@ -57,12 +57,6 @@ GameFreakGraphicArtistScript:
 	closetext
 	end
 
-.CancelPrinting: ; unreferenced
-	writetext GameFreakGraphicArtistErrorText
-	waitbutton
-	closetext
-	end
-
 GameFreakProgrammerScript:
 	jumptextfaceplayer GameFreakProgrammerText
 
@@ -137,12 +131,6 @@ GameFreakGraphicArtistRefusedText:
 	cont "diploma printed."
 	done
 
-GameFreakGraphicArtistErrorText:
-	text "Something's wrong."
-	line "I'll have to can-"
-	cont "cel printing."
-	done
-
 GameFreakProgrammerText:
 	text "Who, me? I'm the"
 	line "Programmer."
@@ -188,8 +176,6 @@ CeladonMansion3FReferenceMaterialText:
 	done
 
 CeladonMansion3F_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  0,  0, CELADON_MANSION_ROOF, 1
 	warp_event  1,  0, CELADON_MANSION_2F, 2

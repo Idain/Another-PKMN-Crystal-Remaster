@@ -3,7 +3,7 @@ SpriteMons:
 	table_width 1, SpriteMons
 	db UNOWN
 	db GEODUDE
-	db GROWLITHE
+	db PERSIAN
 	db WEEDLE
 	db SHELLDER
 	db ODDISH
@@ -11,30 +11,44 @@ SpriteMons:
 	db ZUBAT
 	db MAGIKARP
 	db SQUIRTLE
-	db TOGEPI
 	db BUTTERFREE
 	db DIGLETT
 	db POLIWAG
+	db POLIWRATH
 	db PIKACHU
 	db CLEFAIRY
 	db CHARMANDER
-	db JYNX
+	db ABRA
 	db STARMIE
 	db BULBASAUR
 	db JIGGLYPUFF
 	db GRIMER
 	db DRATINI
-	db PARAS
 	db TENTACOOL
 	db MILTANK
 	db MACHOP
 	db VOLTORB
-	db LAPRAS
+	db ELECTRODE
 	db RHYDON
 	db MOLTRES
-	db SNORLAX
 	db GYARADOS
 	db LUGIA
 	db HO_OH
 	db FARFETCH_D
+	db SLOWBRO
+	db KANGASKHAN
+	db BLISSEY
+	db DODRIO
+	db MACHOKE
+	db NIDORINO
+	db PSYDUCK
+	db PIDGEY
+	db MEOWTH
+	db NIDORAN_F
+	db NIDORAN_M
+	db SPEAROW
+	db FEAROW
+	db RATTATA
+	db BAYLEEF
+	db AMPHAROS
 	assert_table_length NUM_POKEMON_SPRITES

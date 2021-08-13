@@ -10,12 +10,10 @@ Route28HiddenRareCandy:
 	hiddenitem RARE_CANDY, EVENT_ROUTE_28_HIDDEN_RARE_CANDY
 
 Route28SignText:
-	text "ROUTE 28"
+	text "Route 28"
 	done
 
 Route28_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  7,  3, ROUTE_28_STEEL_WING_HOUSE, 1
 	warp_event 33,  5, VICTORY_ROAD_GATE, 7

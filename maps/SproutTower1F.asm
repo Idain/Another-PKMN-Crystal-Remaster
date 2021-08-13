@@ -46,7 +46,7 @@ SageChowSeenText:
 
 	para "Here, we express"
 	line "our gratitude to"
-	cont "honor all #MON."
+	cont "honor all #mon."
 	done
 
 SageChowBeatenText:
@@ -69,15 +69,15 @@ SproutTower1FSage1Text:
 	done
 
 SproutTower1FSage2Text:
-	text "SPROUT TOWER was"
+	text "Sprout Tower was"
 	line "built long ago"
 
 	para "as a place for"
-	line "#MON training."
+	line "#mon training."
 	done
 
 SproutTower1FGrannyText:
-	text "A BELLSPROUT over"
+	text "A Bellsprout over"
 	line "100 feet tall…"
 
 	para "People say that it"
@@ -94,15 +94,13 @@ SproutTower1FTeacherText:
 	done
 
 SproutTower1FStatueText:
-	text "A #MON statue…"
+	text "A #mon statue…"
 
 	para "It looks very"
 	line "distinguished."
 	done
 
 SproutTower1F_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  9, 15, VIOLET_CITY, 7
 	warp_event 10, 15, VIOLET_CITY, 7

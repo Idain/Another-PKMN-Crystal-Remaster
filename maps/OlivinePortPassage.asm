@@ -10,16 +10,14 @@ OlivinePortPassagePokefanMScript:
 	jumptextfaceplayer OlivinePortPassagePokefanMText
 
 OlivinePortPassagePokefanMText:
-	text "FAST SHIP S.S.AQUA"
-	line "sails to KANTO on"
+	text "Fast Ship S.S.Aqua"
+	line "sails to Kanto on"
 
 	para "Mondays and Fri-"
 	line "days."
 	done
 
 OlivinePortPassage_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event 15,  0, OLIVINE_CITY, 10
 	warp_event 16,  0, OLIVINE_CITY, 11

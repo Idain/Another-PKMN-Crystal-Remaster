@@ -10,17 +10,15 @@ Route5SaffronGateOfficerScript:
 	jumptextfaceplayer Route5SaffronGateOfficerText
 
 Route5SaffronGateOfficerText:
-	text "You're from JOHTO,"
+	text "You're from Johto,"
 	line "aren't you?"
 
 	para "How do you like"
-	line "KANTO? It's nice,"
+	line "Kanto? It's nice,"
 	cont "don't you agree?"
 	done
 
 Route5SaffronGate_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  4,  0, ROUTE_5, 2
 	warp_event  5,  0, ROUTE_5, 3

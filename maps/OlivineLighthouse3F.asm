@@ -63,7 +63,7 @@ BirdKeeperTheoAfterBattleText:
 	line "you go up?"
 
 	para "I want to visit"
-	line "the sick #MON,"
+	line "the sick #mon,"
 
 	para "but I can't get up"
 	line "there…"
@@ -82,11 +82,11 @@ SailorTerrellBeatenText:
 
 SailorTerrellAfterBattleText:
 	text "Every time I come"
-	line "back to OLIVINE, I"
-	cont "visit the GYM."
+	line "back to Olivine, I"
+	cont "visit the Gym"
 
-	para "The GYM LEADER's"
-	line "#MON type has"
+	para "The Gym Leader's"
+	line "#mon type has"
 
 	para "changed without me"
 	line "noticing."
@@ -95,7 +95,7 @@ SailorTerrellAfterBattleText:
 GentlemanPrestonSeenText:
 	text "I travel the world"
 	line "to train my #-"
-	cont "MON. I wish to"
+	cont "mon. I wish to"
 	cont "battle with you."
 	done
 
@@ -105,14 +105,12 @@ GentlemanPrestonBeatenText:
 	done
 
 GentlemanPrestonAfterBattleText:
-	text "JASMINE used to"
-	line "use rock #MON"
-	cont "like ONIX."
+	text "Jasmine used to"
+	line "use rock #mon"
+	cont "like Onix."
 	done
 
 OlivineLighthouse3F_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event 13,  3, OLIVINE_LIGHTHOUSE_4F, 1
 	warp_event  5,  3, OLIVINE_LIGHTHOUSE_2F, 2

@@ -36,21 +36,14 @@ GoldenrodCity_MapScripts:
 	iffalse .MoveTutorDone
 	checkitem COIN_CASE
 	iffalse .MoveTutorDisappear
-;	readvar VAR_WEEKDAY
-;	ifequal WEDNESDAY, .MoveTutorAppear
-;	ifequal SATURDAY, .MoveTutorAppear
-
-.MoveTutorAppear:
 	checkflag ENGINE_DAILY_MOVE_TUTOR
 	iftrue .MoveTutorDone
 	appear GOLDENRODCITY_MOVETUTOR
+.MoveTutorDone:
 	endcallback
 
 .MoveTutorDisappear:
 	disappear GOLDENRODCITY_MOVETUTOR
-;	endcallback
-
-.MoveTutorDone:
 	endcallback
 
 MoveTutorScript:
@@ -326,14 +319,14 @@ GoldenrodCityCooltrainerF2Text:
 	cont "paign right now."
 
 	para "They'll modify"
-	line "your #GEAR,"
+	line "your #gear,"
 
 	para "so it can also"
 	line "serve as a radio."
 	done
 
 GoldenrodCityCooltrainerF2Text_GotRadioCard:
-	text "Oh, your #GEAR"
+	text "Oh, your #gear"
 	line "works as a radio!"
 	done
 
@@ -350,10 +343,10 @@ GoldenrodCityYoungster2Text:
 GoldenrodCityLassText:
 	text "The man at that"
 	line "house rates your"
-	cont "#MON names."
+	cont "#mon names."
 
 	para "He can even rename"
-	line "your #MON."
+	line "your #mon."
 	done
 
 GoldenrodCityGrampsText:
@@ -388,7 +381,7 @@ GoldenrodCityRocket2Text:
 	done
 
 GoldenrodCityRocket3Text:
-	text "#MON? They're"
+	text "#mon? They're"
 	line "nothing more than"
 
 	para "tools for making"
@@ -427,7 +420,7 @@ GoldenrodCityRadioTowerSignText:
 
 GoldenrodDeptStoreSignText:
 	text "Full Selection of"
-	line "#MON Goods!"
+	line "#mon Goods!"
 
 	para "Goldenrod City"
 	line "Dept.Store"
@@ -435,7 +428,7 @@ GoldenrodDeptStoreSignText:
 
 GoldenrodGymSignText:
 	text "Goldenrod City"
-	line "#MON Gym"
+	line "#mon Gym"
 	cont "Leader: Whitney"
 
 	para "The Incredibly"
@@ -465,7 +458,7 @@ GoldenrodCityGameCornerSignText:
 GoldenrodCityNameRaterSignText:
 	text "Name Rater"
 
-	para "Get Your #MON"
+	para "Get Your #mon"
 	line "Nicknames Rated"
 	done
 
@@ -483,11 +476,6 @@ GoldenrodCityUndergroundSignSouthText:
 	line "in the Tunnel!"
 	done
 
-GoldenrodCityPokeComCenterSignText: ; unreferenced
-	text "For Mobile Tips!"
-	line "#COM Center"
-	done
-
 GoldenrodCityFlowerShopSignText:
 	text "Blooming Beautiful"
 	line "Flower Shop"
@@ -495,7 +483,7 @@ GoldenrodCityFlowerShopSignText:
 
 GoldenrodCityMoveTutorAskTeachAMoveText:
 	text "I can teach your"
-	line "#MON amazing"
+	line "#mon amazing"
 
 	para "moves if you'd"
 	line "like."
@@ -556,8 +544,6 @@ GoldenrodCityMoveTutorMoveText:
 	done
 
 GoldenrodCity_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event 24,  7, GOLDENROD_GYM, 1
 	warp_event 29, 29, GOLDENROD_BIKE_SHOP, 1

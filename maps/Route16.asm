@@ -20,15 +20,13 @@ CyclingRoadSign:
 	jumptext CyclingRoadSignText
 
 CyclingRoadSignText:
-	text "CYCLING ROAD"
+	text "Cycling Road"
 
-	para "DOWNHILL COASTING"
-	line "ALL THE WAY!"
+	para "Downhill Coasting"
+	line "All The Way!"
 	done
 
 Route16_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  3,  1, ROUTE_16_FUCHSIA_SPEECH_HOUSE, 1
 	warp_event 14,  6, ROUTE_16_GATE, 3

@@ -73,7 +73,7 @@ Route12HiddenElixer:
 FisherMartinSeenText:
 	text "Patience is the"
 	line "key to both fish-"
-	cont "ing and #MON."
+	cont "ing and #mon."
 	done
 
 FisherMartinBeatenText:
@@ -99,7 +99,7 @@ FisherStephenBeatenText:
 
 FisherStephenAfterBattleText:
 	text "Have you checked"
-	line "out KANTO's radio"
+	line "out Kanto's radio"
 
 	para "programs? We get a"
 	line "good variety here."
@@ -129,7 +129,7 @@ FisherBarneyAfterBattleText:
 	para "have made such a"
 	line "fuss when the"
 
-	para "POWER PLANT went"
+	para "Power Plant went"
 	line "out of commission."
 	done
 
@@ -143,10 +143,10 @@ FisherKyleBeatenText:
 
 FisherKyleAfterBattleText:
 	text "The tug you feel"
-	line "on the ROD when"
+	line "on the rod when"
 
 	para "you hook a #-"
-	line "MON…"
+	line "mon…"
 
 	para "That's the best"
 	line "feeling ever for"
@@ -154,19 +154,17 @@ FisherKyleAfterBattleText:
 	done
 
 Route12SignText:
-	text "ROUTE 12"
+	text "Route 12"
 
-	para "NORTH TO LAVENDER"
-	line "TOWN"
+	para "North to Lavender"
+	line "Town"
 	done
 
 FishingSpotSignText:
-	text "FISHING SPOT"
+	text "Fishing Spot"
 	done
 
 Route12_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event 11, 33, ROUTE_12_SUPER_ROD_HOUSE, 1
 

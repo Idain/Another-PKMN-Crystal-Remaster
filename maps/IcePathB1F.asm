@@ -41,8 +41,7 @@ IcePathB1F_MapScripts:
 .Boulder4:
 	disappear ICEPATHB1F_BOULDER4
 	clearevent EVENT_BOULDER_IN_ICE_PATH_4A
-	sjump .FinishBoulder
-
+	; fallthrough
 .FinishBoulder:
 	pause 30
 	scall .BoulderFallsThrough
@@ -72,8 +71,6 @@ IcePathBoulderFellThroughText:
 	done
 
 IcePathB1F_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  3, 15, ICE_PATH_1F, 3
 	warp_event 17,  3, ICE_PATH_B2F_MAHOGANY_SIDE, 1

@@ -29,7 +29,11 @@ FarmerMScript_SellMilk_LoopScript:
 	closewindow
 	ifequal 1, .OneBottle
 	ifequal 2, .OneDozen
-	sjump FarmerMScript_NoSale
+;.Cancel
+	writetext FarmerMText_NoSale
+	waitbutton
+	closetext
+	end
 
 .OneBottle
 	checkmoney YOUR_MONEY, ROUTE39FARMHOUSE_MILK_PRICE
@@ -64,12 +68,6 @@ FarmerMScript_NoMoney:
 
 FarmerMScript_NoRoom:
 	writetext FarmerMText_NoRoom
-	waitbutton
-	closetext
-	end
-
-FarmerMScript_NoSale:
-	writetext FarmerMText_NoSale
 	waitbutton
 	closetext
 	end
@@ -122,11 +120,11 @@ FarmhouseBookshelf:
 	jumpstd PictureBookshelfScript
 
 FarmerMText_SickCow:
-	text "My MILTANK ain't"
+	text "My Miltank ain't"
 	line "givin' me milk"
 	cont "n'more."
 
-	para "This here FARM's"
+	para "This here farm's"
 	line "got famous milk."
 
 	para "Most everyone"
@@ -136,21 +134,22 @@ FarmerMText_SickCow:
 	line "o' milk if'n I"
 
 	para "feed it lots o'"
-	line "BERRIES, I reckon."
+	line "Oran Berries, I"
+	cont "reckon."
 	done
 
 FarmerMText_BuyMilk:
 	text "How'd you like my"
-	line "MOOMOO MILK?"
+	line "Moomoo Milk?"
 
 	para "It's my pride and"
 	line "joy, there."
 
-	para "Give it to #MON"
+	para "Give it to #mon"
 	line "to restore HP!"
 
 	para "Grab a bottle or"
-	line "a dozen!"
+	line "even a dozen!"
 	done
 
 FarmerMText_GotMilk:
@@ -165,7 +164,7 @@ FarmerMText_NoMoney:
 
 FarmerMText_NoRoom:
 	text "I reckon yer"
-	line "PACK's full."
+	line "Pack's full."
 	done
 
 FarmerMText_NoSale:
@@ -180,10 +179,10 @@ FarmerMText_Milking:
 
 FarmerFText_InTrouble:
 	text "Our milk even goes"
-	line "out to KANTO."
+	line "out to Kanto."
 
 	para "So if our own"
-	line "MILTANK won't give"
+	line "Miltank won't give"
 
 	para "us any milk, we're"
 	line "in trouble."
@@ -191,28 +190,23 @@ FarmerFText_InTrouble:
 
 FarmerFText_HealedMiltank:
 	text "You fixed our"
-	line "MILTANK, hon. Now"
+	line "Miltank, hon. Now"
 
-	para "it gives MOOMOO"
-	line "MILK again."
+	para "it gives Moomoo"
+	line "Milk again."
 
 	para "Here's somethin'"
 	line "fer your trouble."
 	done
 
-Text_ReceivedTM13: ; unreferenced
-	text "<PLAYER> received"
-	line "TM13 SNORE."
-	done
-
 FarmerFText_SnoreSpeech:
 	text "That there's"
-	line "SNORE."
+	line "Snore."
 
 	para "It's a rare move"
 	line "that only works"
 
-	para "while the #MON"
+	para "while the #mon"
 	line "is asleep."
 
 	para "You best think how"
@@ -221,8 +215,6 @@ FarmerFText_SnoreSpeech:
 	done
 
 Route39Farmhouse_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  2,  7, ROUTE_39, 2
 	warp_event  3,  7, ROUTE_39, 2

@@ -67,8 +67,6 @@ CherrygrovePokecenter1FTeacherText_CommCenterOpen:
 	done
 
 CherrygrovePokecenter1F_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  3,  7, CHERRYGROVE_CITY, 2
 	warp_event  4,  7, CHERRYGROVE_CITY, 2

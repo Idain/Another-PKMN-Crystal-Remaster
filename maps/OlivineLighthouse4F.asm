@@ -80,8 +80,6 @@ LassConnie1AfterBattleText:
 	done
 
 OlivineLighthouse4F_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event 13,  3, OLIVINE_LIGHTHOUSE_3F, 1
 	warp_event  3,  5, OLIVINE_LIGHTHOUSE_5F, 2

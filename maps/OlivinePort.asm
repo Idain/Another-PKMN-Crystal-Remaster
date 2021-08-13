@@ -13,12 +13,10 @@ OlivinePort_MapScripts:
 	scene_script .LeaveFastShip ; SCENE_OLIVINEPORT_LEAVE_SHIP
 
 	def_callbacks
-
-.DummyScene0:
-	end
-
+	
 .LeaveFastShip:
 	sdefer .LeaveFastShipScript
+.DummyScene0:
 	end
 
 .LeaveFastShipScript:
@@ -121,8 +119,6 @@ OlivinePortWalkUpToShipScript:
 	waitbutton
 	closetext
 	applymovement PLAYER, OlivinePortCannotEnterFastShipMovement
-	end
-
 .skip:
 	end
 
@@ -382,8 +378,6 @@ OlivinePortSailorBeforeHOFText:
 	done
 
 OlivinePort_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event 11,  7, OLIVINE_PORT_PASSAGE, 5
 	warp_event  7, 23, FAST_SHIP_1F, 1

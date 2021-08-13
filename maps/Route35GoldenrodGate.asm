@@ -64,16 +64,14 @@ RandyScript:
 
 GiftSpearowMail:
 	db FLOWER_MAIL
-	db   "DARK CAVE leads"
+	db   "Dark Cave leads"
 	next "to another road@"
 
 GiftSpearowName:
-	db "KENYA@"
+	db "Kenya@"
 
 GiftSpearowOTName:
-	db "RANDY@"
-
-	db 0 ; unused
+	db "Randy@"
 
 Route35GoldenrodGatePokefanFScript:
 	faceplayer
@@ -100,10 +98,10 @@ Route35GoldenrodGateRandyAskTakeThisMonToMyFriendText:
 	cont "a favor?"
 
 	para "Can you take this"
-	line "#MON with MAIL"
+	line "#mon with Mail"
 	cont "to my friend?"
 
-	para "He's on ROUTE 31."
+	para "He's on Route 31."
 	done
 
 Route35GoldenrodGateRandyThanksText:
@@ -120,13 +118,13 @@ Route35GoldenrodGateRandyThanksText:
 
 Route35GoldenrodGatePlayerReceivedAMonWithMailText:
 	text "<PLAYER> received a"
-	line "#MON with MAIL."
+	line "#mon with Mail."
 	done
 
 Route35GoldenrodGateRandyWeirdTreeBlockingRoadText:
 	text "You can read it,"
 	line "but don't lose it!"
-	cont "ROUTE 31!"
+	cont "Route 31!"
 
 	para "Oh, yeah. There"
 	line "was a weird tree"
@@ -138,7 +136,7 @@ Route35GoldenrodGateRandyWeirdTreeBlockingRoadText:
 
 Route35GoldenrodGateRandyCantCarryAnotherMonText:
 	text "You can't carry"
-	line "another #MON…"
+	line "another #mon…"
 	done
 
 Route35GoldenrodGateRandyOhNeverMindThenText:
@@ -172,32 +170,30 @@ Route35GoldenrodGatePokefanFText:
 	line "wild when someone"
 
 	para "watered it with a"
-	line "SQUIRTBOTTLE."
+	line "SquirtBottle."
 	done
 
 Route35GoldenrodGatePokefanFText_FoughtSudowoodo:
-	text "I like the #MON"
+	text "I like the #mon"
 	line "Lullaby they play"
 	cont "on the radio."
 	done
 
 Route35GoldenrodGateFisherText:
 	text "I wonder how many"
-	line "kinds of #MON"
+	line "kinds of #mon"
 
 	para "there are in the"
 	line "world."
 
 	para "Three years ago,"
-	line "PROF.OAK said that"
+	line "Prof.Oak said that"
 
 	para "there were 150"
 	line "different kinds."
 	done
 
 Route35GoldenrodGate_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  4,  0, ROUTE_35, 1
 	warp_event  5,  0, ROUTE_35, 2

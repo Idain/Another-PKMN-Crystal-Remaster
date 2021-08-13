@@ -32,12 +32,9 @@ Route12SuperRodHouseFishingGuruScript:
 	closetext
 	end
 
-SuperRodHouseBookshelf: ; unreferenced
-	jumpstd PictureBookshelfScript
-
 OfferSuperRodText:
-	text "I'm the FISHING"
-	line "GURU's younger"
+	text "I'm the Fishing"
+	line "Guru's younger"
 	cont "brother."
 
 	para "I can see that you"
@@ -56,7 +53,7 @@ GiveSuperRodText:
 
 	para "Here, fishing fan!"
 	line "Take this--it's a"
-	cont "SUPER ROD."
+	cont "Super Rod."
 	done
 
 GaveSuperRodText:
@@ -67,8 +64,8 @@ GaveSuperRodText:
 	para "Remember--you can"
 	line "catch different"
 
-	para "#MON using"
-	line "different RODS."
+	para "#mon using"
+	line "different Rods."
 	done
 
 DontWantSuperRodText:
@@ -77,8 +74,6 @@ DontWantSuperRodText:
 	done
 
 Route12SuperRodHouse_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  2,  7, ROUTE_12, 1
 	warp_event  3,  7, ROUTE_12, 1

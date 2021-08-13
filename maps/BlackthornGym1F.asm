@@ -71,16 +71,14 @@ BlackthornGymClairScript:
 	setevent EVENT_GOT_TM24_DRAGONBREATH
 	writetext BlackthornGymClairText_DescribeTM24
 	promptbutton
-	sjump .GotTM24
-
-.BagFull:
-	writetext BlackthornGymClairText_BagFull
+.GotTM24:
+	writetext BlackthornGymClairText_League
 	waitbutton
 	closetext
 	end
 
-.GotTM24:
-	writetext BlackthornGymClairText_League
+.BagFull:
+	writetext BlackthornGymClairText_BagFull
 	waitbutton
 	closetext
 	end
@@ -373,8 +371,6 @@ BlackthornGymGuideWinText:
 	done
 
 BlackthornGym1F_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  4, 17, BLACKTHORN_CITY, 1
 	warp_event  5, 17, BLACKTHORN_CITY, 1

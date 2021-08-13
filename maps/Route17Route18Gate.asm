@@ -34,24 +34,22 @@ Route17Route18GateCannotPassMovement:
 	step_end
 
 Route17Route18GateOfficerText:
-	text "CYCLING ROAD"
+	text "Cycling Road"
 	line "Uphill Starts Here"
 	done
 
 Route17Route18GateCannotPassText:
 	text "Hang on! Don't you"
-	line "have a BICYCLE?"
+	line "have a Bicycle?"
 
-	para "The CYCLING ROAD"
+	para "The Cycling Road"
 	line "is beyond here."
 
 	para "You have to have a"
-	line "BICYCLE to go on."
+	line "Bicycle to go on."
 	done
 
 Route17Route18Gate_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  0,  4, ROUTE_17, 1
 	warp_event  0,  5, ROUTE_17, 2

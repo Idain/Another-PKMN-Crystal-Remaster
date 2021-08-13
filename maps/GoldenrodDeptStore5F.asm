@@ -84,18 +84,10 @@ GoldenrodDeptStore5FReceptionistScript:
 Carrie:
 	faceplayer
 	opentext
-	special GameboyCheck
-	ifnotequal GBCHECK_CGB, .NotGBC ; This is a dummy check from Gold/Silver
 	writetext GoldenrodDeptStore5FCarrieMysteryGiftExplanationText
 	waitbutton
 	closetext
 	special UnlockMysteryGift
-	end
-
-.NotGBC:
-	writetext GoldenrodDeptStore5FCarrieMysteryGiftRequiresGBCText
-	waitbutton
-	closetext
 	end
 
 GoldenrodDeptStore5FLassScript:
@@ -120,7 +112,7 @@ GoldenrodDeptStore5FElevatorButton:
 
 GoldenrodDeptStore5FReceptionistOhYourMonDotDotDotText:
 	text "Hello. Oh, your"
-	line "#MON…"
+	line "#mon…"
 	done
 
 GoldenrodDeptStore5FReceptionistThisMoveShouldBePerfectText:
@@ -150,7 +142,7 @@ GoldenrodDeptStore5FReceptionistThereAreTMsPerfectForMonText:
 	line "be TMs that are"
 
 	para "just perfect for"
-	line "your #MON."
+	line "your #mon."
 	done
 
 GoldenrodDeptStore5FAlreadyGotTMText:
@@ -159,23 +151,18 @@ GoldenrodDeptStore5FAlreadyGotTMText:
 	done
 
 GoldenrodDeptStore5FCarrieMysteryGiftExplanationText:
-	text "MYSTERY GIFT."
+	text "Mystery Gift."
 
 	para "With just a"
 	line "little beep, you"
 	cont "get a gift."
 	done
 
-GoldenrodDeptStore5FCarrieMysteryGiftRequiresGBCText:
-	text "The MYSTERY GIFT"
-	line "option requires a"
-	cont "Game Boy Color."
-	done
 
 GoldenrodDeptStore5FLassText:
 	text "On Sundays, a lady"
 	line "comes to check out"
-	cont "#MON."
+	cont "#mon."
 
 	para "She even gives"
 	line "away TMs!"
@@ -183,7 +170,7 @@ GoldenrodDeptStore5FLassText:
 
 GoldenrodDeptStore5FPokefanMText:
 	text "You can't rename a"
-	line "#MON you get in"
+	line "#mon you get in"
 	cont "a trade."
 
 	para "The name is a re-"
@@ -195,14 +182,12 @@ GoldenrodDeptStore5FPokefanMText:
 
 GoldenrodDeptStore5FDirectoryText:
 	text "Customize Your"
-	line "#MON"
+	line "#mon"
 
 	para "5F TM CORNER"
 	done
 
 GoldenrodDeptStore5F_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event 12,  0, GOLDENROD_DEPT_STORE_4F, 1
 	warp_event 15,  0, GOLDENROD_DEPT_STORE_6F, 1

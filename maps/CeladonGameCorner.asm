@@ -74,7 +74,7 @@ CeladonGameCornerFisherScript:
 	end
 
 .coinname
-	db "COIN@"
+	db "Coin@"
 
 .NoCoinCase:
 	writetext CeladonGameCornerFisherNoCoinCaseText
@@ -103,10 +103,8 @@ CeladonGameCornerGrampsScript:
 	end
 
 CeladonGameCornerPoster1Script:
-	jumptext CeladonGameCornerPoster1Text
-
 CeladonGameCornerPoster2Script:
-	jumptext CeladonGameCornerPoster2Text
+	jumptext CeladonGameCornerPosterText
 
 CeladonGameCornerLuckySlotMachineScript:
 	random 6
@@ -232,7 +230,7 @@ CeladonGameCornerFisherText2:
 
 CeladonGameCornerFisherNoCoinCaseText:
 	text "Hey, you don't"
-	line "have a COIN CASE."
+	line "have a Coin Case."
 
 	para "How am I supposed"
 	line "to give you any"
@@ -241,12 +239,12 @@ CeladonGameCornerFisherNoCoinCaseText:
 
 CeladonGameCornerFisherFullCoinCaseText:
 if DEF(_CRYSTAL_AU)
-	text "Your COIN CASE is"
+	text "Your Coin Case is"
 	line "full."
 	done
 else
-	text "Hey, your COIN"
-	line "CASE is full, kid."
+	text "Hey, your Coin"
+	line "Case is full, kid."
 
 	para "You must be riding"
 	line "a winning streak"
@@ -255,7 +253,7 @@ else
 endc
 
 CeladonGymGuideText:
-	text "Hey! CHAMP in"
+	text "Hey! Champ in"
 	line "making!"
 
 	para "Are you playing"
@@ -267,7 +265,7 @@ endc
 
 	para "I'm trying to get"
 	line "enough coins for a"
-	cont "prize #MON."
+	cont "prize #mon."
 
 	para "But I don't have"
 	line "enough coins yet…"
@@ -283,21 +281,12 @@ else
 	text "Hmmm… The odds are"
 	line "surely better for"
 
-	para "PIKACHU's line,"
+	para "Pikachu's line,"
 	line "but… What to do?"
 	done
 endc
 
-CeladonGameCornerPoster1Text:
-	text "Hey!"
-
-	para "Underneath this"
-	line "poster…"
-
-	para "There's nothing!"
-	done
-
-CeladonGameCornerPoster2Text:
+CeladonGameCornerPosterText:
 	text "Hey!"
 
 	para "Underneath this"
@@ -321,8 +310,6 @@ CeladonGameCornerSodaCanText:
 	done
 
 CeladonGameCorner_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event 14, 13, CELADON_CITY, 6
 	warp_event 15, 13, CELADON_CITY, 6

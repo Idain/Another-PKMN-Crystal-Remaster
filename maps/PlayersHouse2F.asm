@@ -11,9 +11,6 @@ PlayersHouse2F_MapScripts:
 	callback MAPCALLBACK_NEWMAP, .InitializeRoom
 	callback MAPCALLBACK_TILES, .SetUpTileDecorations
 
-.DummyScene: ; unreferenced
-	end
-
 .InitializeRoom:
 	special ToggleDecorationsVisibility
 	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_8
@@ -22,8 +19,6 @@ PlayersHouse2F_MapScripts:
 .SetUpTileDecorations:
 	special ToggleMaptileDecorations
 	endcallback
-
-	db 0, 0, 0 ; unused
 
 PlayersHouseDoll1Script::
 	describedecoration DECODESC_LEFT_DOLL
@@ -107,8 +102,6 @@ PlayersRadioText4:
 	done
 
 PlayersHouse2F_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  7,  0, PLAYERS_HOUSE_1F, 3
 

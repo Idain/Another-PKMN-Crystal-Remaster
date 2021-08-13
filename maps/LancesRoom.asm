@@ -346,8 +346,6 @@ LancesRoomMaryNoInterviewText:
 	done
 
 LancesRoom_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  4, 23, KARENS_ROOM, 3
 	warp_event  5, 23, KARENS_ROOM, 4

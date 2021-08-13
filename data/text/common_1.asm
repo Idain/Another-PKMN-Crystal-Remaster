@@ -217,60 +217,6 @@ _OakTimeIsItText::
 	text ", is it?"
 	done
 
-; Mobile Adapter
-
-_ThereIsNothingConnectedText:: ; unreferenced
-	text "There is nothing"
-	line "connected."
-	done
-
-_CheckCellPhoneAdapterText:: ; unreferenced
-	text "Check cell phone"
-	line "adapter."
-	done
-
-_CheckCDMAAdapterText:: ; unreferenced
-	text "Check CDMA"
-	line "adapter."
-	done
-
-_CheckDOCOMOPHSAdapterText:: ; unreferenced
-	text "Check DOCOMO PHS"
-	line "adapter."
-	done
-
-_CheckDDIPHSAdapterText:: ; unreferenced
-	text "Check DDI PHS"
-	line "adapter."
-	done
-
-_CheckMobileAdapterText:: ; unreferenced
-	text "Check unlimited"
-	line "battle mobile"
-	cont "adapter."
-	done
-
-; Mobile Adapter End
-
-_ThePasswordIsText:: ; unreferenced
-	text "The password is:"
-	line ""
-	done
-
-_IsThisOKText:: ; unreferenced
-	text "Is this OK?"
-	done
-
-_EnterTheIDNoText:: ; unreferenced
-	text "Enter the"
-	line "ID no."
-	done
-
-_EnterTheAmountText:: ; unreferenced
-	text "Enter the"
-	line "amount."
-	done
-
 _NothingToChooseText::
 	text "There's nothing to"
 	line "choose."
@@ -1112,109 +1058,6 @@ _EnemyUsedOnText::
 	text "!"
 	prompt
 
-_ThatCantBeUsedRightNowText:: ; unreferenced
-	text "That can't be used"
-	line "right now."
-	prompt
-
-_ThatItemCantBePutInThePackText:: ; unreferenced
-	text "That item can't be"
-	line "put in the Pack."
-	done
-
-_TheItemWasPutInThePackText:: ; unreferenced
-	text "The @"
-	text_ram wStringBuffer1
-	text_start
-	line "was put in the"
-	cont "Pack."
-	done
-
-_RemainingTimeText:: ; unreferenced
-	text "Remaining Time"
-	done
-
-_YourMonsHPWasHealedText:: ; unreferenced
-	text "Your #mon's HP"
-	line "was healed."
-	prompt
-
-_WarpingText:: ; unreferenced
-	text "Warping…"
-	done
-
-_ChangeWhichNumberText:: ; unreferenced
-	text "Which number"
-	line "should be changed?"
-	done
-
-_WillYouPlayWithMonText:: ; unreferenced
-	text "Will you play with"
-	line "@"
-	text_ram wStringBuffer2
-	text "?"
-	done
-
-_YouNeedTwoMonForBreedingText:: ; unreferenced
-	text "You need two #-"
-	line "mon for breeding."
-	prompt
-
-_BreedingIsNotPossibleText:: ; unreferenced
-	text "Breeding is not"
-	line "possible."
-	prompt
-
-_CompatibilityShouldTheyBreedText:: ; unreferenced
-	text "The compatibility"
-	line "is @"
-	text_decimal wBreedingCompatibility, 1, 3
-	text "."
-	cont "Should they breed?"
-	done
-
-_ThereIsNoEggText:: ; unreferenced
-	text "There is no Egg."
-	line ""
-	prompt
-
-_ItsGoingToHatchText:: ; unreferenced
-	text "It's going to"
-	line "hatch!"
-	prompt
-
-_TestEventText:: ; unreferenced
-	text "Test event"
-	line "@"
-	text_decimal wStringBuffer2, 1, 2
-	text "?"
-	done
-
-_StartText:: ; unreferenced
-	text "Start!"
-	done
-
-_EndText:: ; unreferenced
-	text "End!"
-	done
-
-_ForABoyText:: ; unreferenced
-	text "For a boy!"
-	done
-
-_ForAGirlText:: ; unreferenced
-	text "For a girl!"
-	done
-
-_DoesntConcernABoyText:: ; unreferenced
-	text "This doesn't"
-	line "concern a boy!"
-	done
-
-_TheBoxIsFullText:: ; unreferenced
-	text "The BOX is full!"
-	done
-
 ; Mobile Adapter
 
 _NewCardArrivedText::
@@ -1274,11 +1117,6 @@ _TradingMonForOTMonText::
 	done
 
 ; Mobile Adapter End
-
-_ObtainedTheVoltorbBadgeText:: ; unreferenced
-	text "Obtained the"
-	line "Voltorb Badge!"
-	done
 
 _AskFloorElevatorText::
 	text "Which floor?"

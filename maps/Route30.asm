@@ -104,6 +104,7 @@ TrainerYoungsterJoey:
 	startbattle
 	reloadmapafterbattle
 	clearflag ENGINE_JOEY_READY_FOR_REMATCH
+.done
 	end
 
 .LoadFight4:
@@ -120,9 +121,6 @@ TrainerYoungsterJoey:
 	iffalse .PackFull
 	setevent EVENT_GOT_HP_UP_FROM_JOEY
 	sjump .NumberAccepted
-
-.done
-	end
 
 .GiveHPUp:
 	opentext
@@ -331,7 +329,7 @@ BugCatcherDonAfterText:
 	done
 
 Route30YoungsterText_DirectionsToMrPokemonsHouse:
-	text "MR.#mon's"
+	text "Mr.#mon's"
 	line "house? It's a bit"
 	cont "farther ahead."
 	done
@@ -393,8 +391,6 @@ YoungsterJoeyText_GiveHPUpAfterBattle:
 	done
 
 Route30_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  7, 39, ROUTE_30_BERRY_HOUSE, 1
 	warp_event 17,  5, MR_POKEMONS_HOUSE, 1

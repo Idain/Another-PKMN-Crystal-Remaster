@@ -116,61 +116,61 @@ NationalParkBugContestHiddenFullHeal:
 	hiddenitem FULL_HEAL, EVENT_NATIONAL_PARK_HIDDEN_FULL_HEAL
 
 BugCatchingContestant1AText:
-	text "DON: I'm going to"
+	text "Don: I'm going to"
 	line "win! Don't bother"
 	cont "me."
 	done
 
 BugCatchingContestant2AText:
-	text "ED: My PARASECT"
-	line "puts #MON to"
-	cont "sleep with SPORE."
+	text "Ed: My Parasect"
+	line "puts #mon to"
+	cont "sleep with Spore."
 	done
 
 BugCatchingContestant3AText:
-	text "NICK: I'm raising"
-	line "fast #MON for"
+	text "Nick: I'm raising"
+	line "fast #mon for"
 	cont "battles."
 	done
 
 BugCatchingContestant4AText:
-	text "WILLIAM: I'm not"
+	text "William: I'm not"
 	line "concerned about"
 	cont "winning."
 
 	para "I'm just looking"
-	line "for rare #MON."
+	line "for rare #mon."
 	done
 
 BugCatchingContestant5AText:
-	text "BENNY: Ssh! You'll"
-	line "scare off SCYTHER."
+	text "Benny: Ssh! You'll"
+	line "scare off Scyther."
 
 	para "I'll talk to you"
 	line "later."
 	done
 
 BugCatchingContestant6AText:
-	text "BARRY: You should"
-	line "weaken bug #MON"
+	text "Barry: You should"
+	line "weaken bug #mon"
 
 	para "first, then throw"
-	line "a BALL."
+	line "a Ball."
 	done
 
 BugCatchingContestant7AText:
-	text "CINDY: I love bug"
-	line "#MON."
+	text "Cindy: I love bug"
+	line "#mon."
 
 	para "I guess you must"
 	line "like them too."
 	done
 
 BugCatchingContestant8AText:
-	text "JOSH: I've been"
+	text "Josh: I've been"
 	line "collecting bug"
 
-	para "#MON since I"
+	para "#mon since I"
 	line "was just a baby."
 
 	para "There's no way I'm"
@@ -178,16 +178,16 @@ BugCatchingContestant8AText:
 	done
 
 BugCatchingContestant9AText:
-	text "SAMUEL: If you've"
+	text "Samuel: If you've"
 	line "got the time to"
 
 	para "chat, go find some"
-	line "bug #MON."
+	line "bug #mon."
 	done
 
 BugCatchingContestant10AText:
-	text "KIPP: I've studied"
-	line "about bug #MON"
+	text "Kipp: I've studied"
+	line "about bug #mon"
 	cont "a lot."
 
 	para "I'm going to win"
@@ -195,8 +195,8 @@ BugCatchingContestant10AText:
 	done
 
 NationalParkBugContestRelaxationSquareText:
-	text "RELAXATION SQUARE"
-	line "NATIONAL PARK"
+	text "Relaxation Square"
+	line "National Park"
 	done
 
 NationalParkBugContestBattleNoticeText:
@@ -206,21 +206,19 @@ NationalParkBugContestBattleNoticeText:
 	para "Please battle only"
 	line "in the grass."
 
-	para "NATIONAL PARK"
-	line "WARDEN'S OFFICE"
+	para "National Park"
+	line "Warden's Office"
 	done
 
 NationalParkBugContestTrainerTipsText:
 	text "TRAINER TIPS"
 
-	para "Print out MAIL by"
+	para "Print out Mail by"
 	line "opening it then"
 	cont "pressing START."
 	done
 
 NationalParkBugContest_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event 33, 18, ROUTE_36_NATIONAL_PARK_GATE, 1
 	warp_event 33, 19, ROUTE_36_NATIONAL_PARK_GATE, 1

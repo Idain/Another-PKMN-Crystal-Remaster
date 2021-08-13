@@ -201,7 +201,7 @@ _NoRoomTMHMText::
 	line "for any more"
 	cont "@"
 	text_ram wStringBuffer1
-	text "S."
+	text "s."
 	prompt
 
 _ReceivedTMHMText::
@@ -335,7 +335,7 @@ _AlreadySurfingText::
 
 _AskSurfText::
 	text "The water is calm."
-	line "Want to surf?"
+	line "Want to Surf?"
 	done
 
 _UseWaterfallText::
@@ -579,8 +579,9 @@ _WhitedOutToTrainerText::
 _ItemfinderItemNearbyText::
 	text "Yes! The Dowsing"
 	line "MCHN indicates"
-	cont "there's an item"
-	cont "nearby."
+
+	para "there's an item"
+	line "nearby."
 	prompt
 
 _ItemfinderNopeText::
@@ -815,12 +816,7 @@ _LeftWithDayCareManText::
 	line "that was left with"
 	cont "the Day-Care Man."
 	done
-/*
-_BreedBrimmingWithEnergyText::
-	text "It's brimming with"
-	line "energy."
-	prompt
-*/
+
 _BreedNoInterestText::
 	text "It has no interest"
 	line "in @"
@@ -860,7 +856,7 @@ _MailClearedPutAwayText::
 	prompt
 
 _MailPackFullText::
-	text "The PACK is full."
+	text "The Pack is full."
 	prompt
 
 _MailMessageLostText::
@@ -874,35 +870,14 @@ _MailAlreadyHoldingItemText::
 	prompt
 
 _MailEggText::
-	text "An EGG can't hold"
-	line "any MAIL."
+	text "An Egg can't hold"
+	line "any Mail."
 	prompt
 
 _MailMovedFromBoxText::
-	text "The MAIL was moved"
-	line "from the MAILBOX."
+	text "The Mail was moved"
+	line "from the Mailbox."
 	prompt
-
-_YesPromptText:: ; unreferenced
-	text "Yes"
-	prompt
-
-_NoPromptText:: ; unreferenced
-	text "No"
-	prompt
-
-_AnimationTypeText:: ; unreferenced
-	text_decimal wcf64, 1, 3
-	text " @"
-	text_ram wStringBuffer1
-	text_start
-	line "Animation type @"
-	text_ram wStringBuffer2
-	text_end
-
-_MonNumberText:: ; unreferenced
-	text "#mon number?"
-	done
 
 _WasSentToBillsPCText::
 	text_ram wStringBuffer1
@@ -1338,27 +1313,6 @@ _OakPCText4::
 	line "Oak's PC closed."
 	done
 
-_TrainerRankingExplanationText:: ; unreferenced
-	text "Triple-theme"
-	line "trainer ranking!"
-
-	para "The Save file you"
-	line "just sent might"
-	cont "make the rankings!"
-
-	para ""
-	done
-
-_TrainerRankingNoDataText:: ; unreferenced
-	text "There is no"
-	line "ranking data."
-
-	para "Link to obtain"
-	line "ranking data."
-
-	para ""
-	done
-
 _MemoryGameYeahText::
 	text " , yeah!"
 	done
@@ -1484,12 +1438,12 @@ _MailDetachedText::
 
 _MailNoSpaceText::
 	text "There's no space"
-	line "for removing mail."
+	line "for removing Mail."
 	prompt
 
 _MailAskSendToPCText::
 	text "Send the removed"
-	line "mail to your PC?"
+	line "Mail to your PC?"
 	done
 
 _MailboxFullText::
@@ -1498,7 +1452,7 @@ _MailboxFullText::
 	prompt
 
 _MailSentToPCText::
-	text "The mail was sent"
+	text "The Mail was sent"
 	line "to your PC."
 	prompt
 

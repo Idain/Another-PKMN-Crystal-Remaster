@@ -18,22 +18,20 @@ VermilionMagnetTrainSpeechHouseBookshelf:
 
 VermilionMagnetTrainSpeechHousePokefanFText:
 	text "Do you know about"
-	line "the MAGNET TRAIN?"
+	line "the Magnet Train?"
 
 	para "It's a railway"
-	line "that goes to GOL-"
-	cont "DENROD in JOHTO."
+	line "that goes to Gol-"
+	cont "denrod in Johto."
 	done
 
 VermilionMagnetTrainSpeechHouseYoungsterText:
 	text "I want to go to"
-	line "SAFFRON to see"
-	cont "the MAGNET TRAIN."
+	line "Saffron to see"
+	cont "the Magnet Train."
 	done
 
 VermilionMagnetTrainSpeechHouse_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  2,  7, VERMILION_CITY, 4
 	warp_event  3,  7, VERMILION_CITY, 4

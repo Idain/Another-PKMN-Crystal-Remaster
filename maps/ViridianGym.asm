@@ -92,8 +92,7 @@ LeaderBlueBeforeText:
 	para "battling you right"
 	line "now."
 
-	para "Ready, Johto"
-	line "kid?"
+	para "Ready, Johto kid?"
 	done
 
 LeaderBlueWinText:
@@ -132,9 +131,9 @@ LeaderBlueAfterText:
 	line "it!"
 
 	para "Ah, before I for-"
-	line "get, with the Ris-"
+	line "get, with the"
 
-	para "sing Badge all"
+	para "Earth Badge all"
 	line "#mon will obey"
 
 	para "you without ques-"
@@ -185,8 +184,6 @@ ViridianGymGuideWinText:
 	done
 
 ViridianGym_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  4, 17, VIRIDIAN_CITY, 1
 	warp_event  5, 17, VIRIDIAN_CITY, 1

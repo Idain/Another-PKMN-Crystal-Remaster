@@ -55,7 +55,7 @@ PokefanmCarterSeenText:
 	line "I had a hard time"
 
 	para "catching my prized"
-	line "#MON."
+	line "#mon."
 	done
 
 PokefanmCarterBeatenText:
@@ -63,8 +63,8 @@ PokefanmCarterBeatenText:
 	done
 
 PokefanmCarterAfterBattleText:
-	text "SQUIRTLE, CHARMAN-"
-	line "DER and BULBASAUR…"
+	text "Wartortle, Charme-"
+	line "leon and Ivysaur…"
 
 	para "I think that's a"
 	line "well-balanced mix."
@@ -73,7 +73,7 @@ PokefanmCarterAfterBattleText:
 BirdKeeperRoySeenText:
 	text "My dream is to fly"
 	line "with my beloved"
-	cont "bird #MON."
+	cont "bird #mon."
 	done
 
 BirdKeeperRoyBeatenText:
@@ -82,17 +82,17 @@ BirdKeeperRoyBeatenText:
 	done
 
 BirdKeeperRoyAfterBattleText:
-	text "You have #MON"
+	text "You have #mon"
 	line "that know the HM"
 
-	para "move FLY, don't"
+	para "move Fly, don't"
 	line "you? I envy you."
 	done
 
 PokefanmTrevorSeenText:
 	text "Hi. Did you know…?"
 
-	para "#MON get more"
+	para "#mon get more"
 	line "friendly if you"
 
 	para "train them in a"
@@ -102,7 +102,7 @@ PokefanmTrevorSeenText:
 
 PokefanmTrevorBeatenText:
 	text "Where did I meet"
-	line "this PSYDUCK?"
+	line "my #mon?"
 	done
 
 PokefanmTrevorAfterBattleText:
@@ -110,12 +110,10 @@ PokefanmTrevorAfterBattleText:
 	line "an easy way to"
 
 	para "identify where I"
-	line "got my #MON…"
+	line "got my #mon…"
 	done
 
 Route14_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 
 	def_coord_events

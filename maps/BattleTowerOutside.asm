@@ -19,7 +19,7 @@ BattleTowerOutside_MapScripts:
 	endcallback
 
 BattleTowerOutsideYoungsterScript:
-	jumptextfaceplayer BattleTowerOutsideYoungsterText
+	jumptextfaceplayer BattleTowerOutsideYoungsterText_Mobile
 
 BattleTowerOutsideBeautyScript:
 	jumptextfaceplayer BattleTowerOutsideBeautyText
@@ -38,7 +38,7 @@ BattleTowerOutsideYoungsterText_NotYetOpen: ; unreferenced
 	line "looking up at it."
 	done
 
-BattleTowerOutsideYoungsterText_Mobile: ; unreferenced
+BattleTowerOutsideYoungsterText_Mobile:
 	text "Wow, the Battle"
 	line "Tower is huge!"
 
@@ -52,7 +52,7 @@ BattleTowerOutsideYoungsterText_Mobile: ; unreferenced
 	line "#mon."
 	done
 
-BattleTowerOutsideYoungsterText:
+BattleTowerOutsideYoungsterText: ; unreferenced
 	text "Wow, the Battle"
 	line "Tower is huge!"
 
@@ -83,15 +83,6 @@ BattleTowerOutsideBeautyText:
 	line "battle…"
 	done
 
-BattleTowerOutsideSailorText_Mobile: ; unreferenced
-	text "Ehehehe…"
-	line "I sneaked out of"
-	cont "work to come here."
-
-	para "I'm never giving"
-	line "up until I become"
-	cont "a Leader!"
-	done
 
 BattleTowerOutsideSailorText:
 	text "Hehehe, I snuck"
@@ -104,32 +95,14 @@ BattleTowerOutsideSailorText:
 	line "all. That I must!"
 	done
 
-BattleTowerOutsideSignText_NotYetOpen: ; unreferenced
-; originally shown when the Battle Tower was closed
-	text "Battle Tower"
-	done
-
 BattleTowerOutsideSignText:
 	text "Battle Tower"
 
 	para "Take the Ultimate"
 	line "Trainer Challenge!"
 	done
-
-BattleTowerOutsideText_DoorsClosed: ; unreferenced
-; originally shown when the Battle Tower was closed
-	text "The Battle Tower's"
-	line "doors are closed…"
-	done
-
-BattleTowerOutsideText_DoorsOpen: ; unreferenced
-; originally shown after the Battle Tower opened
-	text "It's open!"
-	done
-
+	
 BattleTowerOutside_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  8, 21, ROUTE_40_BATTLE_TOWER_GATE, 3
 	warp_event  9, 21, ROUTE_40_BATTLE_TOWER_GATE, 4

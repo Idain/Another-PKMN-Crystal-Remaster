@@ -48,7 +48,7 @@ LavRadioTower1FGentlemanScript:
 	end
 
 .expncardname
-	db "EXPN CARD@"
+	db "EXPN Card@"
 
 LavRadioTower1FSuperNerd2Script:
 	faceplayer
@@ -72,9 +72,6 @@ LavRadioTower1FDirectory:
 LavRadioTower1FPokeFluteSign:
 	jumptext LavRadioTower1FPokeFluteSignText
 
-LavRadioTower1FReferenceLibrary: ; unreferenced
-	jumptext LavRadioTower1FReferenceLibraryText
-
 LavRadioTower1FReceptionistText:
 	text "Welcome!"
 	line "Feel free to look"
@@ -88,8 +85,8 @@ LavRadioTower1FOfficerText:
 	line "only tour the"
 	cont "ground floor."
 
-	para "Ever since JOHTO's"
-	line "RADIO TOWER was"
+	para "Ever since Johto's"
+	line "Radio Tower was"
 
 	para "taken over by a"
 	line "criminal gang, we"
@@ -102,8 +99,8 @@ LavRadioTower1FSuperNerd1Text:
 	text "Many people are"
 	line "hard at work here"
 
-	para "in the RADIO"
-	line "TOWER."
+	para "in the Radio"
+	line "Tower."
 
 	para "They must be doing"
 	line "their best to put"
@@ -116,7 +113,7 @@ LavRadioTower1FGentlemanText:
 	para "We've been off the"
 	line "air ever since the"
 
-	para "POWER PLANT shut"
+	para "Power Plant shut"
 	line "down."
 
 	para "All my efforts to"
@@ -132,7 +129,7 @@ LavRadioTower1FGentlemanText_ReturnedMachinePart:
 	text "Ah! So you're the"
 	line "<PLAY_G> who solved"
 
-	para "the POWER PLANT's"
+	para "the Power Plant's"
 	line "problem?"
 
 	para "Thanks to you, I"
@@ -150,7 +147,7 @@ LavRadioTower1FGentlemanText_GotExpnCard:
 	line "you can tune into"
 
 	para "the radio programs"
-	line "here in KANTO."
+	line "here in Kanto."
 
 	para "Gahahahaha!"
 	done
@@ -159,16 +156,16 @@ LavRadioTower1FSuperNerd2Text:
 	text "Hey there!"
 
 	para "I am the super"
-	line "MUSIC DIRECTOR!"
+	line "Music Director!"
 
-	para "Huh? Your #GEAR"
+	para "Huh? Your #gear"
 	line "can't tune into my"
 
 	para "music programs."
 	line "How unfortunate!"
 
 	para "If you get an EXPN"
-	line "CARD upgrade, you"
+	line "Card upgrade, you"
 
 	para "can tune in. You'd"
 	line "better get one!"
@@ -178,7 +175,7 @@ LavRadioTower1FSuperNerd2Text_GotExpnCard:
 	text "Hey there!"
 
 	para "I am the super"
-	line "MUSIC DIRECTOR!"
+	line "Music Director!"
 
 	para "I'm responsible"
 	line "for the gorgeous"
@@ -203,16 +200,16 @@ LavRadioTower1FDirectoryText:
 	done
 
 LavRadioTower1FPokeFluteSignText:
-	text "Perk Up #MON"
+	text "Perk Up #mon"
 	line "with Mellow Sounds"
 
-	para "of the # FLUTE"
-	line "on CHANNEL 20"
+	para "of the # Flute"
+	line "on Channel 20"
 	done
 
 LavRadioTower1FReferenceLibraryText:
 	text "Wow! A full rack"
-	line "of #MON CDs and"
+	line "of #mon CDs and"
 	cont "videos."
 
 	para "This must be the"
@@ -220,8 +217,6 @@ LavRadioTower1FReferenceLibraryText:
 	done
 
 LavRadioTower1F_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  2,  7, LAVENDER_TOWN, 7
 	warp_event  3,  7, LAVENDER_TOWN, 7

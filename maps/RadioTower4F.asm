@@ -106,22 +106,22 @@ RadioTower4FStudio2Sign:
 RadioTower4FFisherText:
 	text "I listened to the"
 	line "radio while I was"
-	cont "at the RUINS."
+	cont "at the ruins."
 
 	para "I heard a strange"
 	line "broadcast there."
 	done
 
 RadioTower4FDJMaryText:
-	text "MARY: Why? Why do"
+	text "Mary: Why? Why do"
 	line "I have to suffer"
 	cont "through this?"
 
-	para "MEOWTH, help me!"
+	para "Meowth, help me!"
 	done
 
 RadioTower4FDJMaryText_ClearedRockets:
-	text "MARY: Oh! You're"
+	text "Mary: Oh! You're"
 	line "my little savior!"
 
 	para "Will you take this"
@@ -129,28 +129,28 @@ RadioTower4FDJMaryText_ClearedRockets:
 	done
 
 RadioTower4FDJMaryText_GivePinkBow:
-	text "MARY: It's just"
-	line "right for #MON"
+	text "Mary: It's just"
+	line "right for #mon"
 
 	para "that know normal-"
 	line "type moves."
 	done
 
 RadioTower4FDJMaryText_After:
-	text "MARY: Please tune"
-	line "into me on PROF."
+	text "Mary: Please tune"
+	line "into me on Prof."
 
-	para "OAK'S #MON TALK"
+	para "Oak's #mon Talk"
 	line "show."
 	done
 
 RadioTowerMeowthText:
-	text "MEOWTH: Meowth…"
+	text "Meowth: Meowth…"
 	done
 
 GruntM10SeenText:
 	text "You plan to rescue"
-	line "the DIRECTOR?"
+	line "the Director?"
 
 	para "That won't be pos-"
 	line "sible because I'm"
@@ -168,7 +168,7 @@ GruntM10AfterBattleText:
 
 Executivem2SeenText:
 	text "Stop! I'm known as"
-	line "the TEAM ROCKET"
+	line "the Team Rocket"
 	cont "fortress!"
 
 	para "You're not taking"
@@ -192,10 +192,10 @@ Executivem2AfterBattleText:
 
 GruntF4SeenText:
 	text "Don't I think"
-	line "#MON are cute?"
+	line "#mon are cute?"
 
 	para "I'll think my"
-	line "#MON are cute--"
+	line "#mon are cute--"
 
 	para "after they beat"
 	line "yours!"
@@ -211,13 +211,13 @@ GruntF4AfterBattleText:
 	line "beautiful self!"
 
 	para "Who cares about"
-	line "#MON?"
+	line "#mon?"
 	done
 
 ScientistRichSeenText:
 	text "Most excellent."
 
-	para "This RADIO TOWER"
+	para "This Radio Tower"
 	line "will fulfill our"
 	cont "grand design."
 	done
@@ -232,7 +232,7 @@ ScientistRichBeatenText:
 ScientistRichAfterBattleText:
 	text "Do you honestly"
 	line "believe you can"
-	cont "stop TEAM ROCKET?"
+	cont "stop Team Rocket?"
 	done
 
 RadioTower4FProductionSignText:
@@ -244,8 +244,6 @@ RadioTower4FStudio2SignText:
 	done
 
 RadioTower4F_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  0,  0, RADIO_TOWER_5F, 1
 	warp_event  9,  0, RADIO_TOWER_3F, 2
@@ -261,7 +259,7 @@ RadioTower4F_MapEvents:
 	def_object_events
 	object_event  6,  4, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, RadioTower4FFisherScript, EVENT_RADIO_TOWER_CIVILIANS_AFTER
 	object_event 14,  6, SPRITE_TEACHER, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, RadioTower4FDJMaryScript, -1
-	object_event 12,  7, SPRITE_GROWLITHE, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, RadioTowerMeowth, -1
+	object_event 12,  7, SPRITE_MEOWTH, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, RadioTowerMeowth, -1
 	object_event  5,  6, SPRITE_ROCKET, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 3, TrainerGruntM10, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
 	object_event 14,  1, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_LEFT, 2, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 2, TrainerExecutivem2, EVENT_RADIO_TOWER_ROCKET_TAKEOVER
 	object_event 12,  4, SPRITE_ROCKET_GIRL, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 1, TrainerGruntF4, EVENT_RADIO_TOWER_ROCKET_TAKEOVER

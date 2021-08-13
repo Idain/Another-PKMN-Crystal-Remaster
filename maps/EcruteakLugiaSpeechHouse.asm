@@ -24,11 +24,11 @@ EcruteakLugiaSpeechHouseGrampsText:
 	line "turned black. A"
 
 	para "giant flying #-"
-	line "MON was blocking"
+	line "mon was blocking"
 	cont "out the sun."
 
 	para "I wonder what that"
-	line "#MON was? "
+	line "#mon was? "
 
 	para "It was like a bird"
 	line "and a dragon."
@@ -36,15 +36,13 @@ EcruteakLugiaSpeechHouseGrampsText:
 
 EcruteakLugiaSpeechHouseYoungsterText:
 	text "Is there really a"
-	line "#MON that big?"
+	line "#mon that big?"
 
 	para "If it exists, it"
 	line "must be powerful."
 	done
 
 EcruteakLugiaSpeechHouse_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  3,  7, ECRUTEAK_CITY, 7
 	warp_event  4,  7, ECRUTEAK_CITY, 7

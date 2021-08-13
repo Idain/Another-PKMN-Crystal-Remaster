@@ -11,15 +11,13 @@ Route15FuchsiaGateOfficerScript:
 
 Route15FuchsiaGateOfficerText:
 	text "You're working on"
-	line "a #DEX? That's"
+	line "a #dex? That's"
 
 	para "really something."
 	line "Don't give up!"
 	done
 
 Route15FuchsiaGate_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  0,  4, FUCHSIA_CITY, 8
 	warp_event  0,  5, FUCHSIA_CITY, 9

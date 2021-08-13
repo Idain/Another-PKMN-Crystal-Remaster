@@ -13,11 +13,9 @@ MahoganyMart1F_MapScripts:
 	def_callbacks
 	callback MAPCALLBACK_TILES, .MahoganyMart1FStaircase
 
-.DummyScene0:
-	end
-
 .LanceUncoversStaircase:
 	sdefer MahoganyMart1FLanceUncoversStaircaseScript
+.DummyScene0:
 	end
 
 .MahoganyMart1FStaircase:
@@ -219,8 +217,6 @@ MahoganyMart1FLanceSplitUpText:
 	done
 
 MahoganyMart1F_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  3,  7, MAHOGANY_TOWN, 1
 	warp_event  4,  7, MAHOGANY_TOWN, 1

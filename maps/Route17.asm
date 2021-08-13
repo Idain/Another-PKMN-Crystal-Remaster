@@ -67,7 +67,7 @@ Route17HiddenMaxElixer:
 
 BikerRileySeenText:
 	text "Hey, you! You're"
-	line "from JOHTO, huh?"
+	line "from Johto, huh?"
 	done
 
 BikerRileyBeatenText:
@@ -76,12 +76,12 @@ BikerRileyBeatenText:
 
 BikerRileyAfterBattleText:
 	text "Don't get cocky,"
-	line "you JOHTO punk!"
+	line "you Johto punk!"
 	done
 
 BikerJoelSeenText:
 	text "Wow. That's a cool"
-	line "BICYCLE!"
+	line "Bicycle!"
 	done
 
 BikerJoelBeatenText:
@@ -111,7 +111,7 @@ BikerGlennBeatenText:
 BikerGlennAfterBattleText:
 	text "Hands-free riding"
 	line "is considered cool"
-	cont "on CYCLING ROAD."
+	cont "on Cycling Road."
 	done
 
 BikerCharlesSeenText:
@@ -131,8 +131,6 @@ BikerCharlesAfterBattleText:
 	done
 
 Route17_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event 17, 82, ROUTE_17_ROUTE_18_GATE, 1
 	warp_event 17, 83, ROUTE_17_ROUTE_18_GATE, 2

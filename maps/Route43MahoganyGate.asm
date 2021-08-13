@@ -24,7 +24,7 @@ Route43MahoganyGateOfficer:
 
 Route43MahoganyGateOfficerText:
 	text "Only people headed"
-	line "up to LAKE OF RAGE"
+	line "up to Lake of Rage"
 
 	para "have been through"
 	line "here lately."
@@ -32,13 +32,11 @@ Route43MahoganyGateOfficerText:
 
 Route43MahoganyGateOfficerRocketsClearedText:
 	text "Nobody goes up to"
-	line "LAKE OF RAGE these"
+	line "Lake of Rage these"
 	cont "days."
 	done
 
 Route43MahoganyGate_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  4,  0, ROUTE_43, 1
 	warp_event  5,  0, ROUTE_43, 2

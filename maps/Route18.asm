@@ -34,7 +34,7 @@ Route18Sign:
 
 BirdKeeperBorisSeenText:
 	text "If you're looking"
-	line "for #MON, you"
+	line "for #mon, you"
 
 	para "have to look in"
 	line "the tall grass."
@@ -51,9 +51,9 @@ BirdKeeperBorisAfterBattleText:
 	done
 
 BirdKeeperBobSeenText:
-	text "CYCLING ROAD is a"
+	text "Cycling Road is a"
 	line "quick shortcut to"
-	cont "CELADON."
+	cont "Celadon."
 	done
 
 BirdKeeperBobBeatenText:
@@ -62,22 +62,20 @@ BirdKeeperBobBeatenText:
 
 BirdKeeperBobAfterBattleText:
 	text "If you don't have"
-	line "a BICYCLE, you're"
+	line "a Bicycle, you're"
 
 	para "not allowed to use"
 	line "the shortcut."
 	done
 
 Route18SignText:
-	text "ROUTE 18"
+	text "Route 18"
 
-	para "CELADON CITY -"
-	line "FUCHSIA CITY"
+	para "Celadon City -"
+	line "Fuchsia City"
 	done
 
 Route18_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  2,  6, ROUTE_17_ROUTE_18_GATE, 3
 	warp_event  2,  7, ROUTE_17_ROUTE_18_GATE, 4

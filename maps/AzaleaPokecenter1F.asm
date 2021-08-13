@@ -20,7 +20,7 @@ AzaleaPokecenter1FGentlemanScript:
 	jumptextfaceplayer AzaleaPokecenter1FGentlemanText
 
 AzaleaPokecenter1FFishingGuruScript:
-	jumptextfaceplayer AzaleaPokecenter1FFishingGuruText
+	jumptextfaceplayer AzaleaPokecenter1FUnusedText
 
 AzaleaPokecenter1FPokefanFScript:
 	jumptextfaceplayer AzaleaPokecenter1FPokefanFText
@@ -36,7 +36,7 @@ AzaleaPokecenter1FGentlemanText:
 	line "fainted."
 	done
 
-AzaleaPokecenter1FUnusedText: ; unreferenced
+AzaleaPokecenter1FUnusedText:
 	text "This Bill guy"
 	line "created the system"
 
@@ -48,7 +48,7 @@ AzaleaPokecenter1FUnusedText: ; unreferenced
 	cont "#mon per Box."
 	done
 
-AzaleaPokecenter1FFishingGuruText:
+AzaleaPokecenter1FFishingGuruText: ; unreferenced
 	text "Bill's PC can"
 	line "store up to 20"
 	cont "#mon per Box."
@@ -75,8 +75,6 @@ AzaleaPokecenter1FPokefanFText:
 	done
 
 AzaleaPokecenter1F_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  3,  7, AZALEA_TOWN, 1
 	warp_event  4,  7, AZALEA_TOWN, 1

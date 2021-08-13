@@ -4,8 +4,6 @@ PewterPokecenter2FBeta_MapScripts:
 	def_callbacks
 
 PewterPokecenter2FBeta_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  0,  7, PEWTER_POKECENTER_1F, 3
 

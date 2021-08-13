@@ -114,7 +114,6 @@ SpecialsPointers::
 	add_special DaisysGrooming
 	add_special PlayCurMonCry
 	add_special ProfOaksPCBoot
-	add_special GameboyCheck
 	add_special TrainerHouse
 	add_special PhotoStudio
 	add_special InitRoamMons
@@ -153,7 +152,6 @@ SpecialsPointers::
 	add_special Function17d2b6
 	add_special Function17d2ce
 	add_special BattleTowerMobileError
-	add_special AskMobileOrCable
 	add_special HoOhChamber
 	add_special Function102142
 	add_special CelebiShrineEvent
@@ -166,12 +164,10 @@ SpecialsPointers::
 	add_special BeastsCheck
 	add_special MonCheck
 	add_special SetPlayerPalette
-	add_special Mobile_SelectThreeMons
 	add_special Function1037eb
 	add_special Function10383c
 	add_special RefreshSprites
 	add_special Function1037c2
-	add_special Mobile_DummyReturnFalse
 	add_special Function103780
 	add_special Function10387b
 	add_special AskRememberPassword

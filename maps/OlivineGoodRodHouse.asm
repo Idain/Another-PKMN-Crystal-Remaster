@@ -35,11 +35,8 @@ GoodRodGuru:
 	closetext
 	end
 
-GoodRodHouseBookshelf: ; unreferenced
-	jumpstd PictureBookshelfScript
-
 OfferGoodRodText:
-	text "OLIVINE is on the"
+	text "Olivine is on the"
 	line "sea!"
 
 	para "And if it's on the"
@@ -80,8 +77,6 @@ HaveGoodRodText:
 	done
 
 OlivineGoodRodHouse_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  2,  7, OLIVINE_CITY, 6
 	warp_event  3,  7, OLIVINE_CITY, 6

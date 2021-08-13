@@ -109,10 +109,10 @@ NUM_PLAYER_EVENTS EQU const_value
 NUM_PLAYER_MOVEMENTS EQU const_value
 
 ; script data sizes (see macros/scripts/maps.asm)
-SCENE_SCRIPT_SIZE EQU  4 ; scene_script
+SCENE_SCRIPT_SIZE EQU  2 ; scene_script
 CALLBACK_SIZE     EQU  3 ; callback
 WARP_EVENT_SIZE   EQU  5 ; warp_event
-COORD_EVENT_SIZE  EQU  8 ; coord_event
+COORD_EVENT_SIZE  EQU  5 ; coord_event
 BG_EVENT_SIZE     EQU  5 ; bg_event
 OBJECT_EVENT_SIZE EQU 13 ; object_event
 
@@ -234,12 +234,6 @@ NUM_DECODESCS EQU const_value
 	const FISHSWARM_NONE     ; 0
 	const FISHSWARM_QWILFISH ; 1
 	const FISHSWARM_REMORAID ; 2
-
-; SpecialGameboyCheck return values
-	const_def
-	const GBCHECK_GB  ; 0
-	const GBCHECK_SGB ; 1
-	const GBCHECK_CGB ; 2
 
 ; CheckMagikarpLength return values
 	const_def

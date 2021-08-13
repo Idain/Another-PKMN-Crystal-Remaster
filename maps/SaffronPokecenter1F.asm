@@ -13,12 +13,7 @@ SaffronPokecenter1FNurseScript:
 	jumpstd PokecenterNurseScript
 
 SaffronPokecenter1FTeacherScript:
-	special Mobile_DummyReturnFalse
-	iftrue .mobile
 	jumptextfaceplayer SaffronPokecenter1FTeacherText
-
-.mobile
-	jumptextfaceplayer SaffronPokecenter1FTeacherMobileText
 
 SaffronPokecenter1FFisherScript:
 	faceplayer
@@ -40,46 +35,28 @@ SaffronPokecenter1FYoungsterScript:
 	jumptextfaceplayer SaffronPokecenter1FYoungsterText
 
 SaffronPokecenter1FTeacherText:
-	text "What are JOHTO's"
-	line "#MON CENTERS"
+	text "What are Johto's"
+	line "#mon Centers"
 	cont "like?"
 
 	para "…Oh, I see. So"
 	line "they're not much"
 
 	para "different from the"
-	line "ones in KANTO."
+	line "ones in Kanto."
 
-	para "I can go to JOHTO"
+	para "I can go to Johto"
 	line "without worrying,"
 	cont "then!"
 	done
 
-SaffronPokecenter1FTeacherMobileText:
-	text "What are JOHTO's"
-	line "#MON CENTERS"
-	cont "like?"
-
-	para "…Oh, I see."
-	line "So they let you"
-
-	para "link with people"
-	line "far away?"
-
-	para "Then I'll get my"
-	line "friend in JOHTO to"
-
-	para "catch a MARILL and"
-	line "trade it to me!"
-	done
-
 SaffronPokecenter1FFisherText:
 	text "I just happened to"
-	line "come through ROCK"
+	line "come through Rock"
 
-	para "TUNNEL. There was"
+	para "Tunnel. There was"
 	line "some commotion at"
-	cont "the POWER PLANT."
+	cont "the Power Plant."
 	done
 
 SaffronPokecenter1FFisherReturnedMachinePartText:
@@ -91,27 +68,25 @@ SaffronPokecenter1FFisherReturnedMachinePartText:
 
 	para "past few years,"
 	line "like the one out-"
-	cont "side CERULEAN."
+	cont "side Cerulean."
 
-	para "As a pro HIKER,"
+	para "As a pro Hiker,"
 	line "that's common"
 	cont "knowledge."
 	done
 
 SaffronPokecenter1FYoungsterText:
-	text "SILPH CO.'s HEAD"
-	line "OFFICE and the"
+	text "Silph Co.'s Head"
+	line "Office and the"
 
-	para "MAGNET TRAIN STA-"
-	line "TION--they're the"
+	para "Magnet Train Sta-"
+	line "tion--they're the"
 
 	para "places to see in"
-	line "SAFFRON."
+	line "Saffron."
 	done
 
 SaffronPokecenter1F_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  3,  7, SAFFRON_CITY, 4
 	warp_event  4,  7, SAFFRON_CITY, 4

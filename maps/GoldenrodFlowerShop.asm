@@ -86,7 +86,7 @@ GoldenrodFlowerShopTeacherMySisterWentToSeeWigglyTreeRoute36Text:
 	text "Have you seen that"
 	line "wiggly tree that's"
 
-	para "growing on ROUTE"
+	para "growing on Route"
 	line "36?"
 
 	para "My little sister"
@@ -116,7 +116,7 @@ GoldenrodFlowerShopTeacherHeresTheSquirtbottleText:
 
 	para "You'll be OK,"
 	line "then. Here's the"
-	cont "SQUIRTBOTTLE!"
+	cont "SquirtleBottle!"
 	done
 
 GoldenrodFlowerShopTeacherDontDoAnythingDangerousText:
@@ -151,12 +151,10 @@ GoldenrodFlowerShopFloriaYouBeatWhitneyText:
 
 GoldenrodFlowerShopFloriaItReallyWasAMonText:
 	text "So it really was a"
-	line "#MON!"
+	line "#mon!"
 	done
 
 GoldenrodFlowerShop_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  2,  7, GOLDENROD_CITY, 6
 	warp_event  3,  7, GOLDENROD_CITY, 6

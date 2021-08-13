@@ -18,8 +18,6 @@ DragonsDenB1F_MapScripts:
 	callback MAPCALLBACK_NEWMAP, .CheckSilver
 
 .DummyScene0:
-	end
-
 .DummyScene1:
 	end
 
@@ -359,8 +357,6 @@ TwinsLeaandpia2AfterBattleText:
 	done
 
 DragonsDenB1F_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event 20,  3, DRAGONS_DEN_1F, 3
 	warp_event 19, 29, DRAGON_SHRINE, 1

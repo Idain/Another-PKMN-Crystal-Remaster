@@ -30,21 +30,19 @@ VioletNicknameSpeechHouseTeacherText:
 
 	para "For the nicknames"
 	line "she gives to her"
-	cont "#MON, I mean."
+	cont "#mon, I mean."
 	done
 
 VioletNicknameSpeechHouseLassText:
-	text "I call my PIDGEY"
-	line "STRAWBERRY!"
+	text "I call my Pidgey"
+	line "Strawberry!"
 	done
 
 VioletNicknameSpeechHouseBirdText:
-	text "STRAWBERRY: Pijji!"
+	text "Strawberry: Pijji!"
 	done
 
 VioletNicknameSpeechHouse_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  3,  7, VIOLET_CITY, 4
 	warp_event  4,  7, VIOLET_CITY, 4

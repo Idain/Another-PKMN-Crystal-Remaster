@@ -4,8 +4,6 @@ VermilionPokecenter2FBeta_MapScripts:
 	def_callbacks
 
 VermilionPokecenter2FBeta_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  0,  7, VERMILION_POKECENTER_1F, 3
 

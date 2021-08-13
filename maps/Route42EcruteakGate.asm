@@ -10,7 +10,7 @@ Route42EcruteakGateOfficerScript:
 	jumptextfaceplayer Route42EcruteakGateOfficerText
 
 Route42EcruteakGateOfficerText:
-	text "MT.MORTAR is like"
+	text "Mt.Mortar is like"
 	line "a maze inside."
 
 	para "Be careful. Don't"
@@ -18,8 +18,6 @@ Route42EcruteakGateOfficerText:
 	done
 
 Route42EcruteakGate_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  0,  4, ECRUTEAK_CITY, 1
 	warp_event  0,  5, ECRUTEAK_CITY, 2

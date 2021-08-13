@@ -224,8 +224,6 @@ SecurityCamera5:
 	scall TrainerCameraGrunt2
 	ifequal TRUE, NoSecurityCamera
 	setevent EVENT_SECURITY_CAMERA_5
-	end
-
 NoSecurityCamera:
 	end
 
@@ -473,8 +471,6 @@ KoffingExplodingTrap:
 	loadvar VAR_BATTLETYPE, BATTLETYPE_TRAP
 	loadwildmon KOFFING, 25
 	startbattle
-	end
-
 NoExplodingTrap:
 	end
 
@@ -644,7 +640,7 @@ CameraGrunt2SeenText:
 
 CameraGrunt2BeatenText:
 	text "Surveillance cams"
-	line "are in the #MON"
+	line "are in the #mon"
 	cont "statues."
 
 	para "We'll keep appear-"
@@ -707,7 +703,7 @@ GruntM16AfterBattleText:
 	done
 
 TeamRocketBaseB1FSecurityCameraText:
-	text "It's a PERSIAN"
+	text "It's a Persian"
 	line "statue…"
 
 	para "Its eyes are oddly"
@@ -725,8 +721,6 @@ TeamRocketBaseB1FSwitchOffText:
 	done
 
 TeamRocketBaseB1F_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event 27,  2, MAHOGANY_MART_1F, 3
 	warp_event  3, 14, TEAM_ROCKET_BASE_B2F, 1

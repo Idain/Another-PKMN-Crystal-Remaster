@@ -97,9 +97,6 @@ OlivineLighthouseJasmine:
 	closetext
 	end
 
-.Unused: ; unreferenced
-	end
-
 OlivineLighthouseAmphy:
 	faceplayer
 	opentext
@@ -160,8 +157,8 @@ OlivineLighthouseJasmineLeavesRightMovement:
 	step_end
 
 JasmineCianwoodPharmacyText:
-	text "JASMINE: … This"
-	line "#MON always"
+	text "Jasmine: … This"
+	line "#mon always"
 
 	para "kept the sea lit"
 	line "at night."
@@ -173,14 +170,14 @@ JasmineCianwoodPharmacyText:
 	para "…I understand"
 	line "that there is a"
 
-	para "wonderful PHARMACY"
-	line "in CIANWOOD…"
+	para "wonderful Pharmacy"
+	line "in Cianwood…"
 
 	para "But that's across"
 	line "the sea…"
 
 	para "And I can't leave"
-	line "AMPHY unattended…"
+	line "Amphy unattended…"
 	done
 
 JasmineGetSomeMedicineText:
@@ -190,36 +187,36 @@ JasmineGetSomeMedicineText:
 	done
 
 JasmineCureAmphyText:
-	text "JASMINE: …Will"
+	text "Jasmine: …Will"
 	line "that medicine cure"
-	cont "AMPHY?"
+	cont "Amphy?"
 	done
 
 PlayerHandedSecretpotionText:
 	text "<PLAYER> handed the"
-	line "SECRETPOTION to"
-	cont "JASMINE."
+	line "SecretPotion to"
+	cont "Jasmine."
 	done
 
 JasmineDontBeOffendedText:
-	text "JASMINE: …Um,"
+	text "Jasmine: …Um,"
 	line "please don't be"
 	cont "offended…"
 
-	para "…AMPHY will not"
+	para "…Amphy will not"
 	line "take anything from"
 	cont "anyone but me…"
 	done
 
 JasmineAmphyHowAreYouFeelingText:
-	text "JASMINE: …"
+	text "Jasmine: …"
 
-	para "AMPHY, how are you"
+	para "Amphy, how are you"
 	line "feeling?"
 	done
 
 JasmineThankYouText:
-	text "JASMINE: …Oh, I'm"
+	text "Jasmine: …Oh, I'm"
 	line "so relieved…"
 
 	para "This is just so"
@@ -229,19 +226,19 @@ JasmineThankYouText:
 	line "very much."
 
 	para "…I will return to"
-	line "the GYM…"
+	line "the Gym…"
 	done
 
 JasmineISeeText:
-	text "JASMINE: …I see…"
+	text "Jasmine: …I see…"
 	done
 
 JasmineAmphyHangOnText:
-	text "…AMPHY, hang on!"
+	text "…Amphy, hang on!"
 	done
 
 AmphyPalPalooText:
-	text "AMPHY: …"
+	text "Amphy: …"
 	line "…Pa… paloo…"
 	done
 
@@ -251,13 +248,11 @@ AmphyBreathingLaboredText:
 	done
 
 AmphyPaluPaluluText:
-	text "AMPHY: Palu!"
+	text "Amphy: Palu!"
 	line "Palulu!"
 	done
 
 OlivineLighthouse6F_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  9, 15, OLIVINE_LIGHTHOUSE_5F, 1
 	warp_event 16,  5, OLIVINE_LIGHTHOUSE_5F, 6
@@ -269,5 +264,5 @@ OlivineLighthouse6F_MapEvents:
 
 	def_object_events
 	object_event  8,  8, SPRITE_JASMINE, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, OlivineLighthouseJasmine, EVENT_OLIVINE_LIGHTHOUSE_JASMINE
-	object_event  9,  8, SPRITE_MONSTER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, OlivineLighthouseAmphy, -1
+	object_event  9,  8, SPRITE_AMPHAROS, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, OlivineLighthouseAmphy, -1
 	object_event  3,  4, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, OlivineLighthouse6FSuperPotion, EVENT_OLIVINE_LIGHTHOUSE_6F_SUPER_POTION

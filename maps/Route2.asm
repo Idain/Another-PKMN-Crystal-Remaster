@@ -80,7 +80,7 @@ Route2HiddenRevive:
 	hiddenitem REVIVE, EVENT_ROUTE_2_HIDDEN_REVIVE
 
 BugCatcherRobSeenText:
-	text "My bug #MON are"
+	text "My bug #mon are"
 	line "tough. Prepare to"
 	cont "lose!"
 	done
@@ -92,7 +92,7 @@ BugCatcherRobBeatenText:
 BugCatcherRobAfterBattleText:
 	text "I'm going to look"
 	line "for stronger bug"
-	cont "#MON."
+	cont "#mon."
 	done
 
 BugCatcherEdSeenText:
@@ -115,7 +115,7 @@ BugCatcherEdAfterBattleText:
 
 BugCatcherDougSeenText:
 	text "Why don't girls"
-	line "like bug #MON?"
+	line "like bug #mon?"
 	done
 
 BugCatcherDougBeatenText:
@@ -123,7 +123,7 @@ BugCatcherDougBeatenText:
 	done
 
 BugCatcherDougAfterBattleText:
-	text "Bug #MON squish"
+	text "Bug #mon squish"
 	line "like plush toys"
 
 	para "when you squeeze"
@@ -134,19 +134,17 @@ BugCatcherDougAfterBattleText:
 	done
 
 Route2SignText:
-	text "ROUTE 2"
+	text "Route 2"
 
-	para "VIRIDIAN CITY -"
-	line "PEWTER CITY"
+	para "Viridian City -"
+	line "Pewter City"
 	done
 
 Route2DiglettsCaveSignText:
-	text "DIGLETT'S CAVE"
+	text "Diglett's Cave"
 	done
 
 Route2_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event 15, 15, ROUTE_2_NUGGET_HOUSE, 1
 	warp_event 15, 31, ROUTE_2_GATE, 3

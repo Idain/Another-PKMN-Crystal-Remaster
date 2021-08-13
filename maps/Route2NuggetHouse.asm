@@ -23,9 +23,6 @@ Route2NuggetHouseFisherScript:
 	closetext
 	end
 
-Route2NuggetHouseBookshelf: ; unreferenced
-	jumpstd DifficultBookshelfScript
-
 Route2NuggetHouseFisherText:
 	text "Hi! Wow, I'm glad"
 	line "to see you."
@@ -40,7 +37,7 @@ Route2NuggetHouseFisherText:
 	done
 
 Route2NuggetHouseFisherText_GotNugget:
-	text "That's a NUGGET."
+	text "That's a Nugget."
 
 	para "I can't give you"
 	line "any nuggets of"
@@ -50,8 +47,6 @@ Route2NuggetHouseFisherText_GotNugget:
 	done
 
 Route2NuggetHouse_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  2,  7, ROUTE_2, 1
 	warp_event  3,  7, ROUTE_2, 1

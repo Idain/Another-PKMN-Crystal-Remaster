@@ -21,8 +21,6 @@ TinTower4FHiddenMaxPotion:
 	hiddenitem MAX_POTION, EVENT_TIN_TOWER_4F_HIDDEN_MAX_POTION
 
 TinTower4F_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  2,  4, TIN_TOWER_5F, 2
 	warp_event 16,  2, TIN_TOWER_3F, 2

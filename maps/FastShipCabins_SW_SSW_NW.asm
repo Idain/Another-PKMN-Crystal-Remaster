@@ -47,17 +47,8 @@ TrainerGuitaristClyde:
 
 .Script:
 	endifjustbattled
-	special Mobile_DummyReturnFalse
-	iftrue .mobile
 	opentext
 	writetext GuitaristClydeAfterBattleText
-	waitbutton
-	closetext
-	end
-
-.mobile
-	opentext
-	writetext GuitaristClydeAfterBattleMobileText
 	waitbutton
 	closetext
 	end
@@ -111,7 +102,7 @@ FastShipCabinsNorthwestCabinTrashcan:
 	jumpstd TrashCanScript
 
 FirebreatherLyleSeenText:
-	text "I'm going to KANTO"
+	text "I'm going to Kanto"
 	line "to put on fire-"
 	cont "breathing shows!"
 	done
@@ -143,7 +134,7 @@ BugCatcherKenBeatenText:
 BugCatcherKenAfterBattleText:
 	text "You can find lots"
 	line "of #MON in the"
-	cont "trees of JOHTO!"
+	cont "trees of Johto!"
 	done
 
 BeautyCassieSeenText:
@@ -161,7 +152,7 @@ BeautyCassieAfterBattleText:
 	line "for getting over"
 	cont "a broken heart."
 
-	para "But a FAST SHIP"
+	para "But a Fast Ship"
 	line "trip is too short"
 	cont "for grieving."
 	done
@@ -170,8 +161,8 @@ GuitaristClydeSeenText:
 	text "I'm going to audi-"
 	line "tion my songs at"
 
-	para "GOLDENROD's RADIO"
-	line "STATION."
+	para "Goldenrod's Radio"
+	line "Station."
 	done
 
 GuitaristClydeBeatenText:
@@ -179,21 +170,11 @@ GuitaristClydeBeatenText:
 	line "Total distortion!"
 	done
 
-GuitaristClydeAfterBattleMobileText:
-	text "I was going to"
-	line "make my debut at"
-	cont "the BATTLE TOWER…"
-
-	para "I should go back"
-	line "to VERMILION and"
-	cont "redo my training…"
-	done
-
 GuitaristClydeAfterBattleText:
 	text "Speaking of the"
-	line "RADIO STATION,"
+	line "Radio Tower,"
 
-	para "what's this week's"
+	para "what's today's"
 	line "lucky number?"
 	done
 
@@ -208,20 +189,18 @@ FastShipBedText2:
 	done
 
 FastShipArrivedOlivineText:
-	text "FAST SHIP S.S.AQUA"
+	text "Fast Ship S.S.Aqua"
 	line "has arrived in"
-	cont "OLIVINE CITY."
+	cont "Olivine City."
 	done
 
 FastShipArrivedVermilionText:
-	text "FAST SHIP S.S.AQUA"
+	text "Fast Ship S.S.Aqua"
 	line "has arrived in"
-	cont "VERMILION CITY."
+	cont "Vermilion City."
 	done
 
 FastShipCabins_SW_SSW_NW_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  2,  0, FAST_SHIP_1F, 5
 	warp_event  2, 19, FAST_SHIP_1F, 6

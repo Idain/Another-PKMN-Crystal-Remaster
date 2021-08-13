@@ -68,9 +68,9 @@ SwimmerfNicoleAfterBattleText:
 
 SwimmerfLoriSeenText:
 	text "What an impressive"
-	line "collection of GYM"
+	line "collection of Gym"
 
-	para "BADGES. We should"
+	para "Badges. We should"
 	line "battle!"
 	done
 
@@ -79,7 +79,7 @@ SwimmerfLoriBeatenText:
 	done
 
 SwimmerfLoriAfterBattleText:
-	text "SURF is no longer"
+	text "Surf is no longer"
 	line "the only HM move"
 	cont "you use in water."
 	done
@@ -89,7 +89,7 @@ SwimmermCameronSeenText:
 	line "possible to swim"
 
 	para "all the way to"
-	line "JOHTO."
+	line "Johto."
 	done
 
 SwimmermCameronBeatenText:
@@ -106,13 +106,11 @@ CinnabarGymSignText:
 	text "What does this"
 	line "sign say?"
 
-	para "CINNABAR GYM"
-	line "LEADER: BLAINE"
+	para "Cinnabar Gym"
+	line "Leader: Blaine"
 	done
 
 Route20_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event 38,  7, SEAFOAM_GYM, 1
 

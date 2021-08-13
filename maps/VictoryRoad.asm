@@ -13,9 +13,7 @@ VictoryRoad_MapScripts:
 
 	def_callbacks
 
-.DummyScene0:
-	end
-
+.DummyScene0:	
 .DummyScene1:
 	end
 
@@ -84,8 +82,7 @@ VictoryRoadRivalNext:
 	startbattle
 	dontrestartmapmusic
 	reloadmapafterbattle
-	sjump .AfterBattle
-
+	; fallthrough
 .AfterBattle:
 	playmusic MUSIC_RIVAL_AFTER
 	opentext
@@ -165,8 +162,8 @@ VictoryRoadRivalBeforeText:
 	text "Hold it."
 
 	para "…Are you going to"
-	line "take the #MON"
-	cont "LEAGUE challenge?"
+	line "take the #mon"
+	cont "League challenge?"
 
 	para "…Don't make me"
 	line "laugh."
@@ -180,7 +177,7 @@ VictoryRoadRivalBeforeText:
 	para "I now have the"
 	line "best and strongest"
 
-	para "#MON with me."
+	para "#mon with me."
 	line "I'm invincible!"
 
 	para "<PLAYER>!"
@@ -199,7 +196,7 @@ VictoryRoadRivalDefeatText:
 	para "I'm beginning to"
 	line "understand what"
 
-	para "that dragon master"
+	para "that Dragon Master"
 	line "said to me…"
 	done
 
@@ -237,8 +234,6 @@ VictoryRoadRivalVictoryText:
 	done
 
 VictoryRoad_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  9, 67, VICTORY_ROAD_GATE, 5
 	warp_event  1, 49, VICTORY_ROAD, 3

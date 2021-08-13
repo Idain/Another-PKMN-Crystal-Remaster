@@ -18,8 +18,6 @@ IcePath1FProtein:
 	itemball PROTEIN
 
 IcePath1F_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  4, 19, ROUTE_44, 1
 	warp_event 36, 27, BLACKTHORN_CITY, 7

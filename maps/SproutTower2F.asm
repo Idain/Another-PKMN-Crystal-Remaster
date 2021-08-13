@@ -38,7 +38,7 @@ SproutTower2FXAccuracy:
 
 SageNicoSeenText:
 	text "However hard we"
-	line "battle, the TOWER"
+	line "battle, the tower"
 	cont "will stand strong."
 	done
 
@@ -51,7 +51,7 @@ SageNicoAfterBattleText:
 	text "The flexible pil-"
 	line "lar protects the"
 
-	para "TOWER, even from"
+	para "tower, even from"
 	line "earthquakes."
 	done
 
@@ -66,7 +66,7 @@ SageEdmondBeatenText:
 
 SageEdmondAfterBattleText:
 	text "I tried to copy"
-	line "BELLSPROUT's"
+	line "Bellsprout's"
 
 	para "gentle movements"
 	line "for battle…"
@@ -76,15 +76,13 @@ SageEdmondAfterBattleText:
 	done
 
 SproutTower2FStatueText:
-	text "A #MON statue…"
+	text "A #mon statue…"
 
 	para "It looks very"
 	line "distinguished."
 	done
 
 SproutTower2F_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  6,  4, SPROUT_TOWER_1F, 3
 	warp_event  2,  6, SPROUT_TOWER_1F, 4

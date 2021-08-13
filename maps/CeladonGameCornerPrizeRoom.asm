@@ -334,8 +334,6 @@ CeladonPrizeRoom_NoCoinCaseText:
 	done
 
 CeladonGameCornerPrizeRoom_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  2,  5, CELADON_CITY, 7
 	warp_event  3,  5, CELADON_CITY, 7

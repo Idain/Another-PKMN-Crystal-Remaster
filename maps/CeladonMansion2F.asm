@@ -23,7 +23,7 @@ CeladonMansion2FComputerText:
 	cont "ing an e-mail."
 
 	para "…I hope you'll"
-	line "come visit KANTO."
+	line "come visit Kanto."
 
 	para "I think you'll be"
 	line "surprised at how"
@@ -32,12 +32,12 @@ CeladonMansion2FComputerText:
 	line "changed here."
 
 	para "You'll also see"
-	line "many #MON that"
+	line "many #mon that"
 
 	para "aren't native to"
-	line "JOHTO."
+	line "Johto."
 
-	para "To the PRODUCER"
+	para "To the Producer"
 
 	para "…"
 	done
@@ -48,8 +48,6 @@ CeladonMansion2FMeetingRoomSignText:
 	done
 
 CeladonMansion2F_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  0,  0, CELADON_MANSION_1F, 4
 	warp_event  1,  0, CELADON_MANSION_3F, 2

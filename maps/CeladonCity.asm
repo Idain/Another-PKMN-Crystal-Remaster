@@ -76,16 +76,16 @@ CeladonCityHiddenPpUp:
 	hiddenitem PP_UP, EVENT_CELADON_CITY_HIDDEN_PP_UP
 
 CeladonCityFisherText:
-	text "This POLIWRATH is"
+	text "This Poliwrath is"
 	line "my partner."
 
 	para "I wonder if it'll"
 	line "ever evolve into a"
-	cont "frog #MON."
+	cont "frog #mon."
 	done
 
 CeladonCityPoliwrathText:
-	text "POLIWRATH: Croak!"
+	text "Poliwrath: Croak!"
 	done
 
 CeladonCityTeacher1Text:
@@ -106,13 +106,13 @@ else
 endc
 
 CeladonCityGramps1Text:
-	text "GRIMER have been"
+	text "Grimer have been"
 	line "appearing lately."
 
 	para "See that pond out"
 	line "in front of the"
 
-	para "house? GRIMER live"
+	para "house? Grimer live"
 	line "there now."
 
 	para "Where did they"
@@ -121,7 +121,7 @@ CeladonCityGramps1Text:
 	done
 
 CeladonCityGramps2Text:
-	text "Nihihi! This GYM"
+	text "Nihihi! This Gym"
 	line "is great! Only"
 
 	para "girls are allowed"
@@ -132,7 +132,7 @@ CeladonCityYoungster1Text:
 	text "Want to know a"
 	line "secret?"
 
-	para "CELADON MANSION"
+	para "Celadon Mansion"
 	line "has a hidden back"
 	cont "door."
 	done
@@ -148,7 +148,7 @@ CeladonCityYoungster2Text:
 	done
 
 CeladonCityTeacher2Text:
-	text "CELADON DEPT.STORE"
+	text "Celadon Dept.Store"
 	line "has the biggest"
 
 	para "and best selection"
@@ -164,24 +164,6 @@ CeladonCityTeacher2Text:
 	line "a sales clerk."
 	done
 
-CeladonCityLassText_Mobile: ; unreferenced
-	text "I love being"
-	line "surrounded by tall"
-	cont "buildings!"
-
-	para "Isn't it true that"
-	line "GOLDENROD #MON"
-
-	para "CENTER was made"
-	line "much, much bigger?"
-
-	para "That is so neat!"
-	line "I wish we had a"
-
-	para "place like that in"
-	line "KANTO…"
-	done
-
 CeladonCityLassText:
 	text "Looking at the"
 	line "ground while I was"
@@ -191,16 +173,16 @@ CeladonCityLassText:
 	done
 
 CeladonCitySignText:
-	text "CELADON CITY"
+	text "Celadon City"
 
-	para "The City of"
-	line "Rainbow Dreams"
+	para "City of the Rain-"
+	line "bow's Colors"
 	done
 
 CeladonGymSignText:
-	text "CELADON CITY"
-	line "#MON GYM"
-	cont "LEADER: ERIKA"
+	text "Celadon City"
+	line "#mon Gym"
+	cont "Leader: Erika"
 
 	para "The Nature-Loving"
 	line "Princess"
@@ -208,45 +190,43 @@ CeladonGymSignText:
 
 CeladonCityDeptStoreSignText:
 	text "Find What You"
-	line "Need at CELADON"
-	cont "DEPT.STORE!"
+	line "Need at Celadon"
+	cont "Dept.Store!"
 	done
 
 CeladonCityMansionSignText:
-	text "CELADON MANSION"
+	text "Celadon Mansion"
 	done
 
 CeladonCityGameCornerSignText:
 if DEF(_CRYSTAL_AU)
 	text "The Game Area for"
-	line "Grown-ups--CELADON"
-	cont "GAME CORNER"
+	line "Grown-ups--Celadon"
+	cont "Game Corner"
 	done
 else
 	text "The Playground for"
-	line "Everybody--CELADON"
-	cont "GAME CORNER"
+	line "Everybody--Celadon"
+	cont "Game Corner"
 	done
 endc
 
 CeladonCityTrainerTipsText:
 	text "TRAINER TIPS"
 
-	para "GUARD SPEC."
-	line "protects #MON"
+	para "Guard Spec."
+	line "protects #mon"
 
-	para "against SPECIAL"
+	para "against Special"
 	line "attacks such as"
 	cont "fire and water."
 
 	para "Get your items at"
-	line "CELADON DEPT."
-	cont "STORE!"
+	line "Celadon Dept."
+	cont "Store!"
 	done
 
 CeladonCity_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  4,  9, CELADON_DEPT_STORE_1F, 1
 	warp_event 16,  9, CELADON_MANSION_1F, 1
@@ -272,7 +252,7 @@ CeladonCity_MapEvents:
 
 	def_object_events
 	object_event 26, 11, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, CeladonCityFisherScript, -1
-	object_event 27, 11, SPRITE_POLIWAG, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CeladonCityPoliwrath, -1
+	object_event 27, 11, SPRITE_POLIWRATH, SPRITEMOVEDATA_POKEMON, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, CeladonCityPoliwrath, -1
 	object_event 20, 24, SPRITE_TEACHER, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 2, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeladonCityTeacher1Script, -1
 	object_event 14, 16, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, CeladonCityGramps1Script, -1
 	object_event  8, 31, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CeladonCityGramps2Script, -1

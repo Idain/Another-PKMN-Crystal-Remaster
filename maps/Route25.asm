@@ -19,8 +19,6 @@ Route25_MapScripts:
 	def_callbacks
 
 .DummyScene0:
-	end
-
 .DummyScene1:
 	end
 
@@ -236,7 +234,7 @@ Route25MistyLeavesMovement:
 	step_end
 
 Route25MistyDateText:
-	text "MISTY: Aww! Why"
+	text "Misty: Aww! Why"
 	line "did you have to"
 
 	para "show up and bug us"
@@ -251,22 +249,22 @@ Route25MistyDateText:
 
 	para "…"
 
-	para "…Oh? Those BADGES"
+	para "…Oh? Those Badges"
 	line "you have… Are they"
-	cont "JOHTO GYM BADGES?"
+	cont "Johto Gym Badges?"
 
 	para "If you have eight,"
 	line "you must be good."
 
 	para "OK, then. Come to"
-	line "CERULEAN GYM."
+	line "Cerulean Gym."
 
 	para "I'll be happy to"
 	line "take you on."
 
-	para "I'm MISTY, the"
-	line "GYM LEADER in"
-	cont "CERULEAN."
+	para "I'm Misty, the"
+	line "Gym Leader in"
+	cont "Cerulean."
 	done
 
 SchoolboyDudleySeenText:
@@ -283,6 +281,11 @@ SchoolboyDudleyBeatenText:
 	done
 
 SchoolboyDudleyAfterBattleText:
+LassEllenAfterBattleText:
+SchoolboyJoeAfterBattleText:
+LassLauraAfterBattleText:
+CamperLloydAfterBattleText:
+LassShannonAfterBattleText:
 	text "I did my best."
 	line "I have no regrets."
 	done
@@ -296,11 +299,6 @@ LassEllenBeatenText:
 	text "How could I lose?"
 	done
 
-LassEllenAfterBattleText:
-	text "I did my best."
-	line "I have no regrets."
-	done
-
 SchoolboyJoeSeenText:
 	text "Here's No. 3!"
 	line "I won't be easy."
@@ -308,11 +306,6 @@ SchoolboyJoeSeenText:
 
 SchoolboyJoeBeatenText:
 	text "Ow! Stomped flat!"
-	done
-
-SchoolboyJoeAfterBattleText:
-	text "I did my best."
-	line "I have no regrets."
 	done
 
 LassLauraSeenText:
@@ -324,11 +317,6 @@ LassLauraBeatenText:
 	text "I lost too…"
 	done
 
-LassLauraAfterBattleText:
-	text "I did my best."
-	line "I have no regrets."
-	done
-
 CamperLloydSeenText:
 	text "OK! I'm No. 5."
 	line "I'll stomp you!"
@@ -336,11 +324,6 @@ CamperLloydSeenText:
 
 CamperLloydBeatenText:
 	text "Whoa! Too much."
-	done
-
-CamperLloydAfterBattleText:
-	text "I did my best."
-	line "I have no regrets."
 	done
 
 LassShannonSeenText:
@@ -351,11 +334,6 @@ LassShannonSeenText:
 
 LassShannonBeatenText:
 	text "You're kidding."
-	done
-
-LassShannonAfterBattleText:
-	text "I did my best."
-	line "I have no regrets."
 	done
 
 SupernerdPatSeenText:
@@ -414,22 +392,16 @@ CooltrainermKevinAfterBattleText:
 	line "battle!"
 
 	para "You and your #-"
-	line "MON are truly out-"
+	line "mon are truly out-"
 	cont "standing!"
 	done
 
 BillsHouseSignText:
-	text "SEA COTTAGE"
-	line "BILL'S HOUSE"
-	done
-
-UnusedBillsHouseSignText: ; unreferenced
-	text "BILL'S HOUSE"
+	text "Sea Cottage"
+	line "Bill's House"
 	done
 
 Route25_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event 47,  5, BILLS_HOUSE, 1
 

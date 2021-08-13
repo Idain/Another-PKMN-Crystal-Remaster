@@ -72,15 +72,13 @@ CooltrainerfQuinnAfterBattleText:
 	done
 
 Route1SignText:
-	text "ROUTE 1"
+	text "Route 1"
 
-	para "PALLET TOWN -"
-	line "VIRIDIAN CITY"
+	para "Pallet Town -"
+	line "Viridian City"
 	done
 
 Route1_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 
 	def_coord_events

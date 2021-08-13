@@ -26,10 +26,10 @@ GoldenrodPPSpeechHouseFisherText:
 	text "Once while I was"
 	line "battling, my"
 
-	para "#MON couldn't"
+	para "#mon couldn't"
 	line "make any moves."
 
-	para "The POWER POINTS,"
+	para "The Power Points,"
 	line "or PP, of its"
 
 	para "moves were all"
@@ -38,20 +38,18 @@ GoldenrodPPSpeechHouseFisherText:
 
 GoldenrodPPSpeechHouseLassText:
 	text "Sometimes, a"
-	line "healthy #MON"
+	line "healthy #mon"
 
 	para "may be unable to"
 	line "use its moves."
 
 	para "If that happens,"
 	line "heal it at a #-"
-	cont "MON CENTER or use"
+	cont "mon Center or use"
 	cont "an item."
 	done
 
 GoldenrodPPSpeechHouse_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  2,  7, GOLDENROD_CITY, 7
 	warp_event  3,  7, GOLDENROD_CITY, 7

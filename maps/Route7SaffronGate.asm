@@ -25,27 +25,25 @@ Route7SaffronGuardScript:
 Route7SaffronGuardPowerPlantText:
 	text "Did you hear about"
 	line "the accident at"
-	cont "the POWER PLANT?"
+	cont "the Power Plant?"
 
 	para "It's located in"
 	line "the East, close to"
-	cont "LAVENDER TOWN."
+	cont "Lavender Town."
 	done
 
 Route7SaffronGuardSeriousText:
-	text "I take my GUARD"
+	text "I take my guard"
 	line "job seriously."
 
 	para "Hey! You have a"
-	line "#DEX."
+	line "#dex."
 
 	para "OK. You can go"
 	line "through."
 	done
 
 Route7SaffronGate_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  0,  4, ROUTE_7, 1
 	warp_event  0,  5, ROUTE_7, 2

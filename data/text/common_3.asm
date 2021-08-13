@@ -226,29 +226,20 @@ _SaveFileCorruptedText::
 
 _ChangeBoxSaveText::
 	text "When you change a"
-	line "#MON BOX, data"
+	line "#mon BOX, data"
 	cont "will be saved. OK?"
 	done
 
 _MoveMonWOMailSaveText::
 	text "Each time you move"
-	line "a #MON, data"
+	line "a #mon, data"
 	cont "will be saved. OK?"
-	done
-
-_WindowAreaExceededErrorText:: ; unreferenced
-	text "The window save"
-	line "area was exceeded."
 	done
 
 _WindowPoppingErrorText::
 	text "No windows avail-"
 	line "able for popping."
 	done
-
-_CorruptedEventText:: ; unreferenced
-	text "Corrupted event!"
-	prompt
 
 _ObjectEventText::
 	text "Object event"
@@ -291,7 +282,7 @@ _SeerSeeAllText::
 	line "I know all…"
 
 	para "Certainly, I know"
-	line "of your #MON!"
+	line "of your #mon!"
 	done
 
 _SeerCantTellAThingText::
@@ -383,7 +374,7 @@ _SeerMoreCareText::
 	para "It would be wise"
 	line "to raise your"
 
-	para "#MON with a"
+	para "#mon with a"
 	line "little more care."
 	done
 
@@ -422,7 +413,7 @@ _SeerMightyText::
 	line "must have come"
 
 	para "through numerous"
-	line "#MON battles."
+	line "#mon battles."
 
 	para "It looks brimming"
 	line "with confidence."
@@ -437,7 +428,7 @@ _SeerImpressedText::
 	para "It's been a long"
 	line "time since I've"
 
-	para "seen a #MON as"
+	para "seen a #mon as"
 	line "mighty as this"
 	cont "@"
 	text_ram wSeerNickname
@@ -838,19 +829,19 @@ _MobileCardFolderIntro4Text::
 	done
 
 _MobileCardFolderAskDeleteText::
-	text "If the CARD FOLDER"
+	text "If the Card Folder"
 	line "is deleted, all"
 
-	para "its CARDS and the"
-	line "PASSCODE will also"
+	para "its Cards and the"
+	line "Passcode will also"
 	cont "be deleted."
 
 	para "Beware--a deleted"
-	line "CARD FOLDER can't"
+	line "Card Folder can't"
 	cont "be restored."
 
 	para "Want to delete"
-	line "your CARD FOLDER?"
+	line "your Card Folder?"
 	done
 
 _MobileCardFolderDeleteAreYouSureText::
@@ -859,7 +850,7 @@ _MobileCardFolderDeleteAreYouSureText::
 	done
 
 _MobileCardFolderDeletedText::
-	text "The CARD FOLDER"
+	text "The Card Folder"
 	line "has been deleted."
 
 	para ""
@@ -867,7 +858,7 @@ _MobileCardFolderDeletedText::
 
 _MobileCardFolderAskOpenOldText::
 	text "There is an older"
-	line "CARD FOLDER from a"
+	line "Card Folder from a"
 	cont "previous journey."
 
 	para "Do you want to"
@@ -876,12 +867,12 @@ _MobileCardFolderAskOpenOldText::
 
 _MobileCardFolderAskDeleteOldText::
 	text "Delete the old"
-	line "CARD FOLDER?"
+	line "Card Folder?"
 	done
 
 _MobileCardFolderFinishRegisteringCardsText::
 	text "Finish registering"
-	line "CARDS?"
+	line "Cards?"
 	done
 
 _PhoneWrongNumberText::
@@ -909,10 +900,6 @@ _PhoneJustTalkToThemText::
 
 _PhoneThankYouText::
 	text "Thank you!"
-	done
-
-_SpaceSpaceColonText:: ; unreferenced
-	text "  :"
 	done
 
 _ClockResetText::
@@ -1125,7 +1112,7 @@ _BattleTowerReturnWhenReadyText::
 
 _NeedAtLeastThreeMonText::
 	text "You need at least"
-	line "three #MON."
+	line "three #mon."
 
 	para ""
 	done
@@ -1138,7 +1125,7 @@ _EggDoesNotQualifyText::
 	done
 
 _OnlyThreeMonMayBeEnteredText::
-	text "Only three #MON"
+	text "Only three #mon"
 	line "may be entered."
 
 	para ""
@@ -1147,7 +1134,7 @@ _OnlyThreeMonMayBeEnteredText::
 _TheMonMustAllBeDifferentKindsText::
 	text "The @"
 	text_ram wStringBuffer2
-	text " #MON"
+	text " #mon"
 	line "must all be"
 	cont "different kinds."
 
@@ -1157,7 +1144,7 @@ _TheMonMustAllBeDifferentKindsText::
 _TheMonMustNotHoldTheSameItemsText::
 	text "The @"
 	text_ram wStringBuffer2
-	text " #MON"
+	text " #mon"
 	line "must not hold the"
 	cont "same items."
 
@@ -1175,17 +1162,17 @@ _BallDodgedText::
 	text "It dodged the"
 	line "thrown Ball!"
 
-	para "This #MON"
+	para "This #mon"
 	line "can't be caught!"
 	prompt
 
 _BallMissedText::
 	text "You missed the"
-	line "#MON!"
+	line "#mon!"
 	prompt
 
 _BallBrokeFreeText::
-	text "Oh no! The #MON"
+	text "Oh no! The #mon"
 	line "broke free!"
 	prompt
 

@@ -38,15 +38,13 @@ MrPsychicText1:
 	done
 
 MrPsychicText2:
-	text "TM29 is PSYCHIC."
+	text "TM29 is Psychic."
 
 	para "It may lower the"
-	line "target's SP.DEF."
+	line "target's Sp.Def."
 	done
 
 MrPsychicsHouse_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  2,  7, SAFFRON_CITY, 5
 	warp_event  3,  7, SAFFRON_CITY, 5

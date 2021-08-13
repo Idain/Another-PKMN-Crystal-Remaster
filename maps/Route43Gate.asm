@@ -15,8 +15,6 @@ Route43Gate_MapScripts:
 
 .RocketShakedown:
 	sdefer .RocketTakeover
-	end
-
 .DummyScene:
 	end
 
@@ -60,8 +58,7 @@ RocketScript_TollSouth:
 RocketScript_YoureBrokeSouth:
 	takemoney YOUR_MONEY, ROUTE43GATE_TOLL
 	writetext RocketText_AllYouGot
-	sjump RocketScript_ShakeDownSouth
-
+	; fallthrough
 RocketScript_ShakeDownSouth:
 	promptbutton
 	closetext
@@ -92,8 +89,7 @@ RocketScript_TollNorth:
 RocketScript_YoureBrokeNorth:
 	takemoney YOUR_MONEY, ROUTE43GATE_TOLL
 	writetext RocketText_AllYouGot
-	sjump RocketScript_ShakeDownNorth
-
+	; fallthrough
 RocketScript_ShakeDownNorth:
 	promptbutton
 	closetext
@@ -217,8 +213,8 @@ RocketText_MakingABundle:
 	para "Everyone wants to"
 	line "see what's going"
 
-	para "on up at LAKE OF"
-	line "RAGE."
+	para "on up at Lake of"
+	line "Rage."
 	done
 
 OfficerText_FoundTM:
@@ -234,11 +230,6 @@ OfficerText_FoundTM:
 	cont "you take it away?"
 	done
 
-Text_ReceivedTM30: ; unreferenced
-	text "<PLAYER> received"
-	line "TM30."
-	done
-
 OfficerText_AvoidGrass:
 	text "Use this gate to"
 	line "avoid walking in"
@@ -246,8 +237,6 @@ OfficerText_AvoidGrass:
 	done
 
 Route43Gate_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  4,  0, ROUTE_43, 4
 	warp_event  5,  0, ROUTE_43, 5

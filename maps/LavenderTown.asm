@@ -48,12 +48,12 @@ LavenderTownPokefanMText:
 	text "That's quite some"
 	line "building, eh?"
 
-	para "It's KANTO's RADIO"
-	line "TOWER."
+	para "It's Kanto's Radio"
+	line "Tower."
 	done
 
 LavenderTownTeacherText:
-	text "KANTO has many"
+	text "Kanto has many"
 	line "good radio shows."
 	done
 
@@ -63,28 +63,27 @@ LavenderTownGrampsText:
 
 	para "their respects to"
 	line "the departed souls"
-	cont "of #MON."
+	cont "of #mon."
 	done
 
 LavenderTownYoungsterText:
 	text "You need a #"
-	line "FLUTE to wake"
-	cont "sleeping #MON."
+	line "Flute to wake"
+	cont "sleeping #mon."
 
 	para "Every trainer has"
 	line "to know that!"
 	done
 
 LavenderTownSignText:
-	text "LAVENDER TOWN"
+	text "Lavender Town"
 
-	para "The Noble Purple"
-	line "Town"
+	para "The Noble Town"
 	done
 
 KantoRadioStationSignText:
-	text "KANTO RADIO"
-	line "STATION"
+	text "Kanto Radio"
+	line "Station"
 
 	para "Your Favorite"
 	line "Programs On-Air"
@@ -92,20 +91,18 @@ KantoRadioStationSignText:
 	done
 
 VolunteerPokemonHouseSignText:
-	text "LAVENDER VOLUNTEER"
-	line "#MON HOUSE"
+	text "Lavender Volunteer"
+	line "#mon House"
 	done
 
 SoulHouseSignText:
-	text "SOUL HOUSE"
+	text "House of Memories"
 
-	para "May the Souls of"
-	line "#MON Rest Easy"
+	para "May #mon Spir-"
+	line "its Rest Easy."
 	done
 
 LavenderTown_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  5,  5, LAVENDER_POKECENTER_1F, 1
 	warp_event  5,  9, MR_FUJIS_HOUSE, 1

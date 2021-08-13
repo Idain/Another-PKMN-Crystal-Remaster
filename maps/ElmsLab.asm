@@ -23,17 +23,9 @@ ElmsLab_MapScripts:
 	end
 
 .DummyScene1:
-	end
-
 .DummyScene2:
-	end
-
 .DummyScene3:
-	end
-
 .DummyScene4:
-	end
-
 .DummyScene5:
 	end
 
@@ -116,23 +108,20 @@ ElmCheckEverstone:
 	closetext
 	end
 
-ElmEggHatchedScript:
+ElmCheckTogepiEgg:
+	checkevent EVENT_GOT_TOGEPI_EGG_FROM_ELMS_AIDE
+	iffalse ElmCheckGotEggAgain
+	checkevent EVENT_TOGEPI_HATCHED
+	iffalse ElmWaitingEggHatchScript
 	setval TOGEPI
 	special FindPartyMonThatSpeciesYourTrainerID
 	iftrue ShowElmTogepiScript
 	setval TOGETIC
 	special FindPartyMonThatSpeciesYourTrainerID
 	iftrue ShowElmTogepiScript
-	sjump ElmCheckGotEggAgain
+	sjump ElmWaitingEggHatchScript
 
-ElmCheckTogepiEgg:
-	checkevent EVENT_GOT_TOGEPI_EGG_FROM_ELMS_AIDE
-	iffalse ElmCheckGotEggAgain
-	checkevent EVENT_TOGEPI_HATCHED
-	iftrue ElmEggHatchedScript
 ElmCheckGotEggAgain:
-	checkevent EVENT_GOT_TOGEPI_EGG_FROM_ELMS_AIDE ; why are we checking it again?
-	iftrue ElmWaitingEggHatchScript
 	checkflag ENGINE_ZEPHYRBADGE
 	iftrue ElmAideHasEggScript
 	checkevent EVENT_GAVE_MYSTERY_EGG_TO_ELM
@@ -1368,8 +1357,6 @@ ElmsLabPCText:
 	done
 
 ElmsLab_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  4, 11, NEW_BARK_TOWN, 1
 	warp_event  5, 11, NEW_BARK_TOWN, 1

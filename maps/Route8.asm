@@ -76,8 +76,8 @@ Route8FruitTree:
 	fruittree FRUITTREE_ROUTE_8
 
 BikerDwayneSeenText:
-	text "We're the KANTO"
-	line "#MON FEDERATION"
+	text "We're the Kanto"
+	line "#mon Federation"
 	cont "trainer group."
 
 	para "We'll drive you"
@@ -89,16 +89,16 @@ BikerDwayneBeatenText:
 	done
 
 BikerDwayneAfterBattleText:
-	text "The KANTO #MON"
-	line "FEDERATION will"
+	text "The Kanto #mon"
+	line "Federation will"
 	cont "never fall!"
 	done
 
 BikerHarrisSeenText:
 	text "The cops shut down"
-	line "our UNDERGROUND"
+	line "our Underground"
 
-	para "PATH! That really"
+	para "Path! That really"
 	line "fries me!"
 	done
 
@@ -108,13 +108,13 @@ BikerHarrisBeatenText:
 
 BikerHarrisAfterBattleText:
 	text "Wiped out by some"
-	line "punk from JOHTO…"
+	line "punk from Johto…"
 	done
 
 BikerZekeSeenText:
-	text "We're the KANTO"
-	line "#MON FEDERA-"
-	cont "TION!"
+	text "We're the Kanto"
+	line "#mon Federa-"
+	cont "tion!"
 	cont "Right on!"
 	done
 
@@ -129,13 +129,13 @@ BikerZekeAfterBattleText:
 	done
 
 SupernerdSamSeenText:
-	text "How does the MAG-"
-	line "NET TRAIN work?"
+	text "How does the Mag-"
+	line "net Train work?"
 	done
 
 SupernerdSamBeatenText:
 	text "I just want to see"
-	line "the MAGNET TRAIN…"
+	line "the Magnet Train…"
 	done
 
 SupernerdSamAfterBattleText:
@@ -145,7 +145,7 @@ SupernerdSamAfterBattleText:
 
 SupernerdTomSeenText:
 	text "Hm… You've got"
-	line "many GYM BADGES."
+	line "many Gym Badges."
 	done
 
 SupernerdTomBeatenText:
@@ -154,9 +154,9 @@ SupernerdTomBeatenText:
 	done
 
 SupernerdTomAfterBattleText:
-	text "GYM BADGES give"
-	line "you advantages in"
-	cont "battles."
+	text "It's no surprise"
+	line "that you've got"
+	cont "many Gym Badges!"
 	done
 
 Route8LockedDoorText:
@@ -171,8 +171,6 @@ Route8UndergroundPathSignText:
 	done
 
 Route8_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  4,  4, ROUTE_8_SAFFRON_GATE, 3
 	warp_event  4,  5, ROUTE_8_SAFFRON_GATE, 4

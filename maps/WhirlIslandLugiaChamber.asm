@@ -11,10 +11,8 @@ WhirlIslandLugiaChamber_MapScripts:
 	checkevent EVENT_FOUGHT_LUGIA
 	iftrue .NoAppear
 	checkitem SILVER_WING
-	iftrue .Appear
-	sjump .NoAppear
-
-.Appear:
+	iffalse .NoAppear
+;Appear
 	appear WHIRLISLANDLUGIACHAMBER_LUGIA
 	endcallback
 
@@ -42,8 +40,6 @@ LugiaText:
 	done
 
 WhirlIslandLugiaChamber_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  9, 13, WHIRL_ISLAND_B2F, 3
 

@@ -21,7 +21,7 @@ OlivinePunishmentSpeechHouseBookshelf1:
 
 OlivinePunishmentSpeechHouseDadText:
 	text "Along the way to"
-	line "CIANWOOD, there"
+	line "Cianwood, there"
 
 	para "are four deserted"
 	line "islands."
@@ -38,8 +38,6 @@ OlivinePunishmentSpeechHouseDaughterText:
 	done
 
 OlivinePunishmentSpeechHouse_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  2,  7, OLIVINE_CITY, 5
 	warp_event  3,  7, OLIVINE_CITY, 5

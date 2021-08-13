@@ -109,8 +109,6 @@ HallOfFame_LanceText:
 	done
 
 HallOfFame_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  4, 13, LANCES_ROOM, 3
 	warp_event  5, 13, LANCES_ROOM, 4

@@ -61,10 +61,8 @@ RadioTower1FLuckyNumberManScript:
 	ifequal 3, .ThirdPlace
 	ifequal 4, .FourthPlace
 	ifequal 5, .FifthPlace
-	sjump .NoPrize
-
-.GameOver:
-	writetext RadioTower1FLuckyNumberManComeAgainText
+;.NoPrize:
+	writetext RadioTower1FLuckyNumberManNoneOfYourIDNumbersMatchText
 	waitbutton
 	closetext
 	end
@@ -122,10 +120,9 @@ RadioTower1FLuckyNumberManScript:
 	iffalse .BagFull
 	itemnotify
 	setflag ENGINE_LUCKY_NUMBER_SHOW
-	sjump .GameOver
-
-.NoPrize:
-	writetext RadioTower1FLuckyNumberManNoneOfYourIDNumbersMatchText
+	; fallthrough
+.GameOver:
+	writetext RadioTower1FLuckyNumberManComeAgainText
 	waitbutton
 	closetext
 	end
@@ -517,8 +514,6 @@ RadioTower1FLuckyChannelSignText:
 	done
 
 RadioTower1F_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  2,  7, GOLDENROD_CITY, 11
 	warp_event  3,  7, GOLDENROD_CITY, 11

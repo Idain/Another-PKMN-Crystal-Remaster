@@ -116,7 +116,7 @@ GoldenrodMagnetTrainStationOfficerTheTrainHasntComeInText:
 
 GoldenrodMagnetTrainStationOfficerAreYouComingAboardText:
 	text "We'll soon depart"
-	line "for SAFFRON."
+	line "for Saffron."
 
 	para "Are you coming"
 	line "aboard?"
@@ -124,7 +124,7 @@ GoldenrodMagnetTrainStationOfficerAreYouComingAboardText:
 
 GoldenrodMagnetTrainStationOfficerRightThisWayText:
 	text "May I see your"
-	line "rail PASS, please?"
+	line "rail Pass, please?"
 
 	para "OK. Right this"
 	line "way, please."
@@ -132,7 +132,7 @@ GoldenrodMagnetTrainStationOfficerRightThisWayText:
 
 GoldenrodMagnetTrainStationOfficerYouDontHaveARailPassText:
 	text "Sorry. You don't"
-	line "have a rail PASS."
+	line "have a rail Pass."
 	done
 
 GoldenrodMagnetTrainStationOfficerHopeToSeeYouAgainText:
@@ -142,29 +142,27 @@ GoldenrodMagnetTrainStationOfficerHopeToSeeYouAgainText:
 
 GoldenrodMagnetTrainStationOfficerArrivedInGoldenrodText:
 	text "We have arrived in"
-	line "GOLDENROD."
+	line "Goldenrod."
 
 	para "We hope to see you"
 	line "again."
 	done
 
 GoldenrodMagnetTrainStationGentlemanText:
-	text "I'm the PRESIDENT."
+	text "I'm the President."
 
 	para "My dream was to"
 	line "build a train that"
 
 	para "is faster than any"
-	line "#MON."
+	line "#mon."
 
 	para "It really brings"
-	line "JOHTO much closer"
-	cont "to KANTO."
+	line "Johto much closer"
+	cont "to Kanto."
 	done
 
 GoldenrodMagnetTrainStation_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  8, 17, GOLDENROD_CITY, 5
 	warp_event  9, 17, GOLDENROD_CITY, 5

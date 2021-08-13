@@ -17,23 +17,20 @@ Route29_MapScripts:
 	callback MAPCALLBACK_OBJECTS, .Tuscany
 
 .DummyScene0:
-	end
-
 .DummyScene1:
 	end
 
 .Tuscany:
 	checkflag ENGINE_ZEPHYRBADGE
-	iftrue .DoesTuscanyAppear
-
-.TuscanyDisappears:
-	disappear ROUTE29_TUSCANY
-	endcallback
-
-.DoesTuscanyAppear:
+	iffalse .TuscanyDisappears
+;.DoesTuscanyAppear:
 	readvar VAR_WEEKDAY
 	ifnotequal TUESDAY, .TuscanyDisappears
 	appear ROUTE29_TUSCANY
+	endcallback
+
+.TuscanyDisappears:
+	disappear ROUTE29_TUSCANY
 	endcallback
 
 Route29Tutorial1:
@@ -148,11 +145,9 @@ Route29FisherScript:
 Route29CooltrainerMScript:
 	faceplayer
 	opentext
-	checktime DAY
-	iftrue .day_morn
 	checktime EVE | NITE
 	iftrue .nite
-.day_morn
+;.day_morn
 	writetext Route29CooltrainerMText_WaitingForNight
 	waitbutton
 	closetext
@@ -200,11 +195,8 @@ TuscanyNotTuesdayScript:
 	closetext
 	end
 
-Route29Sign1:
-	jumptext Route29Sign1Text
-
-Route29Sign2:
-	jumptext Route29Sign2Text
+Route29Sign:
+	jumptext Route29SignText
 
 Route29FruitTree:
 	fruittree FRUITTREE_ROUTE_29
@@ -322,14 +314,6 @@ Route29FisherText:
 	line "progress."
 	done
 
-Route29CooltrainerMText_WaitingForDay: ; unreferenced
-	text "I'm waiting for"
-	line "#mon that"
-
-	para "appear only in the"
-	line "daytime."
-	done
-
 Route29CooltrainerMText_WaitingForNight:
 	text "I'm waiting for"
 	line "#mon that"
@@ -375,7 +359,7 @@ TuscanyGaveGiftText:
 	cont "is most adorable?"
 
 	para "It strengthens"
-	line "normal-type moves."
+	line "Normal-type moves."
 
 	para "I am certain it"
 	line "will be of use."
@@ -399,14 +383,7 @@ TuscanyNotTuesdayText:
 	cont "is unfortunate…"
 	done
 
-Route29Sign1Text:
-	text "Route 29"
-
-	para "Cherrygrove City -"
-	line "New Bark Town"
-	done
-
-Route29Sign2Text:
+Route29SignText:
 	text "Route 29"
 
 	para "Cherrygrove City -"
@@ -414,8 +391,6 @@ Route29Sign2Text:
 	done
 
 Route29_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event 27,  1, ROUTE_29_ROUTE_46_GATE, 3
 
@@ -424,8 +399,8 @@ Route29_MapEvents:
 	coord_event 53,  9, SCENE_ROUTE29_CATCH_TUTORIAL, Route29Tutorial2
 
 	def_bg_events
-	bg_event 51,  7, BGEVENT_READ, Route29Sign1
-	bg_event  3,  5, BGEVENT_READ, Route29Sign2
+	bg_event 51,  7, BGEVENT_READ, Route29Sign
+	bg_event  3,  5, BGEVENT_READ, Route29Sign
 
 	def_object_events
 	object_event 50, 12, SPRITE_COOLTRAINER_M, SPRITEMOVEDATA_SPINRANDOM_SLOW, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, CatchingTutorialDudeScript, -1

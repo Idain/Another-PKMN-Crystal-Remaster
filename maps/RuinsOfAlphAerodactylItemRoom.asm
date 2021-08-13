@@ -27,12 +27,10 @@ RuinsOfAlphAerodactylItemRoomAncientReplica:
 RuinsOfAlphAerodactylItemRoomAncientReplicaText:
 	text "It's a replica of"
 	line "an ancient #-"
-	cont "MON."
+	cont "mon."
 	done
 
 RuinsOfAlphAerodactylItemRoom_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  3,  9, RUINS_OF_ALPH_AERODACTYL_CHAMBER, 5
 	warp_event  4,  9, RUINS_OF_ALPH_AERODACTYL_CHAMBER, 5

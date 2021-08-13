@@ -155,8 +155,8 @@ Fisher3Text_MunchMunch:
 
 Fisher3Text_GoldenrodIsBest:
 	text "The food is good"
-	line "here, but GOLDEN-"
-	cont "ROD has the best"
+	line "here, but Golden-"
+	cont "rod has the best"
 	cont "food anywhere."
 	done
 
@@ -166,10 +166,10 @@ TeacherText_CrunchCrunch:
 
 TeacherText_NoCoinCase:
 	text "Nobody here will"
-	line "give you a COIN"
+	line "give you a Coin"
 
-	para "CASE. You should"
-	line "look in JOHTO."
+	para "Case. You should"
+	line "look in Johto"
 	done
 
 TeacherText_KeepEating:
@@ -179,7 +179,7 @@ TeacherText_KeepEating:
 	done
 
 TeacherText_MoreChef:
-	text "More, CHEF!"
+	text "More, chef!"
 	done
 
 EatathonContestPosterText:
@@ -206,8 +206,6 @@ NoRoomForLeftoversText:
 	done
 
 CeladonCafe_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  6,  7, CELADON_CITY, 9
 	warp_event  7,  7, CELADON_CITY, 9

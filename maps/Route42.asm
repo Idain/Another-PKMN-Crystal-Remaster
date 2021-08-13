@@ -17,8 +17,6 @@ Route42_MapScripts:
 	def_callbacks
 
 .DummyScene0:
-	end
-
 .DummyScene1:
 	end
 
@@ -107,13 +105,10 @@ TrainerFisherTully:
 .HasWaterStone:
 	scall .Gift
 	verbosegiveitem WATER_STONE
-	iffalse .NoRoom
+	iffalse .PackFull
 	clearflag ENGINE_TULLY_HAS_WATER_STONE
 	setevent EVENT_TULLY_GAVE_WATER_STONE
 	sjump .NumberAccepted
-
-.NoRoom:
-	sjump .PackFull
 
 .AskNumber1:
 	jumpstd AskNumber1MScript
@@ -308,8 +303,6 @@ Route42Sign2Text:
 	done
 
 Route42_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  0,  8, ROUTE_42_ECRUTEAK_GATE, 3
 	warp_event  0,  9, ROUTE_42_ECRUTEAK_GATE, 4

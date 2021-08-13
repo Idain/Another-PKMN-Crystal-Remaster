@@ -22,11 +22,11 @@ FightingDojoFocusBand:
 FightingDojoBlackBeltText:
 	text "Hello!"
 
-	para "KARATE KING, the"
-	line "FIGHTING DOJO's"
+	para "Karate King, the"
+	line "Fighting Dojo's"
 
 	para "master, is in a"
-	line "cave in JOHTO for"
+	line "cave in Johto for"
 	cont "training."
 	done
 
@@ -41,8 +41,6 @@ FightingDojoSign2Text:
 	done
 
 FightingDojo_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  4, 11, SAFFRON_CITY, 1
 	warp_event  5, 11, SAFFRON_CITY, 1

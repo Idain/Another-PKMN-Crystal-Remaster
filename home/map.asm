@@ -389,8 +389,6 @@ ReadMapEvents::
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	inc hl
-	inc hl
 	call ReadWarps
 	call ReadCoordEvents
 	call ReadBGEvents
@@ -615,16 +613,13 @@ ClearObjectStructs::
 	jp ByteFill
 
 GetWarpDestCoords::
-	call GetMapScriptsBank
-	rst Bankswitch
+	call SwitchToMapScriptsBank
 
 	ld hl, wMapEventsPointer
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-rept 3 ; get to the warp coords
-	inc hl
-endr
+	inc hl ; get to the warp coords
 	ld a, [wWarpNumber]
 	dec a
 	ld c, a
@@ -639,8 +634,6 @@ endr
 	ld a, [hli]
 	cp -1
 	call z, .backup
-
-.skip
 	farcall GetMapScreenCoords
 	ret
 

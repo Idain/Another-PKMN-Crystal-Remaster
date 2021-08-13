@@ -31,21 +31,14 @@ GoldenrodGameCorner_MapScripts:
 	iffalse .finish
 	checkitem COIN_CASE
 	iffalse .move_tutor_inside
-;	readvar VAR_WEEKDAY
-;	ifequal WEDNESDAY, .move_tutor_outside
-;	ifequal SATURDAY, .move_tutor_outside
-
-.move_tutor_outside
 	checkflag ENGINE_DAILY_MOVE_TUTOR
 	iftrue .finish
 	disappear GOLDENRODGAMECORNER_MOVETUTOR
+.finish
 	endcallback
 
 .move_tutor_inside
 	appear GOLDENRODGAMECORNER_MOVETUTOR
-;	endcallback
-
-.finish
 	endcallback
 
 MoveTutorInsideScript:
@@ -541,7 +534,7 @@ GoldenrodGameCornerGentlemanText:
 
 GoldenrodGameCornerPokefanM2Text:
 if DEF(_CRYSTAL_AU)
-	text "COIN CASE? I threw"
+	text "Coin Case? I threw"
 	line "it away in the"
 	cont "Underground."
 	done
@@ -573,8 +566,6 @@ GoldenrodGameCornerLeftTheirDrinkText:
 	done
 
 GoldenrodGameCorner_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  2, 13, GOLDENROD_CITY, 10
 	warp_event  3, 13, GOLDENROD_CITY, 10

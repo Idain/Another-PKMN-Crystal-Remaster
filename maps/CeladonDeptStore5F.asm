@@ -43,23 +43,27 @@ CeladonDeptStore5FGentlemanText:
 	text "I want to buy some"
 	line "items that raise"
 
-	para "#MON stats, but"
+	para "#mon stats, but"
 	line "I don't have"
 	cont "enough money…"
 	done
 
 CeladonDeptStore5FSailorText:
-	text "I want PP UP, so I"
-	line "can raise the PP"
+	text "I want PP Max, so"
+	line "I can maximize the" 
 
-	para "of moves. But you"
-	line "can't buy it…"
+	para "PP of moves, but"
+	line "don't have enough"
+	cont "money…"
+
+	para "A PP Up will do"
+	line "for now…"
 	done
 
 CeladonDeptStore5FTeacherText:
 	text "Using items on"
 	line "them makes #-"
-	cont "MON happy."
+	cont "mon happy."
 
 	para "They hate certain"
 	line "items, though…"
@@ -70,8 +74,6 @@ CeladonDeptStore5FDirectoryText:
 	done
 
 CeladonDeptStore5F_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event 12,  0, CELADON_DEPT_STORE_4F, 1
 	warp_event 15,  0, CELADON_DEPT_STORE_6F, 1

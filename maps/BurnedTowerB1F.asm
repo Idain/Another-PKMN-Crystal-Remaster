@@ -18,8 +18,6 @@ BurnedTowerB1F_MapScripts:
 	callback MAPCALLBACK_TILES, .LadderCallback
 
 .DummyScene0:
-	end
-
 .DummyScene1:
 	end
 
@@ -191,19 +189,19 @@ BurnedTowerB1FEusineMovement1:
 	step_end
 
 BurnedTowerB1FEusineText:
-	text "EUSINE: I dug a"
+	text "Eusine: I dug a"
 	line "hole here, too…"
 
 	para "I was shocked!"
 
-	para "SUICUNE raced by"
+	para "Suicune raced by"
 	line "like a blur, right"
 
 	para "in front of my"
 	line "eyes!"
 
 	para "For ten years I"
-	line "chased SUICUNE,"
+	line "chased Suicune,"
 
 	para "and I finally got"
 	line "to see it."
@@ -216,16 +214,16 @@ BurnedTowerB1FEusineText:
 	para "Thank you!"
 
 	para "I heard that the"
-	line "legendary #MON"
+	line "legendary #mon"
 
-	para "of ECRUTEAK test"
+	para "of Ecruteak test"
 	line "chosen humans by"
 
 	para "allowing them to"
 	line "get close."
 
 	para "I'm going to track"
-	line "SUICUNE."
+	line "Suicune."
 
 	para "<PLAYER>, let's"
 	line "meet again!"
@@ -234,8 +232,6 @@ BurnedTowerB1FEusineText:
 	done
 
 BurnedTowerB1F_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event 10,  9, BURNED_TOWER_1F, 3
 	warp_event 17,  7, BURNED_TOWER_1F, 7

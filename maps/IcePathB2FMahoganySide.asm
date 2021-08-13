@@ -29,8 +29,6 @@ IcePathB2FMahoganySideBoulderText:
 	done
 
 IcePathB2FMahoganySide_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event 17,  1, ICE_PATH_B1F, 2
 	warp_event  9, 11, ICE_PATH_B3F, 1

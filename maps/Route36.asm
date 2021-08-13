@@ -18,8 +18,6 @@ Route36_MapScripts:
 	callback MAPCALLBACK_OBJECTS, .ArthurCallback
 
 .DummyScene0:
-	end
-
 .DummyScene1:
 	end
 
@@ -244,13 +242,10 @@ TrainerSchoolboyAlan1:
 .GiveFireStone:
 	scall .Gift
 	verbosegiveitem FIRE_STONE
-	iffalse .BagFull
+	iffalse .PackFull
 	clearflag ENGINE_ALAN_HAS_FIRE_STONE
 	setevent EVENT_ALAN_GAVE_FIRE_STONE
 	sjump .NumberAccepted
-
-.BagFull:
-	sjump .PackFull
 
 .AskNumber1:
 	jumpstd AskNumber1MScript
@@ -396,18 +391,18 @@ Route36SuicuneMovement:
 
 UseSquirtbottleText:
 	text "It's a weird tree."
-	line "Use SQUIRTBOTTLE?"
+	line "Use SquirtBottle?"
 	done
 
 UsedSquirtbottleText:
 	text "<PLAYER> used the"
-	line "SQUIRTBOTTLE."
+	line "SquirtBottle."
 	done
 
 SudowoodoAttackedText:
 	text "The weird tree"
 	line "doesn't like the"
-	cont "SQUIRTBOTTLE!"
+	cont "SquirtBottle!"
 
 	para "The weird tree"
 	line "attacked!"
@@ -426,7 +421,7 @@ FloriaText1:
 	line "jumped right up!"
 
 	para "It just has to be"
-	line "a #MON."
+	line "a #mon."
 
 	para "I bet it would be"
 	line "shocked out of its"
@@ -475,14 +470,9 @@ RockSmashGuyText2:
 	cont "have this."
 	done
 
-Text_ReceivedTM08: ; unreferenced
-	text "<PLAYER> received"
-	line "TM08."
-	done
-
 RockSmashGuyText3:
 	text "That happens to be"
-	line "ROCK SMASH."
+	line "Rock Smash."
 
 	para "You can shatter"
 	line "rocks with just a"
@@ -495,22 +485,10 @@ RockSmashGuyText3:
 	cont "smash 'em up!"
 	done
 
-UnusedOddTreeText: ; unreferenced
-	text "An odd tree is"
-	line "blocking the way"
-	cont "to GOLDENROD CITY."
-
-	para "I wanted to go see"
-	line "the huge #MON"
-
-	para "CENTER they just"
-	line "opened…"
-	done
-
 Route36LassText:
 	text "An odd tree is"
 	line "blocking the way"
-	cont "to GOLDENROD CITY."
+	cont "to Goldenrod City."
 
 	para "It's preventing"
 	line "me from shopping."
@@ -525,7 +503,7 @@ Route36LassText_ClearedSudowoodo:
 	cont "trace."
 
 	para "Oh! That tree was"
-	line "really a #MON?"
+	line "really a #mon?"
 	done
 
 PsychicMarkSeenText:
@@ -548,7 +526,7 @@ PsychicMarkAfterBattleText:
 SchoolboyAlan1SeenText:
 	text "Thanks to my stud-"
 	line "ies, I'm ready for"
-	cont "any #MON!"
+	cont "any #mon!"
 	done
 
 SchoolboyAlan1BeatenText:
@@ -566,10 +544,10 @@ SchoolboyAlanBooksText:
 	done
 
 MeetArthurText:
-	text "ARTHUR: Who are"
+	text "Arthur: Who are"
 	line "you?"
 
-	para "I'm ARTHUR of"
+	para "I'm Arthur of"
 	line "Thursday."
 	done
 
@@ -579,7 +557,7 @@ ArthurGivesGiftText:
 	done
 
 ArthurGaveGiftText:
-	text "ARTHUR: A #MON"
+	text "Arthur: A #mon"
 	line "that uses rock-"
 
 	para "type moves should"
@@ -590,7 +568,7 @@ ArthurGaveGiftText:
 	done
 
 ArthurThursdayText:
-	text "ARTHUR: I'm ARTHUR"
+	text "Arthur: I'm Arthur"
 	line "of Thursday. I'm"
 
 	para "the second son out"
@@ -598,24 +576,24 @@ ArthurThursdayText:
 	done
 
 ArthurNotThursdayText:
-	text "ARTHUR: Today's"
+	text "Arthur: Today's"
 	line "not Thursday. How"
 	cont "disappointing."
 	done
 
 Route36SignText:
-	text "ROUTE 36"
+	text "Route 36"
 	done
 
 RuinsOfAlphNorthSignText:
-	text "RUINS OF ALPH"
-	line "NORTH ENTRANCE"
+	text "Ruins of Alph"
+	line "North Entrance"
 	done
 
 Route36TrainerTips1Text:
 	text "TRAINER TIPS"
 
-	para "#MON stats"
+	para "#mon stats"
 	line "vary--even within"
 	cont "the same species."
 
@@ -626,13 +604,13 @@ Route36TrainerTips1Text:
 	line "ences will become"
 
 	para "pronounced as the"
-	line "#MON grow."
+	line "#mon grow."
 	done
 
 Route36TrainerTips2Text:
 	text "TRAINER TIPS"
 
-	para "Use DIG to return"
+	para "Use Dig to return"
 	line "to the entrance of"
 	cont "any place."
 
@@ -644,8 +622,6 @@ Route36TrainerTips2Text:
 	done
 
 Route36_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event 18,  8, ROUTE_36_NATIONAL_PARK_GATE, 3
 	warp_event 18,  9, ROUTE_36_NATIONAL_PARK_GATE, 4

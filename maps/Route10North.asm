@@ -10,12 +10,10 @@ Route10PokecenterSign:
 	jumpstd PokecenterSignScript
 
 PowerPlantSignText:
-	text "KANTO POWER PLANT"
+	text "Kanto Power Plant"
 	done
 
 Route10North_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event 11,  1, ROUTE_10_POKECENTER_1F, 1
 	warp_event  3,  9, POWER_PLANT, 1

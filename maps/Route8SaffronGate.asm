@@ -11,15 +11,13 @@ Route8SaffronGateOfficerScript:
 
 Route8SaffronGateOfficerText:
 	text "Have you been to"
-	line "LAVENDER TOWN?"
+	line "Lavender Town?"
 
 	para "There's a tall"
-	line "RADIO TOWER there."
+	line "Radio Tower there."
 	done
 
 Route8SaffronGate_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  0,  4, SAFFRON_CITY, 14
 	warp_event  0,  5, SAFFRON_CITY, 15

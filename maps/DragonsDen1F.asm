@@ -9,8 +9,6 @@ DragonsDen1F_MapScripts:
 	endcallback
 
 DragonsDen1F_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  3,  5, BLACKTHORN_CITY, 8
 	warp_event  3,  3, DRAGONS_DEN_1F, 4

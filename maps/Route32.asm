@@ -24,11 +24,7 @@ Route32_MapScripts:
 	callback MAPCALLBACK_OBJECTS, .Frieda
 
 .DummyScene0:
-	end
-
 .DummyScene1:
-	end
-
 .DummyScene2:
 	end
 
@@ -57,30 +53,22 @@ Route32CooltrainerMContinueScene:
 	closetext
 	end
 
-.GoToSproutTower: ; unreferenced
-	writetext Route32CooltrainerMText_UnusedSproutTower
-	waitbutton
-	closetext
-	end
-
 .GiveMiracleSeed:
 	writetext Route32CooltrainerMText_HaveThisSeed
 	promptbutton
 	verbosegiveitem MIRACLE_SEED
 	iffalse .BagFull
 	setevent EVENT_GOT_MIRACLE_SEED_IN_ROUTE_32
-	sjump .GotMiracleSeed
-
-.DontHaveZephyrBadge:
-	writetext Route32CooltrainerMText_VioletGym
-	waitbutton
-	closetext
-	end
-
 .GotMiracleSeed:
 	writetext Route32CooltrainerMText_ExperiencesShouldBeUseful
 	waitbutton
 .BagFull:
+	closetext
+	end
+
+.DontHaveZephyrBadge:
+	writetext Route32CooltrainerMText_VioletGym
+	waitbutton
 	closetext
 	end
 
@@ -515,31 +503,16 @@ Route32CooltrainerMText_AideIsWaiting:
 	para "See for yourself."
 	line "He's waiting for"
 
-	para "you at the #MON"
-	line "CENTER."
-	done
-
-Route32CooltrainerMText_UnusedSproutTower:
-	text "Have you gone to"
-	line "SPROUT TOWER?"
-
-	para "If you ever visit"
-	line "VIOLET CITY, "
-
-	para "they'll expect you"
-	line "to train there."
-
-	para "That's basic for"
-	line "trainers. Go to"
-	cont "SPROUT TOWER!"
+	para "you at the #mon"
+	line "Center."
 	done
 
 Route32CooltrainerMText_VioletGym:
 	text "Have you gone to"
-	line "the #MON GYM?"
+	line "the #mon Gym?"
 
 	para "You can test your"
-	line "#MON and your-"
+	line "#mon and your-"
 	cont "self there."
 
 	para "It's a rite of"
@@ -549,32 +522,32 @@ Route32CooltrainerMText_VioletGym:
 
 Route32CooltrainerMText_HaveThisSeed:
 	text "You have some good"
-	line "#MON there."
+	line "#mon there."
 
 	para "It must be from"
 	line "the training you"
 
 	para "gave them around"
-	line "VIOLET CITY."
+	line "Violet City."
 
 	para "The training at"
-	line "the GYM must have"
+	line "the Gym must have"
 
 	para "been especially"
 	line "helpful."
 
 	para "As a souvenir of"
-	line "VIOLET CITY, take"
+	line "Violet City, take"
 	cont "this."
 
 	para "It increases the"
-	line "power of grass-"
+	line "power of Grass-"
 	cont "type moves."
 	done
 
 Route32CooltrainerMText_ExperiencesShouldBeUseful:
 	text "Your experiences"
-	line "in VIOLET CITY"
+	line "in Violet City"
 
 	para "should be useful"
 	line "for your journey."
@@ -585,7 +558,7 @@ Text_MillionDollarSlowpokeTail:
 	line "to have this"
 
 	para "tasty, nutritious"
-	line "SLOWPOKETAIL?"
+	line "SlowpokeTail?"
 
 	para "For you right now,"
 	line "just ¥1,000,000!"
@@ -620,13 +593,13 @@ FisherJustinAfterText:
 	line "The essence of"
 
 	para "fishing and #-"
-	line "MON is the same."
+	line "mon is the same."
 	done
 
 FisherRalph1SeenText:
 	text "I'm really good at"
 	line "both fishing and"
-	cont "#MON."
+	cont "#mon."
 
 	para "I'm not about to"
 	line "lose to any kid!"
@@ -641,7 +614,7 @@ FisherRalphAfterText:
 	text "Fishing is a life-"
 	line "long passion."
 
-	para "#MON are life-"
+	para "#mon are life-"
 	line "long friends!"
 	done
 
@@ -656,57 +629,18 @@ FisherRalphSwarmText:
 	line "as you can, kid!"
 	done
 
-Route32UnusedFisher1SeenText: ; unreferenced
-	text "I keep catching"
-	line "the same #MON…"
-
-	para "Maybe a battle"
-	line "will turn things"
-	cont "around for me."
-	done
-
-Route32UnusedFisher1BeatenText: ; unreferenced
-	text "Nothing ever goes"
-	line "right for me now…"
-	done
-
-Route32UnusedFisher1AfterText: ; unreferenced
-	text "How come the guy"
-	line "next to me catches"
-	cont "good #MON?"
-	done
-
-Route32UnusedFisher2SeenText: ; unreferenced
-	text "Heh, I'm on a roll"
-	line "today. How about a"
-	cont "battle, kid?"
-	done
-
-Route32UnusedFisher2BeatenText: ; unreferenced
-	text "Oof. I wasn't"
-	line "lucky that time."
-	done
-
-Route32UnusedFisher2AfterText: ; unreferenced
-	text "You have to have a"
-	line "good ROD if you"
-
-	para "want to catch good"
-	line "#MON."
-	done
-
 FisherHenrySeenText:
-	text "My #MON?"
+	text "My #mon?"
 	line "Freshly caught!"
 	done
 
 FisherHenryBeatenText:
-	text "SPLASH?"
+	text "Splash?"
 	done
 
 FisherHenryAfterText:
 	text "Freshly caught"
-	line "#MON are no"
+	line "#mon are no"
 
 	para "match for properly"
 	line "raised ones."
@@ -730,13 +664,13 @@ YoungsterAlbertAfterText:
 	cont "with my favorites."
 
 	para "I'm not using the"
-	line "same tough #MON"
+	line "same tough #mon"
 	cont "as everyone else."
 	done
 
 YoungsterGordonSeenText:
 	text "I found some good"
-	line "#MON in the"
+	line "#mon in the"
 	cont "grass!"
 
 	para "I think they'll do"
@@ -791,8 +725,8 @@ PicnickerLiz1AfterText:
 	done
 
 BirdKeeperPeterSeenText:
-	text "That BADGE! It's"
-	line "from VIOLET CITY!"
+	text "That Badge! It's"
+	line "from Violet City!"
 
 	para "You beat FALKNER?"
 	done
@@ -804,14 +738,8 @@ BirdKeeperPeterBeatenText:
 
 BirdKeeperPeterAfterText:
 	text "I should train"
-	line "again at the GYM"
-	cont "in VIOLET CITY."
-	done
-
-Route32UnusedText: ; unreferenced
-	text "The fishermen"
-	line "yelled at me for"
-	cont "bugging them…"
+	line "again at the Gym"
+	cont "in Violet City."
 	done
 
 Text_RoarIntro:
@@ -829,29 +757,29 @@ Text_RoarOutro:
 	text "WROOOAR!"
 	line "IT'S ROAR!"
 
-	para "EVEN #MON RUN"
+	para "EVEN POKÉMON RUN"
 	line "FROM A GOOD ROAR!"
 	done
 
 MeetFriedaText:
-	text "FRIEDA: Yahoo!"
+	text "Frieda: Yahoo!"
 	line "It's Friday!"
 
-	para "I'm FRIEDA of"
+	para "I'm Frieda of"
 	line "Friday!"
 
 	para "Nice to meet you!"
 	done
 
 FriedaGivesGiftText:
-	text "Here's a POISON"
-	line "BARB for you!"
+	text "Here's a Poison"
+	line "Barb for you!"
 	done
 
 FriedaGaveGiftText:
-	text "FRIEDA: Give it to"
-	line "a #MON that has"
-	cont "poison-type moves."
+	text "Frieda: Give it to"
+	line "a #mon that has"
+	cont "Poison-type moves."
 
 	para "Oh!"
 
@@ -863,7 +791,7 @@ FriedaGaveGiftText:
 	done
 
 FriedaFridayText:
-	text "FRIEDA: Hiya! What"
+	text "Frieda: Hiya! What"
 	line "day do you like?"
 
 	para "I love Friday. No"
@@ -874,7 +802,7 @@ FriedaFridayText:
 	done
 
 FriedaNotFridayText:
-	text "FRIEDA: Isn't it"
+	text "Frieda: Isn't it"
 	line "Friday today?"
 
 	para "It's so boring"
@@ -882,25 +810,23 @@ FriedaNotFridayText:
 	done
 
 Route32SignText:
-	text "ROUTE 32"
+	text "Route 32"
 
-	para "VIOLET CITY -"
-	line "AZALEA TOWN"
+	para "Violet City -"
+	line "Azalea Town"
 	done
 
 Route32RuinsSignText:
-	text "RUINS OF ALPH"
-	line "EAST ENTRANCE"
+	text "Ruins of Alph"
+	line "East Entrance"
 	done
 
 Route32UnionCaveSignText:
-	text "UNION CAVE"
-	line "AHEAD"
+	text "Union Cave"
+	line "Ahead"
 	done
 
 Route32_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event 11, 73, ROUTE_32_POKECENTER_1F, 1
 	warp_event  4,  2, ROUTE_32_RUINS_OF_ALPH_GATE, 3

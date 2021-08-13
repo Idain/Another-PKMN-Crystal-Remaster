@@ -154,11 +154,6 @@ Script_BattleTowerHopeToServeYouAgain:
 	closetext
 	end
 
-Script_MobileError2: ; unreferenced
-	special BattleTowerMobileError
-	closetext
-	end
-
 Script_WaitButton:
 	waitbutton
 	closetext
@@ -217,11 +212,6 @@ Script_StartChallenge: ; unreferenced
 	writetext Text_RightThisWayToYourBattleRoom
 	waitbutton
 	sjump Script_ResumeBattleTowerChallenge
-
-Script_ReachedBattleLimit: ; unreferenced
-	writetext Text_FiveDayBattleLimit_Mobile
-	waitbutton
-	sjump Script_BattleTowerHopeToServeYouAgain
 
 Script_AMonLevelExceeds:
 	writetext Text_AMonLevelExceeds
@@ -364,66 +354,6 @@ Text_RightThisWayToYourBattleRoom:
 	line "your Battle Room."
 	done
 
-Text_BattleTowerIntroduction_1: ; unreferenced
-	text "Battle Tower is a"
-	line "facility made for"
-	cont "#mon battles."
-
-	para "Countless #mon"
-	line "trainers gather"
-
-	para "from all over to"
-	line "hold battles in"
-
-	para "specially designed"
-	line "Battle Rooms."
-
-	para "There are many"
-	line "Battle Rooms in"
-	cont "the Battle Tower."
-
-	para "Each Room holds"
-	line "seven trainers."
-
-	para "If you defeat the"
-	line "seven in a Room,"
-
-	para "and you have a"
-	line "good record, you"
-
-	para "could become the"
-	line "Room's Leader."
-
-	para "All Leaders will"
-	line "be recorded in the"
-
-	para "Honor Roll for"
-	line "posterity."
-
-	para "You may challenge"
-	line "in up to five"
-
-	para "Battle Rooms each"
-	line "day."
-
-	para "However, you may"
-	line "battle only once a"
-
-	para "day in any given"
-	line "Room."
-
-	para "To interrupt a"
-	line "session, you must"
-
-	para "SAVE. If not, you"
-	line "won't be able to"
-
-	para "resume your Room"
-	line "challenge."
-
-	para ""
-	done
-
 Text_BattleTowerIntroduction_2:
 	text "Battle Tower is a"
 	line "facility made for"
@@ -451,7 +381,7 @@ Text_BattleTowerIntroduction_2:
 	para "To interrupt a"
 	line "session, you must"
 
-	para "SAVE. If not, you"
+	para "save. If not, you"
 	line "won't be able to"
 
 	para "resume your Room"
@@ -484,24 +414,6 @@ Text_ThanksForVisiting:
 	line "visiting!"
 	done
 
-Text_BeatenAllTheTrainers_Mobile: ; unreferenced
-	text "Congratulations!"
-
-	para "You've beaten all"
-	line "the trainers!"
-
-	para "Your feat may be"
-	line "worth registering,"
-
-	para "<PLAYER>. With your"
-	line "results, you may"
-
-	para "be chosen as a"
-	line "Room Leader."
-
-	para ""
-	done
-
 Text_CongratulationsYouveBeatenAllTheTrainers:
 	text "Congratulations!"
 
@@ -512,14 +424,6 @@ Text_CongratulationsYouveBeatenAllTheTrainers:
 	line "this great prize!"
 
 	para ""
-	done
-
-Text_AskRegisterRecord_Mobile: ; unreferenced
-	text "Would you like to"
-	line "register your"
-
-	para "record with the"
-	line "Center?"
 	done
 
 Text_PlayerGotFive:
@@ -537,13 +441,6 @@ Text_YourPackIsStuffedFull:
 
 	para "Please make room"
 	line "and come back."
-	done
-
-Text_YourRegistrationIsComplete: ; unreferenced
-	text "Your registration"
-	line "is complete."
-
-	para "Please come again!"
 	done
 
 Text_WeHopeToServeYouAgain:
@@ -582,11 +479,6 @@ Text_CantBeRegistered_PreviousRecordDeleted:
 	cont "deleted. OK?"
 	done
 
-Text_CheckTheLeaderHonorRoll: ; unreferenced
-	text "Check the Leader"
-	line "Honor Roll?"
-	done
-
 Text_ReadBattleTowerRules:
 	text "Battle Tower rules"
 	line "are written here."
@@ -614,7 +506,7 @@ Text_BattleTowerRules:
 
 Text_BattleTower_LeftWithoutSaving:
 	text "Excuse me!"
-	line "You didn't SAVE"
+	line "You didn't save"
 
 	para "before exiting"
 	line "the Battle Room."
@@ -637,14 +529,6 @@ Text_NextUpOpponentNo:
 	line "no.@"
 	text_ram wStringBuffer3
 	text ". Ready?"
-	done
-
-Text_SaveBeforeConnecting_Mobile: ; unreferenced
-	text "Your session will"
-	line "be saved before"
-
-	para "connecting with"
-	line "the Center."
 	done
 
 Text_SaveBeforeEnteringBattleRoom:
@@ -671,15 +555,6 @@ Text_SaveBeforeReentry:
 Text_CancelYourBattleRoomChallenge:
 	text "Cancel your Battle"
 	line "Room challenge?"
-	done
-
-Text_RegisterRecordOnFile_Mobile: ; unreferenced
-	text "We have your"
-	line "previous record on"
-
-	para "file. Would you"
-	line "like to register"
-	cont "it at the Center?"
 	done
 
 Text_WeveBeenWaitingForYou:
@@ -776,8 +651,6 @@ Text_BattleTowerBugCatcher:
 	done
 
 BattleTower1F_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  7,  9, BATTLE_TOWER_OUTSIDE, 3
 	warp_event  8,  9, BATTLE_TOWER_OUTSIDE, 4

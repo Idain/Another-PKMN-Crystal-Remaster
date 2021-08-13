@@ -15,7 +15,11 @@ SandstormHouseWoman:
 	writetext SandstormHouseWomanText1
 	promptbutton
 	ifgreater 150 - 1, .Loyal
-	sjump .Disloyal
+;.Disloyal:
+	writetext SandstormHouseWomanDisloyalText
+	waitbutton
+	closetext
+	end
 
 .Loyal:
 	writetext SandstormHouseWomanLoyalText
@@ -30,22 +34,16 @@ SandstormHouseWoman:
 	closetext
 	end
 
-.Disloyal:
-	writetext SandstormHouseWomanDisloyalText
-	waitbutton
-	closetext
-	end
-
 SandstormHouseBookshelf:
 	jumpstd MagazineBookshelfScript
 
 SandstormHouseWomanText1:
 	text "Where are you off"
-	line "to with #MON?"
+	line "to with #mon?"
 
-	para "#MON LEAGUE?"
+	para "#mon League?"
 
-	para "Are your #MON"
+	para "Are your #mon"
 	line "loyal enough for"
 	cont "you to win?"
 
@@ -53,7 +51,7 @@ SandstormHouseWomanText1:
 	done
 
 SandstormHouseWomanLoyalText:
-	text "Ah! Your #MON"
+	text "Ah! Your #mon"
 	line "trusts you very"
 	cont "much."
 
@@ -66,7 +64,7 @@ SandstormHouseWomanLoyalText:
 
 SandstormHouseSandstormDescription:
 	text "TM37 happens to be"
-	line "SANDSTORM."
+	line "Sandstorm."
 
 	para "It's a move that"
 	line "inflicts damage on"
@@ -87,13 +85,11 @@ SandstormHouseWomanDisloyalText:
 	line "tough going."
 
 	para "Trust is the tie"
-	line "that binds #MON"
+	line "that binds #mon"
 	cont "and trainers."
 	done
 
 Route27SandstormHouse_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  2,  7, ROUTE_27, 1
 	warp_event  3,  7, ROUTE_27, 1

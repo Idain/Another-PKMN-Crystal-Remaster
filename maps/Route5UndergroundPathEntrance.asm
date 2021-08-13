@@ -11,15 +11,13 @@ Route5UndergroundPathEntranceTeacherScript:
 
 Route5UndergroundPathEntranceTeacherText:
 	text "Many cities in"
-	line "JOHTO have long"
+	line "Johto have long"
 
 	para "histories. I'd"
 	line "love to visit!"
 	done
 
 Route5UndergroundPathEntrance_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  3,  7, ROUTE_5, 1
 	warp_event  4,  7, ROUTE_5, 1

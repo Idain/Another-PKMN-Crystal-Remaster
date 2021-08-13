@@ -111,7 +111,7 @@ PokemaniacAndrewSeenText:
 	text "Who's there?"
 
 	para "Leave me and my"
-	line "#MON alone!"
+	line "#mon alone!"
 	done
 
 PokemaniacAndrewBeatenText:
@@ -121,14 +121,14 @@ PokemaniacAndrewBeatenText:
 
 PokemaniacAndrewAfterBattleText:
 	text "Just me and my"
-	line "#MON. I'm de-"
+	line "#mon. I'm de-"
 	cont "lirious with joy."
 	done
 
 PokemaniacCalvinSeenText:
 	text "I came all the way"
 	line "here to conduct my"
-	cont "#MON research."
+	cont "#mon research."
 
 	para "Let me demonstrate"
 	line "my findings in a"
@@ -147,12 +147,10 @@ PokemaniacCalvinAfterBattleText:
 
 	para "I might even be-"
 	line "come famous like"
-	cont "PROF.ELM."
+	cont "Prof.Elm."
 	done
 
 UnionCaveB1F_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  3,  3, RUINS_OF_ALPH_OUTSIDE, 7
 	warp_event  3, 11, RUINS_OF_ALPH_OUTSIDE, 8

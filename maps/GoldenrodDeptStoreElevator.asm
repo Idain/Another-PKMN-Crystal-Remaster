@@ -18,12 +18,10 @@ GoldenrodDeptStoreElevatorScript:
 	iftrue .BoxLayout1
 	checkevent EVENT_GOLDENROD_DEPT_STORE_B1F_LAYOUT_2
 	iftrue .BoxLayout2
-	checkevent EVENT_GOLDENROD_DEPT_STORE_B1F_LAYOUT_3
-	iftrue .BoxLayout3
-.BoxLayout3:
 	setevent EVENT_GOLDENROD_DEPT_STORE_B1F_LAYOUT_1
 	clearevent EVENT_GOLDENROD_DEPT_STORE_B1F_LAYOUT_2
 	clearevent EVENT_GOLDENROD_DEPT_STORE_B1F_LAYOUT_3
+.Done:
 	end
 
 .BoxLayout1:
@@ -38,9 +36,6 @@ GoldenrodDeptStoreElevatorScript:
 	setevent EVENT_GOLDENROD_DEPT_STORE_B1F_LAYOUT_3
 	end
 
-.Done:
-	end
-
 GoldenrodDeptStoreElevatorData:
 	db 7 ; floors
 	elevfloor FLOOR_B1F, 2, GOLDENROD_DEPT_STORE_B1F
@@ -53,8 +48,6 @@ GoldenrodDeptStoreElevatorData:
 	db -1 ; end
 
 GoldenrodDeptStoreElevator_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  1,  3, GOLDENROD_DEPT_STORE_1F, -1
 	warp_event  2,  3, GOLDENROD_DEPT_STORE_1F, -1

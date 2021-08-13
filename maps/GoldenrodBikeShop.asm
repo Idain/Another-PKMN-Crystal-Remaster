@@ -6,9 +6,6 @@ GoldenrodBikeShop_MapScripts:
 
 	def_callbacks
 
-.DummyScene: ; unreferenced
-	end
-
 GoldenrodBikeShopClerkScript:
 	faceplayer
 	opentext
@@ -39,9 +36,6 @@ GoldenrodBikeShopClerkScript:
 	closetext
 	end
 
-GoldenrodBikeShopJustReleasedCompactBike: ; unreferenced
-	jumptext GoldenrodBikeShopJustReleasedCompactBikeText
-
 GoldenrodBikeShopBicycle:
 	jumptext GoldenrodBikeShopBicycleText
 
@@ -49,11 +43,11 @@ GoldenrodBikeShopClerkIntroText:
 	text "…sigh… I moved"
 	line "here, but I can't"
 
-	para "sell my BICYCLES."
+	para "sell my Bicycles."
 	line "Why is that?"
 
 	para "Could you ride a"
-	line "BICYCLE and adver-"
+	line "Bicycle and adver-"
 	cont "tise for me?"
 	done
 
@@ -64,16 +58,16 @@ GoldenrodBikeShopClerkAgreedText:
 	line "and phone number,"
 
 	para "and I'll loan you"
-	line "a BICYCLE."
+	line "a Bicycle."
 	done
 
 BorrowedABicycleText:
 	text "<PLAYER> borrowed a"
-	line "BICYCLE."
+	line "Bicycle."
 	done
 
 GoldenrodBikeShopClerkFirstRateBikesText:
-	text "My BICYCLES are"
+	text "My Bicycles are"
 	line "first-rate! You"
 
 	para "can ride them"
@@ -86,21 +80,12 @@ GoldenrodBikeShopClerkRefusedText:
 	cont "people…"
 	done
 
-GoldenrodBikeShopJustReleasedCompactBikeText:
-	text "Just released!"
-
-	para "First-rate compact"
-	line "BICYCLES!"
-	done
-
 GoldenrodBikeShopBicycleText:
 	text "It's a shiny new"
-	line "BICYCLE!"
+	line "Bicycle!"
 	done
 
 GoldenrodBikeShop_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  2,  7, GOLDENROD_CITY, 2
 	warp_event  3,  7, GOLDENROD_CITY, 2

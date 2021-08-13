@@ -14,8 +14,6 @@ CherrygroveCity_MapScripts:
 	callback MAPCALLBACK_NEWMAP, .FlyPoint
 
 .DummyScene0:
-	end
-
 .DummyScene1:
 	end
 
@@ -146,9 +144,8 @@ CherrygroveSilverSceneNorth:
 	startbattle
 	dontrestartmapmusic
 	reloadmap
-	iftrue .AfterVictorious
-	sjump .AfterYourDefeat
-
+	iffalse .AfterYourDefeat
+	; fallthrough
 .AfterVictorious:
 	playmusic MUSIC_RIVAL_AFTER
 	opentext
@@ -545,8 +542,6 @@ GuideGentsHouseSignText:
 	done
 
 CherrygroveCity_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event 23,  3, CHERRYGROVE_MART, 2
 	warp_event 29,  3, CHERRYGROVE_POKECENTER_1F, 1

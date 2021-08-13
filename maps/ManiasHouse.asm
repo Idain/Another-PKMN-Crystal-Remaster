@@ -95,9 +95,6 @@ ManiaScript:
 	closetext
 	end
 
-ManiasHouseUnusedBookshelf: ; unreferenced
-	jumpstd PictureBookshelfScript
-
 ManiaText_AskLookAfterShuckle:
 	text "I, I'm in shock!"
 
@@ -202,8 +199,6 @@ ManiaText_ShuckleIsYourLastMon:
 	done
 
 ManiasHouse_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  2,  7, CIANWOOD_CITY, 1
 	warp_event  3,  7, CIANWOOD_CITY, 1

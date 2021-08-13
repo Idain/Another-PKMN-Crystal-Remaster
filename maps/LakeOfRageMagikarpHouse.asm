@@ -47,8 +47,6 @@ MagikarpLengthRaterScript:
 	ifequal MAGIKARPLENGTH_REFUSED, .Refused
 	ifequal MAGIKARPLENGTH_TOO_SHORT, .TooShort
 	; MAGIKARPLENGTH_BEAT_RECORD
-	sjump .GetReward
-
 .GetReward:
 	writetext MagikarpLengthRaterText_Memento
 	promptbutton
@@ -83,23 +81,20 @@ MagikarpLengthRaterScript:
 	closetext
 	end
 
-LakeOfRageMagikarpHouseUnusedRecordSign: ; unreferenced
-	jumptext LakeOfRageMagikarpHouseUnusedRecordText
-
 MagikarpHouseBookshelf:
 	jumpstd DifficultBookshelfScript
 
 MagikarpLengthRaterText_LakeOfRageHistory:
-	text "LAKE OF RAGE is"
+	text "Lake of Rage is"
 	line "actually a crater"
 
 	para "made by rampaging"
-	line "GYARADOS."
+	line "Gyarados."
 
 	para "The crater filled"
 	line "up with rainwater"
 
-	para "and the LAKE was"
+	para "and the lake was"
 	line "formed."
 
 	para "That's the story"
@@ -111,7 +106,7 @@ MagikarpLengthRaterText_LakeOfRageHistory:
 	para "It used to be that"
 	line "you could catch"
 
-	para "lively MAGIKARP"
+	para "lively Magikarp"
 	line "there, but…"
 
 	para "I don't understand"
@@ -119,7 +114,7 @@ MagikarpLengthRaterText_LakeOfRageHistory:
 	done
 
 MagikarpLengthRaterText_MenInBlack:
-	text "The LAKE hasn't"
+	text "The lake hasn't"
 	line "been normal since"
 
 	para "those men wearing"
@@ -127,25 +122,25 @@ MagikarpLengthRaterText_MenInBlack:
 	done
 
 MagikarpLengthRaterText_WorldsLargestMagikarp:
-	text "LAKE OF RAGE is"
+	text "Lake of Rage is"
 	line "back to normal."
 
-	para "The MAGIKARP have"
+	para "The Magikarp have"
 	line "returned."
 
 	para "I may yet realize"
 	line "my dream of see-"
 	cont "ing the world's"
-	cont "largest MAGIKARP."
+	cont "largest Magikarp."
 
-	para "Do you have a ROD?"
+	para "Do you have a Rod?"
 	line "Please help me if"
 	cont "you do."
 	done
 
 MagikarpLengthRaterText_YouHaveAMagikarp:
 	text "Ah, you have a"
-	line "MAGIKARP! Let's"
+	line "Magikarp! Let's"
 
 	para "see how big that"
 	line "baby is."
@@ -183,7 +178,7 @@ MagikarpLengthRaterText_TooShort:
 
 MagikarpLengthRaterText_NotMagikarp:
 	text "What? That's not a"
-	line "MAGIKARP!"
+	line "Magikarp!"
 	done
 
 MagikarpLengthRaterText_Refused:
@@ -194,22 +189,7 @@ MagikarpLengthRaterText_Refused:
 	line "Maybe next time."
 	done
 
-LakeOfRageMagikarpHouseUnusedRecordText:
-	text "CURRENT RECORD"
-
-	para "@"
-	text_ram wStringBuffer3
-	text " caught by"
-	line "@"
-	text_ram wStringBuffer4
-	text_end
-
-LakeOfRageMagikarpHouseUnusedDummyText: ; unreferenced
-	text_end
-
 LakeOfRageMagikarpHouse_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  2,  7, LAKE_OF_RAGE, 2
 	warp_event  3,  7, LAKE_OF_RAGE, 2

@@ -71,7 +71,7 @@ HappinessRatersHouseRadio:
 
 GoldenrodHappinessRaterTeacherText:
 	text "If you treat your"
-	line "#MON nicely,"
+	line "#mon nicely,"
 
 	para "they will love you"
 	line "in return."
@@ -120,23 +120,21 @@ GoldenrodHappinessRaterPokefanMText:
 	text "I keep losing in"
 	line "battles, and my"
 
-	para "#MON end up"
+	para "#mon end up"
 	line "fainting…"
 
 	para "Maybe that's why"
-	line "my #MON don't"
+	line "my #mon don't"
 	cont "like me much…"
 	done
 
 GoldenrodHappinessRaterTwinText:
 	text "When I use an item"
-	line "on my #MON, it"
+	line "on my #mon, it"
 	cont "acts really glad!"
 	done
 
 GoldenrodHappinessRater_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  2,  7, GOLDENROD_CITY, 3
 	warp_event  3,  7, GOLDENROD_CITY, 3

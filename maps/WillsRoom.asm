@@ -11,8 +11,6 @@ WillsRoom_MapScripts:
 
 .LockDoor:
 	sdefer .WillsDoorLocksBehindYou
-	end
-
 .DummyScene:
 	end
 
@@ -136,8 +134,6 @@ WillScript_WillDefeatText:
 	done
 
 WillsRoom_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  5, 17, INDIGO_PLATEAU_POKECENTER_1F, 4
 	warp_event  4,  2, KOGAS_ROOM, 1

@@ -71,9 +71,6 @@ SeerAction1:
 	jp SeerAdvice
 
 SeerAction2:
-	ld a, SEER_CANT_TELL
-	jp PrintSeerText
-
 SeerAction3:
 	ld a, SEER_CANT_TELL
 	jp PrintSeerText

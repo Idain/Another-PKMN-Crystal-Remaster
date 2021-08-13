@@ -31,19 +31,19 @@ GoldenrodDeptStore3FSuperNerdText:
 	text "I, I, I'm really"
 	line "impatient!"
 
-	para "I use X SPEED in"
+	para "I use X Speed in"
 	line "battle to speed up"
-	cont "my #MON."
+	cont "my #mon."
 	done
 
 GoldenrodDeptStore3FRockerText:
 	text "Hey! When you bat-"
 	line "tle, do you use X"
-	cont "SPECIAL?"
+	cont "Sp.Atk?"
 
 	para "It's awesome. It"
 	line "really jacks up"
-	cont "SPECIAL ATTACK!"
+	cont "Special Attack!"
 	done
 
 GoldenrodDeptStore3FDirectoryText:
@@ -55,8 +55,6 @@ GoldenrodDeptStore3FDirectoryText:
 	done
 
 GoldenrodDeptStore3F_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event 12,  0, GOLDENROD_DEPT_STORE_2F, 1
 	warp_event 15,  0, GOLDENROD_DEPT_STORE_4F, 2

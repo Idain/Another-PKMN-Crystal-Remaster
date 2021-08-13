@@ -26,14 +26,8 @@ TeamRocketBaseB3F_MapScripts:
 
 .LanceGetsPassword:
 	sdefer LanceGetPasswordScript
-	end
-
 .DummyScene1:
-	end
-
 .DummyScene2:
-	end
-
 .DummyScene3:
 	end
 
@@ -317,7 +311,7 @@ RocketBaseRivalShovesPlayerMovement:
 	step_end
 
 LanceGetPasswordText:
-	text "LANCE: It takes"
+	text "Lance: It takes"
 	line "two passwords to"
 
 	para "get into the"
@@ -325,9 +319,9 @@ LanceGetPasswordText:
 
 	para "Those passwords"
 	line "are known only to"
-	cont "a few ROCKETS."
+	cont "a few Rockets."
 
-	para "That ROCKET there"
+	para "That Rocket there"
 	line "very graciously"
 	cont "told me so."
 
@@ -347,23 +341,23 @@ RocketBaseRivalText:
 	para "Didn't I tell you"
 	line "that I was going"
 
-	para "to destroy TEAM"
-	line "ROCKET?"
+	para "to destroy Team"
+	line "Rocket?"
 
 	para "…Tell me, who was"
 	line "the guy in the"
 
 	para "cape who used"
-	line "dragon #MON?"
+	line "dragon #mon?"
 
-	para "My #MON were no"
+	para "My #mon were no"
 	line "match at all."
 
 	para "I don't care that"
 	line "I lost. I can beat"
 
 	para "him by getting"
-	line "stronger #MON."
+	line "stronger #mon."
 
 	para "It's what he said"
 	line "that bothers me…"
@@ -371,7 +365,7 @@ RocketBaseRivalText:
 	para "He told me that"
 	line "I don't love and"
 
-	para "trust my #MON"
+	para "trust my #mon"
 	line "enough."
 
 	para "I'm furious that I"
@@ -388,10 +382,10 @@ ExecutiveM4BeforeText:
 	line "This is the office"
 
 	para "of our leader,"
-	line "GIOVANNI."
+	line "Giovanni."
 
 	para "Since disbanding"
-	line "TEAM ROCKET three"
+	line "Team Rocket three"
 
 	para "years ago, he has"
 	line "been in training."
@@ -414,7 +408,7 @@ ExecutiveM4BeatenText:
 	text "I… I couldn't do a"
 	line "thing…"
 
-	para "GIOVANNI, please"
+	para "Giovanni, please"
 	line "forgive me…"
 	done
 
@@ -427,7 +421,7 @@ ExecutiveM4AfterText:
 	done
 
 RocketBaseMurkrowText:
-	text "MURKROW: The"
+	text "Murkrow: The"
 	line "password is…"
 
 	para "HAIL GIOVANNI."
@@ -494,10 +488,10 @@ GruntM28AfterBattleText:
 
 ScientistRossSeenText:
 	text "I used to work for"
-	line "SILPH, but now I"
+	line "Silph, but now I"
 
 	para "run research for"
-	line "TEAM ROCKET."
+	line "Team Rocket."
 
 	para "A meddlesome child"
 	line "like you needs to"
@@ -512,7 +506,7 @@ ScientistRossBeatenText:
 ScientistRossAfterBattleText:
 	text "A radio signal"
 	line "that drives #-"
-	cont "MON mad…"
+	cont "mon mad…"
 
 	para "My experiment is a"
 	line "complete success."
@@ -526,7 +520,7 @@ ScientistRossAfterBattleText:
 
 ScientistMitchSeenText:
 	text "I don't care that"
-	line "#MON are hurt"
+	line "#mon are hurt"
 	cont "by our experiment."
 	done
 
@@ -564,8 +558,6 @@ TeamRocketBaseB3FLockedDoorOpenSesameText:
 	done
 
 TeamRocketBaseB3F_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  3,  2, TEAM_ROCKET_BASE_B2F, 2
 	warp_event 27,  2, TEAM_ROCKET_BASE_B2F, 3

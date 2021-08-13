@@ -54,8 +54,7 @@ MountMoon_MapScripts:
 	startbattle
 	dontrestartmapmusic
 	reloadmapafterbattle
-	sjump .FinishBattle
-
+	; fallthrough
 .FinishBattle:
 	playmusic MUSIC_RIVAL_AFTER
 	opentext
@@ -159,8 +158,6 @@ MountMoonSilverTextLoss:
 	done
 
 MountMoon_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  3,  3, ROUTE_3, 1
 	warp_event 15, 15, ROUTE_4, 1

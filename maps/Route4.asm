@@ -53,7 +53,7 @@ Route4HiddenUltraBall:
 
 BirdKeeperHankSeenText:
 	text "I'm raising my"
-	line "#MON. Want to"
+	line "#mon. Want to"
 	cont "battle with me?"
 	done
 
@@ -64,7 +64,7 @@ BirdKeeperHankBeatenText:
 
 BirdKeeperHankAfterBattleText:
 	text "If you have a"
-	line "specific #MON"
+	line "specific #mon"
 
 	para "that you want to"
 	line "raise, put it out"
@@ -90,8 +90,8 @@ PicnickerHopeBeatenText:
 	done
 
 PicnickerHopeAfterBattleText:
-	text "I heard CLEFAIRY"
-	line "appear at MT.MOON."
+	text "I heard Clefairy"
+	line "appear at Mt.Moon."
 
 	para "But where could"
 	line "they be?"
@@ -112,15 +112,13 @@ PicnickerSharonAfterBattleText:
 	done
 
 MtMoonSquareSignText:
-	text "MT.MOON SQUARE"
+	text "Mt.Moon Square"
 
 	para "Just go up the"
 	line "stairs."
 	done
 
 Route4_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  2,  5, MOUNT_MOON, 2
 

@@ -50,8 +50,7 @@ GoldenrodVendingMachine:
 	iffalse .NotEnoughSpace
 	takemoney YOUR_MONEY, GOLDENRODDEPTSTORE6F_LEMONADE_PRICE
 	getitemname STRING_BUFFER_3, LEMONADE
-	sjump .VendItem
-
+	; fallthrough
 .VendItem:
 	pause 10
 	playsound SFX_ENTER_DOOR
@@ -121,10 +120,10 @@ GoldenrodVendingNoSpaceText:
 
 GoldenrodDeptStore6FLassText:
 	text "Do you listen to"
-	line "LUCKY CHANNEL?"
+	line "Lucky Channel?"
 
 	para "If you want to"
-	line "win, trade #MON"
+	line "win, trade #mon"
 
 	para "with as many peo-"
 	line "ple as possible to"
@@ -138,7 +137,7 @@ GoldenrodDeptStore6FSuperNerdText:
 	line "try the vending"
 	cont "machine's drinks."
 
-	para "Your #MON will"
+	para "Your #mon will"
 	line "love them too."
 	done
 
@@ -150,8 +149,6 @@ GoldenrodDeptStore6FDirectoryText:
 	done
 
 GoldenrodDeptStore6F_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event 15,  0, GOLDENROD_DEPT_STORE_5F, 2
 	warp_event  2,  0, GOLDENROD_DEPT_STORE_ELEVATOR, 1

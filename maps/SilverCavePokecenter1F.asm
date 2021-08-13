@@ -15,21 +15,19 @@ SilverCavePokecenter1FGrannyScript:
 
 SilverCavePokecenter1FGrannyText:
 	text "Trainers who seek"
-	line "power climb MT."
+	line "power climb Mt."
 
-	para "SILVER despite its"
+	para "Silver despite its"
 	line "many dangers…"
 
 	para "With their trusted"
-	line "#MON, they must"
+	line "#mon, they must"
 
 	para "feel they can go"
 	line "anywhere…"
 	done
 
 SilverCavePokecenter1F_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  3,  7, SILVER_CAVE_OUTSIDE, 1
 	warp_event  4,  7, SILVER_CAVE_OUTSIDE, 1

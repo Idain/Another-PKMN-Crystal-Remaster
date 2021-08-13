@@ -11,8 +11,6 @@ MrPokemonsHouse_MapScripts:
 
 .MeetMrPokemon:
 	sdefer .MrPokemonEvent
-	end
-
 .DummyScene:
 	end
 
@@ -59,12 +57,6 @@ MrPokemonsHouse_MrPokemonScript:
 	closetext
 	end
 
-.AlwaysNewDiscoveries:
-	writetext MrPokemonText_AlwaysNewDiscoveries
-	waitbutton
-	closetext
-	end
-
 .RedScale:
 	writetext MrPokemonText_GimmeTheScale
 	yesorno
@@ -72,7 +64,11 @@ MrPokemonsHouse_MrPokemonScript:
 	verbosegiveitem EXP_SHARE
 	iffalse .full
 	takeitem RED_SCALE
-	sjump .AlwaysNewDiscoveries
+.AlwaysNewDiscoveries:
+	writetext MrPokemonText_AlwaysNewDiscoveries
+	waitbutton
+	closetext
+	end
 
 .refused
 	writetext MrPokemonText_Disappointed
@@ -131,6 +127,7 @@ MrPokemonsHouse_OakScript:
 	iftrue .RivalTakesChikorita
 	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
 	iftrue .RivalTakesCyndaquil
+;RivalTakesTotodile
 	setevent EVENT_TOTODILE_POKEBALL_IN_ELMS_LAB
 	end
 
@@ -370,8 +367,6 @@ MrPokemonsHouse_StrangeCoinsText:
 	done
 
 MrPokemonsHouse_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  2,  7, ROUTE_30, 2
 	warp_event  3,  7, ROUTE_30, 2

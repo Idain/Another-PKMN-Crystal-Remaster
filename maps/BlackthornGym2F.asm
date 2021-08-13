@@ -34,8 +34,7 @@ BlackthornGym2F_MapScripts:
 
 .Boulder3:
 	disappear BLACKTHORNGYM2F_BOULDER3
-	sjump .Fall
-
+	; fallthrough
 .Fall:
 	pause 30
 	scall .FX
@@ -77,8 +76,8 @@ TrainerCooltrainerfFran:
 
 CooltrainermCodySeenText:
 	text "It's not as if we"
-	line "all use dragon-"
-	cont "type #MON."
+	line "all use Dragon-"
+	cont "type #mon."
 	done
 
 CooltrainermCodyBeatenText:
@@ -88,12 +87,12 @@ CooltrainermCodyBeatenText:
 
 CooltrainermCodyAfterBattleText:
 	text "Members of our"
-	line "dragon-user clan"
+	line "Dragon-user clan"
 
-	para "can use dragon"
-	line "#MON only after"
+	para "can use Dragon"
+	line "#mon only after"
 
-	para "our MASTER allows"
+	para "our Master allows"
 	line "it."
 	done
 
@@ -102,7 +101,7 @@ CooltrainerfFranSeenText:
 	line "nameless trainer"
 	cont "past me!"
 
-	para "CLAIR would be"
+	para "Clair would be"
 	line "livid if I did!"
 	done
 
@@ -111,7 +110,7 @@ CooltrainerfFranBeatenText:
 	done
 
 CooltrainerfFranAfterBattleText:
-	text "Uh-oh… CLAIR is"
+	text "Uh-oh… Clair is"
 	line "going to be mad…"
 	done
 
@@ -121,8 +120,6 @@ BlackthornGym2FBoulderFellText:
 	done
 
 BlackthornGym2F_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  1,  7, BLACKTHORN_GYM_1F, 3
 	warp_event  7,  9, BLACKTHORN_GYM_1F, 4

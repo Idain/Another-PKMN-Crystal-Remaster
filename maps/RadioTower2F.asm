@@ -18,9 +18,6 @@ RadioTower2F_MapScripts:
 
 	def_callbacks
 
-RadioTower2FUnusedDummyScene: ; unreferenced
-	end
-
 RadioTower2FSuperNerdScript:
 	jumptextfaceplayer RadioTower2FSuperNerdText
 
@@ -352,17 +349,17 @@ RadioTower2FSuperNerdText:
 RadioTower2FTeacherText:
 	text "Lullabies on the"
 	line "radio may make"
-	cont "#MON sleep."
+	cont "#mon sleep."
 	done
 
 RadioTower2FTeacherText_Rockets:
 	text "Why would they"
 	line "want to take over"
-	cont "the RADIO TOWER?"
+	cont "the Radio Tower?"
 	done
 
 RadioTowerJigglypuffText:
-	text "JIGGLYPUFF:"
+	text "Jigglypuff:"
 	line "Jiggly…"
 	done
 
@@ -376,21 +373,21 @@ RadioTower2FBlackBelt1Text:
 
 	para "There's something"
 	line "wrong with the"
-	cont "DIRECTOR…"
+	cont "Director…"
 	done
 
 RadioTower2FBlackBelt2Text:
 	text "Feel free to look"
 	line "around anywhere."
 
-	para "The DIRECTOR is"
+	para "The Director is"
 	line "nice again, just"
 	cont "as he was before."
 	done
 
 GruntM4SeenText:
 	text "Three years ago,"
-	line "TEAM ROCKET was"
+	line "Team Rocket was"
 	cont "forced to disband."
 
 	para "But we're making a"
@@ -409,7 +406,7 @@ GruntM4AfterBattleText:
 	done
 
 GruntM5SeenText:
-	text "We're TEAM ROCKET,"
+	text "We're Team Rocket,"
 	line "the exploiters of"
 	cont "#MON!"
 
@@ -438,7 +435,7 @@ GruntM6BeatenText:
 	done
 
 GruntM6AfterBattleText:
-	text "Our EXECUTIVES are"
+	text "Our executives are"
 	line "trying to take"
 	cont "this place over."
 
@@ -470,12 +467,12 @@ GruntF2AfterBattleText:
 	done
 
 RadioTower2FBuenaShowIntroductionText:
-	text "BUENA: Hi! I'm"
-	line "BUENA!"
+	text "Buena: Hi! I'm"
+	line "Buena!"
 
 	para "Do you know about"
 	line "a radio program"
-	cont "called PASSWORD?"
+	cont "called Password?"
 
 	para "If you can tell me"
 	line "the password from"
@@ -499,12 +496,12 @@ RadioTower2FBuenaShowIntroductionText:
 	done
 
 RadioTower2FBuenaTuneInToMyShowText:
-	text "BUENA: Tune in to"
-	line "my PASSWORD SHOW!"
+	text "Buena: Tune in to"
+	line "my Password Show!"
 	done
 
 RadioTower2FBuenaDoYouKnowPasswordText:
-	text "BUENA: Hi!"
+	text "Buena: Hi!"
 	line "Did you tune in to"
 	cont "my radio show?"
 
@@ -513,7 +510,7 @@ RadioTower2FBuenaDoYouKnowPasswordText:
 	done
 
 RadioTower2FBuenaJoinTheShowText:
-	text "BUENA: Oh, wow!"
+	text "Buena: Oh, wow!"
 	line "Thank you!"
 
 	para "What was your name"
@@ -526,7 +523,7 @@ RadioTower2FBuenaJoinTheShowText:
 	done
 
 RadioTower2FBuenaEveryoneSayPasswordText:
-	text "BUENA: Everyone"
+	text "Buena: Everyone"
 	line "ready?"
 
 	para "I want to hear you"
@@ -537,7 +534,7 @@ RadioTower2FBuenaEveryoneSayPasswordText:
 	done
 
 RadioTower2FBuenaComeBackAfterListeningText:
-	text "BUENA: Come back"
+	text "Buena: Come back"
 	line "after you listen"
 
 	para "to my show, OK?"
@@ -545,7 +542,7 @@ RadioTower2FBuenaComeBackAfterListeningText:
 	done
 
 RadioTower2FBuenaAlreadyPlayedText:
-	text "BUENA: Sorry…"
+	text "Buena: Sorry…"
 
 	para "You get just one"
 	line "chance each day."
@@ -555,7 +552,7 @@ RadioTower2FBuenaAlreadyPlayedText:
 	done
 
 RadioTower2FBuenaCorrectAnswerText:
-	text "BUENA: YIPPEE!"
+	text "Buena: YIPPEE!"
 	line "That's right!"
 
 	para "You did tune in!"
@@ -566,7 +563,7 @@ RadioTower2FBuenaCorrectAnswerText:
 	done
 
 RadioTower2FBuenaDidYouForgetText:
-	text "BUENA: Aww…"
+	text "Buena: Aww…"
 	line "That's not it…"
 
 	para "Did you forget the"
@@ -574,7 +571,7 @@ RadioTower2FBuenaDidYouForgetText:
 	done
 
 RadioTower2FBuenaThanksForComingText:
-	text "BUENA: Yup! Our"
+	text "Buena: Yup! Our"
 	line "contestant was"
 
 	para "<PLAY_G>."
@@ -588,23 +585,23 @@ RadioTower2FBuenaThanksForComingText:
 	done
 
 RadioTower2FBuenaPasswordIsHelpText:
-	text "BUENA: Huh?"
+	text "Buena: Huh?"
 	line "Today's password?"
 
 	para "HELP, of course!"
 	done
 
 RadioTower2FBuenaCardIsFullText:
-	text "BUENA: Your BLUE"
-	line "CARD's full."
+	text "Buena: Your Blue"
+	line "Card's full."
 
 	para "Trade it in for a"
 	line "fabulous prize!"
 	done
 
 RadioTower2FBuenaTuneInAfterSixText:
-	text "BUENA: Tune in to"
-	line "PASSWORD every"
+	text "Buena: Tune in to"
+	line "Password every"
 
 	para "night from six to"
 	line "midnight!"
@@ -614,9 +611,9 @@ RadioTower2FBuenaTuneInAfterSixText:
 	done
 
 RadioTower2FBuenaNoBlueCardText:
-	text "BUENA: Oh? You"
+	text "Buena: Oh? You"
 	line "forgot to bring"
-	cont "your BLUE CARD?"
+	cont "your Blue Card?"
 
 	para "I can't give you"
 	line "points if you"
@@ -624,8 +621,8 @@ RadioTower2FBuenaNoBlueCardText:
 	done
 
 RadioTower2FBuenaOfferPhoneNumberText:
-	text "BUENA: Oh! Your"
-	line "BLUE CARD reached"
+	text "Buena: Oh! Your"
+	line "Blue Card reached"
 
 	para "{d:BLUE_CARD_POINT_CAP} points today!"
 	line "That's so wild!"
@@ -645,7 +642,7 @@ RadioTower2FBuenaOfferPhoneNumberText:
 	done
 
 RadioTower2FBuenaOfferNumberAgainText:
-	text "BUENA: <PLAY_G>,"
+	text "Buena: <PLAY_G>,"
 	line "do you want to"
 
 	para "register my phone"
@@ -654,22 +651,22 @@ RadioTower2FBuenaOfferNumberAgainText:
 
 RadioTower2FRegisteredBuenasNumberText:
 	text "<PLAYER> registered"
-	line "BUENA's number."
+	line "Buena's number."
 	done
 
 RadioTower2FBuenaCallMeText:
-	text "BUENA: I look"
+	text "Buena: I look"
 	line "forward to hearing"
 	cont "from you!"
 	done
 
 RadioTower2FBuenaSadRejectedText:
-	text "BUENA: Aww… It's a"
+	text "Buena: Aww… It's a"
 	line "special prize…"
 	done
 
 RadioTower2FBuenaYourPhoneIsFullText:
-	text "BUENA: <PLAY_G>,"
+	text "Buena: <PLAY_G>,"
 	line "your phone list"
 
 	para "has no room left"
@@ -687,10 +684,10 @@ RadioTower2FBuenaReceptionistPointsForPrizesText:
 RadioTower2FBuenaReceptionistNoCardText:
 	text "You can't trade in"
 	line "points without"
-	cont "your BLUE CARD."
+	cont "your Blue Card."
 
 	para "Don't forget your"
-	line "BLUE CARD!"
+	line "Blue Card!"
 	done
 
 RadioTower2FSalesSignText:
@@ -698,8 +695,8 @@ RadioTower2FSalesSignText:
 	done
 
 RadioTower2FOaksPKMNTalkSignText:
-	text "PROF.OAK'S #MON"
-	line "TALK"
+	text "Prof.Oak's #mon"
+	line "Talk"
 
 	para "The Hottest Show"
 	line "on the Air!"
@@ -707,12 +704,10 @@ RadioTower2FOaksPKMNTalkSignText:
 
 RadioTower2FPokemonRadioSignText:
 	text "Anywhere, Anytime"
-	line "#MON Radio"
+	line "#mon Radio"
 	done
 
 RadioTower2F_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  0,  0, RADIO_TOWER_3F, 1
 	warp_event 15,  0, RADIO_TOWER_1F, 3

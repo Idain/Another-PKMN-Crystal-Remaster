@@ -71,8 +71,8 @@ CeladonEusine:
 	step_end
 
 CeladonPokecenter1FCooltrainerFText:
-	text "ERIKA is a master"
-	line "of grass #MON."
+	text "Erika is a master"
+	line "of grass #mon."
 
 	para "She'll make you"
 	line "pay if you don't"
@@ -80,18 +80,18 @@ CeladonPokecenter1FCooltrainerFText:
 	done
 
 CeladonPokecenter1FPharmacistText:
-	text "TEAM ROCKET's"
+	text "Team Rocket's"
 	line "hideout is in the"
 
 	para "basement of the"
-	line "GAME CORNER."
+	line "Game Corner."
 
 	para "Oh, wait. That was"
 	line "three years ago."
 	done
 
 CeladonEusineText1:
-	text "EUSINE: Hi!"
+	text "Eusine: Hi!"
 
 	para "I'm back visiting"
 	line "my hometown."
@@ -108,14 +108,14 @@ EusineLeavesCeladonText:
 	line "fresh rumors of a"
 
 	para "rainbow-colored"
-	line "#MON appearing"
-	cont "at TIN TOWER."
+	line "#mon appearing"
+	cont "at Bell Tower."
 
 	para "I've just had my"
 	line "party healed, so"
 
 	para "now I'm headed to"
-	line "ECRUTEAK."
+	line "Ecruteak."
 
 	para "I'll be seeing"
 	line "you, <PLAYER>!"
@@ -128,8 +128,8 @@ NoBeastsText:
 	para "Have you caught"
 	line "the legendary"
 
-	para "#MON RAIKOU and"
-	line "ENTEI?"
+	para "#mon Raikou and"
+	line "Entei?"
 
 	para "<……><……><……>"
 
@@ -144,8 +144,6 @@ NoBeastsText:
 	done
 
 CeladonPokecenter1F_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  3,  7, CELADON_CITY, 5
 	warp_event  4,  7, CELADON_CITY, 5

@@ -11,8 +11,6 @@ VictoryRoadGate_MapScripts:
 	def_callbacks
 
 .DummyScene0:
-	end
-
 .DummyScene1:
 	end
 
@@ -59,8 +57,8 @@ VictoryRoadGateOfficerText:
 
 VictoryRoadGateNotEnoughBadgesText:
 	text "You don't have all"
-	line "the GYM BADGES of"
-	cont "JOHTO."
+	line "the Gym Bades of"
+	cont "Johto."
 
 	para "I'm sorry, but I"
 	line "can't let you go"
@@ -69,7 +67,7 @@ VictoryRoadGateNotEnoughBadgesText:
 
 VictoryRoadGateEightBadgesText:
 	text "Oh! The eight"
-	line "BADGES of JOHTO!"
+	line "Badges of Johto!"
 
 	para "Please, go right"
 	line "on through!"
@@ -77,18 +75,18 @@ VictoryRoadGateEightBadgesText:
 
 VictoryRoadGateLeftBlackBeltText:
 	text "This way leads to"
-	line "MT.SILVER."
+	line "Mt.Silver."
 
 	para "You'll see scary-"
-	line "strong #MON out"
+	line "strong #mon out"
 	cont "there."
 	done
 
 VictoryRoadGateRightBlackBeltText:
-	text "Off to the #MON"
-	line "LEAGUE, are you?"
+	text "Off to the #mon"
+	line "League, are you?"
 
-	para "The ELITE FOUR are"
+	para "The Elite Four are"
 	line "so strong it's"
 
 	para "scary, and they're"
@@ -96,8 +94,6 @@ VictoryRoadGateRightBlackBeltText:
 	done
 
 VictoryRoadGate_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event 17,  7, ROUTE_22, 1
 	warp_event 18,  7, ROUTE_22, 1

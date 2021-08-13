@@ -73,7 +73,7 @@ SaffronGroupSprites:
 	db SPRITE_MISTY
 	; max 9 of 9 walking sprites
 	db SPRITE_POKE_BALL
-	db SPRITE_SLOWPOKE
+	db SPRITE_SLOWBRO
 	db 0 ; end
 
 VermilionGroupSprites:
@@ -99,7 +99,7 @@ CeladonGroupSprites:
 	db SPRITE_LASS
 	db SPRITE_BIKER
 	; 6 of max 9 walking sprites
-	db SPRITE_POLIWAG
+	db SPRITE_POLIWRATH
 	db SPRITE_POKE_BALL
 	db SPRITE_FRUIT_TREE
 	db 0 ; end
@@ -282,7 +282,7 @@ DungeonsGroupSprites:
 	db SPRITE_SCIENTIST
 	; 8 of max 9 walking sprites
 	db SPRITE_GAMEBOY_KID
-	db SPRITE_GROWLITHE
+	db SPRITE_PERSIAN
 	db SPRITE_POKE_BALL
 	db 0 ; end
 

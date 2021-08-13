@@ -120,41 +120,41 @@ SaffronCityLass1Text:
 	done
 
 SaffronCityLass1Text_ReturnedMachinePart:
-	text "The COPYCAT girl"
+	text "The Copycat girl"
 	line "looked unhappy."
 
 	para "She said she lost"
 	line "her favorite #"
-	cont "DOLL--CLEFAIRY."
+	cont "Doll--Clefairy."
 	done
 
 SaffronCityPokefanMText:
 	text "You came out from"
-	line "JOHTO?"
+	line "Johto?"
 
 	para "You can zip back"
-	line "home if the MAGNET"
-	cont "TRAIN's running."
+	line "home if the Magnet"
+	cont "Train's running."
 	done
 
 SaffronCityPokefanMText_ReturnedMachinePart:
 	text "You came out from"
-	line "JOHTO?"
+	line "Johto?"
 
 	para "You can zip back"
 	line "home by hopping on"
-	cont "the MAGNET TRAIN."
+	cont "the Magnet Train."
 	done
 
 SaffronCityCooltrainerMText:
-	text "I went to the GYM,"
+	text "I went to the Gym,"
 	line "raring for battles"
 	cont "against trainers…"
 
 	para "It turns out, I"
 	line "stumbled into the"
 
-	para "unused GYM next"
+	para "unused Gym next"
 	line "door."
 
 	para "Boy, I was pretty"
@@ -162,12 +162,12 @@ SaffronCityCooltrainerMText:
 	done
 
 SaffronCityCooltrainerFText:
-	text "This is SILPH CO.,"
-	line "famous for #MON"
+	text "This is Silph Co.,"
+	line "famous for #mon"
 	cont "merchandise."
 
-	para "In the past, TEAM"
-	line "ROCKET wanted the"
+	para "In the past, Team"
+	line "Rocket wanted the"
 
 	para "company because of"
 	line "that."
@@ -178,7 +178,7 @@ SaffronCityFisherText:
 
 	para "I hear there's big"
 	line "trouble brewing at"
-	cont "the POWER PLANT."
+	cont "the Power Plant."
 
 	para "Chew… Chew…"
 	done
@@ -188,7 +188,7 @@ SaffronCityFisherText_ReturnedMachinePart:
 
 	para "I hear there was"
 	line "big trouble at the"
-	cont "POWER PLANT."
+	cont "Power Plant."
 
 	para "Chew… Chew…"
 	line "Haaah, I'm full!"
@@ -204,9 +204,9 @@ SaffronCityYoungster1Text:
 
 SaffronCityYoungster2Text:
 	text "There's a place"
-	line "called TRAINER"
+	line "called Trainer"
 
-	para "HOUSE in VIRIDIAN"
+	para "House in Viridian"
 	line "where trainers"
 
 	para "gather from all"
@@ -227,45 +227,44 @@ SaffronCityLass2Text:
 	done
 
 SaffronCitySignText:
-	text "SAFFRON CITY"
+	text "Saffron City"
 
-	para "Shining, Golden"
-	line "Land of Commerce"
+	para "Shining Big City"
 	done
 
 SaffronGymSignText:
-	text "SAFFRON CITY"
-	line "#MON GYM"
-	cont "LEADER: SABRINA"
+	text "Saffron City"
+	line "#mon Gym"
+	cont "Leader: Sabrina"
 
-	para "The Master of"
-	line "Psychic #MON!"
+
+	para "The Mistress of"
+	line "Psychic-type"
+	cont "#mon"
 	done
 
 FightingDojoSignText:
 	text "Everyone Welcome!"
-	line "FIGHTING DOJO"
+	line "Fighting Dojo"
 	done
 
 SilphCoSignText:
-	text "SILPH CO."
-	line "OFFICE BUILDING"
+	text "Silph Co."
+	line "Office Building"
 	done
 
 MrPsychicsHouseSignText:
-	text "MR.PSYCHIC'S"
-	line "HOUSE"
+	text "Mr Psychic's"
+	line "House"
 	done
 
 SaffronCityMagnetTrainStationSignText:
-	text "SAFFRON CITY"
-	line "MAGNET TRAIN"
-	cont "STATION"
+	text "Saffron City"
+	line "Magnet Train"
+	cont "Station"
 	done
 
 SaffronCity_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event 26,  3, FIGHTING_DOJO, 1
 	warp_event 34,  3, SAFFRON_GYM, 1

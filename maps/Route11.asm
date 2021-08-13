@@ -65,7 +65,7 @@ Route11HiddenRevive:
 
 YoungsterOwenSeenText:
 	text "There's no cheat-"
-	line "ing in #MON."
+	line "ing in #mon."
 
 	para "Let's keep it fair"
 	line "and square!"
@@ -99,7 +99,7 @@ YoungsterJasonBeatenText:
 
 YoungsterJasonAfterBattleText:
 	text "I'm going to catch"
-	line "more #MON in"
+	line "more #mon in"
 	cont "the grass."
 	done
 
@@ -136,16 +136,14 @@ PsychicFidelAfterBattleText:
 
 	para "You're strong be-"
 	line "cause you believe"
-	cont "in your #MON."
+	cont "in your #mon."
 	done
 
 Route11SignText:
-	text "ROUTE 11"
+	text "Route 11"
 	done
 
 Route11_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 
 	def_coord_events

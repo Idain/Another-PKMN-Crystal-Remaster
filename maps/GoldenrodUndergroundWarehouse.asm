@@ -109,10 +109,10 @@ GruntM24BeatenText:
 	done
 
 GruntM24AfterBattleText:
-	text "TEAM ROCKET will"
+	text "Team Rocket will"
 	line "keep going, wait-"
 	cont "ing for the return"
-	cont "of GIOVANNI."
+	cont "of Giovanni."
 
 	para "We'll do whatever"
 	line "it takes."
@@ -135,7 +135,7 @@ GruntM14AfterBattleText:
 	text "I lost…"
 
 	para "Please forgive me,"
-	line "GIOVANNI!"
+	line "Giovanni!"
 	done
 
 GruntM15SeenText:
@@ -158,26 +158,26 @@ GruntM15AfterBattleText:
 	done
 
 DirectorIntroText:
-	text "DIRECTOR: Who?"
+	text "Director: Who?"
 	line "What? You came to"
 	cont "rescue me?"
 
 	para "Thank you!"
 
-	para "The RADIO TOWER!"
+	para "The Radio Tower!"
 
 	para "What's happening"
 	line "there?"
 
-	para "Taken over by TEAM"
-	line "ROCKET?"
+	para "Taken over by Team"
+	line "Rocket?"
 
 	para "Here. Take this"
-	line "CARD KEY."
+	line "Card Key."
 	done
 
 DirectorCardKeyText:
-	text "DIRECTOR: Use that"
+	text "Director: Use that"
 	line "to open the shut-"
 	cont "ters on 3F."
 	done
@@ -195,22 +195,20 @@ DirectorAfterText:
 	para "They may even be"
 	line "able to control"
 
-	para "#MON using a"
+	para "#mon using a"
 	line "special signal!"
 
 	para "You're the only"
 	line "one I can call on."
 
 	para "Please save the"
-	line "RADIO TOWER…"
+	line "Radio Tower…"
 
 	para "And all the #-"
-	line "MON nationwide!"
+	line "mon nationwide!"
 	done
 
 GoldenrodUndergroundWarehouse_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  2, 12, GOLDENROD_UNDERGROUND_SWITCH_ROOM_ENTRANCES, 2
 	warp_event  3, 12, GOLDENROD_UNDERGROUND_SWITCH_ROOM_ENTRANCES, 3

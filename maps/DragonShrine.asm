@@ -656,8 +656,6 @@ DragonShrineSpeechlessText:
 	done
 
 DragonShrine_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  4,  9, DRAGONS_DEN_B1F, 2
 	warp_event  5,  9, DRAGONS_DEN_B1F, 2

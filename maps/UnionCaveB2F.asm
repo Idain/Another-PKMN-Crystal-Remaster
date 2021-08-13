@@ -16,13 +16,12 @@ UnionCaveB2F_MapScripts:
 	checkflag ENGINE_UNION_CAVE_LAPRAS
 	iftrue .NoAppear
 	readvar VAR_WEEKDAY
-	ifequal FRIDAY, .Appear
-.NoAppear:
-	disappear UNIONCAVEB2F_LAPRAS
+	ifnotequal FRIDAY, .NoAppear
+	appear UNIONCAVEB2F_LAPRAS
 	endcallback
 
-.Appear:
-	appear UNIONCAVEB2F_LAPRAS
+.NoAppear:
+	disappear UNIONCAVEB2F_LAPRAS
 	endcallback
 
 UnionCaveLapras:
@@ -92,7 +91,7 @@ CooltrainermNickBeatenText:
 	done
 
 CooltrainermNickAfterBattleText:
-	text "Your #MON style"
+	text "Your #mon style"
 	line "is stunning and"
 	cont "colorful, I admit."
 
@@ -117,7 +116,7 @@ CooltrainerfGwenAfterBattleText:
 	done
 
 CooltrainerfEmmaSeenText:
-	text "If the #MON I"
+	text "If the #mon I"
 	line "liked were there,"
 	cont "I'd go anywhere."
 
@@ -132,16 +131,14 @@ CooltrainerfEmmaBeatenText:
 
 CooltrainerfEmmaAfterBattleText:
 	text "Just once a week,"
-	line "a #MON comes to"
+	line "a #mon comes to"
 	cont "the water's edge."
 
 	para "I wanted to see"
-	line "that #MON…"
+	line "that #mon…"
 	done
 
 UnionCaveB2F_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  5,  3, UNION_CAVE_B1F, 5
 

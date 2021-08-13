@@ -7,8 +7,6 @@ MobileBattleRoom_MapScripts:
 
 .InitializeMobileBattleRoom:
 	sdefer .InitializeAndPreparePokecenter2F
-	end
-
 .DummyScene:
 	end
 
@@ -64,8 +62,6 @@ MobileBattleRoom_HealText:
 	done
 
 MobileBattleRoom_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  4,  7, POKECENTER_2F, 6
 	warp_event  5,  7, POKECENTER_2F, 6

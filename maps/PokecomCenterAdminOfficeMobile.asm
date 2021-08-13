@@ -28,7 +28,9 @@ PokecomCenterAdminOfficeMobileComputer1:
 	closewindow
 	ifequal 1, .PokeComClub
 	ifequal 2, .MobileCenter
-	sjump .Quit
+;.Quit:
+	closetext
+	end
 
 .PokeComClub:
 	opentext
@@ -42,10 +44,6 @@ PokecomCenterAdminOfficeMobileComputer1:
 	waitbutton
 	sjump .loop
 
-.Quit:
-	closetext
-	end
-
 .Computer1MenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 0, 15, 8
@@ -55,9 +53,9 @@ PokecomCenterAdminOfficeMobileComputer1:
 .MenuData:
 	db STATICMENU_CURSOR ; flags
 	db 3 ; items
-	db "#　つうしん　クラブ@" ; # COM CLUB
-	db "モバイルセンター@" ; MOBILE CENTER
-	db "やめる@" ; QUIT
+	db "#Com Club"
+	db "Mobile Center"
+	db "Quit"
 
 PokecomCenterAdminOfficeMobileComputer2:
 	opentext
@@ -70,7 +68,9 @@ PokecomCenterAdminOfficeMobileComputer2:
 	closewindow
 	ifequal 1, .UsePhone
 	ifequal 2, .DontUsePhone
-	sjump .Quit
+;.Quit:
+	closetext
+	end
 
 .UsePhone:
 	opentext
@@ -84,10 +84,6 @@ PokecomCenterAdminOfficeMobileComputer2:
 	waitbutton
 	sjump .loop
 
-.Quit:
-	closetext
-	end
-
 .Computer2MenuHeader:
 	db MENU_BACKUP_TILES ; flags
 	menu_coords 0, 0, 15, 8
@@ -97,16 +93,16 @@ PokecomCenterAdminOfficeMobileComputer2:
 .MenuData:
 	db STATICMENU_CURSOR ; flags
 	db 3 ; items
-	db "でんわ<WO>つかうとき@" ; Use phone
-	db "でんわ<GA>つながらないとき@" ; Don't use phone
-	db "やめる@" ; QUIT
+	db "Use phone"
+	db "Don't use phone"
+	db "Quit"
 
 PokecomCenterAdminOfficeMobileComputer3:
 	jumptext PokecomCenterAdminOfficeMobileComputer3Text
 
 PokecomCenterAdminOfficeMobileScientist1Text:
-	text "#COM CENTER and"
-	line "MOBILE CENTER were"
+	text "#Com Center and"
+	line "Mobile Center were"
 
 	para "built to satisfy"
 	line "demands for trades"
@@ -146,46 +142,46 @@ PokecomCenterAdminOfficeMobileScientist3Text:
 
 PokecomCenterAdminOfficeMobileComputer1Text:
 	text "It's a notice"
-	line "about where MOBILE"
+	line "about where Mobile"
 
-	para "ADAPTERS are to be"
+	para "Adapters are to be"
 	line "used…"
 	done
 
 PokecomCenterAdminOfficeMobileComputer1Text_PokeComClub:
-	text "There's a #COM"
+	text "There's a #Com"
 	line "CLUB upstairs in"
 
-	para "any #MON"
-	line "CENTER."
+	para "any #mon"
+	line "Center."
 
 	para "There, you can"
 	line "battle or trade"
 
 	para "with a friend far"
 	line "away by using a"
-	cont "MOBILE ADAPTER."
+	cont "Mobile Adapter."
 
 	para "To link up, your"
 	line "friend must have"
 
 	para "the same kind of"
-	line "MOBILE ADAPTER as"
+	line "Mobile Adapter as"
 	cont "you."
 	done
 
 PokecomCenterAdminOfficeMobileComputer1Text_MobileCenter:
-	text "To use the TRADE"
-	line "CORNER or read the"
+	text "To use the Trade"
+	line "Corner or read the"
 
-	para "#MON NEWS, you"
+	para "#mon News, you"
 	line "need to phone the"
-	cont "MOBILE CENTER."
+	cont "Mobile Center."
 
 	para "You must register"
-	line "at the MOBILE"
+	line "at the Mobile"
 
-	para "CENTER before"
+	para "Center before"
 	line "connecting there."
 	done
 
@@ -199,7 +195,7 @@ PokecomCenterAdminOfficeMobileComputer2Text_UsePhone:
 	text "Please ensure that"
 	line "your phone and"
 
-	para "MOBILE ADAPTER are"
+	para "Mobile Adapter are"
 	line "properly linked."
 
 	para "Please make sure"
@@ -233,19 +229,19 @@ PokecomCenterAdminOfficeMobileComputer2Text_DontUsePhone:
 	done
 
 PokecomCenterAdminOfficeMobileComputer3Text:
-	text "The ADMINISTRATION"
-	line "OFFICE received an"
+	text "The Administration"
+	line "Office received an"
 	cont "e-mail. It says…"
 
 	para "<……> <……> <……>"
 
-	para "To the #COM"
-	line "CENTER staff…"
+	para "To the #Com"
+	line "Center staff…"
 
 	para "Wireless communi-"
 	line "cation has enabled"
 
-	para "#MON trainers"
+	para "#mon trainers"
 	line "to interact across"
 
 	para "the nation. Let's"
@@ -261,8 +257,6 @@ PokecomCenterAdminOfficeMobileComputer3Text:
 	done
 
 PokecomCenterAdminOfficeMobile_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  0, 31, GOLDENROD_POKECENTER_1F, 3
 	warp_event  1, 31, GOLDENROD_POKECENTER_1F, 3

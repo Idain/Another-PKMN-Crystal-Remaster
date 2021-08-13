@@ -9,13 +9,11 @@ RuinsOfAlphAerodactylChamber_MapScripts:
 .CheckWall:
 	checkevent EVENT_WALL_OPENED_IN_AERODACTYL_CHAMBER
 	iftrue .OpenWall
+.DummyScene:
 	end
 
 .OpenWall:
 	sdefer .WallOpenScript
-	end
-
-.DummyScene:
 	end
 
 .HiddenDoors:
@@ -80,7 +78,7 @@ RuinsOfAlphAerodactylChamberDescriptionSign:
 
 RuinsOfAlphAerodactylChamberWallPatternLeft:
 	opentext
-	writetext RuinsOfAlphAerodactylChamberWallPatternLeftText
+	writetext RuinsOfAlphAerodactylChamberWallPatternText
 	setval UNOWNWORDS_LIGHT
 	special DisplayUnownWords
 	closetext
@@ -90,7 +88,7 @@ RuinsOfAlphAerodactylChamberWallPatternRight:
 	checkevent EVENT_WALL_OPENED_IN_AERODACTYL_CHAMBER
 	iftrue .WallOpen
 	opentext
-	writetext RuinsOfAlphAerodactylChamberWallPatternRightText
+	writetext RuinsOfAlphAerodactylChamberWallPatternText
 	setval UNOWNWORDS_LIGHT
 	special DisplayUnownWords
 	closetext
@@ -107,12 +105,7 @@ RuinsOfAlphAerodactylChamberSkyfallTopMovement:
 	skyfall_top
 	step_end
 
-RuinsOfAlphAerodactylChamberWallPatternLeftText:
-	text "Patterns appeared"
-	line "on the walls…"
-	done
-
-RuinsOfAlphAerodactylChamberWallPatternRightText:
+RuinsOfAlphAerodactylChamberWallPatternText:
 	text "Patterns appeared"
 	line "on the walls…"
 	done
@@ -137,8 +130,6 @@ RuinsOfAlphAerodactylChamberDescriptionText:
 	done
 
 RuinsOfAlphAerodactylChamber_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  3,  9, RUINS_OF_ALPH_OUTSIDE, 4
 	warp_event  4,  9, RUINS_OF_ALPH_OUTSIDE, 4

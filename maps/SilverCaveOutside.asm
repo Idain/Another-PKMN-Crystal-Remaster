@@ -18,12 +18,10 @@ SilverCaveOutsideHiddenFullRestore:
 	hiddenitem FULL_RESTORE, EVENT_SILVER_CAVE_OUTSIDE_HIDDEN_FULL_RESTORE
 
 MtSilverSignText:
-	text "MT.SILVER"
+	text "Mt.Silver"
 	done
 
 SilverCaveOutside_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event 23, 19, SILVER_CAVE_POKECENTER_1F, 1
 	warp_event 18, 11, SILVER_CAVE_ROOM_1, 1

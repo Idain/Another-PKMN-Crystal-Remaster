@@ -164,7 +164,7 @@ Route46FruitTree2:
 HikerBaileySeenText:
 	text "Awright! I'll show"
 	line "you the power of"
-	cont "mountain #MON!"
+	cont "mountain #mon!"
 	done
 
 HikerBaileyBeatenText:
@@ -174,13 +174,13 @@ HikerBaileyBeatenText:
 
 HikerBaileyAfterBattleText:
 	text "It's over. I don't"
-	line "mind. We HIKERS"
+	line "mind. We Hikers"
 	cont "are like that."
 	done
 
 CamperTedSeenText:
 	text "I'm raising #-"
-	line "MON too!"
+	line "mon too!"
 
 	para "Will you battle"
 	line "with me?"
@@ -199,7 +199,7 @@ CamperTedAfterBattleText:
 	done
 
 PicnickerErin1SeenText:
-	text "I raise #MON"
+	text "I raise #mon"
 	line "too!"
 
 	para "Will you battle"
@@ -212,9 +212,9 @@ PicnickerErin1BeatenText:
 
 PicnickerErinAfterBattleText:
 	text "I've been to many"
-	line "GYMS, but the GYM"
+	line "Gyms, but the Gym"
 
-	para "in GOLDENROD is my"
+	para "in Goldenrod is my"
 	line "favorite."
 
 	para "It's filled with"
@@ -237,13 +237,12 @@ PicnickerErin2BeatenText:
 	done
 
 Route46SignText:
-	text "ROUTE 46"
-	line "MOUNTAIN RD. AHEAD"
+	text "Route 46"
+	line "Mountain Road"
+	cont "Ahead"
 	done
 
 Route46_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  7, 33, ROUTE_29_ROUTE_46_GATE, 1
 	warp_event  8, 33, ROUTE_29_ROUTE_46_GATE, 2

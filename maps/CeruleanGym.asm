@@ -13,11 +13,9 @@ CeruleanGym_MapScripts:
 
 	def_callbacks
 
-.DummyScene0:
-	end
-
 .GruntRunsOut:
 	sdefer .GruntRunsOutScript
+.DummyScene0:
 	end
 
 .GruntRunsOutScript:
@@ -229,51 +227,51 @@ CeruleanGymGruntByeText:
 CeruleanGymNote1Text:
 	text "Sorry, I'll be out"
 	line "for a while."
-	cont "MISTY, GYM LEADER"
+	cont "Misty, Gym Leader"
 	done
 
 CeruleanGymNote2Text:
-	text "Since MISTY's out,"
+	text "Since Misty's out,"
 	line "we'll be away too."
-	cont "GYM TRAINERS"
+	cont "Gym Trainers"
 	done
 
 MistyIntroText:
-	text "MISTY: I was ex-"
+	text "Misty: I was ex-"
 	line "pecting you, you"
 	cont "pest!"
 
 	para "You may have a"
-	line "lot of JOHTO GYM"
+	line "lot of Johto Gym"
 
-	para "BADGES, but you'd"
+	para "Badges, but you'd"
 	line "better not take me"
 	cont "too lightly."
 
 	para "My water-type"
-	line "#MON are tough!"
+	line "#mon are tough!"
 	done
 
 MistyWinLossText:
-	text "MISTY: You really"
+	text "Misty: You really"
 	line "are good…"
 
 	para "I'll admit that"
 	line "you are skilled…"
 
 	para "Here you go. It's"
-	line "CASCADEBADGE."
+	line "the Cascade Badge."
 	done
 
 ReceivedCascadeBadgeText:
 	text "<PLAYER> received"
-	line "CASCADEBADGE."
+	line "Cascade Badge."
 	done
 
 MistyFightDoneText:
-	text "MISTY: Are there"
+	text "Misty: Are there"
 	line "many strong train-"
-	cont "ers in JOHTO? Like"
+	cont "ers in Johto? Like"
 	cont "you, I mean."
 
 	para "I'm going to"
@@ -314,7 +312,7 @@ SwimmerfBrianaAfterBattleText:
 	text "Don't be too smug"
 	line "about beating me."
 
-	para "MISTY will destroy"
+	para "Misty will destroy"
 	line "you if you get"
 	cont "complacent."
 	done
@@ -331,7 +329,7 @@ SwimmermParkerBeatenText:
 	done
 
 SwimmermParkerAfterBattleText:
-	text "MISTY has gotten"
+	text "Misty has gotten"
 	line "much better in the"
 	cont "past few years."
 
@@ -341,10 +339,10 @@ SwimmermParkerAfterBattleText:
 	done
 
 CeruleanGymGuideText:
-	text "Yo! CHAMP in"
+	text "Yo! Champ in"
 	line "making!"
 
-	para "Since MISTY was"
+	para "Since Misty was"
 	line "away, I went out"
 
 	para "for some fun too."
@@ -361,8 +359,6 @@ CeruleanGymGuideWinText:
 	done
 
 CeruleanGym_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  4, 15, CERULEAN_CITY, 5
 	warp_event  5, 15, CERULEAN_CITY, 5

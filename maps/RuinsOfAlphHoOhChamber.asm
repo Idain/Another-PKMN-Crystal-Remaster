@@ -10,13 +10,11 @@ RuinsOfAlphHoOhChamber_MapScripts:
 	special HoOhChamber
 	checkevent EVENT_WALL_OPENED_IN_HO_OH_CHAMBER
 	iftrue .OpenWall
+.DummyScene:
 	end
 
 .OpenWall:
 	sdefer .WallOpenScript
-	end
-
-.DummyScene:
 	end
 
 .HiddenDoors:
@@ -81,7 +79,7 @@ RuinsOfAlphHoOhChamberDescriptionSign:
 
 RuinsOfAlphHoOhChamberWallPatternLeft:
 	opentext
-	writetext RuinsOfAlphHoOhChamberWallPatternLeftText
+	writetext RuinsOfAlphHoOhChamberWallPatternText
 	setval UNOWNWORDS_HO_OH
 	special DisplayUnownWords
 	closetext
@@ -91,7 +89,7 @@ RuinsOfAlphHoOhChamberWallPatternRight:
 	checkevent EVENT_WALL_OPENED_IN_HO_OH_CHAMBER
 	iftrue .WallOpen
 	opentext
-	writetext RuinsOfAlphHoOhChamberWallPatternRightText
+	writetext RuinsOfAlphHoOhChamberWallPatternText
 	setval UNOWNWORDS_HO_OH
 	special DisplayUnownWords
 	closetext
@@ -108,12 +106,7 @@ RuinsOfAlphHoOhChamberSkyfallTopMovement:
 	skyfall_top
 	step_end
 
-RuinsOfAlphHoOhChamberWallPatternLeftText:
-	text "Patterns appeared"
-	line "on the walls…"
-	done
-
-RuinsOfAlphHoOhChamberWallPatternRightText:
+RuinsOfAlphHoOhChamberWallPatternText:
 	text "Patterns appeared"
 	line "on the walls…"
 	done
@@ -138,8 +131,6 @@ RuinsOfAlphHoOhChamberDescriptionText:
 	done
 
 RuinsOfAlphHoOhChamber_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  3,  9, RUINS_OF_ALPH_OUTSIDE, 1
 	warp_event  4,  9, RUINS_OF_ALPH_OUTSIDE, 1

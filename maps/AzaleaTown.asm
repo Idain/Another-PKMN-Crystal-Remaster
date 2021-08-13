@@ -22,11 +22,7 @@ AzaleaTown_MapScripts:
 	callback MAPCALLBACK_NEWMAP, .Flypoint
 
 .DummyScene0:
-	end
-
 .DummyScene1:
-	end
-
 .DummyScene2:
 	end
 
@@ -88,8 +84,7 @@ AzaleaTownRivalBattleScript:
 	startbattle
 	dontrestartmapmusic
 	reloadmapafterbattle
-	sjump .AfterBattle
-
+	; fallthrough
 .AfterBattle:
 	playmusic MUSIC_RIVAL_AFTER
 	opentext
@@ -452,8 +447,6 @@ AzaleaTownIlexForestSignText:
 	done
 
 AzaleaTown_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event 15,  9, AZALEA_POKECENTER_1F, 1
 	warp_event 21, 13, CHARCOAL_KILN, 1

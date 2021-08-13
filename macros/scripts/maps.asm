@@ -16,7 +16,6 @@ ENDM
 scene_script: MACRO
 ;\1: script pointer
 	dw \1
-	dw 0 ; filler
 {_NUM_SCENE_SCRIPTS} = {_NUM_SCENE_SCRIPTS} + 1
 ENDM
 
@@ -61,9 +60,7 @@ coord_event: MACRO
 ;\3: scene id: a SCENE_* constant; controlled by setscene/setmapscene
 ;\4: script pointer
 	db \3, \2, \1
-	db 0 ; filler
 	dw \4
-	dw 0 ; filler
 {_NUM_COORD_EVENTS} = {_NUM_COORD_EVENTS} + 1
 ENDM
 
@@ -159,13 +156,6 @@ conditional_event: MACRO
 ;\1: flag: an EVENT_* constant
 ;\2: script pointer
 	dw \1, \2
-ENDM
-
-cmdqueue: MACRO
-;\1: type: a CMDQUEUE_* constant
-;\2: data pointer
-	dbw \1, \2
-	dw 0 ; filler
 ENDM
 
 stonetable: MACRO

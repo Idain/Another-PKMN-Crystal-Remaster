@@ -85,7 +85,7 @@ Route9HiddenEther:
 
 CamperDeanSeenText:
 	text "I came to explore"
-	line "ROCK TUNNEL."
+	line "Rock Tunnel."
 	done
 
 CamperDeanBeatenText:
@@ -93,15 +93,15 @@ CamperDeanBeatenText:
 	done
 
 CamperDeanAfterBattleText:
-	text "My #MON were"
+	text "My #mon were"
 	line "hurt before even"
 
-	para "entering ROCK"
-	line "TUNNEL."
+	para "entering Rock"
+	line "Tunnel."
 
 	para "I'd better take"
-	line "them to a #MON"
-	cont "CENTER right away."
+	line "them to a #mon"
+	cont "Center right away."
 	done
 
 PicnickerHeidiSeenText:
@@ -160,11 +160,11 @@ PicnickerEdnaAfterBattleText:
 
 HikerTimSeenText:
 	text "She'll be coming"
-	line "'round MT.SILVER"
+	line "'round Mt.Silver"
 	cont "when she comes…"
 
-	para "MT.SILVER is in"
-	line "JOHTO, right?"
+	para "Mt.Silver is in"
+	line "Johto, right?"
 	done
 
 HikerTimBeatenText:
@@ -191,21 +191,19 @@ HikerSidneyBeatenText:
 	done
 
 HikerSidneyAfterBattleText:
-	text "The POWER PLANT is"
+	text "The Power Plant is"
 	line "across a small"
 	cont "river."
 	done
 
 Route9SignText:
-	text "ROUTE 9"
+	text "Route 9"
 
-	para "CERULEAN CITY -"
-	line "ROCK TUNNEL"
+	para "Cerulean City -"
+	line "Rock Tunnel"
 	done
 
 Route9_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event 48, 15, ROCK_TUNNEL_1F, 1
 

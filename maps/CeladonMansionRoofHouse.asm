@@ -54,7 +54,7 @@ CeladonMansionRoofHousePharmacistStoryText:
 	line "there was a little"
 
 	para "boy who was given"
-	line "a new BICYCLE…"
+	line "a new Bicycle…"
 
 	para "He wanted to try"
 	line "it right away…"
@@ -81,7 +81,7 @@ CeladonMansionRoofHousePharmacistStoryText:
 	line "backwards!"
 
 	para "It was as if the"
-	line "bike were cursed"
+	line "bike was cursed"
 
 	para "and trying to drag"
 	line "him into oblivion!"
@@ -94,7 +94,7 @@ CeladonMansionRoofHousePharmacistStoryText:
 
 	para "The boy had been"
 	line "riding uphill on"
-	cont "CYCLING ROAD!"
+	cont "Cycling Road!"
 
 	para "…"
 	line "Ba-dum ba-dum!"
@@ -105,7 +105,7 @@ CeladonMansionRoofHousePharmacistStoryText:
 	done
 
 CeladonMansionRoofHousePharmacistCurseText:
-	text "TM03 is CURSE."
+	text "TM03 is Curse."
 
 	para "It's a terrifying"
 	line "move that slowly"
@@ -115,8 +115,6 @@ CeladonMansionRoofHousePharmacistCurseText:
 	done
 
 CeladonMansionRoofHouse_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  2,  7, CELADON_MANSION_ROOF, 3
 	warp_event  3,  7, CELADON_MANSION_ROOF, 3

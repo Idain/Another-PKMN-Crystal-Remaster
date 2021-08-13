@@ -79,7 +79,7 @@ Route13HiddenCalcium:
 
 PokefanmAlexSeenText:
 	text "Bow down before my"
-	line "regal #MON!"
+	line "regal #mon!"
 	done
 
 PokefanmAlexBeatenText:
@@ -96,25 +96,25 @@ PokefanmAlexAfterBattleText:
 PokefanmJoshuaSeenText:
 	text "Nihihi! Would you"
 	line "like to battle my"
-	cont "PIKACHU gang?"
+	cont "Raichu gang?"
 	done
 
 PokefanmJoshuaBeatenText:
-	text "PI-PIKACHU!"
+	text "Ra-Raichu!"
 	done
 
 PokefanmJoshuaAfterBattleText:
 	text "You look like you"
-	line "have many #MON,"
+	line "have many #mon,"
 
-	para "but PIKACHU is"
+	para "but Raichu is"
 	line "still the best."
 	done
 
 BirdKeeperPerrySeenText:
 	text "Agility is the key"
 	line "attribute of bird"
-	cont "#MON."
+	cont "#mon."
 	done
 
 BirdKeeperPerryBeatenText:
@@ -123,14 +123,14 @@ BirdKeeperPerryBeatenText:
 	done
 
 BirdKeeperPerryAfterBattleText:
-	text "Your #MON are"
+	text "Your #mon are"
 	line "remarkably well-"
 	cont "trained."
 	done
 
 BirdKeeperBretSeenText:
 	text "Check out my #-"
-	line "MON. Just look at"
+	line "mon. Just look at"
 
 	para "their coloring and"
 	line "their plumage."
@@ -143,13 +143,13 @@ BirdKeeperBretBeatenText:
 
 BirdKeeperBretAfterBattleText:
 	text "If you groom them,"
-	line "#MON get happy."
+	line "#mon get happy."
 	done
 
 HikerKennySeenText:
 	text "I should go to"
-	line "ROCK TUNNEL to get"
-	cont "myself an ONIX."
+	line "Rock Tunnel to get"
+	cont "myself an Onix."
 	done
 
 HikerKennyBeatenText:
@@ -175,23 +175,21 @@ Route13TrainerTipsText:
 	done
 
 Route13SignText:
-	text "ROUTE 13"
+	text "Route 13"
 
-	para "NORTH TO SILENCE"
-	line "BRIDGE"
+	para "North to Silence"
+	line "Bridge"
 	done
 
 Route13DirectionsSignText:
-	text "NORTH TO LAVENDER"
-	line "TOWN"
+	text "North to Lavender"
+	line "Town"
 
-	para "WEST TO FUCHSIA"
-	line "CITY"
+	para "West to Fuchsia"
+	line "City"
 	done
 
 Route13_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 
 	def_coord_events

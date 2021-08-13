@@ -24,18 +24,22 @@ VioletMartClerkScript:
 	pokemart MARTTYPE_STANDARD, MART_VIOLET_ONE_BADGE
 	closetext
 	end
+
 .ThreeBadgesStock
 	pokemart MARTTYPE_STANDARD, MART_VIOLET_THREE_BADGES
 	closetext
 	end
+
 .FiveBadgesStock
 	pokemart MARTTYPE_STANDARD, MART_VIOLET_FIVE_BADGES
 	closetext
 	end
+
 .SevenBadgesStock
 	pokemart MARTTYPE_STANDARD, MART_VIOLET_SEVEN_BADGES
 	closetext
 	end
+	
 .EightBadgesStock
 	pokemart MARTTYPE_STANDARD, MART_VIOLET_EIGHT_BADGES
 	closetext
@@ -74,8 +78,6 @@ VioletMartCooltrainerMText:
 	done
 
 VioletMart_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  2,  7, VIOLET_CITY, 1
 	warp_event  3,  7, VIOLET_CITY, 1

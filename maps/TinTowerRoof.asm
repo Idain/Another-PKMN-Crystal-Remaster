@@ -11,10 +11,7 @@ TinTowerRoof_MapScripts:
 	checkevent EVENT_FOUGHT_HO_OH
 	iftrue .NoAppear
 	checkitem RAINBOW_WING
-	iftrue .Appear
-	sjump .NoAppear
-
-.Appear:
+	iffalse .NoAppear
 	appear TINTOWERROOF_HO_OH
 	endcallback
 
@@ -43,8 +40,6 @@ HoOhText:
 	done
 
 TinTowerRoof_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  9, 13, TIN_TOWER_9F, 4
 

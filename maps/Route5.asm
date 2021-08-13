@@ -19,15 +19,15 @@ Route5PokefanMText:
 	text "The road is closed"
 	line "until the problem"
 
-	para "at the POWER PLANT"
+	para "at the Power Plant"
 	line "is solved."
 	done
 
 Route5UndergroundPathSignText:
-	text "UNDERGROUND PATH"
+	text "Underground Path"
 
-	para "CERULEAN CITY -"
-	line "VERMILION CITY"
+	para "Cerulean City -"
+	line "Vermilion City"
 	done
 
 HouseForSaleSignText:
@@ -38,8 +38,6 @@ HouseForSaleSignText:
 	done
 
 Route5_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event 17, 15, ROUTE_5_UNDERGROUND_PATH_ENTRANCE, 1
 	warp_event  8, 17, ROUTE_5_SAFFRON_GATE, 1

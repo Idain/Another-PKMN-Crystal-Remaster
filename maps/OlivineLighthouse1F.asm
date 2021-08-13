@@ -15,7 +15,7 @@ OlivineLighthouse1FPokefanFScript:
 
 OlivineLighthouse1FSailorText:
 	text "People train at"
-	line "this LIGHTHOUSE."
+	line "this Lighthouse."
 
 	para "It's not easy to"
 	line "climb because of"
@@ -24,19 +24,17 @@ OlivineLighthouse1FSailorText:
 
 OlivineLighthouse1FPokefanFText:
 	text "In the past, #-"
-	line "MON used to light"
+	line "mon used to light"
 
 	para "the sea around"
-	line "OLIVINE at night."
+	line "Olivine at night."
 
-	para "The LIGHTHOUSE was"
+	para "The Lighthouse was"
 	line "made in honor of"
-	cont "those #MON."
+	cont "those #mon."
 	done
 
 OlivineLighthouse1F_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event 10, 17, OLIVINE_CITY, 9
 	warp_event 11, 17, OLIVINE_CITY, 9

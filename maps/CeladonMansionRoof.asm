@@ -32,8 +32,6 @@ CeladonMansionRoofGraffitiText:
 	done
 
 CeladonMansionRoof_MapEvents:
-	db 0, 0 ; filler
-
 	def_warp_events
 	warp_event  1,  1, CELADON_MANSION_3F, 1
 	warp_event  6,  1, CELADON_MANSION_3F, 4
