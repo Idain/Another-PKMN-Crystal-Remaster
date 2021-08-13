@@ -157,9 +157,6 @@ TeachTMHM:
 	and a
 	ret
 
-.didnt_use ; unreferenced
-	ld a, 2
-	ld [wItemEffectSucceeded], a
 .learned_move
 	scf
 	ret
@@ -184,12 +181,12 @@ TMHM_PocketLoop:
 	xor a
 	ldh [hBGMapMode], a
 	call TMHM_DisplayPocketItems
-	ld a, 2
+	ld a, 1
+	ld [w2DMenuNumCols], a
+	inc a
 	ld [w2DMenuCursorInitY], a
 	ld a, 7
 	ld [w2DMenuCursorInitX], a
-	ld a, 1
-	ld [w2DMenuNumCols], a
 	ld a, 5
 	sub d
 	inc a
@@ -387,7 +384,7 @@ TMHM_DisplayPocketItems:
 	pop hl
 	dec d
 	jr nz, .loop2
-	jr .done
+	ret
 
 .NotTMHM:
 	call TMHMPocket_GetCurrentLineCoord
@@ -398,7 +395,6 @@ TMHM_DisplayPocketItems:
 	ld de, TMHM_CancelString
 	call PlaceString
 	pop de
-.done
 	ret
 
 TMHMPocket_GetCurrentLineCoord:
@@ -412,20 +408,6 @@ TMHMPocket_GetCurrentLineCoord:
 	add hl, bc
 	dec e
 	jr nz, .loop
-	ret
-
-PlaceMoveNameAfterTMHMName: ; unreferenced
-; Similar to a part of TMHM_DisplayPocketItems.
-	pop hl
-	ld bc, 3
-	add hl, bc
-	predef GetTMHMMove
-	ld a, [wTempTMHM]
-	ld [wPutativeTMHMMove], a
-	call GetMoveName
-	push hl
-	call PlaceString
-	pop hl
 	ret
 
 TMHM_CancelString:
@@ -462,15 +444,6 @@ TMHM_PlaySFX_ReadText2:
 	call PlaySFX
 	pop de
 	ret
-
-VerboseReceiveTMHM: ; unreferenced
-	call ConvertCurItemIntoCurTMHM
-	call .CheckHaveRoomForTMHM
-	ld hl, .NoRoomTMHMText
-	jr nc, .print
-	ld hl, .ReceivedTMHMText
-.print
-	jp PrintText
 
 .NoRoomTMHMText:
 	text_far _NoRoomTMHMText

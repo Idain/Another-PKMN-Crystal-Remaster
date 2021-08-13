@@ -85,6 +85,7 @@ MartCherrygroveOneBadge:
 	db -1 ; end
 
 MartCherrygroveThreeBadges:
+MartEcruteak:
 	db 13 ; # items
 	db POKE_BALL
 	db GREAT_BALL
@@ -122,6 +123,8 @@ MartCherrygroveFiveBadges:
 	db -1 ; end
 
 MartCherrygroveSevenBadges:
+MartEcruteakSevenBadges:
+MartBlackthorn:
 	db 18 ; # items
 	db POKE_BALL
 	db GREAT_BALL
@@ -144,6 +147,10 @@ MartCherrygroveSevenBadges:
 	db -1 ; end
 
 MartCherrygroveEightBadges:
+MartEcruteakEightBadges:
+MartBlackthornEightBadges:
+MartPewter:
+MartLavender:
 	db 19 ; # items
 	db POKE_BALL
 	db GREAT_BALL
@@ -253,6 +260,9 @@ MartVioletSevenBadges:
 	db -1 ; end
 
 MartVioletEightBadges:
+MartFuchsia:
+MartSaffron:
+MartViridian:
 	db 20 ; # items
 	db POKE_BALL
 	db GREAT_BALL
@@ -391,6 +401,7 @@ MartCianwood:
 	db -1 ; end
 
 MartGoldenrod2F1:
+MartCeladon2F1:
 	db 11 ; # items
 	db POTION
 	db SUPER_POTION
@@ -425,6 +436,7 @@ MartGoldenrod2F2:
 	db -1 ; end
 
 MartGoldenrod3F:
+MartCeladon5F2:
 	db 8 ; # items
 	db X_SPEED
 	db X_ATTACK
@@ -437,6 +449,7 @@ MartGoldenrod3F:
 	db -1 ; end
 
 MartGoldenrod4F:
+MartCeladon5F1:
 	db 8 ; # items
 	db PROTEIN
 	db IRON
@@ -520,223 +533,6 @@ MartOlivineSevenBadges:
 	db -1 ; end
 
 MartOlivineEightBadges:
-	db 20 ; # items
-	db POKE_BALL
-	db GREAT_BALL
-	db ULTRA_BALL
-	db POTION
-	db SUPER_POTION
-	db HYPER_POTION
-	db MAX_POTION
-	db FULL_RESTORE
-	db REVIVE
-	db ANTIDOTE
-	db PARLYZ_HEAL
-	db AWAKENING
-	db BURN_HEAL
-	db ICE_HEAL
-	db FULL_HEAL
-	db ESCAPE_ROPE
-	db REPEL
-	db SUPER_REPEL
-	db MAX_REPEL
-	db SURF_MAIL
-	db -1 ; end
-
-MartEcruteak:
-	db 13 ; # items
-	db POKE_BALL
-	db GREAT_BALL
-	db POTION
-	db SUPER_POTION
-	db REVIVE
-	db ANTIDOTE
-	db PARLYZ_HEAL
-	db AWAKENING
-	db BURN_HEAL
-	db ICE_HEAL
-	db ESCAPE_ROPE
-	db REPEL
-	db SUPER_REPEL
-	db -1 ; end
-
-MartEcruteakFiveBadges:
-	db 15 ; # items
-	db POKE_BALL
-	db GREAT_BALL
-	db POTION
-	db SUPER_POTION
-	db HYPER_POTION
-	db REVIVE
-	db ANTIDOTE
-	db PARLYZ_HEAL
-	db AWAKENING
-	db BURN_HEAL
-	db ICE_HEAL
-	db FULL_HEAL
-	db ESCAPE_ROPE
-	db REPEL
-	db SUPER_REPEL
-	db -1 ; end
-
-MartEcruteakSevenBadges:
-	db 18 ; # items
-	db POKE_BALL
-	db GREAT_BALL
-	db ULTRA_BALL
-	db POTION
-	db SUPER_POTION
-	db HYPER_POTION
-	db MAX_POTION
-	db REVIVE
-	db ANTIDOTE
-	db PARLYZ_HEAL
-	db AWAKENING
-	db BURN_HEAL
-	db ICE_HEAL
-	db FULL_HEAL
-	db ESCAPE_ROPE
-	db REPEL
-	db SUPER_REPEL
-	db MAX_REPEL
-	db -1 ; end
-
-MartEcruteakEightBadges:
-	db 19 ; # items
-	db POKE_BALL
-	db GREAT_BALL
-	db ULTRA_BALL
-	db POTION
-	db SUPER_POTION
-	db HYPER_POTION
-	db MAX_POTION
-	db FULL_RESTORE
-	db REVIVE
-	db ANTIDOTE
-	db PARLYZ_HEAL
-	db AWAKENING
-	db BURN_HEAL
-	db ICE_HEAL
-	db FULL_HEAL
-	db ESCAPE_ROPE
-	db REPEL
-	db SUPER_REPEL
-	db MAX_REPEL
-	db -1 ; end
-
-MartMahogany1:
-	db 4 ; # items
-	db TINYMUSHROOM
-	db SLOWPOKETAIL
-	db POKE_BALL
-	db POTION
-	db -1 ; end
-
-MartMahogany2:
-	db 9 ; # items
-	db RAGECANDYBAR
-	db GREAT_BALL
-	db SUPER_POTION
-	db HYPER_POTION
-	db ANTIDOTE
-	db PARLYZ_HEAL
-	db SUPER_REPEL
-	db REVIVE
-	db FLOWER_MAIL
-	db -1 ; end
-
-MartBlackthorn:
-	db 18 ; # items
-	db POKE_BALL
-	db GREAT_BALL
-	db ULTRA_BALL
-	db POTION
-	db SUPER_POTION
-	db HYPER_POTION
-	db MAX_POTION
-	db REVIVE
-	db ANTIDOTE
-	db PARLYZ_HEAL
-	db AWAKENING
-	db BURN_HEAL
-	db ICE_HEAL
-	db FULL_HEAL
-	db ESCAPE_ROPE
-	db REPEL
-	db SUPER_REPEL
-	db MAX_REPEL
-	db -1 ; end
-
-MartBlackthornEightBadges:
-	db 19 ; # items
-	db POKE_BALL
-	db GREAT_BALL
-	db ULTRA_BALL
-	db POTION
-	db SUPER_POTION
-	db HYPER_POTION
-	db MAX_POTION
-	db FULL_RESTORE
-	db REVIVE
-	db ANTIDOTE
-	db PARLYZ_HEAL
-	db AWAKENING
-	db BURN_HEAL
-	db ICE_HEAL
-	db FULL_HEAL
-	db ESCAPE_ROPE
-	db REPEL
-	db SUPER_REPEL
-	db MAX_REPEL
-	db -1 ; end
-
-MartViridian:
-	db 20 ; # items
-	db POKE_BALL
-	db GREAT_BALL
-	db ULTRA_BALL
-	db POTION
-	db SUPER_POTION
-	db HYPER_POTION
-	db MAX_POTION
-	db FULL_RESTORE
-	db REVIVE
-	db ANTIDOTE
-	db PARLYZ_HEAL
-	db AWAKENING
-	db BURN_HEAL
-	db ICE_HEAL
-	db FULL_HEAL
-	db ESCAPE_ROPE
-	db REPEL
-	db SUPER_REPEL
-	db MAX_REPEL
-	db FLOWER_MAIL
-	db -1 ; end
-
-MartPewter:
-	db 19 ; # items
-	db POKE_BALL
-	db GREAT_BALL
-	db ULTRA_BALL
-	db POTION
-	db SUPER_POTION
-	db HYPER_POTION
-	db MAX_POTION
-	db FULL_RESTORE
-	db REVIVE
-	db ANTIDOTE
-	db PARLYZ_HEAL
-	db AWAKENING
-	db BURN_HEAL
-	db ICE_HEAL
-	db FULL_HEAL
-	db ESCAPE_ROPE
-	db REPEL
-	db SUPER_REPEL
-	db MAX_REPEL
-	db -1 ; end
-
 MartCerulean:
 	db 20 ; # items
 	db POKE_BALL
@@ -761,16 +557,13 @@ MartCerulean:
 	db SURF_MAIL
 	db -1 ; end
 
-MartLavender:
-	db 19 ; # items
+MartEcruteakFiveBadges:
+	db 15 ; # items
 	db POKE_BALL
 	db GREAT_BALL
-	db ULTRA_BALL
 	db POTION
 	db SUPER_POTION
 	db HYPER_POTION
-	db MAX_POTION
-	db FULL_RESTORE
 	db REVIVE
 	db ANTIDOTE
 	db PARLYZ_HEAL
@@ -781,7 +574,27 @@ MartLavender:
 	db ESCAPE_ROPE
 	db REPEL
 	db SUPER_REPEL
-	db MAX_REPEL
+	db -1 ; end
+
+MartMahogany1:
+	db 4 ; # items
+	db TINYMUSHROOM
+	db SLOWPOKETAIL
+	db POKE_BALL
+	db POTION
+	db -1 ; end
+
+MartMahogany2:
+	db 9 ; # items
+	db RAGECANDYBAR
+	db GREAT_BALL
+	db SUPER_POTION
+	db HYPER_POTION
+	db ANTIDOTE
+	db PARLYZ_HEAL
+	db SUPER_REPEL
+	db REVIVE
+	db FLOWER_MAIL
 	db -1 ; end
 
 MartVermilion:
@@ -806,21 +619,6 @@ MartVermilion:
 	db SUPER_REPEL
 	db MAX_REPEL
 	db LITEBLUEMAIL
-	db -1 ; end
-
-MartCeladon2F1:
-	db 11 ; # items
-	db POTION
-	db SUPER_POTION
-	db HYPER_POTION
-	db MAX_POTION
-	db REVIVE
-	db ANTIDOTE
-	db PARLYZ_HEAL
-	db BURN_HEAL
-	db ICE_HEAL
-	db AWAKENING
-	db FULL_HEAL
 	db -1 ; end
 	
 MartCeladon2F2:
@@ -856,78 +654,6 @@ MartCeladon4F:
 	db LEAF_STONE
 	db MOON_STONE
 	db SUN_STONE
-	db -1 ; end
-
-MartCeladon5F1:
-	db 8 ; # items
-	db PROTEIN
-	db IRON
-	db CARBOS
-	db CALCIUM
-	db ZINC
-	db HP_UP
-	db PP_UP
-	db PP_MAX
-	db -1 ; end
-
-MartCeladon5F2:
-	db 8 ; # items
-	db X_SPEED
-	db X_ATTACK
-	db X_DEFEND
-	db GUARD_SPEC
-	db DIRE_HIT
-	db X_ACCURACY
-	db X_SPECIAL
-	db X_SP_DEF	
-	db -1 ; end
-
-MartFuchsia:
-	db 20 ; # items
-	db POKE_BALL
-	db GREAT_BALL
-	db ULTRA_BALL
-	db POTION
-	db SUPER_POTION
-	db HYPER_POTION
-	db MAX_POTION
-	db FULL_RESTORE
-	db REVIVE
-	db ANTIDOTE
-	db PARLYZ_HEAL
-	db AWAKENING
-	db BURN_HEAL
-	db ICE_HEAL
-	db FULL_HEAL
-	db ESCAPE_ROPE
-	db REPEL
-	db SUPER_REPEL
-	db MAX_REPEL
-	db FLOWER_MAIL
-	db -1 ; end
-
-MartSaffron:
-	db 20 ; # items
-	db POKE_BALL
-	db GREAT_BALL
-	db ULTRA_BALL
-	db POTION
-	db SUPER_POTION
-	db HYPER_POTION
-	db MAX_POTION
-	db FULL_RESTORE
-	db REVIVE
-	db ANTIDOTE
-	db PARLYZ_HEAL
-	db AWAKENING
-	db BURN_HEAL
-	db ICE_HEAL
-	db FULL_HEAL
-	db ESCAPE_ROPE
-	db REPEL
-	db SUPER_REPEL
-	db MAX_REPEL
-	db FLOWER_MAIL
 	db -1 ; end
 
 MartMtMoon:

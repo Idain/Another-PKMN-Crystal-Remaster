@@ -298,51 +298,34 @@ Pack:
 	farcall CheckItemMenu
 	ld a, [wItemAttributeValue]
 	and a
-	jr nz, .usable
-	jr .unusable
+	ld hl, MenuHeader_UsableKeyItem
+	ld de, Jumptable_UseGiveTossRegisterQuit
+	jr nz, .build_menu ; usable
+	ld hl, MenuHeader_HoldableKeyItem
+	ld de, Jumptable_GiveTossRegisterQuit
+	jr .build_menu ; unusable
 
 .selectable
 	farcall CheckItemMenu
 	ld a, [wItemAttributeValue]
 	and a
-	jr nz, .selectable_usable
-	jr .selectable_unusable
+	ld hl, MenuHeader_UsableItem
+	ld de, Jumptable_UseGiveTossQuit
+	jr nz, .build_menu ; selectable_usable
+	ld hl, MenuHeader_HoldableItem
+	ld de, Jumptable_GiveTossQuit
+	jr .build_menu ; selectable_unusable
 
 .tossable
 	farcall CheckSelectableItem
 	ld a, [wItemAttributeValue]
 	and a
-	jr nz, .tossable_selectable
-	jr .tossable_unselectable
-
-.usable
-	ld hl, MenuHeader_UsableKeyItem
-	ld de, Jumptable_UseGiveTossRegisterQuit
-	jr .build_menu
-
-.selectable_usable
-	ld hl, MenuHeader_UsableItem
-	ld de, Jumptable_UseGiveTossQuit
-	jr .build_menu
-
-.tossable_selectable
 	ld hl, MenuHeader_UnusableItem
 	ld de, Jumptable_UseQuit
-	jr .build_menu
-
-.tossable_unselectable
+	jr nz, .build_menu ; tossable_selectable
 	ld hl, MenuHeader_UnusableKeyItem
 	ld de, Jumptable_UseRegisterQuit
-	jr .build_menu
-
-.unusable
-	ld hl, MenuHeader_HoldableKeyItem
-	ld de, Jumptable_GiveTossRegisterQuit
-	jr .build_menu
-
-.selectable_unusable
-	ld hl, MenuHeader_HoldableItem
-	ld de, Jumptable_GiveTossQuit
+	; tossable_unselectable
 .build_menu
 	push de
 	call LoadMenuHeader

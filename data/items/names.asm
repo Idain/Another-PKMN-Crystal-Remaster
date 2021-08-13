@@ -162,7 +162,7 @@ ItemNames::
 	li "Sun Stone"
 	li "Polkadot Bow"
 	li "Teru-sama"
-	li "Up-Grade"
+	li "Upgrade"
 	li "Oran Berry"
 	li "Sitrus Berry"
 	li "SquirtBottle"
