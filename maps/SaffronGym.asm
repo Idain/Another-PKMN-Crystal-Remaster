@@ -113,7 +113,7 @@ SaffronGymStatue:
 	jumpstd GymStatue2Script
 
 SabrinaIntroText:
-	text "SABRINA: I knew"
+	text "Sabrina: I knew"
 	line "you were coming…"
 
 	para "Three years ago I"
@@ -121,17 +121,17 @@ SabrinaIntroText:
 	cont "your arrival."
 
 	para "You're after my"
-	line "BADGE."
+	line "Badge."
 
 	para "I don't enjoy bat-"
 	line "tling, but it's my"
 
-	para "duty as a LEADER"
-	line "to confer BADGES"
+	para "duty as a Leader"
+	line "to confer Badges"
 
 	para "on anyone who has"
-	line "proven him- or"
-	cont "herself worthy."
+	line "proven themself"
+	cont "worthy."
 
 	para "Since you wish it,"
 	line "I will show you my"
@@ -139,7 +139,7 @@ SabrinaIntroText:
 	done
 
 SabrinaWinLossText:
-	text "SABRINA: Your"
+	text "Sabrina: Your"
 	line "power…"
 
 	para "It far exceeds"
@@ -153,17 +153,17 @@ SabrinaWinLossText:
 
 	para "OK, you win. You"
 	line "earned yourself"
-	cont "MARSHBADGE."
+	cont "the Marsh Badge."
 	done
 
 ReceivedMarshBadgeText:
 	text "<PLAYER> received"
-	line "MARSHBADGE."
+	line "Marsh Badge."
 	done
 
 SabrinaMarshBadgeText:
-	text "SABRINA: MARSH-"
-	line "BADGE draws out"
+	text "Sabrina: Marsh"
+	line "Badge draws out"
 
 	para "your subliminal"
 	line "powers…"
@@ -176,12 +176,12 @@ SabrinaMarshBadgeText:
 
 	para "You will become a"
 	line "celebrated and"
-	cont "beloved CHAMPION!"
+	cont "beloved Champion!"
 	done
 
 SabrinaFightDoneText:
-	text "SABRINA: Your love"
-	line "for your #MON"
+	text "Sabrina: Your love"
+	line "for your #mon"
 
 	para "overwhelmed my"
 	line "psychic power…"
@@ -246,9 +246,9 @@ MediumDorisAfterBattleText:
 	done
 
 PsychicJaredSeenText:
-	text "The FIGHTING DOJO"
+	text "The Fighting Dojo"
 	line "next door was once"
-	cont "this city's GYM."
+	cont "this city's Gym."
 	done
 
 PsychicJaredBeatenText:
@@ -256,16 +256,16 @@ PsychicJaredBeatenText:
 	done
 
 PsychicJaredAfterBattleText:
-	text "KARATE KING, the"
+	text "Karate King, the"
 	line "master of the"
 
-	para "FIGHTING DOJO, was"
+	para "Fighting Dojo, was"
 	line "just destroyed by"
-	cont "SABRINA."
+	cont "Sabrina."
 	done
 
 SaffronGymGuideText:
-	text "Yo, CHAMP in"
+	text "Yo, Champ in"
 	line "making!"
 
 	para "A trainer as"
@@ -274,8 +274,8 @@ SaffronGymGuideText:
 	para "doesn't need to be"
 	line "told how to deal"
 
-	para "with psychic-type"
-	line "#MON, right?"
+	para "with Psychic-type"
+	line "#mon, right?"
 
 	para "I expect great"
 	line "things from you!"
@@ -324,6 +324,7 @@ SaffronGym_MapEvents:
 	warp_event 15,  3, SAFFRON_GYM, 15
 	warp_event  1,  3, SAFFRON_GYM, 16
 	warp_event 11,  9, SAFFRON_GYM, 17
+	warp_event  9, 11, SAFFRON_GYM, 3
 
 	def_coord_events
 
