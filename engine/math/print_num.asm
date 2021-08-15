@@ -30,9 +30,9 @@ _PrintNum::
 	ldh [hPrintNumBuffer + 2], a
 	ld a, b
 	and $f
-	cp 1
+	dec a
 	jr z, .byte
-	cp 2
+	dec a
 	jr z, .word
 ; maximum 3 bytes
 	ld a, [de]

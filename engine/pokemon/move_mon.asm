@@ -1516,7 +1516,7 @@ CalcMonStatC:
 	inc hl
 	ld a, [hl]
 	and $f
-
+	; fallthrough
 .GotDV:
 	add e
 	ld e, a
@@ -1530,10 +1530,10 @@ CalcMonStatC:
 	srl b
 	ld a, b
 	add e
-	adc d
-	sub e
-	ld d, a
+	jr nc, .no_overflow
+	inc d
 
+.no_overflow
 	ldh [hMultiplicand + 2], a
 	ld a, d
 	ldh [hMultiplicand + 1], a
@@ -1550,8 +1550,7 @@ CalcMonStatC:
 	ldh [hDividend + 2], a
 	ld a, 100
 	ldh [hDivisor], a
-	ld a, 3
-	ld b, a
+	ld b, 3
 	call Divide
 	ld a, c
 	cp STAT_HP
@@ -1562,24 +1561,24 @@ CalcMonStatC:
 	ldh a, [hQuotient + 3]
 	add b
 	ldh [hMultiplicand + 2], a
-	jr nc, .no_overflow_3
+	jr nc, .no_overflow_2
 	ldh a, [hQuotient + 2]
 	inc a
 	ldh [hMultiplicand + 1], a
 
-.no_overflow_3
+.no_overflow_2
 	ld a, STAT_MIN_HP
 .not_hp
 	ld b, a
 	ldh a, [hQuotient + 3]
 	add b
 	ldh [hMultiplicand + 2], a
-	jr nc, .no_overflow_4
+	jr nc, .no_overflow_3
 	ldh a, [hQuotient + 2]
 	inc a
 	ldh [hMultiplicand + 1], a
 
-.no_overflow_4
+.no_overflow_3
 	ldh a, [hQuotient + 2]
 	cp HIGH(MAX_STAT_VALUE + 1) + 1
 	jr nc, .max_stat

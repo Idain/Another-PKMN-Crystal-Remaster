@@ -130,9 +130,6 @@ GetGender:
 ; a = 0: f = nc|z;  female
 ;        f = c:  genderless
 
-; This is determined by comparing the Attack and Speed DVs
-; with the species' gender ratio.
-
 ; Figure out what type of monster struct we're looking at.
 
 ; 0: PartyMon
