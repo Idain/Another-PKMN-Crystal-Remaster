@@ -238,16 +238,13 @@ PlacePartyMonLevel:
 	pop hl
 	ld a, [de]
 	cp 100 ; This is distinct from MAX_LEVEL.
+	lb bc, PRINTNUM_LEFTALIGN | 1, 3
 	jr nc, .ThreeDigits
 	ld a, "<LV>"
 	ld [hli], a
 	lb bc, PRINTNUM_LEFTALIGN | 1, 2
-	; jr .okay
-.ThreeDigits:
-	lb bc, PRINTNUM_LEFTALIGN | 1, 3
-; .okay
+.ThreeDigits
 	call PrintNum
-
 .next
 	pop hl
 	ld de, SCREEN_WIDTH * 2
@@ -545,7 +542,6 @@ PlacePartyMonMobileBattleSelection:
 .Strings_1_2_3:
 	db "１@", "２@", "３@" ; 1st, 2nd, 3rd
 
-
 PlacePartyMonGenderStats:
     ld a, [wPartyCount]
     and a
@@ -593,14 +589,12 @@ PlacePartyMonGenderStats:
 
 .unknown
     db "@"
-; function end
 
 PartyMenuCheckEgg:
 	ld a, LOW(wPartySpecies)
 	add b
 	ld e, a
-	ld a, HIGH(wPartySpecies)
-	adc d
+	adc HIGH(wPartySpecies)
 	sub e
 	ld d, a
 	ld a, [de]

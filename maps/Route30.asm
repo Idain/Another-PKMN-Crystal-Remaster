@@ -329,9 +329,9 @@ BugCatcherDonAfterText:
 	done
 
 Route30YoungsterText_DirectionsToMrPokemonsHouse:
-	text "Mr.#mon's"
-	line "house? It's a bit"
-	cont "farther ahead."
+	text "Mr.#mon's house?"
+	line "It's a bit farther"
+	cont "ahead."
 	done
 
 Route30YoungsterText_EveryoneIsBattling:

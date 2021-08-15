@@ -20,8 +20,6 @@ ElmsLab_MapScripts:
 
 .MeetElm:
 	sdefer .WalkUpToElm
-	end
-
 .DummyScene1:
 .DummyScene2:
 .DummyScene3:
@@ -589,9 +587,6 @@ ElmsLabTrashcan:
 ElmsLabPC:
 	jumptext ElmsLabPCText
 
-ElmsLabTrashcan2: ; unreferenced
-	jumpstd TrashCanScript
-
 ElmsLabBookshelf:
 	jumpstd DifficultBookshelfScript
 
@@ -823,7 +818,7 @@ ElmText_ChooseAPokemon:
 	line "raise one of the"
 
 	para "#mon contained"
-	line "in these Poké" 
+	line "in these #" 
 	cont "Balls."
 
 	para "You'll be that"
@@ -1195,12 +1190,6 @@ ElmGiveTicketText2:
 
 	para "Give my regards to"
 	line "Prof.Oak in Kanto!"
-	done
-
-ElmsLabMonEggText: ; unreferenced
-	text "It's the #mon"
-	line "Egg being studied"
-	cont "by Prof.Elm."
 	done
 
 AideText_GiveYouPotion:
