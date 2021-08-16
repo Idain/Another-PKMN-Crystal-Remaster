@@ -1653,7 +1653,7 @@ wOBP1:: db
 
 wNumHits:: db
 
-	ds 1
+	ds 3
 
 wOptions::
 ; bit 0-2: number of frames to delay when printing text
@@ -1683,7 +1683,6 @@ wGBPrinterBrightness::
 wOptions2::
 ; bit 1: menu account off/on
 	db
-	ds 2
 wOptionsEnd::
 
 ; Time buffer, for counting the amount of time since
