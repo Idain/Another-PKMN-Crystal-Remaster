@@ -131,8 +131,7 @@ ClockContinue:
 	ld a, [s5_b2fa]
 	inc a
 	ld [s5_b2fa], a
-	call CloseSRAM
-	ret
+	jp CloseSRAM
 
 .dont_update
 	xor a

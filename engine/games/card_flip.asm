@@ -114,11 +114,10 @@ _CardFlip:
 	text_end
 
 .DeductCoins:
-	ld a, [wCoins]
+	ld hl, wCoins
+	ld a, [hli]
+	ld l, [hl]
 	ld h, a
-	ld a, [wCoins + 1]
-	ld l, a
-	ld a, h
 	and a
 	jr nz, .deduct ; You have at least 256 coins.
 	ld a, l
@@ -284,8 +283,7 @@ _CardFlip:
 	ld hl, .CardFlipPlayAgainText
 	call CardFlip_UpdateCoinBalanceDisplay
 	call YesNoBox
-	jr nc, .Continue
-	jp .Increment
+	jp c, .Increment
 
 .Continue:
 	ld a, [wCardFlipNumCardsPlayed]
@@ -366,13 +364,11 @@ GetCoordsOfChosenCard:
 	jr nz, .BottomCard
 	hlcoord 2, 0
 	bcpixel 2, 3
-	jr .done
+	ret
 
 .BottomCard:
 	hlcoord 2, 6
 	bcpixel 8, 3
-
-.done
 	ret
 
 PlaceCardFaceDown:
@@ -380,8 +376,7 @@ PlaceCardFaceDown:
 	ldh [hBGMapMode], a
 	ld de, .FaceDownCardTilemap
 	lb bc, 6, 5
-	call CardFlip_CopyToBox
-	ret
+	jp CardFlip_CopyToBox
 
 .FaceDownCardTilemap:
 	db $08, $09, $09, $09, $0a
@@ -467,16 +462,14 @@ CardFlip_DisplayCardFaceUp:
 CardFlip_UpdateCoinBalanceDisplay:
 	push hl
 	hlcoord 0, 12
-	ld b, 4
-	ld c, SCREEN_WIDTH - 2
+	lb bc, 4, SCREEN_WIDTH - 2
 	call Textbox
 	pop hl
 	call PrintTextboxText
 	; fallthrough
 CardFlip_PrintCoinBalance:
 	hlcoord 9, 15
-	ld b, 1
-	ld c, 9
+	lb bc, 1, 9
 	call Textbox
 	hlcoord 10, 16
 	ld de, .CoinStr
@@ -763,15 +756,15 @@ CardFlip_CheckWinCondition:
 	ret
 
 .Jumptable:
-	dw .Impossible
-	dw .Impossible
+	dw .Lose
+	dw .Lose
 	dw .PikaJiggly
 	dw .PikaJiggly
 	dw .PoliOddish
 	dw .PoliOddish
 
-	dw .Impossible
-	dw .Impossible
+	dw .Lose
+	dw .Lose
 	dw .Pikachu
 	dw .Jigglypuff
 	dw .Poliwag
@@ -819,9 +812,6 @@ CardFlip_CheckWinCondition:
 	dw .PoliSix
 	dw .OddSix
 
-.Impossible:
-	jp .Lose
-
 .PikaJiggly:
 	ld a, [wCardFlipFaceUpCard]
 	and $2
@@ -831,8 +821,7 @@ CardFlip_CheckWinCondition:
 .PoliOddish:
 	ld a, [wCardFlipFaceUpCard]
 	and $2
-	jr nz, .WinSix
-	jp .Lose
+	jp z, .Lose
 
 .WinSix:
 	ld c, $6
@@ -856,9 +845,8 @@ CardFlip_CheckWinCondition:
 	ld a, [wCardFlipFaceUpCard]
 	and $18
 	cp $10
-	jr z, .WinNine
-	jp .Lose
-
+	jp nz, .Lose
+	; fallthrough
 .WinNine:
 	ld c, $9
 	ld de, SFX_2ND_PLACE
@@ -888,9 +876,8 @@ CardFlip_CheckWinCondition:
 	ld a, [wCardFlipFaceUpCard]
 	and $3
 	cp $3
-	jr z, .WinTwelve
-	jp .Lose
-
+	jp nz, .Lose
+	; fallthrough
 .WinTwelve:
 	ld c, $c
 	ld de, SFX_2ND_PLACE
@@ -934,8 +921,7 @@ CardFlip_CheckWinCondition:
 	ld a, [wCardFlipFaceUpCard]
 	and $1c
 	cp $14
-	jr z, .WinEighteen
-	jp .Lose
+	jp nz, .Lose
 
 .WinEighteen:
 	ld c, $12
@@ -1050,8 +1036,7 @@ CardFlip_CheckWinCondition:
 	call PlaySFX
 	ld hl, .CardFlipDarnText
 	call CardFlip_UpdateCoinBalanceDisplay
-	call WaitSFX
-	ret
+	jp WaitSFX
 
 .Payout:
 	push bc
@@ -1065,8 +1050,7 @@ CardFlip_CheckWinCondition:
 .loop
 	push bc
 	call .IsCoinCaseFull
-	jr c, .full
-	call .AddCoinPlaySFX
+	call nc, .AddCoinPlaySFX
 
 .full
 	call CardFlip_PrintCoinBalance
@@ -1086,27 +1070,25 @@ CardFlip_CheckWinCondition:
 	text_end
 
 .AddCoinPlaySFX:
-	ld a, [wCoins]
+	ld hl, wCoins
+	ld a, [hli]
+	ld l, [hl]
 	ld h, a
-	ld a, [wCoins + 1]
-	ld l, a
 	inc hl
 	ld a, h
 	ld [wCoins], a
 	ld a, l
 	ld [wCoins + 1], a
 	ld de, SFX_PAY_DAY
-	call PlaySFX
-	ret
+	jp PlaySFX
 
 .IsCoinCaseFull:
 	ld a, [wCoins]
 	cp HIGH(MAX_COINS)
 	jr c, .less
-	jr z, .check_low
-	jr .more
+	jr nz, .more
 
-.check_low
+;check_low
 	ld a, [wCoins + 1]
 	cp LOW(MAX_COINS)
 	jr c, .less
@@ -1122,8 +1104,7 @@ CardFlip_CheckWinCondition:
 PlaceOAMCardBorder:
 	call GetCoordsOfChosenCard
 	ld hl, .SpriteData
-	call CardFlip_CopyOAM
-	ret
+	jp CardFlip_CopyOAM
 
 .SpriteData:
 	db 18
@@ -1285,8 +1266,7 @@ ChooseCard_HandleJoypad:
 
 .play_sound
 	ld de, SFX_POKEBALLS_PLACED_ON_TABLE
-	call PlaySFX
-	ret
+	jp PlaySFX
 
 CardFlip_UpdateCursorOAM:
 	call ClearSprites
@@ -1310,8 +1290,7 @@ CardFlip_UpdateCursorOAM:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	call CardFlip_CopyOAM
-	ret
+	jp CardFlip_CopyOAM
 
 .OAMData:
 cardflip_cursor: MACRO

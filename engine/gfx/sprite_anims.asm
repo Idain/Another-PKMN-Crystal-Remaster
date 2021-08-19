@@ -46,9 +46,6 @@ DoAnimFrame:
 	dw AnimSeq_IntroSuicuneAway
 	assert_table_length NUM_SPRITE_ANIM_SEQS
 
-AnimSeq_Null:
-	ret
-
 AnimSeq_PartyMon:
 	ld a, [wMenuCursorY]
 
@@ -64,6 +61,7 @@ AnimSeq_PartyMon:
 	ld hl, SPRITEANIMSTRUCT_YOFFSET
 	add hl, bc
 	ld [hl], 0
+AnimSeq_Null:
 	ret
 
 AnimSeq_PartyMonSwitch:
@@ -198,9 +196,8 @@ AnimSeq_GSTitleTrail:
 AnimSeq_GSIntroHoOhLugia:
 	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
+	inc [hl]
 	ld a, [hl]
-	inc a
-	ld [hl], a
 	ld d, 2
 	call Sine
 
@@ -376,8 +373,7 @@ AnimSeq_SlotsChanseyEgg:
 	ld a, $4
 	ld [wSlotsDelay], a
 	ld de, SFX_PLACE_PUZZLE_PIECE_DOWN
-	call PlaySFX
-	ret
+	jp PlaySFX
 
 .move_right
 	inc [hl]

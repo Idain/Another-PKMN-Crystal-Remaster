@@ -75,8 +75,6 @@ Kurt_SelectApricorn:
 	dw .MenuData
 	db 1 ; default option
 
-	db 0 ; unused
-
 .MenuData:
 	db SCROLLINGMENU_DISPLAY_ARROWS ; flags
 	db 4, 7 ; rows, columns
@@ -132,7 +130,6 @@ Kurt_SelectQuantity:
 	cp -1
 	jp z, CloseWindow
 	ld a, [wItemQuantityChange]
-	ld [wItemQuantityChange], a ; What is the point of this operation?
 	scf
 	jp CloseWindow
 
@@ -156,8 +153,8 @@ PlaceApricornQuantity:
 	call MenuBoxCoord2Tile
 	ld de, 2 * SCREEN_WIDTH + 10
 	add hl, de
-	ld [hl], "×"
-	inc hl
+	ld a, "×"
+	ld [hli], a
 	ld de, wItemQuantityChange
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 2
 	jp PrintNum
@@ -332,8 +329,7 @@ Kurt_GiveUpSelectedQuantityOfSelectedApricorn:
 Kurt_GetAddressOfApricornQuantity:
 	push hl
 	push bc
-	ld hl, wNumBerries
-	inc hl
+	ld hl, wNumBerries + 1
 	ld c, a
 	ld b, 0
 	add hl, bc

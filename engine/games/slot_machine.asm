@@ -325,8 +325,7 @@ SlotsAction_BetAndStart:
 	ld [wReel3ManipCounter], a
 	call WaitSFX
 	ld a, SFX_SLOT_MACHINE_START
-	call Slots_PlaySFX
-	ret
+	jp Slots_PlaySFX
 
 SlotsAction_WaitStart:
 	ld hl, wSlotsDelay
@@ -699,9 +698,7 @@ Slots_InitReelTiles:
 	ld hl, REEL_X_COORD
 	add hl, bc
 	ld [hl], 14 * 8
-	call .OAM
-	ret
-
+	; fallthrough
 .OAM:
 	ld hl, REEL_ACTION
 	add hl, bc
@@ -712,8 +709,7 @@ Slots_InitReelTiles:
 	ld hl, REEL_SPIN_DISTANCE
 	add hl, bc
 	ld [hl], REEL_ACTION_DO_NOTHING
-	call Slots_UpdateReelPositionAndOAM
-	ret
+	jr Slots_UpdateReelPositionAndOAM
 
 Slots_SpinReels:
 	ld bc, wReel1
@@ -727,9 +723,7 @@ Slots_SpinReels:
 	add hl, bc
 	ld a, [hl]
 	and $f
-	jr nz, .skip
-	call ReelActionJumptable
-.skip
+	call z, ReelActionJumptable
 	ld hl, REEL_SPIN_RATE
 	add hl, bc
 	ld a, [hl]
@@ -830,29 +824,6 @@ Slots_UpdateReelPositionAndOAM:
 	jr nz, .loop
 	ret
 
-GetUnknownSlotReelData: ; unreferenced
-; Used to get OAM attribute values for slot reels?
-; (final Slots_UpdateReelPositionAndOAM above reuses tile IDs as OAM palettes)
-	push hl
-	srl a
-	srl a
-	add LOW(.data)
-	ld l, a
-	ld a, 0
-	adc HIGH(.data)
-	ld h, a
-	ld a, [hl]
-	pop hl
-	ret
-
-.data:
-	db 0 ; SLOTS_SEVEN
-	db 1 ; SLOTS_POKEBALL
-	db 2 ; SLOTS_CHERRY
-	db 3 ; SLOTS_PIKACHU
-	db 4 ; SLOTS_SQUIRTLE
-	db 5 ; SLOTS_STARYU
-
 ReelActionJumptable:
 	ld hl, REEL_ACTION
 	add hl, bc
@@ -888,13 +859,11 @@ ReelActionJumptable:
 	dw ReelAction_WaitEgg                     ; 17
 	dw ReelAction_DropReel                    ; 18
 
-ReelAction_DoNothing:
-	ret
-
 ReelAction_QuadrupleRate:
 	ld hl, REEL_SPIN_RATE
 	add hl, bc
 	ld [hl], 16
+ReelAction_DoNothing:
 	ret
 
 ReelAction_DoubleRate:
@@ -1356,7 +1325,7 @@ Slots_CheckMatchedFirstTwoReels:
 
 .Jumptable:
 	dw .zero
-	dw .one
+	dw .CheckMiddleRow ; one
 	dw .two
 	dw .three
 
@@ -1367,39 +1336,35 @@ Slots_CheckMatchedFirstTwoReels:
 .two
 	call .CheckBottomRow
 	call .CheckTopRow
-
-.one
-	call .CheckMiddleRow
-
-.zero
-	ret
+	jr .CheckMiddleRow
 
 .CheckBottomRow:
 	ld hl, wCurReelStopped
 	ld a, [wReel1Stopped]
 	cp [hl]
-	call z, .StoreResult
+	jr z, .StoreResult
+.zero
 	ret
 
 .CheckUpwardsDiag:
 	ld hl, wCurReelStopped + 1
 	ld a, [wReel1Stopped]
 	cp [hl]
-	call z, .StoreResult
+	jr z, .StoreResult
 	ret
 
 .CheckMiddleRow:
 	ld hl, wCurReelStopped + 1
 	ld a, [wReel1Stopped + 1]
 	cp [hl]
-	call z, .StoreResult
+	jr z, .StoreResult
 	ret
 
 .CheckDownwardsDiag:
 	ld hl, wCurReelStopped + 1
 	ld a, [wReel1Stopped + 2]
 	cp [hl]
-	call z, .StoreResult
+	jr z, .StoreResult
 	ret
 
 .CheckTopRow:
@@ -1442,7 +1407,7 @@ Slots_CheckMatchedAllThreeReels:
 
 .Jumptable:
 	dw .zero
-	dw .one
+	dw .CheckMiddleRow ; one
 	dw .two
 	dw .three
 
@@ -1453,12 +1418,7 @@ Slots_CheckMatchedAllThreeReels:
 .two
 	call .CheckBottomRow
 	call .CheckTopRow
-
-.one
-	call .CheckMiddleRow
-
-.zero
-	ret
+	jr .CheckMiddleRow
 
 .CheckBottomRow:
 	ld hl, wCurReelStopped
@@ -1467,7 +1427,8 @@ Slots_CheckMatchedAllThreeReels:
 	ret nz
 	ld hl, wReel2Stopped
 	cp [hl]
-	call z, .StoreResult
+	jr z, .StoreResult
+.zero
 	ret
 
 .CheckUpwardsDiag:
@@ -1477,7 +1438,7 @@ Slots_CheckMatchedAllThreeReels:
 	ret nz
 	ld hl, wReel2Stopped + 1
 	cp [hl]
-	call z, .StoreResult
+	jr z, .StoreResult
 	ret
 
 .CheckMiddleRow:
@@ -1487,7 +1448,7 @@ Slots_CheckMatchedAllThreeReels:
 	ret nz
 	ld hl, wReel2Stopped + 1
 	cp [hl]
-	call z, .StoreResult
+	jr z, .StoreResult
 	ret
 
 .CheckDownwardsDiag:
@@ -1497,7 +1458,7 @@ Slots_CheckMatchedAllThreeReels:
 	ret nz
 	ld hl, wReel2Stopped + 1
 	cp [hl]
-	call z, .StoreResult
+	jr z, .StoreResult
 	ret
 
 .CheckTopRow:
@@ -1507,9 +1468,8 @@ Slots_CheckMatchedAllThreeReels:
 	ret nz
 	ld hl, wReel2Stopped + 2
 	cp [hl]
-	call z, .StoreResult
-	ret
-
+	ret nz
+	; fallthrough
 .StoreResult:
 	ld [wSlotMatched], a
 	ret
@@ -1543,7 +1503,7 @@ Slots_GetNumberOfGolems:
 	ld a, [wSlotBias]
 	and a
 	jr nz, .not_biased_to_seven
-	ld e, $0
+	ld e, a
 .loop1
 	ld hl, REEL_POSITION
 	add hl, bc

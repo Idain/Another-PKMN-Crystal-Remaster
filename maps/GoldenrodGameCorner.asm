@@ -303,8 +303,7 @@ endr
 ;	ld [wNamedObjectIndex], a
 ;	call GetItemName
 ;	pop hl
-	call PlaceString
-	ret
+	jp PlaceString
 
 .PrintPrizePoints:
 	ld a, [wMenuSelection]

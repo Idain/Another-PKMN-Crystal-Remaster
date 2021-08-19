@@ -143,9 +143,9 @@ _DisplayUnownWords_FillAttr:
 	cp -1
 	ret z
 	cp $60
-	ld a, VRAM_BANK_1 | PAL_BG_BROWN
-	jr c, .got_pal
-	ld a, PAL_BG_BROWN
+	sbc a
+	and (VRAM_BANK_1 | PAL_BG_BROWN) - PAL_BG_BROWN
+	add PAL_BG_BROWN
 
 .got_pal
 	call .PlaceSquare
@@ -158,8 +158,7 @@ _DisplayUnownWords_FillAttr:
 	push hl
 	ld [hli], a
 	ld [hld], a
-	ld b, 0
-	ld c, SCREEN_WIDTH
+	ld bc, SCREEN_WIDTH
 	add hl, bc
 	ld [hli], a
 	ld [hl], a
@@ -198,8 +197,7 @@ _DisplayUnownWords_CopyWord:
 	inc a
 	ld [hld], a
 	dec a
-	ld b, 0
-	ld c, SCREEN_WIDTH
+	ld bc, SCREEN_WIDTH
 	add hl, bc
 	ld c, $10
 	add c
@@ -210,37 +208,37 @@ _DisplayUnownWords_CopyWord:
 	ret
 
 .Tile60:
-	ld [hl], $5b
-	inc hl
+	ld a, $5b
+	ld [hli], a
 	ld [hl], $5c
 	ld bc, SCREEN_WIDTH - 1
 	add hl, bc
-	ld [hl], $4d
-	inc hl
+	ld a, $4d
+	ld [hli], a
 	ld [hl], $5d
 	pop hl
 	ret
 
 .Tile62:
-	ld [hl], $4e
-	inc hl
+	ld a, $4e
+	ld [hli], a
 	ld [hl], $4f
 	ld bc, SCREEN_WIDTH - 1
 	add hl, bc
-	ld [hl], $5e
-	inc hl
+	ld a, $5e
+	ld [hli], a
 	ld [hl], $5f
 	pop hl
 	ret
 
 .Tile64:
-	ld [hl], $2
-	inc hl
+	ld a, $2
+	ld [hli], a
 	ld [hl], $3
 	ld bc, SCREEN_WIDTH - 1
 	add hl, bc
-	ld [hl], $3
-	inc hl
+	ld a, $3
+	ld [hli], a
 	ld [hl], $2
 	pop hl
 	ret

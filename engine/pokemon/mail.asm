@@ -411,6 +411,7 @@ MailboxPC:
 	dec a
 	ld hl, .Jumptable
 	rst JumpTable
+.Cancel:
 	ret
 
 .Jumptable:
@@ -529,9 +530,6 @@ MailboxPC:
 .MailMovedFromBoxText:
 	text_far _MailMovedFromBoxText
 	text_end
-
-.Cancel:
-	ret
 
 .TopMenuHeader:
 	db MENU_BACKUP_TILES ; flags

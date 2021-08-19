@@ -98,8 +98,8 @@ LoadContestantName:
 	cp "@"
 	jr nz, .next
 	dec hl
-	ld [hl], " "
-	inc hl
+	ld a, " "
+	ld [hli], a
 	ld d, h
 	ld e, l
 ; Restore the Trainer Class ID and Trainer ID pointer.  Save de for later.
@@ -131,12 +131,10 @@ BugContest_GetPlayersResult:
 .loop
 	ld a, [hl]
 	cp BUG_CONTEST_PLAYER
-	jr z, .done
+	ret z
 	add hl, de
 	dec b
 	jr nz, .loop
-
-.done
 	ret
 
 BugContest_JudgeContestants:
@@ -341,9 +339,11 @@ ContestScore:
 
 	; Remaining HP / 8
 	ld a, [wContestMonHP + 1]
-	srl a
-	srl a
-	srl a
+
+	rrca
+	rrca
+	rrca
+	and %00011111
 	call .AddContestStat
 
 	; Whether it's holding an item

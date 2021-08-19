@@ -757,11 +757,11 @@ DrawMailBorder2:
 	ld [hli], a
 	inc a
 	call Mail_DrawTopBottomBorder
-	ld [hl], $31
+	ld [hl], $31 ; no-optimize
 	inc hl
 	inc a
 	call Mail_DrawLeftRightBorder
-	ld [hl], $31
+	ld [hl], $31 ; no-optimize
 	inc hl
 	inc a
 	call Mail_DrawTopBottomBorder

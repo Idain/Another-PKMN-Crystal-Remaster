@@ -149,8 +149,7 @@ PokeAnim_Wait:
 	ret
 
 PokeAnim_Setup:
-	ld c, FALSE
-	ld b, 0
+	ld bc, FALSE
 	call PokeAnim_InitAnim
 	call PokeAnim_SetVBank1
 	ld a, [wPokeAnimSceneIndex]
@@ -159,8 +158,7 @@ PokeAnim_Setup:
 	ret
 
 PokeAnim_Setup2:
-	ld c, FALSE
-	ld b, 4
+	lb bc, 4, FALSE
 	call PokeAnim_InitAnim
 	call PokeAnim_SetVBank1
 	ld a, [wPokeAnimSceneIndex]
@@ -169,8 +167,7 @@ PokeAnim_Setup2:
 	ret
 
 PokeAnim_Idle:
-	ld c, TRUE
-	ld b, 0
+	ld bc, TRUE
 	call PokeAnim_InitAnim
 	call PokeAnim_SetVBank1
 	ld a, [wPokeAnimSceneIndex]
@@ -936,14 +933,12 @@ GetMonFramesPointer:
 	jr z, .egg
 
 	call PokeAnim_IsUnown
-	ld b, BANK(UnownFramesPointers)
-	ld c, BANK(UnownsFrames)
+	lb bc, BANK(UnownFramesPointers), BANK(UnownsFrames)
 	ld hl, UnownFramesPointers
 	jr z, .got_frames
 	ld a, [wPokeAnimSpecies]
 	cp JOHTO_POKEMON
-	ld b, BANK(FramesPointers)
-	ld c, BANK(KantoFrames)
+	lb bc, BANK(FramesPointers), BANK(KantoFrames)
 	ld hl, FramesPointers
 	jr c, .got_frames
 	ld c, BANK(JohtoFrames)

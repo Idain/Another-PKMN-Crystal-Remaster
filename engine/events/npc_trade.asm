@@ -164,12 +164,11 @@ DoNPCTrade:
 	call GetTradeAttr
 	ld a, [hl]
 	cp TRADE_DIALOGSET_GIRL
-	ld a, CAUGHT_BY_GIRL
-	jr c, .okay
-	ld a, CAUGHT_BY_BOY
-.okay
-	ld [wOTTrademonCaughtData], a
+; If carry, CAUGHT_BY_GIRL; else, CAUGHT_BY_BOY
+	sbc a
+	add CAUGHT_BY_BOY
 
+	ld [wOTTrademonCaughtData], a
 	ld hl, wPartyMon1Level
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call Trade_GetAttributeOfCurrentPartymon

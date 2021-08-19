@@ -1298,8 +1298,7 @@ BattleAnimAssignPals:
 	ld [wOBP1], a
 	call DmgToCgbBGPals
 	lb de, %11100100, %11100100
-	call DmgToCgbObjPals
-	ret
+	jp DmgToCgbObjPals
 
 ClearBattleAnims::
 ; Clear animation block

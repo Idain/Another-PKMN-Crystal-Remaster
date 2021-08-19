@@ -1533,11 +1533,9 @@ FullRestoreEffect:
 	jp z, StatusHealer_NoEffect
 
 	call IsMonAtFullHealth
-	jr c, .NotAtFullHealth
+	jp nc, FullyHealStatus
 
-	jp FullyHealStatus
-
-.NotAtFullHealth:
+;.NotAtFullHealth:
 	call .FullRestore
 	jp StatusHealer_Jumptable
 
@@ -2025,8 +2023,8 @@ EscapeRopeEffect:
 	farcall EscapeRopeFunction
 
 	ld a, [wItemEffectSucceeded]
-	cp 1
-	call z, UseDisposableItem
+	dec a
+	jp z, UseDisposableItem
 	ret
 
 SuperRepelEffect:
@@ -2376,8 +2374,7 @@ BattleRestorePP:
 	jr nz, .not_in_battle
 	ld a, [wPlayerSubStatus5]
 	bit SUBSTATUS_TRANSFORMED, a
-	jr nz, .not_in_battle
-	call .UpdateBattleMonPP
+	call z, .UpdateBattleMonPP
 
 .not_in_battle
 	call Play_SFX_FULL_HEAL
@@ -2541,10 +2538,9 @@ BasementKeyEffect:
 SacredAshEffect:
 	farcall _SacredAsh
 	ld a, [wItemEffectSucceeded]
-	cp $1
+	dec a
 	ret nz
-	call UseDisposableItem
-	ret
+	jr UseDisposableItem
 
 NormalBoxEffect:
 	ld c, DECOFLAG_SILVER_TROPHY_DOLL
@@ -2558,7 +2554,7 @@ OpenBox:
 	ld hl, .SentTrophyHomeText
 	call PrintText
 
-	jp UseDisposableItem
+	jr UseDisposableItem
 
 .SentTrophyHomeText:
 	text_far _SentTrophyHomeText

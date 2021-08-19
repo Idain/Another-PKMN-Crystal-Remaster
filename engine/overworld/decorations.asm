@@ -106,7 +106,7 @@ _PlayerDecorationMenu:
 	ld a, [hli]
 	ld d, a
 	or e
-	jr z, .done
+	ret z
 	push hl
 	call _de_
 	pop hl
@@ -118,8 +118,6 @@ _PlayerDecorationMenu:
 .next
 	inc hl
 	jr .loop
-.done
-	ret
 
 .owned_pointers:
 	table_width 3, _PlayerDecorationMenu.owned_pointers
@@ -882,8 +880,7 @@ GetDecorationName_c_de:
 	ld a, c
 	ld h, d
 	ld l, e
-	call GetDecorationName
-	ret
+	jp GetDecorationName
 
 DecorationFlagAction_c:
 	ld a, c

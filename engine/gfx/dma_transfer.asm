@@ -70,9 +70,7 @@ ReloadMapPart::
 	call HDMATransfer_Wait127Scanlines_toBGMap
 	pop af
 	ldh [rVBK], a
-	ei
-
-	ret
+	reti
 
 Mobile_ReloadMapPart:
 	ld hl, .Function
@@ -100,44 +98,7 @@ Mobile_ReloadMapPart:
 	call HDMATransfer_NoDI
 	pop af
 	ldh [rVBK], a
-	ei
-
-	ret
-
-Function1040d4: ; unreferenced
-	ld hl, .Function
-	jp CallInSafeGFXMode
-
-.Function
-	ld a, $1
-	ldh [rVBK], a
-	ld a, BANK(w3_d800)
-	ldh [rSVBK], a
-	ld de, w3_d800
-	ldh a, [hBGMapAddress + 1]
-	ldh [rHDMA1], a
-	ldh a, [hBGMapAddress]
-	ldh [rHDMA2], a
-	ld a, d
-	ldh [rHDMA3], a
-	ld a, e
-	ldh [rHDMA4], a
-	ld a, $23
-	ldh [hDMATransfer], a
-	call WaitDMATransfer
-	ret
-
-Function1040fb: ; unreferenced
-	ld hl, .Function
-	jp CallInSafeGFXMode
-
-.Function
-	ld a, $1
-	ldh [rVBK], a
-	ld a, BANK(w3_d800)
-	ldh [rSVBK], a
-	ld hl, w3_d800
-	jp HDMATransferToWRAMBank3
+	reti
 
 OpenAndCloseMenu_HDMATransferTilemapAndAttrmap::
 ; OpenText
@@ -169,8 +130,7 @@ OpenAndCloseMenu_HDMATransferTilemapAndAttrmap::
 	call HDMATransfer_Wait123Scanlines_toBGMap
 	pop af
 	ldh [rVBK], a
-	ei
-	ret
+	reti
 
 Mobile_OpenAndCloseMenu_HDMATransferTilemapAndAttrmap:
 	ld hl, .Function
@@ -381,9 +341,7 @@ _continue_HDMATransfer:
 	jr nz, .final_ly_loop
 	ld hl, rHDMA5
 	res 7, [hl]
-	ei
-
-	ret
+	reti
 
 _LoadHDMAParameters:
 	ld a, h
@@ -586,8 +544,8 @@ HDMATransfer_OnlyTopFourRows:
 	ld a, l
 	add BG_MAP_WIDTH - SCREEN_WIDTH
 	ld l, a
-	ld a, h
-	adc 0
+	adc h
+	sub l
 	ld h, a
 	dec b
 	jr nz, .outer_loop

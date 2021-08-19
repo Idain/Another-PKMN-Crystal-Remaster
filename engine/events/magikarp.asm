@@ -79,13 +79,13 @@ PrintMagikarpLength:
 	ld de, wMagikarpLength
 	lb bc, PRINTNUM_LEFTALIGN | 1, 2
 	call PrintNum
-	ld [hl], "′"
-	inc hl
+	ld a, "′"
+	ld [hli], a
 	ld de, wMagikarpLength + 1
 	lb bc, PRINTNUM_LEFTALIGN | 1, 2
 	call PrintNum
-	ld [hl], "″"
-	inc hl
+	ld a, "″"
+	ld [hli], a
 	ld [hl], "@"
 	ret
 
@@ -292,8 +292,7 @@ MagikarpHouseSign:
 	ld [wMagikarpLength + 1], a
 	call PrintMagikarpLength
 	ld hl, .KarpGuruRecordText
-	call PrintText
-	ret
+	jp PrintText
 
 .KarpGuruRecordText:
 	text_far _KarpGuruRecordText

@@ -220,10 +220,11 @@ PartyMenu_InitAnimatedMonIcon:
 	callfar ItemIsMail
 	pop bc
 	pop hl
-	ld a, SPRITE_ANIM_FRAMESET_PARTY_MON_WITH_MAIL
-	jr c, .mail
-	ld a, SPRITE_ANIM_FRAMESET_PARTY_MON_WITH_ITEM
-.mail
+; If carry, SPRITE_ANIM_FRAMESET_PARTY_MON_WITH_MAIL
+; else, SPRITE_ANIM_FRAMESET_PARTY_MON_WITH_ITEM
+	sbc a
+	add SPRITE_ANIM_FRAMESET_PARTY_MON_WITH_ITEM 
+
 	ld hl, SPRITEANIMSTRUCT_FRAMESET_ID
 	add hl, bc
 	ld [hl], a

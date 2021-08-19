@@ -184,8 +184,7 @@ PC_PlayBootSound:
 PC_PlayShutdownSound:
 	ld de, SFX_SHUT_DOWN_PC
 	call PC_WaitPlaySFX
-	call WaitSFX
-	ret
+	jp WaitSFX
 
 PC_PlayChoosePCSound:
 	ld de, SFX_CHOOSE_PC_OPTION
@@ -200,8 +199,7 @@ PC_WaitPlaySFX:
 	push de
 	call WaitSFX
 	pop de
-	call PlaySFX
-	ret
+	jp PlaySFX
 
 _PlayersHousePC:
 	call PC_PlayBootSound
@@ -475,9 +473,6 @@ PlayerDepositItemMenu:
 	dw .tossable ; ITEMMENU_PARTY
 	dw .tossable ; ITEMMENU_CLOSE
 
-.no_toss
-	ret
-
 .tossable
 	ld a, [wPCItemQuantityChange]
 	push af
@@ -488,6 +483,7 @@ PlayerDepositItemMenu:
 	ld [wPCItemQuantity], a
 	pop af
 	ld [wPCItemQuantityChange], a
+.no_toss
 	ret
 
 .DepositItem:
@@ -563,8 +559,7 @@ PCItemsJoypad:
 	ld hl, .PCItemsMenuData
 	call CopyMenuHeader
 	hlcoord 0, 0
-	ld b, 10
-	ld c, 18
+	lb bc, 10, 18
 	call Textbox
 	ld a, [wPCItemsCursor]
 	ld [wMenuCursorPosition], a
@@ -591,13 +586,12 @@ PCItemsJoypad:
 
 .moving_stuff_around
 	ld a, [wMenuJoypad]
-	cp B_BUTTON
-	jr z, .b_2
 	cp A_BUTTON
 	jr z, .a_select_2
 	cp SELECT
 	jr z, .a_select_2
-	jr .next
+	cp B_BUTTON
+	jr nz, .next
 
 .b_2
 	xor a
@@ -638,8 +632,7 @@ PCItemsJoypad:
 
 PC_DisplayText:
 	call MenuTextbox
-	call ExitMenu
-	ret
+	jp ExitMenu
 
 PokecenterPCTurnOnText:
 	text_far _PokecenterPCTurnOnText

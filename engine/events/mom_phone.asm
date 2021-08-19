@@ -42,8 +42,8 @@ MomTriesToBuySomething::
 	ld bc, wCallerContact
 	ld hl, PHONE_CONTACT_TRAINER_CLASS
 	add hl, bc
-	ld [hl], TRAINER_NONE
-	inc hl
+	ld a, TRAINER_NONE
+	ld [hli], a
 	ld [hl], PHONE_MOM
 	ld hl, PHONE_CONTACT_SCRIPT2_BANK
 	add hl, bc
@@ -75,10 +75,10 @@ CheckBalance_MomItem2:
 
 .check_have_2300
 	ld hl, hMoneyTemp
-	ld [hl], HIGH(MOM_MONEY >> 8)
-	inc hl
-	ld [hl], HIGH(MOM_MONEY) ; mid
-	inc hl
+	ld a, HIGH(MOM_MONEY >> 8)
+	ld [hli], a
+	ld a, HIGH(MOM_MONEY) ; mid
+	ld [hli], a
 	ld [hl], LOW(MOM_MONEY)
 .loop
 	ld de, wMomItemTriggerBalance
@@ -143,8 +143,7 @@ Mom_GiveItemOrDoll:
 	ld a, 1
 	ld [wItemQuantityChange], a
 	ld hl, wNumPCItems
-	call ReceiveItem
-	ret
+	jp ReceiveItem
 
 Mom_GetScriptPointer:
 	call GetItemFromMom

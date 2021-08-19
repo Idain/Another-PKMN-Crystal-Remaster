@@ -90,8 +90,7 @@ _UnownPuzzle:
 	ret
 
 InitUnownPuzzlePiecePositions:
-	ld c, 1
-	ld b, 16
+	lb bc, 16, 1
 .load_loop
 	call Random
 	and $f
@@ -265,16 +264,10 @@ UnownPuzzle_Input:
 .done_joypad
 	ld a, [wHoldingUnownPuzzlePiece]
 	and a
-	jr nz, .holding_piece
-	ld de, SFX_POUND
-	jr .play_sfx
-
-.holding_piece
 	ld de, SFX_MOVE_PUZZLE_PIECE
-
-.play_sfx
-	call PlaySFX
-	ret
+	jp nz, PlaySFX ; holding_piece
+	ld de, SFX_POUND
+	jp PlaySFX
 
 UnownPuzzle_A:
 	ld a, [wHoldingUnownPuzzlePiece]
@@ -331,8 +324,7 @@ UnownPuzzle_Quit:
 UnownPuzzle_InvalidAction:
 	ld de, SFX_WRONG
 	call PlaySFX
-	call WaitSFX
-	ret
+	jp WaitSFX
 
 UnownPuzzle_FillBox:
 	ld de, SCREEN_WIDTH
@@ -449,11 +441,10 @@ UnownPuzzle_CheckCurrentTileOccupancy:
 
 GetCurrentPuzzlePieceVTileCorner:
 	ld a, [wUnownPuzzleHeldPiece]
-	ld hl, .Corners
-	add l
+	add LOW(.Corners)
 	ld l, a
-	ld a, $0
-	adc h
+	adc HIGH(.Corners)
+	sub l
 	ld h, a
 	ld a, [hl]
 	ret
@@ -702,11 +693,10 @@ ConvertLoadedPuzzlePieces:
 
 .GetEnlargedTile:
 	push hl
-	ld hl, .EnlargedTiles
-	add l
+	add LOW(.EnlargedTiles)
 	ld l, a
-	ld a, 0
-	adc h
+	adc HIGH(.EnlargedTiles)
+	sub l
 	ld h, a
 	ld a, [hl]
 	pop hl
@@ -798,8 +788,7 @@ LoadUnownPuzzlePiecesGFX:
 	ld l, a
 	ld de, vTiles2
 	call Decompress
-	call ConvertLoadedPuzzlePieces
-	ret
+	jp ConvertLoadedPuzzlePieces
 
 .LZPointers:
 ; entries correspond to UNOWNPUZZLE_* constants

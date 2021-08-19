@@ -13,21 +13,6 @@ LoadMobileTradeBorderTilemap:
 	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
 	jp CopyBytes
 
-TestMobileTradeBorderTilemap: ; unreferenced
-; Loads the mobile trade border graphics and tilemap,
-; with a placeholder SCGB_DIPLOMA layout, and exits
-; after pressing A or B. Possibly used for testing.
-	call LoadStandardMenuHeader
-	call ClearBGPalettes
-	call ClearTilemap
-	call ClearSprites
-	ld b, SCGB_DIPLOMA
-	call GetSGBLayout
-	call SetPalettes
-	call WaitBGMap
-	call JoyWaitAorB
-	jp ExitMenu
-
 MobileTradeBorderTilemap:
 INCBIN "gfx/trade/border_mobile.tilemap"
 

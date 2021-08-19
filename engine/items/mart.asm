@@ -586,8 +586,7 @@ RooftopSaleAskPurchaseQuantity:
 	ld a, MAX_ITEM_STACK
 	ld [wItemQuantity], a
 	farcall RooftopSale_SelectQuantityToBuy
-	call ExitMenu
-	ret
+	jp ExitMenu
 
 .GetSalePrice:
 	ld a, [wMartItemID]
@@ -747,12 +746,6 @@ SellMenu:
 	and a
 	ret
 
-.NothingToSell: ; unreferenced
-	ld hl, .NothingToSellText
-	call MenuTextboxBackup
-	and a
-	ret
-
 .NothingToSellText:
 	text_far _NothingToSellText
 	text_end
@@ -773,9 +766,6 @@ SellMenu:
 	dw .try_sell
 	dw .try_sell
 
-.cant_buy
-	ret
-
 .try_sell
 	farcall _CheckTossableItem
 	ld a, [wItemAttributeValue]
@@ -784,6 +774,7 @@ SellMenu:
 	ld hl, MartCantBuyText
 	call PrintText
 	and a
+.cant_buy
 	ret
 
 .okay_to_sell

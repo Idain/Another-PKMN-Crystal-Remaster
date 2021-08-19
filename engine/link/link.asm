@@ -814,8 +814,7 @@ Link_PrepPartyData_Gen1:
 
 	ld hl, MON_EVS - 1
 	add hl, bc
-	ld c, STAT_SATK
-	ld b, TRUE
+	lb bc, TRUE, STAT_SATK
 	predef CalcMonStatC
 
 	pop bc
@@ -952,8 +951,7 @@ Link_PrepPartyData_Gen2:
 
 	ld hl, wLinkPlayerMailMetadata
 	ld de, wLinkPlayerMailPatchSet
-	ld b, (MAIL_STRUCT_LENGTH - (MAIL_MSG_LENGTH + 1)) * PARTY_LENGTH
-	ld c, 0
+	lb bc, (MAIL_STRUCT_LENGTH - (MAIL_MSG_LENGTH + 1)) * PARTY_LENGTH, 0
 .loop6
 	inc c
 	ld a, [hl]
@@ -1094,8 +1092,7 @@ Link_ConvertPartyStruct1to2:
 	ld e, l
 	ld hl, MON_EVS - 1
 	add hl, bc
-	ld c, STAT_SATK
-	ld b, TRUE
+	lb bc, TRUE, STAT_SATK
 	predef CalcMonStatC
 	pop bc
 	pop hl
@@ -1107,8 +1104,7 @@ Link_ConvertPartyStruct1to2:
 	push bc
 	ld hl, MON_EVS - 1
 	add hl, bc
-	ld c, STAT_SDEF
-	ld b, TRUE
+	lb bc, TRUE, STAT_SDEF
 	predef CalcMonStatC
 	pop bc
 	pop hl
@@ -1312,15 +1308,11 @@ LinkTradePartymonMenuLoop:
 	farcall LinkTradeMenu
 	ld a, d
 	and a
-	jr nz, .check_joypad
-	jp LinkTradePartiesMenuMasterLoop
+	jp z, LinkTradePartiesMenuMasterLoop
 
-.check_joypad
 	bit A_BUTTON_F, a
-	jr z, .not_a_button
-	jp LinkTrade_TradeStatsMenu
+	jp z, LinkTrade_TradeStatsMenu
 
-.not_a_button
 	bit D_DOWN_F, a
 	jr z, .not_d_down
 	ld a, [wMenuCursorY]
@@ -1645,8 +1637,7 @@ LinkTrade:
 	ld [wUnusedLinkAction], a
 	ld [wOtherPlayerLinkAction], a
 	hlcoord 0, 12
-	ld b, 4
-	ld c, 18
+	lb bc, 4, 18
 	call LinkTextboxAtHL
 	farcall Link_WaitBGMap
 	ld a, [wCurTradePartyMon]
@@ -1674,8 +1665,7 @@ LinkTrade:
 	call PlaceHLTextAtBC
 	call LoadStandardMenuHeader
 	hlcoord 10, 7
-	ld b, 3
-	ld c, 7
+	lb bc, 3, 7
 	call LinkTextboxAtHL
 	ld de, String_TradeCancel
 	hlcoord 12, 8
@@ -1714,8 +1704,7 @@ LinkTrade:
 	ld a, 1
 	ld [wPlayerLinkAction], a
 	hlcoord 0, 12
-	ld b, 4
-	ld c, 18
+	lb bc, 4, 18
 	call LinkTextboxAtHL
 	hlcoord 1, 14
 	ld de, String_TooBadTheTradeWasCanceled
@@ -1732,8 +1721,7 @@ LinkTrade:
 	jr nz, .do_trade
 ; If we're here, the other player canceled the trade
 	hlcoord 0, 12
-	ld b, 4
-	ld c, 18
+	lb bc, 4, 18
 	call LinkTextboxAtHL
 	hlcoord 1, 14
 	ld de, String_TooBadTheTradeWasCanceled
@@ -1987,8 +1975,7 @@ LinkTrade:
 	ld c, 40
 	call DelayFrames
 	hlcoord 0, 12
-	ld b, 4
-	ld c, 18
+	lb bc, 4, 18
 	call LinkTextboxAtHL
 	hlcoord 1, 14
 	ld de, String_TradeCompleted
@@ -2034,18 +2021,6 @@ LoadTradeScreenBorderGFX:
 SetTradeRoomBGPals:
 	farcall _LoadTradeRoomBGPals
 	jp SetPalettes
-
-PlaceTradeScreenTextbox: ; unreferenced
-	hlcoord 0, 0
-	ld b, 6
-	ld c, 18
-	call LinkTextboxAtHL
-	hlcoord 0, 8
-	ld b, 6
-	ld c, 18
-	call LinkTextboxAtHL
-	farcall PlaceTradePartnerNamesAndParty
-	ret
 
 INCLUDE "engine/movie/trade_animation.asm"
 
@@ -2131,7 +2106,7 @@ CheckTimeCapsuleCompatibility:
 	ret
 
 GetIncompatibleMonName:
-; Calulate which pokemon is incompatible, and get that pokemon's name
+; Calulate which Pokémon is incompatible, and get that Pokémon's name
 	ld a, [wPartyCount]
 	sub b
 	ld c, a
@@ -2141,8 +2116,7 @@ GetIncompatibleMonName:
 	add hl, bc
 	ld a, [hl]
 	ld [wNamedObjectIndex], a
-	call GetPokemonName
-	ret
+	jp GetPokemonName
 
 EnterTimeCapsule:
 	ld c, 10
@@ -2378,10 +2352,10 @@ CheckLinkTimeout_Gen2:
 Link_CheckCommunicationError:
 	xor a
 	ldh [hSerialReceivedNewData], a
-	ld a, [wLinkTimeoutFrames]
+	ld hl, wLinkTimeoutFrames
+	ld a, [hli]
+	ld l, [hl]
 	ld h, a
-	ld a, [wLinkTimeoutFrames + 1]
-	ld l, a
 	push hl
 	call .CheckConnected
 	pop hl
@@ -2442,10 +2416,10 @@ TryQuickSave:
 	ld a, [wChosenCableClubRoom]
 	push af
 	farcall Link_SaveGame
-	ld a, TRUE
-	jr nc, .return_result
-	xor a ; FALSE
-.return_result
+; If not carry, TRUE; else, FALSE.
+	sbc a
+	inc a
+
 	ld [wScriptVar], a
 	pop af
 	ld [wChosenCableClubRoom], a

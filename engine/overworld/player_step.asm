@@ -55,6 +55,7 @@ HandlePlayerStep:
 	ld a, [hl]
 	ld hl, .Jumptable
 	rst JumpTable
+.fail2
 	ret
 
 .Jumptable:
@@ -62,9 +63,6 @@ HandlePlayerStep:
 	dw BufferScreen
 	dw .fail2
 	dw .fail2
-
-.fail2
-	ret
 
 UpdatePlayerCoords:
 	ld a, [wPlayerStepDirection]

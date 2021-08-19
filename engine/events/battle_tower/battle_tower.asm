@@ -252,6 +252,7 @@ RunBattleTowerTrainer:
 	ld [wOptions], a
 	ld a, TRUE
 	ld [wBattleTowerBattleEnded], a
+SkipBattleTowerTrainer:
 	ret
 
 ReadBTTrainerParty:
@@ -420,8 +421,7 @@ endr
 	and a
 	jr z, .not_move
 	cp NUM_ATTACKS + 1
-	jr nc, .not_move
-	jr .valid_move
+	jr c, .valid_move
 
 .not_move
 	dec hl
@@ -561,9 +561,6 @@ CopyBTTrainer_FromBT_OT_TowBT_OTTemp:
 	ld hl, sNrOfBeatenBattleTowerTrainers
 	inc [hl]
 	jp CloseSRAM
-
-SkipBattleTowerTrainer:
-	ret
 
 Function1704ca: ; unreferenced
 	ld a, [s5_be46]
@@ -1323,9 +1320,6 @@ Function1709bb: ; BattleTowerAction $10
 	ld [s5_a800], a
 	jp CloseSRAM
 
-.NoAction:
-	ret
-
 .Action4:
 	ld a, BANK(s5_b023) ; aka BANK(s5_a825) and BANK(s5_a826)
 	call OpenSRAM
@@ -1342,6 +1336,7 @@ Function1709bb: ; BattleTowerAction $10
 	farcall Function17d0f3
 	ld a, TRUE
 	ld [wScriptVar], a
+.NoAction:
 	ret
 
 .Action5:

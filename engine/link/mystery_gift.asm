@@ -299,8 +299,7 @@ ExchangeMysteryGiftData:
 .continue
 	push bc
 	call MysteryGift_UpdateJoypad
-	ld b, 1 << rRP_RECEIVING
-	ld c, LOW(rRP)
+	lb bc, 1 << rRP_RECEIVING, LOW(rRP)
 .in_vblank
 	ldh a, [c]
 	and b
@@ -345,9 +344,8 @@ ReceiverExchangeMysteryGiftDataPayloads_GotPayload:
 	jp nz, EndOrContinueMysteryGiftIRCommunication
 	; Switch roles
 	call BeginReceivingIRCommunication
-	jp nz, EndOrContinueMysteryGiftIRCommunication
 	; Receive an empty block
-	call ReceiveEmptyIRDataBlock
+	call z, ReceiveEmptyIRDataBlock
 	jp EndOrContinueMysteryGiftIRCommunication
 
 SenderExchangeMysteryGiftDataPayloads:
@@ -362,9 +360,8 @@ SenderExchangeMysteryGiftDataPayloads:
 	jp nz, EndOrContinueMysteryGiftIRCommunication
 	; Switch roles
 	call BeginSendingIRCommunication
-	jp nz, EndOrContinueMysteryGiftIRCommunication
 	; Send an empty block
-	call SendEmptyIRDataBlock
+	call z, SendEmptyIRDataBlock
 	jp EndOrContinueMysteryGiftIRCommunication
 
 ReceiveMysteryGiftDataPayload:
@@ -543,9 +540,8 @@ ExchangeNameCardData:
 	jp nz, EndNameCardIRCommunication
 	; Switch roles
 	call BeginReceivingIRCommunication
-	jp nz, EndNameCardIRCommunication
 	; Receive an empty block
-	call ReceiveEmptyIRDataBlock
+	call z, ReceiveEmptyIRDataBlock
 	jp EndNameCardIRCommunication
 
 .sender
@@ -560,9 +556,8 @@ ExchangeNameCardData:
 	jp nz, EndNameCardIRCommunication
 	; Switch roles
 	call BeginSendingIRCommunication
-	jp nz, EndNameCardIRCommunication
 	; Send an empty block
-	call SendEmptyIRDataBlock
+	call z, SendEmptyIRDataBlock
 	jp EndNameCardIRCommunication
 
 ReceiveNameCardDataPayload:
@@ -819,8 +814,7 @@ InitializeIRCommunicationRoles:
 	ldh [hMGRole], a
 .loop
 	call MysteryGift_UpdateJoypad
-	ld b, 1 << rRP_RECEIVING
-	ld c, LOW(rRP)
+	lb bc, 1 << rRP_RECEIVING, LOW(rRP)
 	; Check if we've pressed the B button to cancel
 	ldh a, [hMGJoypadReleased]
 	bit B_BUTTON_F, a
@@ -866,8 +860,7 @@ ReceiveIRHelloMessage:
 	ld d, 5
 	call SendInfraredLEDOn
 	ld d, 5
-	call SendInfraredLEDOff
-	ret
+	jp SendInfraredLEDOff
 
 SendIRHelloMessageAfterDelay:
 	; Wait a random amount of time
@@ -1042,8 +1035,7 @@ SendIRDataMessage:
 	ld d, 5
 	call SendInfraredLEDOn
 	ld d, 17
-	call SendInfraredLEDOff
-	ret
+	jp SendInfraredLEDOff
 
 InfraredLEDReceiveTimedOut:
 	ldh a, [hMGStatusFlags]
@@ -1206,8 +1198,7 @@ ReceiveIRDataMessage:
 	jp z, InfraredLEDReceiveTimedOut
 
 	ld d, 16
-	call SendInfraredLEDOff
-	ret
+	jp SendInfraredLEDOff
 
 SendEmptyIRDataBlock:
 	ld b, 0
@@ -1515,15 +1506,10 @@ InitMysteryGiftLayout:
 	call WaitBGMap
 	ld b, SCGB_MYSTERY_GIFT
 	call GetSGBLayout
-	call SetPalettes
-	ret
+	jp SetPalettes
 
 .Load5GFX:
 	ld b, 5
-	jr .gfx_loop
-
-.Load6GFX: ; unreferenced
-	ld b, 6
 	jr .gfx_loop
 
 .Load16GFX:
@@ -1717,8 +1703,7 @@ StageDataForNameCard:
 	ld hl, s4_a007 ; address of MBC30 bank
 	ld bc, 12
 	call CopyBytes
-	call CloseSRAM
-	ret
+	jp CloseSRAM
 
 InitNameCardLayout:
 	call ClearBGPalettes

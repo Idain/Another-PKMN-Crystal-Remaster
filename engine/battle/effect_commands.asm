@@ -2767,7 +2767,6 @@ PlayerAttackDamage:
 	ret
 
 TruncateHL_BC:
-
 ; Truncate 16-bit values hl and bc to 8-bit values b and c respectively.
 ; b = hl, c = bc
 	ld a, h
@@ -6867,7 +6866,6 @@ PlayDamageAnim:
 
 .player
 	ld [wNumHits], a
-
 	jp PlayUserBattleAnim
 
 LoadMoveAnim:
@@ -6879,14 +6877,11 @@ LoadMoveAnim:
 	call GetBattleVar
 	and a
 	ret z
-
 	; fallthrough
 
 LoadAnim:
 	ld [wFXAnimID], a
-
 	; fallthrough
-
 PlayUserBattleAnim:
 	push hl
 	push de

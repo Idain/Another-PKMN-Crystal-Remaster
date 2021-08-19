@@ -128,8 +128,7 @@ GetCaughtName:
 	call AddNTimes
 	ld de, wSeerNickname
 	ld bc, MON_NAME_LENGTH
-	call CopyBytes
-	ret
+	jp CopyBytes
 
 GetCaughtLevel:
 	ld a, "@"

@@ -39,5 +39,4 @@ SetMemEvent:
 	ld d, [hl]
 	ld e, a
 	ld b, SET_FLAG
-	call EventFlagAction
-	ret
+	jp EventFlagAction

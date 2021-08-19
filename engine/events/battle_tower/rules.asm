@@ -26,8 +26,8 @@ CheckForMobileBattleRules:
 
 _CheckForBattleTowerRules:
 	ld hl, wStringBuffer2
-	ld [hl], "3"
-	inc hl
+	ld a, "3"
+	ld [hli], a
 	ld [hl], "@"
 	ld de, .PointerTables
 	call BattleTower_ExecuteJumptable
@@ -60,8 +60,7 @@ ExcuseMeYoureNotReadyText:
 
 BattleTower_PleaseReturnWhenReady:
 	ld hl, .BattleTowerReturnWhenReadyText
-	call PrintText
-	ret
+	jp PrintText
 
 .BattleTowerReturnWhenReadyText:
 	text_far _BattleTowerReturnWhenReadyText
@@ -210,11 +209,13 @@ CheckBTRule_PartyCountEq3:
 	scf
 	ret
 
+CheckBTRule_PartyItemsAreUnique:
+	ld hl, wPartyMon1Item
+	jr CheckPartyValueIsUnique
+
 CheckBTRule_PartySpeciesAreUnique:
 	ld hl, wPartyMon1Species
-	call CheckPartyValueIsUnique
-	ret
-
+	; fallthrough
 CheckPartyValueIsUnique:
 	ld de, wPartyCount
 	ld a, [de]
@@ -274,11 +275,6 @@ CheckPartyValueIsUnique:
 	cp EGG
 	ld a, b
 	pop bc
-	ret
-
-CheckBTRule_PartyItemsAreUnique:
-	ld hl, wPartyMon1Item
-	call CheckPartyValueIsUnique
 	ret
 
 CheckBTRule_HasPartyAnEgg:

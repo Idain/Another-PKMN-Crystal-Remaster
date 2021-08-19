@@ -73,8 +73,7 @@ BattleTowerText::
 	bccoord 1, 14
 	pop af
 	ldh [rSVBK], a
-	call PlaceHLTextAtBC
-	ret
+	jp PlaceHLTextAtBC
 
 INCLUDE "mobile/fixed_words.asm"
 

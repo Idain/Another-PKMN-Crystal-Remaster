@@ -38,8 +38,7 @@ ConvertCurItemIntoCurTMHM:
 
 GetTMHMItemMove:
 	call ConvertCurItemIntoCurTMHM
-	predef GetTMHMMove
-	ret
+	predef_jump GetTMHMMove
 
 AskTeachTMHM:
 	ld hl, wOptions
@@ -236,8 +235,7 @@ TMHM_ShowTMMoveDescription:
 	call TMHM_CheckHoveringOverCancel
 	jp nc, TMHM_ExitPocket
 	hlcoord 0, 12
-	ld b, 4
-	ld c, SCREEN_WIDTH - 2
+	lb bc, 4, SCREEN_WIDTH - 2
 	call Textbox
 	ld a, [wCurItem]
 	cp NUM_TMS + NUM_HMS + 1
@@ -363,8 +361,8 @@ TMHM_DisplayPocketItems:
 	push af
 	sub NUM_TMS
 	ld [wTempTMHM], a
-	ld [hl], "H"
-	inc hl
+	ld a, "H"
+	ld [hli], a
 	ld de, wTempTMHM
 	lb bc, PRINTNUM_LEFTALIGN | 1, 2
 	call PrintNum
@@ -468,8 +466,7 @@ TMHM_PlaySFX_ReadText2:
 	ret
 
 CountTMsHMs:
-	ld b, 0
-	ld c, NUM_TMS + NUM_HMS
+	lb bc, 0, NUM_TMS + NUM_HMS
 	ld hl, wTMsHMs
 .loop
 	ld a, [hli]

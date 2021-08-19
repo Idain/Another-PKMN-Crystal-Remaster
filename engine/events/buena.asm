@@ -166,8 +166,7 @@ BuenaPrize:
 
 Buena_DisplayBlueCardBalance:
 	ld hl, BlueCardBalanceMenuHeader
-	call LoadMenuHeader
-	ret
+	jp LoadMenuHeader
 
 PrintBlueCardBalance:
 	ld de, wBlueCardBalance
