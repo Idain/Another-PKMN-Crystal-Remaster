@@ -815,8 +815,8 @@ ErikaGroup:
 YoungsterGroup:
 	; YOUNGSTER (1)
 	db "Joey@", TRAINERTYPE_EVS
-	ds 6, MAX_EV
 	db  5, RATTATA
+		ds 6, MAX_EV
 	db -1 ; end
 
 	; YOUNGSTER (2)
@@ -852,14 +852,15 @@ YoungsterGroup:
 
 	; YOUNGSTER (7)
 	db "Joey@", TRAINERTYPE_EVS
-	ds 6, MAX_EV
 	db 19, RATTATA
+		ds 6, MAX_EV
 	db -1 ; end
 
 	; YOUNGSTER (8)
 	db "Joey@", TRAINERTYPE_EVS | TRAINERTYPE_MOVES
-	ds 6, MAX_EV
-	db 34, RATICATE,   CRUNCH, QUICK_ATTACK, HYPER_FANG, SCARY_FACE
+	db 34, RATICATE   
+		ds 6, MAX_EV
+		db CRUNCH, QUICK_ATTACK, HYPER_FANG, SCARY_FACE
 	db -1 ; end
 
 	; YOUNGSTER (9)
@@ -888,14 +889,16 @@ YoungsterGroup:
 
 	; YOUNGSTER (13)
 	db "Joey@", TRAINERTYPE_EVS | TRAINERTYPE_MOVES
-	ds 6, MAX_EV
-	db 40, RATICATE,   CRUNCH, DOUBLE_EDGE, HYPER_FANG, PURSUIT
+	db 40, RATICATE
+		ds 6, MAX_EV   
+		db CRUNCH, DOUBLE_EDGE, HYPER_FANG, PURSUIT
 	db -1 ; end
 
 	; YOUNGSTER (14)
 	db "Joey@", TRAINERTYPE_EVS | TRAINERTYPE_MOVES
-	ds 6, MAX_EV
-	db 54, RATICATE,   HYPER_BEAM, DOUBLE_EDGE, HYPER_FANG, PURSUIT
+	db 54, RATICATE  
+		ds 6, MAX_EV 
+		db HYPER_BEAM, DOUBLE_EDGE, HYPER_FANG, PURSUIT
 	db -1 ; end
 
 SchoolboyGroup:

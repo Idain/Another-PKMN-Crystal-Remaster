@@ -292,6 +292,7 @@ ChooseWildEncounter:
 	inc hl
 
 	ld a, [hli]
+	ld b, a ; Pokémon species
 	call ValidateTempWildMonSpecies
 	jr c, .nowildbattle
 
@@ -301,6 +302,8 @@ ChooseWildEncounter:
 	ld a, [wUnlockedUnowns]
 	and a
 	jr z, .nowildbattle
+
+	ld a, b
 	; fallthrough
 .load_species
 	ld [wTempWildMonSpecies], a

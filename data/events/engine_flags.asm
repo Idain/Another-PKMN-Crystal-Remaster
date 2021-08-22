@@ -63,10 +63,10 @@ EngineFlags:
 	engine_flag wKantoBadges, EARTHBADGE
 
 	; unown sets (see data/wild/unlocked_unowns.asm)
-	engine_flag wUnlockedUnowns, 0 ; A-K
-	engine_flag wUnlockedUnowns, 1 ; L-R
-	engine_flag wUnlockedUnowns, 2 ; S-W
-	engine_flag wUnlockedUnowns, 3 ; X-Z
+	engine_flag wUnlockedUnowns, 0 ; A-J
+	engine_flag wUnlockedUnowns, 1 ; K-Q
+	engine_flag wUnlockedUnowns, 2 ; R-V
+	engine_flag wUnlockedUnowns, 3 ; W-Z
 	engine_flag wUnlockedUnowns, 4 ; unused
 	engine_flag wUnlockedUnowns, 5 ; unused
 	engine_flag wUnlockedUnowns, 6 ; unused
