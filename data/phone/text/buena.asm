@@ -1,5 +1,5 @@
 BuenaPhoneMorningAnswerText:
-	text "Hi, this is BUENA…"
+	text "Hi, this is Buena…"
 
 	para "Oh! Good morning,"
 	line "<PLAY_G>!"
@@ -9,15 +9,15 @@ BuenaPhoneMorningAnswerText:
 	done
 
 BuenaPhoneDayAnswerText:
-	text "Hi, this is BUENA…"
+	text "Hi, this is Buena…"
 	line "Oh! Hi, <PLAY_G>!"
 
 	para "Do you tune into"
-	line "BUENA's show?"
+	line "Buena's show?"
 	done
 
 BuenaPhoneMidnightAnswerText:
-	text "This is BUENA."
+	text "This is Buena."
 	line "I can't come to"
 
 	para "the phone right"
@@ -26,7 +26,7 @@ BuenaPhoneMidnightAnswerText:
 	para "If you want to"
 	line "chat, tune into"
 
-	para "BUENA's PASSWORD"
+	para "Buena's Password"
 	line "on the radio and"
 
 	para "give me a call"
@@ -34,7 +34,7 @@ BuenaPhoneMidnightAnswerText:
 	done
 
 BuenaPhoneNiteAnswerText:
-	text "Hi, this is BUENA…"
+	text "Hi, this is Buena…"
 	line "Oh! Hi, <PLAY_G>!"
 
 	para "I just got off"
@@ -46,7 +46,7 @@ BuenaPhoneNiteAnswerText:
 
 BuenaPhoneMorningText:
 	text "<PLAY_G>!"
-	line "Hi, it's BUENA!"
+	line "Hi, it's Buena!"
 
 	para "I got up early, so"
 	line "I decided to call!"
@@ -54,7 +54,7 @@ BuenaPhoneMorningText:
 
 BuenaPhoneDayText:
 	text "<PLAY_G>!"
-	line "Hi, it's BUENA!"
+	line "Hi, it's Buena!"
 
 	para "I needed someone"
 	line "to chat with!"
@@ -62,7 +62,7 @@ BuenaPhoneDayText:
 
 BuenaPhoneMidnightText:
 	text "<PLAY_G>!"
-	line "Hi, it's BUENA!"
+	line "Hi, it's Buena!"
 
 	para "I'm just on my"
 	line "break."
@@ -70,7 +70,7 @@ BuenaPhoneMidnightText:
 
 BuenaPhoneNiteText:
 	text "<PLAY_G>!"
-	line "Hi, it's BUENA!"
+	line "Hi, it's Buena!"
 
 	para "I couldn't sleep,"
 	line "so I called you."
@@ -87,7 +87,7 @@ BuenaPhoneRocketText:
 	para "be cracking silly"
 	line "gag greetings!"
 
-	para "The RADIO TOWER is"
+	para "The Radio Tower is"
 	line "in deep trouble!"
 
 	para "<PLAY_G>, you'd"
@@ -98,7 +98,7 @@ BuenaPhoneWentOutWithBenText:
 	text "The other day, I"
 	line "went out to eat"
 
-	para "with DJ BEN!"
+	para "with DJ Ben!"
 	line "Isn't it great?"
 
 	para "Not only that, he"
@@ -120,7 +120,7 @@ BuenaPhoneWentOutWithBenText:
 BuenaPhoneReceptionistText:
 	text "You know the"
 	line "receptionist at"
-	cont "the RADIO TOWER?"
+	cont "the Radio Tower?"
 
 	para "'Welcome,' is all"
 	line "she ever says."
@@ -129,7 +129,7 @@ BuenaPhoneReceptionistText:
 	line "the chattiest"
 
 	para "person at the"
-	line "RADIO TOWER."
+	line "Radio Tower."
 
 	para "So she must be"
 	line "holding back."
@@ -145,9 +145,9 @@ BuenaPhoneLuckyNumberShowText:
 	line "Have you ever won"
 
 	para "a prize on the"
-	line "LUCKY NUMBER SHOW?"
+	line "Lucky Number Show?"
 
-	para "REED moans that"
+	para "Reed moans that"
 	line "he's never won, so"
 
 	para "he vows to keep"
@@ -167,7 +167,7 @@ BuenaPhoneStressedFromWorkText:
 	para "ate a ton of junk"
 	line "food!"
 
-	para "MARY and I have"
+	para "Mary and I have"
 	line "this deal about"
 	cont "losing weight…"
 
@@ -179,17 +179,17 @@ BuenaPhoneStressedFromWorkText:
 	para "This has to be a"
 	line "total secret!"
 
-	para "MARY weighs…"
+	para "Mary weighs…"
 
-	para "Aiyee! M-MARY!"
+	para "Aiyee! M-Mary!"
 
 	para "Uh… Um… I… Sorry,"
 	line "wrong number!"
 	done
 
 BuenaPhoneProfessorOakText:
-	text "Yesterday, PROF."
-	line "OAK was in the"
+	text "Yesterday, Prof."
+	line "Oak was in the"
 
 	para "studio to tape his"
 	line "show."
@@ -201,7 +201,7 @@ BuenaPhoneProfessorOakText:
 	line "in to my program!"
 
 	para "Oh! Here comes"
-	line "PROF.OAK again!"
+	line "Prof.Oak again!"
 
 	para "I'm going to chat"
 	line "him up again!"
@@ -226,14 +226,14 @@ BuenaPhoneGotAColdText:
 
 	para "I'll catch you on"
 	line "the fly. This has"
-	cont "been BUENA!"
+	cont "been Buena!"
 	done
 
 BuenaPhoneRadioCardQuestionsText:
 	text "Hey, <PLAY_G>."
-	line "You won that RADIO"
+	line "You won that Radio"
 
-	para "CARD by beating"
+	para "Card by beating"
 	line "the quiz at the"
 
 	para "reception desk,"
@@ -254,19 +254,19 @@ BuenaPhonePikachuFanClubText:
 	line "more people are"
 
 	para "taking part in my"
-	line "PASSWORD show."
+	line "Password show."
 
-	para "But when PIKACHU"
+	para "But when Pikachu"
 	line "was the password,"
 
 	para "it was uh… whew…"
 	line "overwhelming."
 
-	para "FAN CLUB people"
+	para "Fan Club people"
 	line "came in out in"
 
 	para "droves, shouting"
-	line "'PIKACHU!' over"
+	line "'Pikachu!' over"
 
 	para "and over. I mean,"
 	line "they were loud."
@@ -285,9 +285,9 @@ BuenaPhonePikachuFanClubText:
 
 BuenaPhoneRadioTowerDirectorText:
 	text "Guess what?"
-	line "The RADIO TOWER's"
+	line "The Radio Tower's"
 
-	para "DIRECTOR is a big"
+	para "Director is a big"
 	line "fan of TV!"
 
 	para "A while ago, a"
@@ -300,7 +300,7 @@ BuenaPhoneRadioTowerDirectorText:
 	line "are black suits."
 
 	para "But it's a secret"
-	line "that our DIRECTOR"
+	line "that our Director"
 
 	para "is a TV fan, so if"
 	line "you see him, don't"
@@ -308,7 +308,7 @@ BuenaPhoneRadioTowerDirectorText:
 	para "you dare mention"
 	line "it!"
 
-	para "Oh! The DIRECTOR"
+	para "Oh! The Director"
 	line "will be here soon!"
 
 	para "Later! Tune into"
@@ -349,13 +349,13 @@ BuenaPhoneWhenDoYouRelaxText:
 
 BuenaPhoneStarterPokemonText:
 	text "<PLAY_G>, what was"
-	line "the first #MON"
+	line "the first #mon"
 	cont "you ever caught?"
 
 	para "…Oh, really?"
 
 	para "I've seen lots of"
-	line "#MON around,"
+	line "#mon around,"
 
 	para "but I've never"
 	line "caught one."
@@ -364,44 +364,44 @@ BuenaPhoneStarterPokemonText:
 	line "try sometime."
 
 	para "Did you know that"
-	line "the first #MON"
+	line "the first #mon"
 
-	para "MARY caught was a"
-	line "DROWZEE?"
+	para "Mary caught was a"
+	line "Drowzee?"
 
 	para "Isn't that so out"
 	line "of character?"
 
-	para "But MARY's DROWZEE"
+	para "But Mary's Drowzee"
 	line "kept making her"
 
 	para "fall asleep on the"
 	line "job, so she traded"
 
 	para "with a fan for a"
-	line "MEOWTH."
+	line "Meowth."
 
 	para "Let's chat about"
-	line "#MON again!"
+	line "#mon again!"
 
 	para "Bye-bye!"
 	done
 
 BuenaPhoneCompanyVacationText:
 	text "Guess what? All of"
-	line "us from the RADIO"
+	line "us from the Radio"
 
-	para "TOWER are going on"
+	para "Tower are going on"
 	line "a company vacation"
 
-	para "to the RADIO TOWER"
-	line "in LAVENDER."
+	para "to the Radio Tower"
+	line "in Lavender."
 
 	para "We're wasting our"
 	line "vacation on a trip"
 
-	para "to another RADIO"
-	line "TOWER?"
+	para "to another Radio"
+	line "Tower?"
 
 	para "I'd much rather go"
 	line "to the beach!"
@@ -418,24 +418,24 @@ BuenaPhoneCompanyVacationText:
 BuenaPhoneBenAndFernText:
 	text "Did you know…?"
 
-	para "BEN and FERN talk"
+	para "Ben and Fern talk"
 	line "on the phone for"
 
 	para "hours about what"
-	line "#MON music they"
+	line "#mon music they"
 
 	para "should play on"
 	line "different days of"
 	cont "the week."
 
-	para "One time, FERN's"
+	para "One time, Fern's"
 	line "rapping style kind"
 
 	para "of rubbed off on"
-	line "BEN weirdly."
+	line "Ben weirdly."
 
 	para "So we ended up"
-	line "enduring BEN's"
+	line "enduring Ben's"
 
 	para "silly, chilly, a"
 	line "willy-nilly jive-"
@@ -447,13 +447,13 @@ BuenaPhoneBenAndFernText:
 
 BuenaPhoneGoingShoppingText:
 	text "I'm going shopping"
-	line "with MARY and LILY"
+	line "with Mary and Lily"
 	cont "soon."
 
 	para "It'll be great if"
-	line "GOLDENROD DEPT."
+	line "Goldenrod Dept."
 
-	para "STORE has a sale"
+	para "Store has a sale"
 	line "on when we go…"
 
 	para "<PLAY_G>, maybe we"
@@ -464,13 +464,13 @@ BuenaPhoneGoingShoppingText:
 
 BuenaPhoneFavoriteSlotMachineAnswerText:
 	text "I'm thinking of"
-	line "going to the GAME"
+	line "going to the Game"
 
-	para "CORNER tomorrow."
+	para "Corner tomorrow."
 	line "It's been a while."
 
 if DEF(_CRYSTAL_AU)
-	para "Some machines pays"
+	para "Some machines pay"
 	line "out a lot."
 else
 	para "You see, I have my"
@@ -491,7 +491,7 @@ endc
 
 BuenaPhonePokegearAnswerText:
 	text "Hey, <PLAY_G>. You"
-	line "use your #GEAR"
+	line "use your #gear"
 
 	para "to listen to the"
 	line "radio, right?"
@@ -500,12 +500,12 @@ BuenaPhonePokegearAnswerText:
 	line "can even display"
 
 	para "town maps with"
-	line "#GEAR."
+	line "#gear."
 
 	para "I have a bad sense"
 	line "of direction, so"
 
-	para "#GEAR would be"
+	para "#gear would be"
 	line "handy…"
 
 	para "Anyway, thanks for"
@@ -517,9 +517,9 @@ BuenaPhoneCoopedUpInRadioTowerAnswerText:
 	line "outside today?"
 
 	para "When you're cooped"
-	line "up in the RADIO"
+	line "up in the Radio"
 
-	para "TOWER as much as I"
+	para "Tower as much as I"
 	line "am, you lose touch"
 
 	para "with the outside."

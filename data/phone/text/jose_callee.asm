@@ -28,23 +28,7 @@ JoseAnswerPhoneNiteText:
 	done
 
 JoseGreetText:
-	text "Oh, <PLAY_G>?"
-
-	para "Tweet! Yeah, it's"
-	line "me, @"
-	text_ram wStringBuffer3
-	text "."
-	done
-
 JoseGreetDayText:
-	text "Oh, <PLAY_G>?"
-
-	para "Tweet! Yeah, it's"
-	line "me, @"
-	text_ram wStringBuffer3
-	text "."
-	done
-
 JoseGreetNiteText:
 	text "Oh, <PLAY_G>?"
 
@@ -55,7 +39,7 @@ JoseGreetNiteText:
 	done
 
 JoseGenericText:
-	text "Are your #MON"
+	text "Are your #mon"
 	line "still cooking?"
 
 	para "My @"

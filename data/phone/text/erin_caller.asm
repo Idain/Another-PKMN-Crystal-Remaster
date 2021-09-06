@@ -15,7 +15,7 @@ ErinDefeatedMonText:
 	text "!"
 
 	para "I've raised my"
-	line "#MON properly!"
+	line "#mon properly!"
 	done
 
 ErinLostAMonText:
@@ -31,7 +31,7 @@ ErinLostAMonText:
 	done
 
 ErinBattleRematchText:
-	text "I'm ERIN. Want to"
+	text "I'm Erin. Want to"
 	line "battle me again?"
 
 	para "I won't lose this"
@@ -50,7 +50,7 @@ ErinHangUpText:
 ErinWorkingHardText:
 	text "I'm working hard"
 	line "to raise my"
-	cont "#MON!"
+	cont "#mon!"
 
 	para "Come back for"
 	line "another battle!"
@@ -58,7 +58,7 @@ ErinWorkingHardText:
 
 ErinComeBattleText:
 	text "Oh, <PLAY_G>!"
-	line "Come battle ERIN!"
+	line "Come battle Erin!"
 
 	para "I'll be waiting on"
 	line "@"

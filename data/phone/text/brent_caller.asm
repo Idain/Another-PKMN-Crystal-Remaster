@@ -2,7 +2,7 @@ BrentRareTradeText:
 	text "Oh yeah, I got an"
 	line "extremely rare"
 
-	para "#MON in a trade"
+	para "#mon in a trade"
 	line "a while back."
 
 	para "Do you want to"
@@ -27,14 +27,14 @@ BrentDefeatedMonText:
 
 BrentLostAMonText:
 	text "Oh yeah, I saw a"
-	line "rare #MON about"
+	line "rare #mon about"
 	cont "an hour ago."
 
 	para "It was my first"
 	line "sighting. But I"
 
 	para "didn't have any"
-	line "# BALLS…"
+	line "# Balls…"
 
 	para "Would BILL laugh"
 	line "at my mistakes?"
@@ -50,7 +50,7 @@ BrentBattleRematchText:
 	para "It'll be a chance"
 	line "to see my rare"
 
-	para "#MON. It'll be"
+	para "#mon. It'll be"
 	line "worth your time!"
 
 	para "You know where--"
@@ -65,45 +65,45 @@ BrentHangUpText:
 
 BrentFatherGossipText:
 	text "Did you know…?"
-	line "BILL's father is"
+	line "Bill's father is"
 
 	para "supposed to be a"
-	line "great #MANIAC."
+	line "great #Maniac."
 	done
 
 BrentGrandpaGossipText:
 	text "Did you know…?"
-	line "Apparently BILL's"
+	line "Apparently Bill's"
 
 	para "grandpa isn't a"
-	line "#MANIAC."
+	line "#Maniac."
 	done
 
 BrentGoldenrodGossipText:
 	text "Did you know…?"
-	line "BILL's originally"
-	cont "from GOLDENROD."
+	line "Bill's originally"
+	cont "from Goldenrod."
 	done
 
 BrentRoute25GossipText:
 	text "Did you know…?"
-	line "BILL evidently"
+	line "Bill evidently"
 
-	para "lives on ROUTE 25"
-	line "in KANTO."
+	para "lives on Route 25"
+	line "in Kanto."
 	done
 
 BrentAbraGossipText:
 	text "Did you know…?"
-	line "ABRA was the first"
+	line "Abra was the first"
 
-	para "#MON that BILL"
+	para "#mon that Bill"
 	line "ostensibly caught."
 	done
 
 BrentSisterGossipText:
 	text "Did you know…?"
-	line "BILL's younger"
+	line "Bill's younger"
 
 	para "sister apparently"
 	line "can't wink."
@@ -111,7 +111,7 @@ BrentSisterGossipText:
 
 BrentMilkGossipText:
 	text "Did you know…?"
-	line "BILL supposedly"
+	line "Bill supposedly"
 
 	para "hates milk and"
 	line "can't drink it."
@@ -119,7 +119,7 @@ BrentMilkGossipText:
 
 BrentBattlingGossipText:
 	text "Did you know…?"
-	line "Evidently, BILL"
+	line "Evidently, Bill"
 
 	para "isn't very good at"
 	line "battling."
@@ -127,23 +127,23 @@ BrentBattlingGossipText:
 
 BrentFlowerShopGossipText:
 	text "Did you know…?"
-	line "BILL appears to"
+	line "Bill appears to"
 
 	para "like the lady at"
-	line "the FLOWER SHOP."
+	line "the Flower Shop."
 	done
 
 BrentKimonoGirlGossipText:
 	text "Did you know…?"
-	line "BILL's mother is"
+	line "Bill's mother is"
 
 	para "said to have been"
-	line "a KIMONO GIRL."
+	line "a Kimono Girl."
 	done
 
 BrentSorryImTooBusyText:
 	text "You wanted to hear"
-	line "about BILL?"
+	line "about Bill?"
 
 	para "Sorry, but I'm too"
 	line "busy for you."
@@ -154,7 +154,7 @@ BrentSorryImTooBusyText:
 
 BrentReminderText:
 	text "You want to see my"
-	line "rare #MON."
+	line "rare #mon."
 
 	para "Hurry over to"
 	line "@"

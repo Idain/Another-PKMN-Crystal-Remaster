@@ -58,15 +58,15 @@ WadeGreetNiteText:
 
 WadeGenericText:
 	text "How are your"
-	line "#MON doing?"
+	line "#mon doing?"
 
-	para "My #MON have"
+	para "My #mon have"
 	line "too much energy to"
 
 	para "burn. It gets to"
 	line "be a problem."
 
-	para "Of all my #MON,"
+	para "Of all my #mon,"
 	line "@"
 	text_ram wStringBuffer4
 	text " is the"

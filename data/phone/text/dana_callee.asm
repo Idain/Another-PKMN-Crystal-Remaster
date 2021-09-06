@@ -28,23 +28,7 @@ DanaAnswerPhoneNiteText:
 	done
 
 DanaGreetText:
-	text "Uh, <PLAY_G>?"
-
-	para "It's me!"
-	line "It's me, @"
-	text_ram wStringBuffer3
-	text "!"
-	done
-
 DanaGreetDayText:
-	text "Uh, <PLAY_G>?"
-
-	para "It's me!"
-	line "It's me, @"
-	text_ram wStringBuffer3
-	text "!"
-	done
-
 DanaGreetNiteText:
 	text "Uh, <PLAY_G>?"
 
@@ -64,5 +48,5 @@ DanaGenericText:
 	line "scary."
 
 	para "How are your"
-	line "#MON doing?"
+	line "#mon doing?"
 	done

@@ -8,14 +8,6 @@ ArnieAnswerPhoneText:
 	done
 
 ArnieAnswerPhoneDayText:
-	text "Yeah, hello, you"
-	line "got @"
-	text_ram wStringBuffer3
-	text "."
-
-	para "…Huh, <PLAY_G>? Yo!"
-	done
-
 ArnieAnswerPhoneNiteText:
 	text "Yeah, hello, you"
 	line "got @"
@@ -56,7 +48,7 @@ ArnieGreetNiteText:
 	done
 
 ArnieGenericText:
-	text "I bet your #MON"
+	text "I bet your #mon"
 	line "are a lot stronger"
 	cont "than before."
 	done

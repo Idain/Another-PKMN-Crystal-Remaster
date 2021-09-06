@@ -54,7 +54,7 @@ WiltonGreetNiteText:
 	done
 
 WiltonGenericText:
-	text "Have your #MON"
+	text "Have your #mon"
 	line "grown any?"
 
 	para "My @"

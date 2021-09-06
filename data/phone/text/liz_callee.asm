@@ -63,15 +63,15 @@ LizGenericText:
 	line "so I called you."
 
 	para "So anyway, how are"
-	line "your #MON?"
+	line "your #mon?"
 
 	para "Me, I take my"
 	line "@"
 	text_ram wStringBuffer4
 	text " to the"
 
-	para "#MON CENTER in"
-	line "VIOLET every day,"
+	para "#mon Center in"
+	line "Violet every day,"
 
 	para "so it's doing just"
 	line "fantastic!"

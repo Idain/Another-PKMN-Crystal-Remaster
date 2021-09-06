@@ -55,11 +55,11 @@ GinaHangUpText:
 
 GinaRocketTakeoverRumorText:
 	text "Have you heard"
-	line "about TEAM ROCKET?"
+	line "about Team Rocket?"
 
 	para "They've taken over"
-	line "the RADIO TOWER in"
-	cont "GOLDENROD."
+	line "the Radio Tower in"
+	cont "Goldenrod."
 
 	para "Are the people"
 	line "inside safe?"

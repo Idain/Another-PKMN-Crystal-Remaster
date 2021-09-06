@@ -1,23 +1,5 @@
 ReenaAnswerPhoneText:
-	text "Hello, this is"
-	line "@"
-	text_ram wStringBuffer3
-	text "…"
-
-	para "Oh. Hi, <PLAYER>."
-	line "What's up?"
-	done
-
 ReenaAnswerPhoneDayText:
-	text "Hello, this is"
-	line "@"
-	text_ram wStringBuffer3
-	text "…"
-
-	para "Oh, hi, <PLAYER>,"
-	line "what's up?"
-	done
-
 ReenaAnswerPhoneNiteText:
 	text "Hello, this is"
 	line "@"
@@ -29,23 +11,7 @@ ReenaAnswerPhoneNiteText:
 	done
 
 ReenaGreetText:
-	text "You're slow! Hurry"
-	line "up and answer!"
-
-	para "It's me, @"
-	text_ram wStringBuffer3
-	text "!"
-	done
-
 ReenaGreetDayText:
-	text "You're slow! Hurry"
-	line "up and answer!"
-
-	para "It's me, @"
-	text_ram wStringBuffer3
-	text "!"
-	done
-
 ReenaGreetNiteText:
 	text "You're slow! Hurry"
 	line "up and answer!"
@@ -57,12 +23,12 @@ ReenaGreetNiteText:
 
 ReenaGenericText:
 	text "Hey, how are your"
-	line "#MON doing?"
+	line "#mon doing?"
 
 	para "What? Great?"
 	line "I see…"
 
-	para "What? My #MON?"
+	para "What? My #mon?"
 
 	para "Of course they're"
 	line "doing great! What"

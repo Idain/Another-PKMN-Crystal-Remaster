@@ -57,13 +57,13 @@ ToddGreetNiteText:
 
 ToddGenericText:
 	text "How do you raise"
-	line "your #MON?"
+	line "your #mon?"
 
 	para "I do all sorts"
 	line "of things, like"
 
 	para "leaving them in"
-	line "DAY-CARE and"
+	line "Day-Care and"
 
 	para "toughening them up"
 	line "with items."

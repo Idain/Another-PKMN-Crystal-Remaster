@@ -1,23 +1,5 @@
 ParryAnswerPhoneText:
-	text "Yup, yup!"
-	line "It's @"
-	text_ram wStringBuffer3
-	text "!"
-
-	para "Hah, and here's"
-	line "<PLAY_G>!"
-	done
-
 ParryAnswerPhoneDayText:
-	text "Yup, yup!"
-	line "It's @"
-	text_ram wStringBuffer3
-	text "!"
-
-	para "Hah, and here's"
-	line "<PLAY_G>!"
-	done
-
 ParryAnswerPhoneNiteText:
 	text "Yup, yup!"
 	line "It's @"
@@ -59,7 +41,7 @@ ParryGreetNiteText:
 	done
 
 ParryGenericText:
-	text "Are your #MON"
+	text "Are your #mon"
 	line "looking good?"
 
 	para "My @"

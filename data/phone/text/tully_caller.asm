@@ -82,7 +82,7 @@ TullyNoItemText:
 	done
 
 TullyForwardText:
-	text "Yup, TULLY here…"
+	text "Yup, Tully here…"
 
 	para "<PLAY_G>? What?"
 	line "You're lost?"

@@ -23,19 +23,7 @@ KenjiAnswerPhoneNiteText:
 	done
 
 KenjiGreetText:
-	text "Hey, <PLAYER>!"
-	line "This is @"
-	text_ram wStringBuffer3
-	text "!"
-	done
-
 KenjiGreetDayText:
-	text "Hey, <PLAYER>!"
-	line "This is @"
-	text_ram wStringBuffer3
-	text "!"
-	done
-
 KenjiGreetNiteText:
 	text "Hey, <PLAYER>!"
 	line "This is @"

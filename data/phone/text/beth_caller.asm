@@ -47,7 +47,7 @@ BethLostAMonText:
 
 	para "noticed that I was"
 	line "all out of #"
-	cont "BALLS."
+	cont "Balls."
 
 	para "If you don't check"
 	line "your items, you"
