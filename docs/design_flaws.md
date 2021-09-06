@@ -588,7 +588,7 @@ Edit [engine/items/item_effects.asm](https://github.com/pret/pokecrystal/blob/ma
  	ld a, BANK(PokedexDataPointerTable)
  	call GetFarWord
 +	pop de
- 
+
  .SkipText:
 -	call GetPokedexEntryBank
 +	ld a, d
@@ -596,7 +596,7 @@ Edit [engine/items/item_effects.asm](https://github.com/pret/pokecrystal/blob/ma
  	inc hl
  	cp "@"
  	jr nz, .SkipText
- 
+
 -	call GetPokedexEntryBank
 +	ld a, d
  	push bc
