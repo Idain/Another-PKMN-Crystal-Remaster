@@ -2663,23 +2663,29 @@ TogepiEvosAttacks:
 	db EVOLVE_HAPPINESS, TR_ANYTIME, TOGETIC
 	db 0 ; no more evolutions
 	db 1, GROWL
+	db 1, POUND
 	db 1, CHARM
-	db 7, METRONOME
-	db 18, SWEET_KISS
-	db 25, ENCORE
-	db 31, SAFEGUARD
-	db 38, DOUBLE_EDGE
+	db 5, METRONOME
+	db 9, SWEET_KISS
+	db 15, ENCORE
+	db 21, ANCIENTPOWER
+	db 25, SAFEGUARD
+	db 29, BATON_PASS
+	db 33, DOUBLE_EDGE
 	db 0 ; no more level-up moves
 
 TogeticEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, GROWL
+	db 1, POUND
 	db 1, CHARM
-	db 7, METRONOME
-	db 18, SWEET_KISS
-	db 25, ENCORE
-	db 31, SAFEGUARD
-	db 38, DOUBLE_EDGE
+	db 5, METRONOME
+	db 9, SWEET_KISS
+	db 15, ENCORE
+	db 21, ANCIENTPOWER
+	db 25, SAFEGUARD
+	db 29, BATON_PASS
+	db 33, DOUBLE_EDGE
 	db 0 ; no more level-up moves
 
 NatuEvosAttacks:
