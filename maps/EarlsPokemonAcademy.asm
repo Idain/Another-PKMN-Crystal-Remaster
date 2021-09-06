@@ -292,11 +292,9 @@ AcademyPoisonText:
 	done
 
 AcademyParalysisText:
-	text "Paralysis reduces"
-	line "speed by 50% and"
-
-	para "may prevent move-"
-	cont "ment."
+	text "Paralysis halves"
+	line "speed and may"
+	cont "prevent movement."
 
 	para "It remains after"
 	line "battle, so use"
@@ -305,7 +303,7 @@ AcademyParalysisText:
 
 AcademySleepText:
 	text "If asleep, your"
-	line "#MON can't make"
+	line "#mon can't make"
 	cont "a move."
 
 	para "A sleeping #mon"
@@ -321,9 +319,8 @@ AcademyBurnText:
 	line "consumes 1/8 of"
 	cont "your Max HP."
 
-	para "It also reduces"
-	line "attack power by"
-	cont "50%."
+	para "It also halves"
+	line "your attack power."
 
 	para "A burn lingers"
 	line "after battle."
@@ -363,7 +360,7 @@ AcademyNotebookText1:
 	cont "the target first."
 
 	para "A poisoned or"
-	line "burned #MON is"
+	line "burned #mon is"
 	cont "easier to catch."
 
 	para "Keep reading?"
@@ -389,7 +386,7 @@ AcademyNotebookText3:
 	line "and use #mon"
 
 	para "in battle are"
-	line "#MON trainers."
+	line "#mon trainers."
 
 	para "They are expected"
 	line "to visit #mon"

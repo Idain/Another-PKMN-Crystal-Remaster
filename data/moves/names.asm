@@ -75,7 +75,7 @@ MoveNames::
 	li "Leech Seed"
 	li "Growth"
 	li "Razor Leaf"
-	li "SolarBeam"
+	li "Solar Beam"
 	li "PoisonPowder"
 	li "Stun Spore"
 	li "Sleep Powder"

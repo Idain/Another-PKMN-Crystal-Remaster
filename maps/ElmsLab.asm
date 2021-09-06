@@ -976,7 +976,7 @@ ElmAfterTheftText5:
 	text "Elm: What?!?"
 
 	para "Prof.Oak gave you"
-	line "a #DEX?"
+	line "a #dex?"
 
 	para "<PLAY_G>, is that"
 	line "true? Th-that's"

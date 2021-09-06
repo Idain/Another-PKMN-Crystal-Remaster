@@ -188,7 +188,7 @@ SwimmermBerkeAfterBattleText:
 	line "stormy night…"
 
 	para "I saw this giant"
-	line "#MON flying"
+	line "#mon flying"
 	cont "from the islands."
 
 	para "It was scattering"

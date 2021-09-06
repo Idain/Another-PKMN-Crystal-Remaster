@@ -98,7 +98,7 @@ _MobileBattleMustPickThreeMonText::
 	line "battle, you must"
 
 	para "pick a team of"
-	line "three #MON."
+	line "three #mon."
 
 	para "Is that OK?"
 	done
@@ -111,7 +111,7 @@ _MobileBattleMoreInfoText::
 _MobileBattleRulesText::
 	text "For a mobile"
 	line "battle, choose"
-	cont "three #MON."
+	cont "three #mon."
 
 	para "The maximum daily"
 	line "play time is ten"
@@ -126,7 +126,7 @@ _MobileBattleRulesText::
 	line "the player with"
 
 	para "the fewest fainted"
-	line "#MON wins."
+	line "#mon wins."
 
 	para "If tied, the team"
 	line "that lost the"
@@ -187,7 +187,7 @@ _MobileBattleNoTimeLeftForLinkingText::
 	done
 
 _PickThreeMonForMobileBattleText::
-	text "Pick three #MON"
+	text "Pick three #mon"
 	line "for battle."
 	done
 
@@ -714,10 +714,10 @@ _SlotsDarnText::
 
 _MobileStadiumEntryText::
 	text "Data for use in"
-	line "the MOBILE STADIUM"
+	line "the Mobile Stadium"
 
-	para "of the N64 #MON"
-	line "STADIUM 2 can be"
+	para "of the N64 #mon"
+	line "Stadium 2 can be"
 	cont "read here."
 
 	para "Read the data?"
@@ -728,10 +728,10 @@ _MobileStadiumSuccessText::
 	line "complete."
 
 	para "We hope you enjoy"
-	line "MOBILE STADIUM"
+	line "Mobile Stadium"
 
 	para "battles in the N64"
-	line "#MON STADIUM 2."
+	line "#mon Stadium 2."
 
 	para ""
 	done
@@ -751,7 +751,7 @@ _DeletedTheLoginPasswordText::
 	done
 
 _MobilePickThreeMonForBattleText::
-	text "Pick three #MON"
+	text "Pick three #mon"
 	line "for battle."
 	prompt
 
@@ -769,7 +769,7 @@ _MobileUseTheseThreeMonText::
 	done
 
 _MobileOnlyThreeMonMayEnterText::
-	text "Only three #MON"
+	text "Only three #mon"
 	line "may enter."
 	prompt
 
@@ -812,7 +812,7 @@ _MobileCardFolderIntro3Text::
 
 	para "mobile phone on"
 	line "the 2nd floor of a"
-	cont "#MON CENTER."
+	cont "#mon CENTER."
 
 	para ""
 	done

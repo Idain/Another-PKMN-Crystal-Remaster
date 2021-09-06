@@ -426,7 +426,7 @@ BugCatchingContestExplanationText:
 	line "you also get to"
 
 	para "keep the bug"
-	line "#MON you may"
+	line "#mon you may"
 
 	para "have at the end of"
 	line "the contest."

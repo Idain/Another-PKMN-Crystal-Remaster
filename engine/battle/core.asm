@@ -6783,17 +6783,6 @@ CheckUnownLetter:
 
 INCLUDE "data/wild/unlocked_unowns.asm"
 
-;SwapBattlerLevels: ; unreferenced
-;	push bc
-;	ld a, [wBattleMonLevel]
-;	ld b, a
-;	ld a, [wEnemyMonLevel]
-;	ld [wBattleMonLevel], a
-;	ld a, b
-;	ld [wEnemyMonLevel], a
-;	pop bc
-;	ret
-
 BattleWinSlideInEnemyTrainerFrontpic:
 	xor a
 	ld [wTempEnemyMonSpecies], a
@@ -6879,8 +6868,6 @@ ApplyPrzEffectOnSpeed:
 	ld a, [hl]
 	srl a
 	rr b
-;	srl a
-;	rr b
 	ld [hli], a
 	or b
 	jr nz, .player_ok
@@ -8385,57 +8372,6 @@ InitEnemyWildmon:
 	lb bc, 7, 7
 	predef_jump PlaceGraphic
 
-;FillEnemyMovesFromMoveIndicesBuffer: ; unreferenced
-;	ld hl, wEnemyMonMoves
-;	ld de, wListMoves_MoveIndicesBuffer
-;	ld b, NUM_MOVES
-;.loop
-;	ld a, [de]
-;	inc de
-;	ld [hli], a
-;	and a
-;	jr z, .clearpp
-;
-;	push bc
-;	push hl
-;
-;	push hl
-;	dec a
-;	ld hl, Moves + MOVE_PP
-;	ld bc, MOVE_LENGTH
-;	call AddNTimes
-;	ld a, BANK(Moves)
-;	call GetFarByte
-;	pop hl
-;
-;	ld bc, wEnemyMonPP - (wEnemyMonMoves + 1)
-;	add hl, bc
-;	ld [hl], a
-;
-;	pop hl
-;	pop bc
-;
-;	dec b
-;	jr nz, .loop
-;	ret
-;
-;.clear
-;	xor a
-;	ld [hli], a
-;
-;.clearpp
-;	push bc
-;	push hl
-;	ld bc, wEnemyMonPP - (wEnemyMonMoves + 1)
-;	add hl, bc
-;	xor a
-;	ld [hl], a
-;	pop hl
-;	pop bc
-;	dec b
-;	jr nz, .clear
-;	ret
-
 ExitBattle:
 	call .HandleEndOfBattle
 	jr CleanUpBattleRAM
@@ -8552,18 +8488,14 @@ DisplayLinkBattleResult:
 	ld a, [wBattleResult]
 	and $f
 	cp LOSE
-	jr c, .win ; WIN
-	jr z, .lose ; LOSE
+	ld de, .YouWin
+	jr c, .store_result ; WIN
+
+	ld de, .YouLose
+	jr z, .store_result ; LOSE
+
 	; DRAW
 	ld de, .Draw
-	jr .store_result
-
-.win
-	ld de, .YouWin
-	jr .store_result
-
-.lose
-	ld de, .YouLose
 .store_result
 	hlcoord 6, 8
 	call PlaceString

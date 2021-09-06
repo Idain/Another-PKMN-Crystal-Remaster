@@ -278,7 +278,7 @@ CooltrainermPaulSeenText:
 	done
 
 CooltrainermPaulBeatenText:
-	text "My dragon #MON"
+	text "My dragon #mon"
 	line "lost?"
 	done
 

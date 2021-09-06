@@ -161,7 +161,7 @@ FalknerZephyrBadgeText:
 	para "obey you without"
 	line "question."
 
-	text "It also enables"
+	para "It also enables"
 	line "#mon to use"
 
 	para "Flash, if they"

@@ -2237,7 +2237,7 @@ BillsPC_PrintBoxCountAndCapacity:
 	jp PlaceString
 
 .Pokemon:
-	db "#MON@"
+	db "#mon@"
 
 .OutOf20:
 	db "/{d:MONS_PER_BOX}@" ; "/20@"

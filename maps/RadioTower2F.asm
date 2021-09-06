@@ -408,7 +408,7 @@ GruntM4AfterBattleText:
 GruntM5SeenText:
 	text "We're Team Rocket,"
 	line "the exploiters of"
-	cont "#MON!"
+	cont "#mon!"
 
 	para "We love being"
 	line "evil! Scared?"

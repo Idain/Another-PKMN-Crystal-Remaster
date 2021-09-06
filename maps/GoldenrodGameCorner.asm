@@ -522,7 +522,7 @@ GoldenrodGameCornerCooltrainerFText:
 
 GoldenrodGameCornerGentlemanText:
 	text "I taught Blizzard"
-	line "to my #MON."
+	line "to my #mon."
 
 	para "It was hard to get"
 	line "enough coins for"
