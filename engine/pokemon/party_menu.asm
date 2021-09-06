@@ -543,9 +543,13 @@ PlacePartyMonMobileBattleSelection:
 	db "１@", "２@", "３@" ; 1st, 2nd, 3rd
 
 PlacePartyMonGenderStats:
+	ld a, [wCurPartyMon]
+	push af
+
     ld a, [wPartyCount]
     and a
-    ret z
+	jr z, .finish
+
     ld c, a
     ld b, 0
     hlcoord 7, 2
@@ -579,6 +583,10 @@ PlacePartyMonGenderStats:
     inc b
     dec c
     jr nz, .loop
+
+.finish
+	pop af
+	ld [wCurPartyMon], a
     ret
 
 .male
