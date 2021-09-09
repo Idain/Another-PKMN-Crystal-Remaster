@@ -27,8 +27,6 @@ EncoreMoves:
 	db TRIPLE_KICK
 	db SPIDER_WEB
 	db MIND_READER
-	db FLAME_WHEEL
-	db AEROBLAST
 	db COTTON_SPORE
 	db POWDER_SNOW
 	db -1 ; end
