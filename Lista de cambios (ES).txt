@@ -110,8 +110,8 @@ CAMBIOS:
 	Ekans, Arbok, Pikachu, Raichu, Sandshrew, Sandslash, Nidoran♀, Nidorina, Nidoqueen, Nidoran♂, Nidorino, Nidoking, Clefairy, Clefable, Jigglypuff, Wigglytuff, Oddish, Gloom, Vileplume, Diglett, Dugtrio, Meowth, Persian, Mankey, Primeape, Growlithe, Arcanine,
 	Poliwag, Poliwhirl, Poliwrath, Kadabra, Alakazam, Machop, Machoke, Machamp, Ponyta, Rapidash, Slowpoke, Slowbro, Magneton, Farfetch'd, Doduo, Dodrio, Shellder, Cloyster,
 	Onix, Drowzee, Hypno, Krabby, Kingler, Voltorb, Electrode, Exeggcute, Exeggutor, Cubone, Marowak, Hitmonlee, Hitmonchan, Lickitung, Koffing, Weezing, Electabuzz, Magmar, Magikarp, Gyarados, Lapras, Eevee, Vaporeon, 
-	Jolteon, Flareon, Porygon, Omanyte, Omastar, Kabuto, Kabutops, Snorlax, Dratini, Dragonair, Dragonite, Mewtwo, Mew, Sentret, Furret, Hoothoot, Noctowl, Cleffa, Igglybuff, Natu, Xatu, Mareep, 
-	Flaaffy, Ampharos, Bellossom, Sudowoodo, Politoed, Hoppip, Skiploom, Jumpluff, Marill, Azumarill, Wooper, Quagsire, Espeon, Umbreon, Steelix, Snubbull, Granbull, Heracross, Murkrow, Slowking, Misdreavus, Swinub, Piloswine, Remoraid, Octillery, 
+	Jolteon, Flareon, Porygon, Omanyte, Omastar, Kabuto, Kabutops, Snorlax, Dratini, Dragonair, Dragonite, Mewtwo, Mew, Sentret, Furret, Hoothoot, Noctowl, Cleffa, Igglybuff, Togepi, Togetic, Natu, Xatu, Mareep, 
+	Flaaffy, Ampharos, Bellossom, Sudowoodo, Politoed, Hoppip, Skiploom, Jumpluff, Marill, Azumarill, Sunkern, Sunflora, Wooper, Quagsire, Espeon, Umbreon, Steelix, Snubbull, Granbull, Heracross, Murkrow, Slowking, Misdreavus, Swinub, Piloswine, Remoraid, Octillery, 
 	Delibird, Houndour, Houndoom, Phanpy, Donphan, Tyrogue, Porygon2, Elekid, Magby, Hitmontop, Miltank, Raikou, Entei, Suicune, Lugia, Ho-Oh, Celebi.
 
 - Raikou y Entei ya no tendrán Roar cuando los encuentres rondando por Johto.

@@ -3776,7 +3776,7 @@ SageGroup:
 	; SAGE (1)
 	db "Chow@", TRAINERTYPE_NORMAL
 	db  5, BELLSPROUT
-	db  5, BELLSPROUT
+	db  5, SUNKERN
 	db  5, BELLSPROUT
 	db -1 ; end
 
@@ -3818,7 +3818,7 @@ SageGroup:
 	db "Edmond@", TRAINERTYPE_NORMAL
 	db  5, BELLSPROUT
 	db  5, BELLSPROUT
-	db  5, BELLSPROUT
+	db  5, SUNKERN
 	db -1 ; end
 
 	; SAGE (8)
