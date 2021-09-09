@@ -4,8 +4,6 @@ Music_LavenderTown:
 	channel 2, Music_LavenderTown_Ch2
 	channel 3, Music_LavenderTown_Ch3
 
-	db $3 ; unused, leftover from a channel 4
-
 Music_LavenderTown_Ch1:
 	tempo 160
 	volume 7, 7

@@ -4,8 +4,6 @@ Music_Surf:
 	channel 2, Music_Surf_Ch2
 	channel 3, Music_Surf_Ch3
 
-	db $3 ; unused, leftover from a channel 4
-
 Music_Surf_Ch1:
 	tempo 108
 	volume 7, 7

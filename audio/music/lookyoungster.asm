@@ -60,8 +60,6 @@ Music_LookYoungster_Ch1:
 	rest 16
 	sound_loop 0, .mainloop
 
-	sound_ret ; unused
-
 Music_LookYoungster_Ch2:
 	stereo_panning TRUE, FALSE
 	vibrato 18, 2, 6
@@ -157,8 +155,6 @@ Music_LookYoungster_Ch2:
 	note C_, 1
 	rest 1
 	sound_loop 0, .mainloop
-
-	sound_ret ; unused
 
 Music_LookYoungster_Ch3:
 	stereo_panning TRUE, TRUE
@@ -292,5 +288,3 @@ Music_LookYoungster_Ch3:
 	note G#, 1
 	rest 1
 	sound_loop 0, .mainloop
-
-	sound_ret ; unused
