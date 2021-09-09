@@ -309,10 +309,6 @@ DoPlayerMovement::
 	scf
 	ret
 
-.unused ; unreferenced
-	xor a
-	ret
-
 .bump
 	xor a
 	ret

@@ -355,55 +355,11 @@ EraseHallOfFame:
 	call ByteFill
 	jp CloseSRAM
 
-Function14d18: ; unreferenced
-	ld a, BANK(s4_a007) ; MBC30 bank used by JP Crystal; inaccessible by MBC3
-	call OpenSRAM
-	ld hl, .Data
-	ld de, s4_a007
-	ld bc, 4 * 12
-	call CopyBytes
-	jp CloseSRAM
-
-.Data:
-	db $0d, $02, $00, $05, $00, $00, $22, $02, $01, $05, $00, $00
-	db $03, $04, $05, $08, $03, $05, $0e, $06, $03, $02, $00, $00
-	db $39, $07, $07, $04, $00, $05, $04, $07, $01, $05, $00, $00
-	db $0f, $05, $14, $07, $05, $05, $11, $0c, $0c, $06, $06, $04
-
 EraseBattleTowerStatus:
 	ld a, BANK(sBattleTowerChallengeState)
 	call OpenSRAM
 	xor a
 	ld [sBattleTowerChallengeState], a
-	jp CloseSRAM
-
-Function14d6c: ; unreferenced
-	ld a, BANK(s4_a60b) ; MBC30 bank used by JP Crystal; inaccessible by MBC3
-	call OpenSRAM
-	ld a, [s4_a60b] ; address of MBC30 bank
-	ld b, $0
-	and a
-	jr z, .ok
-	ld b, $2
-
-.ok
-	ld a, b
-	ld [s4_a60b], a ; address of MBC30 bank
-	jp CloseSRAM
-
-Function14d83: ; unreferenced
-	ld a, BANK(s4_a60c) ; aka BANK(s4_a60d) ; MBC30 bank used by JP Crystal; inaccessible by MBC3
-	call OpenSRAM
-	xor a
-	ld [s4_a60c], a ; address of MBC30 bank
-	ld [s4_a60d], a ; address of MBC30 bank
-	jp CloseSRAM
-
-Function14d93: ; unreferenced
-	ld a, BANK(s7_a000) ; MBC30 bank used by JP Crystal; inaccessible by MBC3
-	call OpenSRAM
-	xor a
-	ld [s7_a000], a ; address of MBC30 bank
 	jp CloseSRAM
 
 HallOfFame_InitSaveIfNeeded:

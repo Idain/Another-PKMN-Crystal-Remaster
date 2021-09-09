@@ -2190,9 +2190,6 @@ Script_writeunusedbyte:
 	ld [wUnusedScriptByte], a
 	ret
 
-UnusedClosetextScript: ; unreferenced
-	closetext
-
 Script_closetext:
 	call _OpenAndCloseMenu_HDMATransferTilemapAndAttrmap
 	jp CloseText

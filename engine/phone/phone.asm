@@ -89,34 +89,19 @@ GetRemainingSpaceInPhoneList:
 
 INCLUDE "data/phone/permanent_numbers.asm"
 
-BrokenPlaceFarString:
-; This routine is not in bank 0 and will fail or crash if called.
-	ldh a, [hROMBank]
-	push af
-	ld a, b
-	rst Bankswitch
-
-	call PlaceString
-
-	pop af
-	rst Bankswitch
-	ret
-
 CheckPhoneCall::
 ; Check if the phone is ringing in the overworld.
 
 	call CheckStandingOnEntrance
 	jr z, .no_call
 
-	call .timecheck
+	farcall CheckReceiveCallTimer ; time check
 	nop
 	jr nc, .no_call
 
 	call Random
-	ld b, a
-	and 50 percent
-	cp b
-	jr nz, .no_call
+	add a
+	jr c, .no_call
 
 	call GetMapPhoneService
 	and a
@@ -136,10 +121,6 @@ CheckPhoneCall::
 
 .no_call
 	xor a
-	ret
-
-.timecheck
-	farcall CheckReceiveCallTimer
 	ret
 
 CheckPhoneContactTimeOfDay:
@@ -681,10 +662,6 @@ PhoneScript_JustTalkToThem:
 PhoneJustTalkToThemText:
 	text_far _PhoneJustTalkToThemText
 	text_end
-
-PhoneThankYouTextScript: ; unreferenced
-	writetext PhoneThankYouText
-	end
 
 PhoneThankYouText:
 	text_far _PhoneThankYouText
