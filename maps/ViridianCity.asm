@@ -187,6 +187,7 @@ ViridianCitySignText:
 
 	para "The City of"
 	line "Evergreen"
+	done
 
 ViridianGymSignText:
 	text "Viridian City"
