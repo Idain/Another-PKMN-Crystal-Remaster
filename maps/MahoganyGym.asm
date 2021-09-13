@@ -82,7 +82,16 @@ MahoganyGymActivateRockets:
 	jumpstd RadioTowerRocketsScript
 
 TrainerSkierRoxanne:
-	trainer SKIER, ROXANNE, EVENT_BEAT_SKIER_ROXANNE, SkierRoxanneSeenText, SkierRoxanneBeatenText, 0, .Script
+	readvar VAR_JOHTO_BADGES
+	ifequal 6, .SixBadgesBattle
+	ifequal 5, .FiveBadgesBattle
+; At least 4 Johto Badges.
+	trainer SKIER, ROXANNE2, EVENT_BEAT_SKIER_ROXANNE, SkierRoxanneSeenText, SkierRoxanneBeatenText, 0, .Script
+
+.SixBadgesBattle:
+	trainer SKIER, ROXANNE1, EVENT_BEAT_SKIER_ROXANNE, SkierRoxanneSeenText, SkierRoxanneBeatenText, 0, .Script
+.FiveBadgesBattle:
+	trainer SKIER, ROXANNE3, EVENT_BEAT_SKIER_ROXANNE, SkierRoxanneSeenText, SkierRoxanneBeatenText, 0, .Script
 
 .Script:
 	endifjustbattled
@@ -93,7 +102,16 @@ TrainerSkierRoxanne:
 	end
 
 TrainerSkierClarissa:
-	trainer SKIER, CLARISSA, EVENT_BEAT_SKIER_CLARISSA, SkierClarissaSeenText, SkierClarissaBeatenText, 0, .Script
+	readvar VAR_JOHTO_BADGES
+	ifequal 6, .SixBadgesBattle
+	ifequal 5, .FiveBadgesBattle
+; At least 4 Johto Badges.
+	trainer SKIER, CLARISSA2, EVENT_BEAT_SKIER_CLARISSA, SkierClarissaSeenText, SkierClarissaBeatenText, 0, .Script
+
+.SixBadgesBattle:
+	trainer SKIER, CLARISSA1, EVENT_BEAT_SKIER_CLARISSA, SkierClarissaSeenText, SkierClarissaBeatenText, 0, .Script
+.FiveBadgesBattle:
+	trainer SKIER, CLARISSA3, EVENT_BEAT_SKIER_CLARISSA, SkierClarissaSeenText, SkierClarissaBeatenText, 0, .Script
 
 .Script:
 	endifjustbattled
@@ -104,7 +122,16 @@ TrainerSkierClarissa:
 	end
 
 TrainerBoarderRonald:
-	trainer BOARDER, RONALD, EVENT_BEAT_BOARDER_RONALD, BoarderRonaldSeenText, BoarderRonaldBeatenText, 0, .Script
+	readvar VAR_JOHTO_BADGES
+	ifequal 6, .SixBadgesBattle
+	ifequal 5, .FiveBadgesBattle
+; At least 4 Johto Badges.
+	trainer BOARDER, RONALD2, EVENT_BEAT_BOARDER_RONALD, BoarderRonaldSeenText, BoarderRonaldBeatenText, 0, .Script
+
+.SixBadgesBattle:
+	trainer BOARDER, RONALD1, EVENT_BEAT_BOARDER_RONALD, BoarderRonaldSeenText, BoarderRonaldBeatenText, 0, .Script
+.FiveBadgesBattle:
+	trainer BOARDER, RONALD3, EVENT_BEAT_BOARDER_RONALD, BoarderRonaldSeenText, BoarderRonaldBeatenText, 0, .Script
 
 .Script:
 	endifjustbattled
@@ -115,8 +142,17 @@ TrainerBoarderRonald:
 	end
 
 TrainerBoarderBrad:
-	trainer BOARDER, BRAD, EVENT_BEAT_BOARDER_BRAD, BoarderBradSeenText, BoarderBradBeatenText, 0, .Script
+	readvar VAR_JOHTO_BADGES
+	ifequal 6, .SixBadgesBattle
+	ifequal 5, .FiveBadgesBattle
+; At least 4 Johto Badges.
+	trainer BOARDER, BRAD2, EVENT_BEAT_BOARDER_BRAD, BoarderBradSeenText, BoarderBradBeatenText, 0, .Script
 
+.SixBadgesBattle:
+	trainer BOARDER, BRAD1, EVENT_BEAT_BOARDER_BRAD, BoarderBradSeenText, BoarderBradBeatenText, 0, .Script
+.FiveBadgesBattle:
+	trainer BOARDER, BRAD3, EVENT_BEAT_BOARDER_BRAD, BoarderBradSeenText, BoarderBradBeatenText, 0, .Script
+	
 .Script:
 	endifjustbattled
 	opentext
@@ -126,7 +162,16 @@ TrainerBoarderBrad:
 	end
 
 TrainerBoarderDouglas:
-	trainer BOARDER, DOUGLAS, EVENT_BEAT_BOARDER_DOUGLAS, BoarderDouglasSeenText, BoarderDouglasBeatenText, 0, .Script
+	readvar VAR_JOHTO_BADGES
+	ifequal 6, .SixBadgesBattle
+	ifequal 5, .FiveBadgesBattle
+; At least 4 Johto Badges.
+	trainer BOARDER, DOUGLAS2, EVENT_BEAT_BOARDER_DOUGLAS, BoarderDouglasSeenText, BoarderDouglasBeatenText, 0, .Script
+
+.SixBadgesBattle:
+	trainer BOARDER, DOUGLAS1, EVENT_BEAT_BOARDER_DOUGLAS, BoarderDouglasSeenText, BoarderDouglasBeatenText, 0, .Script
+.FiveBadgesBattle:
+	trainer BOARDER, DOUGLAS3, EVENT_BEAT_BOARDER_DOUGLAS, BoarderDouglasSeenText, BoarderDouglasBeatenText, 0, .Script
 
 .Script:
 	endifjustbattled

@@ -1826,11 +1826,6 @@ GruntMGroup:
 	db 26, RATTATA
 	db -1 ; end
 
-	; GRUNTM (12)
-	db "Executive@", TRAINERTYPE_NORMAL
-	db 33, HOUNDOUR
-	db -1 ; end
-
 	; GRUNTM (13)
 	db "Grunt@", TRAINERTYPE_NORMAL
 	db 27, RATTATA
@@ -1888,16 +1883,6 @@ GruntMGroup:
 	db 25, RATICATE
 	db -1 ; end
 
-	; GRUNTM (22)
-	db "Executive@", TRAINERTYPE_NORMAL
-	db 36, GOLBAT
-	db -1 ; end
-
-	; GRUNTM (23)
-	db "Executive@", TRAINERTYPE_NORMAL
-	db 30, KOFFING
-	db -1 ; end
-
 	; GRUNTM (24)
 	db "Grunt@", TRAINERTYPE_NORMAL
 	db 25, KOFFING
@@ -1910,16 +1895,6 @@ GruntMGroup:
 	db 24, MUK
 	db -1 ; end
 
-	; GRUNTM (26)
-	db "Grunt@", TRAINERTYPE_NORMAL
-	db 15, RATTATA
-	db 15, RATTATA
-	db -1 ; end
-
-	; GRUNTM (27)
-	db "Executive@", TRAINERTYPE_NORMAL
-	db 22, ZUBAT
-	db -1 ; end
 
 	; GRUNTM (28)
 	db "Grunt@", TRAINERTYPE_NORMAL
@@ -1933,15 +1908,9 @@ GruntMGroup:
 	db 11, RATTATA
 	db -1 ; end
 
-	; GRUNTM (30)
-	db "Grunt@", TRAINERTYPE_NORMAL
-	db 25, GOLBAT
-	db 25, GOLBAT
-	db 30, ARBOK
-	db -1 ; end
-
 	; GRUNTM (31)
 	db "Grunt@", TRAINERTYPE_NORMAL
+	db 50, RATICATE
 	db 52, CROBAT
 	db -1 ; end
 
@@ -1978,14 +1947,38 @@ GentlemanGroup:
 SkierGroup:
 	; SKIER (1)
 	db "Roxanne@", TRAINERTYPE_NORMAL
+	db 32, SMOOCHUM
+	db 34, JYNX
+	db -1 ; end
+
+	; SKIER (2)
+	db "Roxanne@", TRAINERTYPE_NORMAL
+	db 29, SMOOCHUM
+	db 31, JYNX
+	db -1 ; end
+
+	; SKIER (3)
+	db "Roxanne@", TRAINERTYPE_NORMAL
 	db 30, SMOOCHUM
 	db 32, JYNX
 	db -1 ; end
 
-	; SKIER (2)
+	; SKIER (4)
+	db "Clarissa@", TRAINERTYPE_NORMAL
+	db 32, SEEL
+	db 34, DEWGONG
+	db -1 ; end
+
+	; SKIER (5)
+	db "Clarissa@", TRAINERTYPE_NORMAL
+	db 29, SEEL
+	db 31, DEWGONG
+	db -1 ; end
+
+	; SKIER (6)
 	db "Clarissa@", TRAINERTYPE_NORMAL
 	db 30, SEEL
-	db 33, DEWGONG
+	db 32, DEWGONG
 	db -1 ; end
 
 TeacherGroup:
@@ -3230,6 +3223,16 @@ BlackbeltGroup:
 	db -1 ; end
 
 	; BLACKBELT_T (3)
+	db "Yoshi@", TRAINERTYPE_MOVES
+	db 32, HITMONLEE,  DOUBLE_KICK, MEDITATE, HI_JUMP_KICK, FOCUS_ENERGY
+	db -1 ; end
+
+	; BLACKBELT_T (4)
+	db "Yoshi@", TRAINERTYPE_MOVES
+	db 34, HITMONLEE,  DOUBLE_KICK, MEDITATE, HI_JUMP_KICK, FOCUS_ENERGY
+	db -1 ; end
+
+	; BLACKBELT_T (3)
 	db "Kenji@", TRAINERTYPE_MOVES
 	db 35, ONIX,       BIND, ROCK_THROW, TOXIC, DIG
 	db 36, STEELIX,    EARTHQUAKE, ROCK_THROW, IRON_TAIL, SANDSTORM
@@ -3242,10 +3245,32 @@ BlackbeltGroup:
 	db 29, HITMONCHAN, COMET_PUNCH, THUNDERPUNCH, ICE_PUNCH, FIRE_PUNCH
 	db -1 ; end
 
+	; BLACKBELT_T (4)
+	db "Lao@", TRAINERTYPE_MOVES
+	db 32, HITMONCHAN, MEGA_PUNCH, THUNDERPUNCH, ICE_PUNCH, FIRE_PUNCH
+	db -1 ; end
+
+	; BLACKBELT_T (4)
+	db "Lao@", TRAINERTYPE_MOVES
+	db 34, HITMONCHAN, MEGA_PUNCH, THUNDERPUNCH, ICE_PUNCH, FIRE_PUNCH
+	db -1 ; end
+
 	; BLACKBELT_T (5)
 	db "Nob@", TRAINERTYPE_MOVES
 	db 26, MACHOP,     LEER, FOCUS_ENERGY, KARATE_CHOP, SEISMIC_TOSS
 	db 28, MACHOKE,    LEER, KARATE_CHOP, SEISMIC_TOSS, ROCK_SLIDE
+	db -1 ; end
+
+	; BLACKBELT_T (5)
+	db "Nob@", TRAINERTYPE_MOVES
+	db 29, MACHOP,     LEER, FOCUS_ENERGY, KARATE_CHOP, STRENGTH
+	db 31, MACHOKE,    LEER, KARATE_CHOP, STRENGTH, ROCK_SLIDE
+	db -1 ; end
+
+	; BLACKBELT_T (5)
+	db "Nob@", TRAINERTYPE_MOVES
+	db 31, MACHOKE,    LEER, FOCUS_ENERGY, KARATE_CHOP, STRENGTH
+	db 33, MACHOKE,    LEER, KARATE_CHOP, STRENGTH, ROCK_SLIDE
 	db -1 ; end
 
 	; BLACKBELT_T (6)
@@ -3259,6 +3284,20 @@ BlackbeltGroup:
 	db 26, MANKEY
 	db 26, MANKEY
 	db 28, PRIMEAPE
+	db -1 ; end
+
+	; BLACKBELT_T (7)
+	db "Lung@", TRAINERTYPE_NORMAL
+	db 29, MANKEY
+	db 29, PRIMEAPE
+	db 31, PRIMEAPE
+	db -1 ; end
+
+	; BLACKBELT_T (7)
+	db "Lung@", TRAINERTYPE_NORMAL
+	db 31, PRIMEAPE
+	db 31, PRIMEAPE
+	db 33, PRIMEAPE
 	db -1 ; end
 
 	; BLACKBELT_T (8)
@@ -3896,22 +3935,62 @@ MediumGroup:
 BoarderGroup:
 	; BOARDER (1)
 	db "Ronald@", TRAINERTYPE_NORMAL
-	db 31, SEEL
-	db 31, SEEL
-	db 32, DEWGONG
+	db 32, SEEL
+	db 32, SEEL
+	db 33, DEWGONG
 	db -1 ; end
 
 	; BOARDER (2)
-	db "Brad@", TRAINERTYPE_NORMAL
-	db 31, SWINUB
-	db 33, PILOSWINE
+	db "Ronald@", TRAINERTYPE_NORMAL
+	db 28, SEEL
+	db 28, SEEL
+	db 29, DEWGONG
 	db -1 ; end
 
 	; BOARDER (3)
+	db "Ronald@", TRAINERTYPE_NORMAL
+	db 30, SEEL
+	db 30, SEEL
+	db 31, DEWGONG
+	db -1 ; end
+
+	; BOARDER (4)
+	db "Brad@", TRAINERTYPE_NORMAL
+	db 32, SWINUB
+	db 34, PILOSWINE
+	db -1 ; end
+
+	; BOARDER (5)
+	db "Brad@", TRAINERTYPE_NORMAL
+	db 30, SWINUB
+	db 32, PILOSWINE
+	db -1 ; end
+
+	; BOARDER (6)
+	db "Brad@", TRAINERTYPE_NORMAL
+	db 28, SWINUB
+	db 30, PILOSWINE
+	db -1 ; end
+
+	; BOARDER (7)
 	db "Douglas@", TRAINERTYPE_NORMAL
-	db 32, SHELLDER
-	db 32, SHELLDER
-	db 33, CLOYSTER
+	db 33, SHELLDER
+	db 33, SHELLDER
+	db 34, CLOYSTER
+	db -1 ; end
+
+	; BOARDER (8)
+	db "Douglas@", TRAINERTYPE_NORMAL
+	db 31, SHELLDER
+	db 31, SHELLDER
+	db 32, CLOYSTER
+	db -1 ; end
+
+	; BOARDER (9)
+	db "Douglas@", TRAINERTYPE_NORMAL
+	db 29, SHELLDER
+	db 29, SHELLDER
+	db 30, CLOYSTER
 	db -1 ; end
 
 PokefanMGroup:
@@ -4002,13 +4081,6 @@ PokefanMGroup:
 	db -1 ; end
 
 KimonoGirlGroup:
-	; KIMONO_GIRL (1)
-	db "Naoko@", TRAINERTYPE_NORMAL
-	db 20, SKIPLOOM
-	db 20, VULPIX
-	db 18, SKIPLOOM
-	db -1 ; end
-
 	; KIMONO_GIRL (2)
 	db "Koume@", TRAINERTYPE_ITEM_MOVES
 	db 20, FLAREON, CHARCOAL, 		EMBER, SAND_ATTACK, QUICK_ATTACK, BITE

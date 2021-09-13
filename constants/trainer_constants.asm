@@ -299,7 +299,6 @@ KRIS EQU __trainer_class__
 	const GRUNTM_9
 	const GRUNTM_10
 	const GRUNTM_11
-	const GRUNTM_12_UNUSED
 	const GRUNTM_13
 	const GRUNTM_14
 	const GRUNTM_15
@@ -309,15 +308,10 @@ KRIS EQU __trainer_class__
 	const GRUNTM_19
 	const GRUNTM_20
 	const GRUNTM_21
-	const GRUNTM_22_UNUSED
-	const GRUNTM_23_UNUSED
 	const GRUNTM_24
 	const GRUNTM_25
-	const GRUNTM_26_UNUSED
-	const GRUNTM_27_UNUSED
 	const GRUNTM_28
 	const GRUNTM_29
-	const GRUNTM_30_UNUSED
 	const GRUNTM_31
 
 	trainerclass GENTLEMAN ; 20
@@ -328,8 +322,12 @@ KRIS EQU __trainer_class__
 	const ALFRED
 
 	trainerclass SKIER ; 21
-	const ROXANNE
-	const CLARISSA
+	const ROXANNE1
+	const ROXANNE2
+	const ROXANNE3
+	const CLARISSA1
+	const CLARISSA2
+	const CLARISSA3
 
 	trainerclass TEACHER ; 22
 	const COLETTE
@@ -537,12 +535,20 @@ KRIS EQU __trainer_class__
 
 	trainerclass BLACKBELT_T ; 32
 	const KENJI1
-	const YOSHI
+	const YOSHI1
+	const YOSHI2
+	const YOSHI3
 	const KENJI2
-	const LAO
-	const NOB
+	const LAO1
+	const LAO2
+	const LAO3
+	const NOB1
+	const NOB2
+	const NOB3
 	const KIYO
-	const LUNG
+	const LUNG1
+	const LUNG2
+	const LUNG3
 	const KENJI3
 	const WAI
 
@@ -646,9 +652,15 @@ KRIS EQU __trainer_class__
 	const DORIS
 
 	trainerclass BOARDER ; 3a
-	const RONALD
-	const BRAD
-	const DOUGLAS
+	const RONALD1
+	const RONALD2
+	const RONALD3
+	const BRAD1
+	const BRAD2
+	const BRAD3
+	const DOUGLAS1
+	const DOUGLAS2
+	const DOUGLAS3
 
 	trainerclass POKEFANM ; 3b
 	const WILLIAM
@@ -667,7 +679,6 @@ KRIS EQU __trainer_class__
 	const ALLAN
 
 	trainerclass KIMONO_GIRL ; 3c
-	const NAOKO_UNUSED
 	const NAOKO
 	const SAYO
 	const ZUKI

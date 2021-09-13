@@ -501,66 +501,66 @@ JohtoGrassWildMons:
 	db 6 percent, 6 percent, 6 percent ; encounter rates: morn/day/nite
 	; morn
 	;  %, species,    min, max	
-	db 30, GEODUDE,		 6,  6
-	db 30, SANDSHREW,	 6,  6
-	db 20, ZUBAT,		 5,  7
-	db 10, RATTATA,		 5,  6
-	db  5, ZUBAT,		 5,  7
-	db  4, ONIX,		 6,  6
-	db  1, ONIX,		 6,  6
+	db 30, GEODUDE,		 8,  8
+	db 30, SANDSHREW,	 8,  8
+	db 20, ZUBAT,		 7,  9
+	db 10, SANDSHREW,	 8,  8
+	db  5, ZUBAT,		 7,  9
+	db  4, ONIX,		 8,  8
+	db  1, ONIX,		 8,  8
 
 	; day
 	;  %, species,    min, max	
-	db 30, GEODUDE,		 6,  6
-	db 30, SANDSHREW,	 6,  6
-	db 20, ZUBAT,		 5,  7
-	db 10, RATTATA,		 5,  6
-	db  5, ZUBAT,		 5,  7
-	db  4, ONIX,		 6,  6
-	db  1, ONIX,		 6,  6
+	db 30, GEODUDE,		 8,  8
+	db 30, SANDSHREW,	 8,  8
+	db 20, ZUBAT,		 7,  9
+	db 10, SANDSHREW,	 8,  8
+	db  5, ZUBAT,		 7,  9
+	db  4, ONIX,		 8,  8
+	db  1, ONIX,		 8,  8
 
 	; nite
 	;  %, species,    min, max
-	db 30, GEODUDE,		 6,  6
-	db 30, RATTATA,		 5,  6
-	db 20, WOOPER,		 5,  6
-	db 10, RATTATA,		 5,  6
-	db  5, ZUBAT,		 7,  7
-	db  4, ONIX,		 6,  6
-	db  1, ONIX,		 6,  6
+	db 30, GEODUDE,		 8,  8
+	db 30, RATTATA,		 7,  8
+	db 20, WOOPER,		 7,  8
+	db 10, RATTATA,		 7,  8
+	db  5, ZUBAT,		 9,  9
+	db  4, ONIX,		 8,  8
+	db  1, ONIX,		 8,  8
 	end_grass_wildmons
 
 	def_grass_wildmons UNION_CAVE_B1F
 	db 6 percent, 6 percent, 6 percent ; encounter rates: morn/day/nite
 	; morn
 	;  %, species,    min, max
-	db 30, GEODUDE,		 8,  8
-	db 30, ZUBAT,		 6,  8
-	db 10, ZUBAT,		 6,  8
-	db 10, ONIX,		 8,  8
-	db 10, SANDSHREW,	 6,  8
-	db  5, RATTATA,		 6,  8
-	db  5, RATTATA,		 6,  8
+	db 30, GEODUDE,		 9, 10
+	db 30, ZUBAT,		 8, 10
+	db 10, ZUBAT,		 8, 10
+	db 10, ONIX,		 9, 10
+	db 10, SANDSHREW,	 8, 10
+	db  5, SANDSHREW,	 8, 10
+	db  5, SANDSHREW,	 8, 10
 
 	; day
 	;  %, species,    min, max
-	db 30, GEODUDE,		 8,  8
-	db 30, ZUBAT,		 6,  8
-	db 10, ZUBAT,		 6,  8
-	db 10, ONIX,		 8,  8
-	db 10, SANDSHREW,	 6,  8
-	db  5, RATTATA,		 6,  8
-	db  5, RATTATA,		 6,  8
+	db 30, GEODUDE,		 9, 10
+	db 30, ZUBAT,		 8, 10
+	db 10, ZUBAT,		 8, 10
+	db 10, ONIX,		 9, 10
+	db 10, SANDSHREW,	 8, 10
+	db  5, SANDSHREW,	 8, 10
+	db  5, SANDSHREW,	 8, 10
 
 	; nite
 	;  %, species,    min, max
-	db 30, GEODUDE,		 8,  8
-	db 30, ZUBAT,		 6,  6
-	db 20, WOOPER,		 8,  8
-	db 10, ONIX,		 8,  8
-	db  5, RATTATA,		 6,  8
-	db  4, RATTATA,		 6,  8
-	db  1, RATTATA,		 6,  8
+	db 30, GEODUDE,		 9, 10
+	db 30, ZUBAT,		10, 10
+	db 20, WOOPER,		 9, 10
+	db 10, ONIX,		 9, 10
+	db  5, RATTATA,		 8, 10
+	db  4, RATTATA,		 8, 10
+	db  1, RATTATA,		 8, 10
 	end_grass_wildmons
 
 	def_grass_wildmons UNION_CAVE_B2F
@@ -1554,66 +1554,66 @@ JohtoGrassWildMons:
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
 	;  %, species,    min, max
-	db 30, EKANS,		 4,  6 
-	db 25, RATTATA,		 4,  6
-	db 20, BELLSPROUT,	 7,  7
-	db 10, MAREEP,		 6,  7
-	db  5, HOPPIP,		 6,  7
-	db  5, HOPPIP,		 6,  7
-	db  5, PIDGEY,		 7,  7
+	db 30, EKANS,		 6,  8 
+	db 25, RATTATA,		 6,  8
+	db 20, BELLSPROUT,	 8,  9
+	db 10, MAREEP,		 8,  9
+	db  5, HOPPIP,		 8,  9
+	db  5, HOPPIP,		 8,  9
+	db  5, PIDGEY,		 8,  9
 
 	; day
 	;  %, species,    min, max
-	db 30, RATTATA,		 4,  6
-	db 25, EKANS,		 4,  6
-	db 20, BELLSPROUT,	 7,  7
-	db 10, MAREEP,		 6,  7
-	db  5, HOPPIP,		 6,  7
-	db  5, HOPPIP,		 6,  7
-	db  5, PIDGEY,		 7,  7
+	db 30, RATTATA,		 6,  8
+	db 25, EKANS,		 6,  8
+	db 20, BELLSPROUT,	 8,  9
+	db 10, MAREEP,		 8,  9
+	db  5, HOPPIP,		 8,  9
+	db  5, HOPPIP,		 8,  9
+	db  5, PIDGEY,		 8,  9
 
 	; nite
 	;  %, species,    min, max
-	db 30, WOOPER,		 4,  4
-	db 25, RATTATA,		 4,  6
-	db 20, BELLSPROUT,	 7,  7
-	db 10, ZUBAT,		 6,  6
-	db  5, HOOTHOOT,	 7,  7
-	db  5, GASTLY,		 7,  7
-	db  5, MAREEP,		 6,  7
+	db 30, WOOPER,		 6,  8
+	db 25, RATTATA,		 6,  8
+	db 20, BELLSPROUT,	 8,  9
+	db 10, ZUBAT,		 8,  9
+	db  5, HOOTHOOT,	 8,  9
+	db  5, GASTLY,		 8,  9
+	db  5, MAREEP,		 8,  9
 	end_grass_wildmons
 
 	def_grass_wildmons ROUTE_33
 	db 10 percent, 10 percent, 10 percent ; encounter rates: morn/day/nite
 	; morn
 	;  %, species,    min, max
-	db 30, RATTATA,		 6,  8
-	db 30, SPEAROW,		 6,  8
-	db 20, GEODUDE,		 6,  8
-	db 10, HOPPIP,		 6,  7
-	db  5, EKANS,		 7,  7
-	db  4, HOPPIP,		 6,  7
-	db  1, HOPPIP,		 6,  7
+	db 30, RATTATA,		 8, 10
+	db 30, SPEAROW,		 8, 10
+	db 20, GEODUDE,		 8, 10
+	db 10, HOPPIP,		 8,  9
+	db  5, EKANS,		 9, 10
+	db  4, HOPPIP,		 8,  9
+	db  1, HOPPIP,		 8,  9
 
 	; day
 	;  %, species,    min, max
-	db 30, RATTATA,		 6,  8
-	db 30, SPEAROW,		 6,  8
-	db 20, GEODUDE,		 6,  8
-	db 10, HOPPIP,		 6,  7
-	db  5, EKANS,		 7,  7
-	db  4, HOPPIP,		 6,  7
-	db  1, HOPPIP,		 6,  7
+	db 30, RATTATA,		 8, 10
+	db 30, SPEAROW,		 8, 10
+	db 20, GEODUDE,		 8, 10
+	db 10, HOPPIP,		 8,  9
+	db  5, EKANS,		 9, 10
+	db  4, HOPPIP,		 8,  9
+	db  1, HOPPIP,		 8,  9
 
 	; nite
 	;  %, species,    min, max
-	db 30, RATTATA,		 6,  8
-	db 30, ZUBAT,		 6,  6
-	db 20, GEODUDE,		 6,  8
-	db 10, ZUBAT,		 6,  8
-	db  5, RATTATA,		 6,  8
-	db  4, RATTATA,		 6,  8
-	db  1, RATTATA,		 6,  8
+	db 30, RATTATA,		 8, 10
+	db 30, ZUBAT,		 8, 10
+	db 20, GEODUDE,		 8, 10
+	db 10, ZUBAT,		 8, 10
+	db  5, RATTATA,		 8, 10
+	db  4, RATTATA,		 8, 10
+	db  1, RATTATA,		 8, 10
 	end_grass_wildmons
 
 	def_grass_wildmons ROUTE_34

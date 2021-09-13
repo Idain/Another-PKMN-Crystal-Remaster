@@ -98,7 +98,17 @@ CianwoodGymActivateRockets:
 	jumpstd RadioTowerRocketsScript
 
 TrainerBlackbeltYoshi:
-	trainer BLACKBELT_T, YOSHI, EVENT_BEAT_BLACKBELT_YOSHI, BlackbeltYoshiSeenText, BlackbeltYoshiBeatenText, 0, .Script
+	readvar VAR_JOHTO_BADGES
+	ifequal 6, .SixBadgesBattle
+	ifequal 5, .FiveBadgesBattle
+	; At least 4 Johto Badges
+	trainer BLACKBELT_T, YOSHI1, EVENT_BEAT_BLACKBELT_YOSHI, BlackbeltYoshiSeenText, BlackbeltYoshiBeatenText, 0, .Script
+
+.SixBadgesBattle:
+	trainer BLACKBELT_T, YOSHI3, EVENT_BEAT_BLACKBELT_YOSHI, BlackbeltYoshiSeenText, BlackbeltYoshiBeatenText, 0, .Script
+
+.FiveBadgesBattle:
+	trainer BLACKBELT_T, YOSHI2, EVENT_BEAT_BLACKBELT_YOSHI, BlackbeltYoshiSeenText, BlackbeltYoshiBeatenText, 0, .Script
 
 .Script:
 	endifjustbattled
@@ -109,7 +119,17 @@ TrainerBlackbeltYoshi:
 	end
 
 TrainerBlackbeltLao:
-	trainer BLACKBELT_T, LAO, EVENT_BEAT_BLACKBELT_LAO, BlackbeltLaoSeenText, BlackbeltLaoBeatenText, 0, .Script
+	readvar VAR_JOHTO_BADGES
+	ifequal 6, .SixBadgesBattle
+	ifequal 5, .FiveBadgesBattle
+	; At least 4 Johto Badges
+	trainer BLACKBELT_T, LAO1, EVENT_BEAT_BLACKBELT_LAO, BlackbeltLaoSeenText, BlackbeltLaoBeatenText, 0, .Script
+
+.SixBadgesBattle:
+	trainer BLACKBELT_T, LAO3, EVENT_BEAT_BLACKBELT_LAO, BlackbeltLaoSeenText, BlackbeltLaoBeatenText, 0, .Script
+
+.FiveBadgesBattle:
+	trainer BLACKBELT_T, LAO2, EVENT_BEAT_BLACKBELT_LAO, BlackbeltLaoSeenText, BlackbeltLaoBeatenText, 0, .Script
 
 .Script:
 	endifjustbattled
@@ -120,7 +140,18 @@ TrainerBlackbeltLao:
 	end
 
 TrainerBlackbeltNob:
-	trainer BLACKBELT_T, NOB, EVENT_BEAT_BLACKBELT_NOB, BlackbeltNobSeenText, BlackbeltNobBeatenText, 0, .Script
+	readvar VAR_JOHTO_BADGES
+	ifequal 6, .SixBadgesBattle
+	ifequal 5, .FiveBadgesBattle
+	; At least 4 Johto Badges
+	trainer BLACKBELT_T, NOB1, EVENT_BEAT_BLACKBELT_NOB, BlackbeltNobSeenText, BlackbeltNobBeatenText, 0, .Script
+
+.SixBadgesBattle:
+	trainer BLACKBELT_T, NOB3, EVENT_BEAT_BLACKBELT_NOB, BlackbeltNobSeenText, BlackbeltNobBeatenText, 0, .Script
+
+.FiveBadgesBattle:
+	trainer BLACKBELT_T, NOB2, EVENT_BEAT_BLACKBELT_NOB, BlackbeltNobSeenText, BlackbeltNobBeatenText, 0, .Script
+
 
 .Script:
 	endifjustbattled
@@ -131,7 +162,17 @@ TrainerBlackbeltNob:
 	end
 
 TrainerBlackbeltLung:
-	trainer BLACKBELT_T, LUNG, EVENT_BEAT_BLACKBELT_LUNG, BlackbeltLungSeenText, BlackbeltLungBeatenText, 0, .Script
+	readvar VAR_JOHTO_BADGES
+	ifequal 6, .SixBadgesBattle
+	ifequal 5, .FiveBadgesBattle
+	; At least 4 Johto Badges
+	trainer BLACKBELT_T, LUNG1, EVENT_BEAT_BLACKBELT_LUNG, BlackbeltLungSeenText, BlackbeltLungBeatenText, 0, .Script
+
+.SixBadgesBattle:
+	trainer BLACKBELT_T, LUNG3, EVENT_BEAT_BLACKBELT_LUNG, BlackbeltLungSeenText, BlackbeltLungBeatenText, 0, .Script
+
+.FiveBadgesBattle:
+	trainer BLACKBELT_T, LUNG2, EVENT_BEAT_BLACKBELT_LUNG, BlackbeltLungSeenText, BlackbeltLungBeatenText, 0, .Script
 
 .Script:
 	endifjustbattled
