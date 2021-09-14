@@ -196,8 +196,6 @@ KRIS EQU __trainer_class__
 	const MICHELLE
 	const DANA1
 	const ELLEN
-	const CONNIE2
-	const CONNIE3
 	const DANA2
 	const DANA3
 	const DANA4
@@ -219,12 +217,8 @@ KRIS EQU __trainer_class__
 	const GAVEN3
 	const BLAKE
 	const BRIAN
-	const ERICK
-	const ANDY
-	const TYLER
 	const SEAN
 	const KEVIN
-	const STEVE
 	const ALLEN
 	const DARIN
 
@@ -254,19 +248,8 @@ KRIS EQU __trainer_class__
 	trainerclass BEAUTY ; 1d
 	const VICTORIA
 	const SAMANTHA
-	const JULIE
-	const JACLYN
-	const BRENDA
 	const CASSIE
-	const CAROLINE
-	const CARLENE
-	const JESSICA
-	const RACHAEL
-	const ANGELICA
-	const KENDRA
-	const VERONICA
 	const JULIA
-	const THERESA
 	const VALERIE
 	const OLIVIA
 
@@ -394,18 +377,10 @@ KRIS EQU __trainer_class__
 	const BERKE
 	const KIRK
 	const MATHEW
-	const HAL
-	const PATON
-	const DARYL
-	const WALTER
-	const TONY
 	const JEROME
 	const TUCKER
-	const RICK
 	const CAMERON
 	const SETH
-	const JAMES
-	const LEWIS
 	const PARKER
 
 	trainerclass SWIMMERF ; 27
@@ -416,15 +391,9 @@ KRIS EQU __trainer_class__
 	const DENISE
 	const KARA
 	const WENDY
-	const LISA
-	const JILL
-	const MARY
-	const KATIE
 	const DAWN
-	const TARA
 	const NICOLE
 	const LORI
-	const JODY
 	const NIKKI
 	const DIANA
 	const BRIANA
@@ -447,16 +416,11 @@ KRIS EQU __trainer_class__
 	trainerclass SUPER_NERD ; 29
 	const STAN
 	const ERIC
-	const GREGG
-	const JAY
-	const DAVE
 	const SAM
 	const TOM
 	const PAT
 	const SHAWN
 	const TERU
-	const RUSS
-	const NORTON
 	const HUGH
 	const MARKUS
 
@@ -529,12 +493,8 @@ KRIS EQU __trainer_class__
 	const IRWIN1
 	const FRITZ
 	const HORTON
-	const IRWIN2
-	const IRWIN3
-	const IRWIN4
 
 	trainerclass BLACKBELT_T ; 32
-	const KENJI1
 	const YOSHI1
 	const YOSHI2
 	const YOSHI3
@@ -549,7 +509,6 @@ KRIS EQU __trainer_class__
 	const LUNG1
 	const LUNG2
 	const LUNG3
-	const KENJI3
 	const WAI
 
 	trainerclass EXECUTIVEM ; 33
@@ -609,15 +568,9 @@ KRIS EQU __trainer_class__
 	const LLOYD
 	const DEAN
 	const SID
-	const HARVEY
-	const DALE
 	const TED
 	const TODD2
 	const TODD3
-	const THOMAS
-	const LEROY
-	const DAVID
-	const JOHN
 	const JERRY
 	const SPENCER
 	const TODD4
@@ -672,8 +625,6 @@ KRIS EQU __trainer_class__
 	const BRANDON
 	const JEREMY
 	const COLIN
-	const DEREK2
-	const DEREK3
 	const ALEX
 	const REX
 	const ALLAN

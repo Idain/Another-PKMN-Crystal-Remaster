@@ -161,8 +161,7 @@ SwimmerfDawnAfterBattleText:
 
 	para "Sheesh, some big"
 	line "man my boyfriend"
-
-	para "is! What a wimp!"
+	cont "is! What a wimp!"
 	done
 
 SwimmermJeromeSeenText:
