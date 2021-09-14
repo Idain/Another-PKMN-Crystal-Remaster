@@ -1705,14 +1705,14 @@ BattleCommand_CheckHit:
 	bit SUBSTATUS_PROTECT, a
 	ret z
 
-	ld c, 40
+	ld c, 20
 	call DelayFrames
 
 ; 'protecting itself!'
 	ld hl, ProtectingItselfText
 	call StdBattleTextbox
 
-	ld c, 40
+	ld c, 20
 	call DelayFrames
 
 	ld a, 1
@@ -2283,8 +2283,8 @@ BattleCommand_ApplyDamage:
 	ret
 
 GetFailureResultText:
-	ld hl, DoesntAffectText
-	ld de, DoesntAffectText
+	ld hl, DidntAffect1Text
+	ld de, DidntAffect1Text
 	ld a, [wTypeModifier]
 	and $7f
 	jr z, .got_text
@@ -2358,7 +2358,7 @@ BattleCommand_BideFailText:
 
 	ld a, [wTypeModifier]
 	and $7f
-	jp z, PrintDoesntAffect
+	jp z, PrintDidntAffect
 	jp PrintButItFailed
 
 BattleCommand_CriticalText:
@@ -3896,7 +3896,7 @@ BattleCommand_PoisonTarget:
 BattleCommand_Poison:
 ; poison
 
-	ld hl, DoesntAffectText
+	ld hl, DidntAffect1Text
 	ld a, [wTypeModifier]
 	and $7f
 	jp z, .failed
@@ -6092,13 +6092,13 @@ BattleCommand_Paralyze:
 	ld a, BATTLE_VARS_STATUS_OPP
 	call GetBattleVarAddr
 	and a
-	jr nz, .failed
+	jr nz, .didnt_affect
 	ld a, [wAttackMissed]
 	and a
 	jr nz, .failed
 	call CheckSubstituteOpp
 	jr nz, .failed
-	ld c, 30
+	ld c, 20
 	call DelayFrames
 	call AnimateCurrentMove
 	ld a, $1
@@ -6124,7 +6124,7 @@ BattleCommand_Paralyze:
 
 .didnt_affect
 	call AnimateFailedMove
-	jp PrintDoesntAffect
+	jp PrintDidntAffect
 
 INCLUDE "engine/battle/move_effects/substitute.asm"
 
@@ -6377,11 +6377,6 @@ BattleCommand_Screen:
 	call AnimateFailedMove
 	jp PrintButItFailed
 
-PrintDoesntAffect:
-; 'it doesn't affect'
-	ld hl, DoesntAffectText
-	jp StdBattleTextbox
-
 PrintNothingHappened:
 ; 'but nothing happened!'
 	ld hl, NothingHappenedText
@@ -6415,8 +6410,8 @@ PrintDidntAffect:
 
 PrintDidntAffect2:
 	call AnimateFailedMove
-	ld hl, DidntAffect1Text ; 'it didn't affect'
-	ld de, DidntAffect2Text ; 'it didn't affect'
+	ld hl, EvadedText ; 'evaded the attack'
+	ld de, ProtectingItselfText ; 'protecting itself'
 	jp FailText_CheckOpponentProtect
 
 PrintParalyze:

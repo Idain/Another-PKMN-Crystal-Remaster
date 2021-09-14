@@ -178,7 +178,6 @@ BattleText_TheHailStopped:
 	text "The hail stopped."
 	prompt
 
-
 BattleText_EnemyMonFainted:
 	text "Enemy @"
 	text_ram wEnemyMonNickname
@@ -224,12 +223,6 @@ SentAllToMomText:
 	text "Sent all to Mom!"
 	prompt
 
-UnusedRivalLossText: ; unreferenced
-	text "<RIVAL>: Huh? I"
-	line "should've chosen"
-	cont "your #mon!"
-	prompt
-
 BattleText_MonFainted:
 	text_ram wBattleMonNickname
 	text_start
@@ -239,12 +232,6 @@ BattleText_MonFainted:
 BattleText_UseNextMon:
 	text "Use next #mon?"
 	done
-
-UnusedRivalWinText: ; unreferenced
-	text "<RIVAL>: Yes!"
-	line "I guess I chose a"
-	cont "good #mon!"
-	prompt
 
 LostAgainstText:
 	text "Lost against"
@@ -485,10 +472,6 @@ UsedBindText:
 	prompt
 
 WhirlpoolTrapText:
-	text "<TARGET>"
-	line "was trapped!"
-	prompt
-
 FireSpinTrapText:
 	text "<TARGET>"
 	line "was trapped!"
@@ -615,10 +598,6 @@ RegainedHealthText:
 	prompt
 
 AttackMissedText:
-	text "<USER>'s"
-	line "attack missed!"
-	prompt
-
 AttackMissed2Text:
 	text "<USER>'s"
 	line "attack missed!"
@@ -633,11 +612,6 @@ CrashedText:
 UnaffectedText:
 	text "<TARGET>'s"
 	line "unaffected!"
-	prompt
-
-DoesntAffectText:
-	text "It doesn't affect"
-	line "<TARGET>!"
 	prompt
 
 CriticalHitText:
@@ -929,11 +903,6 @@ ItFailedText:
 	prompt
 
 DidntAffect1Text:
-	text "It didn't affect"
-	line "<TARGET>!"
-	prompt
-
-DidntAffect2Text:
 	text "It didn't affect"
 	line "<TARGET>!"
 	prompt
