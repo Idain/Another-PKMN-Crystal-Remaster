@@ -664,33 +664,33 @@ JohtoGrassWildMons:
 	db 4 percent, 4 percent, 4 percent ; encounter rates: morn/day/nite
 	; morn
 	;  %, species,    min, max
-	db 30, CATERPIE,	 5,  6
-	db 30, WEEDLE,		 5,  6
-	db 20, METAPOD,		 7,  8
-	db 10, KAKUNA,		 7,  8
-	db  5, PIDGEY,		 7,  8
-	db  4, PARAS,		 6,  8
-	db  1, PARAS,		 6,  8
+	db 30, CATERPIE,	 7,  8
+	db 30, WEEDLE,		 7,  8
+	db 20, METAPOD,		 9, 10
+	db 10, KAKUNA,		 9, 10
+	db  5, PIDGEY,		 9, 10
+	db  4, PARAS,		 8, 10
+	db  1, PARAS,		 8, 10
 
 	; day
 	;  %, species,    min, max
-	db 30, CATERPIE,	 5,  6
-	db 30, WEEDLE,		 5,  6
-	db 20, METAPOD,		 7,  8
-	db 10, KAKUNA,		 7,  8
-	db  5, PIDGEY,		 7,  8
-	db  4, PARAS,		 6,  8
-	db  1, PARAS,		 6,  8
+	db 30, CATERPIE,	 7,  8
+	db 30, WEEDLE,		 7,  8
+	db 20, METAPOD,		 9, 10
+	db 10, KAKUNA,		 9, 10
+	db  5, PIDGEY,		 9, 10
+	db  4, PARAS,		 8, 10
+	db  1, PARAS,		 8, 10
 
 	; nite
 	;  %, species,    min, max
-	db 30, ODDISH,		 5,  7
-	db 30, VENONAT,		 5,  7
-	db 15, ODDISH,		 5,  7
-	db 10, PSYDUCK,		 7,  7
-	db  5, HOOTHOOT,	 7,  7
-	db  5, PARAS,		 6,  8
-	db  5, MURKROW,		 6,  8
+	db 30, ODDISH,		 7,  9
+	db 30, VENONAT,		 7,  9
+	db 15, ODDISH,		 7,  9
+	db 10, PSYDUCK,		 9, 10
+	db  5, HOOTHOOT,	 9, 10
+	db  5, PARAS,		 8, 10
+	db  5, MURKROW,		 8, 10
 	end_grass_wildmons
 
 	def_grass_wildmons MOUNT_MORTAR_1F_OUTSIDE
