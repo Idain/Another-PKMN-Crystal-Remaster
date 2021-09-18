@@ -301,20 +301,7 @@ HandleBetweenTurnEffects:
 	call LoadTilemapToTempTilemap
 	jp HandleEncore
 
-HasAnyoneFainted:
-	call HasPlayerFainted
-	jp nz, HasEnemyFainted
-	ret
-
 CheckFaint_PlayerThenEnemy:
-.faint_loop
-	call .Function
-	ret c
-	call HasAnyoneFainted
-	ret nz
-	jr .faint_loop
-
-.Function:
 	call HasPlayerFainted
 	jr nz, .PlayerNotFainted
 	call HandlePlayerMonFaint
@@ -339,14 +326,6 @@ CheckFaint_PlayerThenEnemy:
 	ret
 
 CheckFaint_EnemyThenPlayer:
-.faint_loop
-	call .Function
-	ret c
-	call HasAnyoneFainted
-	ret nz
-	jr .faint_loop
-
-.Function:
 	call HasEnemyFainted
 	jr nz, .EnemyNotFainted
 	call HandleEnemyMonFaint
@@ -2203,14 +2182,12 @@ HandleEnemyMonFaint:
 	and a
 	jp z, LostBattle
 
-	ld hl, wBattleMonHP
-	ld a, [hli]
-	or [hl]
+	call HasPlayerFainted
 	call nz, UpdatePlayerHUD
 
 	ld a, $1
 	ldh [hBGMapMode], a
-	ld c, 60
+	ld c, 40
 	call DelayFrames
 
 	ld a, [wBattleMode]
@@ -2225,9 +2202,7 @@ HandleEnemyMonFaint:
 	call CheckEnemyTrainerDefeated
 	jp z, WinTrainerBattle
 
-	ld hl, wBattleMonHP
-	ld a, [hli]
-	or [hl]
+	call HasPlayerFainted
 	jr nz, .player_mon_not_fainted
 
 	call AskUseNextPokemon
@@ -2828,9 +2803,7 @@ HandlePlayerMonFaint:
 	ld a, d
 	and a
 	jp z, LostBattle
-	ld hl, wEnemyMonHP
-	ld a, [hli]
-	or [hl]
+	call HasEnemyFainted
 	jr nz, .notfainted
 	call UpdateBattleStateAndExperienceAfterEnemyFaint
 	ld a, [wBattleMode]
@@ -2897,9 +2870,7 @@ UpdateFaintedPlayerMon:
 	and BATTLERESULT_BITMASK
 	add LOSE
 	ld [wBattleResult], a
-	ld a, [wWhichMonFaintedFirst]
-	and a
-	ret z
+	ret
 
 AskUseNextPokemon:
 	call EmptyBattleTextbox
@@ -5457,7 +5428,7 @@ EnemyMonEntrance:
 BattleMonEntrance:
 	call WithdrawMonText
 
-	ld c, 50
+	ld c, 40
 	call DelayFrames
 
 	ld hl, wPlayerSubStatus4
@@ -5490,7 +5461,7 @@ BattleMonEntrance:
 	ret
 
 PassedBattleMonEntrance:
-	ld c, 50
+	ld c, 40
 	call DelayFrames
 
 	hlcoord 9, 7
@@ -6030,7 +6001,7 @@ CheckPlayerHasUsableMoves:
 .force_struggle
 	ld hl, BattleText_MonHasNoMovesLeft
 	call StdBattleTextbox
-	ld c, 60
+	ld c, 40
 	call DelayFrames
 	xor a
 	ret
@@ -8381,7 +8352,7 @@ ExitBattle:
 	and a
 	jr z, .not_linked
 	call ShowLinkBattleParticipantsAfterEnd
-	ld c, 150
+	ld c, 120
 	call DelayFrames
 	jp DisplayLinkBattleResult
 
@@ -8500,7 +8471,7 @@ DisplayLinkBattleResult:
 	hlcoord 6, 8
 	call PlaceString
 	farcall BackupMobileEventIndex
-	ld c, 200
+	ld c, 180
 	call DelayFrames
 
 	ld a, BANK(sLinkBattleStats)
@@ -8532,7 +8503,7 @@ DisplayLinkBattleResult:
 	hlcoord 6, 8
 	ld de, .InvalidBattle
 	call PlaceString
-	ld c, 200
+	ld c, 180
 	call DelayFrames
 	jp ClearTilemap
 
