@@ -280,7 +280,8 @@ DungeonsGroupSprites:
 	db SPRITE_ROCKER
 	db SPRITE_FISHER
 	db SPRITE_SCIENTIST
-	; 8 of max 9 walking sprites
+	db SPRITE_SUPER_NERD
+	; 9 of max 9 walking sprites
 	db SPRITE_GAMEBOY_KID
 	db SPRITE_PERSIAN
 	db SPRITE_POKE_BALL

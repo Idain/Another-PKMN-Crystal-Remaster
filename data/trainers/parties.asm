@@ -2914,14 +2914,15 @@ FirebreatherGroup:
 
 	; FIREBREATHER (2)
 	db "Dick@", TRAINERTYPE_NORMAL
-	db 17, CHARMELEON
+	db 18, CHARMELEON
+	db 18, MAGMAR
 	db -1 ; end
 
 	; FIREBREATHER (3)
 	db "Ned@", TRAINERTYPE_NORMAL
-	db 15, KOFFING
-	db 16, GROWLITHE
-	db 15, KOFFING
+	db 17, KOFFING
+	db 17, KOFFING
+	db 18, GROWLITHE
 	db -1 ; end
 
 	; FIREBREATHER (4)

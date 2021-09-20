@@ -4,6 +4,8 @@
 	const BURNEDTOWER1F_SILVER
 	const BURNEDTOWER1F_MORTY
 	const BURNEDTOWER1F_POKE_BALL
+	const BURNEDTOWER1F_FIREBREATHER1
+	const BURNEDTOWER1F_FIREBREATHER2
 
 BurnedTower1F_MapScripts:
 	def_scene_scripts
@@ -16,8 +18,6 @@ BurnedTower1F_MapScripts:
 
 .EusineScene:
 	sdefer .MeetEusine
-	end
-
 .DummyScene1:
 .DummyScene2:
 	end
@@ -114,6 +114,29 @@ BurnedTowerRivalBattleScript:
 	setevent EVENT_HOLE_IN_BURNED_TOWER
 	pause 15
 	warpcheck
+	end
+
+TrainerFirebreatherNed:
+	trainer FIREBREATHER, NED, EVENT_BEAT_FIREBREATHER_NED, FirebreatherNedSeenText, FirebreatherNedBeatenText, 0, .Script
+
+.Script:
+	endifjustbattled
+	opentext
+	writetext FirebreatherNedAfterBattleText
+	waitbutton
+	closetext
+	end
+
+
+TrainerFirebreatherDick:
+	trainer FIREBREATHER, DICK, EVENT_BEAT_FIREBREATHER_DICK, FirebreatherDickSeenText, FirebreatherDickBeatenText, 0, .Script
+
+.Script:
+	endifjustbattled
+	opentext
+	writetext FirebreatherDickAfterBattleText
+	waitbutton
+	closetext
 	end
 
 BurnedTower1FEusineScript:
@@ -272,6 +295,57 @@ BurnedTower1FMortyText:
 	line "tower with him."
 	done
 
+FirebreatherNedSeenText:
+	text "My soul is on"
+	line "fire. I'll show"
+
+	para "you how hot it"
+	line "burns!"
+	done
+
+FirebreatherNedBeatenText:
+	text "Still not hot"
+	line "enough…"
+	done
+
+FirebreatherNedAfterBattleText:
+	text "In the past, there"
+	line "were these #mon"
+
+	para "that ran through"
+	line "grass at super-"
+	cont "high speed."
+
+	para "They say that they"
+	line "run like the wind."
+
+	para "If you run into"
+	line "one in grass, it"
+	cont "will likely bolt."
+	done
+
+FirebreatherDickSeenText:
+	text "I'm practicing my"
+	line "fire breathing in"
+
+	para "the Burned Tower!"
+	line "Don't try this at"
+	cont "home!"
+	done
+
+FirebreatherDickBeatenText:
+	text "Pfooosh… Pfooosh…"
+	line "Pfffffoooom…"
+	done
+
+FirebreatherDickAfterBattleText:
+	text "Hey, don't look at"
+	line "me! I wasn't the"
+
+	para "one who burned"
+	line "down the tower!"
+	done
+
 BurnedTower1F_MapEvents:
 	def_warp_events
 	warp_event  9, 15, ECRUTEAK_CITY, 13
@@ -302,3 +376,5 @@ BurnedTower1F_MapEvents:
 	object_event  8,  9, SPRITE_SILVER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_TRAINER, 3, ObjectEvent, EVENT_RIVAL_BURNED_TOWER
 	object_event 14, 14, SPRITE_MORTY, SPRITEMOVEDATA_WANDER, 1, 1, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_SCRIPT, 0, BurnedTower1FMortyScript, EVENT_BURNED_TOWER_MORTY
 	object_event 14,  2, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, BurnedTower1FHPUp, EVENT_BURNED_TOWER_1F_HP_UP
+	object_event 16,  7, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 4, TrainerFirebreatherNed, -1
+	object_event  8,  3, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 2, TrainerFirebreatherDick, -1
