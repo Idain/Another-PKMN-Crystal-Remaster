@@ -68,24 +68,43 @@ ChangeHappiness:
 	add hl, bc
 	ld d, 0
 	add hl, de
-	ld a, [hl]
-	cp $80
 	pop de
+	; If happiness change is 0, don't modify anything.
+	ld a, [hl]
+	and a
+	jr z, .done2
+	ld b, a
+	add a
+	jr c, .negative
 
+	ld a, MON_ITEM
+	call GetPartyParamLocation
+	ld a, [hl]
+	cp SOOTHE_BELL
+	jr nz, .continue
+
+	ld a, b
+	inc a
+	srl a
+	add b
+	ld b, a
+	; fallthrough
+.continue
 	ld a, [de]
-	jr nc, .negative
-	add [hl]
+	add b
 	jr nc, .done
 	ld a, $ff
 	jr .done
 
 .negative
-	add [hl]
+	ld a, [de]
+	add b
 	jr c, .done
 	xor a
-
+	; fallthrough
 .done
 	ld [de], a
+.done2
 	ld a, [wBattleMode]
 	and a
 	ret z
@@ -116,9 +135,26 @@ StepHappiness::
 	cp EGG
 	jr z, .next
 	inc [hl]
-	jr nz, .next
+	jr nz, .SootheBellCheck
 	dec [hl]
+	jr .next
+    
+.SootheBellCheck:
+    push hl
+	push bc
+	ld bc, MON_ITEM - MON_HAPPINESS
+	add hl, bc
+	pop bc
 
+    ld a, [hl]
+    pop hl
+    cp SOOTHE_BELL
+    jr nz, .next
+    
+    inc [hl]
+    jr nz, .next
+    dec [hl]
+	; fallthrough
 .next
 	push de
 	ld de, PARTYMON_STRUCT_LENGTH

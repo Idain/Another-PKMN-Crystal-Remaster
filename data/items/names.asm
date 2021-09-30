@@ -137,7 +137,7 @@ ItemNames::
 	li "Metal Coat"
 	li "Dragon Fang"
 	li "Leftovers"
-	li "Teru-sama"
+	li "Soothe Bell"
 	li "Teru-sama"
 	li "Teru-sama"
 	li "Leppa Berry"

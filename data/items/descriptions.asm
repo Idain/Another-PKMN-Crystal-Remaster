@@ -138,7 +138,7 @@ ItemDescriptions:
 	dw MetalCoatDesc
 	dw DragonFangDesc
 	dw LeftoversDesc
-	dw TeruSamaDesc
+	dw SootheBellDesc
 	dw TeruSamaDesc
 	dw TeruSamaDesc
 	dw MysteryBerryDesc
@@ -781,6 +781,10 @@ DragonFangDesc:
 LeftoversDesc:
 	db   "Restores HP during"
 	next "battle. (HOLD)@"
+
+SootheBellDesc:
+	db 	 "Increases friend-"
+	next "ship. (HOLD)@"
 
 MysteryBerryDesc:
 	db   "A self-restore"

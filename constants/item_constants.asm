@@ -143,7 +143,7 @@
 	const METAL_COAT   ; 87
 	const DRAGON_FANG  ; 88
 	const LEFTOVERS    ; 89
-	const ITEM_93      ; 8a
+	const SOOTHE_BELL  ; 8a
 	const ITEM_94      ; 8b
 	const ITEM_95      ; 8c
 	const MYSTERYBERRY ; 8d
@@ -200,7 +200,7 @@ ENDM
 
 add_tm: MACRO
 ; Defines three constants:
-; - TM_\1: the item id, starting at $bf
+; - TM_\1: the item id, starting at $b8
 ; - \1_TMNUM: the learnable TM/HM flag, starting at 1
 ; - TM##_MOVE: alias for the move id, equal to the value of \1
 	const TM_\1
