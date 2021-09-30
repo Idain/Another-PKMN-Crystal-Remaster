@@ -84,16 +84,13 @@ CheckCanLearnMoveTutorMove:
 
 	ld c, HAPPINESS_LEARNMOVE
 	callfar ChangeHappiness
-	jr .learned
+	call ExitMenu
+	scf
+	ret
 
 .didnt_learn
 	call ExitMenu
 	and a
-	ret
-
-.learned
-	call ExitMenu
-	scf
 	ret
 
 .MenuHeader:
