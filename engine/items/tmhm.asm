@@ -142,7 +142,7 @@ TeachTMHM:
 	predef LearnMove
 	ld a, b
 	and a
-	jr z, .nope
+	ret z
 
 	ld a, [wCurItem]
 	call IsHM
@@ -150,14 +150,11 @@ TeachTMHM:
 
 	ld c, HAPPINESS_LEARNMOVE
 	callfar ChangeHappiness
-	jr .learned_move
+	scf
+	ret
 
 .nope
 	and a
-	ret
-
-.learned_move
-	scf
 	ret
 
 BootedTMText:

@@ -1461,7 +1461,7 @@ RevivalHerbEffect:
 
 	call RevivePokemon
 	cp FALSE
-	jr nz, StatusHealer_Jumptable ; not used
+	jr nz, StatusHealer_Jumptable
 
 	ld c, HAPPINESS_REVIVALHERB
 	farcall ChangeHappiness

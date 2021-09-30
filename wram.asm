@@ -3183,9 +3183,7 @@ wdc60:: db
 
 wStepCount:: db
 wPoisonStepCount:: db
-	ds 2
-wHappinessStepCount:: db
-	ds 1
+	ds 4
 
 wParkBallsRemaining::
 wSafariBallsRemaining:: db

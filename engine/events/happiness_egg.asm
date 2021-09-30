@@ -43,12 +43,8 @@ ChangeHappiness:
 	cp EGG
 	ret z
 
-	push bc
-	ld hl, wPartyMon1Happiness
-	ld bc, PARTYMON_STRUCT_LENGTH
-	ld a, [wCurPartyMon]
-	call AddNTimes
-	pop bc
+	ld a, MON_HAPPINESS
+	call GetPartyParamLocation
 
 	ld d, h
 	ld e, l
@@ -73,14 +69,14 @@ ChangeHappiness:
 	ld d, 0
 	add hl, de
 	ld a, [hl]
-	cp $64 ; why not $80?
+	cp $80
 	pop de
 
 	ld a, [de]
 	jr nc, .negative
 	add [hl]
 	jr nc, .done
-	ld a, -1
+	ld a, $ff
 	jr .done
 
 .negative
@@ -105,14 +101,7 @@ ChangeHappiness:
 INCLUDE "data/events/happiness_changes.asm"
 
 StepHappiness::
-; Raise the party's happiness by 1 point every other step cycle.
-
-;	ld hl, wHappinessStepCount
-;	ld a, [hl]
-;	inc a
-;	and 1
-;	ld [hl], a
-;	ret nz
+; Raise the party's happiness by 1 point every step cycle.
 
 	ld de, wPartyCount
 	ld a, [de]
@@ -128,7 +117,7 @@ StepHappiness::
 	jr z, .next
 	inc [hl]
 	jr nz, .next
-	ld [hl], $ff
+	dec [hl]
 
 .next
 	push de
