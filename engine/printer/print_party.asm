@@ -282,9 +282,8 @@ PrintPartyMonPage2:
 	jp PrintNum
 
 GetCurPartyMonName:
-	ld bc, NAME_LENGTH
 	ld a, [wCurPartyMon]
-	call AddNTimes
+	call SkipNames
 	ld e, l
 	ld d, h
 	ret
@@ -295,12 +294,10 @@ PlaceMoveNameString:
 
 	ld [wNamedObjectIndex], a
 	call GetMoveName
-	jr .got_string
+	jp PlaceString
 
 .no_move
 	ld de, PrintParty_NoMoveString
-
-.got_string
 	jp PlaceString
 
 PlaceGenderAndShininess:

@@ -63,9 +63,8 @@ endc
 	push af
 ; Copy name (10 bytes) and class (1 byte) of trainer
 	ld hl, BattleTowerTrainers
-	ld bc, NAME_LENGTH
-	call AddNTimes
-	ld bc, NAME_LENGTH
+	call SkipNames
+;	ld bc, NAME_LENGTH
 	call CopyBytes
 
 	call LoadRandomBattleTowerMon

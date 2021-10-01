@@ -136,8 +136,7 @@ Unused_GetPartyMenuMonIcon:
 	push bc
 	ldh a, [hObjectStructIndex]
 	ld hl, wPartyMon1Item
-	ld bc, PARTYMON_STRUCT_LENGTH
-	call AddNTimes
+	call GetPartyLocation
 	pop bc
 	ld a, [hl]
 	and a
@@ -208,8 +207,7 @@ PartyMenu_InitAnimatedMonIcon:
 	push bc
 	ldh a, [hObjectStructIndex]
 	ld hl, wPartyMon1Item
-	ld bc, PARTYMON_STRUCT_LENGTH
-	call AddNTimes
+	call GetPartyLocation
 	pop bc
 	ld a, [hl]
 	and a

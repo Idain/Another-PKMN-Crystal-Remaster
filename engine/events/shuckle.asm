@@ -19,15 +19,12 @@ GiveShuckle:
 	farcall SetGiftPartyMonCaughtData
 
 ; Holding a Berry.
-	ld bc, PARTYMON_STRUCT_LENGTH
 	ld a, [wPartyCount]
 	dec a
 	push af
-	push bc
 	ld hl, wPartyMon1Item
-	call AddNTimes
+	call GetPartyLocation
 	ld [hl], BERRY
-	pop bc
 	pop af
 
 ; OT ID.
@@ -81,8 +78,7 @@ ReturnShuckie:
 
 	ld a, [wCurPartyMon]
 	ld hl, wPartyMon1ID
-	ld bc, PARTYMON_STRUCT_LENGTH
-	call AddNTimes
+	call GetPartyLocation
 
 ; OT ID
 	ld a, [hli]

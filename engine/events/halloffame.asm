@@ -157,8 +157,7 @@ GetHallOfFameParty:
 
 	ld a, c
 	ld hl, wPartyMons
-	ld bc, PARTYMON_STRUCT_LENGTH
-	call AddNTimes
+	call GetPartyLocation
 	ld c, l
 	ld b, h
 

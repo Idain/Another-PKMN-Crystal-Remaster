@@ -373,9 +373,8 @@ endr
 
 .partymon
 	ld hl, wPartyMon1DVs
-	ld bc, PARTYMON_STRUCT_LENGTH
 	ld a, [wCurPartyMon]
-	call AddNTimes
+	call GetPartyLocation
 	ld c, l
 	ld b, h
 	ld a, [wPlayerHPPal]

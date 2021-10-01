@@ -267,8 +267,7 @@ EvolveAfterBattle_MasterLoop:
 
 	ld a, [wCurPartyMon]
 	ld hl, wPartyMons
-	ld bc, PARTYMON_STRUCT_LENGTH
-	call AddNTimes
+	call GetPartyLocation
 	ld e, l
 	ld d, h
 	ld bc, MON_MAXHP
@@ -365,8 +364,7 @@ LearnEvolutionMove:
 	ld d, a
 	ld hl, wPartyMon1Moves
 	ld a, [wCurPartyMon]
-	ld bc, PARTYMON_STRUCT_LENGTH
-	call AddNTimes
+	call GetPartyLocation
 
 	ld b, NUM_MOVES
 .check_move
@@ -432,8 +430,7 @@ IsMonHoldingEverstone:
 	push hl
 	ld a, [wCurPartyMon]
 	ld hl, wPartyMon1Item
-	ld bc, PARTYMON_STRUCT_LENGTH
-	call AddNTimes
+	call GetPartyLocation
 	ld a, [hl]
 	cp EVERSTONE
 	pop hl
@@ -488,8 +485,7 @@ LearnLevelMoves:
 	ld d, a
 	ld hl, wPartyMon1Moves
 	ld a, [wCurPartyMon]
-	ld bc, PARTYMON_STRUCT_LENGTH
-	call AddNTimes
+	call GetPartyLocation
 
 	ld b, NUM_MOVES
 .check_move

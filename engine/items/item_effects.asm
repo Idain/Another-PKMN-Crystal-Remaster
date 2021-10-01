@@ -550,8 +550,7 @@ PokeBallEffect:
 	ld a, [wPartyCount]
 	dec a
 	ld hl, wPartyMon1Happiness
-	ld bc, PARTYMON_STRUCT_LENGTH
-	call AddNTimes
+	call GetPartyLocation
 
 	ld a, FRIEND_BALL_HAPPINESS
 	ld [hl], a
@@ -2385,8 +2384,7 @@ BattleRestorePP:
 .UpdateBattleMonPP:
 	ld a, [wCurPartyMon]
 	ld hl, wPartyMon1Moves
-	ld bc, PARTYMON_STRUCT_LENGTH
-	call AddNTimes
+	call GetPartyLocation
 	ld de, wBattleMonMoves
 	ld b, NUM_MOVES
 .loop

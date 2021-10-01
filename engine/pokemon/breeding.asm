@@ -274,8 +274,7 @@ HatchEggs:
 	farcall SetEggMonCaughtData
 	ld a, [wCurPartyMon]
 	ld hl, wPartyMon1Species
-	ld bc, PARTYMON_STRUCT_LENGTH
-	call AddNTimes
+	call GetPartyLocation
 	ld a, [hl]
 	ld [wCurPartySpecies], a
 	dec a
@@ -303,8 +302,7 @@ HatchEggs:
 	call GetBaseData
 	ld a, [wCurPartyMon]
 	ld hl, wPartyMon1
-	ld bc, PARTYMON_STRUCT_LENGTH
-	call AddNTimes
+	call GetPartyLocation
 	push hl
 	ld bc, MON_MAXHP
 	add hl, bc
@@ -349,8 +347,7 @@ HatchEggs:
 	ld [hl], a
 	ld a, [wCurPartyMon]
 	ld hl, wPartyMonOTs
-	ld bc, NAME_LENGTH
-	call AddNTimes
+	call SkipNames
 	ld d, h
 	ld e, l
 	ld hl, wPlayerName

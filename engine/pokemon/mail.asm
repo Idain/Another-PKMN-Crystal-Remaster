@@ -106,8 +106,7 @@ MoveMailFromPCToParty:
 	ld d, [hl]
 	ld a, [wCurPartyMon]
 	ld hl, wPartyMon1Item
-	ld bc, PARTYMON_STRUCT_LENGTH
-	call AddNTimes
+	call GetPartyLocation
 	ld [hl], d
 	call CloseSRAM
 	pop bc
@@ -129,8 +128,7 @@ CheckPokeMail::
 
 	ld a, [wCurPartyMon]
 	ld hl, wPartyMon1Item
-	ld bc, PARTYMON_STRUCT_LENGTH
-	call AddNTimes
+	call GetPartyLocation
 	ld d, [hl]
 	farcall ItemIsMail
 	ld a, POKEMAIL_NO_MAIL
@@ -194,8 +192,7 @@ GivePokeMail::
 	push af
 	push bc
 	ld hl, wPartyMon1Item
-	ld bc, PARTYMON_STRUCT_LENGTH
-	call AddNTimes
+	call GetPartyLocation
 	pop bc
 	ld [hl], b
 	pop af
@@ -214,14 +211,12 @@ GivePokeMail::
 	pop af
 	push af
 	ld hl, wPartyMonOTs
-	ld bc, NAME_LENGTH
-	call AddNTimes
+	call SkipNames
 	ld bc, NAME_LENGTH - 1
 	call CopyBytes
 	pop af
 	ld hl, wPartyMon1ID
-	ld bc, PARTYMON_STRUCT_LENGTH
-	call AddNTimes
+	call GetPartyLocation
 	ld a, [hli]
 	ld [de], a
 	inc de

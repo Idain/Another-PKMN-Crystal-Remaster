@@ -10,9 +10,8 @@ LearnMove:
 
 .loop
 	ld hl, wPartyMon1Moves
-	ld bc, PARTYMON_STRUCT_LENGTH
 	ld a, [wCurPartyMon]
-	call AddNTimes
+	call GetPartyLocation
 	ld d, h
 	ld e, l
 	ld b, NUM_MOVES

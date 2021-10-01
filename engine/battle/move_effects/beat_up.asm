@@ -123,8 +123,7 @@ BattleCommand_BeatUp:
 .link_or_tower
 	ld a, [wCurBeatUpPartyMon]
 	ld hl, wOTPartyMonNicknames
-	ld bc, NAME_LENGTH
-	call AddNTimes
+	call SkipNames
 	ld de, wStringBuffer1
 	call CopyBytes
 

@@ -619,8 +619,7 @@ AI_Switch:
 	push af
 	ld a, [wCurOTMon]
 	ld hl, wOTPartyMon1Status
-	ld bc, PARTYMON_STRUCT_LENGTH
-	call AddNTimes
+	call GetPartyLocation
 	ld d, h
 	ld e, l
 	ld hl, wEnemyMonStatus
@@ -656,8 +655,7 @@ EnemyWithdrewText:
 AI_HealStatus:
 	ld a, [wCurOTMon]
 	ld hl, wOTPartyMon1Status
-	ld bc, PARTYMON_STRUCT_LENGTH
-	call AddNTimes
+	call GetPartyLocation
 	xor a
 	ld [hl], a
 	ld [wEnemyMonStatus], a

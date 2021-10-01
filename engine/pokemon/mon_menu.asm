@@ -976,9 +976,8 @@ MoveScreenLoop:
 
 .place_move
 	ld hl, wPartyMon1Moves
-	ld bc, PARTYMON_STRUCT_LENGTH
 	ld a, [wCurPartyMon]
-	call AddNTimes
+	call GetPartyLocation
 	push hl
 	call .copy_move
 	pop hl
@@ -1125,9 +1124,8 @@ SetUpMoveList:
 
 PrepareToPlaceMoveData:
 	ld hl, wPartyMon1Moves
-	ld bc, PARTYMON_STRUCT_LENGTH
 	ld a, [wCurPartyMon]
-	call AddNTimes
+	call GetPartyLocation
 	ld a, [wMenuCursorY]
 	dec a
 	ld c, a

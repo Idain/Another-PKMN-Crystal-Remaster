@@ -22,8 +22,7 @@ CheckPartyFullAfterContest:
 	ld hl, wPartyMon1Species
 	ld a, [wPartyCount]
 	dec a
-	ld bc, PARTYMON_STRUCT_LENGTH
-	call AddNTimes
+	call GetPartyLocation
 	ld d, h
 	ld e, l
 	ld hl, wContestMon

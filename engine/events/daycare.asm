@@ -122,9 +122,8 @@ DayCareAskDepositPokemon:
 	farcall CheckCurPartyMonFainted
 	jr c, .OutOfUsableMons
 	ld hl, wPartyMon1Item
-	ld bc, PARTYMON_STRUCT_LENGTH
 	ld a, [wCurPartyMon]
-	call AddNTimes
+	call GetPartyLocation
 	ld d, [hl]
 	farcall ItemIsMail
 	jr c, .HoldingMail
@@ -472,8 +471,7 @@ DayCare_GiveEgg:
 	ld a, [wPartyCount]
 	dec a
 	ld hl, wPartyMon1
-	ld bc, PARTYMON_STRUCT_LENGTH
-	call AddNTimes
+	call GetPartyLocation
 	ld b, h
 	ld c, l
 	ld hl, MON_ID + 1

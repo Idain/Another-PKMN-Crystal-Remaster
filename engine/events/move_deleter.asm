@@ -12,8 +12,7 @@ MoveDeletion:
 	jr z, .egg
 	ld a, [wCurPartyMon]
 	ld hl, wPartyMon1Moves + 1
-	ld bc, PARTYMON_STRUCT_LENGTH
-	call AddNTimes
+	call GetPartyLocation
 	ld a, [hl]
 	and a
 	jr z, .onlyonemove
@@ -96,8 +95,7 @@ MoveDeletion:
 	ld hl, wPartyMon1Moves
 	add hl, bc
 	ld a, [wCurPartyMon]
-	ld bc, PARTYMON_STRUCT_LENGTH
-	call AddNTimes
+	call GetPartyLocation
 	pop bc
 	push bc
 	inc b
@@ -124,8 +122,7 @@ MoveDeletion:
 	ld hl, wPartyMon1PP
 	add hl, bc
 	ld a, [wCurPartyMon]
-	ld bc, PARTYMON_STRUCT_LENGTH
-	call AddNTimes
+	call GetPartyLocation
 	pop bc
 	inc b
 .loop2

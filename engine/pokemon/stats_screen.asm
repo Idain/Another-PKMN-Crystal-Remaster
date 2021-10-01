@@ -190,9 +190,8 @@ if DEF(_DEBUG)
 	push de
 	push hl
 	ld a, [wCurPartyMon]
-	ld bc, PARTYMON_STRUCT_LENGTH
 	ld hl, wPartyMon1Happiness
-	call AddNTimes
+	call GetPartyLocation
 	ld a, 1
 	ld [hl], a
 	ld [wTempMonHappiness], a
@@ -865,8 +864,7 @@ StatsScreen_GetAnimationParam:
 .PartyMon:
 	ld a, [wCurPartyMon]
 	ld hl, wPartyMon1
-	ld bc, PARTYMON_STRUCT_LENGTH
-	call AddNTimes
+	call GetPartyLocation
 	ld b, h
 	ld c, l
 	jr .CheckEggFaintedFrzSlp
@@ -877,9 +875,8 @@ StatsScreen_GetAnimationParam:
 
 .BoxMon:
 	ld hl, sBoxMons
-	ld bc, PARTYMON_STRUCT_LENGTH
 	ld a, [wCurPartyMon]
-	call AddNTimes
+	call GetPartyLocation
 	ld b, h
 	ld c, l
 	ld a, BANK(sBoxMons)

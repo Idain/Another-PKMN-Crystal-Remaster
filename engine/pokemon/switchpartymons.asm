@@ -58,16 +58,14 @@ _SwitchPartyMons:
 	ld [de], a
 	ld a, [wSwitchMonTo]
 	ld hl, wPartyMon1Species
-	ld bc, PARTYMON_STRUCT_LENGTH
-	call AddNTimes
+	call GetPartyLocation
 	push hl
 	ld de, wSwitchMonBuffer
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call CopyBytes
 	ld a, [wSwitchMonFrom]
 	ld hl, wPartyMon1
-	ld bc, PARTYMON_STRUCT_LENGTH
-	call AddNTimes
+	call GetPartyLocation
 	pop de
 	push hl
 	ld bc, PARTYMON_STRUCT_LENGTH

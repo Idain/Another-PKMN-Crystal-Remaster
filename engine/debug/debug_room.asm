@@ -1149,8 +1149,7 @@ DebugRoom_SavePokemon:
 	push de
 	push hl
 	ld a, e
-	ld bc, NAME_LENGTH
-	call AddNTimes
+	call SkipNames
 	ld d, h
 	ld e, l
 	ld hl, .OTString

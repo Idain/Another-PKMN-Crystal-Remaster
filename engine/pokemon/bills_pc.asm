@@ -1125,21 +1125,18 @@ BillsPC_LoadMonStats:
 
 .party
 	ld hl, wPartyMon1Level
-	ld bc, PARTYMON_STRUCT_LENGTH
 	ld a, e
-	call AddNTimes
+	call GetPartyLocation
 	ld a, [hl]
 	ld [wTempMonLevel], a
 	ld hl, wPartyMon1Item
-	ld bc, PARTYMON_STRUCT_LENGTH
 	ld a, e
-	call AddNTimes
+	call GetPartyLocation
 	ld a, [hl]
 	ld [wTempMonItem], a
 	ld hl, wPartyMon1DVs
-	ld bc, PARTYMON_STRUCT_LENGTH
 	ld a, e
-	call AddNTimes
+	call GetPartyLocation
 	ld de, wTempMonDVs
 	ld a, [hli]
 	ld [de], a
@@ -1678,9 +1675,8 @@ BillsPC_CopyMon:
 	ld hl, wPartyMonOTs
 	call CopyOTNameToTemp
 	ld hl, wPartyMon1
-	ld bc, PARTYMON_STRUCT_LENGTH
 	ld a, [wCurPartyMon]
-	call AddNTimes
+	call GetPartyLocation
 	ld de, wBufferMon
 	ld bc, PARTYMON_STRUCT_LENGTH
 	jp CopyBytes
@@ -2055,11 +2051,10 @@ CopyNicknameToTemp:
 	jp CopyBytes
 
 CopyOTNameToTemp:
-	ld bc, NAME_LENGTH
 	ld a, [wCurPartyMon]
-	call AddNTimes
+	call SkipNames
 	ld de, wBufferMonOT
-	ld bc, NAME_LENGTH
+;	ld bc, NAME_LENGTH
 	jp CopyBytes
 
 CopyMonToTemp:

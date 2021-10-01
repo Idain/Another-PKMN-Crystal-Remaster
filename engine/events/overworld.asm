@@ -79,10 +79,9 @@ CheckPartyMove:
 	cp EGG
 	jr z, .next
 
-	ld bc, PARTYMON_STRUCT_LENGTH
 	ld hl, wPartyMon1Moves
 	ld a, e
-	call AddNTimes
+	call GetPartyLocation
 	ld b, NUM_MOVES
 .check
 	ld a, [hli]

@@ -14,8 +14,7 @@ CheckMagikarpLength:
 	; Now let's compute its length based on its DVs and ID.
 	ld a, [wCurPartyMon]
 	ld hl, wPartyMon1Species
-	ld bc, PARTYMON_STRUCT_LENGTH
-	call AddNTimes
+	call GetPartyLocation
 	push hl
 	ld bc, MON_DVS
 	add hl, bc

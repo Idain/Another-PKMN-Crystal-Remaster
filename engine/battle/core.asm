@@ -6649,8 +6649,7 @@ LoadEnemyMon:
 	jr z, .no_nickname
 	ld a, [wCurPartyMon]
 	ld hl, wOTPartyMonNicknames
-	ld bc, MON_NAME_LENGTH
-	call AddNTimes
+	call SkipNames
 	jr .got_nickname
 .no_nickname
 	call GetPokemonName

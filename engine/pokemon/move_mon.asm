@@ -75,8 +75,7 @@ TryAddMonToParty:
 .initializeStats
 	ldh a, [hMoveMon]
 	dec a
-	ld bc, PARTYMON_STRUCT_LENGTH
-	call AddNTimes
+	call GetPartyLocation
 GeneratePartyMonStats:
 ; wBattleMode specifies whether it's a wild mon or not.
 ; wMonType specifies whether it's an opposing mon or not.
@@ -358,8 +357,7 @@ endr
 	ld hl, wPartyMon1DVs
 	ld a, [wPartyCount]
 	dec a
-	ld bc, PARTYMON_STRUCT_LENGTH
-	call AddNTimes
+	call GetPartyLocation
 	predef GetUnownLetter
 	callfar UpdateUnownDex
 
@@ -416,8 +414,7 @@ AddTempmonToParty:
 	ld hl, wPartyMon1Species
 	ld a, [wPartyCount]
 	dec a
-	ld bc, PARTYMON_STRUCT_LENGTH
-	call AddNTimes
+	call GetPartyLocation
 	ld e, l
 	ld d, h
 	ld hl, wTempMonSpecies
@@ -456,8 +453,7 @@ AddTempmonToParty:
 	ld hl, wPartyMon1Happiness
 	ld a, [wPartyCount]
 	dec a
-	ld bc, PARTYMON_STRUCT_LENGTH
-	call AddNTimes
+	call GetPartyLocation
 	ld [hl], BASE_HAPPINESS
 .egg
 
@@ -467,8 +463,7 @@ AddTempmonToParty:
 	ld hl, wPartyMon1DVs
 	ld a, [wPartyCount]
 	dec a
-	ld bc, PARTYMON_STRUCT_LENGTH
-	call AddNTimes
+	call GetPartyLocation
 	predef GetUnownLetter
 	callfar UpdateUnownDex
 	ld a, [wFirstUnownSeen]
@@ -875,8 +870,7 @@ RetrieveBreedmon:
 	ld hl, wPartyMon1Moves
 	ld a, [wPartyCount]
 	dec a
-	ld bc, PARTYMON_STRUCT_LENGTH
-	call AddNTimes
+	call GetPartyLocation
 	ld d, h
 	ld e, l
 	ld a, TRUE
@@ -905,8 +899,7 @@ GetLastPartyMon:
 	ld a, [wPartyCount]
 	dec a
 	ld hl, wPartyMon1Species
-	ld bc, PARTYMON_STRUCT_LENGTH
-	call AddNTimes
+	call GetPartyLocation
 	ld d, h
 	ld e, l
 	ret
@@ -936,8 +929,7 @@ DepositBreedmon:
 	call CopyBytes
 	ld a, [wCurPartyMon]
 	ld hl, wPartyMon1Species
-	ld bc, PARTYMON_STRUCT_LENGTH
-	call AddNTimes
+	call GetPartyLocation
 	ld bc, BOXMON_STRUCT_LENGTH
 	jp CopyBytes
 
@@ -1176,9 +1168,8 @@ GiveEgg::
 	ld [wCurPartySpecies], a
 	ld a, [wPartyCount]
 	dec a
-	ld bc, PARTYMON_STRUCT_LENGTH
 	ld hl, wPartyMon1Species
-	call AddNTimes
+	call GetPartyLocation
 	ld a, [wCurPartySpecies]
 	ld [hl], a
 	ld hl, wPartyCount
@@ -1197,8 +1188,7 @@ GiveEgg::
 	ld a, [wPartyCount]
 	dec a
 	ld hl, wPartyMon1Happiness
-	ld bc, PARTYMON_STRUCT_LENGTH
-	call AddNTimes
+	call GetPartyLocation
 	ld a, [wDebugFlags]
 	bit DEBUG_FIELD_F, a
 	ld a, 1
@@ -1210,8 +1200,7 @@ GiveEgg::
 	ld a, [wPartyCount]
 	dec a
 	ld hl, wPartyMon1HP
-	ld bc, PARTYMON_STRUCT_LENGTH
-	call AddNTimes
+	call GetPartyLocation
 	xor a
 	ld [hli], a
 	ld [hl], a
@@ -1625,8 +1614,7 @@ GivePoke::
 	jr z, .done
 	ld a, [wCurPartyMon]
 	ld hl, wPartyMon1Item
-	ld bc, PARTYMON_STRUCT_LENGTH
-	call AddNTimes
+	call GetPartyLocation
 	ld a, [wCurItem]
 	ld [hl], a
 	jr .done
@@ -1709,8 +1697,7 @@ GivePoke::
 	push bc
 	ld a, [wCurPartyMon]
 	ld hl, wPartyMon1ID
-	ld bc, PARTYMON_STRUCT_LENGTH
-	call AddNTimes
+	call GetPartyLocation
 	ld a, HIGH(RANDY_OT_ID)
 	ld [hli], a
 	ld [hl], LOW(RANDY_OT_ID)

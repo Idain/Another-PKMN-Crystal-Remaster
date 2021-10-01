@@ -227,10 +227,9 @@ GetCaughtLocation:
 GetCaughtOT:
 	ld a, [wCurPartyMon]
 	ld hl, wPartyMonOTs
-	ld bc, NAME_LENGTH
-	call AddNTimes
+	call SkipNames
 	ld de, wSeerOT
-	ld bc, NAME_LENGTH
+;	ld bc, NAME_LENGTH
 	call CopyBytes
 
 	ld de, wSeerOTGrammar
