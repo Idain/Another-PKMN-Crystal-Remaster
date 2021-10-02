@@ -270,6 +270,7 @@ AI_Items:
 	dbw ENERGY_ROOT,  .HealingItem
 	dbw BERRY_JUICE,  .HealingItem
 	dbw X_ACCURACY,   .XAccuracy
+	dbw MIRACLEBERRY, .FullHeal
 	dbw FULL_HEAL,    .FullHeal
 	dbw GUARD_SPEC,   .GuardSpec
 	dbw DIRE_HIT,     .DireHit
