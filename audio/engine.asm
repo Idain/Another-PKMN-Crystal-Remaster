@@ -324,13 +324,6 @@ UpdateChannels:
 	ldh [rNR21], a
 	ret
 
-.ch2_frequency_override ; unreferenced
-	ld a, [wCurTrackFrequency]
-	ldh [rNR23], a
-	ld a, [wCurTrackFrequency + 1]
-	ldh [rNR24], a
-	ret
-
 .ch2_vibrato_override
 	ld a, [wCurTrackDuty]
 	ld d, a
@@ -372,17 +365,8 @@ UpdateChannels:
 	bit NOTE_NOISE_SAMPLING, [hl]
 	jr nz, .ch3_noise_sampling
 	bit NOTE_VIBRATO_OVERRIDE, [hl]
-	jr nz, .ch3_vibrato_override
-	ret
-
-.ch3_frequency_override ; unreferenced
-	ld a, [wCurTrackFrequency]
-	ldh [rNR33], a
-	ld a, [wCurTrackFrequency + 1]
-	ldh [rNR34], a
-	ret
-
-.ch3_vibrato_override
+	ret z
+;ch3_vibrato_override
 	ld a, [wCurTrackFrequency]
 	ldh [rNR33], a
 	ret
@@ -463,18 +447,11 @@ UpdateChannels:
 .Channel8:
 	ld hl, CHANNEL_NOTE_FLAGS
 	add hl, bc
-	bit NOTE_REST, [hl]
-	jr nz, .ch4_rest
 	bit NOTE_NOISE_SAMPLING, [hl]
 	jr nz, .ch4_noise_sampling
-	ret
-
-.ch4_frequency_override ; unreferenced
-	ld a, [wCurTrackFrequency]
-	ldh [rNR43], a
-	ret
-
-.ch4_rest
+	bit NOTE_REST, [hl]
+	ret z
+;ch4_rest
 	ldh a, [rNR52]
 	and %10000111 ; ch4 off
 	ldh [rNR52], a
@@ -532,7 +509,7 @@ PlayDanger:
 	cp 16
 	jr nz, .increment
 
-.halfway
+;halfway
 	ld hl, DangerSoundLow
 	jr .applychannel
 
@@ -678,20 +655,19 @@ FadeMusic:
 	jr nc, .maxvolume
 	; inc volume
 	inc a
-	jr .updatevolume
-
-.maxvolume
-	; we're done
-	xor a
-	ld [wMusicFade], a
-	ret
-
+	; fallthrough
 .updatevolume
 	; hi = lo
 	ld d, a
 	swap a
 	or d
 	ld [wVolume], a
+	ret
+
+.maxvolume
+	; we're done
+	xor a
+	ld [wMusicFade], a
 	ret
 
 LoadNote:
