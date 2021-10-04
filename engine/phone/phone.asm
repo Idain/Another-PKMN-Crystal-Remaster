@@ -99,6 +99,7 @@ CheckPhoneCall::
 	nop
 	jr nc, .no_call
 
+	; 50% chance for a call
 	call Random
 	add a
 	jr c, .no_call
