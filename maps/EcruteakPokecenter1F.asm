@@ -14,8 +14,6 @@ EcruteakPokecenter1F_MapScripts:
 
 .MeetBill:
 	sdefer .BillActivatesTimeCapsule
-	end
-
 .DummyScene:
 	end
 
@@ -90,7 +88,7 @@ EcruteakPokecenter1FPlayerMovement1:
 	step_end
 
 EcruteakPokecenter1F_BillText1:
-	text "Hi, I'm BILL. And"
+	text "Hi, I'm Bill. And"
 	line "who are you?"
 
 	para "Hmm, <PLAYER>, huh?"

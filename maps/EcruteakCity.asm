@@ -222,7 +222,7 @@ EcruteakGymSignText:
 
 EcruteakDanceTheaterSignText:
 	text "Ecruteak Dance"
-	line "TTheater"
+	line "Theater"
 	done
 
 BurnedTowerSignText:
