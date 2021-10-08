@@ -64,8 +64,8 @@ BugsyGroup:
 MortyGroup:
 	; MORTY (1)
 	db "Morty@", TRAINERTYPE_EVS | TRAINERTYPE_ITEM_MOVES
-	db 21, GASTLY
-		db 62, 61, 60, 65, 65, 65
+	db 22, GASTLY
+		db 65, 65, 65, 70, 70, 70
 		db NO_ITEM  		
 		db LICK, SPITE, MEAN_LOOK, CURSE
 	db 23, HAUNTER
@@ -3557,7 +3557,7 @@ SageGroup:
 
 	; SAGE (5)
 	db "Jeffrey@", TRAINERTYPE_NORMAL
-	db 20, GASTLY
+	db 21, MISDREAVUS
 	db 22, HAUNTER
 	db -1 ; end
 
@@ -3567,7 +3567,7 @@ SageGroup:
 	db 20, GASTLY
 	db 20, GASTLY
 	db 20, GASTLY
-	db 20, GASTLY
+	db 21, HAUNTER
 	db -1 ; end
 
 	; SAGE (7)
@@ -3612,7 +3612,7 @@ MediumGroup:
 	; MEDIUM (1)
 	db "Martha@", TRAINERTYPE_NORMAL
 	db 20, GASTLY
-	db 21, GASTLY
+	db 20, MISDREAVUS
 	db 21, HAUNTER
 	db -1 ; end
 

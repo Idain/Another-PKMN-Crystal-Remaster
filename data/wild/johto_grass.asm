@@ -697,132 +697,132 @@ JohtoGrassWildMons:
 	db 6 percent, 6 percent, 6 percent ; encounter rates: morn/day/nite
 	; morn
 	;  %, species,    min, max
-	db 30, RATTATA,		16, 16
-	db 30, ZUBAT,		16, 16
-	db 20, MACHOP,		16, 16
+	db 25, RATTATA,		16, 17
+	db 25, ZUBAT,		16, 17
+	db 20, MACHOP,		17, 17
+	db 10, DIGLETT, 	17, 17
 	db 10, GOLBAT,		18, 18
-	db  5, GEODUDE,		16, 16
-	db  4, RATICATE,	18, 18
-	db  1, RATICATE,	18, 18
+	db  5, GEODUDE,		16, 17
+	db  5, RATICATE,	18, 18
 
 	; day
 	;  %, species,    min, max
-	db 30, RATTATA,		16, 16
-	db 30, ZUBAT,		16, 16
-	db 20, MACHOP,		16, 16
+	db 25, RATTATA,		16, 17
+	db 25, ZUBAT,		16, 17
+	db 20, MACHOP,		17, 17
+	db 10, DIGLETT, 	17, 17
 	db 10, GOLBAT,		18, 18
-	db  5, GEODUDE,		16, 16
-	db  4, RATICATE,	18, 18
-	db  1, RATICATE,	18, 18
+	db  5, GEODUDE,		16, 17
+	db  5, RATICATE,	18, 18
 
 	; nite
 	;  %, species,    min, max
-	db 30, RATTATA,		16, 16
-	db 30, ZUBAT,		16, 16
-	db 20, MARILL,		16, 16
+	db 25, RATTATA,		16, 17
+	db 25, ZUBAT,		16, 17
+	db 20, MARILL,		17, 17
+	db 10, DIGLETT,		17, 17
 	db 10, GOLBAT,		18, 18
-	db  5, GEODUDE,		16, 16
-	db  4, RATICATE,	18, 18
-	db  1, RATICATE,	18, 18
+	db  5, GEODUDE,		16, 17
+	db  5, RATICATE,	18, 18
 	end_grass_wildmons
 
 	def_grass_wildmons MOUNT_MORTAR_1F_INSIDE
 	db 6 percent, 6 percent, 6 percent ; encounter rates: morn/day/nite
 	; morn
 	;  %, species,    min, max
-	db 30, GEODUDE,		16, 17
-	db 30, RATTATA,		16, 17
-	db 20, MACHOP,		17, 17
+	db 25, GEODUDE,		17, 18
+	db 25, RATTATA,		17, 18
+	db 20, MACHOP,		18, 18
+	db 10, DIGLETT,		18, 18
 	db 10, RATICATE,	19, 19
 	db  5, ZUBAT,		16, 17
-	db  4, GOLBAT,		19, 19
-	db  1, GOLBAT,		19, 19
+	db  5, GOLBAT,		19, 19
 
 	; day
 	;  %, species,    min, max
-	db 30, GEODUDE,		16, 17
-	db 30, RATTATA,		16, 17
-	db 20, MACHOP,		17, 17
+	db 25, GEODUDE,		17, 18
+	db 25, RATTATA,		17, 18
+	db 20, MACHOP,		18, 18
+	db 10, DIGLETT,		18, 18
 	db 10, RATICATE,	19, 19
 	db  5, ZUBAT,		16, 17
-	db  4, GOLBAT,		19, 19
-	db  1, GOLBAT,		19, 19
+	db  5, GOLBAT,		19, 19
 
 	; nite
 	;  %, species,    min, max
-	db 30, GEODUDE,		16, 17
-	db 30, RATTATA,		16, 17
+	db 25, GEODUDE,		17, 18
+	db 25, RATTATA,		17, 18
 	db 20, RATICATE,	19, 19
-	db 10, ZUBAT,		16, 17
-	db  5, MARILL,		16, 17
-	db  4, GOLBAT,		19, 19
-	db  1, GOLBAT,		19, 19
+	db 10, DIGLETT,		18, 18
+	db 10, ZUBAT,		17, 18
+	db  5, MARILL,		18, 18
+	db  5, GOLBAT,		19, 19
 	end_grass_wildmons
 
 	def_grass_wildmons MOUNT_MORTAR_2F_INSIDE
 	db 6 percent, 6 percent, 6 percent ; encounter rates: morn/day/nite
 	; morn
 	;  %, species,    min, max
-	db 30, GRAVELER,	31, 31
-	db 30, MACHOKE,		32, 32
+	db 25, GRAVELER,	31, 32
+	db 25, MACHOKE,		32, 32
 	db 20, GEODUDE,		30, 30
-	db 10, RATICATE,	30, 30
-	db  5, MACHOP,		28, 28
-	db  4, GOLBAT,		30, 30
-	db  1, GOLBAT,		30, 30
+	db 10, DUGTRIO,		31, 32
+	db 10, RATICATE,	31, 32
+	db  5, MACHOP,		30, 30
+	db  5, GOLBAT,		32, 32
 
 	; day
 	;  %, species,    min, max
-	db 30, GRAVELER,	31, 31
-	db 30, MACHOKE,		32, 32
+	db 25, GRAVELER,	31, 32
+	db 25, MACHOKE,		32, 32
 	db 20, GEODUDE,		30, 30
-	db 10, RATICATE,	30, 30
-	db  5, MACHOP,		28, 28
-	db  4, GOLBAT,		30, 30
-	db  1, GOLBAT,		30, 30
+	db 10, DUGTRIO,		31, 32
+	db 10, RATICATE,	31, 32
+	db  5, MACHOP,		30, 30
+	db  5, GOLBAT,		32, 32
 
 	; nite
 	;  %, species,    min, max
-	db 30, GRAVELER,	31, 31
-	db 30, GEODUDE,		31, 31
+	db 25, GRAVELER,	32, 32
+	db 25, GEODUDE,		31, 31
 	db 20, RATICATE,	30, 30
-	db 10, GOLBAT,		30, 32
-	db  5, MARILL,		28, 28
-	db  4, GOLBAT,		30, 32
-	db  1, GOLBAT,		30, 32
+	db 10, DUGTRIO,		32, 32
+	db 10, GOLBAT,		32, 32
+	db  5, GOLBAT,		32, 32
+	db  5, MARILL,		30, 30
 	end_grass_wildmons
 
 	def_grass_wildmons MOUNT_MORTAR_B1F
 	db 6 percent, 6 percent, 6 percent ; encounter rates: morn/day/nite
 	; morn
 	;  %, species,    min, max
-	db 30, ZUBAT,		17, 18
-	db 30, ZUBAT,		17, 18
+	db 25, ZUBAT,		17, 18
+	db 25, ZUBAT,		17, 18
 	db 20, GOLBAT,		20, 20
 	db 10, MACHOP,		18, 18
+	db 10, DIGLETT,		18, 28
 	db  5, GEODUDE,		18, 18
-	db  4, RATICATE,	20, 20
-	db  1, RATICATE,	20, 20
+	db  5, RATICATE,	20, 20
 
 	; day
 	;  %, species,    min, max
-	db 30, ZUBAT,		17, 18
-	db 30, ZUBAT,		17, 18
+	db 25, ZUBAT,		17, 18
+	db 25, ZUBAT,		17, 18
 	db 20, GOLBAT,		20, 20
 	db 10, MACHOP,		18, 18
+	db 10, DIGLETT,		18, 28
 	db  5, GEODUDE,		18, 18
-	db  4, RATICATE,	20, 20
-	db  1, RATICATE,	20, 20
+	db  5, RATICATE,	20, 20
 
 	; nite
 	;  %, species,    min, max
-	db 30, ZUBAT,		17, 18
-	db 30, ZUBAT,		17, 18
+	db 25, ZUBAT,		17, 18
+	db 25, ZUBAT,		17, 18
 	db 20, GOLBAT,		20, 20
 	db 10, MARILL,		18, 18
+	db 10, DIGLETT,		18, 18
 	db  5, GEODUDE,		18, 18
-	db  4, RATICATE,	20, 20
-	db  1, RATICATE,	20, 20
+	db  5, RATICATE,	20, 20
 
 	def_grass_wildmons ICE_PATH_1F
 	db 2 percent, 2 percent, 2 percent ; encounter rates: morn/day/nite
