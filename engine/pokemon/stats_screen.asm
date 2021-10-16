@@ -210,7 +210,7 @@ if DEF(_DEBUG)
 	jp StatsScreen_JoypadAction
 
 .HatchSoonString:
-	db "▶HATCH SOON!@"
+	db "▶Hatch soon!@"
 endc
 
 StatsScreen_LoadPage:
@@ -473,7 +473,7 @@ StatsScreen_PlaceVerticalDivider: ; unreferenced
 StatsScreen_PlaceHorizontalDivider:
 	hlcoord 0, 7
 	ld b, SCREEN_WIDTH
-	ld a, $62 ; horizontal divider (empty HP/exp bar)
+	ld a, $76 ; horizontal divider ()
 .loop
 	ld [hli], a
 	dec b
@@ -547,8 +547,6 @@ LoadPinkPage:
 	hlcoord 0, 9
 	ld b, $0
 	predef DrawPlayerHP
-	hlcoord 8, 9
-	ld [hl], $41 ; right HP/exp bar end cap
 	ld de, .Status_Type
 	hlcoord 0, 12
 	call PlaceString
