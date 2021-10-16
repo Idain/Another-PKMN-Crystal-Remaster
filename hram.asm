@@ -20,7 +20,7 @@ hMinutes:: db
 hSeconds:: db
 	ds 1
 
-	ds 1
+hBuffer:: db
 
 hVBlankCounter:: db
 

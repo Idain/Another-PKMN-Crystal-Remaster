@@ -14,6 +14,17 @@ FarDecompress::
 	ret
 
 Decompress::
+; Decompress LZ data from hl to de.
+	ldh a, [hVBlank]
+	push af
+	ld a, 2 ; sound only XXX use constants for vblank modes
+	ldh [hVBlank], a
+	call _Decompress
+	pop af
+	ldh [hVBlank], a
+	ret
+
+_Decompress::
 ; Pokemon GSC uses an lz variant (lz3) for compression.
 ; This is mainly (but not necessarily) used for graphics.
 
@@ -63,40 +74,50 @@ LZ_LONG_HI   EQU %00000011
 
 ; For more information, refer to the code below and in extras/gfx.py.
 
+	; Swap de and hl for speed
+	push de
+	ld d, h
+	ld e, l
+	pop hl
+
 	; Save the output address
 	; for rewrite commands.
-	ld a, e
+	ld a, l
 	ld [wLZAddress], a
-	ld a, d
+	ld a, h
 	ld [wLZAddress + 1], a
 
-.Main:
-	ld a, [hl]
-	cp LZ_END
-	ret z
-
-	and LZ_CMD
-
+.Main
+	ld a, [de]
 	cp LZ_LONG
-	jr nz, .short
+	jr c, .short
+	cp LZ_END
+	jr nz, .long
+	push de
+	ld d, h
+	ld e, l
+	pop hl
+	ret
 
+.long
 ; The count is now 10 bits.
 
 	; Read the next 3 bits.
 	; %00011100 -> %11100000
-	ld a, [hl]
 	add a
-	add a ; << 3
+	add a
 	add a
 
-	; This is our new control code.
+; This is our new control code.
 	and LZ_CMD
-	push af
+	ldh [hBuffer], a
 
-	ld a, [hli]
+	ld a, [de]
+	inc de
 	and LZ_LONG_HI
 	ld b, a
-	ld a, [hli]
+	ld a, [de]
+	inc de
 	ld c, a
 
 	; read at least 1 byte
@@ -104,9 +125,11 @@ LZ_LONG_HI   EQU %00000011
 	jr .command
 
 .short
-	push af
+	and LZ_CMD
+	ldh [hBuffer], a
 
-	ld a, [hli]
+	ld a, [de]
+	inc de
 	and LZ_LEN
 	ld c, a
 	ld b, 0
@@ -115,205 +138,188 @@ LZ_LONG_HI   EQU %00000011
 	inc c
 
 .command
-	; Increment loop counts.
-	; We bail the moment they hit 0.
+	; Modify loop counts to support 8 bit loop counters
+	ld a, c
+	and a
+	jr z, .multiple_of_256
 	inc b
-	inc c
-
-	pop af
+.multiple_of_256
+	ldh a, [hBuffer]
 
 	bit LZ_RW, a
-	jr nz, .rewrite
+	jr nz, .copy
 
 	cp LZ_ITERATE
-	jr z, .Iter
+	jr z, .repeat_one
 	cp LZ_ALTERNATE
-	jr z, .Alt
+	jr z, .repeat_two
 	cp LZ_ZERO
-	jr z, .Zero
+	jr z, .zero
 
-; Literal
 ; Read literal data for bc bytes.
-.lloop
-	dec c
-	jr nz, .lnext
-	dec b
-	jp z, .Main
-
-.lnext
-	ld a, [hli]
-	ld [de], a
+.literal_data_loop
+	ld a, [de]
+	ld [hli], a
 	inc de
-	jr .lloop
-
-.Iter:
-; Write the same byte for bc bytes.
-	ld a, [hli]
-
-.iloop
 	dec c
-	jr nz, .inext
+	jr nz, .literal_data_loop
 	dec b
-	jp z, .Main
-
-.inext
-	ld [de], a
-	inc de
-	jr .iloop
-
-.Alt:
-; Alternate two bytes for bc bytes.
-	dec c
-	jr nz, .anext1
-	dec b
-	jp z, .adone1
-.anext1
-	ld a, [hli]
-	ld [de], a
-	inc de
-
-	dec c
-	jr nz, .anext2
-	dec b
-	jp z, .adone2
-.anext2
-	ld a, [hld]
-	ld [de], a
-	inc de
-
-	jr .Alt
-
-	; Skip past the bytes we were alternating.
-.adone1
-	inc hl
-.adone2
-	inc hl
+	jr nz, .literal_data_loop
 	jr .Main
 
-.Zero:
+.repeat_one
+; Write the same byte for bc bytes.
+	ld a, [de]
+	inc de
+.repeat_loop
+	ld [hli], a
+	dec c
+	jr nz, .repeat_loop
+	dec b
+	jr nz, .repeat_loop
+	jr .Main
+
+.repeat_two
+; Alternate two bytes for bc bytes.
+
+; store alternating bytes in d and e
+	ld a, [de]
+	inc de
+	push de
+	ldh [hBuffer], a
+	ld a, [de]
+	ld e, a
+	ldh a, [hBuffer]
+	ld d, a
+; d = byte 1
+; e = byte 2
+; hl = destination
+.repeat_two_loop
+	ld a, d
+	ld [hli], a
+
+	dec c
+	jr nz, .next_byte
+	dec b
+	jr z, .done_repeating
+.next_byte
+	ld a, e
+	ld [hli], a
+
+	dec c
+	jr nz, .repeat_two_loop
+	dec b
+	jr nz, .repeat_two_loop
+.done_repeating
+
+; Skip past the bytes we were alternating.
+	pop de
+	inc de
+	jr .Main
+
+.zero
 ; Write 0 for bc bytes.
 	xor a
+	jr .repeat_loop
 
-.zloop
-	dec c
-	jr nz, .znext
-	dec b
-	jp z, .Main
-
-.znext
-	ld [de], a
-	inc de
-	jr .zloop
-
-.rewrite
-; Repeat decompressed data from output.
+.copy
+; Copy decompressed data from previously outputted values.
+	push de
 	push hl
-	push af
 
-	ld a, [hli]
-	bit 7, a ; sign
-	jr z, .positive
+	ld a, [de]
+	bit 7, a ; set: relative, clear: absolute
+	jr z, .absolute
 
-; negative
-	; hl = de + -a
-	and %01111111
+	; Relative offsets count backwards from hl and contain an excess of $7f.
+	; In other words, $80 = hl - 1, $81 = hl - 2, ..., $ff = hl - 128.
 	cpl
-	add e
-	ld l, a
-	ld a, -1
-	adc d
-	ld h, a
+	sub $80
+	ld e, a
+	ld d, $ff
 	jr .ok
 
-.positive
-; Positive offsets are two bytes.
-	ld l, [hl]
+.absolute
+; Absolute offset from the beginning of the output.
 	ld h, a
-	; add to starting output address
-	ld a, [wLZAddress]
-	add l
+	inc de
+	ld a, [de]
 	ld l, a
+	ld a, [wLZAddress]
+	ld e, a
 	ld a, [wLZAddress + 1]
-	adc h
-	ld h, a
+	ld d, a
 
 .ok
-	pop af
-
-	cp LZ_REPEAT
-	jr z, .Repeat
-	cp LZ_FLIP
-	jr z, .Flip
-	cp LZ_REVERSE
-	jr z, .Reverse
-
-; Since LZ_LONG is command 7,
-; only commands 0-6 are passed in.
-; This leaves room for an extra command 7.
-; However, lengths longer than 768
-; would be interpreted as LZ_END.
-
-; More practically, LZ_LONG is not recursive.
-; For now, it defaults to LZ_REPEAT.
-
-.Repeat:
-; Copy decompressed data for bc bytes.
-	dec c
-	jr nz, .rnext
-	dec b
-	jr z, .donerw
-
-.rnext
-	ld a, [hli]
-	ld [de], a
-	inc de
-	jr .Repeat
-
-.Flip:
-; Copy bitflipped decompressed data for bc bytes.
-	dec c
-	jr nz, .fnext
-	dec b
-	jp z, .donerw
-
-.fnext
-	ld a, [hli]
-	push bc
-	lb bc, 0, 8
-
-.floop
-	rra
-	rl b
-	dec c
-	jr nz, .floop
-
-	ld a, b
-	pop bc
-
-	ld [de], a
-	inc de
-	jr .Flip
-
-.Reverse:
-; Copy reversed decompressed data for bc bytes.
-	dec c
-	jr nz, .rvnext
-
-	dec b
-	jp z, .donerw
-
-.rvnext
-	ld a, [hld]
-	ld [de], a
-	inc de
-	jr .Reverse
-
-.donerw
+	add hl, de
+	ld d, h
+	ld e, l
 	pop hl
 
-	bit 7, [hl]
-	jr nz, .next
-	inc hl ; positive offset is two bytes
+; Determine the kind of copy.
+; Note that [hBuffer] could also contain LZ_LONG, but that's an error in the command stream, as of now unhandled.
+	ldh a, [hBuffer]
+
+	cp LZ_FLIP
+	jr z, .flipped
+	cp LZ_REVERSE
+	jr z, .reversed
+
+; Copy data for bc bytes.
+.copy_loop
+	ld a, [de]
+	inc de
+	ld [hli], a
+	dec c
+	jr nz, .copy_loop
+	dec b
+	jr nz, .copy_loop
+	jr .done_copying
+
+.flipped
+; Copy bitflipped data for bc bytes.
+	ld a, [de]
+	inc de
+	ld [hl], b ; use the current output as buffer
+
+; https://github.com/pret/pokecrystal/wiki/Optimizing-assembly-code#reverse-the-bits-of-a
+	ld b, a
+	rlca
+	rlca
+	xor b
+	and $aa
+	xor b
+	ld b, a
+	swap b
+	xor b
+	and $33
+	xor b
+	rrca
+
+	ld b, [hl]
+	ld [hli], a
+	dec c
+	jr nz, .flipped
+	dec b
+	jr nz, .flipped
+	jr .done_copying
+
+.reversed
+; Copy byte-reversed data for bc bytes.
+	ld a, [de]
+	dec de
+	ld [hli], a
+	dec c
+	jr nz, .reversed
+	dec b
+	jr nz, .reversed
+
+.done_copying
+	pop de
+	ld a, [de]
+	add a
+	jr c, .next
+	inc de ; positive offset is two bytes
 .next
-	inc hl
+	inc de
 	jp .Main
