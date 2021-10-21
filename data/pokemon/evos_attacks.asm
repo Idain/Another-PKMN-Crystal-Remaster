@@ -170,7 +170,9 @@ CaterpieEvosAttacks:
 MetapodEvosAttacks:
 	db EVOLVE_LEVEL, 10, BUTTERFREE
 	db 0 ; no more evolutions
-	db 6, HARDEN
+	db 1, TACKLE
+	db 1, STRING_SHOT
+	db 1, HARDEN
 	db 0 ; no more level-up moves
 
 ButterfreeEvosAttacks:
@@ -199,7 +201,9 @@ WeedleEvosAttacks:
 KakunaEvosAttacks:
 	db EVOLVE_LEVEL, 10, BEEDRILL
 	db 0 ; no more evolutions
-	db 6, HARDEN
+	db 1, POISON_STING
+	db 1, STRING_SHOT
+	db 1, HARDEN
 	db 0 ; no more level-up moves
 
 BeedrillEvosAttacks:
@@ -1878,17 +1882,15 @@ ScytherEvosAttacks:
 JynxEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, POUND
-	db 1, LICK
-	db 1, LOVELY_KISS
-	db 1, POWDER_SNOW
-	db 9, LOVELY_KISS
-	db 13, POWDER_SNOW
-	db 21, DOUBLESLAP
-	db 25, ICE_PUNCH
-	db 35, MEAN_LOOK
-	db 41, BODY_SLAM
-	db 51, PERISH_SONG
-	db 57, BLIZZARD
+	db 5, LICK
+	db 8, LOVELY_KISS
+	db 11, POWDER_SNOW
+	db 15, DOUBLESLAP
+	db 18, ICE_PUNCH
+	db 21, MEAN_LOOK
+	db 28, BODY_SLAM
+	db 33, PERISH_SONG
+	db 38, BLIZZARD
 	db 0 ; no more level-up moves
 
 ElectabuzzEvosAttacks:
@@ -3544,15 +3546,15 @@ SmoochumEvosAttacks:
 	db EVOLVE_LEVEL, 30, JYNX
 	db 0 ; no more evolutions
 	db 1, POUND
-	db 1, LICK
-	db 9, SWEET_KISS
-	db 13, POWDER_SNOW
-	db 21, CONFUSION
-	db 25, SING
-	db 33, MEAN_LOOK
-	db 37, PSYCHIC_M
-	db 45, PERISH_SONG
-	db 49, BLIZZARD
+	db 5, LICK
+	db 8, SWEET_KISS
+	db 11, POWDER_SNOW
+	db 15, CONFUSION
+	db 18, SING
+	db 21, MEAN_LOOK
+	db 28, PSYCHIC_M
+	db 33, PERISH_SONG
+	db 38, BLIZZARD
 	db 0 ; no more level-up moves
 
 ElekidEvosAttacks:
