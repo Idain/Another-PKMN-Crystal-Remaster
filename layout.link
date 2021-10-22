@@ -339,6 +339,8 @@ WRAMX 2
 	"Pic Animations"
 WRAMX 3
 	"Battle Tower RAM"
+WRAMX 4
+	"Surrounding Data"
 WRAMX 5
 	align 8
 	"GBC Video"

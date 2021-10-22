@@ -121,10 +121,6 @@ RestartClock:
 	push af
 	call .PrintTime
 	pop af
-	bit 0, a
-	jr nz, .press_A
-	bit 1, a
-	jr nz, .press_B
 	bit 6, a
 	jr nz, .pressed_up
 	bit 7, a
@@ -133,9 +129,12 @@ RestartClock:
 	jr nz, .pressed_left
 	bit 4, a
 	jr nz, .pressed_right
-	jr .joy_loop
+	bit 1, a
+	jr nz, .press_B
+	bit 0, a
+	jr z, .joy_loop
 
-.press_A
+;press_A
 	ld a, FALSE
 	scf
 	ret
@@ -213,11 +212,6 @@ RestartClock:
 	ld [wRestartClockPrevDivision], a
 	ret
 
-.UnusedPlaceCharsFragment: ; unreferenced
-	ld a, [wRestartClockUpArrowYCoord]
-	ld b, a
-	jp Coord2Tile
-
 .PlaceChars:
 	push de
 	call RestartClock_GetWraparoundTime
@@ -231,9 +225,3 @@ RestartClock:
 	add hl, bc
 	ld [hl], e
 	ret
-
-JPHourString: ; unreferenced
-	db "じ@" ; HR
-
-JPMinuteString: ; unreferenced
-	db "ふん@" ; MIN
