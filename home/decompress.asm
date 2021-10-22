@@ -72,8 +72,6 @@ LZ_LONG_HI   EQU %00000011
 ; x: the new control command
 ; y: the length
 
-; For more information, refer to the code below and in extras/gfx.py.
-
 	; Swap de and hl for speed
 	push de
 	ld d, h

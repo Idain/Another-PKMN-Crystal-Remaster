@@ -4455,18 +4455,18 @@ HandleHPHealingItem:
 	jr nz, .enemy_1
 	; fallthrough
 .player_1
-	call SetPlayerTurn
-	call .start_healing
 	call SetEnemyTurn
+	call .start_healing
+	call SetPlayerTurn
 	jr .start_healing
 
 .enemy_1
-	call SetEnemyTurn
-	call .start_healing
 	call SetPlayerTurn
+	call .start_healing
+	call SetEnemyTurn
 	; fallthrough
 .start_healing
-	callfar GetOpponentItem
+	farcall GetOpponentItem
 	ld a, b
 	cp HELD_BERRY
 	ret nz
