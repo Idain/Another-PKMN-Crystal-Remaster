@@ -4,22 +4,24 @@ V1.2.0
 AÑADIDOS:
 
 - TMS:
--- ¡El total de TMs ha sido expandido a 60! Estos son: Light Screen, Reflect, Safeguard, False Swipe, Explosion, Thunder Wave, Swords Dance, Rock Slide, Substitute y...
--- ¡...El NUEVO MOVIMIENTO! Hail (Granizo), y también es la nueva TM07. La entrega Pryce al derrotarlo.
+	-- ¡El total de TMs ha sido expandido a 60! Estos son: Light Screen, Reflect, Safeguard, False Swipe, Explosion, Thunder Wave, Swords Dance, Rock Slide, Substitute y...
+	-- ¡...El NUEVO MOVIMIENTO! Hail (Granizo), y también es la nueva TM07. La entrega Pryce al derrotarlo.
 		
 	Notas:
 	--- El orden de las TMs ha sido cambiado.
-	--- Todas las nuevas TMs pueden ser compradas en Goldenrod o Celadon Dept. Store, salvo por Rock Slide.
-	Esta se consigue al derrotar a Brock.
+	--- Todas las nuevas TMs pueden ser compradas en Goldenrod o Celadon Dept. Store, salvo por Rock Slide. Esta se consigue al derrotar a Brock.
 
-- ¡Carantoña y Fuerza Lunar (Play Rough & Moonblast) han sido añadidos al juego!
+- Items:
+	-- Soothe Bell ha sido añadido al juego. Se consigue en el National Park, cerca de la garita este.
 
-- Ahora ciertos Pokémon aprenden movimientos al evolucionar (Gen 7+).
-- La tormenta de arena ahora boostea la Defensa Especial de los Pokémon tipo Roca en un 50% (Gen 4+).
-- El género del Pokémon ahora es visible en el menú del equipo.
-- ¡NUEVO MOVE REMINDER! Está localizado en Blackthorn City, en la misma casa del Move Deleter.
-	-- Hay un NPC en Blackthorn City que menciona la existencia de este.
-- Tu madre te da un tutorial muy breve de cómo correr en el juego.
+- Movimientos:
+	-- ¡Carantoña y Fuerza Lunar (Play Rough & Moonblast) han sido añadidos al juego!
+	-- Ahora ciertos Pokémon aprenden movimientos al evolucionar (Gen 7+).
+
+- Miscellaneous:
+	-- El género del Pokémon ahora es visible en el menú del equipo.
+	-- ¡NUEVO MOVE REMINDER! Está localizado en Blackthorn City, en la misma casa del Move Deleter.
+	-- Tu madre te da un tutorial muy breve de cómo correr en el juego.
 
 CAMBIOS:
 - ¡Curva de dificultad ajustada!
@@ -48,19 +50,18 @@ CAMBIOS:
 	* Rising Badge: 	Pokémon hasta el Nv. 65 te obedecerán.
 	* Earth Badge: 		Todos los Pokémon te obedecerán sin importar el nivel.
 
-- X Accuracy aumenta la precisión dos puntos (2x) en vez de uno (1.5x). Ahora puede usarse varias veces.
 
-- Las probabilidades de dar un golpe crítico han sido cambiadas para asemejarse a Gen 8.
-	-- Dire Hit se ve afectado indirectamente.
-- Los efectos de los items Lucky Punch y Sitck (Leek en Gen 8) ahora se acumulan con Focus Energy y movimientos con alta probabilidad de golpe crítico.
+- Objetos X:
+	-- X Accuracy aumenta la precisión dos puntos (2x) en vez de uno (1.5x). Ahora puede usarse varias veces.
+	-- Dire Hit y Guard Spec. han sido afectados indirectamente por los cambios en los golpes críticos y al movimiento "Mist", respectivamente. (Leer más abajo).
 
-- Mist ahora solo dura cinco turnos y el efecto no desaparece aunque cambiemos de Pokémon (Gen 3+).
-	-- Esto también afecta indirectamente el objeto Guard Spec.
+- Items:
+	-- Los efectos de los items Lucky Punch y Sitck (Leek en Gen 8) ahora se acumulan con Focus Energy y movimientos con alta probabilidad de golpe crítico.
 
 - Status: 
 	-- Ahora el estado Dormido dura entre 1-3 turnos (sin contar el turno donde el Pokémon fue afectado).
 	-- La probabilidad de golpearte a ti mismo si estás confundido ha sido revertida a 50% (petición popular).
-	-- El estado de Gravemente Envenenado (producido por Toxic) ahora dura hasta el final del combate (se convertía en Envenenamiento normal si se cambia de Pokémon).
+	-- El estado de Gravemente Envenenado (producido por Toxic) ahora perdura hasta el final del combate (se convertía en Envenenamiento normal si se cambia de Pokémon).
 
 - Mercados:
 	-- Los catálogos de los Poké Marts se irá expandiendo a medida que el jugador progrese en la historia. (Gen 4)
@@ -85,11 +86,24 @@ CAMBIOS:
 	-- Si (Hi) Jump Kick falla, daña al usuario equivalente a 1/2 del daño que hubiese causado al oponente (Gen 3).
 	-- Spite ahora remueve 4 PPs de forma fija en vez de variar (Gen 4+).
 	-- Pay Day da dinero equivalente a 5x el nivel del usuario (Gen 3+).
+	-- Sweet Scent ahora baja la evasión en dos niveles (Gen 6+).
+	-- Mist ahora solo dura cinco turnos y el efecto no desaparece aunque cambiemos de Pokémon (Gen 3+).
+
+- Efectos en combate:
+	-- La tormenta de arena ahora boostea la Defensa Especial de los Pokémon tipo Roca en un 50% (Gen 4+).
+	-- Las probabilidades de dar un golpe crítico han sido cambiadas para asemejarse a Gen 8.
+	-- Recoil damage ahora hace 1/2 MAX HP, en vez de 1/4.
+	-- El daño secundario de movimientos atrapantes (Wrap, Bind, etc.) al final de cada turno ha aumentado de 1/16 MAX HP a 1/8 MAX HP.
+	-- Ajustada prioridad de movimientos para asemejarse más a la Gen 8.
+	-- El orden de los efectos al final de cada turno ha sido ajustado para asemejarse a Gen 8.
+
+- Gráficos:
+	-- La intefaz de batalla ha sido renovada, dándole un aspecto moderno mientras aún se asemeja a la original.
 
 - Animaciones:
 	-- Si hay un clima activo, al final de cada turno se mostrará la animación de este.
 	-- Las animaciones de Sonic Boom, Leer, Petal Dance y Sunny Day han sido cambiadas.
-		-- Rain Dance y Vine Whip recibieron cambios muy ligeros.
+		-- Rain Dance y Vine Whip solo cambiaron en color.
 
 - HMs. Algunos Pokémon aprenden nuevas HMs, basado en HG/SS:
 	-- Cut: Rattata, Nidoran♀, Nidorina, Nidoqueen, Nidoran♂, Nidorino, Nidoking, Meowth, Persian, Rhydon, Kangaskhan, Dragonite, Celebi.
@@ -100,19 +114,17 @@ CAMBIOS:
 	-- Waterfall: Tentacool, Tentacruel, Lapras, Omanyte, Omastar, Kabuto, Kabutops, Totodile, Croconaw, Feraligatr, Wooper, Quagsire, Remoraid, Octillery.
 	-- Whirlpool: Nidoqueen, Nidoking, Slowpoke, Slowbro, Lickitung, Rhydon, Kangaskhan, Goldeen, Seaking, Tauros, Kabuto, Snorlax, Dratini, Dragonair, Sentret, Furret, Sneasel, Miltank, Tyranitar.
 
-- Recoil damage ahora hace 1/2 MAX HP, en vez de 1/4.
-- El daño secundario de movimientos atrapantes (Wrap, Bind, etc.) al final de cada turno ha aumentado de 1/16 MAX HP a 1/8 MAX HP.
-- Ajustada prioridad de movimientos para asemejarse más a la Gen 8.
-- El orden de los efectos al final de cada turno ha sido ajustado para asemejarse a Gen 8.
+- Movesets:
+	-- Los movesets por nivel de los siguientes Pokémon han sido cambiados para asemejarse a generaciones recientes: 
+		Bulbasaur, Ivysaur, Venusaur, Charmander, Charmeleon, Charizard, Squirtle, Wartortle, Blastoise, Caterpie, Metapod, Butterfree, Weedle, Kakuna, Beedrill, Pidgey, Pidgeotto, Pidgeot, Rattata, Raticate, Spearow, Fearow,
+		Ekans, Arbok, Pikachu, Raichu, Sandshrew, Sandslash, Nidoran♀, Nidorina, Nidoqueen, Nidoran♂, Nidorino, Nidoking, Clefairy, Clefable, Jigglypuff, Wigglytuff, Oddish, Gloom, Vileplume, Diglett, Dugtrio, Meowth, Persian, Mankey, Primeape, Growlithe, Arcanine,
+		Poliwag, Poliwhirl, Poliwrath, Kadabra, Alakazam, Machop, Machoke, Machamp, Ponyta, Rapidash, Slowpoke, Slowbro, Magneton, Farfetch'd, Doduo, Dodrio, Shellder, Cloyster,
+		Onix, Drowzee, Hypno, Krabby, Kingler, Voltorb, Electrode, Exeggcute, Exeggutor, Cubone, Marowak, Hitmonlee, Hitmonchan, Lickitung, Koffing, Weezing, Electabuzz, Magmar, Jynx, Magikarp, Gyarados, Lapras, Eevee, Vaporeon, 
+		Jolteon, Flareon, Porygon, Omanyte, Omastar, Kabuto, Kabutops, Snorlax, Dratini, Dragonair, Dragonite, Mewtwo, Mew, Sentret, Furret, Hoothoot, Noctowl, Cleffa, Igglybuff, Togepi, Togetic, Natu, Xatu, Mareep, 
+		Flaaffy, Ampharos, Bellossom, Sudowoodo, Politoed, Hoppip, Skiploom, Jumpluff, Marill, Azumarill, Sunkern, Sunflora, Wooper, Quagsire, Espeon, Umbreon, Steelix, Snubbull, Granbull, Heracross, Murkrow, Slowking, Misdreavus, Swinub, Piloswine, Remoraid, Octillery, 
+		Delibird, Houndour, Houndoom, Phanpy, Donphan, Tyrogue, Porygon2, Elekid, Magby, Smoochum, Hitmontop, Miltank, Raikou, Entei, Suicune, Lugia, Ho-Oh, Celebi.
 
-- Los movesets por nivel de los siguientes Pokémon han sido cambiados para asemejarse a generaciones recientes: 
-	Bulbasaur, Ivysaur, Venusaur, Charmander, Charmeleon, Charizard, Squirtle, Wartortle, Blastoise, Caterpie, Metapod, Butterfree, Weedle, Kakuna, Beedrill, Pidgey, Pidgeotto, Pidgeot, Rattata, Raticate, Spearow, Fearow,
-	Ekans, Arbok, Pikachu, Raichu, Sandshrew, Sandslash, Nidoran♀, Nidorina, Nidoqueen, Nidoran♂, Nidorino, Nidoking, Clefairy, Clefable, Jigglypuff, Wigglytuff, Oddish, Gloom, Vileplume, Diglett, Dugtrio, Meowth, Persian, Mankey, Primeape, Growlithe, Arcanine,
-	Poliwag, Poliwhirl, Poliwrath, Kadabra, Alakazam, Machop, Machoke, Machamp, Ponyta, Rapidash, Slowpoke, Slowbro, Magneton, Farfetch'd, Doduo, Dodrio, Shellder, Cloyster,
-	Onix, Drowzee, Hypno, Krabby, Kingler, Voltorb, Electrode, Exeggcute, Exeggutor, Cubone, Marowak, Hitmonlee, Hitmonchan, Lickitung, Koffing, Weezing, Electabuzz, Magmar, Magikarp, Gyarados, Lapras, Eevee, Vaporeon, 
-	Jolteon, Flareon, Porygon, Omanyte, Omastar, Kabuto, Kabutops, Snorlax, Dratini, Dragonair, Dragonite, Mewtwo, Mew, Sentret, Furret, Hoothoot, Noctowl, Cleffa, Igglybuff, Togepi, Togetic, Natu, Xatu, Mareep, 
-	Flaaffy, Ampharos, Bellossom, Sudowoodo, Politoed, Hoppip, Skiploom, Jumpluff, Marill, Azumarill, Sunkern, Sunflora, Wooper, Quagsire, Espeon, Umbreon, Steelix, Snubbull, Granbull, Heracross, Murkrow, Slowking, Misdreavus, Swinub, Piloswine, Remoraid, Octillery, 
-	Delibird, Houndour, Houndoom, Phanpy, Donphan, Tyrogue, Porygon2, Elekid, Magby, Hitmontop, Miltank, Raikou, Entei, Suicune, Lugia, Ho-Oh, Celebi.
+	-- Los movimientos huevo de todos los Pokémon han sido renovados (Gen 7-8).
 
 - Raikou y Entei ya no tendrán Roar cuando los encuentres rondando por Johto.
 - El dinero que dan los entrenadores ha sido ajustado basado en HeartGold/SoulSilver.
@@ -138,7 +150,7 @@ Miscellaneous:
 - La probabilidad de que salga un Pokémon Shiny del Huevo Extraño ahora es de un 50% (basado en versión japonesa del juego).
 - El moveset del Dratini que recibes en Dragon's Den ha sido actualizado para asemejarse a HG/SS.
 - Tu rival imprimirá un texto de victoria en caso de que pierdas en una batalla.
-- El texto imprimirá "Rival <nombre que le pusimos>" en vez de solo el nombre del rival cuando batallemos contra él.
+- El texto imprimirá "Rival <nombre>" en vez de solo el nombre del rival cuando batallemos contra él.
 - Moomoo, el Miltank enfermo de la granja Moomoo, ahora solo necesita seis bayas para ser curada en vez de siete.
 
 

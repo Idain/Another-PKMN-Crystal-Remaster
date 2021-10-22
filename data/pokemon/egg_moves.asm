@@ -14,9 +14,7 @@ SECTION "Egg Moves", ROMX
 INCLUDE "data/pokemon/egg_move_pointers.asm"
 
 BulbasaurEggMoves:
-	db LIGHT_SCREEN
 	db SKULL_BASH
-	db SAFEGUARD
 	db PETAL_DANCE
 	db CURSE
 	db AMNESIA
@@ -26,7 +24,6 @@ BulbasaurEggMoves:
 CharmanderEggMoves:
 	db BELLY_DRUM
 	db ANCIENTPOWER
-	db ROCK_SLIDE
 	db BITE
 	db OUTRAGE
 	db BEAT_UP
@@ -134,7 +131,6 @@ ZubatEggMoves:
 
 OddishEggMoves:
 	db LEECH_SEED
-	db SWORDS_DANCE
 	db RAZOR_LEAF
 	db FLAIL
 	db SYNTHESIS
@@ -144,7 +140,6 @@ ParasEggMoves:
 	db SCREECH
 	db COUNTER
 	db PSYBEAM
-	db LIGHT_SCREEN
 	db PURSUIT
 	db METAL_CLAW
 	db AGILITY
@@ -184,7 +179,6 @@ PsyduckEggMoves:
 	db HYPNOSIS
 	db PSYBEAM
 	db FORESIGHT
-	db LIGHT_SCREEN
 	db FUTURE_SIGHT
 	db CROSS_CHOP
 	db CONFUSE_RAY
@@ -201,7 +195,6 @@ MankeyEggMoves:
 
 GrowlitheEggMoves:
 	db BODY_SLAM
-	db SAFEGUARD
 	db CRUNCH
 	db THRASH
 	db FIRE_SPIN
@@ -221,7 +214,6 @@ PoliwagEggMoves:
 	db -1 ; end
 
 AbraEggMoves:
-	db LIGHT_SCREEN
 	db ENCORE
 	db BARRIER
 	db FIRE_PUNCH
@@ -335,15 +327,12 @@ GastlyEggMoves:
 	db -1 ; end
 
 OnixEggMoves:
-	db ROCK_SLIDE
 	db FLAIL
-	db EXPLOSION
 	db DEFENSE_CURL
 	db ROLLOUT
 	db -1 ; end
 
 DrowzeeEggMoves:
-	db LIGHT_SCREEN
 	db BARRIER
 	db FIRE_PUNCH
 	db ICE_PUNCH
@@ -364,7 +353,6 @@ KrabbyEggMoves:
 ExeggcuteEggMoves:
 	db SYNTHESIS
 	db MOONLIGHT
-	db REFLECT
 	db GIGA_DRAIN
 	db ANCIENTPOWER
 	db POISONPOWDER
@@ -391,7 +379,6 @@ LickitungEggMoves:
 	db CURSE
 	db SLEEP_TALK
 	db SNORE
-	db SUBSTITUTE
 	db THRASH
 	db -1 ; end
 
@@ -408,7 +395,6 @@ KoffingEggMoves:
 RhyhornEggMoves:
 	db CRUNCH
 	db REVERSAL
-	db ROCK_SLIDE
 	db MAGNITUDE
 	db CURSE
 	db SKULL_BASH
@@ -425,7 +411,6 @@ TangelaEggMoves:
 	db CONFUSION
 	db MEGA_DRAIN
 	db GIGA_DRAIN
-	db REFLECT
 	db AMNESIA
 	db LEECH_SEED
 	db -1 ; end
@@ -473,7 +458,6 @@ PinsirEggMoves:
 	db FURY_ATTACK
 	db FLAIL
 	db FAINT_ATTACK
-	db FALSE_SWIPE
 	db QUICK_ATTACK
 	db THRASH
 	db -1 ; end
@@ -484,7 +468,6 @@ LaprasEggMoves:
 	db CURSE
 	db HORN_DRILL
 	db SLEEP_TALK
-	db SUBSTITUTE
 	db FUTURE_SIGHT
 	db -1 ; end
 
@@ -661,7 +644,6 @@ MareepEggMoves:
 	db TAKE_DOWN
 	db BODY_SLAM
 	db SCREECH
-	db REFLECT
 	db AGILITY
 	db SAND_ATTACK
 	db -1 ; end
@@ -802,7 +784,6 @@ HeracrossEggMoves:
 	db BIDE
 	db FLAIL
 	db SEISMIC_TOSS
-	db FALSE_SWIPE
 	db DOUBLE_EDGE
 	db PURSUIT
 	db MEGAHORN
