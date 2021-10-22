@@ -21,7 +21,6 @@ BulbasaurEggMoves:
 	db CURSE
 	db AMNESIA
 	db GIGA_DRAIN
-	db TOXIC
 	db -1 ; end
 
 CharmanderEggMoves:
@@ -49,7 +48,6 @@ PidgeyEggMoves:
 	db PURSUIT
 	db FAINT_ATTACK
 	db FORESIGHT
-	db STEEL_WING
 	db -1 ; end
 
 RattataEggMoves:
@@ -67,7 +65,6 @@ SpearowEggMoves:
 	db TRI_ATTACK
 	db WHIRLWIND
 	db SKY_ATTACK
-	db STEEL_WING
 	db -1 ; end
 
 EkansEggMoves:
@@ -132,7 +129,6 @@ ZubatEggMoves:
 	db CURSE
 	db HYPNOSIS
 	db GIGA_DRAIN
-	db STEEL_WING
 	db WING_ATTACK
 	db -1 ; end
 
@@ -150,7 +146,6 @@ ParasEggMoves:
 	db PSYBEAM
 	db LIGHT_SCREEN
 	db PURSUIT
-	db SWEET_SCENT
 	db METAL_CLAW
 	db AGILITY
 	db ENDURE
@@ -295,7 +290,6 @@ FarfetchDEggMoves:
 	db QUICK_ATTACK
 	db FLAIL
 	db MUD_SLAP
-	db STEEL_WING
 	db SKY_ATTACK
 	db -1 ; end
 
@@ -338,7 +332,6 @@ GastlyEggMoves:
 	db PERISH_SONG
 	db HAZE
 	db DISABLE
-	db TOXIC
 	db -1 ; end
 
 OnixEggMoves:
@@ -474,7 +467,6 @@ ScytherEggMoves:
 	db RAZOR_WIND
 	db REVERSAL
 	db ENDURE
-	db STEEL_WING
 	db -1 ; end
 
 PinsirEggMoves:
@@ -528,7 +520,6 @@ KabutoEggMoves:
 
 AerodactylEggMoves:
 	db CURSE
-	db STEEL_WING
 	db WHIRLWIND
 	db PURSUIT
 	db FORESIGHT
@@ -664,7 +655,6 @@ NatuEggMoves:
 	db DRILL_PECK
 	db QUICK_ATTACK
 	db FAINT_ATTACK
-	db STEEL_WING
 	db -1 ; end
 
 MareepEggMoves:
