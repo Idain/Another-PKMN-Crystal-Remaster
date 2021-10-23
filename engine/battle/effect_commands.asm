@@ -1705,6 +1705,14 @@ BattleCommand_CheckHit:
 	bit SUBSTATUS_PROTECT, a
 	ret z
 
+; Roar and Whirlwind can bypass protection status.
+	ld a, BATTLE_VARS_MOVE_ANIM
+	call GetBattleVar
+	cp ROAR
+	ret z
+	cp WHIRLWIND
+	ret z	
+
 	ld c, 20
 	call DelayFrames
 
@@ -1782,8 +1790,6 @@ BattleCommand_CheckHit:
 	call GetBattleVar
 
 	cp GUST
-	ret z
-	cp WHIRLWIND
 	ret z
 	cp THUNDER
 	ret z
@@ -5168,19 +5174,19 @@ BattleCommand_ForceSwitch:
 
 	ld a, [wBattleType]
 	cp BATTLETYPE_SHINY
-	jr z, .missed
+	jp z, .fail
 	cp BATTLETYPE_TRAP
-	jr z, .missed
+	jp z, .fail
 	cp BATTLETYPE_CELEBI
-	jr z, .missed
+	jp z, .fail
 	cp BATTLETYPE_SUICUNE
-	jr z, .missed
+	jp z, .fail
 	ldh a, [hBattleTurn]
 	and a
 	jp nz, .force_player_switch
 	ld a, [wAttackMissed]
 	and a
-	jr nz, .missed
+	jp nz, .fail
 	ld a, [wBattleMode]
 	dec a
 	jr nz, .trainer
@@ -5188,22 +5194,9 @@ BattleCommand_ForceSwitch:
 	ld b, a
 	ld a, [wBattleMonLevel]
 	cp b
-	jr nc, .wild_force_flee
-	add b
-	ld c, a
-	inc c
-.random_loop_wild
-	call BattleRandom
-	cp c
-	jr nc, .random_loop_wild
-	srl b
-	srl b
-	cp b
-	jr nc, .wild_force_flee
-.missed
-	jp .fail
+	jp c, .fail
 
-.wild_force_flee
+;wild_force_flee
 	call UpdateBattleMonInParty
 	xor a
 	ld [wNumHits], a
@@ -5216,9 +5209,6 @@ BattleCommand_ForceSwitch:
 .trainer
 	call FindAliveEnemyMons
 	jp c, .fail
-	ld a, [wEnemyGoesFirst]
-	and a
-	jp z, .fail
 	call UpdateEnemyMonInParty
 	ld a, 1
 	ld [wBattleAnimParam], a
@@ -5275,22 +5265,9 @@ BattleCommand_ForceSwitch:
 	ld b, a
 	ld a, [wCurPartyLevel]
 	cp b
-	jr nc, .wild_succeed_playeristarget
+	jp c, .fail
 
-	add b
-	ld c, a
-	inc c
-.wild_random_loop_playeristarget
-	call BattleRandom
-	cp c
-	jr nc, .wild_random_loop_playeristarget
-
-	srl b
-	srl b
-	cp b
-	jr c, .fail
-
-.wild_succeed_playeristarget
+;wild_succeed_playeristarget
 	call UpdateBattleMonInParty
 	xor a
 	ld [wNumHits], a
@@ -5303,10 +5280,6 @@ BattleCommand_ForceSwitch:
 .vs_trainer
 	call CheckPlayerHasMonToSwitchTo
 	jr c, .fail
-
-	ld a, [wEnemyGoesFirst]
-	dec a
-	jr z, .fail
 
 	call UpdateBattleMonInParty
 	ld a, $1
