@@ -49,28 +49,7 @@ GLOBAL PICS_FIX
 
 .PicsBanks:
 	db BANK("Pics 1")  ; BANK("Pics 1") + 0
-	db BANK("Pics 2")  ; BANK("Pics 1") + 1
-	db BANK("Pics 3")  ; BANK("Pics 1") + 2
-	db BANK("Pics 4")  ; BANK("Pics 1") + 3
-	db BANK("Pics 5")  ; BANK("Pics 1") + 4
-	db BANK("Pics 6")  ; BANK("Pics 1") + 5
-	db BANK("Pics 7")  ; BANK("Pics 1") + 6
-	db BANK("Pics 8")  ; BANK("Pics 1") + 7
-	db BANK("Pics 9")  ; BANK("Pics 1") + 8
-	db BANK("Pics 10") ; BANK("Pics 1") + 9
-	db BANK("Pics 11") ; BANK("Pics 1") + 10
-	db BANK("Pics 12") ; BANK("Pics 1") + 11
-	db BANK("Pics 13") ; BANK("Pics 1") + 12
-	db BANK("Pics 14") ; BANK("Pics 1") + 13
-	db BANK("Pics 15") ; BANK("Pics 1") + 14
-	db BANK("Pics 16") ; BANK("Pics 1") + 15
-	db BANK("Pics 17") ; BANK("Pics 1") + 16
-	db BANK("Pics 18") ; BANK("Pics 1") + 17
-	db BANK("Pics 19") ; BANK("Pics 1") + 18
-	db BANK("Pics 20") ; BANK("Pics 1") + 19
-	db BANK("Pics 21") ; BANK("Pics 1") + 20
-	db BANK("Pics 22") ; BANK("Pics 1") + 21
-	db BANK("Pics 23") ; BANK("Pics 1") + 22
+	...
 	db BANK("Pics 24") ; BANK("Pics 1") + 23
 ```
 
@@ -121,18 +100,18 @@ Edit `GetFrontpicPointer`:
  	ld a, [wCurPartySpecies]
  	cp UNOWN
  	jr z, .unown
- 	ld a, [wCurPartySpecies]
 +	ld hl, PokemonPicPointers
+ 	ld a, [wCurPartySpecies]
  	ld d, BANK(PokemonPicPointers)
  	jr .ok
-
  .unown
- 	ld a, [wUnownLetter]
 +	ld hl, UnownPicPointers
+ 	ld a, [wUnownLetter]
  	ld d, BANK(UnownPicPointers)
-
  .ok
--	ld hl, PokemonPicPointers ; UnownPicPointers
+-	; These are assumed to be at the same address in their respective banks.
+-	assert PokemonPicPointers == UnownPicPointers
+-	ld hl, PokemonPicPointers
  	dec a
  	ld bc, 6
  	call AddNTimes
@@ -142,14 +121,14 @@ And `GetMonBackpic`:
 
 ```diff
 -	; These are assumed to be at the same address in their respective banks.
--	ld hl, PokemonPicPointers ; UnownPicPointers
+-	assert PokemonPicPointers == UnownPicPointers
+ 	ld hl, PokemonPicPointers
  	ld a, b
-+	ld hl, PokemonPicPointers
  	ld d, BANK(PokemonPicPointers)
  	cp UNOWN
  	jr nz, .ok
- 	ld a, c
 +	ld hl, UnownPicPointers
+ 	ld a, c
  	ld d, BANK(UnownPicPointers)
  .ok
  	dec a
@@ -361,12 +340,12 @@ NUM_TMS EQU const_value - TM01 - 2 ; discount ITEM_C3 and ITEM_DC
 > - $AA = 170: `POLKADOT_BOW` is for Jigglypuff
 > - $B4 = 180: `BRICK_PIECE` is for Machop
 >
-> Yellow was also being developed then, and it did the reverse, altering some catch rates to correspond to appropriate Gen 2 items:
+> Yellow was also being developed then, and it did the reverse, altering some Pokémon's data after they're caught to correspond to appropriate Gen 2 items:
 >
-> - Starter Pikachu's catch rate became 163 = $A3 for `LIGHT_BALL`
-> - Wild Kadabra's catch rate became 96 = $60 for `TWISTEDSPOON`
-> - Wild Dragonair's catch rate became 27 = $1B for `PROTEIN`
-> - Wild Dragonite's catch rate became 9 = $09 for `ANTIDOTE`
+> - Starter Pikachu's catch rate byte is overwritten with 163 = $A3 for `LIGHT_BALL`
+> - Wild-caught Kadabra's catch rate byte is overwritten with 96 = $60 for `TWISTEDSPOON`
+>
+> (Yellow also directly changed Dragonair's catch rate to 27 and Dragonite's to 9, but this seems to have been only for adjusting their difficulty, since those meaninglessly correspond to `PROTEIN` and `ANTIDOTE`.)
 >
 > Most catch rates were left as gaps in the item list, and transformed into held items via the `TimeCapsule_CatchRateItems` table in [data/items/catch_rate_items.asm](https://github.com/pret/pokecrystal/blob/master/data/items/catch_rate_items.asm). For example, the 52 Pokémon with catch rate 45 would hold the gap `ITEM_2D`, except that gets transformed into `BITTER_BERRY`.
 >
@@ -515,7 +494,7 @@ PokedexShow_GetDexEntryBank:
 
 **Fix:**
 
-Use `dba` instead of `dw` in `PokedexDataPointerTable`.
+Use `dba` instead of `dw` in `PokedexDataPointerTable`. Make sure to edit the `table_width` line to specify a width of 3 instead of 2.
 
 Delete `GetPokedexEntryBank` and `PokedexShow_GetDexEntryBank`. You can also delete `NUM_DEX_ENTRY_BANKS` from [constants/pokemon_data_constants.asm](https://github.com/pret/pokecrystal/blob/master/constants/pokemon_data_constants.asm).
 
