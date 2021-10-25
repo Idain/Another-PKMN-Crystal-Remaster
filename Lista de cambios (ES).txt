@@ -23,14 +23,15 @@ AÑADIDOS:
 	-- ¡NUEVO MOVE REMINDER! Está localizado en Blackthorn City, en la misma casa del Move Deleter.
 	-- Tu madre te da un tutorial muy breve de cómo correr en el juego.
 
+
+
 CAMBIOS:
-- ¡Curva de dificultad ajustada!
 
-- ¡Ahora es más mucho rápido salvar la partida!
-
-- Removido modificador de medallas que boosteaban ataques y stats.
-
-- La fórmula para determinar el género de un Pokémon ha sido retrabajada para que ciertos Pokémon hembra puedan tener mejores DVs en Ataque.
+- General:
+	-- ¡Curva de dificultad ajustada!
+	-- ¡Ahora es más mucho rápido salvar la partida!
+	-- Removido modificador de medallas que boosteaban ataques y stats.
+	-- La fórmula para determinar el género de un Pokémon ha sido retrabajada para que ciertos Pokémon hembra puedan tener mejores DVs en Ataque.
 
 - Shiny Pokémon. La fórmula ha sido retrabajada de nuevo, dando un chande de ~1/1213:
 	-- Attack DV:  14, 15
@@ -38,7 +39,7 @@ CAMBIOS:
 	-- Speed DV:   10, 14, 15
 	-- Special DV: 10, 14, 15
 
-- Ahora se necesitan 7 medallas de Kanto antes de poder enfrentar a Blue.
+- Modo historia: Ahora se necesitan 7 medallas de Kanto antes de poder enfrentar a Blue.
 
 - Obediencia: Ha sido cambiado para que también afecte a Pokémon que sean propios del jugador. También, las medallas que aumentan el límite fueron cambiadas:
 	* Sin medallas: 	Pokémon hasta el Nv. 15 te obedecerán.
@@ -50,13 +51,10 @@ CAMBIOS:
 	* Rising Badge: 	Pokémon hasta el Nv. 65 te obedecerán.
 	* Earth Badge: 		Todos los Pokémon te obedecerán sin importar el nivel.
 
-
-- Objetos X:
-	-- X Accuracy aumenta la precisión dos puntos (2x) en vez de uno (1.5x). Ahora puede usarse varias veces.
-	-- Dire Hit y Guard Spec. han sido afectados indirectamente por los cambios en los golpes críticos y al movimiento "Mist", respectivamente. (Leer más abajo).
-
 - Items:
 	-- Los efectos de los items Lucky Punch y Sitck (Leek en Gen 8) ahora se acumulan con Focus Energy y movimientos con alta probabilidad de golpe crítico.
+	-- X Accuracy aumenta la precisión dos puntos (2x) en vez de uno (1.5x). Ahora puede usarse varias veces.
+	-- Dire Hit y Guard Spec. han sido afectados indirectamente por los cambios en los golpes críticos y al movimiento "Mist", respectivamente. (Leer más abajo).
 
 - Status: 
 	-- Ahora el estado Dormido dura entre 1-3 turnos (sin contar el turno donde el Pokémon fue afectado).
@@ -88,6 +86,7 @@ CAMBIOS:
 	-- Pay Day da dinero equivalente a 5x el nivel del usuario (Gen 3+).
 	-- Sweet Scent ahora baja la evasión en dos niveles (Gen 6+).
 	-- Mist ahora solo dura cinco turnos y el efecto no desaparece aunque cambiemos de Pokémon (Gen 3+).
+	-- Roar y Whilrwind automáticamente fallan si el nivel del usuario es menor al del oponente (Gen 5+). Además, sobrepasan Protección y Detección (Gen 6+).
 
 - Efectos en combate:
 	-- La tormenta de arena ahora boostea la Defensa Especial de los Pokémon tipo Roca en un 50% (Gen 4+).
@@ -99,6 +98,7 @@ CAMBIOS:
 
 - Gráficos:
 	-- La intefaz de batalla ha sido renovada, dándole un aspecto moderno mientras aún se asemeja a la original.
+	-- Si un Pokémon es afectado por un problema de estado, ahora este se muestra al lado del nivel en vez de reemplazarlo.
 
 - Animaciones:
 	-- Si hay un clima activo, al final de cada turno se mostrará la animación de este.
@@ -114,44 +114,41 @@ CAMBIOS:
 	-- Waterfall: Tentacool, Tentacruel, Lapras, Omanyte, Omastar, Kabuto, Kabutops, Totodile, Croconaw, Feraligatr, Wooper, Quagsire, Remoraid, Octillery.
 	-- Whirlpool: Nidoqueen, Nidoking, Slowpoke, Slowbro, Lickitung, Rhydon, Kangaskhan, Goldeen, Seaking, Tauros, Kabuto, Snorlax, Dratini, Dragonair, Sentret, Furret, Sneasel, Miltank, Tyranitar.
 
-- Movesets:
-	-- Los movesets por nivel de los siguientes Pokémon han sido cambiados para asemejarse a generaciones recientes: 
+- Movesets (ajustados a estándares de Gen 7-8):
+	-- Por nivel:
 		Bulbasaur, Ivysaur, Venusaur, Charmander, Charmeleon, Charizard, Squirtle, Wartortle, Blastoise, Caterpie, Metapod, Butterfree, Weedle, Kakuna, Beedrill, Pidgey, Pidgeotto, Pidgeot, Rattata, Raticate, Spearow, Fearow,
-		Ekans, Arbok, Pikachu, Raichu, Sandshrew, Sandslash, Nidoran♀, Nidorina, Nidoqueen, Nidoran♂, Nidorino, Nidoking, Clefairy, Clefable, Jigglypuff, Wigglytuff, Oddish, Gloom, Vileplume, Diglett, Dugtrio, Meowth, Persian, Mankey, Primeape, Growlithe, Arcanine,
-		Poliwag, Poliwhirl, Poliwrath, Kadabra, Alakazam, Machop, Machoke, Machamp, Ponyta, Rapidash, Slowpoke, Slowbro, Magneton, Farfetch'd, Doduo, Dodrio, Shellder, Cloyster,
+		Ekans, Arbok, Pikachu, Raichu, Sandshrew, Sandslash, Nidoran♀, Nidorina, Nidoqueen, Nidoran♂, Nidorino, Nidoking, Clefairy, Clefable, Jigglypuff, Wigglytuff, Oddish, Gloom, Vileplume, Diglett, Dugtrio, Meowth, Persian, 
+		Mankey, Primeape, Growlithe, Arcanine, Poliwag, Poliwhirl, Poliwrath, Kadabra, Alakazam, Machop, Machoke, Machamp, Ponyta, Rapidash, Slowpoke, Slowbro, Magneton, Farfetch'd, Doduo, Dodrio, Shellder, Cloyster,
 		Onix, Drowzee, Hypno, Krabby, Kingler, Voltorb, Electrode, Exeggcute, Exeggutor, Cubone, Marowak, Hitmonlee, Hitmonchan, Lickitung, Koffing, Weezing, Electabuzz, Magmar, Jynx, Magikarp, Gyarados, Lapras, Eevee, Vaporeon, 
 		Jolteon, Flareon, Porygon, Omanyte, Omastar, Kabuto, Kabutops, Snorlax, Dratini, Dragonair, Dragonite, Mewtwo, Mew, Sentret, Furret, Hoothoot, Noctowl, Cleffa, Igglybuff, Togepi, Togetic, Natu, Xatu, Mareep, 
-		Flaaffy, Ampharos, Bellossom, Sudowoodo, Politoed, Hoppip, Skiploom, Jumpluff, Marill, Azumarill, Sunkern, Sunflora, Wooper, Quagsire, Espeon, Umbreon, Steelix, Snubbull, Granbull, Heracross, Murkrow, Slowking, Misdreavus, Swinub, Piloswine, Remoraid, Octillery, 
-		Delibird, Houndour, Houndoom, Phanpy, Donphan, Tyrogue, Porygon2, Elekid, Magby, Smoochum, Hitmontop, Miltank, Raikou, Entei, Suicune, Lugia, Ho-Oh, Celebi.
+		Flaaffy, Ampharos, Bellossom, Sudowoodo, Politoed, Hoppip, Skiploom, Jumpluff, Marill, Azumarill, Sunkern, Sunflora, Wooper, Quagsire, Espeon, Umbreon, Steelix, Snubbull, Granbull, Heracross, Murkrow, Slowking, Misdreavus, Swinub, 
+		Piloswine, Remoraid, Octillery, Delibird, Houndour, Houndoom, Phanpy, Donphan, Tyrogue, Porygon2, Elekid, Magby, Smoochum, Hitmontop, Miltank, Raikou, Entei, Suicune, Lugia, Ho-Oh, Celebi.
 
-	-- Los movimientos huevo de todos los Pokémon han sido renovados (Gen 7-8).
-
-- Raikou y Entei ya no tendrán Roar cuando los encuentres rondando por Johto.
-- El dinero que dan los entrenadores ha sido ajustado basado en HeartGold/SoulSilver.
-- Los items que te da tu madre cada vez que ahorra una cierta cantidad de dinero han sido ajustados.
-- Si un Pokémon es afectado por un problema de estado, ahora este se muestra al lado del nivel en vez de reemplazarlo.
+	-- Por crianza: Todos los Pokémon.
 
 - Equipos Pokémon:
 	-- Los equipos de algunos líderes de gimnasio han sido ligeramente modificados.
 	-- Los equipos de Chuck, Jasmine y Pryce cambian dependiendo de cuántas medallas tenga el jugador.
 	-- Elite Four, Lance tienen nuevos equipos una vez tengamos 16 medallas.
 
-Miscellaneous:
-- La probabilidad de que Shuckle convierta una Oran Berry en Berry Juice aumentó de 1/16 a 1/8.
-- Ya no tendremos que esperar un día para que Kurt nos entregue las Balls que le pedimos; con solo salir y volver a entrar a la casa basta.
-
-- Para reiniciar el reloj hay que presionar Down + B + Select en la pantalla de inicio (como en Gold/Silver).
-- Los nombres de los movimientos ahora están en Capital en vez de MAYÚSCULA.
-- Los nombres de los entrenadores y sus clases ahora están en Capital.
-- Los nombres de los bolsillos también están en capital.
-- El objeto "Stick" ahora se llama "Leek" (Gen 8).
-- Modificada fórmula para aparición de formas Unown.
-- Después de hablar con la enfermera del Centro Pokémon, el jugador mirará hacia abajo automáticamente. Así pueden spamear el botón A libremente sin temor a iniciar otro diálogo con ella. :V
-- La probabilidad de que salga un Pokémon Shiny del Huevo Extraño ahora es de un 50% (basado en versión japonesa del juego).
-- El moveset del Dratini que recibes en Dragon's Den ha sido actualizado para asemejarse a HG/SS.
-- Tu rival imprimirá un texto de victoria en caso de que pierdas en una batalla.
-- El texto imprimirá "Rival <nombre>" en vez de solo el nombre del rival cuando batallemos contra él.
-- Moomoo, el Miltank enfermo de la granja Moomoo, ahora solo necesita seis bayas para ser curada en vez de siete.
+- Miscelánea:
+	-- La probabilidad de que Shuckle convierta una Oran Berry en Berry Juice aumentó de 1/16 a 1/8.
+	-- Ya no tendremos que esperar un día para que Kurt nos entregue las Balls que le pedimos; con solo salir y volver a entrar a la casa basta.
+	-- Raikou y Entei ya no tendrán Roar cuando los encuentres rondando por Johto.
+	-- El dinero que dan los entrenadores ha sido ajustado basado en HeartGold/SoulSilver.
+	-- Los items que te da tu madre cada vez que ahorra una cierta cantidad de dinero han sido ajustados.
+	-- Para reiniciar el reloj hay que presionar Down + B + Select en la pantalla de inicio (como en Gold/Silver).
+	-- Los nombres de los movimientos ahora están en Capital en vez de MAYÚSCULA.
+	-- Los nombres de los entrenadores y sus clases ahora están en Capital.
+	-- Los nombres de los bolsillos también están en capital.
+	-- El objeto "Stick" ahora se llama "Leek" (Gen 8).
+	-- Modificada fórmula para aparición de formas Unown.
+	-- Después de hablar con la enfermera del Centro Pokémon, el jugador mirará hacia abajo automáticamente. Así pueden spamear el botón A libremente sin temor a iniciar otro diálogo con ella. :V
+	-- La probabilidad de que salga un Pokémon Shiny del Huevo Extraño ahora es de un 50% (basado en versión japonesa del juego).
+	-- El moveset del Dratini que recibes en Dragon's Den ha sido actualizado para asemejarse a HG/SS.
+	-- Tu rival imprimirá un texto de victoria en caso de que pierdas en una batalla.
+	-- El texto imprimirá "Rival <nombre>" en vez de solo el nombre del rival cuando batallemos contra él.
+	-- Moomoo, el Miltank enfermo de la granja Moomoo, ahora solo necesita seis bayas para ser curada en vez de siete.
 
 
 FIXES:
@@ -161,7 +158,7 @@ FIXES:
 
 V1.1.2
 CAMBIOS:
-- Las probabilidades de que dos Pokémon generen un huevo cada cierto tiempo han aumentado (Gen 3 en adelante).
+- Las probabilidades de que dos Pokémon generen un huevo cada cierto tiempo han aumentado (Gen 3+).
 
 FIXES:
 - Corregido error de la Guardería Pokémon donde si el 1er Pokémon no tenía género (pero puede criar) y el 2do era un Ditto, la crianza sería imposible.
@@ -177,7 +174,7 @@ VERSIÓN 1.1
 AÑADIDOS:
 - NUEVO TIPO: ¡Tipo hada! Los Pokémon y movimientos existentes que son de tipo hada en la 6ta gen ahora lo serán en este juego.
 
-- ITEM: 
+- Items: 
 	-- Polkadow Bow. Aumenta la potencia de movimientos tipo hada en un 20%.
 		* Obtención: A veces Picknicker Tiffany lo entrega en Ruta 43. Has de tener su número.
 	-- Sitrus Berry. Esta reemplaza a la Gold Berry, curando 25% MAX HP en vez de 30HP.
@@ -185,11 +182,11 @@ AÑADIDOS:
 	-- "X SP. DEF" ha sido añadido al juego. Boostea el stat base de Defensa Especial por 2x.
 
 CAMBIOS:
-- Tabla de tipos actualizada: Los tipos FANTASMA y SINIESTRO ahora hacen daño neutro al tipo ACERO, en vez de 1/2 de daño (como sucede desde la 6ta gen en adelante).
 
-- ¡Ahora las TM pueden usarse de forma infinita! Tal como sucede a partir de la 5ta generación.
-
-- Los equipos de los líderes de gimnasio, Elite Four y Campeón han sido cambiados para asemejarse más a sus versiones de HeartGold/SoulSilver.
+- General:
+	-- Tabla de tipos actualizada: Los tipos FANTASMA y SINIESTRO ahora hacen daño neutro al tipo ACERO, en vez de 1/2 de daño (como sucede desde la 6ta gen en adelante).
+	-- ¡Ahora las TM pueden usarse de forma infinita! Tal como sucede a partir de la 5ta generación.
+	-- Los equipos de los líderes de gimnasio, Elite Four y Campeón han sido cambiados para asemejarse más a sus versiones de HeartGold/SoulSilver.
 
 - Movimientos:
 	* Chupavidas ahora tiene 80 de potencia.
@@ -206,7 +203,7 @@ CAMBIOS:
 	* Typhlosion ahora aprende Rayo Solar.
 	* Varios Pokémon aprenden nuevas TMs y HMs.
 
-- Los problemas de status han sido actualizados:
+- Status:
 	-- El chance de un Pokémon descongelarse ha aumentado de 10% a 20%.
 	-- Parálisis ahora solo reduce la velocidad en un 50% (como en la 7ma gen en adelante, en vez de un 75%.
 
@@ -227,27 +224,31 @@ CAMBIOS:
 
 	- Detalle removido donde, al momento de criar, si ambos padres tenían el mismo DV en Defensa y su DVs en Especial eran o el mismo o diferían exactamente por 8, entonces no podían criar.
 
-- Los ratios de captura de ciertas Poké Balls han sido modificado:
-	-- Love Ball: Ahora es más efectiva si ambos Pokémon pertenecen al mismo Grupo Huevo (en vez de ser de la misma especie) y son de géneros opuestos. 
+- Poké Balls:
+	-- Love Ball: Aparte de ser de géneros opuestos, también es efectiva si ambos Pokémon pertenecen al mismo Grupo Huevo (y no solo la misma especie).
 		-- Ratio de captura reducido de x8 a x4.
 		-- Ratio x1 si uno o ambos no poseen género, o si uno de los Pokémon es Ditto.
-	-- Fast Ball: Si la velocidad base del Pokémon es >=100, el ratio de captura será 4x. De lo contrario, será 1x. (Gen 4 en adelante)
+	-- Fast Ball: Si la velocidad base del Pokémon es >=100, el ratio de captura será 4x. De lo contrario, será 1x. (Gen 4+)
 	-- Lure Ball: 5x si el Pokémon fue encontrado pescando (en vez de 3x).
 	-- Heavy Ball: Ligero buff. Los multiplicadores según el peso han sido cambiados:
-		* Menos de 51.2kg: 	-20
-		* 51.2kg - 102.4kg: 	+0
+		* Menos de 51.2kg: 		-20
+		* 51.2kg - 102.4kg: 	+ 0
 		* 102.4kg - 204.8kg: 	+20
-		* Más de 204.8kg: 	+30
+		* Más de 204.8kg: 		+30
 
-- Los precios de las TMs de los Game Corners de Goldenrod City y Celadon City han sido ligeramente reducidos.
-	
-- Los precios del tutor de movimientos de Goldenrod Game Corner han sido reducidos de 4000 a 3000.
-	-- Ahora el tutor estará fuera del Game Corner todos los días, en vez de solo estarlo los miércoles y sábados.
+- Precios:
+	-- Los precios de las TMs de los Game Corners de Goldenrod City y Celadon City han sido ligeramente reducidos.
+	-- Los precios del tutor de movimientos de Goldenrod Game Corner han sido reducidos de 4000 a 3000.
+		* Ahora el tutor estará fuera del Game Corner todos los días, en vez de solo estarlo los miércoles y sábados.
 
-- Los árboles de frutas ahora dan dos (2) bayas/bonguris en vez de una.
+	-- Los precios de varios artículos han sido ajustados de acuerdo a generaciones recientes (estoy vago para hacer la lista).
+	-- Las piedras evolutivas, PP Up y PP Max pueden ser comprados tanto en Goldenrod Department Store como en Celadon Department Store.
+		* Piedras evolutivas: $3000
+		* PP UP: $10000
+		* PP Max: $25000
 
-- El sistema de amistad del juego ha sido mejorado ligeramente:
-	-- Los Pokémon que evolucionan mediante amistad ahora solo necesitan llegar a 160 puntos, en vez de 220.
+- Sistema de amistad:
+	-- Los Pokémon que evolucionan mediante amistad ahora solo necesitan llegar a 160 puntos, en vez de 220 (Gen 7+).
 	-- Si un Pokémon sube de nivel, su amistad sube ligeramente más.
 	-- Los hermanos masajistas de Goldenrod City suben ligeramente más la amistad.
 
@@ -258,21 +259,16 @@ CAMBIOS:
 	-- Algunos Pokémon salvajes ahora tienen una probabilidad de 55% de tener items (50% Item1 y 5% Item2), en vez de 25% (23% Item1 y 2% Item2).
 	-- Pikachu salvajes tienen un 50% chance de tener una Oran Berry y 5% chance de tener una Light Ball.
 	-- RageCandyBar ahora funciona como el Full Heal, curando todos los problemas de estado.
-
-- En la granja de la ruta 39 ahora podemos comprar una docena de Moomoo Milk en vez de solo una.
-
-- Las piedras evolutivas, PP Up y PP Max pueden ser comprados tanto en Goldenrod Department Store como en Celadon Department Store.
-	-- Piedras evolutivas: $3000
-	-- PP UP: $10000
-	-- PP Max: $25000
-
-- Los precios de varios artículos han sido ajustados de acuerdo a generaciones recientes (estoy vago para hacer la lista).
-
-- Los efectos curativos y precios de la Super Poción, Hyper Poción, Agua Fresca, Soda Pop y Limonada son de la 8va gen.
+	-- La baya Leppa ahora restaura 10 PP como en generaciones recientes, en vez de solo 5 PP.
+	-- Los efectos curativos y precios de la Super Poción, Hyper Poción, Agua Fresca, Soda Pop y Limonada son de la 8va gen.
 	-- Los nombres ELIXER y MAX ELIXER han sido cambiados a ELIXIR y MAX ELIXIR. También X SPECIAL por X SP. ATK.
 
-- Los nombres de la mayoría de bayas han sido cambiados a sus versiones actuales.
-	-- La baya Leppa ahora restaura 10 PP como en generaciones recientes, en vez de solo 5 PP.
+- Bayas:
+	-- Los árboles de frutas ahora dan dos (2) bayas/bonguris en vez de una.
+	-- Los nombres de la mayoría de bayas han sido cambiados a sus versiones actuales.
+
+- Miscelánea:
+	-- En la granja de la ruta 39 ahora podemos comprar una docena de Moomoo Milk en vez de solo una.
 
 FIXES:
 - Corregido error donde los sprites japoneses de los entrenadores BEAUTY, FISHER, MEDIUM, SAGE y SWIMMER♀ no mostraban los colores correctos.
@@ -282,20 +278,17 @@ FIXES:
 VERSIÓN 1.0
 
 CAMBIOS MAYORES:
+
 - ¡Mayoría de glitches resueltos (tanto Singleplayer como Multiplayer)!
-
-- ¡El evento de la GS Ball ha sido rehabilitado! Ahora se accede de forma similar a la versión Virtual Console de 3DS (cuando derrotamos a la Elite Four por primera vez). 
-
-- Ahora los movimientos se subdividen en Físico/Especial/Status dependiendo del movimiento en sí, en vez de su tipo elemental. 
-	Ej.: Antes los movimientos tipo Fantasma siempre eran de categoría físico, como Shadow Ball. Ahora Shadow Ball es especial, sin importar su tipo elemental.
-
+- ¡El evento de la GS Ball ha sido rehabilitado! Ahora se accede de forma similar a la versión Virtual Console de 3DS (cuando derrotamos a la Elite Four por primera vez).
+- Ahora los movimientos se subdividen en Físico/Especial/Status dependiendo del movimiento en sí, en vez de su tipo elemental (Gen 4+)
 - ¡Por fin puedes correr! Mantén presionado el botón B para ello. Está disponible desde el principio del juego.
 
 - Un nuevo tiempo ha sido añadido: EVENING. Con este añadido, el sistema de tiempo ha sido modificado ligeramente:
 	-- MORNING: 	6:00a.m. - 9:59a.m.
-	-- DAY: 	10:00a.m. - 5:59p.m.
+	-- DAY: 		10:00a.m. - 5:59p.m.
 	-- EVENING: 	6:00p.m. - 7:59p.m.
-	-- NIGHT: 	8:00p.m. - 5:59a.m.
+	-- NIGHT: 		8:00p.m. - 5:59a.m.
 	
 	** El color de los mapas en EVENING es de un tono anaranjado, simbolizando la puesta del sol.
 	** Los Pokémon que solo solían aparecer en NIGHT ahora aparecen en EVENING también. También se reutiliza la música de batalla de NIGHT.

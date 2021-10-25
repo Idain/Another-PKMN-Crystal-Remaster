@@ -1777,8 +1777,8 @@ JohtoGrassWildMons:
 	db 20, MAGNEMITE,	16, 16
 	db 10, NOCTOWL,		18, 18
 	db  5, MEOWTH,		16, 16
-	db  4, MEOWTH,		16, 16
-	db  1, MEOWTH,		16, 16
+	db  4, HOUNDOUR,	16, 16
+	db  1, HOUNDOUR,	16, 16
 	end_grass_wildmons
 
 	def_grass_wildmons ROUTE_39
@@ -1805,13 +1805,13 @@ JohtoGrassWildMons:
 
 	; nite
 	;  %, species,    min, max
-	db 30, MEOWTH,		16, 18
+	db 30, MEOWTH,		16, 16
 	db 30, RATICATE,	18, 18
 	db 20, MAGNEMITE,	16, 16
 	db 10, NOCTOWL,		18, 18
-	db  5, MEOWTH,		16, 18
-	db  4, MEOWTH,		16, 18
-	db  1, MEOWTH,		16, 18
+	db  5, MEOWTH,		16, 16
+	db  4, HOUNDOUR,	16, 16
+	db  1, HOUNDOUR,	16, 16
 	end_grass_wildmons
 
 	def_grass_wildmons ROUTE_42

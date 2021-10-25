@@ -3417,24 +3417,26 @@ HoundourEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, LEER
 	db 1, EMBER
-	db 8, SMOG
-	db 13, ROAR
-	db 20, BITE
-	db 27, FAINT_ATTACK
+	db 9, SMOG
+	db 14, ROAR
+	db 17, BITE
+	db 25, BEAT_UP
+	db 30, FAINT_ATTACK
 	db 35, FLAMETHROWER
-	db 43, CRUNCH
+	db 40, CRUNCH
 	db 0 ; no more level-up moves
 
 HoundoomEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, LEER
 	db 1, EMBER
-	db 7, ROAR
-	db 13, SMOG
-	db 20, BITE
-	db 30, FAINT_ATTACK
-	db 39, FLAMETHROWER
-	db 45, CRUNCH
+	db 9, SMOG
+	db 14, ROAR
+	db 17, BITE
+	db 25, BEAT_UP
+	db 32, FAINT_ATTACK
+	db 38, FLAMETHROWER
+	db 44, CRUNCH
 	db 0 ; no more level-up moves
 
 KingdraEvosAttacks:
@@ -3651,7 +3653,7 @@ EnteiEvosAttacks:
 	db 22, FIRE_SPIN
 	db 29, STOMP
 	db 36, FLAMETHROWER
-	db 36, SCARY_FACE
+	db 38, SCARY_FACE
 	db 43, SWAGGER
 	db 50, CRUNCH
 	db 57, SUNNY_DAY
