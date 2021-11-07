@@ -152,16 +152,16 @@ ReadTrainerPartyPieces:
 	ld e, l
 	pop hl
 
-; When reading DVs, treat PERFECT_DV as $ff
+; When reading DVs, treat PERFECT_DV Sas $ff
 	call GetNextTrainerDataByte
-	and a ; cp PERFECT_DV
+	and a ; cp PERFECT_DVS
 	jr nz, .atk_def_dv_ok
 	ld a, $ff
 .atk_def_dv_ok
 	ld [de], a
 	inc de
 	call GetNextTrainerDataByte
-	and a ; cp PERFECT_DV
+	and a ; cp PERFECT_DVS
 	jr nz, .spd_spc_dv_ok
 	ld a, $ff
 .spd_spc_dv_ok

@@ -1,10 +1,5 @@
 INCLUDE "engine/gfx/sgb_layouts.asm"
 
-; SHINY_ATK_BIT EQU 5
-; SHINY_DEF_VAL EQU 10
-; SHINY_SPD_VAL EQU 10
-; SHINY_SPC_VAL EQU 10
-
 CheckShininess:
 ; Check if a mon is shiny by DVs at bc.
 ; Return carry if shiny.
@@ -12,99 +7,14 @@ CheckShininess:
 	ld l, c
 	ld h, b
 
-; Attack
-	ld a, [hl]
-	and $f0
-	cp 14 << 4
-	jr c, .not_shiny
-
-; Defense
 	ld a, [hli]
-	and $f
-	cp 10
-	jr z, .speed
-	cp 14
-	jr c, .not_shiny
-
-; Speed
-.speed
-	ld a, [hl]
-	cp 10 << 4
-	jr z, .special
-	cp 14 << 4
-	jr c, .not_shiny
-
-; Special
-.special
-	ld a, [hl]
-	and $f
-	cp 10
-	jr z, .shiny
-	cp 14
-	jr c, .not_shiny
-
-.shiny
-	scf
+	cp 13 << 4
+	ccf
+	ret nc
+	and [hl]
+	and $ce
+	add a, LOW(-$ce) ; Change to -$ce when RGBDS v0.5.2 comes out.
 	ret
-
-.not_shiny
-	and a
-	ret
-
-;Unused_CheckShininess:
-;; Return carry if the DVs at hl are all 10 or higher.
-;
-;; Attack
-;	ld a, [hl]
-;	cp 10 << 4
-;	jr c, .not_shiny
-;
-;; Defense
-;	ld a, [hli]
-;	and $f
-;	cp 10
-;	jr c, .not_shiny
-;
-;; Speed
-;	ld a, [hl]
-;	cp 10 << 4
-;	jr c, .not_shiny
-;
-;; Special
-;	ld a, [hl]
-;	and $f
-;	cp 10
-;	jr c, .not_shiny
-;
-;; shiny
-;	scf
-;	ret
-;
-;.not_shiny
-;	and a
-;	ret
-
-SGB_ApplyCreditsPals: ; unreferenced
-	push de
-	push bc
-	ld hl, PalPacket_Pal01
-	ld de, wSGBPals
-	ld bc, PALPACKET_LENGTH
-	call CopyBytes
-	pop bc
-	pop de
-	ld a, c
-	ld [wSGBPals + 3], a
-	ld a, b
-	ld [wSGBPals + 4], a
-	ld a, e
-	ld [wSGBPals + 5], a
-	ld a, d
-	ld [wSGBPals + 6], a
-	ld hl, wSGBPals
-	call PushSGBPals
-	ld hl, BlkPacket_AllPal0
-	jp PushSGBPals
 
 InitPartyMenuPalettes:
 	ld hl, PalPacket_PartyMenu + 1

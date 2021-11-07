@@ -58,5 +58,5 @@ TRAINERTYPE_DVS        EQU 1 << TRAINERTYPE_DVS_F
 TRAINERTYPE_EVS   	   EQU 1 << TRAINERTYPE_EVS_F
 TRAINERTYPE_HAPPINESS  EQU 1 << TRAINERTYPE_HAPPINESS_F
 
-PERFECT_DV EQU $00 ; treated as $FF in enemy party data
+PERFECT_DVS EQU $00 ; treated as $FF in enemy party data
 MAX_HAPPINESS EQU $42 ; treated as $FF in enemy party data
