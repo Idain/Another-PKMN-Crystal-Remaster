@@ -33,16 +33,13 @@ PrintLetterDelay::
 ; force fast scroll?
 	ld a, [wTextboxFlags]
 	bit FAST_TEXT_DELAY_F, a
-	jr z, .fast
+	ld a, TEXT_DELAY_FAST
+	jr z, .updatedelay
 
 ; text speed
 	ld a, [wOptions]
 	and %111
-	jr .updatedelay
-
-.fast
-	ld a, TEXT_DELAY_FAST
-
+	; fallthrough
 .updatedelay
 	ld [wTextDelayFrames], a
 
@@ -56,13 +53,10 @@ PrintLetterDelay::
 
 ; Wait one frame if holding A or B.
 	ldh a, [hJoyDown]
-	bit A_BUTTON_F, a
-	jr nz, .delay
-.checkb
-	bit B_BUTTON_F, a
+	and A_BUTTON | B_BUTTON
 	jr z, .wait
 
-.delay
+;delay
 	call DelayFrame
 	jr .end
 

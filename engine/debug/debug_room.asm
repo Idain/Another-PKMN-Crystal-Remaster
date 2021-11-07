@@ -1584,30 +1584,6 @@ ComputeROMChecksum:
 	jr c, .rom0_loop
 	ret
 
-.ComputeROMXChecksum: ; unreferenced
-	ld hl, $4000 ; ROMX start
-.romx_loop
-	ld a, c
-	call GetFarByte
-	inc hl
-	call .AddAtoDE
-	ld a, h
-	cp $80 ; HIGH(ROMX end)
-	jr c, .romx_loop
-	ret
-
-DebugRoom_PrintROMChecksum: ; unreferenced
-	hlcoord 16, 0
-	ld de, .SumString
-	call PlaceString
-	hlcoord 16, 1
-	ld de, wDebugRoomROMChecksum
-	ld c, 2
-	jp PrintHexNumber
-
-.SumString:
-	db "SUM:@"
-
 DebugRoomMenu_ROMChecksum:
 	ld hl, .WaitText
 	call MenuTextbox

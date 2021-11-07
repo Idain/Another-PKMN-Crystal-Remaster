@@ -152,16 +152,6 @@ MahoganyMart1FLanceGoDownStairsMovement:
 	slow_step RIGHT
 	step_end
 
-MahoganyMart1FRageCandyBarText: ; unreferenced
-	text "Hello, kiddo!"
-
-	para "How would you like"
-	line "some RageCandyBar?"
-
-	para "It's the thing to"
-	line "eat in Mahogany!"
-	done
-
 MahoganyMart1FPharmacistText_LanceEntered:
 	text "Arrgh… You found"
 	line "the secret stair-"

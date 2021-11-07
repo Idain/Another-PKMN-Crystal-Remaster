@@ -1092,21 +1092,6 @@ _ClosingLinkText::
 	text "Closing link."
 	done
 
-_ClearTimeLimitText:: ; unreferenced
-	text "Clear the time"
-	line "limit?"
-	done
-
-_TimeLimitWasClearedText:: ; unreferenced
-	text "The time limit was"
-	line "cleared."
-	done
-
-_PickErrorPacketText:: ; unreferenced
-	text "Pick which packet"
-	line "as an error?"
-	done
-
 _TradingMonForOTMonText::
 	text "Trading @"
 	text_ram wStringBuffer2

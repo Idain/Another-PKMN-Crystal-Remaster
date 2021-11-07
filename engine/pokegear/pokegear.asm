@@ -1198,20 +1198,6 @@ PokegearPhoneContactSubmenu:
 	dw .Call
 	dw .Cancel
 
-GetAMPMHours: ; unreferenced
-	ldh a, [hHours]
-	cp 12
-	jr c, .am
-	sub 12
-	ld [wTempByteValue], a
-	scf
-	ret
-
-.am
-	ld [wTempByteValue], a
-	and a
-	ret
-
 Pokegear_SwitchPage:
 	ld de, SFX_READ_TEXT_2
 	call PlaySFX
@@ -1355,14 +1341,6 @@ UpdateRadioStation:
 	call PlaceString
 	ld a, $1
 	ldh [hBGMapMode], a
-	ret
-
-LoadPokegearRadioChannelPointer: ; unreferenced
-	ld [wPokegearRadioChannelBank], a
-	ld a, [hli]
-	ld [wPokegearRadioChannelAddr], a
-	ld a, [hli]
-	ld [wPokegearRadioChannelAddr + 1], a
 	ret
 
 RadioChannels:

@@ -13,20 +13,17 @@ Reset::
 	ld hl, wJoypadDisable
 	set JOYPAD_DISABLE_SGB_TRANSFER_F, [hl]
 
-	ld c, 30
+	ld c, 10
 	call DelayFrames
 
 	jr Init
 
 _Start::
 	cp $11
-	jr z, .cgb
-	xor a ; FALSE
-	jr .load
-
-.cgb
 	ld a, TRUE
-
+	jr z, .load ; cgb
+	xor a ; FALSE
+	; fallthrough
 .load
 	ldh [hCGB], a
 	ld a, TRUE

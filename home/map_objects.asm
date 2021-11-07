@@ -570,16 +570,6 @@ _GetMovementByte::
 	ld a, h
 	ret
 
-SetVramState_Bit0:: ; unreferenced
-	ld hl, wVramState
-	set 0, [hl]
-	ret
-
-ResetVramState_Bit0:: ; unreferenced
-	ld hl, wVramState
-	res 0, [hl]
-	ret
-
 UpdateSprites::
 	ld a, [wVramState]
 	bit 0, a

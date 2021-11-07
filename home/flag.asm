@@ -119,10 +119,3 @@ xor_a_dec_a::
 	xor a
 	dec a
 	ret
-
-CheckFieldDebug:: ; unreferenced
-	push hl
-	ld hl, wDebugFlags
-	bit DEBUG_FIELD_F, [hl]
-	pop hl
-	ret

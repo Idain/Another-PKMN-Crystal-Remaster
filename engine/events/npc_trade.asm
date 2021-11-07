@@ -307,20 +307,6 @@ CopyTradeName:
 	ld bc, NAME_LENGTH
 	jp CopyBytes
 
-Trade_CopyFourCharString: ; unreferenced
-	ld bc, 4
-	call CopyBytes
-	ld a, "@"
-	ld [de], a
-	ret
-
-Trade_CopyThreeCharString: ; unreferenced
-	ld bc, 3
-	call CopyBytes
-	ld a, "@"
-	ld [de], a
-	ret
-
 Trade_CopyTwoBytes:
 	ld a, [hli]
 	ld [de], a

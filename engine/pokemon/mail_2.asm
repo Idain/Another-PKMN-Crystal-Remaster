@@ -712,26 +712,12 @@ MailGFX_PlaceMessage:
 	ld a, [wCurMailIndex]
 	hlcoord 8, 14
 	cp PORTRAITMAIL_INDEX
-	jr z, .place_author
+	jp z, PlaceString
 	hlcoord 6, 14
 	cp MORPH_MAIL_INDEX
-	jr z, .place_author
+	jp z, PlaceString
 	hlcoord 5, 14
-
-.place_author
 	jp PlaceString
-
-InvertBytes: ; unreferenced
-; invert bc bytes starting at hl
-.loop
-	ld a, [hl]
-	cpl
-	ld [hli], a
-	dec bc
-	ld a, b
-	or c
-	jr nz, .loop
-	ret
 
 DrawMailBorder:
 	hlcoord 0, 0

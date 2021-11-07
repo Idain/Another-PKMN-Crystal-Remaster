@@ -34,9 +34,6 @@ PalPacket_AllPal0:
 PalPacket_GSIntroShellderLapras:
 	sgb_pal_set GS_INTRO_SHELLDER_LAPRAS, ROUTES, ROUTES, ROUTES
 
-PalPacket_BetaIntroLapras: ; unreferenced
-	sgb_pal_set BETA_INTRO_LAPRAS, ROUTES, ROUTES, ROUTES
-
 PalPacket_GSIntroJigglypuffPikachu:
 	sgb_pal_set GS_INTRO_JIGGLYPUFF_PIKACHU_BG, GS_INTRO_JIGGLYPUFF_PIKACHU_OB, ROUTES, ROUTES
 
@@ -60,9 +57,6 @@ PalPacket_BattleGrayscale:
 
 PalPacket_Pokegear:
 	sgb_pal_set POKEGEAR, ROUTES, ROUTES, ROUTES
-
-PalPacket_Pack2: ; unreferenced
-	sgb_pal_set PACK, ROUTES, ROUTES, ROUTES
 
 PalPacket_SlotMachine:
 	sgb_pal_set SLOT_MACHINE_0, SLOT_MACHINE_1, SLOT_MACHINE_2, SLOT_MACHINE_3

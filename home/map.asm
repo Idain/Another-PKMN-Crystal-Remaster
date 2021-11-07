@@ -380,14 +380,6 @@ CheckIndoorMap::
 	cp GATE
 	ret
 
-CheckUnknownMap:: ; unreferenced
-	cp INDOOR
-	ret z
-	cp GATE
-	ret z
-	cp ENVIRONMENT_5
-	ret
-
 LoadMapAttributes::
 	call CopyMapPartialAndAttributes
 	call SwitchToMapScriptsBank
@@ -1310,12 +1302,6 @@ UpdateBGMapColumn::
 	ld a, SCREEN_HEIGHT
 	ldh [hBGMapTileCount], a
 	ret
-
-ClearBGMapBuffer:: ; unreferenced
-	ld hl, wBGMapBuffer
-	ld bc, wBGMapBufferEnd - wBGMapBuffer
-	xor a
-	jp ByteFill
 
 LoadTilesetGFX::
 	ld hl, wTilesetAddress

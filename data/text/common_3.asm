@@ -1516,12 +1516,7 @@ _MoveReminderIntro::
 	para "Are you"
     line "interested?"
     done
-/*
-_MoveReminderPrompt::
-    text "Are you"
-    line "interested?"
-    done
-*/
+
 _MoveReminderWhichMon::
     text "Which #mon"
     next "would you like"
@@ -1545,15 +1540,7 @@ _MoveReminderEgg::
     line "supposed to teach"
     cont "an Egg?"
     done
-/*
-_MoveReminderNoPay::
-    text "Hm. Come back with"
-    line "more money and I"
 
-    para "can teach a move"
-    line "to your #MON."
-    done
-*/
 _MoveReminderNoMon::
     text "You don't have a"
     line "#mon that can"

@@ -131,7 +131,6 @@ WhirlIslandsName:    db "Whirl¯Islands@"
 MtMortarName:        db "Mt.Mortar@"
 DragonsDenName:      db "Dragon's¯Den@"
 IcePathName:         db "Ice Path@"
-NotApplicableName:   db "N/A@" ; unreferenced ; "オバケやしき" ("HAUNTED HOUSE") in Japanese
 PalletTownName:      db "Pallet Town@"
 ViridianCityName:    db "Viridian¯City@"
 PewterCityName:      db "Pewter City@"
@@ -150,7 +149,6 @@ LavRadioTowerName:   db "Lav¯Radio Tower@"
 SilphCoName:         db "Silph Co.@" ; unreferenced
 SafariZoneName:      db "Safari Zone@" ; unreferenced
 SeafoamIslandsName:  db "Seafoam¯Islands@"
-PokemonMansionName:  db "Pokémon¯Mansion@" ; unreferenced
 CeruleanCaveName:    db "Cerulean¯Cave@" ; unreferenced
 Route1Name:          db "Route 1@"
 Route2Name:          db "Route 2@"

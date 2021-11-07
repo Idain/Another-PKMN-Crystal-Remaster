@@ -6,6 +6,7 @@ endr
 ENDM
 
 RGB: MACRO
+	assert !(_NARG % 3), "RGB colors must be given in triplets"
 rept _NARG / 3
 	assert_valid_rgb \1, \2, \3
 	dw palred (\1) + palgreen (\2) + palblue (\3)

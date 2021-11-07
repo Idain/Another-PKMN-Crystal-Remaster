@@ -30,14 +30,6 @@ BattleTowerOutsideSailorScript:
 BattleTowerOutsideSign:
 	jumptext BattleTowerOutsideSignText
 
-BattleTowerOutsideYoungsterText_NotYetOpen: ; unreferenced
-	text "Wow, the Battle"
-	line "Tower is huge! My"
-
-	para "neck is tired from"
-	line "looking up at it."
-	done
-
 BattleTowerOutsideYoungsterText_Mobile:
 	text "Wow, the Battle"
 	line "Tower is huge!"
@@ -50,26 +42,6 @@ BattleTowerOutsideYoungsterText_Mobile:
 
 	para "a wide variety of"
 	line "#mon."
-	done
-
-BattleTowerOutsideYoungsterText: ; unreferenced
-	text "Wow, the Battle"
-	line "Tower is huge!"
-
-	para "There must be many"
-	line "kinds of #mon"
-	cont "in there!"
-	done
-
-BattleTowerOutsideBeautyText_NotYetOpen: ; unreferenced
-	text "What on earth do"
-	line "they do here?"
-
-	para "If the name says"
-	line "anything, I guess"
-
-	para "it must be for"
-	line "#mon battles."
 	done
 
 BattleTowerOutsideBeautyText:
