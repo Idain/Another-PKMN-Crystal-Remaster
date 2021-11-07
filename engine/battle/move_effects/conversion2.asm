@@ -3,25 +3,23 @@ BattleCommand_Conversion2:
 
 	ld a, [wAttackMissed]
 	and a
-	jr nz, .failed
+	jp nz, FailMove
 	ld hl, wBattleMonType1
 	ldh a, [hBattleTurn]
 	and a
 	jr z, .got_type
 	ld hl, wEnemyMonType1
 .got_type
-	ld a, BATTLE_VARS_LAST_COUNTER_MOVE_OPP
+	ld a, BATTLE_VARS_LAST_MOVE_OPP
 	call GetBattleVar
 	and a
-	jr z, .failed
+	jp z, FailMove
 	push hl
-	dec a
-	ld hl, Moves + MOVE_TYPE
+	ld hl, (Moves + MOVE_TYPE) - MOVE_LENGTH
 	call GetMoveAttr
 	and TYPE_MASK
 	ld d, a
 	pop hl
-	call AnimateCurrentMove
 	call BattleCommand_SwitchTurn
 
 .loop
@@ -57,8 +55,6 @@ BattleCommand_Conversion2:
 	ld a, [hl]
 	ld [wNamedObjectIndex], a
 	predef GetTypeName
+	call AnimateCurrentMove
 	ld hl, TransformedTypeText
 	jp StdBattleTextbox
-
-.failed
-	jp FailMove
