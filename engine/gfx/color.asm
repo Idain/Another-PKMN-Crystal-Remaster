@@ -13,13 +13,11 @@ CheckShininess:
 	ld h, b
 
 ; Attack
-	ld a, [hl]
-	and $f0
+	ld a, [hli]
 	cp 14 << 4
 	jr c, .not_shiny
 
 ; Defense
-	ld a, [hli]
 	and $f
 	cp 10
 	jr z, .speed
@@ -36,7 +34,6 @@ CheckShininess:
 
 ; Special
 .special
-	ld a, [hl]
 	and $f
 	cp 10
 	jr z, .shiny
