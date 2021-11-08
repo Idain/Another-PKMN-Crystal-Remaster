@@ -107,6 +107,10 @@ Music:
 	dba Music_SuicuneBattle
 	dba Music_BattleTowerLobby
 	dba Music_MobileCenter
+; custom normal songs
+	dba Music_CinnabarIslandGBS
+	dba Music_IcePathHGSS
+;	dba Music_PKMN_Center_Night
 ; custom night songs
 	dba Music_KantoWildBattleNight
 	dba Music_NewBarkTownNight

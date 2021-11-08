@@ -18,11 +18,15 @@ AÑADIDOS:
 	-- ¡Carantoña y Fuerza Lunar (Play Rough & Moonblast) han sido añadidos al juego!
 	-- Ahora ciertos Pokémon aprenden movimientos al evolucionar (Gen 7+).
 
+- Música:
+	-- ¡Ahora la música de las ciudades y rutas cambia de noche!
+	-- Nuevas canciones: Cinnabar Island y Ice Path.
+	Créditos a TriteHexagon.
+
 - Miscellaneous:
 	-- El género del Pokémon ahora es visible en el menú del equipo.
 	-- ¡NUEVO MOVE REMINDER! Está localizado en Blackthorn City, en la misma casa del Move Deleter.
 	-- Tu madre te da un tutorial muy breve de cómo correr en el juego.
-
 
 
 CAMBIOS:
@@ -87,6 +91,8 @@ CAMBIOS:
 	-- Sweet Scent ahora baja la evasión en dos niveles (Gen 6+).
 	-- Mist ahora solo dura cinco turnos y el efecto no desaparece aunque cambiemos de Pokémon (Gen 3+).
 	-- Roar y Whilrwind automáticamente fallan si el nivel del usuario es menor al del oponente (Gen 5+). Además, sobrepasan Protección y Detección (Gen 6+).
+	-- Conversion toma el tipo del primer movimiento del usuario en vez de elegir uno de los cuatro movimientos al azar (Gen 4+).
+	-- Conversion2 también funciona si el oponente ha usado un movimiento, aunque no haya lastimado al usuario. (Gen 4+)
 
 - Efectos en combate:
 	-- La tormenta de arena ahora boostea la Defensa Especial de los Pokémon tipo Roca en un 50% (Gen 4+).

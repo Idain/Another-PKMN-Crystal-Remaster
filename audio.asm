@@ -165,3 +165,9 @@ INCLUDE "audio/music/viridiancity.asm"
 INCLUDE "audio/music/lavendertown.asm"
 INCLUDE "audio/music/celadoncity.asm"
 INCLUDE "audio/music/pallettown.asm"
+
+SECTION "Altered Songs 3", romx
+
+INCLUDE "audio/music/cinnabarisland.asm"
+INCLUDE "audio/music/icepath.asm"
+;INCLUDE "audio/music/pkmncenternight.asm"
