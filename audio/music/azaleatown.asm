@@ -7,83 +7,83 @@ Music_AzaleaTown:
 
 Music_AzaleaTown_Ch1:
 	tempo 160
-	volume 7, 7
-	duty_cycle 2
-	stereo_panning FALSE, TRUE
-	note_type 12, 10, 1
-	rest 2
-.introloop:
-	volume_envelope 10, 1
+	volume $77
+	dutycycle $2
+	stereopanning $f
+	notetype $c, $a1
+	note __, 2
+Music_AzaleaTown_branch_f5801:
+	intensity $a1
 	octave 3
 	note F_, 2
-	volume_envelope 6, 1
+	intensity $61
 	note F_, 2
 	note F_, 2
-	volume_envelope 10, 1
+	intensity $a1
 	note F_, 2
-	volume_envelope 6, 1
-	note F_, 2
-	note F_, 2
+	intensity $61
 	note F_, 2
 	note F_, 2
-	sound_loop 2, .introloop
-.mainloop:
-	sound_call .sub1
-	stereo_panning TRUE, FALSE
-	volume_envelope 10, 4
+	note F_, 2
+	note F_, 2
+	loopchannel 2, Music_AzaleaTown_branch_f5801
+Music_AzaleaTown_branch_f5816:
+	callchannel Music_AzaleaTown_branch_f588c
+	stereopanning $f0
+	intensity $a4
 	note G#, 2
 	note A#, 1
-	rest 3
+	note __, 3
 	octave 4
 	note C_, 4
-	note_type 6, 10, 4
+	notetype $6, $a4
 	note G_, 1
 	note G#, 3
 	note F#, 4
 	note D#, 2
-	rest 2
-	stereo_panning FALSE, TRUE
-	sound_call .sub1
-	stereo_panning TRUE, FALSE
-	note_type 6, 10, 4
+	note __, 2
+	stereopanning $f
+	callchannel Music_AzaleaTown_branch_f588c
+	stereopanning $f0
+	notetype $6, $a4
 	note D#, 4
 	note C_, 4
-	rest 3
+	note __, 3
 	note B_, 1
 	octave 4
 	note C_, 12
 	octave 3
 	note A#, 4
 	note F#, 4
-	stereo_panning FALSE, TRUE
-	sound_call .sub2
-	volume_envelope 10, 3
+	stereopanning $f
+	callchannel Music_AzaleaTown_branch_f5912
+	intensity $a3
 	note A#, 4
 	octave 4
 	note C#, 2
-	rest 2
+	note __, 2
 	note C_, 2
-	rest 2
-	volume_envelope 10, 1
+	note __, 2
+	intensity $a1
 	octave 3
 	note C#, 4
 	note A_, 2
-	rest 14
-	sound_call .sub2
-	volume_envelope 10, 3
+	note __, 14
+	callchannel Music_AzaleaTown_branch_f5912
+	intensity $a3
 	octave 4
 	note C_, 1
 	note C#, 3
 	note F_, 2
-	rest 2
+	note __, 2
 	note C#, 2
-	rest 2
-	volume_envelope 10, 1
+	note __, 2
+	intensity $a1
 	octave 3
 	note G_, 4
 	note A#, 4
 	note G_, 8
-	volume_envelope 10, 2
+	intensity $a2
 	note A#, 4
 	octave 4
 	note C#, 4
@@ -92,7 +92,7 @@ Music_AzaleaTown_Ch1:
 	note F#, 4
 	note C#, 8
 	note F#, 4
-	rest 4
+	note __, 4
 	note A#, 4
 	octave 4
 	note C#, 4
@@ -100,9 +100,9 @@ Music_AzaleaTown_Ch1:
 	note A#, 4
 	note G_, 4
 	note C#, 4
-	rest 4
+	note __, 4
 	note G_, 4
-	rest 4
+	note __, 4
 	octave 4
 	note C#, 4
 	note D#, 4
@@ -113,210 +113,280 @@ Music_AzaleaTown_Ch1:
 	note C#, 4
 	octave 2
 	note G#, 4
-	rest 8
-	note_type 12, 2, -7
+	note __, 8
+	notetype $c, $2f
 	octave 3
 	note G#, 14
-	rest 2
-	sound_loop 0, .mainloop
+	note __, 2
+	loopchannel 0, Music_AzaleaTown_branch_f5816
 
-.sub1:
-	note_type 12, 10, 1
+Music_AzaleaTown_branch_f588c:
+	notetype $c, $a1
 	octave 4
 	note F_, 2
-	volume_envelope 6, 1
+	intensity $61
 	note F_, 2
 	note F_, 2
-	volume_envelope 10, 1
+	intensity $a1
 	note D#, 2
-	volume_envelope 6, 1
+	intensity $61
 	note D#, 2
 	note D#, 2
-	volume_envelope 10, 1
+	intensity $a1
 	note F_, 2
-	volume_envelope 6, 1
+	intensity $61
 	note F_, 2
-	volume_envelope 10, 1
+	intensity $a1
 	note A#, 2
-	volume_envelope 6, 1
+	intensity $61
 	note A#, 2
 	note A#, 2
-	volume_envelope 10, 1
+	intensity $a1
 	note G#, 2
-	volume_envelope 6, 1
+	intensity $61
 	note G#, 2
 	note G#, 2
-	volume_envelope 10, 1
+	intensity $a1
 	note A_, 2
-	volume_envelope 6, 1
+	intensity $61
 	note A_, 2
-	volume_envelope 10, 1
+	intensity $a1
 	note C_, 2
-	volume_envelope 6, 1
+	intensity $61
 	note C_, 2
 	note C_, 2
-	volume_envelope 10, 1
+	intensity $a1
 	note C#, 2
-	volume_envelope 6, 1
-	note C#, 2
-	note C#, 2
+	intensity $61
 	note C#, 2
 	note C#, 2
-	volume_envelope 10, 1
+	note C#, 2
+	note C#, 2
+	intensity $a1
 	note D#, 2
-	volume_envelope 6, 1
+	intensity $61
 	note D#, 2
 	note D#, 2
-	volume_envelope 10, 1
+	intensity $a1
 	note C#, 2
-	volume_envelope 6, 1
+	intensity $61
 	note C#, 2
 	note C#, 2
 	note C#, 2
-	rest 2
-	volume_envelope 10, 1
+	note __, 2
+	intensity $a1
 	octave 3
 	note F_, 2
-	volume_envelope 6, 1
+	intensity $61
 	note F_, 2
 	note F_, 2
-	volume_envelope 10, 1
+	intensity $a1
 	note F#, 2
-	volume_envelope 6, 1
-	note F#, 2
-	note F#, 2
+	intensity $61
 	note F#, 2
 	note F#, 2
-	volume_envelope 10, 1
+	note F#, 2
+	note F#, 2
+	intensity $a1
 	note F_, 2
-	volume_envelope 6, 1
+	intensity $61
 	note F_, 2
 	note F_, 2
-	volume_envelope 10, 1
+	intensity $a1
 	note D#, 2
-	volume_envelope 6, 1
+	intensity $61
 	note D#, 2
 	note D#, 2
-	volume_envelope 10, 1
+	intensity $a1
 	note C#, 2
-	volume_envelope 6, 1
+	intensity $61
 	note C#, 2
-	volume_envelope 10, 1
+	intensity $a1
 	note C_, 2
-	volume_envelope 6, 1
+	intensity $61
 	note C_, 2
 	note C_, 2
-	volume_envelope 10, 1
+	intensity $a1
 	octave 2
 	note A#, 2
-	volume_envelope 6, 1
+	intensity $61
 	note A#, 2
 	note A#, 2
-	volume_envelope 10, 1
+	intensity $a1
 	octave 3
 	note C#, 2
-	volume_envelope 6, 1
+	intensity $61
 	note C#, 2
-	sound_ret
+	endchannel
+; f5912
 
-.sub2:
-	volume_envelope 6, 1
+Music_AzaleaTown_branch_f5912: ; f5912
+	intensity $61
 	note G#, 8
 	note G#, 8
-	volume_envelope 8, 1
+	intensity $81
 	note A_, 8
-	volume_envelope 10, 1
+	intensity $a1
 	note A_, 8
-	sound_ret
+	endchannel
+; f591d
 
-Music_AzaleaTown_Ch2:
-	vibrato 18, 2, 3
-	duty_cycle 2
-	stereo_panning TRUE, FALSE
-	note_type 12, 6, 2
-	rest 1
-	octave 4
-	note D_, 1
-	volume_envelope 11, 1
-	note D#, 2
-	volume_envelope 7, 1
-	note D#, 2
-	note D#, 2
-	volume_envelope 11, 1
-	note C#, 2
-	volume_envelope 7, 1
-	note C#, 2
-	note C#, 2
-	volume_envelope 5, 1
-	note C#, 2
-	note C#, 2
-	volume_envelope 11, 1
-	note C_, 2
-	volume_envelope 7, 1
-	note C_, 2
-	note C_, 2
-	volume_envelope 11, 1
-	note C#, 2
-	volume_envelope 7, 1
-	note C#, 2
-	note C#, 2
-	note_type 6, 11, 4
-	note F_, 7
-	duty_cycle 1
-	octave 5
-	note C_, 1
-.mainloop:
-	sound_call .sub1
+Music_AzaleaTown_Ch2: ; f591d
+	callchannel Music_AzaleaTown_Ch2_Intro
+	
+Music_AzaleaTown_branch_f5952: ; f5952
+	callchannel Music_AzaleaTown_branch_f59c7
 	note C#, 4
 	note C_, 2
 	note C#, 1
-	rest 3
-	note_type 6, 11, 4
+	note __, 3
+	notetype $6, $b4
 	note D#, 11
-	rest 8
-	duty_cycle 1
+	note __, 8
+	dutycycle $1
 	octave 5
 	note C_, 1
-	sound_call .sub1
-	rest 2
+	callchannel Music_AzaleaTown_branch_f59c7
+	callchannel Music_AzaleaTown_Ch2_Type1
+	dutycycle $0
+	callchannel Music_AzaleaTown_Ch2_Part2
+	loopchannel 0, Music_AzaleaTown_branch_f5952
+; f59c7
+
+Music_AzaleaTown_branch_f59c7: ; f59c7
+	note C#, 4
+	octave 4
+	note G#, 2
+	note __, 2
+	octave 5
+	note C_, 2
+	note __, 2
+	note C#, 8
+	note D#, 8
+	note F_, 2
+	note __, 1
+	note G_, 1
+	note G#, 12
+	note F_, 2
+	note __, 6
+	note D#, 8
+	note F_, 2
+	note __, 1
+	note C_, 1
+	notetype $c, $a8
+	vibrato $0, $0
+	note C#, 8
+	intensity $a7
+	vibrato $12, $23
+	note C#, 16
+	note __, 4
+	intensity $b4
+	dutycycle $2
+	octave 3
+	note A#, 2
+	octave 4
+	note C#, 1
+	note __, 1
+	note F#, 8
+	note __, 2
+	note F#, 2
+	note F_, 2
+	note D#, 1
+	note __, 1
+	note C#, 6
+	note C_, 2
+	note __, 2
+	note C_, 4
+	note C#, 1
+	notetype $6, $b4
+	note __, 1
+	note D_, 1
+	notetype $c, $b7
+	note D#, 12
+	intensity $b4
+	endchannel
+; f5a08
+
+Music_AzaleaTown_Ch2_Intro:
+	vibrato $12, $23
+	dutycycle $2
+	stereopanning $f0
+	notetype $c, $62
+	note __, 1
+	octave 4
+	note D_, 1
+	intensity $b1
+	note D#, 2
+	intensity $71
+	note D#, 2
+	note D#, 2
+	intensity $b1
+	note C#, 2
+	intensity $71
+	note C#, 2
+	note C#, 2
+	intensity $51
+	note C#, 2
+	note C#, 2
+	intensity $b1
+	note C_, 2
+	intensity $71
+	note C_, 2
+	note C_, 2
+	intensity $b1
+	note C#, 2
+	intensity $71
+	note C#, 2
+	note C#, 2
+	notetype $6, $b4
+	note F_, 7
+	dutycycle $1
+	octave 5
+	note C_, 1
+	endchannel
+
+Music_AzaleaTown_Ch2_Type1:
+	note __, 2
 	note C#, 2
 	note C_, 2
 	octave 3
 	note G#, 2
-	note_type 6, 11, 4
-	rest 3
+	notetype $6, $b4
+	note __, 3
 	octave 4
 	note G_, 1
 	note G#, 12
 	note F#, 4
 	note F_, 4
-	duty_cycle 0
+	endchannel
+
+Music_AzaleaTown_Ch2_Part2:
 	note D_, 1
 	note D#, 3
 	note C#, 4
 	note C_, 2
-	rest 2
+	note __, 2
 	note G#, 4
-	rest 4
+	note __, 4
 	note F#, 4
-	rest 4
+	note __, 4
 	note F_, 4
 	note D#, 4
 	note F_, 2
-	rest 2
+	note __, 2
 	note D#, 2
-	rest 2
+	note __, 2
 	note C#, 8
-	rest 12
+	note __, 12
 	note D_, 1
 	note D#, 3
 	note C#, 4
 	note C_, 2
-	rest 2
+	note __, 2
 	note G#, 4
-	rest 4
+	note __, 4
 	note A_, 4
-	rest 4
+	note __, 4
 	octave 5
 	note C_, 4
 	octave 4
@@ -324,331 +394,416 @@ Music_AzaleaTown_Ch2:
 	octave 5
 	note C_, 3
 	note C#, 2
-	rest 2
+	note __, 2
 	note C_, 2
-	rest 2
+	note __, 2
 	octave 4
 	note F_, 4
-	rest 4
+	note __, 4
 	note D#, 4
-	rest 4
+	note __, 4
 	note C#, 4
-	duty_cycle 2
+	dutycycle $2
 	note F_, 4
 	note D#, 4
 	note C#, 4
 	note F_, 4
-	rest 4
+	note __, 4
 	note D#, 4
-	rest 4
+	note __, 4
 	note C#, 4
 	note F_, 4
 	note D#, 4
 	note C#, 4
 	note F_, 4
-	rest 4
+	note __, 4
 	note A#, 4
-	rest 4
+	note __, 4
 	octave 5
 	note C_, 4
-	note_type 12, 11, 7
+	notetype $c, $b7
 	octave 4
 	note G#, 12
 	note D#, 4
-	volume_envelope 1, -7
+	intensity $1f
 	note C_, 14
-	note_type 6, 11, 4
-	duty_cycle 1
+	notetype $6, $b4
+	dutycycle $1
 	note G#, 2
 	octave 5
 	note C_, 2
-	sound_loop 0, .mainloop
+	endchannel
 
-.sub1:
-	note C#, 4
-	octave 4
-	note G#, 2
-	rest 2
-	octave 5
-	note C_, 2
-	rest 2
-	note C#, 8
-	note D#, 8
-	note F_, 2
-	rest 1
-	note G_, 1
-	note G#, 12
-	note F_, 2
-	rest 6
-	note D#, 8
-	note F_, 2
-	rest 1
-	note C_, 1
-	note_type 12, 10, 8
-	vibrato 0, 0, 0
-	note C#, 8
-	volume_envelope 10, 7
-	vibrato 18, 2, 3
-	note C#, 16
-	rest 4
-	volume_envelope 11, 4
-	duty_cycle 2
-	octave 3
-	note A#, 2
-	octave 4
-	note C#, 1
-	rest 1
-	note F#, 8
-	rest 2
-	note F#, 2
-	note F_, 2
-	note D#, 1
-	rest 1
-	note C#, 6
-	note C_, 2
-	rest 2
-	note C_, 4
-	note C#, 1
-	note_type 6, 11, 4
-	rest 1
-	note D_, 1
-	note_type 12, 11, 7
-	note D#, 12
-	volume_envelope 11, 4
-	sound_ret
+Music_AzaleaTown_Ch3: ; f5a08
+	stereopanning $ff
+	vibrato $6, $26
+	notetype $c, $25
 
-Music_AzaleaTown_Ch3:
-	stereo_panning TRUE, TRUE
-	vibrato 6, 2, 6
-	note_type 12, 2, 5
-	octave 2
-	note G#, 1
-	octave 3
-	note C_, 1
-	note C#, 1
-	rest 5
-	note C#, 1
-	rest 3
-	note C#, 1
-	rest 1
-	octave 2
-	note G#, 4
-	octave 3
-	note C#, 1
-	rest 5
-	note C#, 1
-	rest 3
-	note C#, 1
-	rest 1
-	note G#, 4
-.mainloop:
-	sound_call .sub1
+	callchannel Music_AzaleaTown_Ch3_Intro
+Music_AzaleaTown_branch_f5a24: ; f5a24
+	callchannel Music_AzaleaTown_Ch3_Branch1
+	intensity $15
+	note A#, 1
+	note __, 1
+	intensity $25
+	callchannel Music_AzaleaTown_Ch3_Branch2
+
 	note G#, 4
 	note D#, 2
-	sound_call .sub1
-	note G#, 2
-	rest 2
-	note F#, 2
-	sound_call .sub2
+
+	callchannel Music_AzaleaTown_Ch3_Branch1
+	intensity $15
 	note A#, 1
-	rest 1
+	note __, 1
+	intensity $25
+	callchannel Music_AzaleaTown_Ch3_Branch2
+
+	note G#, 2
+	note __, 2
+	note F#, 2
+	callchannel Music_AzaleaTown_branch_f5acf
+	callchannel Music_AzaleaTown_Ch3_Type2
+	callchannel Music_AzaleaTown_branch_f5acf
+	
+	callchannel Music_AzaleaTown_Ch3_Type1
+	loopchannel 0, Music_AzaleaTown_branch_f5a24
+; f5a86
+
+Music_AzaleaTown_Ch3_Branch1: ; f5a86
+	note C#, 1
+	note __, 5
+	note C#, 1
+	note __, 3
+	note C#, 1
+	note __, 1
+	octave 2
+	note G#, 4
+	octave 3
+	note F_, 1
+	note __, 5
+	note F_, 1
+	note __, 1
+	note C_, 1
+	note __, 1
+	note F_, 4
+	note A_, 2
+	endchannel
+
+Music_AzaleaTown_Ch3_Branch2:
 	octave 4
 	note C#, 1
-	rest 1
-	note F_, 2
+	note __, 1
+	note F_, 1
+	note __, 1
 	octave 3
 	note A_, 4
 	octave 4
 	note C#, 1
-	rest 3
+	note __, 1
 	note F_, 1
-	rest 1
-	sound_call .sub2
+	note __, 1
+	octave 3
+	note G#, 4
+	note A#, 1
+	note __, 1
+	note G#, 1
+	note __, 1
+	note G_, 6
+	note __, 4
+	note F#, 1
+	note __, 5
+	note F#, 1
+	note __, 3
+	note F#, 1
+	note __, 1
+	note C#, 4
+	note G_, 1
+	note __, 5
+	note G_, 1
+	note __, 3
+	note C#, 4
+	note G_, 1
+	note __, 1
+	note G#, 1
+	note __, 5
+	note G#, 1
+	note __, 1
+	note D#, 1
+	note __, 1
+	note C#, 4
+	note G#, 1
+	note __, 1
+	note G#, 1
+	note __, 5
+	note G#, 1
+	note __, 1
+	note C_, 1
+	note __, 1
+	endchannel
+; f5acf
+
+Music_AzaleaTown_branch_f5acf: ; f5acf
+	intensity $35
+	octave 3
+	note F_, 1
+	note __, 1
+	note F_, 1
+	note __, 1
+	note F_, 1
+	note __, 1
+	note F_, 1
+	note __, 1
+	intensity $25
+	note F_, 1
+	note __, 1
+	note F_, 1
+	note __, 1
+	note F_, 1
+	note __, 1
+	note F_, 1
+	note __, 1
+	endchannel
+; f5ae5
+
+Music_AzaleaTown_Ch3_Intro:
+	octave 2
+	note G#, 1
+	octave 3
+	note C_, 1
+	note C#, 1
+	note __, 5
+	note C#, 1
+	note __, 3
+	note C#, 1
+	note __, 1
+	octave 2
+	note G#, 4
+	octave 3
+	note C#, 1
+	note __, 5
+	note C#, 1
+	note __, 3
+	note C#, 1
+	note __, 1
+	note G#, 4
+	endchannel
+
+Music_AzaleaTown_Ch3_Type1:
 	octave 2
 	note A#, 2
 	octave 3
 	note F_, 1
-	rest 1
+	note __, 1
 	note A#, 1
-	rest 1
+	note __, 1
 	note D#, 2
 	octave 2
 	note A#, 2
 	octave 3
 	note D#, 1
-	rest 3
+	note __, 3
 	note G_, 2
 	octave 2
 	note F#, 1
-	rest 5
+	note __, 5
 	note F#, 1
 	note F#, 1
 	note F#, 1
-	rest 1
+	note __, 1
 	octave 3
 	note C#, 2
-	rest 2
+	note __, 2
 	octave 2
 	note F_, 1
 	note F#, 1
 	note G_, 1
-	rest 5
+	note __, 5
 	note G_, 1
 	note G_, 1
 	note G_, 1
-	rest 1
+	note __, 1
 	octave 3
 	note C#, 2
-	rest 2
+	note __, 2
 	octave 2
 	note F#, 1
 	note G_, 1
 	note G#, 1
-	rest 5
+	note __, 5
 	note G#, 1
 	note G#, 1
 	note G#, 1
-	rest 1
+	note __, 1
 	octave 3
 	note D#, 2
-	rest 2
+	note __, 2
 	octave 2
 	note F#, 1
 	note G_, 1
 	note G#, 1
-	rest 5
+	note __, 5
 	note G#, 1
 	note G#, 1
 	note G#, 1
-	rest 1
+	note __, 1
 	octave 3
 	note D#, 2
-	rest 2
+	note __, 2
 	octave 2
 	note B_, 1
 	octave 3
 	note C_, 1
-	sound_loop 0, .mainloop
+	endchannel
 
-.sub1:
-	note C#, 1
-	rest 5
-	note C#, 1
-	rest 3
-	note C#, 1
-	rest 1
-	octave 2
-	note G#, 4
-	octave 3
-	note F_, 1
-	rest 5
-	note F_, 1
-	rest 1
-	note C_, 1
-	rest 1
-	note F_, 4
-	note A_, 2
-	volume_envelope 1, 5
+Music_AzaleaTown_Ch3_Type2:
 	note A#, 1
-	rest 1
-	volume_envelope 2, 5
+	note __, 1
 	octave 4
 	note C#, 1
-	rest 1
-	note F_, 1
-	rest 1
+	note __, 1
+	note F_, 2
 	octave 3
 	note A_, 4
 	octave 4
 	note C#, 1
-	rest 1
+	note __, 3
 	note F_, 1
-	rest 1
-	octave 3
-	note G#, 4
-	note A#, 1
-	rest 1
-	note G#, 1
-	rest 1
-	note G_, 6
-	rest 4
-	note F#, 1
-	rest 5
-	note F#, 1
-	rest 3
-	note F#, 1
-	rest 1
-	note C#, 4
-	note G_, 1
-	rest 5
-	note G_, 1
-	rest 3
-	note C#, 4
-	note G_, 1
-	rest 1
-	note G#, 1
-	rest 5
-	note G#, 1
-	rest 1
+	note __, 1
+	endchannel
+
+Music_AzaleaTown_Ch4: ; f5ae5
+	togglenoise $3
+	notetype $c
+	note F_, 2
+Music_AzaleaTown_branch_f5aea: ; f5aea
+	note D#, 2
+	note F#, 2
+	note D_, 2
 	note D#, 1
-	rest 1
-	note C#, 4
-	note G#, 1
-	rest 1
-	note G#, 1
-	rest 5
-	note G#, 1
-	rest 1
-	note C_, 1
-	rest 1
-	sound_ret
+	note G_, 1
+	note G_, 1
+	note G_, 1
+	note D#, 2
+	note D_, 2
+	note G_, 1
+	note G_, 1
+	note D#, 2
+	note F#, 2
+	note D_, 2
+	note D#, 1
+	note G_, 1
+	note G_, 1
+	note G_, 1
+	note D#, 2
+	note D_, 2
+	note F#, 2
+	loopchannel 0, Music_AzaleaTown_branch_f5aea
+; f5b03
 
-.sub2:
-	volume_envelope 3, 5
+; ============================================================================================================
+; ============================================================================================================
+
+Music_AzaleaTownNight:
+	musicheader 4, 1, Music_AzaleaTownNight_Ch1
+	musicheader 1, 2, Music_AzaleaTownNight_Ch2
+	musicheader 1, 3, Music_AzaleaTownNight_Ch3
+	musicheader 1, 4, Music_AzaleaTownNight_Ch4
+
+; ============================================================================================================
+Music_AzaleaTownNight_Ch1:
+	tempo 173
+	volume $77
+	dutycycle $2
+	stereopanning $f
+	;pitchoffset 1, A_
+	notetype $c, $a1
+	note __, 2
+
+	callchannel Music_AzaleaTown_branch_f5801
+
+; ============================================================================================================
+Music_AzaleaTownNight_Ch2:
+	callchannel Music_AzaleaTown_Ch2_Intro
+Music_AzaleaTownNight_branch_f5952: ; f5952
+	callchannel Music_AzaleaTown_branch_f59c7
+	note C#, 4
+	note C_, 2
+	note C#, 1
+	note __, 3
+	notetype $6, $b4
+	note D#, 11
+	note __, 8
+	dutycycle $3
+	octave 5
+	note C_, 1
+	callchannel Music_AzaleaTown_branch_f59c7
+	callchannel Music_AzaleaTown_Ch2_Type1
+	dutycycle $1
+	callchannel Music_AzaleaTown_Ch2_Part2
+	loopchannel 0, Music_AzaleaTownNight_branch_f5952
+; f59c7
+; ============================================================================================================
+Music_AzaleaTownNight_Ch3:
+	stereopanning $ff
+	;pitchoffset 1, A_
+	vibrato $6, $16
+	notetype $c, $24
+
+	callchannel Music_AzaleaTown_Ch3_Intro
+Music_AzaleaTownNight_branch_f5a24: ; f5a24
+	callchannel Music_AzaleaTown_Ch3_Branch1
+	intensity $14
+	note A#, 1
+	note __, 1
+	intensity $24
+	callchannel Music_AzaleaTown_Ch3_Branch2
+
+	note G#, 4
+	note D#, 2
+
+	callchannel Music_AzaleaTown_Ch3_Branch1
+	intensity $14
+	note A#, 1
+	note __, 1
+	intensity $24
+	callchannel Music_AzaleaTown_Ch3_Branch2
+
+	note G#, 2
+	note __, 2
+	note F#, 2
+	callchannel Music_AzaleaTownNight_branch_f5acf
+	callchannel Music_AzaleaTown_Ch3_Type2
+	callchannel Music_AzaleaTownNight_branch_f5acf
+	callchannel Music_AzaleaTown_Ch3_Type1
+	loopchannel 0, Music_AzaleaTownNight_branch_f5a24
+; f5a86
+
+Music_AzaleaTownNight_branch_f5acf: ; f5acf
+	intensity $34
 	octave 3
 	note F_, 1
-	rest 1
+	note __, 1
 	note F_, 1
-	rest 1
+	note __, 1
 	note F_, 1
-	rest 1
+	note __, 1
 	note F_, 1
-	rest 1
-	volume_envelope 2, 5
+	note __, 1
+	intensity $24
 	note F_, 1
-	rest 1
+	note __, 1
 	note F_, 1
-	rest 1
+	note __, 1
 	note F_, 1
-	rest 1
+	note __, 1
 	note F_, 1
-	rest 1
-	sound_ret
+	note __, 1
+	endchannel
+	
 
-Music_AzaleaTown_Ch4:
-	toggle_noise 3
-	drum_speed 12
-	drum_note 6, 2
-.mainloop:
-	drum_note 4, 2
-	drum_note 7, 2
-	drum_note 3, 2
-	drum_note 4, 1
-	drum_note 8, 1
-	drum_note 8, 1
-	drum_note 8, 1
-	drum_note 4, 2
-	drum_note 3, 2
-	drum_note 8, 1
-	drum_note 8, 1
-	drum_note 4, 2
-	drum_note 7, 2
-	drum_note 3, 2
-	drum_note 4, 1
-	drum_note 8, 1
-	drum_note 8, 1
-	drum_note 8, 1
-	drum_note 4, 2
-	drum_note 3, 2
-	drum_note 7, 2
-	sound_loop 0, .mainloop
+; ============================================================================================================
+Music_AzaleaTownNight_Ch4:
+	togglenoise $9
+	notetype $c
+	note __, 2
+	callchannel Music_AzaleaTown_branch_f5aea

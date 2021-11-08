@@ -107,5 +107,26 @@ Music:
 	dba Music_SuicuneBattle
 	dba Music_BattleTowerLobby
 	dba Music_MobileCenter
+; custom night songs
 	dba Music_KantoWildBattleNight
+	dba Music_NewBarkTownNight
+	dba Music_Route26Night
+	dba Music_GSCViridianCity_Night
+	dba Music_GSCVermilionCityNight
+	dba Music_GSCPalletTownNight
+	dba Music_VioletCityNight
+	dba Music_Route1Night
+	dba Music_Route3Night
+	dba Music_Route12Night
+	dba Music_Route29Night
+	dba Music_Route30Night
+	dba Music_Route36Night
+	dba Music_Route37Night
+	dba Music_LakeOfRageNight
+	dba Music_LavenderTownNight
+	dba Music_AzaleaTownNight
+	dba Music_CeladonCityNight
+	dba Music_CherrygroveCityNight
+	dba Music_EcruteakCityNight
+	dba Music_GoldenrodCityNight
 	assert_table_length NUM_MUSIC_SONGS

@@ -5,6 +5,10 @@ Drumkits:
 	dw Drumkit3
 	dw Drumkit4
 	dw Drumkit5
+	dw Drumkit0S
+	dw Drumkit1S 
+	dw Drumkit_Empty
+	dw Drumkit3S
 
 Drumkit0:
 	dw Drum00
@@ -90,6 +94,50 @@ Drumkit5:
 	dw Snare14
 	dw Snare13
 	dw Kick2
+
+Drumkit0S: ;6
+	dw Drum00   
+	dw Snare2
+	dw Snare3   
+	dw Snare4 
+	dw Snare4_Soft 
+	dw Drum05  
+	dw Triangle1_Soft
+	dw Triangle2_Soft
+	dw HiHat1_Soft
+	dw Snare5_Soft
+	dw Snare6_Soft
+	dw Snare7_Soft
+	dw HiHat1
+Drumkit1S: ;7
+	dw Drum00
+	dw HiHat1_Soft
+	dw Snare5_Soft
+	dw Snare6_Soft
+	dw Snare7_Soft
+	dw HiHat2_Soft
+	dw HiHat3_Soft
+	dw Snare8_Soft
+	dw Triangle3_Soft
+	dw Triangle4_Soft
+	dw Snare9_Soft
+	dw Snare10_Soft
+	dw Snare11_Soft
+Drumkit_Empty: ;8
+Drumkit3S: ; 9
+	dw Drum00
+	dw Snare12_Soft
+	dw Snare13_Soft
+	dw Snare14_Soft
+	dw Kick1_Soft
+	dw Triangle5_Soft
+	dw Snare5_Soft
+	dw Drum27_Soft
+	dw Drum28_Soft
+	dw Drum29_Soft
+	dw Snare9_Soft
+	dw Kick2_Soft
+	dw Crash2_Soft
 
 Drum00:
 	noise_note 32, 1, 1, 0
@@ -257,4 +305,112 @@ Drum36:
 Kick2:
 	noise_note 32, 10, 8, 107
 	noise_note 32, 7, 1, 0
+	sound_ret
+
+;Softer Noise Notes
+Snare12_Soft:
+	noise C#,  1, $81, $33
+	sound_ret
+
+Snare13_Soft:
+	noise C#,  1, $41, $32
+	sound_ret
+
+Snare14_Soft:
+	noise C#,  1, $71, $31
+	sound_ret
+
+Kick1_Soft:
+	noise C#,  1, $78, $6b
+	noise C#,  1, $61, $00
+	sound_ret
+
+Triangle5_Soft:
+	noise D_,  1, $81, $18
+	sound_ret
+
+Drum27_Soft:
+	noise C#,  8, $82, $10
+	sound_ret
+
+Drum28_Soft:
+	noise D_,  4, $81, $00
+	noise D_,  4, $11, $00
+	sound_ret
+
+Drum29_Soft:
+	noise D_,  4, $81, $11
+	noise D_,  4, $11, $00
+	sound_ret
+
+Snare4_Soft:
+	noise C#,  1, $71, $33
+	sound_ret
+
+Snare5_Soft:
+	noise C#,  1, $72, $23
+	sound_ret
+
+Snare6_Soft:
+	noise C#,  1, $72, $25
+	sound_ret
+
+Snare7_Soft:
+	noise C#,  1, $72, $26
+	sound_ret
+
+Snare8_Soft:
+	noise C#,  1, $92, $50
+	sound_ret
+
+Snare9_Soft:
+	noise C#,  1, $81, $22
+	sound_ret
+
+Snare10_Soft:
+	noise C#,  1, $61, $22
+	sound_ret
+
+Snare11_Soft:
+	noise C#,  1, $51, $22
+	sound_ret
+
+Kick2_Soft:
+	noise C#,  1, $98, $6b
+	noise C#,  1, $61, $00
+	sound_ret
+
+Crash2_Soft:
+	noise C#,  1, $74, $12
+	sound_ret
+
+Triangle1_Soft:
+	noise C#,  1, $61, $2a
+	sound_ret
+
+Triangle2_Soft:
+	noise C#,  2, $31, $2b
+	noise C#,  1, $51, $2a
+	sound_ret
+
+Triangle3_Soft:
+	noise C#,  1, $91, $18
+	noise C#,  1, $21, $33
+	sound_ret
+
+Triangle4_Soft:
+	noise C#,  3, $81, $28
+	noise C#,  1, $61, $18
+	sound_ret
+
+HiHat1_Soft:
+	noise C#,  1, $71, $10
+	sound_ret
+
+HiHat2_Soft:
+	noise C#,  1, $91, $10
+	sound_ret
+
+HiHat3_Soft:
+	noise C#,  1, $92, $11
 	sound_ret
