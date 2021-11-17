@@ -1224,10 +1224,9 @@ MagnemiteEvosAttacks:
 	db 17, THUNDER_WAVE
 	db 22, SPARK
 	db 27, LOCK_ON
-	db 33, SCREECH
-	db 38, SWIFT
-	db 44, LIGHT_SCREEN
-	db 50, ZAP_CANNON
+	db 31, SCREECH
+	db 34, LIGHT_SCREEN
+	db 37, ZAP_CANNON
 	db 0 ; no more level-up moves
 
 MagnetonEvosAttacks:
@@ -1240,9 +1239,9 @@ MagnetonEvosAttacks:
 	db 22, SPARK
 	db 27, LOCK_ON
 	db 29, TRI_ATTACK
-	db 35, SCREECH
-	db 43, LIGHT_SCREEN
-	db 47, ZAP_CANNON
+	db 32, SCREECH
+	db 35, LIGHT_SCREEN
+	db 39, ZAP_CANNON
 	db 0 ; no more level-up moves
 
 FarfetchDEvosAttacks:
@@ -3088,26 +3087,27 @@ PinecoEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, TACKLE
 	db 1, PROTECT
-	db 8, SELFDESTRUCT
-	db 15, TAKE_DOWN
-	db 22, RAPID_SPIN
-	db 29, BIDE
-	db 36, EXPLOSION
-	db 43, SPIKES
-	db 50, DOUBLE_EDGE
+	db 6, SELFDESTRUCT
+	db 12, TAKE_DOWN
+	db 17, RAPID_SPIN
+	db 20, BIDE
+	db 28, SPIKES
+	db 31, EXPLOSION
+	db 34, DOUBLE_EDGE
 	db 0 ; no more level-up moves
 
 ForretressEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, TACKLE
 	db 1, PROTECT
-	db 8, SELFDESTRUCT
-	db 15, TAKE_DOWN
-	db 22, RAPID_SPIN
-	db 29, BIDE
-	db 39, EXPLOSION
-	db 49, SPIKES
-	db 59, DOUBLE_EDGE
+	db 6, SELFDESTRUCT
+	db 12, TAKE_DOWN
+	db 17, RAPID_SPIN
+	db 20, BIDE
+	db 28, SPIKES
+	db 31, EXPLOSION
+	db 36, DOUBLE_EDGE
+	db 42, ZAP_CANNON
 	db 0 ; no more level-up moves
 
 DunsparceEvosAttacks:
@@ -3136,7 +3136,6 @@ GligarEvosAttacks:
 SteelixEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, TACKLE
-	db 1, HARDEN
 	db 1, BIND
 	db 4, CURSE
 	db 7, ROCK_THROW
@@ -3405,11 +3404,14 @@ SkarmoryEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, LEER
 	db 1, PECK
-	db 13, SAND_ATTACK
-	db 19, SWIFT
-	db 25, AGILITY
-	db 37, FURY_ATTACK
-	db 49, STEEL_WING
+	db 6, SAND_ATTACK
+	db 9, METAL_CLAW
+	db 12, FURY_ATTACK
+	db 17, SWIFT
+	db 23, SPIKES
+	db 28, AGILITY
+	db 31, STEEL_WING
+	db 34, SLASH
 	db 0 ; no more level-up moves
 
 HoundourEvosAttacks:
