@@ -6893,8 +6893,8 @@ AnimateFailedMove:
 
 BattleCommand_MoveDelay:
 ; movedelay
-; Wait 40 frames.
-	ld c, 40
+; Wait 30 frames.
+	ld c, 30
 	jp DelayFrames
 
 BattleCommand_ClearText:
