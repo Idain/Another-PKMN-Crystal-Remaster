@@ -88,14 +88,13 @@ RockItemEncounter:
 .loop
 	sub [hl]
 	jr c, .ok
-REPT 2
 	inc hl
-ENDR
+	inc hl
 	jr .loop
+
 .ok
 	ld a, [hli]
 	inc a ; Comparison with -1
-	ld a, NO_ITEM
 	jr z, .done
 	ld a, [hli]
 .done
@@ -103,16 +102,14 @@ ENDR
 	ret
 	
 .RockItems:
-	db 1, MAX_REVIVE
-	db 2, THICK_CLUB
-	db 4, NUGGET
-	db 6, STAR_PIECE
-	db 12, BIG_PEARL
-	db 18, ETHER
-	db 24, HARD_STONE
-	db 24, SOFT_SAND
-	db 48, PEARL
-	db 64, BRICK_PIECE
-	db 48, NO_ITEM
-	db -1
+	db 	5 percent + 1, MAX_REVIVE
+	db 	5 percent + 1, THICK_CLUB
+	db 	5 percent + 1, NUGGET
+	db 	5 percent + 1, STAR_PIECE
+	db 	5 percent + 1, BIG_PEARL
+	db 10 percent + 1, METAL_COAT
+	db 10 percent + 1, HARD_STONE
+	db 10 percent + 1, SOFT_SAND
+	db 20 percent + 1, PEARL
+	db -1 ; 25 percent, NO_ITEM
 	
