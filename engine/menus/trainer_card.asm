@@ -291,9 +291,6 @@ TrainerCard_Page1_PrintDexCaught_GameTime:
 	db   "POKéDEX"
 	next "PLAY TIME@"
 
-.Unused: ; unreferenced
-	db "@"
-
 .Badges:
 	db "  BADGES▶@"
 

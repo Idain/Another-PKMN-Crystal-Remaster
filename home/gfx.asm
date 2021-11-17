@@ -48,10 +48,6 @@ LoadFontsExtra::
 	farcall _LoadFontsExtra1
 	ret
 
-;LoadFontsExtra2: ; unreferenced
-;	farcall _LoadFontsExtra2
-;	ret
-
 DecompressRequest2bpp::
 	push de
 	ld a, BANK(sScratch)

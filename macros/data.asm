@@ -3,7 +3,7 @@
 ; Many arbitrary percentages are simple base-10 or base-16 values:
 ; -  10 = 4 percent
 ; -  15 = 6 percent
-; - $10 = 6 percent + 1 = 7 percent - 1
+; -  16 = 6 percent + 1 = 7 percent - 1
 ; -  20 = 8 percent
 ; -  25 = 10 percent
 ; -  30 = 12 percent

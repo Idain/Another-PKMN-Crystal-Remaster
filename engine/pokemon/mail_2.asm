@@ -806,10 +806,6 @@ Mail_PlaceAlternatingColumn:
 	pop af
 	ret
 
-Mail_Draw7TileRow: ; unreferenced
-	ld b, 7
-	jr Mail_DrawRowLoop
-
 Mail_Draw13TileRow:
 	ld b, 13
 	jr Mail_DrawRowLoop

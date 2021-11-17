@@ -356,14 +356,6 @@ FlyFunction_GetMonIcon:
 	ld a, e
 	jr GetIcon_a
 
-GetMonIconDE: ; unreferenced
-	push de
-	ld a, [wTempIconSpecies]
-	call ReadMonMenuIcon
-	ld [wCurIcon], a
-	pop de
-	jr GetIcon_de
-
 GetMemIconGFX:
 	ld a, [wCurIconTile]
 GetIconGFX:

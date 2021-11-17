@@ -1420,10 +1420,8 @@ Script_sdefer:
 	ret
 
 Script_checkscene:
+; Loads either the active scene (if there's any) or -1.
 	call CheckScenes
-	jr nz, .doscene
-	ld a, $ff
-.doscene
 	ld [wScriptVar], a
 	ret
 
@@ -1435,7 +1433,7 @@ Script_checkmapscene:
 	call GetMapSceneID
 	ld a, d
 	or e
-	ld a, $ff
+	ld a, -1
 	jr z, .no_scene
 	ld a, [de]
 .no_scene
@@ -2272,6 +2270,7 @@ ExitScriptSubroutine:
 	ld [wScriptPos + 1], a
 	and a
 	ret
+	
 .done
 	scf
 	ret

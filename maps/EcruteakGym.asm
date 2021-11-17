@@ -16,8 +16,6 @@ EcruteakGym_MapScripts:
 
 .ForcedToLeave:
 	sdefer EcruteakGymClosed
-	end
-
 .DummyScene:
 	end
 
