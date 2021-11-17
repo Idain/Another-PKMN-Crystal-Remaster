@@ -7,7 +7,7 @@
 	db WATER, ROCK ; type
 	db 60 ; catch rate
 	db 113 ; base exp
-	db NO_ITEM, NO_ITEM ; items
+	db NO_ITEM, HARD_STONE ; items
 	db GENDER_F75 ; gender ratio
 	db 20 ; step cycles to hatch
 	INCBIN "gfx/pokemon/corsola/front.dimensions"

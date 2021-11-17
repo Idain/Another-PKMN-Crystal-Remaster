@@ -28,7 +28,6 @@ INCLUDE "audio/music/trainervictory.asm"
 
 SECTION "Songs 2", ROMX
 
-
 INCLUDE "audio/music/kantogymbattle.asm"
 INCLUDE "audio/music/kantotrainerbattle.asm"
 INCLUDE "audio/music/pokemoncenter.asm"

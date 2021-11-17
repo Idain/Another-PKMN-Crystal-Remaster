@@ -2478,7 +2478,7 @@ RestorePP:
 	cp MAX_ETHER
 	jr z, .restore_all
 
-; restore_some
+; restore up to 10 PP for ETHER, ELIXIR, and LEPPA_BERRY
 	ld a, [hl]
 	and PP_MASK
 	add 10
