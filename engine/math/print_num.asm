@@ -296,6 +296,7 @@ _PrintNum::
 	ldh a, [hPrintNumBuffer + 0]
 	and a
 	ret z
+
 .inc
 	inc hl
 	ret
