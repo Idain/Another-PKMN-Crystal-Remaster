@@ -83,16 +83,14 @@ CheckForHiddenItems:
 	ret
 
 RockItemEncounter:
-	ld hl, .RockItems
+	ld hl, .RockItems - 2
 	call Random
 .loop
+	inc hl
+	inc hl
 	sub [hl]
-	jr c, .ok
-	inc hl
-	inc hl
-	jr .loop
+	jr nc, .loop
 
-.ok
 	ld a, [hli]
 	inc a ; Comparison with -1
 	jr z, .done
