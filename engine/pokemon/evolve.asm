@@ -82,6 +82,9 @@ EvolveAfterBattle_MasterLoop:
 	jp nz, .dont_evolve_2
 
 	ld a, b
+	cp EVOLVE_HOLDING
+	jp z, .holding
+
 	cp EVOLVE_LEVEL
 	jp z, .level
 
@@ -97,17 +100,16 @@ EvolveAfterBattle_MasterLoop:
 	jp z, .dont_evolve_1
 
 	push hl
-	ld de, wTempMonAttack
-	ld hl, wTempMonDefense
+	ld hl, wTempMonAttack
+	ld de, wTempMonDefense
 	ld c, 2
 	call CompareBytes
 	ld a, ATK_EQ_DEF
 	jr z, .got_tyrogue_evo
-
-	ld a, ATK_LT_DEF
-	ccf
+	; a = carry ? ATK_GT_DEF : ATK_LT_DEF
+	assert ATK_GT_DEF + 1 == ATK_LT_DEF
 	sbc a
-	add ATK_LT_DEF ; If carry, then ATK_LT_DEF, else ATK_GT_DEF
+	add ATK_LT_DEF
 .got_tyrogue_evo
 	pop hl
 
@@ -116,7 +118,7 @@ EvolveAfterBattle_MasterLoop:
 	jp nz, .dont_evolve_2
 
 	inc hl
-	jr .proceed
+	jp .proceed
 
 .happiness
 	ld a, [wTempMonHappiness]
@@ -183,6 +185,16 @@ EvolveAfterBattle_MasterLoop:
 	ld a, [wLinkMode]
 	and a
 	jp nz, .dont_evolve_3
+	jr .proceed
+
+.holding
+	ld a, [hli]
+	ld b, a
+	ld a, [wTempMonItem]
+	cp b
+	jp nz, .dont_evolve_3
+	xor a
+	ld [wTempMonItem], a
 	jr .proceed
 
 .level
