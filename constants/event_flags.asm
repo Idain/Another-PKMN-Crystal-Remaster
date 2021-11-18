@@ -859,7 +859,7 @@
 	const EVENT_BEAT_LASS_MICHELLE
 	const EVENT_BEAT_LASS_DANA
 	const EVENT_BEAT_LASS_ELLEN
-	const_skip ; unused
+	const_EVENT_BEAT_JANINA ; unused
 	const_skip ; unused
 	const EVENT_BEAT_LASS_DANA2
 	const EVENT_BEAT_LASS_DANA3
