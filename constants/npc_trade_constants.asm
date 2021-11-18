@@ -9,7 +9,6 @@ NPCTRADE_ITEM     rb
 NPCTRADE_OT_ID    rw
 NPCTRADE_OT_NAME  rb NAME_LENGTH
 NPCTRADE_GENDER   rb
-                  rb_skip
 NPCTRADE_STRUCT_LENGTH EQU _RS
 
 ; NPCTrades indexes (see data/events/npc_trades.asm)
