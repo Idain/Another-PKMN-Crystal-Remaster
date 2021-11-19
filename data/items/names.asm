@@ -180,7 +180,7 @@ ItemNames::
 	li "BlueSky Mail"
 	li "Music Mail"
 	li "Mirage Mail"
-	li "Teru-sama"
+	li "Waterproof"
 	li "Teru-sama"
 	li "Teru-sama"
 	assert_list_length NUM_ITEMS

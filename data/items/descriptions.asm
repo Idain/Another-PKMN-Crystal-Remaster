@@ -181,7 +181,7 @@ ItemDescriptions:
 	dw BlueSkyMailDesc
 	dw MusicMailDesc
 	dw MirageMailDesc
-	dw TeruSamaDesc
+	dw WaterproofDesc
 	dw TeruSamaDesc
 	dw TeruSamaDesc
 	assert_table_length NUM_ITEMS
@@ -913,3 +913,7 @@ MusicMailDesc:
 MirageMailDesc:
 	db   "Mew-print Mail."
 	next "(HOLD)@"
+
+WaterproofDesc:
+	db   "Nullifies Water-"
+	next "type attacks.@"

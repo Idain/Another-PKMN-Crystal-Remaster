@@ -1287,8 +1287,30 @@ BattleCommand_Stab:
 	call GetBattleVar
 	and TYPE_MASK
 	ld b, a
-	ld hl, TypeMatchups
 
+; If opponent is holding Waterproof, nullify attack.
+	cp WATER
+	jr nz, .keepChecking
+
+	push bc
+	call GetOpponentItem
+	pop bc
+
+	ld a, [hl]
+	cp WATERPROOF
+	jr nz, .keepChecking
+
+	ld a, 1
+	ld [wAttackMissed], a
+	xor a
+
+	ld hl, wCurDamage
+	ld [hli], a
+	ld [hl], a
+	jr .end2
+
+.keepChecking
+	ld hl, TypeMatchups
 .TypesLoop:
 	ld a, [hli]
 	inc a
@@ -1385,6 +1407,7 @@ BattleCommand_Stab:
 .end
 	call BattleCheckTypeMatchup
 	ld a, [wTypeMatchup]
+.end2
 	ld b, a
 	ld a, [wTypeModifier]
 	and %10000000

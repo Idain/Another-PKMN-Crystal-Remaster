@@ -186,7 +186,7 @@
 	const BLUESKY_MAIL ; b2
 	const MUSIC_MAIL   ; b3
 	const MIRAGE_MAIL  ; b4
-	const ITEM_BE      ; b5
+	const WATERPROOF   ; b5
 	const ITEM_C3      ; b6
 	const ITEM_DC      ; b7
 NUM_ITEMS EQU const_value - 1
