@@ -1601,7 +1601,7 @@ endr
 
 Unknown_17da94:
 for x, 8
-	db $ff ^ (1 << x)
+	db ~(1 << x)
 endr
 
 Function17da9c:

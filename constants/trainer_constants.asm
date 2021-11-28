@@ -2,7 +2,7 @@ __trainer_class__ = 0
 
 trainerclass: MACRO
 \1 EQU __trainer_class__
-__trainer_class__ = __trainer_class__ + 1
+__trainer_class__ += 1
 	const_def 1
 ENDM
 
@@ -82,7 +82,7 @@ KRIS EQU __trainer_class__
 	const WILL2
 
 	trainerclass CAL ; c
-	const CAL1
+	const CAL1 ; unused
 	const CAL2
 	const CAL3
 
@@ -304,7 +304,7 @@ KRIS EQU __trainer_class__
 	const PRESTON
 	const EDWARD
 	const GREGORY
-	const VIRGIL
+	const VIRGIL ; unused
 	const ALFRED
 
 	trainerclass SKIER ; 21
@@ -464,8 +464,8 @@ KRIS EQU __trainer_class__
 	const ANTHONY5
 
 	trainerclass BIKER ; 2d
-	const BIKER_BENNY
-	const KAZU
+	const BIKER_BENNY ; unused
+	const KAZU ; unused
 	const DWAYNE
 	const HARRIS
 	const ZEKE
@@ -484,8 +484,8 @@ KRIS EQU __trainer_class__
 
 	trainerclass FIREBREATHER ; 30
 	const OTIS
-	const DICK
-	const NED
+	const DICK ; unused
+	const NED ; unused
 	const BURT
 	const BILL
 	const WALT
@@ -601,9 +601,9 @@ KRIS EQU __trainer_class__
 	trainerclass MEDIUM ; 39
 	const MARTHA
 	const GRACE
-	const BETHANY
-	const MARGRET
-	const ETHEL
+	const BETHANY ; unused
+	const MARGRET ; unused
+	const ETHEL ; unused
 	const REBECCA
 	const DORIS
 
@@ -649,13 +649,13 @@ KRIS EQU __trainer_class__
 	const MEGANDPEG1
 	const MEGANDPEG2
 	const LEAANDPIA1
-	const LEAANDPIA2
+	const LEAANDPIA2 ; unused
 
 	trainerclass POKEFANF ; 3e
 	const BEVERLY1
 	const RUTH
-	const BEVERLY2
-	const BEVERLY3
+	const BEVERLY2 ; unused
+	const BEVERLY3 ; unused
 	const GEORGIA
 	const JAIME
 

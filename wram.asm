@@ -529,27 +529,15 @@ wEnemyScreens::
 ; see wPlayerScreens
 	db
 
-UNION
-wPlayerMistCount:: db
 wPlayerSafeguardCount:: db
 wPlayerLightScreenCount:: db
 wPlayerReflectCount:: db
+wPlayerMistCount:: db
 
-wEnemyMistCount:: db
 wEnemySafeguardCount:: db
 wEnemyLightScreenCount:: db
 wEnemyReflectCount:: db
-
-
-NEXTU
-	ds 1
-wBetaPokerSGBPals:: dw
-	ds 1
-wBetaPokerSGBAttr:: db
-wBetaPokerSGBCol:: db
-wBetaPokerSGBRow:: db
-	ds 1
-ENDU
+wEnemyMistCount:: db
 
 	ds 1
 
@@ -801,6 +789,13 @@ wCardFlipNumCardsPlayed:: db
 wCardFlipFaceUpCard:: db
 wDiscardPile:: ds 4 * 6
 wDiscardPileEnd::
+
+; beta poker game
+wBetaPokerSGBPals:: dw
+	ds 1
+wBetaPokerSGBAttr:: db
+wBetaPokerSGBCol:: db
+wBetaPokerSGBRow:: db
 
 NEXTU
 ; unused memory game
