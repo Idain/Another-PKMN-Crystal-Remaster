@@ -12,6 +12,7 @@ BattleCommand_Present:
 	ld a, [wTypeMatchup]
 	and a
 	jp z, AnimateFailedMove
+	
 	ld a, [wAttackMissed]
 	and a
 	jp nz, AnimateFailedMove

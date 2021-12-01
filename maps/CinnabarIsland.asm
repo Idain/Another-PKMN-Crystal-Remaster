@@ -90,7 +90,7 @@ CinnabarIslandBlueText:
 
 	para "Well, it's plain"
 	line "to see that you're"
-	cont "a Trainer…"
+	cont "a trainer…"
 
 	para "My name's Blue."
 
@@ -137,7 +137,7 @@ CinnabarIslandBlueText:
 	line "is…"
 
 	para "But, anyway, I'm"
-	line "still a Trainer."
+	line "still a trainer."
 
 	para "If I see a strong"
 	line "opponent, it makes"
@@ -190,7 +190,7 @@ CinnabarIslandLessThan15Badges:
 CinnabarIslandEqual15Badges:
 	text "…"
 
-	para "Yup, you've got"
+	para "Yep, you've got"
 	line "enough Badges."
 
 	para "If you want to"
