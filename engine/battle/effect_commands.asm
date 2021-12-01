@@ -6019,8 +6019,7 @@ BattleCommand_FinishConfusingTarget:
 	; confused for 2-5 turns
 	call BattleRandom
 	and %11
-	inc a
-	inc a
+	add 2
 	ld [bc], a
 
 	ld a, BATTLE_VARS_MOVE_EFFECT

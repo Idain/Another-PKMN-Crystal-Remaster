@@ -400,9 +400,9 @@ HandleBerserkGene:
 	set SUBSTATUS_CONFUSED, [hl]
 	ldh a, [hBattleTurn]
 	and a
-	ld hl, wEnemyConfuseCount
-	jr z, .set_confuse_count
 	ld hl, wPlayerConfuseCount
+	jr z, .set_confuse_count
+	ld hl, wEnemyConfuseCount
 .set_confuse_count
 	call BattleRandom
 	and %11
