@@ -933,9 +933,6 @@ StatsScreen_LoadTextboxSpaceGFX:
 	pop hl
 	ret
 
-StatsScreenSpaceGFX: ; unreferenced
-INCBIN "gfx/font/space.2bpp"
-
 EggStatsScreen:
 	xor a
 	ldh [hBGMapMode], a
