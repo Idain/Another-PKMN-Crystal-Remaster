@@ -1,10 +1,10 @@
 MAP_NAME_SIGN_START EQU $c0
 
 ; wLandmarkSignTimer
-MAPSIGNSTAGE_1_SLIDEOLD EQU $74
-MAPSIGNSTAGE_2_LOADGFX  EQU $68
-MAPSIGNSTAGE_3_SLIDEIN  EQU $65
-MAPSIGNSTAGE_4_VISIBLE  EQU $59
+MAPSIGNSTAGE_1_SLIDEOLD EQU $63
+MAPSIGNSTAGE_2_LOADGFX  EQU $57
+MAPSIGNSTAGE_3_SLIDEIN  EQU $54
+MAPSIGNSTAGE_4_VISIBLE  EQU $48
 MAPSIGNSTAGE_5_SLIDEOUT EQU $0c
 
 InitMapNameSign::
@@ -41,11 +41,11 @@ InitMapNameSign::
 	call .CheckSpecialMap
 	jr z, .dont_do_map_sign
 
-; Landmark sign timer: descends $74-$00
-; $73-$68: Sliding out (old sign)
-; $67-$65: Loading new graphics
-; $64-$59: Sliding in
-; $58-$0c: Remains visible
+; Landmark sign timer: descends $64-$00
+; $62-$57: Sliding out (old sign)
+; $56-$54: Loading new graphics
+; $53-$48: Sliding in
+; $47-$0c: Remains visible
 ; $0b-$00: Sliding out
 	ld a, [wLandmarkSignTimer]
 	sub MAPSIGNSTAGE_2_LOADGFX
@@ -141,7 +141,6 @@ PlaceMapNameSign::
 	sub MAPSIGNSTAGE_3_SLIDEIN
 	jr c, .graphics_ok
 	ret nz
-;	jp nz, LoadMapNameSignGFX
 	push hl
 	call InitMapNameFrame
 	call PlaceMapNameCenterAlign
@@ -154,13 +153,13 @@ PlaceMapNameSign::
 	jr nc, .stage_3_sliding_in
 	cp MAPSIGNSTAGE_5_SLIDEOUT
 	jr c, .stage_5_sliding_out
-	ld a, SCREEN_HEIGHT_PX - 4 * TILE_WIDTH
+	ld a, SCREEN_HEIGHT_PX - 3 * TILE_WIDTH
 	jr .got_value
 
 .stage_3_sliding_in
 	sub MAPSIGNSTAGE_4_VISIBLE
 	add a
-	add SCREEN_HEIGHT_PX - 4 * TILE_WIDTH
+	add SCREEN_HEIGHT_PX - 3 * TILE_WIDTH
 	jr .got_value
 
 .stage_5_sliding_out
@@ -174,17 +173,10 @@ PlaceMapNameSign::
 	ret nz
 	ldh [hLCDCPointer], a
 	ret
-/*
-LoadMapNameSignGFX:
-	ld de, OverworldFontGFX
-	ld hl, vTiles2 tile MAP_NAME_SIGN_START
-	lb bc, BANK(MapEntryFrameGFX), 14
-	call Get2bpp
-	ret
-*/
+
 InitMapNameFrame:
-	hlcoord 0, 0
-	lb bc, 2, 18
+	hlcoord 0, 0, wAttrmap
+	lb bc, 3, SCREEN_WIDTH
 	call InitMapSignAttrmap
 	jr PlaceMapNameFrame
 
@@ -198,7 +190,7 @@ PlaceMapNameCenterAlign:
 	srl a
 	ld b, 0
 	ld c, a
-	hlcoord 0, 2
+	hlcoord 0, 1
 	add hl, bc
 	ld de, wStringBuffer1
 	jp PlaceString
@@ -220,23 +212,13 @@ PlaceMapNameCenterAlign:
 	ret
 
 InitMapSignAttrmap:
-	ld de, wAttrmap - wTilemap
-	add hl, de
-	inc b
-	inc b
-	inc c
-	inc c
 	ld a, PAL_BG_TEXT | PRIORITY
 .loop
 	push bc
-	push hl
 .inner_loop
 	ld [hli], a
 	dec c
 	jr nz, .inner_loop
-	pop hl
-	ld de, SCREEN_WIDTH
-	add hl, de
 	pop bc
 	dec b
 	jr nz, .loop
@@ -259,14 +241,6 @@ PlaceMapNameFrame:
 	; first line
 	call .FillMiddle
 	; right, first line
-	ld a, MAP_NAME_SIGN_START + 11
-	ld [hli], a
-	; left, second line
-	ld a, MAP_NAME_SIGN_START + 6
-	ld [hli], a
-	; second line
-	call .FillMiddle
-	; right, second line
 	ld a, MAP_NAME_SIGN_START + 12
 	ld [hli], a
 	; bottom left
