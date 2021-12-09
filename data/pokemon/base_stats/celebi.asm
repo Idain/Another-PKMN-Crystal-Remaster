@@ -7,7 +7,7 @@
 	db PSYCHIC_TYPE, GRASS ; type
 	db 45 ; catch rate
 	db 64 ; base exp
-	db NO_ITEM, MIRACLEBERRY ; items
+	db MIRACLEBERRY, MIRACLEBERRY ; items
 	db GENDER_UNKNOWN ; gender ratio
 	db 120 ; step cycles to hatch
 	INCBIN "gfx/pokemon/celebi/front.dimensions"
