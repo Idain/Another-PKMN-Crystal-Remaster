@@ -52,6 +52,6 @@ FindItemInBallScript::
 	ld hl, wNumItems
 	call ReceiveItem
 	ret nc
-	ld a, $1
+	ld a, TRUE
 	ld [wScriptVar], a
 	ret

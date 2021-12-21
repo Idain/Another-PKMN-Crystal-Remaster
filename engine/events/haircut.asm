@@ -58,7 +58,7 @@ HaircutOrGrooming:
 	ret
 
 .egg
-	ld a, 1
+	ld a, TRUE
 	ld [wScriptVar], a
 	ret
 

@@ -1,7 +1,7 @@
 _Squirtbottle:
 	ld hl, .SquirtbottleScript
 	call QueueScript
-	ld a, $1
+	ld a, TRUE
 	ld [wItemEffectSucceeded], a
 	ret
 
@@ -35,7 +35,7 @@ _Squirtbottle:
 	cp SPRITEMOVEDATA_SUDOWOODO
 	jr nz, .nope
 
-	ld a, 1
+	ld a, TRUE
 	ld [wScriptVar], a
 	ret
 

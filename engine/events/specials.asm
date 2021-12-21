@@ -248,12 +248,8 @@ ClearBGPalettesBufferScreen:
 	jp BufferScreen
 
 ScriptReturnCarry:
-	jr c, .carry
-	xor a
-	ld [wScriptVar], a
-	ret
-.carry
-	ld a, 1
+	sbc a
+	and TRUE
 	ld [wScriptVar], a
 	ret
 

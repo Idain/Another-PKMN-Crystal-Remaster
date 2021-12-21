@@ -679,7 +679,7 @@ Script_UsedWaterfall:
 	ld a, [wPlayerStandingTile]
 	call CheckWaterfallTile
 	ret z
-	ld a, $1
+	ld a, TRUE
 	ld [wScriptVar], a
 	ret
 
@@ -1603,13 +1603,11 @@ BikeFunction:
 	call .CheckEnvironment
 	jr c, .CannotUseBike
 	ld a, [wPlayerState]
-	cp PLAYER_NORMAL
-	jr z, .GetOnBike
 	cp PLAYER_BIKE
 	jr z, .GetOffBike
-	jr .CannotUseBike
-
-.GetOnBike:
+	cp PLAYER_NORMAL
+	jr nz, .CannotUseBike
+;GetOnBike:
 	ld hl, Script_GetOnBike
 	ld de, Script_GetOnBike_Register
 	call .CheckIfRegistered
@@ -1630,24 +1628,19 @@ BikeFunction:
 .GetOffBike:
 	ld hl, wBikeFlags
 	bit BIKEFLAGS_ALWAYS_ON_BIKE_F, [hl]
-	jr nz, .CantGetOffBike
+	ld hl, Script_CantGetOffBike
+	jr nz, .done
 	ld hl, Script_GetOffBike
 	ld de, Script_GetOffBike_Register
 	call .CheckIfRegistered
-	ld a, BANK(Script_GetOffBike)
-	jr .done
-
-.CantGetOffBike:
-	ld hl, Script_CantGetOffBike
-	jr .done
-
-.CannotUseBike:
-	ld a, 0
-	ret
-
+	; fallthrough
 .done
 	call QueueScript
-	ld a, 1
+	ld a, TRUE
+	ret
+
+.CannotUseBike:
+	xor a ; FALSE
 	ret
 
 .CheckIfRegistered:

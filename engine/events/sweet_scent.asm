@@ -1,7 +1,7 @@
 SweetScentFromMenu:
 	ld hl, .SweetScent
 	call QueueScript
-	ld a, $1
+	ld a, TRUE
 	ld [wFieldMoveSucceeded], a
 	ret
 
@@ -40,21 +40,20 @@ SweetScentEncounter:
 	and a
 	jr z, .no_battle
 	farcall ChooseWildEncounter
-	jr nz, .no_battle
-	jr .start_battle
+	jr z, .start_battle
+	; fallthrough
+.no_battle
+	xor a
+	ld [wScriptVar], a
+	ld [wBattleType], a
+	ret
 
 .not_in_bug_contest
 	farcall ChooseWildEncounter_BugContest
 
 .start_battle
-	ld a, $1
+	ld a, TRUE
 	ld [wScriptVar], a
-	ret
-
-.no_battle
-	xor a
-	ld [wScriptVar], a
-	ld [wBattleType], a
 	ret
 
 UseSweetScentText:

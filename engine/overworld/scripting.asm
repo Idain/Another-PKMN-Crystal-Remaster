@@ -405,9 +405,8 @@ Script_promptbutton:
 Script_yesorno:
 	call YesNoBox
 	; If carry, FALSE; else, TRUE.
-	ccf 
 	sbc a
-	and TRUE
+	inc a
 	ld [wScriptVar], a
 	ret
 
@@ -645,12 +644,11 @@ Script_askforphonenumber:
 	call GetScriptByte
 	ld c, a
 	farcall AddPhoneNumber
-	jr c, .phonefull
+	ld a, PHONE_CONTACTS_FULL
+	jr c, .done ;.phonefull
 	xor a ; PHONE_CONTACT_GOT
 	jr .done
-.phonefull
-	ld a, PHONE_CONTACTS_FULL
-	jr .done
+
 .refused
 	call GetScriptByte
 	ld a, PHONE_CONTACT_REFUSED
@@ -1741,12 +1739,9 @@ Script_giveitem:
 	ld [wItemQuantityChange], a
 	ld hl, wNumItems
 	call ReceiveItem
-	jr nc, .full
-	ld a, TRUE
-	ld [wScriptVar], a
-	ret
-.full
-	xor a
+; If carry, TRUE; else, FALSE
+	sbc a
+	and TRUE
 	ld [wScriptVar], a
 	ret
 
@@ -1800,7 +1795,7 @@ CompareMoneyAction:
 	jr c, .done ; less
 	ld a, HAVE_AMOUNT
 	jr z, .done ; exact
-	ld a, HAVE_MORE
+	xor a ; HAVE_MORE
 .done
 	ld [wScriptVar], a
 	ret
@@ -1866,8 +1861,7 @@ Script_checkpoke:
 	ld [wScriptVar], a
 	call GetScriptByte
 	ld hl, wPartySpecies
-	ld de, 1
-	call IsInArray
+	call IsInByteArray
 	ret nc
 	ld a, TRUE
 	ld [wScriptVar], a

@@ -23,7 +23,7 @@ CheckFirstMonIsEgg:
 	cp EGG
 	ld a, TRUE
 	jr z, .egg
-	xor a
+	xor a ; FALSE
 
 .egg
 	ld [wScriptVar], a

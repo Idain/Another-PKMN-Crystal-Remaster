@@ -19,12 +19,12 @@ BeastsCheck:
 	jr nc, .notexist
 
 	; they exist
-	ld a, 1
+	ld a, TRUE
 	ld [wScriptVar], a
 	ret
 
 .notexist
-	xor a
+	xor a ; FALSE
 	ld [wScriptVar], a
 	ret
 
@@ -34,7 +34,7 @@ MonCheck:
 
 	call CheckOwnMonAnywhere
 	sbc a
-	and 1
+	and TRUE
 	ld [wScriptVar], a
 	ret
 

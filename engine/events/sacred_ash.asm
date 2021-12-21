@@ -1,12 +1,12 @@
 _SacredAsh:
-	ld a, $0
+	xor a ; FALSE
 	ld [wItemEffectSucceeded], a
 	call CheckAnyFaintedMon
 	ret nc
 
 	ld hl, SacredAshScript
 	call QueueScript
-	ld a, $1
+	ld a, TRUE
 	ld [wItemEffectSucceeded], a
 	ret
 

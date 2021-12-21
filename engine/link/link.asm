@@ -2265,7 +2265,7 @@ WaitForLinkedFriend:
 	call LinkDataReceived
 	ld c, 30
 	call DelayFrames
-	ld a, 1
+	ld a, TRUE
 	ld [wScriptVar], a
 	ret
 

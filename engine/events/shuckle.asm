@@ -53,7 +53,7 @@ GiveShuckle:
 ; Engine flag for this event.
 	ld hl, wDailyFlags1
 	set DAILYFLAGS1_GOT_SHUCKIE_TODAY_F, [hl]
-	ld a, 1
+	ld a, TRUE
 	ld [wScriptVar], a
 	ret
 

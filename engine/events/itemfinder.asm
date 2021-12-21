@@ -9,7 +9,7 @@ ItemFinder:
 
 .resume
 	call QueueScript
-	ld a, $1
+	ld a, TRUE
 	ld [wItemEffectSucceeded], a
 	ret
 

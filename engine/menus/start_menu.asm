@@ -396,15 +396,12 @@ StartMenu_Quit:
 
 	ld hl, .StartMenuContestEndText
 	call StartMenuYesNo
-	jr c, .DontEndContest
+	ld a, 0
+	ret c ;.DontEndContest
 	ld a, BANK(BugCatchingContestReturnToGateScript)
 	ld hl, BugCatchingContestReturnToGateScript
 	call FarQueueScript
 	ld a, 4
-	ret
-
-.DontEndContest:
-	ld a, 0
 	ret
 
 .StartMenuContestEndText:
@@ -416,12 +413,9 @@ StartMenu_Save:
 
 	call BufferScreen
 	farcall SaveMenu
-	jr nc, .saved
-	ld a, 0
-	ret
-
-.saved
-	ld a, 1
+; If carry then FALSE, else TRUE
+	sbc a
+	inc a
 	ret
 
 StartMenu_Option:
@@ -485,7 +479,7 @@ StartMenu_Pokemon:
 
 .choosemenu
 	xor a
-	ld [wPartyMenuActionText], a ; Choose a POKéMON.
+	ld [wPartyMenuActionText], a ; Choose a Pokémon.
 	call ClearBGPalettes
 
 .menu

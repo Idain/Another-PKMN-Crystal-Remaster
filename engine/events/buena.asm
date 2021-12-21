@@ -13,14 +13,14 @@ BuenasPassword:
 	call PushWindow
 	call DoNthMenu ; menu
 	farcall Buena_ExitMenu
-	ld b, $0
+	ld b, FALSE
 	ld a, [wMenuSelection]
 	ld c, a
 	ld a, [wBuenasPassword]
 	maskbits NUM_PASSWORDS_PER_CATEGORY
 	cp c
 	jr nz, .wrong
-	ld b, $1
+	ld b, TRUE
 
 .wrong
 	ld a, b
