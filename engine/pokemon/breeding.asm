@@ -656,23 +656,21 @@ GetBreedmonMovePointer:
 	ret
 
 GetEggFrontpic:
-	push de
 	ld [wCurPartySpecies], a
 	ld [wCurSpecies], a
 	call GetBaseData
-	ld hl, wBattleMonDVs
+	ld a, MON_DVS
+	call GetPartyParamLocation
 	predef GetUnownLetter
-	pop de
 	predef_jump GetMonFrontpic
 
 GetHatchlingFrontpic:
-	push de
 	ld [wCurPartySpecies], a
 	ld [wCurSpecies], a
 	call GetBaseData
-	ld hl, wBattleMonDVs
+	ld a, MON_DVS
+	call GetPartyParamLocation
 	predef GetUnownLetter
-	pop de
 	predef_jump GetAnimatedFrontpic
 
 Hatch_UpdateFrontpicBGMapCenter:
