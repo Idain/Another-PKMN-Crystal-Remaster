@@ -30,10 +30,8 @@ OmanyteChamber:
 	ld a, b
 	dec a
 	ld [wCurPartyMon], a
-	push bc
 	ld a, MON_ITEM
 	call GetPartyParamLocation
-	pop bc
 	ld a, [hl]
 	cp WATER_STONE
 	jr nz, .loop
