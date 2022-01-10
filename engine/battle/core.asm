@@ -7769,14 +7769,15 @@ SendOutMonText:
 	jr nz, .skip_to_textbox
 
 .not_linked
-; Depending on the HP of the enemy mon, the game prints a different text
+; Depending on the remaining HP of the enemy mon, 
+; the game prints a different text
 	ld hl, wEnemyMonHP
 	ld a, [hli]
 	or [hl]
 	ld hl, GoMonText
 	jr z, .skip_to_textbox
 
-	; compute enemy helth remaining as a percentage
+	; compute enemy health remaining as a percentage
 	xor a
 	ldh [hMultiplicand + 0], a
 	ld hl, wEnemyMonHP
@@ -7786,16 +7787,22 @@ SendOutMonText:
 	ld a, [hl]
 	ld [wEnemyHPAtTimeOfPlayerSwitch + 1], a
 	ldh [hMultiplicand + 2], a
-	ld a, 25
-	ldh [hMultiplier], a
-	call Multiply
 	ld hl, wEnemyMonMaxHP
 	ld a, [hli]
 	ld b, [hl]
-	srl a
+	ld c, 100
+	and a
+	jr z, .shift_done
+.shift
+	rra
 	rr b
-	srl a
-	rr b
+	srl c
+	and a
+	jr nz, .shift
+.shift_done
+	ld a, c
+	ldh [hMultiplier], a
+	call Multiply
 	ld a, b
 	ld b, 4
 	ldh [hDivisor], a
@@ -7851,8 +7858,11 @@ WithdrawMonText:
 .WithdrawMonText:
 	text_far _BattleMonNickCommaText
 	text_asm
-; Print text to withdraw mon
-; depending on HP the message is different
+; Print text to withdraw mon. Depending on 
+; how much HP the enemy mon has lost since 
+; the last switch (from either the player's 
+; or the opponent's side), the message 
+; is different
 	push de
 	push bc
 	ld hl, wEnemyMonHP + 1
@@ -7867,16 +7877,22 @@ WithdrawMonText:
 	ld a, [de]
 	sbc b
 	ldh [hMultiplicand + 1], a
-	ld a, 25
-	ldh [hMultiplier], a
-	call Multiply
 	ld hl, wEnemyMonMaxHP
 	ld a, [hli]
 	ld b, [hl]
-	srl a
+	ld c, 100
+	and a
+	jr z, .shift_done
+.shift
+	rra
 	rr b
-	srl a
-	rr b
+	srl c
+	and a
+	jr nz, .shift
+.shift_done
+	ld a, c
+	ldh [hMultiplier], a
+	call Multiply
 	ld a, b
 	ld b, 4
 	ldh [hDivisor], a
