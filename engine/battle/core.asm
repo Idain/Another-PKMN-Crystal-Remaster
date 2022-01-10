@@ -4178,7 +4178,7 @@ InitEnemyMon:
 	ld [de], a
 	ld hl, wBaseStats
 	ld de, wEnemyMonBaseStats
-	ld b, wBaseEVs - wBaseStats
+	ld b, NUM_STATS
 .loop
 	ld a, [hli]
 	ld [de], a
@@ -6617,7 +6617,7 @@ LoadEnemyMon:
 ; All six base stats are copied.
 	ld hl, wBaseStats
 	ld de, wEnemyMonBaseStats
-	ld b, wBaseEVs - wBaseStats
+	ld b, NUM_STATS
 .loop
 	ld a, [hli]
 	ld [de], a
