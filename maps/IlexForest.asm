@@ -472,7 +472,7 @@ IlexForestShrineScript:
 	writetext Text_KurtCaughtCelebi
 	waitbutton
 	closetext
-	applymovement ILEXFOREST_KURT, IlexFOrestKurtStepsDownMovement
+	applymovement ILEXFOREST_KURT, IlexForestKurtStepsDownMovement
 	disappear ILEXFOREST_KURT
 .DidntCatchCelebi:
 	end
@@ -719,7 +719,7 @@ IlexForestKurtStepsUpMovement:
 	step UP
 	step_end
 
-IlexFOrestKurtStepsDownMovement:
+IlexForestKurtStepsDownMovement:
 	step DOWN
 	step DOWN
 	step DOWN
