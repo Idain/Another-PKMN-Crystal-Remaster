@@ -204,7 +204,6 @@ MewFrontpic:         INCBIN "gfx/pokemon/mew/front.animated.2bpp.lz"
 OctilleryFrontpic:   INCBIN "gfx/pokemon/octillery/front.animated.2bpp.lz"
 JynxFrontpic:        INCBIN "gfx/pokemon/jynx/front.animated.2bpp.lz"
 WobbuffetFrontpic:   INCBIN "gfx/pokemon/wobbuffet/front.animated.2bpp.lz"
-DelibirdFrontpic:    INCBIN "gfx/pokemon/delibird/front.animated.2bpp.lz"
 LedianFrontpic:      INCBIN "gfx/pokemon/ledian/front.animated.2bpp.lz"
 GloomFrontpic:       INCBIN "gfx/pokemon/gloom/front.animated.2bpp.lz"
 FlaaffyFrontpic:     INCBIN "gfx/pokemon/flaaffy/front.animated.2bpp.lz"
@@ -480,7 +479,6 @@ CalPic:              INCBIN "gfx/trainers/cal.2bpp.lz"
 DiglettFrontpic:     INCBIN "gfx/pokemon/diglett/front.animated.2bpp.lz"
 OfficerPic:          INCBIN "gfx/trainers/officer.2bpp.lz"
 MukBackpic:          INCBIN "gfx/pokemon/muk/back.2bpp.lz"
-DelibirdBackpic:     INCBIN "gfx/pokemon/delibird/back.2bpp.lz"
 SabrinaPic:          INCBIN "gfx/trainers/sabrina.2bpp.lz"
 MagikarpBackpic:     INCBIN "gfx/pokemon/magikarp/back.2bpp.lz"
 AriadosBackpic:      INCBIN "gfx/pokemon/ariados/back.2bpp.lz"
@@ -711,10 +709,11 @@ UnownRBackpic:       INCBIN "gfx/pokemon/unown_r/back.2bpp.lz"
 
 SECTION "Pics 19", ROMX
 
-; Seems to be an accidental copy of the previous bank
 FisherPic:           INCBIN "gfx/trainers/fisher.2bpp.lz"
 SwimmerfPic:         INCBIN "gfx/trainers/swimmer_f.2bpp.lz"
 SagePic:             INCBIN "gfx/trainers/sage.2bpp.lz"
+DelibirdFrontpic:    INCBIN "gfx/pokemon/delibird/front.animated.2bpp.lz"
+DelibirdBackpic:     INCBIN "gfx/pokemon/delibird/back.2bpp.lz"
 
 ; Sections "Pics 20" to "Pics 24" are not used for any graphics,
 ; but entries for their banks exist in FixPicBank (see engine/gfx/load_pics.asm).
