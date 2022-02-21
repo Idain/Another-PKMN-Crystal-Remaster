@@ -148,11 +148,11 @@ __version__ = "0.0.18"
 
 import itertools
 import math
-# http://www.python.org/doc/2.4.4/lib/module-operator.html
+# https://docs.python.org/3/library/operator.html
 import operator
 import struct
 import sys
-# http://www.python.org/doc/2.4.4/lib/module-warnings.html
+# https://docs.python.org/3/library/warnings.html
 import warnings
 import zlib
 
@@ -192,8 +192,8 @@ def group(s, n):
 def isarray(x):
     return isinstance(x, array)
 
-def tostring(row):
-    return row.tostring()
+def tobytes(row):
+    return row.tobytes()
 
 def interleave_planes(ipixels, apixels, ipsize, apsize):
     """
@@ -589,8 +589,8 @@ class Writer:
             p.extend(x[0:3])
             if len(x) > 3:
                 t.append(x[3])
-        p = tostring(p)
-        t = tostring(t)
+        p = tobytes(p)
+        t = tobytes(t)
         if t:
             return p,t
         return p,None
@@ -776,7 +776,7 @@ class Writer:
             data.append(0)
             extend(row)
             if len(data) > self.chunk_limit:
-                compressed = compressor.compress(tostring(data))
+                compressed = compressor.compress(tobytes(data))
                 if len(compressed):
                     write_chunk(outfile, b'IDAT', compressed)
                 # Because of our very witty definition of ``extend``,
@@ -785,7 +785,7 @@ class Writer:
                 # fresh one (which would be my natural FP instinct).
                 del data[:]
         if len(data):
-            compressed = compressor.compress(tostring(data))
+            compressed = compressor.compress(tobytes(data))
         else:
             compressed = b''
         flushed = compressor.flush()
@@ -1304,7 +1304,7 @@ class _readable:
     def read(self, n):
         r = self.buf[self.offset:self.offset+n]
         if isarray(r):
-            r = r.tostring()
+            r = r.tobytes()
         self.offset += n
         return r
 
@@ -1606,7 +1606,7 @@ class Reader:
             if self.bitdepth == 8:
                 return array('B', raw)
             if self.bitdepth == 16:
-                raw = tostring(raw)
+                raw = tobytes(raw)
                 return array('H', struct.unpack('!%dH' % (len(raw)//2), raw))
             assert self.bitdepth < 8
             width = self.width
@@ -1630,7 +1630,7 @@ class Reader:
         if self.bitdepth == 8:
             return bytes
         if self.bitdepth == 16:
-            bytes = tostring(bytes)
+            bytes = tobytes(bytes)
             return array('H',
               struct.unpack('!%dH' % (len(bytes)//2), bytes))
         assert self.bitdepth < 8
