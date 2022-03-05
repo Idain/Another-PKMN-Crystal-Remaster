@@ -739,7 +739,6 @@ ParkBallMultiplier:
 	ld b, $ff
 	ret
 
-
 HeavyBallMultiplier:
 ; subtract 20 from catch rate if weight < 102.4 kg
 ; else add 0 to catch rate if weight < 204.8 kg
@@ -852,17 +851,16 @@ LureBallMultiplier:
 	cp BATTLETYPE_FISH
 	ret nz
 
-	ld a, b ; a = b = 1x
-	add a ; a = 2x
+	ld a, b
+	add a
 	jr c, .max
 
-	add a ; a = 4x
+	add a
 	jr c, .max
 
-	add b ; 4x + 1x = 5x
+	add b
 	jr nc, .done
-
-; fallthrough
+	; fallthrough
 .max
 	ld a, $ff
 .done
