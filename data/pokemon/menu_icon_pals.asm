@@ -4,6 +4,7 @@ icon_pals: MACRO
 ENDM
 
 MonMenuIconPals:
+	table_width 1, MonMenuIconPals
 	;      	  normal, shiny
 	icon_pals TEAL, GREEN ; BULBASAUR
 	icon_pals TEAL, GREEN ; IVYSAUR
@@ -256,6 +257,8 @@ MonMenuIconPals:
 	icon_pals BLUE, TEAL ; LUGIA
 	icon_pals RED, BROWN ; HO_OH
 	icon_pals GREEN, PINK ; CELEBI
-	icon_pals RED, 	RED ; 252
+	icon_pals PURPLE, BROWN ; MISMAGIUS
+	icon_pals BLUE, PURPLE ; HONCHKROW
+	assert_table_length NUM_POKEMON
+
 	icon_pals RED, 	GREEN ; EGG
-	icon_pals RED, 	RED ; 254

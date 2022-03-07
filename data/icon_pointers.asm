@@ -253,5 +253,7 @@ IconPointers:
 	dw LugiaIcon 	  
 	dw HoOhIcon 	  
 	dw CelebiIcon
+	dw MismagiusIcon
+	dw HonchkrowIcon
 	dw EggIcon
 	assert_table_length NUM_ICONS + 1	  
