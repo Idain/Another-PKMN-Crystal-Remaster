@@ -3777,3 +3777,28 @@ CelebiEvosAttacks:
 	db 1, ANCIENTPOWER
 	db 1, HEAL_BELL
 	db 0 ; no more level-up moves
+
+MismagiusEvosAttacks:
+	db 0 ; no more evolutions
+	db 1, GROWL
+	db 1, PSYWAVE
+	db 1, SPITE
+	db 1, CONFUSE_RAY
+	db 1, MEAN_LOOK
+	db 1, PSYBEAM
+	db 1, PAIN_SPLIT
+	db 1, SHADOW_BALL
+	db 1, PERISH_SONG
+	db 0 ; no more level-up moves
+
+HonchkrowEvosAttacks:
+	db 0 ; no more evolutions
+	db 1, PURSUIT
+	db 1, HAZE
+	db 1, WING_ATTACK
+	db 1, NIGHT_SHADE
+	db 1, PECK
+	db 21, SWAGGER
+	db 25, FAINT_ATTACK
+	db 31, MEAN_LOOK
+	db 0 ; no more level-up moves

@@ -1,8 +1,6 @@
 INCLUDE "constants.asm"
 
 
-; PokemonPicPointers and UnownPicPointers are assumed to start at the same
-; address, but in different banks. This is enforced in layout.link.
 
 
 SECTION "Pic Pointers", ROMX
@@ -714,6 +712,10 @@ SwimmerfPic:         INCBIN "gfx/trainers/swimmer_f.2bpp.lz"
 SagePic:             INCBIN "gfx/trainers/sage.2bpp.lz"
 DelibirdFrontpic:    INCBIN "gfx/pokemon/delibird/front.animated.2bpp.lz"
 DelibirdBackpic:     INCBIN "gfx/pokemon/delibird/back.2bpp.lz"
+MismagiusFrontPic:   INCBIN "gfx/pokemon/mismagius/front.animated.2bpp.lz"
+MismagiusBackPic:    INCBIN "gfx/pokemon/mismagius/back.2bpp.lz"
+HonchkrowFrontPic:   INCBIN "gfx/pokemon/honchkrow/front.animated.2bpp.lz"
+HonchkrowBackPic:    INCBIN "gfx/pokemon/honchkrow/back.2bpp.lz"
 
 ; Sections "Pics 20" to "Pics 24" are not used for any graphics,
 ; but entries for their banks exist in FixPicBank (see engine/gfx/load_pics.asm).
