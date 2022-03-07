@@ -29,6 +29,7 @@ PrintUnownWord:
 	ld hl, wUnownDex
 	add hl, de
 	ld a, [hl]
+	dec a
 	ld e, a
 	ld d, 0
 	ld hl, UnownWords
