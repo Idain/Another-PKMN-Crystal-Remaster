@@ -1,5 +1,5 @@
-	db "SEED@" ; species name
-	dw 204, 150 ; height, weight
+	db "Seed@" ; species name
+	dw 204, 152 ; height, weight
 
 	db   "While it is young,"
 	next "it uses the"

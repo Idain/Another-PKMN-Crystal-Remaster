@@ -1,5 +1,5 @@
-	db "VOLCANO@" ; species name
-	dw 507, 1750 ; height, weight
+	db "Volcano@" ; species name
+	dw 507, 1753 ; height, weight
 
 	db   "When heat from its"
 	next "body causes the"

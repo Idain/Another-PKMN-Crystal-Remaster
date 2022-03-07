@@ -1,5 +1,5 @@
-	db "LEAF@" ; species name
-	dw 311, 350 ; height, weight
+	db "Leaf@" ; species name
+	dw 311, 348 ; height, weight
 
 	db   "The scent that"
 	next "wafts from the"

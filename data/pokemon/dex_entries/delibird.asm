@@ -1,5 +1,5 @@
-	db "DELIVERY@" ; species name
-	dw 211, 350 ; height, weight
+	db "Delivery@" ; species name
+	dw 211, 353 ; height, weight
 
 	db   "It always carries"
 	next "its food with it,"

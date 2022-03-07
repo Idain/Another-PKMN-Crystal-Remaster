@@ -1,5 +1,5 @@
-	db "TURTLE@" ; species name
-	dw 303, 500 ; height, weight
+	db "Turtle@" ; species name
+	dw 303, 49.6 ; height, weight
 
 	db   "Its long, furry"
 	next "tail is a symbol"

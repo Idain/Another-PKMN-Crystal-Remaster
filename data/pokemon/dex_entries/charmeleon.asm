@@ -1,5 +1,5 @@
-	db "FLAME@" ; species name
-	dw 307, 420 ; height, weight
+	db "Flame@" ; species name
+	dw 307, 419 ; height, weight
 
 	db   "If it becomes"
 	next "agitated during"
