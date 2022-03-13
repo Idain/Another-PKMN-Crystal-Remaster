@@ -1226,7 +1226,7 @@ Link_FindFirstNonControlCharacter_AllowZero:
 
 InitTradeMenuDisplay:
 	call ClearScreen
-	call LoadTradeScreenBorderGFX
+	farcall LoadTradeScreenBorderGFX
 	farcall InitTradeSpeciesList
 	xor a
 	ld hl, wOtherPlayerLinkMode
@@ -1946,7 +1946,7 @@ LinkTrade:
 	ld [wCurPartyMon], a
 	callfar EvolvePokemon
 	call ClearScreen
-	call LoadTradeScreenBorderGFX
+	farcall LoadTradeScreenBorderGFX
 	call SetTradeRoomBGPals
 	farcall Link_WaitBGMap
 
@@ -2033,10 +2033,6 @@ LinkTextboxAtHL:
 	ld d, h
 	ld e, l
 	farcall LinkTextbox
-	ret
-
-LoadTradeScreenBorderGFX:
-	farcall _LoadTradeScreenBorderGFX
 	ret
 
 SetTradeRoomBGPals:

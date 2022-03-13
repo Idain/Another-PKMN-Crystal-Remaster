@@ -5676,7 +5676,7 @@ Function1027eb:
 	ld c, 18
 	ld d, h
 	ld e, l
-	farcall _LinkTextbox
+	farcall LinkTextbox
 	ld de, .Stats_Trade
 	hlcoord 2, 16
 	call PlaceString
@@ -5946,7 +5946,7 @@ Function1029cf:
 	ld c, 8
 	ld d, h
 	ld e, l
-	farcall _LinkTextbox
+	farcall LinkTextbox
 	ld de, String_102a26
 	hlcoord 12, 8
 	call PlaceString
@@ -6433,7 +6433,7 @@ Function102dc3:
 	ld c, 18
 	ld d, h
 	ld e, l
-	farcall _LinkTextbox
+	farcall LinkTextbox
 	ret
 
 Function102dd3:
@@ -6442,9 +6442,8 @@ Function102dd3:
 	ld hl, vTiles0
 	lb bc, BANK(MobileTradeLightsGFX), 4
 	call Get2bpp
-	farcall __LoadTradeScreenBorderGFX
-	call EnableLCD
-	ret
+	farcall LoadTradeScreenBorderGFX
+	jp EnableLCD
 
 Function102dec:
 	ld hl, MobileTradeLightsPalettes
@@ -6469,7 +6468,7 @@ Function102e07:
 .link_battle
 	ld d, h
 	ld e, l
-	farcall _LinkTextbox
+	farcall LinkTextbox
 
 .okay
 	ld de, .waiting

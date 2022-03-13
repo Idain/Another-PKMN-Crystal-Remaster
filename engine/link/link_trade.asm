@@ -1,7 +1,7 @@
 LinkCommsBorderGFX:
 INCBIN "gfx/trade/border_tiles.2bpp"
 
-__LoadTradeScreenBorderGFX:
+LoadTradeScreenBorderGFX:
 	ld de, LinkCommsBorderGFX
 	ld hl, vTiles2
 	lb bc, BANK(LinkCommsBorderGFX), 70
@@ -22,7 +22,7 @@ INCBIN "gfx/trade/border_cable_top.tilemap"
 CableTradeBorderBottomTilemap:
 INCBIN "gfx/trade/border_cable_bottom.tilemap"
 
-_LinkTextbox:
+LinkTextbox:
 	ld h, d
 	ld l, e
 	push bc
@@ -93,7 +93,7 @@ _LinkTextbox:
 	ret
 
 InitTradeSpeciesList:
-	call _LoadTradeScreenBorderGFX
+	call LoadTradeScreenBorderGFX
 	call LoadCableTradeBorderTilemap
 	farcall _InitMG_Mobile_LinkTradePalMap
 	farcall PlaceTradePartnerNamesAndParty
@@ -104,9 +104,6 @@ InitTradeSpeciesList:
 .CancelString:
 	db "CANCEL@"
 
-_LoadTradeScreenBorderGFX:
-	jp __LoadTradeScreenBorderGFX
-	
 LinkComms_LoadPleaseWaitTextboxBorderGFX:
 	ld de, LinkCommsBorderGFX + $30 tiles
 	ld hl, vTiles2 tile $76
@@ -123,9 +120,6 @@ LoadCableTradeBorderTilemap:
 	decoord 0, 16
 	ld bc, 2 * SCREEN_WIDTH
 	jp CopyBytes
-
-LinkTextbox:
-	jp _LinkTextbox
 
 PrintWaitingTextAndSyncAndExchangeNybble:
 	call LoadStandardMenuHeader
@@ -151,7 +145,7 @@ PrintWaitingTextAndSyncAndExchangeNybble:
 	db "WAITING..!@"
 
 LinkTradeMenu:
-; MenuAction
+;.MenuAction
 	ld hl, w2DMenuFlags2
 	res 7, [hl]
 	ldh a, [hBGMapMode]
