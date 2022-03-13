@@ -408,6 +408,7 @@ Script_yesorno:
 	sbc a
 	inc a
 	ld [wScriptVar], a
+	vc_hook E_YESNO
 	ret
 
 Script_loadmenu:
