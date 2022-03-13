@@ -214,6 +214,9 @@ void interpret_command(char *command, const struct Symbol *current_hook, const s
 
 	// Use the arguments
 	if (!strcmp(command, "patch") || !strcmp(command, "PATCH") || !strcmp(command, "patch_") || !strcmp(command, "PATCH_")) {
+		if (argc > 2) {
+			error_exit("Error: Invalid arguments for command: \"%s\"", command);
+		}
 		if (!current_hook) {
 			error_exit("Error: No current patch for command: \"%s\"", command);
 		}
@@ -224,8 +227,13 @@ void interpret_command(char *command, const struct Symbol *current_hook, const s
 		if (fseek(new_rom, current_offset, SEEK_SET)) {
 			error_exit("Error: Cannot seek to \"vc_patch %s\" in the new ROM\n", current_hook->name);
 		}
-		const struct Symbol *current_hook_end = symbol_find_cat(symbols, current_hook->name, "_End");
-		int length = current_hook_end->offset - current_offset;
+		int length;
+		if (argc == 2) {
+			length = parse_number(argv[1], 0);
+		} else {
+			const struct Symbol *current_hook_end = symbol_find_cat(symbols, current_hook->name, "_End");
+			length = current_hook_end->offset - current_offset;
+		}
 		buffer_append(patches, &(struct Patch){current_offset, length});
 		bool modified = false;
 		if (length == 1) {
@@ -344,16 +352,26 @@ struct Buffer *process_template(const char *template_filename, const char *patch
 		case '[':
 			// "[...]" is a patch label; buffer its contents
 			putc(c, output);
+			bool alternate = false;
 			buffer->size = 0;
 			for (c = getc(input); c != EOF; c = getc(input)) {
-				putc(c, output);
-				if (c == ']') {
+				if (!alternate && c == '@') {
+					// "@" designates an alternate name for the ".VC_" label
+					alternate = true;
+					buffer->size = 0;
+				} else if (c == ']') {
+					putc(c, output);
 					break;
-				} else if (!isalnum(c) && c != '_' && c != '@' && c != '#') {
-					// Convert non-identifier characters to underscores
-					c = '_';
+				} else {
+					if (!alternate) {
+						putc(c, output);
+						if (!isalnum(c) && c != '_') {
+							// Convert non-identifier characters to underscores
+							c = '_';
+						}
+					}
+					buffer_append(buffer, &c);
 				}
-				buffer_append(buffer, &c);
 			}
 			buffer_append(buffer, &(char []){'\0'});
 			// The current patch should have a corresponding ".VC_" label
