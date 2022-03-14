@@ -139,7 +139,7 @@ ItemNames::
 	li "Leftovers"
 	li "Soothe Bell"
 	li "Eviolite"
-	li "Teru-sama"
+	li "Dusk Stone"
 	li "Leppa Berry"
 	li "Dragon Scale"
 	li "Berserk Gene"

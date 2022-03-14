@@ -145,7 +145,7 @@
 	const LEFTOVERS    ; 89
 	const SOOTHE_BELL  ; 8a
 	const EVIOLITE     ; 8b
-	const ITEM_95      ; 8c
+	const DUSK_STONE   ; 8c
 	const MYSTERYBERRY ; 8d
 	const DRAGON_SCALE ; 8e
 	const BERSERK_GENE ; 8f

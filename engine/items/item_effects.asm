@@ -152,8 +152,8 @@ ItemEffects:
 	dw NoEffect            ; DRAGON_FANG
 	dw NoEffect            ; LEFTOVERS
 	dw NoEffect            ; SOOTHE_BELL
-	dw NoEffect            ; ITEM_94
-	dw NoEffect            ; ITEM_95
+	dw NoEffect            ; EVIOLITE
+	dw EvoStoneEffect      ; DUSK_STONE
 	dw RestorePPEffect     ; MYSTERYBERRY
 	dw NoEffect            ; DRAGON_SCALE
 	dw NoEffect            ; BERSERK_GENE

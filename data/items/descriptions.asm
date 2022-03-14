@@ -140,7 +140,7 @@ ItemDescriptions:
 	dw LeftoversDesc
 	dw SootheBellDesc
 	dw EvioliteDesc
-	dw TeruSamaDesc
+	dw DuskStoneDesc
 	dw MysteryBerryDesc
 	dw DragonScaleDesc
 	dw BerserkGeneDesc
@@ -292,6 +292,7 @@ ThunderStoneDesc:
 WaterStoneDesc:
 LeafStoneDesc:
 SunStoneDesc:
+DuskStoneDesc:
 	db   "Evolves certain"
 	next "kinds of #mon.@"
 
