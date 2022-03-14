@@ -1330,7 +1330,7 @@ LinkTradePartymonMenuLoop:
 	jp z, LinkTradePartiesMenuMasterLoop
 
 	bit A_BUTTON_F, a
-	jp z, LinkTrade_TradeStatsMenu
+	jp nz, LinkTrade_TradeStatsMenu
 
 	bit D_DOWN_F, a
 	jr z, .not_d_down
