@@ -1,4 +1,5 @@
 EvolutionMoves::
+    table_width 1, EvolutionMoves
     db NO_MOVE      ; BULBASAUR
     db NO_MOVE      ; IVYSAUR
     db PETAL_DANCE  ; VENUSAUR
@@ -250,3 +251,6 @@ EvolutionMoves::
     db NO_MOVE      ; LUGIA
     db NO_MOVE      ; HO_OH
     db NO_MOVE      ; CELEBI
+    db NO_MOVE      ; MISMAGIUS
+    db NO_MOVE      ; HONCHKROW
+    assert_table_length NUM_POKEMON
