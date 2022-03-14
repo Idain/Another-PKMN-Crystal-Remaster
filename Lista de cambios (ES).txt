@@ -3,6 +3,13 @@ Nuevas características de "ANOTHER POKÉMON CRYSTAL GAME" (NOMBRE SUJETO A CAMB
 V1.2.0
 AÑADIDOS:
 
+- ¡¡¡COMPATIBILITAD CON LA CONSOLA VIRTUAL DE 3DS!!! Esto significa que podrán intercambiar y batallar a través
+de infrarrojos. Créditos a Vulcandth, Rangi, pfero, Drush, ax6 y todos los que trabajaron en ello.
+
+- Pokémon:
+	- Mismagius
+	- Honchkrow
+
 - TMS:
 	-- ¡El total de TMs ha sido expandido a 60! Estos son: Light Screen, Reflect, Safeguard, False Swipe, Explosion, Thunder Wave, Swords Dance, Rock Slide, Substitute y...
 	-- ¡...El NUEVO MOVIMIENTO! Hail (Granizo), y también es la nueva TM07. La entrega Pryce al derrotarlo.
@@ -12,6 +19,8 @@ AÑADIDOS:
 	--- Todas las nuevas TMs pueden ser compradas en Goldenrod o Celadon Dept. Store, salvo por Rock Slide. Esta se consigue al derrotar a Brock.
 
 - Items:
+	-- Dusk Stone
+	-- Eviolite
 	-- Soothe Bell ha sido añadido al juego. Se consigue en el National Park, cerca de la garita este.
 
 - Movimientos:
@@ -105,6 +114,12 @@ CAMBIOS:
 - Gráficos:
 	-- La intefaz de batalla ha sido renovada, dándole un aspecto moderno mientras aún se asemeja a la original.
 	-- Si un Pokémon es afectado por un problema de estado, ahora este se muestra al lado del nivel en vez de reemplazarlo.
+	-- Los signos que aparecen cada vez que entras a un mapa ahora están animados.
+
+	-- Pokémon sprites:
+		-- Delibird
+		-- Pidgeotto
+		-- Golduck
 
 - Animaciones:
 	-- Si hay un clima activo, al final de cada turno se mostrará la animación de este.
