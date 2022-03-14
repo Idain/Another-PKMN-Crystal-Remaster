@@ -1315,8 +1315,8 @@ JohtoGrassWildMons:
 	db 20, GOLBAT,		56, 58
 	db 10, PARASECT,	56, 58
 	db  5, PARASECT,	56, 58
-	db  4, MISDREAVUS,	55, 57
-	db  1, MISDREAVUS,	55, 57
+	db  4, MISMAGIUS,	58, 58
+	db  1, MISMAGIUS,	58, 58
 	end_grass_wildmons
 
 	def_grass_wildmons SILVER_CAVE_ROOM_3
