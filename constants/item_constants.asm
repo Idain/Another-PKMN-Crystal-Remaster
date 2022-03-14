@@ -144,7 +144,7 @@
 	const DRAGON_FANG  ; 88
 	const LEFTOVERS    ; 89
 	const SOOTHE_BELL  ; 8a
-	const ITEM_94      ; 8b
+	const EVIOLITE     ; 8b
 	const ITEM_95      ; 8c
 	const MYSTERYBERRY ; 8d
 	const DRAGON_SCALE ; 8e
@@ -186,7 +186,7 @@
 	const BLUESKY_MAIL ; b2
 	const MUSIC_MAIL   ; b3
 	const MIRAGE_MAIL  ; b4
-	const WATERPROOF   ; b5
+	const ITEM_BE  	   ; b5
 	const ITEM_C3      ; b6
 	const ITEM_DC      ; b7
 NUM_ITEMS EQU const_value - 1

@@ -139,7 +139,7 @@ ItemDescriptions:
 	dw DragonFangDesc
 	dw LeftoversDesc
 	dw SootheBellDesc
-	dw TeruSamaDesc
+	dw EvioliteDesc
 	dw TeruSamaDesc
 	dw MysteryBerryDesc
 	dw DragonScaleDesc
@@ -181,7 +181,7 @@ ItemDescriptions:
 	dw BlueSkyMailDesc
 	dw MusicMailDesc
 	dw MirageMailDesc
-	dw WaterproofDesc
+	dw TeruSamaDesc
 	dw TeruSamaDesc
 	dw TeruSamaDesc
 	assert_table_length NUM_ITEMS
@@ -914,6 +914,6 @@ MirageMailDesc:
 	db   "Mew-print Mail."
 	next "(HOLD)@"
 
-WaterproofDesc:
-	db   "Nullifies Water-"
-	next "type attacks.@"
+EvioliteDesc:
+	db   "Ups Def and Sp."
+	next "Def of evolvers.@"

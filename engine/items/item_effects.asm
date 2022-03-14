@@ -197,7 +197,7 @@ ItemEffects:
 ;	MUSIC_MAIL
 ;	MIRAGE_MAIL
 ;	ITEM_BE
-;	WATERPROOF
+;	ITEM_C3
 ;	ITEM_DC
 ; They all have the ITEMMENU_NOUSE attribute so they can't be used anyway.
 ; NoEffect would be appropriate, with the table then being NUM_ITEMS long.

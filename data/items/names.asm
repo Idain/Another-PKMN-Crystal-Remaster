@@ -138,7 +138,7 @@ ItemNames::
 	li "Dragon Fang"
 	li "Leftovers"
 	li "Soothe Bell"
-	li "Teru-sama"
+	li "Eviolite"
 	li "Teru-sama"
 	li "Leppa Berry"
 	li "Dragon Scale"
@@ -180,7 +180,7 @@ ItemNames::
 	li "BlueSky Mail"
 	li "Music Mail"
 	li "Mirage Mail"
-	li "Waterproof"
+	li "Teru-sama"
 	li "Teru-sama"
 	li "Teru-sama"
 	assert_list_length NUM_ITEMS

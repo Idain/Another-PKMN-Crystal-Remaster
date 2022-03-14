@@ -3,7 +3,7 @@
 ; item associated with the table entry is used instead.
 
 TimeCapsule_CatchRateItems:
-	db WATERPROOF, BERRY
+	db ITEM_BE, BERRY
 	db ITEM_C3, BERRY
 	db ITEM_DC, BERRY
 	db TM_PSYCH_UP, BERRY
