@@ -182,23 +182,33 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
 
 ([Video](https://www.youtube.com/watch?v=rGqu3d3pdok&t=450))
 
-**Fix:** Edit `DittoMetalPowder` in [engine/battle/effect_commands.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/effect_commands.asm):
+**Fix:** Edit [engine/battle/effect_commands.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/effect_commands.asm):
 
 ```diff
- 	ld a, c
- 	srl a
- 	add c
- 	ld c, a
- 	ret nc
+ DittoMetalPowder:
+ 	...
 
- 	srl b
- 	ld a, b
- 	and a
- 	jr nz, .done
- 	inc b
- .done
- 	scf
- 	rr c
+-	ld a, c
+-	srl a
+-	add c
+-	ld c, a
+-	ret nc
+-
+-	srl b
+-	ld a, b
+-	and a
+-	jr nz, .done
+-	inc b
+-.done
+-	scf
+-	rr c
++	ld h, b
++	ld l, c
++	srl b
++	rr c
++	add hl, bc
++	ld b, h
++	ld c, l
 +
 +	ld a, HIGH(MAX_STAT_VALUE)
 +	cp b
@@ -210,6 +220,46 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
 +
 +.cap
 +	ld bc, MAX_STAT_VALUE
+ 	ret
+```
+
+```diff
+ PlayerAttackDamage:
+ 	...
+
+ .done
++	push hl
++	call DittoMetalPowder
++	pop hl
+
+ 	call TruncateHL_BC
+
+ 	ld a, [wBattleMonLevel]
+ 	ld e, a
+-	call DittoMetalPowder
+
+ 	ld a, 1
+ 	and a
+ 	ret
+```
+
+```diff
+ EnemyAttackDamage:
+ 	...
+
+ .done
++	push hl
++	call DittoMetalPowder
++	pop hl
+
+ 	call TruncateHL_BC
+
+ 	ld a, [wBattleMonLevel]
+ 	ld e, a
+-	call DittoMetalPowder
+
+ 	ld a, 1
+ 	and a
  	ret
 ```
 
@@ -1349,19 +1399,13 @@ SunnyDayMoves:
 -	; res SUBSTATUS_NIGHTMARE, [hl]
 +	ld hl, wEnemySubStatus1
 +	res SUBSTATUS_NIGHTMARE, [hl]
--	; Bug: this should reset SUBSTATUS_CONFUSED
--	; Uncomment the 2 lines below to fix
--	; ld hl, wEnemySubStatus3
--	; res SUBSTATUS_CONFUSED, [hl]
-+	ld hl, wEnemySubStatus5
-+	res SUBSTATUS_TOXIC, [hl]
- 	ret
+ 	...
 ```
 
 
 ### AI use of Full Heal does not cure confusion status
 
-**Fix:** Edit `EnemyUsedFullRestore`, `EnemyUsedFullHeal`, and `AI_HealStatus` in [engine/battle/ai/items.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/ai/items.asm):
+**Fix:** Edit `EnemyUsedFullRestore`, and `AI_HealStatus` in [engine/battle/ai/items.asm](https://github.com/pret/pokecrystal/blob/master/engine/battle/ai/items.asm):
 
 ```diff
  EnemyUsedFullRestore:
@@ -1370,19 +1414,8 @@ SunnyDayMoves:
  	ld [wCurEnemyItem], a
 -	ld hl, wEnemySubStatus3
 -	res SUBSTATUS_CONFUSED, [hl]
- 	xor a
- 	ld [wEnemyConfuseCount], a
-```
-
-```diff
- EnemyUsedFullHeal:
- 	call AIUsedItemSound
- 	call AI_HealStatus
- 	ld a, FULL_HEAL
-+	ld [wCurEnemyItem], a
-+	xor a
-+	ld [wEnemyConfuseCount], a
- 	jp PrintText_UsedItemOn_AND_AIUpdateHUD
+- 	xor a
+- 	ld [wEnemyConfuseCount], a
 ```
 
 ```diff
@@ -1394,12 +1427,11 @@ SunnyDayMoves:
  	xor a
  	ld [hl], a
  	ld [wEnemyMonStatus], a
--	; Bug: this should reset SUBSTATUS_NIGHTMARE
--	; Uncomment the 2 lines below to fix
--	; ld hl, wEnemySubStatus1
--	; res SUBSTATUS_NIGHTMARE, [hl]
-+	ld hl, wEnemySubStatus1
-+	res SUBSTATUS_NIGHTMARE, [hl]
++	ld [wEnemyConfuseCount], a
+	; Bug: this should reset SUBSTATUS_NIGHTMARE
+	; Uncomment the 2 lines below to fix
+	; ld hl, wEnemySubStatus1
+	; res SUBSTATUS_NIGHTMARE, [hl]
 -	; Bug: this should reset SUBSTATUS_CONFUSED
 -	; Uncomment the 2 lines below to fix
 -	; ld hl, wEnemySubStatus3
