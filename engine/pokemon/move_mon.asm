@@ -1016,9 +1016,9 @@ SendMonIntoBox:
 	ld [de], a
 	inc de
 
-	; Set all 6 EVs + Padding to 0
+	; Set all 6 EVs to 0
 	xor a
-	ld b, 2 * NUM_EXP_STATS
+	ld b, NUM_STATS
 .loop2
 	ld [de], a
 	inc de
@@ -1026,6 +1026,7 @@ SendMonIntoBox:
 	jr nz, .loop2
 
 	ld hl, wEnemyMonDVs
+	ld de, sBoxMon1DVs
 	ld b, 2 + NUM_MOVES ; DVs and PP ; wEnemyMonHappiness - wEnemyMonDVs
 .loop3
 	ld a, [hli]
