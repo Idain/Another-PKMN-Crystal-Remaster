@@ -85,21 +85,22 @@ GetMonSpecies:
 
 	ld a, [wMonType]
 	and a ; PARTYMON
-	jr z, .partymon
-	cp OTPARTYMON
-	jr z, .otpartymon
-	cp BOXMON
-	jr z, .boxmon
-	cp TEMPMON
-	jr z, .breedmon
-	; WILDMON
-
-.partymon
 	ld hl, wPartySpecies
-	jr .done
+	jr z, .done
 
-.otpartymon
+	dec a ; OTPARTYMON
 	ld hl, wOTPartySpecies
+	jr z, .done
+
+	dec a ; BOXMON
+	jr z, .boxmon
+
+	dec a ; TEMPMON
+	ld a, [wBreedMon1Species]
+	jr z, .done2
+
+	; WILDMON
+	ld hl, wPartySpecies
 	jr .done
 
 .boxmon
@@ -108,10 +109,6 @@ GetMonSpecies:
 	ld hl, sBoxSpecies
 	call .done
 	jp CloseSRAM
-
-.breedmon
-	ld a, [wBreedMon1Species]
-	jr .done2
 
 .done
 	ld d, 0
