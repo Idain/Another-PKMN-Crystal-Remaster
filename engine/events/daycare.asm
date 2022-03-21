@@ -25,7 +25,6 @@ DayCareMan:
 	ld hl, wDayCareMan
 	bit DAYCAREMAN_HAS_MON_F, [hl]
 	jr nz, .AskWithdrawMon
-	ld hl, wDayCareMan
 	ld a, DAYCARETEXT_MAN_INTRO
 	call DayCareManIntroText
 	jr c, .cancel
@@ -60,7 +59,6 @@ DayCareLady:
 	ld hl, wDayCareLady
 	bit DAYCARELADY_HAS_MON_F, [hl]
 	jr nz, .AskWithdrawMon
-	ld hl, wDayCareLady
 	ld a, DAYCARETEXT_LADY_INTRO
 	call DayCareLadyIntroText
 	jr c, .cancel
