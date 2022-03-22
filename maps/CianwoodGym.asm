@@ -61,6 +61,12 @@ CianwoodGymChuckScript:
 	setevent EVENT_BEAT_BLACKBELT_LAO
 	setevent EVENT_BEAT_BLACKBELT_NOB
 	setevent EVENT_BEAT_BLACKBELT_LUNG
+	readvar VAR_JOHTO_BADGES
+	getnum STRING_BUFFER_3
+	iflessorequal 5, .GotFifthBadge
+	writetext ChuckPlayerGotSixthOrSeventhBadge
+.continue
+	promptbutton
 	writetext ChuckExplainBadgeText
 	promptbutton
 	verbosegiveitem TM_DYNAMICPUNCH
@@ -70,6 +76,10 @@ CianwoodGymChuckScript:
 	waitbutton
 	closetext
 	end
+
+.GotFifthBadge:
+	writetext ChuckPlayerGotFifthBadge
+	sjump .continue
 
 .SixBadgesBattle:
 	loadtrainer CHUCK, CHUCK3
@@ -252,15 +262,29 @@ GetStormBadgeText:
 	line "Storm Badge."
 	done
 
-ChuckExplainBadgeText:
+ChuckPlayerGotFifthBadge:
 	text "The Storm Badge"
-	line "lets your #mon"
+	line "makes all #mon"
 
-	para "use Fly to any" 
-	line "city or town you"
+	para "up to Lv. 35 obey,"
+	line "even traded ones."
+	done
 	
-	para "have already been"
-	line "to!"
+ChuckPlayerGotSixthOrSeventhBadge:
+	text "The Storm Badge"
+	line "makes all #mon"
+
+	para "up to Lv. 40 obey,"
+	line "even traded ones."
+	done
+
+ChuckExplainBadgeText:
+	text "It also lets your"
+	line "#mon use Fly to"
+
+	para "any city or town" 
+	line "you've already"
+	cont "been to!"
 
 	para "Here, take this,"
 	line "too!"

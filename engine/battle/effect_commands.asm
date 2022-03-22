@@ -665,36 +665,17 @@ BattleCommand_CheckObedience:
 	ld a, MAX_LEVEL
 	jr nz, .getlevel
 
-	dec hl ; wJothoBadges
+	dec hl ; wJohtoBadges
+	ld b, 1
+	call CountSetBits
+	ld a, [wNumSetBits]
 
-	; risingbadge
-	bit RISINGBADGE, [hl]
-	ld a, 65
-	jr nz, .getlevel
-
-	; fogbadge
-	bit FOGBADGE, [hl]
-	ld a, 45
-	jr nz, .getlevel
-
-	; plainbadge
-	bit PLAINBADGE, [hl]
-	ld a, 30
-	jr nz, .getlevel
-
-	; hivebadge
-	bit HIVEBADGE, [hl]
-	ld a, 25
-	jr nz, .getlevel
-
-	; zephyrbadge
-	bit ZEPHYRBADGE, [hl]
-	ld a, 20
-	jr nz, .getlevel
-
-	; no badges
-	ld a, 15
-
+	ld hl, .JohtoObedienceTable
+	ld b, 0
+	ld c, a
+	add hl, bc
+	ld a, [hl]
+	; fallthrough
 .getlevel
 ; c = obedience level
 ; d = monster level
@@ -908,6 +889,10 @@ BattleCommand_CheckObedience:
 	ld [wPlayerEncoreCount], a
 
 	jp EndMoveEffect
+
+
+.JohtoObedienceTable:
+	db 15, 20, 25, 30, 35, 40, 40, 45, 65
 
 IgnoreSleepOnly:
 	ld a, BATTLE_VARS_MOVE_ANIM

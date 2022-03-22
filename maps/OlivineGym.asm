@@ -36,6 +36,14 @@ OlivineGymJasmineScript:
 	iftrue .GotIronTail
 	writetext Jasmine_BadgeSpeech
 	promptbutton
+	readvar VAR_JOHTO_BADGES
+	getnum STRING_BUFFER_3
+	iflessorequal 5, .GotFifthBadge
+	writetext Jasmine_PlayerGotSixthOrSeventhBadge
+.continue
+	promptbutton
+	writetext Jasmine_PleaseTakeThisToo
+	promptbutton
 	verbosegiveitem TM_IRON_TAIL
 	iffalse .NoRoomForIronTail
 	setevent EVENT_GOT_TM23_IRON_TAIL
@@ -43,6 +51,10 @@ OlivineGymJasmineScript:
 	waitbutton
 	closetext
 	end
+
+.GotFifthBadge:
+	writetext Jasmine_PlayerGotFifthBadge
+	sjump .continue
 
 .SixBadgesBattle:
 	loadtrainer JASMINE, JASMINE3
@@ -152,8 +164,22 @@ Jasmine_BadgeSpeech:
 	text "Congratulations"
 	line "for winning the" 
 	cont "Mineral Badge…"
+	done
 
-	para "…Um… Please take"
+Jasmine_PlayerGotFifthBadge:
+	text "It'll make #mon"
+	line "up to Lv. 35 obey"
+	cont "you…"
+	done
+
+Jasmine_PlayerGotSixthOrSeventhBadge:
+	text "It'll make #mon"
+	line "up to Lv. 40 obey"
+	cont "you…"
+	done
+
+Jasmine_PleaseTakeThisToo:
+	text "…Um… Please take"
 	line "this too…"
 	done
 

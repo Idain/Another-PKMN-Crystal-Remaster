@@ -45,6 +45,10 @@ MahoganyGymPryceScript:
 	setevent EVENT_BEAT_BOARDER_RONALD
 	setevent EVENT_BEAT_BOARDER_BRAD
 	setevent EVENT_BEAT_BOARDER_DOUGLAS
+	iflessorequal 5, .GotFifthBadge
+	writetext PryceText_PlayerGotSixthOrSeventhBadge
+.continue
+	promptbutton
 	writetext PryceText_GlacierBadgeSpeech
 	promptbutton
 	verbosegiveitem TM_HAIL
@@ -54,6 +58,10 @@ MahoganyGymPryceScript:
 	waitbutton
 	closetext
 	end
+
+.GotFifthBadge:
+	writetext PryceText_PlayerGotFifthBadge
+	sjump .continue
 
 .SixBadgesBattle:
 	loadtrainer PRYCE, PRYCE1
@@ -255,13 +263,27 @@ Text_ReceivedGlacierBadge:
 	line "Glacier Badge."
 	done
 
+PryceText_PlayerGotFifthBadge:
+	text "This badge will"
+	line "make all #mon"
+
+	para "up to Lv. 35 obey"
+	line "you."
+	done
+
+PryceText_PlayerGotSixthOrSeventhBadge:
+	text "That badge will"
+	line "make all #mon"
+
+	para "up to Lv. 40 obey"
+	line "you."
+	done
+
 PryceText_GlacierBadgeSpeech:
-	text "This Badge will"
-	line "let your #mon" 
-	
-	para "use Whirlpool to"
-	line "get across real"
-	cont "whirlpools."
+	text "It also lets your"
+	line "#mon use Whirl-" 
+	cont "pool to get across"
+	cont "real whirlpools."
 
 	para "And this… This is"
 	line "a gift from me!"
@@ -287,9 +309,8 @@ PryceText_CherishYourPokemon:
 
 	para "You and your #-"
 	line "mon will be to-"
-
-	para "gether for many"
-	line "years to come."
+	cont "gether for many"
+	cont "years to come."
 
 	para "Cherish your time"
 	line "together!"
