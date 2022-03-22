@@ -284,12 +284,13 @@ DebugColorMain:
 ; Looping back around the pic set.
 	ld a, [wDebugColorIsTrainer]
 	and a
-	jr nz, .trainer
-; mon
-	ld a, NUM_POKEMON ; CELEBI
-	ret
-.trainer
+
+	; trainer
 	ld a, NUM_TRAINER_CLASSES ; MYSTICALMAN
+	ret nz
+	
+	; mon
+	ld a, NUM_POKEMON ; CELEBI
 	ret
 
 .Jumptable:
