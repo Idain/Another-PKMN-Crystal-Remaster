@@ -912,7 +912,6 @@ INCLUDE "gfx/mail.asm"
 ItemIsMail:
 	ld a, d
 	ld hl, MailItems
-	ld de, 1
-	jp IsInArray
+	jp IsInByteArray
 
 INCLUDE "data/items/mail_items.asm"

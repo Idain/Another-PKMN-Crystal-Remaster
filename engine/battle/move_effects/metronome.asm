@@ -23,9 +23,8 @@ BattleCommand_Metronome:
 
 ; None of the moves in MetronomeExcepts.
 	push af
-	ld de, 1
 	ld hl, MetronomeExcepts
-	call IsInArray
+	call IsInByteArray
 	pop bc
 	jr c, .GetMove
 

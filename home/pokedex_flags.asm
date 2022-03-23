@@ -4,15 +4,12 @@ CountSetBits::
 	ld c, 0
 .next
 	ld a, [hli]
-	ld e, a
-	ld d, 8
 
 .count
-	srl e
+	add a
 	jr nc, .NoCarry
 	inc c
 .NoCarry
-	dec d
 	jr nz, .count
 
 	dec b
