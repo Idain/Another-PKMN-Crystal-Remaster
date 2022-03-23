@@ -64,10 +64,12 @@ CianwoodGymChuckScript:
 	readvar VAR_JOHTO_BADGES
 	getnum STRING_BUFFER_3
 	iflessorequal 5, .GotFifthBadge
-	writetext ChuckPlayerGotSixthOrSeventhBadge
+	ifequal 6, .GotSixthBadge
+	writetext ChuckPlayerGotSeventhBadge
 .continue
-	promptbutton
 	writetext ChuckExplainBadgeText
+.continue2
+	writetext ChuckHereTakeThisToo
 	promptbutton
 	verbosegiveitem TM_DYNAMICPUNCH
 	iffalse .BagFull
@@ -80,6 +82,10 @@ CianwoodGymChuckScript:
 .GotFifthBadge:
 	writetext ChuckPlayerGotFifthBadge
 	sjump .continue
+
+.GotSixthBadge:
+	writetext SixthBadge_ChuckExplainBadgeText
+	sjump .continue2
 
 .SixBadgesBattle:
 	loadtrainer CHUCK, CHUCK3
@@ -266,16 +272,27 @@ ChuckPlayerGotFifthBadge:
 	text "The Storm Badge"
 	line "makes all #mon"
 
-	para "up to Lv. 35 obey,"
+	para "up to Lv. 40 obey,"
 	line "even traded ones."
 	done
 	
-ChuckPlayerGotSixthOrSeventhBadge:
+ChuckPlayerGotSeventhBadge:
 	text "The Storm Badge"
 	line "makes all #mon"
 
-	para "up to Lv. 40 obey,"
+	para "up to Lv. 45 obey,"
 	line "even traded ones."
+	done
+
+SixthBadge_ChuckExplainBadgeText:
+	text "The Storm Badge"
+	line "lets your #mon"
+
+	para "use Fly to any"
+	line "city or town you"
+
+	para "have already been"
+	line "to!"
 	done
 
 ChuckExplainBadgeText:
@@ -285,8 +302,10 @@ ChuckExplainBadgeText:
 	para "any city or town" 
 	line "you've already"
 	cont "been to!"
+	done
 
-	para "Here, take this,"
+ChuckHereTakeThisToo:
+	text "Here, take this,"
 	line "too!"
 	done
 

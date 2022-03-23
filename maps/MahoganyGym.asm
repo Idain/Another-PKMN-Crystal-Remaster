@@ -46,10 +46,12 @@ MahoganyGymPryceScript:
 	setevent EVENT_BEAT_BOARDER_BRAD
 	setevent EVENT_BEAT_BOARDER_DOUGLAS
 	iflessorequal 5, .GotFifthBadge
-	writetext PryceText_PlayerGotSixthOrSeventhBadge
+	ifequal 6, .GotSixthBadge
+	writetext PryceText_PlayerGotSeventhBadge
 .continue
-	promptbutton
 	writetext PryceText_GlacierBadgeSpeech
+.continue2
+	writetext PryceText_AGiftFromMe
 	promptbutton
 	verbosegiveitem TM_HAIL
 	iffalse MahoganyGym_NoRoomForIcyWind
@@ -62,6 +64,10 @@ MahoganyGymPryceScript:
 .GotFifthBadge:
 	writetext PryceText_PlayerGotFifthBadge
 	sjump .continue
+
+.GotSixthBadge:
+	writetext SixthBadge_PryceText_GlacierBadgeSpeech
+	sjump .continue2
 
 .SixBadgesBattle:
 	loadtrainer PRYCE, PRYCE1
@@ -267,16 +273,25 @@ PryceText_PlayerGotFifthBadge:
 	text "This badge will"
 	line "make all #mon"
 
-	para "up to Lv. 35 obey"
+	para "up to Lv. 40 obey"
 	line "you."
 	done
 
-PryceText_PlayerGotSixthOrSeventhBadge:
+PryceText_PlayerGotSeventhBadge:
 	text "That badge will"
 	line "make all #mon"
 
-	para "up to Lv. 40 obey"
+	para "up to Lv. 45 obey"
 	line "you."
+	done
+
+SixthBadge_PryceText_GlacierBadgeSpeech:
+	text "That badge lets"
+	line "your #mon use"
+
+	para "Whirlpool to get"
+	line "across real whirl-"
+	cont "pools."
 	done
 
 PryceText_GlacierBadgeSpeech:
@@ -284,8 +299,10 @@ PryceText_GlacierBadgeSpeech:
 	line "#mon use Whirl-" 
 	cont "pool to get across"
 	cont "real whirlpools."
+	done
 
-	para "And this… This is"
+PryceText_AGiftFromMe:
+	text "And this… This is"
 	line "a gift from me!"
 	done
 

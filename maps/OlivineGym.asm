@@ -39,9 +39,8 @@ OlivineGymJasmineScript:
 	readvar VAR_JOHTO_BADGES
 	getnum STRING_BUFFER_3
 	iflessorequal 5, .GotFifthBadge
-	writetext Jasmine_PlayerGotSixthOrSeventhBadge
+	ifgreaterorequal 7, .GotSeventhBadge
 .continue
-	promptbutton
 	writetext Jasmine_PleaseTakeThisToo
 	promptbutton
 	verbosegiveitem TM_IRON_TAIL
@@ -54,6 +53,10 @@ OlivineGymJasmineScript:
 
 .GotFifthBadge:
 	writetext Jasmine_PlayerGotFifthBadge
+	sjump .continue
+
+.GotSeventhBadge:
+	writetext Jasmine_PlayerGotSeventhBadge
 	sjump .continue
 
 .SixBadgesBattle:
@@ -168,13 +171,13 @@ Jasmine_BadgeSpeech:
 
 Jasmine_PlayerGotFifthBadge:
 	text "It'll make #mon"
-	line "up to Lv. 35 obey"
+	line "up to Lv. 40 obey"
 	cont "you…"
 	done
 
-Jasmine_PlayerGotSixthOrSeventhBadge:
+Jasmine_PlayerGotSeventhBadge:
 	text "It'll make #mon"
-	line "up to Lv. 40 obey"
+	line "up to Lv. 45 obey"
 	cont "you…"
 	done
 

@@ -55,14 +55,18 @@ CAMBIOS:
 - Modo historia: Ahora se necesitan 7 medallas de Kanto antes de poder enfrentar a Blue.
 
 - Obediencia: Ha sido cambiado para que también afecte a Pokémon que sean propios del jugador. También, las medallas que aumentan el límite fueron cambiadas:
-	* Sin medallas: 	Pokémon hasta el Nv. 15 te obedecerán.
-	* Zephyr Badge: 	Pokémon hasta el Nv. 20 te obedecerán.
-	* Hive Badge: 		Pokémon hasta el Nv. 25 te obedecerán.
-	* Plain Badge: 		Pokémon hasta el Nv. 30 te obedecerán.
-	* Fog Badge: 		Pokémon hasta el Nv. 40 te obedecerán.
-	* Glacier Badge: 	Pokémon hasta el Nv. 45 te obedecerán.
-	* Rising Badge: 	Pokémon hasta el Nv. 65 te obedecerán.
-	* Earth Badge: 		Todos los Pokémon te obedecerán sin importar el nivel.
+	-- Johto:
+		* Sin medallas: 	Pokémon hasta el Nv. 15 te obedecerán.
+		* Una medalla: 		Pokémon hasta el Nv. 20 te obedecerán.
+		* Dos medallas: 	Pokémon hasta el Nv. 25 te obedecerán.
+		* Tres medallas: 	Pokémon hasta el Nv. 30 te obedecerán.
+		* Cuatro medallas: 	Pokémon hasta el Nv. 35 te obedecerán.
+		* Cinco medallas:	Pokémon hasta el Nv. 40 te obedecerán.
+		* Seis medallas: 	No cambia
+		* Siete medallas: 	Pokémon hasta el Nv. 45 te obedecerán.
+		* Ocho medallas: 	Pokémon hasta el Nv. 65 te obedecerán.
+	-- Kanto:
+		* Earth Badge: 		Todos los Pokémon te obedecerán sin importar el nivel.
 
 - Items:
 	-- Los efectos de los items Lucky Punch y Sitck (Leek en Gen 8) ahora se acumulan con Focus Energy y movimientos con alta probabilidad de golpe crítico.
