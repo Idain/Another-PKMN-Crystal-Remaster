@@ -665,17 +665,20 @@ BattleCommand_CheckObedience:
 	ld a, MAX_LEVEL
 	jr nz, .getlevel
 
-	dec hl ; wJohtoBadges
-	ld b, 1
-	call CountSetBits
-	ld a, [wNumSetBits]
-
-	ld hl, .JohtoObedienceTable
-	ld b, 0
-	ld c, a
-	add hl, bc
+	dec hl
+	assert wKantoBadges - 1 == wJohtoBadges
 	ld a, [hl]
-	; fallthrough
+    ld hl, .JohtoObedienceLevels
+.checkObtainedBadges
+    add a
+    jr nc, .noBadge
+	; If we got that badge, move one step forward
+    inc hl
+.noBadge
+	; Keep going while there are more badges
+    jr nz, .checkObtainedBadges
+    ld a, [hl]
+
 .getlevel
 ; c = obedience level
 ; d = monster level
@@ -891,8 +894,10 @@ BattleCommand_CheckObedience:
 	jp EndMoveEffect
 
 
-.JohtoObedienceTable:
+.JohtoObedienceLevels:
+	table_width 1, .JohtoObedienceLevels
 	db 15, 20, 25, 30, 35, 40, 40, 45, 65
+	assert_table_length NUM_JOHTO_BADGES + 1
 
 IgnoreSleepOnly:
 	ld a, BATTLE_VARS_MOVE_ANIM
