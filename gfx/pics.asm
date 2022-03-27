@@ -529,7 +529,6 @@ SlugmaBackpic:       INCBIN "gfx/pokemon/slugma/back.2bpp.lz"
 KabutoBackpic:       INCBIN "gfx/pokemon/kabuto/back.2bpp.lz"
 VictreebelBackpic:   INCBIN "gfx/pokemon/victreebel/back.2bpp.lz"
 MeowthBackpic:       INCBIN "gfx/pokemon/meowth/back.2bpp.lz"
-MeganiumBackpic:     INCBIN "gfx/pokemon/meganium/back.2bpp.lz"
 PicnickerPic:        INCBIN "gfx/trainers/picnicker.2bpp.lz"
 LickitungBackpic:    INCBIN "gfx/pokemon/lickitung/back.2bpp.lz"
 TogepiFrontpic:      INCBIN "gfx/pokemon/togepi/front.animated.2bpp.lz"
@@ -716,9 +715,9 @@ MismagiusFrontPic:   INCBIN "gfx/pokemon/mismagius/front.animated.2bpp.lz"
 MismagiusBackPic:    INCBIN "gfx/pokemon/mismagius/back.2bpp.lz"
 HonchkrowFrontPic:   INCBIN "gfx/pokemon/honchkrow/front.animated.2bpp.lz"
 HonchkrowBackPic:    INCBIN "gfx/pokemon/honchkrow/back.2bpp.lz"
+MeganiumBackpic:     INCBIN "gfx/pokemon/meganium/back.2bpp.lz"
 
-; Sections "Pics 20" to "Pics 24" are not used for any graphics,
-; but entries for their banks exist in FixPicBank (see engine/gfx/load_pics.asm).
+; Sections "Pics 20" to "Pics 24" are not used for any graphics.
 
 SECTION "Pics 20", ROMX
 
