@@ -6258,7 +6258,6 @@ BattleCommand_Heal:
 
 	push hl
 	push de
-	push af
 	call BattleCommand_MoveDelay
 	ld a, BATTLE_VARS_STATUS
 	call GetBattleVarAddr
@@ -6279,24 +6278,18 @@ BattleCommand_Heal:
 .calc_enemy_stats
 	call CalcEnemyStats
 .got_stats
-	pop af
 	pop de
 	pop hl
-
-.not_rest
-	jr z, .restore_full_hp
-	ld hl, GetHalfMaxHP
-	call CallBattleCore
+	farcall GetMaxHP
 	jr .finish
 
-.restore_full_hp
-	ld hl, GetMaxHP
-	call CallBattleCore
+.not_rest
+	farcall GetHalfMaxHP
+	; fallthrough
 .finish
 	call AnimateCurrentMove
 	call BattleCommand_SwitchTurn
-	ld hl, RestoreHP
-	call CallBattleCore
+	farcall RestoreHP
 	call BattleCommand_SwitchTurn
 	call UpdateUserInParty
 	call RefreshBattleHuds
