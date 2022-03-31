@@ -38,8 +38,7 @@ BattleCommand_BatonPass:
 	farcall CheckMobileBattleError
 	jp c, EndMoveEffect
 
-	ld hl, PassedBattleMonEntrance
-	call CallBattleCore
+	farcall PassedBattleMonEntrance
 
 	jp ResetBatonPassStatus
 
@@ -63,17 +62,13 @@ BattleCommand_BatonPass:
 ; Passed enemy PartyMon entrance
 	xor a
 	ld [wEnemySwitchMonIndex], a
-	ld hl, EnemySwitch_SetMode
-	call CallBattleCore
-	ld hl, ResetBattleParticipants
-	call CallBattleCore
+	farcall EnemySwitch_SetMode
+	farcall ResetBattleParticipants
 	ld a, TRUE
 	ld [wApplyStatLevelMultipliersToEnemy], a
-	ld hl, ApplyStatLevelMultiplierOnAllStats
-	call CallBattleCore
+	farcall ApplyStatLevelMultiplierOnAllStats
 
-	ld hl, SpikesDamage
-	call CallBattleCore
+	farcall SpikesDamage
 
 	jr ResetBatonPassStatus
 
@@ -86,8 +81,7 @@ BatonPass_LinkPlayerSwitch:
 	ld [wBattlePlayerAction], a
 
 	call LoadStandardMenuHeader
-	ld hl, LinkBattleSendReceiveAction
-	call CallBattleCore
+	farcall LinkBattleSendReceiveAction
 	call CloseWindow
 
 	xor a ; BATTLEPLAYERACTION_USEMOVE
@@ -100,8 +94,7 @@ BatonPass_LinkEnemySwitch:
 	ret z
 
 	call LoadStandardMenuHeader
-	ld hl, LinkBattleSendReceiveAction
-	call CallBattleCore
+	farcall LinkBattleSendReceiveAction
 
 	ld a, [wOTPartyCount]
 	add BATTLEACTION_SWITCH1
