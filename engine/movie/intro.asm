@@ -107,7 +107,7 @@ IntroScene1:
 	ld hl, IntroUnownAAttrmap
 	debgcoord 0, 0
 	call Intro_DecompressRequest2bpp_64Tiles
-	ld a, $0
+	xor a
 	ldh [rVBK], a
 	ld hl, IntroUnownsGFX
 	ld de, vTiles2 tile $00
@@ -178,7 +178,7 @@ IntroScene3:
 	ld hl, IntroBackgroundAttrmap
 	debgcoord 0, 0
 	call Intro_DecompressRequest2bpp_64Tiles
-	ld a, $0
+	xor a
 	ldh [rVBK], a
 	ld hl, IntroBackgroundGFX
 	ld de, vTiles2 tile $00
@@ -236,7 +236,7 @@ IntroScene5:
 	ld hl, IntroUnownHIAttrmap
 	debgcoord 0, 0
 	call Intro_DecompressRequest2bpp_64Tiles
-	ld a, $0
+	xor a
 	ldh [rVBK], a
 	ld hl, IntroUnownsGFX
 	ld de, vTiles2 tile $00
@@ -331,7 +331,7 @@ IntroScene7:
 	ld de, vTiles0 tile $00
 	call Intro_DecompressRequest2bpp_128Tiles
 
-	ld a, $0
+	xor a
 	ldh [rVBK], a
 	ld hl, IntroSuicuneRunGFX
 	ld de, vTiles0 tile $00
@@ -838,7 +838,7 @@ IntroScene19:
 	ld hl, IntroSuicuneBackAttrmap
 	debgcoord 0, 0
 	call Intro_DecompressRequest2bpp_64Tiles
-	ld a, $0
+	xor a
 	ldh [rVBK], a
 	ld hl, IntroSuicuneBackGFX
 	ld de, vTiles2 tile $00
@@ -922,15 +922,6 @@ IntroScene20:
 	xor a
 	jp Intro_Scene20_AppearUnown
 
-.AppearUnownPal2: ; unreferenced
-	ld a, c
-	and $1c
-	srl a
-	srl a
-	ld [wIntroSceneTimer], a
-	ld a, 1
-	jp Intro_Scene20_AppearUnown
-
 IntroScene21:
 ; Suicune gets more distant and turns black.
 	call Intro_ColoredSuicuneFrameSwap
@@ -948,8 +939,6 @@ IntroScene22:
 	inc [hl]
 	cp $8
 	ret c
-	; fallthrough
-.done
 	farcall DeinitializeAllSprites
 	jp NextIntroScene
 
@@ -1000,7 +989,7 @@ IntroScene26:
 	ld hl, IntroCrystalUnownsAttrmap
 	debgcoord 0, 0
 	call Intro_DecompressRequest2bpp_64Tiles
-	ld a, $0
+	xor a
 	ldh [rVBK], a
 	ld hl, IntroCrystalUnownsGFX
 	ld de, vTiles2 tile $00
