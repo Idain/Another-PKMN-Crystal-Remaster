@@ -307,9 +307,7 @@ SavingDontTurnOffThePower:
 	; Restore the text speed setting
 	pop af
 	ld [wOptions], a
-	; Wait for 8 frames
-	ld c, 8
-	jp DelayFrames
+	ret
 
 ErasePreviousSave:
 	call EraseBoxes
