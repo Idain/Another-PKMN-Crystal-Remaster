@@ -546,13 +546,13 @@ AI_Smart_LockOn:
 AI_Smart_Selfdestruct:
 ; Selfdestruct, Explosion
 
-; Unless this is the enemy's last Pokemon...
+; Unless this is the enemy's last Pokémon...
 	push hl
 	farcall FindAliveEnemyMons
 	pop hl
 	jr nc, .notlastmon
 
-; ...greatly discourage this move unless this is the player's last Pokemon too.
+; ...greatly discourage this move unless this is the player's last Pokémon too.
 	push hl
 	call AICheckLastPlayerMon
 	pop hl
@@ -2376,32 +2376,18 @@ AI_Smart_HiddenPower:
 	ld a, 1
 	ldh [hBattleTurn], a
 
-; Calculate Hidden Power's type and base power based on enemy's DVs.
+; Calculate Hidden Power's type based on enemy's DVs.
 	callfar HiddenPowerDamage
 	callfar BattleCheckTypeMatchup
 	pop hl
 
-; Discourage Hidden Power if not very effective.
+; Discourage Hidden Power if not very effective, encourage it if super-effective. 
+; Otherwise do nothing.
 	ld a, [wTypeMatchup]
 	cp EFFECTIVE
+	ret z
 	jr c, .bad
-
-; Discourage Hidden Power if its base power	is lower than 50.
-	ld a, d
-	cp 50
-	jr c, .bad
-
-; Encourage Hidden Power if super-effective.
-	ld a, [wTypeMatchup]
-	cp EFFECTIVE + 1
-	jr nc, .good
-
-; Encourage Hidden Power if its base power is 70.
-	ld a, d
-	cp 70
-	ret c
-
-.good
+;good
 	dec [hl]
 	ret
 
@@ -2771,7 +2757,7 @@ AICheckEnemyMaxHP:
 	; fallthrough
 
 AICheckMaxHP:
-; Return carry if hp at de matches max hp at hl.
+; Return carry if HP at de matches max HP at hl.
 
 	ld a, [de]
 	inc de
