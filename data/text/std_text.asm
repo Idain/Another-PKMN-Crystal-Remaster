@@ -183,14 +183,6 @@ TVText:
 	text "It's a TV."
 	done
 
-HomepageText:
-	text "#mon Journal"
-	line "Home Page…"
-
-	para "It hasn't been"
-	line "updated…"
-	done
-
 TrashCanText:
 	text "There's nothing in"
 	line "here…"
