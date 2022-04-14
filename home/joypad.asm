@@ -397,13 +397,9 @@ PromptButton::
 .blink_cursor
 	ldh a, [hVBlankCounter]
 	and %00010000 ; bit 4, a
-	jr z, .cursor_off
-	ld a, "▼"
-	jr .load_cursor_state
-
-.cursor_off
 	lda_coord 17, 17
-
+	jr z, .load_cursor_state
+	ld a, "▼"
 .load_cursor_state
 	ldcoord_a 18, 17
 	ret
