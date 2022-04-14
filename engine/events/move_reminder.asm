@@ -12,7 +12,6 @@ MoveReminder:
 	call PrintText
 	call JoyWaitAorB
 
-	ld b, 6
 	farcall SelectMonFromParty
 	jr c, .cancel
 
@@ -91,7 +90,6 @@ GetRemindableMoves:
 	ld a, [wCurPartySpecies]
 	dec a
 	push bc
-	ld b, 0
 	ld c, a
 	ld hl, EvosAttacksPointers
 	add hl, bc
