@@ -35,11 +35,6 @@ GameCornerPrizeMonCheckDex:
 	farcall NewPokedexEntry
 	jp ExitAllMenus
 
-UnusedSetSeenMon:
-	ld a, [wScriptVar]
-	dec a
-	jp SetSeenMon
-
 FindPartyMonAboveLevel:
 	ld a, [wScriptVar]
 	ld b, a
@@ -243,19 +238,9 @@ CheckCoinsAndCoinCase:
 	text_far _NoCoinCaseText
 	text_end
 
-ClearBGPalettesBufferScreen:
-	call ClearBGPalettes
-	jp BufferScreen
-
 ScriptReturnCarry:
 	sbc a
 	and TRUE
-	ld [wScriptVar], a
-	ret
-
-UnusedCheckUnusedTwoDayTimer:
-	farcall CheckUnusedTwoDayTimer
-	ld a, [wUnusedTwoDayTimer]
 	ld [wScriptVar], a
 	ret
 

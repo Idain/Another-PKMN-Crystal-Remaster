@@ -57,7 +57,6 @@ SpecialsPointers::
 	add_special SlotMachine
 	add_special CardFlip
 	add_special UnusedMemoryGame ; unused
-	add_special ClearBGPalettesBufferScreen ; unused
 	add_special FadeOutPalettes
 	add_special BattleTowerFade
 	add_special FadeBlackQuickly
@@ -66,11 +65,9 @@ SpecialsPointers::
 	add_special ReloadSpritesNoPalettes ; bank 0
 	add_special ClearBGPalettes ; bank 0
 	add_special UpdateTimePals ; bank 0
-	add_special ClearTilemap ; bank 0; unused as special
 	add_special UpdateSprites ; bank 0
 	add_special UpdatePlayerSprite ; bank 0
 	add_special GameCornerPrizeMonCheckDex
-	add_special UnusedSetSeenMon ; unused
 	add_special WaitSFX ; bank 0
 	add_special PlayMapMusic ; bank 0
 	add_special RestartMapMusic ; bank 0
@@ -80,7 +77,6 @@ SpecialsPointers::
 	add_special FindPartyMonAtLeastThatHappy ; unused
 	add_special FindPartyMonThatSpecies
 	add_special FindPartyMonThatSpeciesYourTrainerID
-	add_special UnusedCheckUnusedTwoDayTimer ; unused
 	add_special DayCareMon1
 	add_special DayCareMon2
 	add_special SelectRandomBugContestContestants
