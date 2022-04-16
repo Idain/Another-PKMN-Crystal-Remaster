@@ -19,9 +19,10 @@ de infrarrojos. Créditos a Vulcandth, Rangi, pfero, Drush, ax6 y todos los que 
 	--- Todas las nuevas TMs pueden ser compradas en Goldenrod o Celadon Dept. Store, salvo por Rock Slide. Esta se consigue al derrotar a Brock.
 
 - Items:
-	-- Dusk Stone
-	-- Eviolite
-	-- Soothe Bell ha sido añadido al juego. Se consigue en el National Park, cerca de la garita este.
+	-- Dusk Stone.
+	-- Eviolite.
+	-- Link Cable. Evoluciona Pokémon que normalmente lo hacen por intercambio (Graveler, Machoke, Kadabra, Haunter).
+	-- Soothe Bell. Se consigue en el National Park, cerca de la garita este.
 
 - Movimientos:
 	-- ¡Carantoña y Fuerza Lunar (Play Rough & Moonblast) han sido añadidos al juego!

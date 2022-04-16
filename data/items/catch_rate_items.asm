@@ -3,11 +3,11 @@
 ; item associated with the table entry is used instead.
 
 TimeCapsule_CatchRateItems:
-	db ITEM_BE, BERRY
-	db ITEM_C3, BERRY
-	db ITEM_DC, BERRY
+	db ITEM_BE, 	BERRY
+	db ITEM_C3, 	BERRY
+	db ITEM_DC, 	BERRY
 	db TM_PSYCH_UP, BERRY
-	db TM_REFLECT, BERRY
-	db TM_DETECT, BERRY
-	db -1,      BERRY
+	db TM_REFLECT, 	BERRY
+	db TM_DETECT, 	BERRY
+	db -1,      	BERRY
 	db 0 ; end
