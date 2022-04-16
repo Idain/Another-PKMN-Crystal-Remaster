@@ -144,7 +144,7 @@ ItemDescriptions:
 	dw MysteryBerryDesc
 	dw DragonScaleDesc
 	dw BerserkGeneDesc
-	dw TeruSamaDesc
+	dw LinkCableDesc
 	dw TeruSamaDesc
 	dw TeruSamaDesc
 	dw SacredAshDesc
@@ -293,6 +293,7 @@ WaterStoneDesc:
 LeafStoneDesc:
 SunStoneDesc:
 DuskStoneDesc:
+LinkCableDesc:
 	db   "Evolves certain"
 	next "kinds of #mon.@"
 
@@ -394,6 +395,7 @@ PokeDollDesc:
 	next "a wild #mon.@"
 
 FullHealDesc:
+RageCandyBarDesc:
 	db   "Eliminates all"
 	next "status problems.@"
 
@@ -680,10 +682,6 @@ SpellTagDesc:
 	db   "Powers up Ghost-"
 	next "type moves. (HOLD)@"
 
-RageCandyBarDesc:
-	db   "Eliminates all"
-	next "status problems.@"
-
 GSBallDesc:
 	db   "The mysterious"
 	next "Ball.@"
@@ -792,7 +790,7 @@ MysteryBerryDesc:
 	next "for PP. (HOLD)@"
 
 DragonScaleDesc:
-	db   "A rare dragon-type"
+	db   "A rare Dragon-type"
 	next "item.@"
 
 BerserkGeneDesc:
@@ -840,9 +838,6 @@ LoveBallDesc:
 	next "opposite gender.@"
 
 NormalBoxDesc:
-	db   "Open it and see"
-	next "what's inside.@"
-
 GorgeousBoxDesc:
 	db   "Open it and see"
 	next "what's inside.@"

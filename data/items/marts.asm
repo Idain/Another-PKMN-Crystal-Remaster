@@ -417,7 +417,7 @@ MartCeladon2F1:
 	db -1 ; end
 
 MartGoldenrod2F2:
-	db 16 ; # items
+	db 17 ; # items
 	db POKE_BALL
 	db GREAT_BALL
 	db ULTRA_BALL
@@ -427,6 +427,7 @@ MartGoldenrod2F2:
 	db SUPER_REPEL
 	db MAX_REPEL
 	db FLOWER_MAIL
+	db LINK_CABLE
 	db FIRE_STONE
 	db THUNDERSTONE
 	db WATER_STONE
@@ -646,9 +647,10 @@ MartCeladon3F:
 	db -1 ; end
 
 MartCeladon4F:
-	db 9 ; # items
+	db 10 ; # items
 	db LOVELY_MAIL
 	db SURF_MAIL
+	db LINK_CABLE
 	db FIRE_STONE
 	db THUNDERSTONE
 	db WATER_STONE

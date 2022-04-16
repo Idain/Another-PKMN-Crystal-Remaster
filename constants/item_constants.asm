@@ -149,7 +149,7 @@
 	const MYSTERYBERRY ; 8d
 	const DRAGON_SCALE ; 8e
 	const BERSERK_GENE ; 8f
-	const ITEM_99      ; 90
+	const LINK_CABLE   ; 90
 	const ITEM_9A      ; 91
 	const ITEM_9B      ; 92
 	const SACRED_ASH   ; 93
@@ -274,8 +274,8 @@ NUM_TMS EQU __tmhm_value__ - 1
 
 add_hm: MACRO
 ; Defines three constants:
-; - HM_\1: the item id, starting at $f3
-; - \1_TMNUM: the learnable TM/HM flag, starting at 51
+; - HM_\1: the item id, starting at $f4
+; - \1_TMNUM: the learnable TM/HM flag, starting at 61
 ; - HM##_MOVE: alias for the move id, equal to the value of \1
 	const HM_\1
 HM_VALUE = __tmhm_value__ - NUM_TMS
@@ -295,7 +295,7 @@ NUM_HMS EQU __tmhm_value__ - NUM_TMS - 1
 
 add_mt: MACRO
 ; Defines two constants:
-; - \1_TMNUM: the learnable TM/HM flag, starting at 58
+; - \1_TMNUM: the learnable TM/HM flag, starting at 68
 ; - MT##_MOVE: alias for the move id, equal to the value of \1
 MT_VALUE = __tmhm_value__ - NUM_TMS - NUM_HMS
 MT{02d:MT_VALUE}_MOVE = \1
@@ -325,5 +325,3 @@ ITEM_FROM_MEM  EQU $ff
 
 ; leftovers from red
 SAFARI_BALL    EQU $08 ; MOON_STONE
-MOON_STONE_RED EQU $0a ; BURN_HEAL
-FULL_HEAL_RED  EQU $34 ; X_SPEED

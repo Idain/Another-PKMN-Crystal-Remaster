@@ -1,6 +1,6 @@
 Nuevas características de "ANOTHER POKÉMON CRYSTAL GAME" (NOMBRE SUJETO A CAMBIOS):
 
-V1.2.0
+V2.0.0
 AÑADIDOS:
 
 - ¡¡¡COMPATIBILITAD CON LA CONSOLA VIRTUAL DE 3DS!!! Esto significa que podrán intercambiar y batallar a través
@@ -35,6 +35,7 @@ de infrarrojos. Créditos a Vulcandth, Rangi, pfero, Drush, ax6 y todos los que 
 - Miscellaneous:
 	-- El género del Pokémon ahora es visible en el menú del equipo.
 	-- ¡NUEVO MOVE REMINDER! Está localizado en Blackthorn City, en la misma casa del Move Deleter.
+	-- ¡NUEVO GURU DE PODER OCULTO! Localizado en la casa donde obtienes la MT Poder Oculto.
 	-- Tu madre te da un tutorial muy breve de cómo correr en el juego.
 
 
@@ -62,7 +63,7 @@ CAMBIOS:
 		* Tres medallas: 	Pokémon hasta el Nv. 30 te obedecerán.
 		* Cuatro medallas: 	Pokémon hasta el Nv. 35 te obedecerán.
 		* Cinco medallas:	Pokémon hasta el Nv. 40 te obedecerán.
-		* Seis medallas: 	No cambia
+		* Seis medallas: 	No hay cambios.
 		* Siete medallas: 	Pokémon hasta el Nv. 45 te obedecerán.
 		* Ocho medallas: 	Pokémon hasta el Nv. 65 te obedecerán.
 	-- Kanto:
@@ -106,6 +107,7 @@ CAMBIOS:
 	-- Roar y Whilrwind automáticamente fallan si el nivel del usuario es menor al del oponente (Gen 5+). Además, sobrepasan Protección y Detección (Gen 6+).
 	-- Conversion toma el tipo del primer movimiento del usuario en vez de elegir uno de los cuatro movimientos al azar (Gen 4+).
 	-- Conversion2 también funciona si el oponente ha usado un movimiento, aunque no haya lastimado al usuario. (Gen 4+)
+	-- Probabilidad de effecto de Tri-Attack aumentada de 20% a 30% (Pokémon: Legends Arceus)
 
 - Efectos en combate:
 	-- La tormenta de arena ahora boostea la Defensa Especial de los Pokémon tipo Roca en un 50% (Gen 4+).
@@ -121,9 +123,15 @@ CAMBIOS:
 	-- Los signos que aparecen cada vez que entras a un mapa ahora están animados.
 
 	-- Pokémon sprites:
+		-- Pikachu
+		-- Meganium
 		-- Delibird
 		-- Pidgeotto
 		-- Golduck
+		-- Machop
+		-- Machoke
+		-- Machamp
+		Créditos a FrenchOrange
 
 - Animaciones:
 	-- Si hay un clima activo, al final de cada turno se mostrará la animación de este.
@@ -200,7 +208,7 @@ AÑADIDOS:
 - NUEVO TIPO: ¡Tipo hada! Los Pokémon y movimientos existentes que son de tipo hada en la 6ta gen ahora lo serán en este juego.
 
 - Items: 
-	-- Polkadow Bow. Aumenta la potencia de movimientos tipo hada en un 20%.
+	-- Polkadot Bow. Aumenta la potencia de movimientos tipo hada en un 20%.
 		* Obtención: A veces Picknicker Tiffany lo entrega en Ruta 43. Has de tener su número.
 	-- Sitrus Berry. Esta reemplaza a la Gold Berry, curando 25% MAX HP en vez de 30HP.
 	-- PP MAX. Aumenta permanentemente los PP de un movimiento al máximo.

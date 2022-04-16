@@ -143,7 +143,7 @@ ItemNames::
 	li "Leppa Berry"
 	li "Dragon Scale"
 	li "Berserk Gene"
-	li "Teru-sama"
+	li "Link Cable"
 	li "Teru-sama"
 	li "Teru-sama"
 	li "Sacred Ash"
