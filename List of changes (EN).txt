@@ -1,4 +1,4 @@
-V1.1.2
+V2.0.0
 CHANGES:
 - The chances of two Pokémon making an Egg every certain amount of steps have been increased (Gen 3 onwards).
 
@@ -11,7 +11,7 @@ FIXES:
 - Fixed error where some Trainers had Shiny Pokémon by mistake.
 
 
-VERSIÓN 1.1
+VERSION 1.1
 
 NEW:
 - NEW TYPE: FAIRY-TYPE! All Pokémon and moves that are Fairy-type from Gen 6 onwards were changed to also have it in this game.
@@ -49,14 +49,14 @@ CHANGES:
 	-- Thaw chance has been increased from 10% to 20% (Gen 3)
 	-- Paralysis' speed reduction changed from 75% to 50% (Gen 7).
 
-- The chances of getting a Shiny Pokémonn were increased from 1/8192 to 3/8192 (oh baby, a triple!).
+- The chances of getting a Shiny Pokémon were increased from 1/8192 to 3/8192 (oh baby, a triple!).
 	For a Pokémon to be Shiny, its DVs must be:
 	-- Attack: 	1, 14, 15
 	-- Defense: 	14, 15
 	-- Speed: 	14, 15
 	-- Special: 	14, 15
-	* NOTA: Thansk to this, getting a Shiny Female Pokémon whose gender ratio is 7M:1F is now possible.
-	* Because of the Shiny DV requierements' change, the Red Gyarados from Lake of Rage will always have perfect DVs.
+	* NOTE: Thanks to this, getting a Shiny Female Pokémon whose gender ratio is 7M:1F is now possible.
+	* Because of the Shiny DV requirements' change, the Red Gyarados from Lake of Rage will always have perfect DVs.
 
 - Breeding:
 	- Nidorina and Nidoqueen can finally breed! Both Pokémon now have the Monster and Field egg groups.
@@ -82,7 +82,7 @@ CHANGES:
 - The prices of the Move Tutor located outside of the Goldenrod Game Corner have been reduced from 4000 to 3000.
 	-- Now the Move Tutor will be outside everyday instead of only Wednesdays and Saturdays.
 
-- Fuit Trees now give 2 berries/apricorns instead onf one.
+- Fruit Trees now give 2 berries/apricorns instead of one.
 
 - Friendship system has been slightly improved:
 	-- Pokémon who evolve through friendship now only need 160 points instead of 220 (Gen 8).
@@ -174,7 +174,7 @@ AESTHETIC CHANGES:
 
 - Pokémon names are no longer in FULL UPPERCASE.
 - Now every Pokémon has a unique party menu icon instead of the generic ones, and in color! Also, the color changes depending on whether the Pokémon is Shiny or not.
-	-- This also aplies to Eggs, being green if they're shiny instead of red.
+	-- This also applies to Eggs, being green if they're shiny instead of red.
 - There are new weather icons in the Battle GUI! It shows a small indicator in the bottom-left corner which changes depending of the current weather.  
 - Now every Poké Ball has a unique color and they look slightly more detailed.
 - Trainer Card:
@@ -183,13 +183,8 @@ AESTHETIC CHANGES:
 - Whenever you receive a new TM/HM the dialogue box will also show its name.
 - The censored Japanese trainer sprites have been restored (BEAUTY, FISHER, MEDIUM SAGE y SWIMMER (FEMALE). F*ck the unnecessary censorship!
 - Overworld sprites now look darker at NIGHT.
-- When naming your character, if you choose to leave it blank the game will default to GOLD/CRYSTAL, referencing their Pokémon Adventures manga counteparts.
+- When naming your character, if you choose to leave it blank the game will default to GOLD/CRYSTAL, referencing their Pokémon Adventures manga counterparts.
 - Animated overworld tiles no longer stop its animation whenever a dialogue box appears.
 
 AND FINALLY, THE MOST IMPORTANT CHANGE...
 - "Further improvements to overall system stability and other minor adjustments have been made to enhance the user experience."
-
-
-
-
-
