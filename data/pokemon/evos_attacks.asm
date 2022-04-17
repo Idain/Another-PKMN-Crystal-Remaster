@@ -3657,6 +3657,7 @@ RaikouEvosAttacks:
 
 EnteiEvosAttacks:
 	db 0 ; no more evolutions
+	db 1, SACRED_FIRE
 	db 1, EXTREMESPEED
 	db 1, BITE
 	db 1, LEER
