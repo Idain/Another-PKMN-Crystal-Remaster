@@ -375,7 +375,7 @@ UpdateChannels:
 .load_wave_pattern
 	push hl
 	ld a, [wCurTrackVolumeEnvelope]
-	and $f ; only 0-9 are valid
+	and $f ; only 0-10 are valid
 	; each wavepattern is $f bytes long, so seeking is done in $10s
 	swap a ; a << 4
 	ld l, a

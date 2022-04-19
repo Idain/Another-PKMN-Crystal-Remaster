@@ -7,8 +7,8 @@ Drumkits:
 	dw Drumkit5
 	dw Drumkit0S
 	dw Drumkit1S 
+	dw Drumkit_Empty
 	dw Drumkit3S
-	dw Drumkit5S
 
 Drumkit0:
 	dw Drum00
@@ -123,7 +123,8 @@ Drumkit1S: ;7
 	dw Snare9_Soft
 	dw Snare10_Soft
 	dw Snare11_Soft
-Drumkit3S: ; 8
+Drumkit_Empty: ; 8
+Drumkit3S: ; 9
 	dw Drum00
 	dw Snare12_Soft
 	dw Snare13_Soft
@@ -137,20 +138,6 @@ Drumkit3S: ; 8
 	dw Snare9_Soft
 	dw Kick2_Soft
 	dw Crash2_Soft
-Drumkit5S: ; 9
-	dw Drum00
-	dw Snare9_Soft ;C_
-	dw Snare10_Soft ;C#
-	dw Snare11_Soft ;D_
-	dw Drum27_Soft ;D#
-	dw Drum28_Soft ;E_
-	dw Drum29_Soft ;F_
-	dw Drum05 ;F#
-	dw Triangle1_Soft ;G_
-	dw Crash1 ;G#
-	dw Snare14_Soft ;A_
-	dw Snare13_Soft ;A#
-	dw Kick2_Soft ;B_
 
 Drum00:
 	noise_note 32, 1, 1, 0
