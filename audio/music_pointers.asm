@@ -110,8 +110,9 @@ Music:
 ; custom normal songs
 	dba Music_CinnabarIslandGBS
 	dba Music_IcePathHGSS
-	dba Music_PKMN_Center_Night
+	dba Music_FriendlyShop
 ; custom night songs
+	dba Music_PKMN_Center_Night
 	dba Music_KantoWildBattleNight
 	dba Music_NewBarkTownNight
 	dba Music_Route26Night
