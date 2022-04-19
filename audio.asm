@@ -169,4 +169,4 @@ SECTION "Altered Songs 3", romx
 
 INCLUDE "audio/music/cinnabarisland.asm"
 INCLUDE "audio/music/icepath.asm"
-;INCLUDE "audio/music/pkmncenternight.asm"
+INCLUDE "audio/music/pkmncenternight.asm"
