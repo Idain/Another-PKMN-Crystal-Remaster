@@ -6,17 +6,7 @@ InitSound::
 	push bc
 	push af
 
-	ldh a, [hROMBank]
-	push af
-	ld a, BANK(_InitSound)
-	ldh [hROMBank], a
-	ld [MBC3RomBank], a
-
-	call _InitSound
-
-	pop af
-	ldh [hROMBank], a
-	ld [MBC3RomBank], a
+	homecall _InitSound
 
 	pop af
 	pop bc
@@ -30,17 +20,7 @@ UpdateSound::
 	push bc
 	push af
 
-	ldh a, [hROMBank]
-	push af
-	ld a, BANK(_UpdateSound)
-	ldh [hROMBank], a
-	ld [MBC3RomBank], a
-
-	call _UpdateSound
-
-	pop af
-	ldh [hROMBank], a
-	ld [MBC3RomBank], a
+	homecall _UpdateSound
 
 	pop af
 	pop bc
@@ -50,15 +30,13 @@ UpdateSound::
 
 _LoadMusicByte::
 ; [wCurMusicByte] = [a:de]
-	ldh [hROMBank], a
-	ld [MBC3RomBank], a
+	rst Bankswitch
 
 	ld a, [de]
 	ld [wCurMusicByte], a
 	ld a, BANK(LoadMusicByte)
 
-	ldh [hROMBank], a
-	ld [MBC3RomBank], a
+	rst Bankswitch
 	ret
 
 PlayMusic::
@@ -72,8 +50,7 @@ PlayMusic::
 	ldh a, [hROMBank]
 	push af
 	ld a, BANK(_PlayMusic) ; aka BANK(_InitSound)
-	ldh [hROMBank], a
-	ld [MBC3RomBank], a
+	rst Bankswitch
 
 	ld a, e
 	and a
@@ -87,8 +64,7 @@ PlayMusic::
 
 .end
 	pop af
-	ldh [hROMBank], a
-	ld [MBC3RomBank], a
+	rst Bankswitch
 	pop af
 	pop bc
 	pop de
@@ -106,8 +82,7 @@ PlayMusic2::
 	ldh a, [hROMBank]
 	push af
 	ld a, BANK(_PlayMusic)
-	ldh [hROMBank], a
-	ld [MBC3RomBank], a
+	rst Bankswitch
 
 	push de
 	ld de, MUSIC_NONE
@@ -117,8 +92,7 @@ PlayMusic2::
 	call _PlayMusic
 
 	pop af
-	ldh [hROMBank], a
-	ld [MBC3RomBank], a
+	rst Bankswitch
 
 	pop af
 	pop bc
@@ -139,8 +113,7 @@ PlayCry::
 
 	; Cries are stuck in one bank.
 	ld a, BANK(PokemonCries)
-	ldh [hROMBank], a
-	ld [MBC3RomBank], a
+	rst Bankswitch
 
 	ld hl, PokemonCries
 rept MON_CRY_LENGTH
@@ -162,14 +135,12 @@ endr
 	ld [wCryLength + 1], a
 
 	ld a, BANK(_PlayCry)
-	ldh [hROMBank], a
-	ld [MBC3RomBank], a
+	rst Bankswitch
 
 	call _PlayCry
 
 	pop af
-	ldh [hROMBank], a
-	ld [MBC3RomBank], a
+	rst Bankswitch
 
 	pop af
 	pop bc
@@ -199,16 +170,14 @@ PlaySFX::
 	ldh a, [hROMBank]
 	push af
 	ld a, BANK(_PlaySFX)
-	ldh [hROMBank], a
-	ld [MBC3RomBank], a
+	rst Bankswitch
 
 	ld a, e
 	ld [wCurSFX], a
 	call _PlaySFX
 
 	pop af
-	ldh [hROMBank], a
-	ld [MBC3RomBank], a
+	rst Bankswitch
 
 .done
 	pop af
