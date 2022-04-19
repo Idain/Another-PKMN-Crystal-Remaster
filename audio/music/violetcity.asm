@@ -840,6 +840,9 @@ Music_VioletCity_branch_f037a: ; f037a
 	sound_ret
 ; f0386
 
+; ============================================================================================================
+; ============================================================================================================
+
 Music_VioletCityNight:
 	musicheader 4, 1, Music_VioletCityNight_Ch1
 	musicheader 1, 2, Music_VioletCityNight_Ch2
@@ -908,7 +911,7 @@ Music_VioletCityNight_Ch3_Master:
 	
 ; ============================================================================================================
 Music_VioletCityNight_Ch4:
-	togglenoise $9
+	togglenoise $8
 	notetype $c
 
 	sound_loop 0, Music_VioletCityNight_Ch4_Intro

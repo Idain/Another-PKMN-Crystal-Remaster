@@ -325,6 +325,9 @@ Music_LakeOfRage_branch_ee83b: ; ee83b
 	note D_, 1
 	loopchannel 0, Music_LakeOfRage_branch_ee83b
 
+; ============================================================================================================
+; ============================================================================================================
+
 ; Demixed by TriteHexagon
 Music_LakeOfRageNight:
 	musicheader 4, 1, Music_LakeOfRageNight_Ch1
@@ -383,6 +386,6 @@ Music_LakeOfRageNight_Ch3:
 
 Music_LakeOfRageNight_Ch4:
 	stereopanning $f0
-	togglenoise $9
+	togglenoise $8
 	notetype $c
 	loopchannel 0, Music_LakeOfRage_branch_ee83b

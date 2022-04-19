@@ -560,7 +560,7 @@ Music_Route3_Night_Ch3: ; ec45b
 	callchannel Music_Route3_branch_ec47f
 
 Music_Route3_Night_Ch4: ; ec4eb
-	togglenoise $4
+	togglenoise $9
 	notetype $c
 	note __, 10
 	callchannel Music_Route3_branch_ec4f0

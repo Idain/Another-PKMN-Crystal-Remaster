@@ -678,6 +678,9 @@ Music_Route30_branch_efee1: ; efee1
 	endchannel
 ; efef5
 
+; ============================================================================================================
+; ============================================================================================================
+
 Music_Route30Night:
 	musicheader 4, 1, Music_Route30Night_Ch1
 	musicheader 1, 2, Music_Route30Night_Ch2
@@ -767,7 +770,7 @@ Music_Route30Night_Ch3:
 	
 ; ============================================================================================================
 Music_Route30Night_Ch4:
-	togglenoise $9
+	togglenoise $8
 	notetype $c
 	callchannel Music_Route30_branch_efeb8
 	callchannel Music_Route30_branch_efec1

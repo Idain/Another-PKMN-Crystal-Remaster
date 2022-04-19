@@ -487,6 +487,9 @@ Music_GoldenrodCity_branch_eb66d: ; eb66d
 	endchannel
 ; eb676
 
+; ============================================================================================================
+; ============================================================================================================
+
 Music_GoldenrodCityNight:
 	musicheader 4, 1, Music_GoldenrodCityNight_Ch1
 	musicheader 1, 2, Music_GoldenrodCityNight_Ch2
@@ -600,7 +603,7 @@ Music_GoldenrodCityNight_Ch3:
 	
 ; ============================================================================================================
 Music_GoldenrodCityNight_Ch4:
-	togglenoise $9
+	togglenoise $8
 	notetype $c
 	note __, 16
 	note __, 16

@@ -543,5 +543,5 @@ Music_Route12_Night_Ch3:
 	callchannel Music_Route12_Ch3_Entry
 
 Music_Route12_Night_Ch4:
-	togglenoise $4
+	togglenoise $9
 	callchannel Music_Route12_Ch4_Entry

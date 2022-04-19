@@ -309,6 +309,8 @@ Music_CherrygroveCity_branch_f5c4d: ; f5c4d
 	loopchannel 0, Music_CherrygroveCity_branch_f5c4d
 ; f5c60
 
+; ============================================================================================================
+; ============================================================================================================
 
 Music_CherrygroveCityNight:
 	musicheader 4, 1, Music_CherrygroveCityNight_Ch1
@@ -364,7 +366,7 @@ Music_CherrygroveCityNight_Ch3:
 	loopchannel 0, Music_CherrygroveCity_branch_f5be4
 
 Music_CherrygroveCityNight_Ch4:
-	togglenoise $9
+	togglenoise $8
 	notetype $c
 	note __, 16
 	loopchannel 0, Music_CherrygroveCity_branch_f5c4d

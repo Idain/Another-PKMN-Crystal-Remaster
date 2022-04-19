@@ -800,10 +800,9 @@ Music_AzaleaTownNight_branch_f5acf: ; f5acf
 	note __, 1
 	endchannel
 	
-
 ; ============================================================================================================
 Music_AzaleaTownNight_Ch4:
-	togglenoise $9
+	togglenoise $8
 	notetype $c
 	note __, 2
 	callchannel Music_AzaleaTown_branch_f5aea

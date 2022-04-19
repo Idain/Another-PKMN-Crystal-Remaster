@@ -412,13 +412,13 @@ Music_NewBarkTownNight_Ch3:
 	note D_, 2
 	note E_, 2
 Music_NewBarkTownNight_Ch3_main:
-	vibrato $16, $12
+	vibrato $16, $22
 	callchannel Music_NewBarkTown_Ch3_Part1
 	intensity $24
-	vibrato $12, $42
+	vibrato $12, $52
 	callchannel Music_NewBarkTown_Ch3_Part2
 	intensity $12
-	vibrato $16, $12
+	vibrato $16, $22
 	octave 5
 	note D_, 1
 	note E_, 1
