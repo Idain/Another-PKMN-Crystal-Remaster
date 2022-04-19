@@ -108,7 +108,7 @@
 ; custom normal songs
 	const MUSIC_CINNABAR_ISLAND
 	const MUSIC_ICE_PATH
-;	const MUSIC_POKEMON_CENTER_NIGHT
+	const MUSIC_POKEMON_CENTER_NIGHT
 ; custom night songs
 	const MUSIC_KANTO_WILD_BATTLE_NIGHT		 ; 67
 	const MUSIC_NEW_BARK_TOWN_NIGHT			 ; 68

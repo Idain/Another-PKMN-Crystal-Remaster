@@ -1243,15 +1243,12 @@ GetNoiseSample:
 	; check current channel
 	ld a, [wCurChannel]
 	bit NOISE_CHAN_F, a
-	jr nz, .sfx
+	ld a, [wSFXNoiseSampleSet]
+	jr nz, .next ; sfx
 	ld hl, wChannel8Flags1
 	bit SOUND_CHANNEL_ON, [hl] ; is ch8 on? (noise)
 	ret nz
 	ld a, [wMusicNoiseSampleSet]
-	jr .next
-
-.sfx
-	ld a, [wSFXNoiseSampleSet]
 .next
 	; load noise sample set id into de
 	ld e, a
