@@ -1338,7 +1338,7 @@ MusicCommands:
 	dw MusicF6 ; nothing
 	dw MusicF7 ; nothing
 	dw MusicF8 ; nothing
-	dw MusicF9 ; unused
+	dw Music_ChangeNoiseSampleSet
 	dw Music_SetCondition 
 	dw Music_JumpIf
 	dw Music_Jump
@@ -1598,14 +1598,6 @@ MusicEE:
 	ld [hl], d
 	ret
 
-MusicF9:
-; unused
-; sets some flag
-; params: 0
-	ld a, TRUE
-	ld [wUnusedMusicF9Flag], a
-	ret
-
 MusicE2:
 ; unused
 ; params: 1
@@ -1795,6 +1787,8 @@ Music_ToggleNoise:
 .on
 	; turn noise sampling on
 	set SOUND_NOISE, [hl]
+Music_ChangeNoiseSampleSet:
+; change noisesample on the fly without muting the noise channel
 	call GetMusicByte
 	ld [wMusicNoiseSampleSet], a
 	ret
@@ -2263,7 +2257,6 @@ _PlayMusic::
 	dec a
 	jr nz, .loop
 	xor a
-	ld [wUnusedMusicF9Flag], a
 	ld [wChannel1JumpCondition], a
 	ld [wChannel2JumpCondition], a
 	ld [wChannel3JumpCondition], a

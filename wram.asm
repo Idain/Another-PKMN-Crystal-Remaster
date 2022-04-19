@@ -85,7 +85,7 @@ wCryPitch:: dw
 wCryLength:: dw
 
 wLastVolume:: db
-wUnusedMusicF9Flag:: db
+	ds 1
 
 wSFXPriority::
 ; if nonzero, turn off music when playing sfx
