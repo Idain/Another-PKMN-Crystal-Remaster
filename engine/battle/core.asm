@@ -417,6 +417,7 @@ HandleBerserkGene:
 	ld [wAttackMissed], a
 	ld [wEffectFailed], a
 	farcall BattleCommand_AttackUp2
+	farcall BattleCommand_SpecialAttackUp2
 	pop af
 	pop hl
 	ld [hl], a
