@@ -416,15 +416,19 @@ HandleBerserkGene:
 	ld [hl], a
 	ld [wAttackMissed], a
 	ld [wEffectFailed], a
-	farcall BattleCommand_AttackUp2
-	farcall BattleCommand_SpecialAttackUp2
 	pop af
 	pop hl
 	ld [hl], a
 	call GetItemName
 	ld hl, BattleText_UsersStringBuffer1Activated
 	call StdBattleTextbox
-	callfar BattleCommand_StatUpMessage
+	farcall BattleCommand_AttackUp2
+	farcall BattleCommand_StatUpMessage
+	xor a
+	ld [wAttackMissed], a
+	farcall BattleCommand_SpecialAttackUp2
+	farcall BattleCommand_StatUpMessage
+;	callfar BattleCommand_StatUpMessage
 	pop af
 	bit SUBSTATUS_CONFUSED, a
 	ret nz

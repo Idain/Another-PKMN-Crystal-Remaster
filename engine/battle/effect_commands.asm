@@ -4694,8 +4694,6 @@ CheckMist:
 	ret
 
 .check_mist
-;	ld a, BATTLE_VARS_SUBSTATUS4_OPP
-;	call GetBattleVar
 	ld hl, wEnemyScreens
 	ldh a, [hBattleTurn]
 	and a
