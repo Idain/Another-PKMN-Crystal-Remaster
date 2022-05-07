@@ -122,12 +122,6 @@ CheckGrassTile::
 	ret
 
 .grass
-	ld a, d
-	and LO_NYBBLE_GRASS
-	ret z
-	scf
-	ret
-; For some reason, the above code is duplicated down here.
 .water
 	ld a, d
 	and LO_NYBBLE_GRASS
