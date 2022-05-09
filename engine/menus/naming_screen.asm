@@ -70,8 +70,6 @@ NamingScreen:
 	dw .Mom
 	dw .Box
 	dw .Tomodachi
-	dw .Pokemon
-	dw .Pokemon
 
 .Pokemon:
 	ld a, [wCurPartySpecies]
