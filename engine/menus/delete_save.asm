@@ -2,8 +2,8 @@ _DeleteSaveData:
 	farcall BlankScreen
 	ld b, SCGB_DIPLOMA
 	call GetSGBLayout
-	call LoadStandardFont
-	call LoadFontsExtra
+	farcall LoadStandardFont
+	farcall LoadFontsExtra
 	ld de, MUSIC_MAIN_MENU
 	call PlayMusic
 	ld hl, .ClearAllSaveDataText

@@ -474,45 +474,34 @@ Function8939a:
 Function893b3:
 	call DisableLCD
 	call ClearSprites
-	call LoadStandardFont
-	call LoadFontsExtra
+	farcall LoadStandardFont
+	farcall LoadFontsExtra
 	call Function893ef
 	call Function8942b
 	call Function89455
-	call EnableLCD
-	ret
+	jp EnableLCD
 
 Function893cc:
 	call DisableLCD
 	call ClearSprites
-	call LoadStandardFont
-	call LoadFontsExtra
+	farcall LoadStandardFont
+	farcall LoadFontsExtra
 	call Function893ef
 	call Function89464
-	call EnableLCD
-	ret
+	jp EnableLCD
 
 Function893e2:
 	call Function89b1e
 	call Function893b3
 	call Function8a5b6
-	call Function8949c
-	ret
+	jp Function8949c
 
 Function893ef:
 	ld de, vTiles0
 	ld hl, EZChatCursorGFX
 	ld bc, $20
 	ld a, BANK(EZChatCursorGFX)
-	call FarCopyBytes
-	ret
-
-Function893fe: ; unreferenced
-	call DisableLCD
-	call Function893ef
-	call EnableLCD
-	call DelayFrame
-	ret
+	jp FarCopyBytes
 
 EZChatCursorGFX:
 INCBIN "gfx/mobile/ez_chat_cursor.2bpp"
@@ -4125,7 +4114,7 @@ Function8ac7c:
 
 .asm_8ace4
 	call CloseSRAM
-	call LoadStandardFont
+	farcall LoadStandardFont
 	ld a, [wd02f]
 	ld c, a
 	and a
@@ -4137,7 +4126,7 @@ Function8ac7c:
 	ld a, $2
 	call Function89259
 	jp c, Function8ac7c
-	call LoadStandardFont
+	farcall LoadStandardFont
 	pop de
 	ld c, $0
 	scf

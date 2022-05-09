@@ -136,7 +136,7 @@ PrintPartyMonPage1:
 	call ClearSprites
 	xor a
 	ldh [hBGMapMode], a
-	call LoadFontsBattleExtra
+	farcall LoadFontsBattleExtra
 
 	ld de, GBPrinterHPIcon
 	ld hl, vTiles2 tile PRINTPARTY_HP
@@ -233,7 +233,7 @@ PrintPartyMonPage2:
 	call ClearSprites
 	xor a
 	ldh [hBGMapMode], a
-	call LoadFontsBattleExtra
+	farcall LoadFontsBattleExtra
 	xor a
 	ld [wMonType], a
 	farcall CopyMonToTempMon

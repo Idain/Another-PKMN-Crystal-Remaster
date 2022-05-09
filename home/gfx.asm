@@ -32,22 +32,6 @@ FarCopyBytesDouble_DoubleBankSwitch::
 	rst Bankswitch
 	ret
 
-UpdatePlayerSprite::
-	farcall _UpdatePlayerSprite
-	ret
-
-LoadStandardFont::
-	farcall _LoadStandardFont
-	ret
-
-LoadFontsBattleExtra::
-	farcall _LoadFontsBattleExtra
-	ret
-
-LoadFontsExtra::
-	farcall _LoadFontsExtra1
-	ret
-
 DecompressRequest2bpp::
 	push de
 	ld a, BANK(sScratch)

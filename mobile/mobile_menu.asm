@@ -201,7 +201,7 @@ Function4a100:
 
 asm_4a111:
 	pop bc
-	call LoadFontsExtra
+	farcall LoadFontsExtra
 	jp Function49f0a
 
 Function4a118:
@@ -389,7 +389,7 @@ Function4a28a:
 	farcall Function11765d
 	call ClearBGPalettes
 	call ExitMenu
-	call LoadFontsExtra
+	farcall LoadFontsExtra
 	scf
 	ret
 
@@ -787,7 +787,7 @@ Function4a6ab:
 	call GetSGBLayout
 	farcall Function11c1ab
 	pop bc
-	call LoadFontsExtra
+	farcall LoadFontsExtra
 	jp Function4a4c4
 
 Function4a6c5:

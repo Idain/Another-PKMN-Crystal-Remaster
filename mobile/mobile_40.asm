@@ -402,7 +402,7 @@ Function1002dc:
 	farcall RunMapSetupScript
 	xor a
 	ldh [hMapEntryMethod], a
-	call LoadStandardFont
+	farcall LoadStandardFont
 	ret
 
 Function1002ed:
@@ -410,8 +410,7 @@ Function1002ed:
 	farcall ApplyPals
 	ld a, TRUE
 	ldh [hCGBPalUpdate], a
-	call DelayFrame
-	ret
+	jp DelayFrame
 
 Function100301:
 	ld hl, wcd2a
@@ -421,15 +420,10 @@ Function100301:
 	farcall Function10202c
 	farcall Function115dd3
 	call Function100320
-	call JoyWaitAorB
-	ret
+	jp JoyWaitAorB
 
 Function100320:
 	farcall Mobile_ReloadMapPart
-	ret
-
-Function100327: ; unreferenced
-	farcall HDMATransferTilemapToWRAMBank3
 	ret
 
 Function10032e:
@@ -6094,17 +6088,15 @@ Function102b12:
 	ld c, 60
 	call DelayFrames
 	call Function102d9a
-	call LoadFontsBattleExtra
+	farcall LoadFontsBattleExtra
 	ld a, [wcd2f]
 	and a
 	jr nz, .asm_102b2b
 	farcall Function108026
-	jr .asm_102b31
+	ret
 
 .asm_102b2b
 	farcall Function10802a
-
-.asm_102b31
 	ret
 
 Function102b32:
@@ -6130,13 +6122,6 @@ Function102b4e:
 	ld [wMenuCursorY], a
 	ld a, [wOTPartyCount]
 	ld [w2DMenuNumRows], a
-	ret
-
-Function102b68: ; unreferenced
-	xor a
-	ld hl, wWindowStackPointer
-	ld bc, $10
-	call ByteFill
 	ret
 
 MenuData_102b73:

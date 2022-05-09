@@ -26,7 +26,7 @@ ReadAnyMail:
 	call ClearSprites
 	call ClearTilemap
 	call DisableLCD
-	call LoadFontsExtra
+	farcall LoadFontsExtra
 	pop de
 	push de
 	ld a, BANK(sPartyMail)
@@ -59,7 +59,7 @@ ReadAnyMail:
 	call .loop
 	call ClearBGPalettes
 	call DisableLCD
-	call LoadStandardFont
+	farcall LoadStandardFont
 	jp EnableLCD
 
 .loop

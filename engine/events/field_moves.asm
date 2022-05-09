@@ -71,7 +71,8 @@ ShakeHeadbuttTree:
 	ld hl, vTiles1
 	lb bc, BANK(Font), 12
 	call Get1bpp
-	jp UpdatePlayerSprite
+	farcall UpdatePlayerSprite
+	ret
 
 HeadbuttTreeGFX:
 INCBIN "gfx/overworld/headbutt_tree.2bpp"

@@ -6,7 +6,7 @@ GetEmote2bpp:
 	ldh [rVBK], a
 	ret
 
-_UpdatePlayerSprite::
+UpdatePlayerSprite::
 	call GetPlayerSprite
 	ld a, [wUsedSprites]
 	ldh [hUsedSpriteIndex], a

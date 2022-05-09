@@ -472,7 +472,7 @@ UpdateFrame:
 	hlcoord 16, 15 ; where on the screen the number is drawn
 	add "1"
 	ld [hl], a
-	call LoadFontsExtra
+	farcall LoadFontsExtra
 	and a
 	ret
 

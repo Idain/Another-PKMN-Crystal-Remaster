@@ -25,7 +25,7 @@ InitClock:
 	call GetSGBLayout
 	xor a
 	ldh [hBGMapMode], a
-	call LoadStandardFont
+	farcall LoadStandardFont
 	ld de, TimeSetBackgroundGFX
 	ld hl, vTiles2 tile $00
 	lb bc, BANK(TimeSetBackgroundGFX), 1
@@ -404,7 +404,7 @@ SetDayOfWeek:
 	ld a, [wTempDayOfWeek]
 	ld [wStringBuffer2], a
 	call InitDayOfWeek
-	call LoadStandardFont
+	farcall LoadStandardFont
 	pop af
 	ldh [hInMenu], a
 	ret

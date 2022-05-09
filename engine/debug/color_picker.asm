@@ -74,8 +74,8 @@ DebugColorPicker:
 	ld [wDebugColorIsTrainer], a
 	pop af
 	ldh [hInMenu], a
-	call LoadFontsExtra
-	call LoadStandardFont
+	farcall LoadFontsExtra
+	farcall LoadStandardFont
 	jp SetPalettes
 
 DebugColor_InitMonOrTrainerColor:
@@ -168,7 +168,7 @@ DebugColor_LoadGFX:
 	call CopyBytes
 
 ; Invert the font colors.
-	call LoadStandardFont
+	farcall LoadStandardFont
 	ld hl, vTiles1
 	ld bc, $80 tiles
 .loop

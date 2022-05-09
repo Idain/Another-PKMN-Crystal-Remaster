@@ -215,14 +215,14 @@ GiveTakePartyMonItem:
 	ld bc, MON_NAME_LENGTH
 	call CopyBytes
 	ld a, [wMenuCursorY]
-	dec a ; cp 1
+	dec a
 	jr nz, .take
 
 	call LoadStandardMenuHeader
 	call ClearPalettes
 	call .GiveItem
 	call ClearPalettes
-	call LoadFontsBattleExtra
+	farcall LoadFontsBattleExtra
 	call ExitMenu
 	ld a, 0
 	ret
@@ -764,7 +764,7 @@ ChooseMoveToDelete:
 	ld a, [hl]
 	push af
 	set NO_TEXT_SCROLL, [hl]
-	call LoadFontsBattleExtra
+	farcall LoadFontsBattleExtra
 	call .ChooseMoveToDelete
 	pop bc
 	ld a, b
@@ -786,7 +786,7 @@ ChooseMoveToDelete:
 .loop
 	call ScrollingMenuJoypad
 	bit B_BUTTON_F, a
-	jp nz, .b_button
+	jr nz, .b_button
 	bit A_BUTTON_F, a
 	jr nz, .a_button
 

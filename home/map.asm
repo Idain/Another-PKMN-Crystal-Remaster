@@ -1910,8 +1910,8 @@ ReloadTilesetAndPalettes::
 	call DisableLCD
 	call ClearSprites
 	farcall RefreshSprites
-	call LoadStandardFont
-	call LoadFontsExtra
+	farcall LoadStandardFont
+	farcall LoadFontsExtra
 	ldh a, [hROMBank]
 	push af
 	ld a, [wMapGroup]

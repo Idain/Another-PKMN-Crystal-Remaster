@@ -12,8 +12,8 @@ LinkCommunications:
 	call DelayFrames
 	call ClearScreen
 	call UpdateSprites
-	call LoadStandardFont
-	call LoadFontsBattleExtra
+	farcall LoadStandardFont
+	farcall LoadFontsBattleExtra
 	farcall LinkComms_LoadPleaseWaitTextboxBorderGFX
 	call WaitBGMap2
 	hlcoord 3, 8
@@ -1912,7 +1912,7 @@ LinkTrade:
 	ld c, 40
 	call DelayFrames
 	call ClearTilemap
-	call LoadFontsBattleExtra
+	farcall LoadFontsBattleExtra
 	ld b, SCGB_DIPLOMA
 	call GetSGBLayout
 	ldh a, [hSerialConnectionStatus]

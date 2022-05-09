@@ -32,7 +32,7 @@ InitPartyMenuLayout:
 	jp PrintPartyMenuText
 
 LoadPartyMenuGFX:
-	call LoadFontsBattleExtra
+	farcall LoadFontsBattleExtra
 	callfar InitPartyMenuPalettes
 	callfar ClearSpriteAnims2
 	ret

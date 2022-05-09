@@ -6,8 +6,8 @@ Function17c000:
 	xor a
 	call ByteFill
 
-	call LoadStandardFont
-	call LoadFontsExtra
+	farcall LoadStandardFont
+	farcall LoadFontsExtra
 
 	ld hl, HaveWantMap
 	decoord 0, 0

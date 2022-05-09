@@ -3,7 +3,7 @@ INCLUDE "gfx/font.asm"
 EnableHDMAForGraphics:
 	db FALSE
 
-_LoadStandardFont::
+LoadStandardFont::
 	ld de, Font
 	ld hl, vTiles1
 	lb bc, BANK(Font), 32 ; "A" to "]"
@@ -21,13 +21,13 @@ _LoadStandardFont::
 	lb bc, BANK(Font), 32 ; "'" to "9"
 	jp Get1bppViaHDMA
 
-_LoadFontsBattleExtra::
+LoadFontsBattleExtra::
 	ld de, FontBattleExtra
 	ld hl, vTiles2 tile $60
 	lb bc, BANK(FontBattleExtra), 25
 	call Get2bppViaHDMA
 
-_LoadFontsExtra1::
+LoadFontsExtra::
 LoadFrame:
 	ld a, [wTextboxFrame]
 	maskbits NUM_FRAMES
@@ -70,7 +70,7 @@ LoadHPBar:
 	jp Get2bppViaHDMA
 
 StatsScreen_LoadFont:
-	call _LoadFontsBattleExtra
+	call LoadFontsBattleExtra
 	ld de, EnemyHPBarBorderGFX
 	ld hl, vTiles2 tile $6c
 	lb bc, BANK(EnemyHPBarBorderGFX), 4

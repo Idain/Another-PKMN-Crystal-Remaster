@@ -69,11 +69,12 @@ LoadFonts_NoOAMUpdate::
 	ret
 
 .LoadGFX:
-	call LoadFontsExtra
+	farcall LoadFontsExtra
 	ld a, $90
 	ldh [hWY], a
 	call SafeUpdateSprites
-	jp LoadStandardFont
+	farcall LoadStandardFont
+	ret
 
 HDMATransfer_FillBGMap0WithBlack:
 	ldh a, [rSVBK]

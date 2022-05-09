@@ -3,8 +3,8 @@ InitDisplayForHallOfFame:
 	call ClearTilemap
 	call ClearSprites
 	call DisableLCD
-	call LoadStandardFont
-	call LoadFontsBattleExtra
+	farcall LoadStandardFont
+	farcall LoadFontsBattleExtra
 	hlbgcoord 0, 0
 	ld bc, vBGMap1 - vBGMap0
 	ld a, " "
@@ -31,8 +31,8 @@ InitDisplayForRedCredits:
 	call ClearTilemap
 	call ClearSprites
 	call DisableLCD
-	call LoadStandardFont
-	call LoadFontsBattleExtra
+	farcall LoadStandardFont
+	farcall LoadFontsBattleExtra
 	hlbgcoord 0, 0
 	ld bc, vBGMap1 - vBGMap0
 	ld a, " "

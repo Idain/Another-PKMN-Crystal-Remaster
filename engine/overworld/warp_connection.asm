@@ -288,7 +288,7 @@ LoadMapGraphics:
 	xor a
 	ldh [hTileAnimFrame], a
 	farcall RefreshSprites
-	call LoadFontsExtra
+	farcall LoadFontsExtra
 	farcall LoadOverworldFont
 	ret
 

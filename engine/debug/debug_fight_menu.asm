@@ -1201,7 +1201,7 @@ DebugFight_TryStartBattle:
 	ld bc, 5
 	call ByteFill
 
-	call LoadStandardFont
+	farcall LoadStandardFont
 	callfar StatsScreen_LoadFont
 	call ClearTilemap
 	call ClearSprites

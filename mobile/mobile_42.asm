@@ -152,8 +152,8 @@ Function1080b7:
 	call DisableLCD
 	call MobileTradeAnim_ClearTiles
 	call MobileTradeAnim_ClearBGMap
-	call LoadStandardFont
-	call LoadFontsBattleExtra
+	farcall LoadStandardFont
+	farcall LoadFontsBattleExtra
 
 	ld a, $1
 	ldh [rVBK], a
@@ -226,8 +226,8 @@ Function108157:
 	call DisableLCD
 	call MobileTradeAnim_ClearTiles
 	call MobileTradeAnim_ClearBGMap
-	call LoadStandardFont
-	call LoadFontsBattleExtra
+	farcall LoadStandardFont
+	farcall LoadFontsBattleExtra
 	call EnableLCD
 	xor a
 	ldh [hSCX], a
@@ -342,8 +342,8 @@ MobileTradeAnim_JumptableLoop:
 	ldh [hWX], a
 	ld a, $90
 	ldh [hWY], a
-	call LoadStandardFont
-	call LoadFontsBattleExtra
+	farcall LoadStandardFont
+	farcall LoadFontsBattleExtra
 	farcall Function106464
 	scf
 	ret

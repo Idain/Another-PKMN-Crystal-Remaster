@@ -76,7 +76,7 @@ StartMenu::
 	push af
 	ld a, 1
 	ldh [hOAMUpdate], a
-	call LoadFontsExtra
+	farcall LoadFontsExtra
 	pop af
 	ldh [hOAMUpdate], a
 .ReturnEnd:

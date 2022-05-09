@@ -2355,7 +2355,7 @@ Pokedex_LoadGFX:
 	xor a
 	call ByteFill
 	call Pokedex_LoadInvertedFont
-	call LoadFontsExtra
+	farcall LoadFontsExtra
 	ld hl, vTiles2 tile $60
 	ld bc, $20 tiles
 	call Pokedex_InvertTiles
@@ -2378,7 +2378,7 @@ Pokedex_LoadGFX:
 	jp EnableLCD
 
 Pokedex_LoadInvertedFont:
-	call LoadStandardFont
+	farcall LoadStandardFont
 	ld hl, vTiles1
 	ld bc, $80 tiles
 
@@ -2450,8 +2450,8 @@ _NewPokedexEntry:
 	farcall DrawDexEntryScreenRightEdge
 	call Pokedex_ResetBGMapMode
 	call DisableLCD
-	call LoadStandardFont
-	call LoadFontsExtra
+	farcall LoadStandardFont
+	farcall LoadFontsExtra
 	call Pokedex_LoadGFX
 	call Pokedex_LoadAnyFootprint
 	ld a, [wTempSpecies]

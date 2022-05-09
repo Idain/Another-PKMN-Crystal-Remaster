@@ -227,7 +227,8 @@ CutDownTreeOrGrass:
 	call GetMovementPermissions
 	call UpdateSprites
 	call DelayFrame
-	jp LoadStandardFont
+	farcall LoadStandardFont
+	ret
 
 CheckOverworldTileArrays:
 	; Input: c contains the tile you're facing
@@ -614,7 +615,7 @@ FlyFunction:
 .ReturnFromFly:
 	farcall RespawnPlayer
 	call DelayFrame
-	call UpdatePlayerSprite
+	farcall UpdatePlayerSprite
 	farcall LoadOverworldFont
 	ret
 
@@ -1583,7 +1584,8 @@ PutTheRodAway:
 	ld a, $1
 	ld [wPlayerAction], a
 	call UpdateSprites
-	jp UpdatePlayerSprite
+	farcall UpdatePlayerSprite
+	ret
 
 RodBiteText:
 	text_far _RodBiteText

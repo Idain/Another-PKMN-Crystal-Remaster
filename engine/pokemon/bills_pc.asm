@@ -2068,8 +2068,8 @@ BillsPC_InitGFX:
 	ld bc, $31 tiles
 	xor a
 	call ByteFill
-	call LoadStandardFont
-	call LoadFontsBattleExtra
+	farcall LoadStandardFont
+	farcall LoadFontsBattleExtra
 	ld hl, PCMailGFX
 	ld de, vTiles2 tile $5c
 	ld bc, 4 tiles
@@ -2318,8 +2318,8 @@ BillsPC_ChangeBoxSubmenu:
 	ld de, wBoxNameBuffer
 	farcall NamingScreen
 	call ClearTilemap
-	call LoadStandardFont
-	call LoadFontsBattleExtra
+	farcall LoadStandardFont
+	farcall LoadFontsBattleExtra
 	ld a, [wMenuSelection]
 	dec a
 	call GetBoxName

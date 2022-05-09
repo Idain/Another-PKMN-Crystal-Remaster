@@ -13,14 +13,11 @@ InitMobileProfile:
 	bit 1, a
 	jr z, .not_yet_initialized
 	ld a, [wd003]
-	set 0, a
-	set 1, a
-	set 2, a
-	set 3, a
+	or $f
 	ld [wd003], a
 .not_yet_initialized
 	call Function486bf
-	call LoadFontsExtra
+	farcall LoadFontsExtra
 	ld de, MobileUpArrowGFX
 	ld hl, vTiles2 tile $10
 	lb bc, BANK(MobileUpArrowGFX), 1
