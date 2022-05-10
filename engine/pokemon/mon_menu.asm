@@ -224,7 +224,7 @@ GiveTakePartyMonItem:
 	call ClearPalettes
 	farcall LoadFontsBattleExtra
 	call ExitMenu
-	ld a, 0
+	xor a
 	ret
 
 .take
@@ -465,15 +465,15 @@ MonMailAction:
 ; Interpret the menu.
 	jr c, .done
 	ld a, [wMenuCursorY]
-	dec a ; cp 1
+	dec a
 	jr z, .read
-	dec a ; cp 2
+	dec a
 	jr z, .take
 	jr .done
 
 .read
 	farcall ReadPartyMonMail
-	ld a, 0
+	xor a
 	ret
 
 .take
@@ -564,21 +564,12 @@ OpenPartyStats:
 	predef StatsScreenInit
 	call MaxVolume
 	call ExitMenu
-	ld a, 0
+	xor a
 	ret
 
 MonMenu_Cut:
 	farcall CutFunction
-	ld a, [wFieldMoveSucceeded]
-	dec a ; cp 1
-	jr nz, .Fail
-	ld b, 4
-	ld a, 2
-	ret
-
-.Fail:
-	ld a, 3
-	ret
+	jp CheckFieldMoveSuccess
 
 MonMenu_Fly:
 	farcall FlyFunction
@@ -597,71 +588,28 @@ MonMenu_Fly:
 
 MonMenu_Flash:
 	farcall FlashFunction
-	ld a, [wFieldMoveSucceeded]
-	dec a ; cp 1
-	jr nz, .Fail
-	ld b, 4
-	ld a, 2
-	ret
-
-.Fail:
-	ld a, 3
-	ret
+	jp CheckFieldMoveSuccess
 
 MonMenu_Strength:
 	farcall StrengthFunction
-	ld a, [wFieldMoveSucceeded]
-	dec a
-	jr nz, .Fail
-	ld b, 4
-	ld a, 2
-	ret
-
-.Fail:
-	ld a, 3
-	ret
+	jp CheckFieldMoveSuccess
 
 MonMenu_Whirlpool:
 	farcall WhirlpoolFunction
-	ld a, [wFieldMoveSucceeded]
-	dec a
-	jr nz, .Fail
-	ld b, 4
-	ld a, 2
-	ret
-
-.Fail:
-	ld a, 3
-	ret
+	jr CheckFieldMoveSuccess
 
 MonMenu_Waterfall:
 	farcall WaterfallFunction
-	ld a, [wFieldMoveSucceeded]
-	dec a
-	jr nz, .Fail
-	ld b, 4
-	ld a, 2
-	ret
-
-.Fail:
-	ld a, 3
-	ret
+	jr CheckFieldMoveSuccess
 
 MonMenu_Teleport:
 	farcall TeleportFunction
-	ld a, [wFieldMoveSucceeded]
-	and a
-	jr z, .Fail
-	ld b, 4
-	ld a, 2
-	ret
-
-.Fail:
-	ld a, 3
-	ret
+	jr CheckFieldMoveSuccess_Teleport_Surf
 
 MonMenu_Surf:
 	farcall SurfFunction
+	; fallthrough
+CheckFieldMoveSuccess_Teleport_Surf:
 	ld a, [wFieldMoveSucceeded]
 	and a
 	jr z, .Fail
@@ -675,16 +623,7 @@ MonMenu_Surf:
 
 MonMenu_Dig:
 	farcall DigFunction
-	ld a, [wFieldMoveSucceeded]
-	dec a
-	jr nz, .Fail
-	ld b, 4
-	ld a, 2
-	ret
-
-.Fail:
-	ld a, 3
-	ret
+	jr CheckFieldMoveSuccess
 
 MonMenu_Softboiled_MilkDrink:
 	call .CheckMonHasEnoughHP
@@ -729,19 +668,12 @@ MonMenu_Softboiled_MilkDrink:
 
 MonMenu_Headbutt:
 	farcall HeadbuttFunction
-	ld a, [wFieldMoveSucceeded]
-	dec a
-	jr nz, .Fail
-	ld b, 4
-	ld a, 2
-	ret
-
-.Fail:
-	ld a, 3
-	ret
+	jr CheckFieldMoveSuccess
 
 MonMenu_RockSmash:
 	farcall RockSmashFunction
+	; fallthrough
+CheckFieldMoveSuccess:
 	ld a, [wFieldMoveSucceeded]
 	dec a
 	jr nz, .Fail
@@ -816,7 +748,7 @@ ChooseMoveToDelete:
 DeleteMoveScreen2DMenuData:
 	db 3, 1 ; cursor start y, x
 	db 3, 1 ; rows, columns
-	db $40, $00 ; flags
+	db STATICMENU_NO_TOP_SPACING ; flags
 	dn 2, 0 ; cursor offset
 	db D_UP | D_DOWN | A_BUTTON | B_BUTTON ; accepted buttons
 
@@ -834,7 +766,7 @@ ManagePokemonMoves:
 	call ClearBGPalettes
 
 .egg
-	ld a, 0
+	xor a
 	ret
 
 MoveScreenLoop:
