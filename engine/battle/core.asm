@@ -2317,36 +2317,7 @@ UpdateBattleStateAndExperienceAfterEnemyFaint:
 	ld a, [wBattleResult]
 	and BATTLERESULT_BITMASK
 	ld [wBattleResult], a ; WIN
-	call IsAnyMonHoldingExpShare
-	jr z, .skip_exp
-	ld hl, wEnemyMonBaseExp
-	srl [hl]
-
-.skip_exp
-	ld hl, wEnemyMonBaseExp
-	ld de, wBackupEnemyMonBaseExp
-	ld a, [hl]
-	ld [de], a
-	xor a
-	ld [wGivingExperienceToExpShareHolders], a
-	call GiveExperiencePoints
-	call IsAnyMonHoldingExpShare
-	ret z
-
-	ld a, [wBattleParticipantsNotFainted]
-	push af
-	ld a, d
-	ld [wBattleParticipantsNotFainted], a
-	ld hl, wBackupEnemyMonBaseExp
-	ld de, wEnemyMonBaseExp
-	ld a, [hl]
-	ld [de], a
-	ld a, $1
-	ld [wGivingExperienceToExpShareHolders], a
-	call GiveExperiencePoints
-	pop af
-	ld [wBattleParticipantsNotFainted], a
-	ret
+	; fallthrough
 
 ApplyExperienceAfterEnemyCaught:
 	call IsAnyMonHoldingExpShare
