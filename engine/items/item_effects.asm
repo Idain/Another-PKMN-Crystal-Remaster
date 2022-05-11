@@ -68,7 +68,7 @@ ItemEffects:
 	dw CoinCaseEffect      ; COIN_CASE
 	dw ItemfinderEffect    ; ITEMFINDER
 	dw PokeFluteEffect     ; POKE_FLUTE
-	dw NoEffect            ; EXP_SHARE
+	dw ExpShareEffect      ; EXP_SHARE
 	dw OldRodEffect        ; OLD_ROD
 	dw GoodRodEffect       ; GOOD_ROD
 	dw NoEffect            ; SILVER_LEAF
@@ -1832,20 +1832,6 @@ LoadCurHPIntoBuffer3:
 	ld [wHPBuffer3], a
 	ret
 
-LoadHPIntoBuffer3: ; unreferenced
-	ld a, d
-	ld [wHPBuffer3 + 1], a
-	ld a, e
-	ld [wHPBuffer3], a
-	ret
-
-LoadHPFromBuffer3: ; unreferenced
-	ld a, [wHPBuffer3 + 1]
-	ld d, a
-	ld a, [wHPBuffer3]
-	ld e, a
-	ret
-
 LoadCurHPIntoBuffer2:
 	ld a, MON_HP
 	call GetPartyParamLocation
@@ -2558,8 +2544,16 @@ OpenBox:
 	text_far _SentTrophyHomeText
 	text_end
 
-NoEffect:
-	jp IsntTheTimeMessage
+ExpShareEffect:
+	ld a, [wExpShareToggle]
+	xor 1
+	ld [wExpShareToggle], a
+	and a
+	ld hl, ExpShareToggleOn
+	jp nz, PrintText
+
+	ld hl, ExpShareToggleOff
+	jp PrintText
 
 Play_SFX_FULL_HEAL:
 	push de
@@ -2623,24 +2617,13 @@ CantUseOnEggMessage:
 	ld hl, ItemCantUseOnEggText
 	jr CantUseItemMessage
 
-IsntTheTimeMessage:
+NoEffect:
+;IsntTheTimeMessage
 	ld hl, ItemOakWarningText
 	jr CantUseItemMessage
 
 WontHaveAnyEffectMessage:
 	ld hl, ItemWontHaveEffectText
-	jr CantUseItemMessage
-
-BelongsToSomeoneElseMessage: ; unreferenced
-	ld hl, ItemBelongsToSomeoneElseText
-	jr CantUseItemMessage
-
-CyclingIsntAllowedMessage: ; unreferenced
-	ld hl, NoCyclingText
-	jr CantUseItemMessage
-
-CantGetOnYourBikeMessage: ; unreferenced
-	ld hl, ItemCantGetOnText
 	; fallthrough
 
 CantUseItemMessage:
@@ -2661,10 +2644,6 @@ ItemOakWarningText:
 	text_far _ItemOakWarningText
 	text_end
 
-ItemBelongsToSomeoneElseText:
-	text_far _ItemBelongsToSomeoneElseText
-	text_end
-
 ItemWontHaveEffectText:
 	text_far _ItemWontHaveEffectText
 	text_end
@@ -2677,14 +2656,6 @@ BallDontBeAThiefText:
 	text_far _BallDontBeAThiefText
 	text_end
 
-NoCyclingText:
-	text_far _NoCyclingText
-	text_end
-
-ItemCantGetOnText:
-	text_far _ItemCantGetOnText
-	text_end
-
 BallBoxFullText:
 	text_far _BallBoxFullText
 	text_end
@@ -2693,12 +2664,12 @@ ItemUsedText:
 	text_far _ItemUsedText
 	text_end
 
-ItemGotOnText: ; unreferenced
-	text_far _ItemGotOnText
+ExpShareToggleOff:
+	text_far _ExpShareToggleOff
 	text_end
 
-ItemGotOffText: ; unreferenced
-	text_far _ItemGotOffText
+ExpShareToggleOn:
+	text_far _ExpShareToggleOn
 	text_end
 
 ApplyPPUp:

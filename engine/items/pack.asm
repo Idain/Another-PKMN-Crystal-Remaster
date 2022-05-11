@@ -520,33 +520,6 @@ TossMenu:
 	ld hl, ThrewAwayText
 	jp Pack_PrintTextNoScroll
 
-;ResetPocketCursorPositions: ; unreferenced
-;	ld a, [wCurPocket]
-;	and a ; ITEM_POCKET
-;	jr z, .items
-;	dec a ; BALL_POCKET
-;	jr z, .balls
-;	dec a ; KEY_ITEM_POCKET
-;	ret nz
-;
-;.key
-;	xor a
-;	ld [wKeyItemsPocketCursor], a
-;	ld [wKeyItemsPocketScrollPosition], a
-;	ret
-;
-;.balls
-;	xor a
-;	ld [wBallsPocketCursor], a
-;	ld [wBallsPocketScrollPosition], a
-;	ret
-;
-;.items
-;	xor a
-;	ld [wItemsPocketCursor], a
-;	ld [wItemsPocketScrollPosition], a
-;	ret
-
 RegisterItem:
 	farcall CheckSelectableItem
 	ld a, [wItemAttributeValue]

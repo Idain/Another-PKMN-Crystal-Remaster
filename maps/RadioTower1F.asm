@@ -94,7 +94,7 @@ RadioTower1FLuckyNumberManScript:
 	playsound SFX_3RD_PLACE
 	waitsfx
 	promptbutton
-	giveitem EXP_SHARE
+	giveitem EVIOLITE
 	iffalse .BagFull
 	itemnotify
 	setflag ENGINE_LUCKY_NUMBER_SHOW
@@ -307,8 +307,8 @@ RadioTower1FLuckyNumberManWeakMatchText:
 	cont "three numbers."
 
 	para "You've won third"
-	line "prize, an Exp."
-	cont "Share!"
+	line "prize, an Evio-"
+	cont "lite!"
 	done
 	
 RadioTower1FLuckyNumberManFourthPrizeText:
