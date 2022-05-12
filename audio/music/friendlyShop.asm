@@ -1073,124 +1073,33 @@ Music_FriendlyShop_Ch4_loop:
 	note C#, 2
 	note C#, 2
 ;Bar 4
-	note D_, 2
-	note C#, 2
-	note C#, 2
-	note D_, 2
-	note C#, 2
-	note C#, 2
-	note D_, 2
-	note C#, 2
+	callchannel Music_FriendlyShop_Ch4_Bar4
 ;Bar 5
-	note D_, 2
-	note C#, 2
-	note D_, 2
-	note C#, 2
-	note C#, 2
-	note D_, 2
-	note C#, 2
-	note C#, 2
+	callchannel Music_FriendlyShop_Ch4_Bar5
 ;Bar 6
-	note D_, 2
-	note C#, 2
-	note C#, 2
-	note D_, 2
-	note C#, 2
-	note C#, 2
-	note D_, 2
-	note C#, 2
+	callchannel Music_FriendlyShop_Ch4_Bar4
 ;Bar 7
-	note D_, 2
-	note C#, 2
-	note D_, 2
-	note C#, 2
-	note C#, 2
-	note D_, 2
-	note C#, 2
-	note C#, 2
+	callchannel Music_FriendlyShop_Ch4_Bar5
 ;Bar 8
-	note D_, 2
-	note C#, 2
-	note C#, 2
-	note D_, 2
-	note C#, 2
-	note C#, 2
-	note D_, 2
-	note C#, 2
+	callchannel Music_FriendlyShop_Ch4_Bar4
 ;Bar 9
-	note D_, 2
-	note C#, 2
-	note D_, 2
-	note C#, 2
-	note C#, 2
-	note D_, 2
-	note C#, 2
-	note C#, 2
+	callchannel Music_FriendlyShop_Ch4_Bar5
 ;Bar 10
 	note D_, 16
 ;Bar 11
-	note D_, 2
-	note C#, 2
-	note D_, 2
-	note C#, 2
-	note C#, 2
-	note D_, 2
-	note C#, 2
-	note C#, 2
+	callchannel Music_FriendlyShop_Ch4_Bar5
 ;Bar 12
-	note D_, 2
-	note C#, 2
-	note C#, 2
-	note D_, 2
-	note C#, 2
-	note C#, 2
-	note D_, 2
-	note C#, 2
+	callchannel Music_FriendlyShop_Ch4_Bar4
 ;Bar 13
-	note D_, 2
-	note C#, 2
-	note D_, 2
-	note C#, 2
-	note C#, 2
-	note D_, 2
-	note C#, 2
-	note C#, 2
+	callchannel Music_FriendlyShop_Ch4_Bar5
 ;Bar 14
-	note D_, 2
-	note C#, 2
-	note C#, 2
-	note D_, 2
-	note C#, 2
-	note C#, 2
-	note D_, 2
-	note C#, 2
+	callchannel Music_FriendlyShop_Ch4_Bar4
 ;Bar 15
-	note D_, 2
-	note C#, 2
-	note D_, 2
-	note C#, 2
-	note C#, 2
-	note D_, 2
-	note C#, 2
-	note C#, 2
+	callchannel Music_FriendlyShop_Ch4_Bar5
 ;Bar 16
-	note D_, 2
-	note C#, 2
-	note C#, 2
-	note D_, 2
-	note C#, 2
-	note C#, 2
-	note D_, 2
-	note C#, 2
+	callchannel Music_FriendlyShop_Ch4_Bar4
 ;Bar 17
-	note D_, 2
-	note C#, 2
-	note D_, 2
-	note C#, 2
-	note C#, 2
-	note D_, 2
-	note C#, 2
-	note C#, 2
+	callchannel Music_FriendlyShop_Ch4_Bar5
 ;Bar 18
 	note D_, 16
 ;Bar 19
@@ -1211,6 +1120,28 @@ Music_FriendlyShop_Ch4_part2:
 	note D_, 2
 	note D_, 2
 	loopchannel 0, Music_FriendlyShop_Ch4_loop
+
+Music_FriendlyShop_Ch4_Bar4:
+	note D_, 2;
+	note C#, 2
+	note C#, 2
+	note D_, 2
+	note C#, 2
+	note C#, 2
+	note D_, 2
+	note C#, 2
+	endchannel
+
+Music_FriendlyShop_Ch4_Bar5:
+	note D_, 2;
+	note C#, 2
+	note D_, 2
+	note C#, 2
+	note C#, 2
+	note D_, 2
+	note C#, 2
+	note C#, 2
+	endchannel
 
 ; ============================================================================================================
 
