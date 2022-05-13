@@ -160,8 +160,6 @@ BattleTurn:
 	ld [wPlayerIsSwitching], a
 	ld [wEnemyIsSwitching], a
 	ld [wBattleHasJustStarted], a
-	ld [wPlayerJustGotFrozen], a
-	ld [wEnemyJustGotFrozen], a
 	ld [wCurDamage], a
 	ld [wCurDamage + 1], a
 
@@ -292,7 +290,6 @@ HandleBetweenTurnEffects:
 
 .NoMoreFaintingConditions:
 	call HandleLeppaBerry
-	call HandleDefrost
 	call HandleMist
 	call HandleSafeguard
 	call HandleScreens
@@ -771,7 +768,7 @@ TryEnemyFlee:
 	jr nz, .Stay
 
 	ld a, [wEnemyMonStatus]
-	and 1 << FRZ | SLP
+	and SLP
 	jr nz, .Stay
 
 	ld a, [wTempEnemyMonSpecies]
@@ -1039,15 +1036,21 @@ ResidualDamage:
 
 	ld a, BATTLE_VARS_STATUS
 	call GetBattleVar
-	and 1 << PSN | 1 << BRN
+	and 1 << PSN | 1 << BRN | 1 << FRZ
 	jr z, .did_psn_brn
 
 	ld hl, HurtByPoisonText
 	ld de, ANIM_PSN
-	and 1 << BRN
-	jr z, .got_anim
+	bit PSN, a
+	jr nz, .got_anim
+
 	ld hl, HurtByBurnText
 	ld de, ANIM_BRN
+	bit BRN, a
+	jr nz, .got_anim
+
+	ld hl, HurtByFrostbiteText
+	ld de, ANIM_FRZ
 .got_anim
 	push de
 	call StdBattleTextbox
@@ -1572,67 +1575,6 @@ HandleFutureSight:
 
 	call UpdateBattleMonInParty
 	jp UpdateEnemyMonInParty
-
-HandleDefrost:
-	ld a, [wEnemyIsFaster]
-	and a
-	jr nz, .enemy_first
-	; fallthrough
-.player_first
-	call .do_player_turn
-	jr .do_enemy_turn
-
-.enemy_first
-	call .do_enemy_turn
-.do_player_turn
-	ld a, [wBattleMonStatus]
-	bit FRZ, a
-	ret z
-
-	ld a, [wPlayerJustGotFrozen]
-	and a
-	ret nz
-
-	call BattleRandom
-	cp 20 percent
-	ret nc
-	xor a
-	ld [wBattleMonStatus], a
-	ld a, [wCurBattleMon]
-	ld hl, wPartyMon1Status
-	call GetPartyLocation
-	ld [hl], 0
-	call UpdateBattleHuds
-	call SetEnemyTurn
-	ld hl, DefrostedOpponentText
-	jp StdBattleTextbox
-
-.do_enemy_turn
-	ld a, [wEnemyMonStatus]
-	bit FRZ, a
-	ret z
-	ld a, [wEnemyJustGotFrozen]
-	and a
-	ret nz
-	call BattleRandom
-	cp 20 percent
-	ret nc
-	xor a
-	ld [wEnemyMonStatus], a
-
-	ld a, [wBattleMode]
-	dec a
-	jr z, .wild
-	ld a, [wCurOTMon]
-	ld hl, wOTPartyMon1Status
-	call GetPartyLocation
-	ld [hl], 0
-.wild
-
-	call UpdateBattleHuds
-	call SetPlayerTurn
-	ld hl, DefrostedOpponentText
-	jp StdBattleTextbox
 
 
 HandleMist:
@@ -3654,7 +3596,7 @@ ShowSetEnemyMonAndSendOutAnimation:
 
 .not_shiny
 	ld bc, wTempMonSpecies
-	farcall CheckFaintedFrzSlp
+	farcall CheckFaintedSlp
 	jr c, .skip_cry
 
 	farcall CheckBattleScene
@@ -4153,7 +4095,7 @@ SendOutPlayerMon:
 	call GetPartyParamLocation
 	ld b, h
 	ld c, l
-	farcall CheckFaintedFrzSlp
+	farcall CheckFaintedSlp
 	jr c, .statused
 	ld a, $f0
 	ld [wCryTracks], a
@@ -6726,7 +6668,8 @@ ApplyStatusEffectOnEnemyStats:
 ApplyStatusEffectOnStats:
 	ldh [hBattleTurn], a
 	call ApplyPrzEffectOnSpeed
-	jp ApplyBrnEffectOnAttack
+	call ApplyBrnEffectOnAttack
+	jp ApplyFrbEffectOnSpclAttack
 
 ApplyPrzEffectOnSpeed:
 	ldh a, [hBattleTurn]
@@ -6736,25 +6679,14 @@ ApplyPrzEffectOnSpeed:
 	and 1 << PAR
 	ret z
 	ld hl, wBattleMonSpeed + 1
-	ld a, [hld]
-	ld b, a
-	ld a, [hl]
-	srl a
-	rr b
-	ld [hli], a
-	or b
-	jr nz, .player_ok
-	ld b, $1 ; min speed
-
-.player_ok
-	ld [hl], b
-	ret
+	jr .proceed
 
 .enemy
 	ld a, [wEnemyMonStatus]
 	and 1 << PAR
 	ret z
 	ld hl, wEnemyMonSpeed + 1
+.proceed
 	ld a, [hld]
 	ld b, a
 	ld a, [hl]
@@ -6762,10 +6694,9 @@ ApplyPrzEffectOnSpeed:
 	rr b
 	ld [hli], a
 	or b
-	jr nz, .enemy_ok
+	jr nz, .ok
 	ld b, 1 ; min speed
-
-.enemy_ok
+.ok
 	ld [hl], b
 	ret
 
@@ -6777,25 +6708,14 @@ ApplyBrnEffectOnAttack:
 	and 1 << BRN
 	ret z
 	ld hl, wBattleMonAttack + 1
-	ld a, [hld]
-	ld b, a
-	ld a, [hl]
-	srl a
-	rr b
-	ld [hli], a
-	or b
-	jr nz, .player_enemy_ok
-	ld b, 1 ; min attack
-
-.player_enemy_ok
-	ld [hl], b
-	ret
+	jr .proceed
 
 .enemy
 	ld a, [wEnemyMonStatus]
 	and 1 << BRN
 	ret z
 	ld hl, wEnemyMonAttack + 1
+.proceed
 	ld a, [hld]
 	ld b, a
 	ld a, [hl]
@@ -6803,9 +6723,40 @@ ApplyBrnEffectOnAttack:
 	rr b
 	ld [hli], a
 	or b
-	jr nz, .player_enemy_ok
+	jr nz, .ok
 	ld b, 1 ; min attack
-	jr .player_enemy_ok
+.ok
+	ld [hl], b
+	ret
+
+ApplyFrbEffectOnSpclAttack:
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .enemy
+	ld a, [wBattleMonStatus]
+	and 1 << FRZ
+	ret z
+	ld hl, wBattleMonSpclAtk + 1
+	jr .proceed
+
+.enemy
+	ld a, [wEnemyMonStatus]
+	and 1 << FRZ
+	ret z
+	ld hl, wEnemyMonSpclAtk + 1
+.proceed
+	ld a, [hld]
+	ld b, a
+	ld a, [hl]
+	srl a
+	rr b
+	ld [hli], a
+	or b
+	jr nz, .ok
+	ld b, 1 ; min special attack
+.ok
+	ld [hl], b
+	ret
 
 ApplyStatLevelMultiplierOnAllStats:
 ; Apply StatLevelMultipliers on all 5 Stats

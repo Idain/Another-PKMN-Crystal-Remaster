@@ -346,10 +346,10 @@ BoarderRonaldBeatenText:
 
 BoarderRonaldAfterBattleText:
 	text "I think there's a"
-	line "move a #mon"
+	line "move a frostbitten"
 
-	para "can use while it's"
-	line "frozen."
+	para "#mon can use to"
+	line "cure itself."
 	done
 
 BoarderBradSeenText:
@@ -444,7 +444,7 @@ MahoganyGymGuideText:
 	line "good at freezing"
 
 	para "opponents with"
-	line "ice-type moves."
+	line "Ice-type moves."
 
 	para "That means you"
 	line "should melt him"

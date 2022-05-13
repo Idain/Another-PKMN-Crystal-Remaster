@@ -514,7 +514,7 @@ IceBeamDescription:
 BlizzardDescription:
 PowderSnowDescription:
 	db   "An attack that may"
-	next "freeze the foe.@"
+	next "cause frostbite.@"
 
 PsybeamDescription:
 ConfusionDescription:
