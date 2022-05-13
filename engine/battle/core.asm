@@ -3318,7 +3318,7 @@ AddBattleParticipant:
 
 FindMonInOTPartyToSwitchIntoBattle:
 	ld b, -1
-	ld a, 1|
+	ld a, 1
 	ld [wEnemyEffectivenessVsPlayerMons], a
 	ld [wPlayerEffectivenessVsEnemyMons], a
 .loop
@@ -3634,6 +3634,8 @@ ShowSetEnemyMonAndSendOutAnimation:
 	ld [wMonType], a
 	predef CopyMonToTempMon
 	call GetEnemyMonFrontpic
+
+	call ApplyStatusEffectOnEnemyStats
 
 	xor a
 	ld [wNumHits], a
