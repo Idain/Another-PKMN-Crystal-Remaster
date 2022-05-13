@@ -2313,9 +2313,7 @@ wMailboxCount:: db
 wMailboxItems:: ds MAILBOX_CAPACITY
 ENDU
 
-	ds 3
-
-wUnusedNamesPointer:: dw
+	ds 5
 
 wCurItem:: db
 wCurItemQuantity::
