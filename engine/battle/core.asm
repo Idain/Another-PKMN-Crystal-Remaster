@@ -428,7 +428,6 @@ HandleBerserkGene:
 	ld [wAttackMissed], a
 	farcall BattleCommand_SpecialAttackUp2
 	farcall BattleCommand_StatUpMessage
-;	callfar BattleCommand_StatUpMessage
 	pop af
 	bit SUBSTATUS_CONFUSED, a
 	ret nz
@@ -2196,13 +2195,9 @@ HandleEnemyMonFaint:
 
 	ld a, [wBattleMode]
 	dec a
-	jr nz, .trainer
+	jr z, .battle_ended
 
-	ld a, 1
-	ld [wBattleEnded], a
-	ret
-
-.trainer
+;trainer
 	call CheckEnemyTrainerDefeated
 	jp z, WinTrainerBattle
 
@@ -2211,7 +2206,8 @@ HandleEnemyMonFaint:
 
 	call AskUseNextPokemon
 	jr nc, .dont_flee
-
+	; fallthrough
+.battle_ended
 	ld a, 1
 	ld [wBattleEnded], a
 	ret
@@ -2716,18 +2712,16 @@ HandlePlayerMonFaint:
 	call UpdateBattleStateAndExperienceAfterEnemyFaint
 	ld a, [wBattleMode]
 	dec a
-	jr nz, .trainer
-	ld a, $1
-	ld [wBattleEnded], a
-	ret
+	jr z, .battle_ended
 
-.trainer
+;trainer
 	call CheckEnemyTrainerDefeated
 	jp z, WinTrainerBattle
 
 .notfainted
 	call AskUseNextPokemon
 	jr nc, .switch
+.battle_ended
 	ld a, $1
 	ld [wBattleEnded], a
 	ret
@@ -3099,7 +3093,7 @@ LostBattle:
 EnemyMonFaintedAnimation:
 	hlcoord 12, 5
 	decoord 12, 6
-	jp MonFaintedAnimation
+	jr MonFaintedAnimation
 
 PlayerMonFaintedAnimation:
 	hlcoord 1, 10
@@ -3324,7 +3318,7 @@ AddBattleParticipant:
 
 FindMonInOTPartyToSwitchIntoBattle:
 	ld b, -1
-	ld a, %000001
+	ld a, 1|
 	ld [wEnemyEffectivenessVsPlayerMons], a
 	ld [wPlayerEffectivenessVsEnemyMons], a
 .loop
@@ -3544,13 +3538,13 @@ LoadEnemyMonToSwitchTo:
 CheckWhetherToAskSwitch:
 	ld a, [wBattleHasJustStarted]
 	dec a
-	jp z, .return_nc
+	jr z, .return_nc
 	ld a, [wPartyCount]
 	dec a
-	jp z, .return_nc
+	jr z, .return_nc
 	ld a, [wLinkMode]
 	and a
-	jp nz, .return_nc
+	jr nz, .return_nc
 	ld a, [wOptions]
 	bit BATTLE_SHIFT, a
 	jr nz, .return_nc
