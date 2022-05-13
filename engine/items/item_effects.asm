@@ -331,7 +331,7 @@ PokeBallEffect:
 	ld c, 0
 	jr z, .addstatus
 	and SLP
-	ld c, 10
+	ld c, 15
 	jr nz, .addstatus
 	ld c, 5
 .addstatus
