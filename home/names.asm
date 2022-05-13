@@ -6,7 +6,7 @@ NamesPointers::
 	dbw 0, wPartyMonOTs     ; PARTY_OT_NAME
 	dbw 0, wOTPartyMonOTs   ; ENEMY_OT_NAME
 	dba TrainerClassNames   ; TRAINER_NAME
-	dbw 4, MoveDescriptions ; MOVE_DESC_NAME_BROKEN (wrong bank)
+	dba MoveDescriptions 	; MOVE_DESC_NAME
 
 GetName::
 ; Return name wCurSpecies from name list wNamedObjectType in wStringBuffer1.
@@ -24,10 +24,6 @@ GetName::
 	ld a, [wCurSpecies]
 	ld [wNamedObjectIndex], a
 	call GetPokemonName
-	ld hl, MON_NAME_LENGTH
-	add hl, de
-	ld e, l
-	ld d, h
 	jr .done
 
 .NotPokeName:
@@ -53,11 +49,6 @@ GetName::
 	call CopyBytes
 
 .done
-	ld a, e
-	ld [wUnusedNamesPointer], a
-	ld a, d
-	ld [wUnusedNamesPointer + 1], a
-
 	pop de
 	pop bc
 	pop hl
