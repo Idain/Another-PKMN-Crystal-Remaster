@@ -2587,6 +2587,3 @@ CableClubCheckWhichChris:
 .yes
 	ld [wScriptVar], a
 	ret
-
-GSLinkCommsBorderGFX: ; unreferenced
-INCBIN "gfx/trade/unused_gs_border_tiles.2bpp"
