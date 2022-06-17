@@ -1,28 +1,28 @@
 ; hMGRole values
-IR_RECEIVER EQU 1
-IR_SENDER   EQU 2
+DEF IR_RECEIVER EQU 1
+DEF IR_SENDER   EQU 2
 
 ; hMGStatusFlags error bits
-MG_WRONG_CHECKSUM_F EQU 0
-MG_TIMED_OUT_F      EQU 1
-MG_CANCELED_F       EQU 4
-MG_WRONG_PREFIX_F   EQU 7
+DEF MG_WRONG_CHECKSUM_F EQU 0
+DEF MG_TIMED_OUT_F      EQU 1
+DEF MG_CANCELED_F       EQU 4
+DEF MG_WRONG_PREFIX_F   EQU 7
 
 ; hMGStatusFlags values
-MG_WRONG_CHECKSUM EQU 1 << MG_WRONG_CHECKSUM_F
-MG_TIMED_OUT      EQU 1 << MG_TIMED_OUT_F
-MG_CANCELED       EQU 1 << MG_CANCELED_F
-MG_WRONG_PREFIX   EQU 1 << MG_WRONG_PREFIX_F
-MG_NOT_OKAY       EQU MG_WRONG_CHECKSUM | MG_TIMED_OUT | MG_CANCELED | MG_WRONG_PREFIX
-MG_OKAY           EQU ~MG_NOT_OKAY
-MG_START_END      EQU %11111111
+DEF MG_WRONG_CHECKSUM EQU 1 << MG_WRONG_CHECKSUM_F
+DEF MG_TIMED_OUT      EQU 1 << MG_TIMED_OUT_F
+DEF MG_CANCELED       EQU 1 << MG_CANCELED_F
+DEF MG_WRONG_PREFIX   EQU 1 << MG_WRONG_PREFIX_F
+DEF MG_NOT_OKAY       EQU MG_WRONG_CHECKSUM | MG_TIMED_OUT | MG_CANCELED | MG_WRONG_PREFIX
+DEF MG_OKAY           EQU ~MG_NOT_OKAY
+DEF MG_START_END      EQU %11111111
 
-REGION_PREFIX EQU $96
-REGION_CODE   EQU $90 ; USA
+DEF REGION_PREFIX EQU $96
+DEF REGION_CODE   EQU $90 ; USA
 
-MESSAGE_PREFIX EQU $5a
+DEF MESSAGE_PREFIX EQU $5a
 
-NAME_CARD_PREFIX EQU $3c
+DEF NAME_CARD_PREFIX EQU $3c
 
 DoMysteryGift:
 	call ClearTilemap
@@ -37,7 +37,7 @@ DoMysteryGift:
 	; Prepare the first of two messages for wMysteryGiftPartnerData
 	farcall StageDataForMysteryGift
 	call ClearMysteryGiftTrainer
-	vc_patch infrared_fake_0
+	vc_patch Infrared_stage_party_data
 if DEF(_CRYSTAL11_VC)
 	farcall StagePartyDataForMysteryGift
 	call ClearMysteryGiftTrainer
@@ -53,7 +53,7 @@ endc
 	ldh a, [rIE]
 	push af
 	call ExchangeMysteryGiftData
-	vc_hook infrared_fake_4
+	vc_hook Infrared_ExchangeMysteryGiftData_end
 	ld d, a
 	xor a
 	ldh [rIF], a
@@ -268,8 +268,8 @@ endc
 	jp CloseSRAM
 
 ExchangeMysteryGiftData:
-	vc_hook infrared_fake_2
-	vc_patch infrared_fake_1
+	vc_hook Infrared_ExchangeMysteryGiftData_start
+	vc_patch Infrared_ExchangeMysteryGiftData_function
 if DEF(_CRYSTAL11_VC)
 	ld d, $ef
 .loop
@@ -277,7 +277,7 @@ if DEF(_CRYSTAL11_VC)
 	ld a, d
 	and a
 	jr nz, .loop
-	vc_hook infrared_fake_3
+	vc_hook Infrared_ExchangeMysteryGiftData_loop_done
 	nop
 	cp MG_CANCELED
 .restart ; same location as unpatched .restart

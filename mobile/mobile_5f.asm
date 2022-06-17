@@ -2932,16 +2932,16 @@ Function17e349:
 	call CopyBytes
 	jp CloseSRAM
 
-inc_crash_check_pointer_farcall: MACRO
+MACRO inc_crash_check_pointer_farcall
 	call IncCrashCheckPointer
 	ldh a, [rSVBK]
 	push af
 	ld a, $1
 	ldh [rSVBK], a
-rept _NARG
-	farcall \1
-	shift
-endr
+	rept _NARG
+		farcall \1
+		shift
+	endr
 	pop af
 	ldh [rSVBK], a
 	ret

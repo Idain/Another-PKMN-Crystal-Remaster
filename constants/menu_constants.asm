@@ -63,17 +63,17 @@
 	const MONMENUITEM_MOVE       ; 19
 	const MONMENUITEM_MAIL       ; 20
 	const MONMENUITEM_ERROR      ; 21
-NUM_MONMENUITEMS EQU const_value - 1
+DEF NUM_MONMENUITEMS EQU const_value - 1
 
 ; MonMenuOptions categories
-MONMENU_FIELD_MOVE EQU 0
-MONMENU_MENUOPTION EQU 1
+DEF MONMENU_FIELD_MOVE EQU 0
+DEF MONMENU_MENUOPTION EQU 1
 
-NUM_MONMENU_ITEMS EQU 8
+DEF NUM_MONMENU_ITEMS EQU 8
 
 ; start/select menu return values
-HMENURETURN_SCRIPT EQU %10000000
-HMENURETURN_ASM    EQU %11111111
+DEF HMENURETURN_SCRIPT EQU %10000000
+DEF HMENURETURN_ASM    EQU %11111111
 
 ; PartyMenuQualityPointers indexes (see data/party_menu_qualities.asm)
 	const_def
@@ -87,7 +87,7 @@ HMENURETURN_ASM    EQU %11111111
 	const PARTYMENUACTION_GIVE_MON_FEMALE ; unused
 	const PARTYMENUACTION_GIVE_ITEM
 	const PARTYMENUACTION_MOBILE ; mobile
-NUM_PARTYMENUACTIONS EQU const_value
+DEF NUM_PARTYMENUACTIONS EQU const_value
 ; PrintPartyMenuActionText arguments (see engine/pokemon/party_menu.asm)
 	const_next $f0
 	const PARTYMENUTEXT_HEAL_PSN
@@ -109,4 +109,4 @@ NUM_PARTYMENUACTIONS EQU const_value
 	const NAME_MOM ; unused
 	const NAME_BOX
 	const NAME_FRIEND
-NUM_NAME_TYPES EQU const_value
+DEF NUM_NAME_TYPES EQU const_value

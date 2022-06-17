@@ -132,14 +132,12 @@
 	const MUSIC_CHERRYGROVE_CITY_NIGHT
 	const MUSIC_ECRUTEAK_CITY_NIGHT
 	const MUSIC_GOLDENROD_CITY_NIGHT
-
-NUM_MUSIC_SONGS EQU const_value
-
+DEF NUM_MUSIC_SONGS EQU const_value
 
 ; GetMapMusic picks music for these values (see home/map.asm)
-MUSIC_MAHOGANY_MART EQU $fc
-MUSIC_RADIO_TOWER   EQU $fd
+DEF MUSIC_MAHOGANY_MART EQU $fc
+DEF MUSIC_RADIO_TOWER   EQU $fd
 
 ; ExitPokegearRadio_HandleMusic uses these values
-RESTART_MAP_MUSIC EQU $fe
-ENTER_MAP_MUSIC   EQU $ff
+DEF RESTART_MAP_MUSIC EQU $fe
+DEF ENTER_MAP_MUSIC   EQU $ff

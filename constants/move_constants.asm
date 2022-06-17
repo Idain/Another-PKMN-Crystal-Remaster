@@ -260,7 +260,7 @@
 	const HAIL		   ; fc
 	const PLAY_ROUGH   ; fd
 	const MOONBLAST	   ; fe
-NUM_ATTACKS EQU const_value - 1
+DEF NUM_ATTACKS EQU const_value - 1
 
 ; Battle animations use the same constants as the moves up to this point
 	const ANIM_SWEET_SCENT_2     ; ff
@@ -290,8 +290,7 @@ NUM_ATTACKS EQU const_value - 1
 	const ANIM_WOBBLE            ; 116
 	const ANIM_SHAKE             ; 117
 	const ANIM_HIT_CONFUSION     ; 118
-
-NUM_BATTLE_ANIMS EQU const_value - 1
+DEF NUM_BATTLE_ANIMS EQU const_value - 1
 
 ; wNumHits uses offsets from ANIM_MISS
 	const_def

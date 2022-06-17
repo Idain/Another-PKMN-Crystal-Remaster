@@ -1523,7 +1523,7 @@ Function1009f3:
 _LinkBattleSendReceiveAction:
 	call .StageForSend
 	ld [wLinkBattleSentAction], a
-	vc_hook send_byt2
+	vc_hook Wireless_start_exchange
 	farcall PlaceWaitingText
 	ld a, [wLinkMode]
 	cp LINK_MOBILE
@@ -1578,8 +1578,8 @@ _LinkBattleSendReceiveAction:
 	inc a
 	jr z, .waiting
 
-	vc_hook send_byt2_ret
-	vc_patch send_byt2_wait
+	vc_hook Wireless_end_exchange
+	vc_patch Wireless_net_delay_3
 if DEF(_CRYSTAL11_VC)
 	ld b, 26
 else
@@ -1592,8 +1592,8 @@ endc
 	dec b
 	jr nz, .receive
 
-	vc_hook send_dummy
-	vc_patch send_dummy_wait
+	vc_hook Wireless_start_send_zero_bytes
+	vc_patch Wireless_net_delay_4
 if DEF(_CRYSTAL11_VC)
 	ld b, 26
 else
@@ -1606,7 +1606,7 @@ endc
 	dec b
 	jr nz, .acknowledge
 
-	vc_hook send_dummy_end
+	vc_hook Wireless_end_send_zero_bytes
 	ld a, [wOtherPlayerLinkAction]
 	ld [wBattleAction], a
 	ret
@@ -2384,7 +2384,7 @@ Function100f8d:
 	call CloseSRAM
 	ret
 
-macro_100fc0: MACRO
+MACRO macro_100fc0
 	; first byte:
 	;     Bit 7 set: Not SRAM
 	;     Lower 7 bits: Bank if SRAM

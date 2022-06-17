@@ -11,11 +11,11 @@
 	const PARTYMENUQUALITY_MOBILE_SELECTION
 	const PARTYMENUQUALITY_GENDER_S
 
-partymenuqualities: MACRO
-rept _NARG
-	db PARTYMENUQUALITY_\1
-	shift
-endr
+MACRO partymenuqualities
+	rept _NARG
+		db PARTYMENUQUALITY_\1
+		shift
+	endr
 	db -1 ; end
 ENDM
 

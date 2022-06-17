@@ -1,6 +1,4 @@
 BattleCommand_Present:
-; present
-
 	push bc
 	push de
 

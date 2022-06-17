@@ -1,32 +1,32 @@
 ; battle_anim_struct members (see macros/wram.asm)
 rsreset
-BATTLEANIMSTRUCT_INDEX           rb
-BATTLEANIMSTRUCT_OAMFLAGS        rb
-BATTLEANIMSTRUCT_FIX_Y           rb
-BATTLEANIMSTRUCT_FRAMESET_ID     rb
-BATTLEANIMSTRUCT_FUNCTION        rb
-BATTLEANIMSTRUCT_PALETTE         rb
-BATTLEANIMSTRUCT_TILEID          rb
-BATTLEANIMOBJ_LENGTH EQU _RS - 1 ; discount BATTLEANIMSTRUCT_INDEX
-BATTLEANIMSTRUCT_XCOORD          rb
-BATTLEANIMSTRUCT_YCOORD          rb
-BATTLEANIMSTRUCT_XOFFSET         rb
-BATTLEANIMSTRUCT_YOFFSET         rb
-BATTLEANIMSTRUCT_PARAM           rb
-BATTLEANIMSTRUCT_DURATION        rb
-BATTLEANIMSTRUCT_FRAME           rb
-BATTLEANIMSTRUCT_JUMPTABLE_INDEX rb
-BATTLEANIMSTRUCT_VAR1            rb
-BATTLEANIMSTRUCT_VAR2            rb
-                                 rb_skip 7
-BATTLEANIMSTRUCT_LENGTH EQU _RS
-NUM_ANIM_OBJECTS EQU 10 ; see wActiveAnimObjects
+DEF BATTLEANIMSTRUCT_INDEX           rb
+DEF BATTLEANIMSTRUCT_OAMFLAGS        rb
+DEF BATTLEANIMSTRUCT_FIX_Y           rb
+DEF BATTLEANIMSTRUCT_FRAMESET_ID     rb
+DEF BATTLEANIMSTRUCT_FUNCTION        rb
+DEF BATTLEANIMSTRUCT_PALETTE         rb
+DEF BATTLEANIMSTRUCT_TILEID          rb
+DEF BATTLEANIMOBJ_LENGTH EQU _RS - 1 ; discount BATTLEANIMSTRUCT_INDEX
+DEF BATTLEANIMSTRUCT_XCOORD          rb
+DEF BATTLEANIMSTRUCT_YCOORD          rb
+DEF BATTLEANIMSTRUCT_XOFFSET         rb
+DEF BATTLEANIMSTRUCT_YOFFSET         rb
+DEF BATTLEANIMSTRUCT_PARAM           rb
+DEF BATTLEANIMSTRUCT_DURATION        rb
+DEF BATTLEANIMSTRUCT_FRAME           rb
+DEF BATTLEANIMSTRUCT_JUMPTABLE_INDEX rb
+DEF BATTLEANIMSTRUCT_VAR1            rb
+DEF BATTLEANIMSTRUCT_VAR2            rb
+                                     rb_skip 7
+DEF BATTLEANIMSTRUCT_LENGTH EQU _RS
+DEF NUM_ANIM_OBJECTS EQU 10 ; see wActiveAnimObjects
 
 ; wBattleAnimTileDict size (see wram.asm)
-NUM_BATTLEANIMTILEDICT_ENTRIES EQU 5
+DEF NUM_BATTLEANIMTILEDICT_ENTRIES EQU 5
 
 ; Start tile for battle animation graphics
-BATTLEANIM_BASE_TILE EQU 7 * 7  ; Maximum size of a pokemon picture
+DEF BATTLEANIM_BASE_TILE EQU 7 * 7  ; Maximum size of a pokemon picture
 
 ; BattleAnimObjects indexes (see data/battle_anims/objects.asm)
 	const_def
@@ -223,7 +223,7 @@ BATTLEANIM_BASE_TILE EQU 7 * 7  ; Maximum size of a pokemon picture
 	const ANIM_OBJ_MOONBLAST
 	const ANIM_OBJ_MOON
 	const ANIM_OBJ_MOON_CHARGE
-NUM_ANIM_OBJS EQU const_value
+DEF NUM_ANIM_OBJS EQU const_value
 
 ; DoBattleAnimFrame arguments (see engine/battle_anims/functions.asm)
 	const_def
@@ -307,7 +307,7 @@ NUM_ANIM_OBJS EQU const_value
 	const BATTLEANIMFUNC_ANCIENT_POWER
 	const BATTLEANIMFUNC_ROCK_SMASH
 	const BATTLEANIMFUNC_COTTON
-NUM_BATTLEANIMFUNCS EQU const_value
+DEF NUM_BATTLEANIMFUNCS EQU const_value
 
 ; BattleAnimFrameData indexes (see data/battle_anims/framesets.asm)
 	const_def
@@ -499,7 +499,7 @@ NUM_BATTLEANIMFUNCS EQU const_value
 	const BATTLEANIMFRAMESET_HAIL
 	const BATTLEANIMFRAMESET_BA
 	const BATTLEANIMFRAMESET_BB
-NUM_BATTLEANIMFRAMESETS EQU const_value
+DEF NUM_BATTLEANIMFRAMESETS EQU const_value
 
 ; BattleAnimOAMData indexes (see data/battle_anims/oam.asm)
 	const_def
@@ -720,7 +720,7 @@ NUM_BATTLEANIMFRAMESETS EQU const_value
 	const BATTLEANIMOAMSET_D6
 	const BATTLEANIMOAMSET_D7
 	const BATTLEANIMOAMSET_HAIL
-NUM_BATTLEANIMOAMSETS EQU const_value
+DEF NUM_BATTLEANIMOAMSETS EQU const_value
 
 ; BattleBGEffects indexes (see engine/battle_anims/bg_effects.asm)
 	const_def 1
@@ -777,7 +777,7 @@ NUM_BATTLEANIMOAMSETS EQU const_value
 	const ANIM_BG_VIBRATE_MON
 	const ANIM_BG_WOBBLE_PLAYER
 	const ANIM_BG_WOBBLE_SCREEN
-NUM_ANIM_BGS EQU const_value - 1
+DEF NUM_ANIM_BGS EQU const_value - 1
 
 ; wBattleAnimTileDict keys (see wram.asm)
 ; AnimObjGFX indexes (see data/battle_anims/object_gfx.asm)
@@ -824,16 +824,16 @@ NUM_ANIM_BGS EQU const_value - 1
 	const ANIM_GFX_MOON
 	const ANIM_GFX_PLAYERHEAD
 	const ANIM_GFX_ENEMYFEET
-NUM_ANIM_GFX EQU const_value - 1
+DEF NUM_ANIM_GFX EQU const_value - 1
 
 ; battle_bg_effect struct members (see macros/wram.asm)
 rsreset
-BG_EFFECT_STRUCT_FUNCTION    rb
-BG_EFFECT_STRUCT_JT_INDEX    rb
-BG_EFFECT_STRUCT_BATTLE_TURN rb
-BG_EFFECT_STRUCT_PARAM       rb
-BG_EFFECT_STRUCT_LENGTH EQU _RS
-NUM_BG_EFFECTS EQU 5 ; see wActiveBGEffects
+DEF BG_EFFECT_STRUCT_FUNCTION    rb
+DEF BG_EFFECT_STRUCT_JT_INDEX    rb
+DEF BG_EFFECT_STRUCT_BATTLE_TURN rb
+DEF BG_EFFECT_STRUCT_PARAM       rb
+DEF BG_EFFECT_STRUCT_LENGTH EQU _RS
+DEF NUM_BG_EFFECTS EQU 5 ; see wActiveBGEffects
 
 ; anim_bgeffect battle turn values for some effects
 	const_def

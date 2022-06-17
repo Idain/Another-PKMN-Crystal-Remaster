@@ -189,16 +189,16 @@
 	const ITEM_BE  	   ; b5
 	const ITEM_C3      ; b6
 	const ITEM_DC      ; b7
-NUM_ITEMS EQU const_value - 1
+DEF NUM_ITEMS EQU const_value - 1
 
-__tmhm_value__ = 1
+DEF __tmhm_value__ = 1
 
-add_tmnum: MACRO
-\1_TMNUM EQU __tmhm_value__
-__tmhm_value__ += 1
+MACRO add_tmnum
+	DEF \1_TMNUM EQU __tmhm_value__
+	DEF __tmhm_value__ += 1
 ENDM
 
-add_tm: MACRO
+MACRO add_tm
 ; Defines three constants:
 ; - TM_\1: the item id, starting at $b8
 ; - \1_TMNUM: the learnable TM/HM flag, starting at 1
@@ -209,7 +209,7 @@ TM{02d:__tmhm_value__}_MOVE = \1
 ENDM
 
 ; see data/moves/tmhm_moves.asm for moves
-TM01 EQU const_value
+DEF TM01 EQU const_value
 	add_tm DYNAMICPUNCH ; b8
 	add_tm HEADBUTT     ; b9
 	add_tm CURSE        ; ba
@@ -270,20 +270,20 @@ TM01 EQU const_value
 	add_tm SWORDS_DANCE	; f1
 	add_tm ROCK_SLIDE	; f2
 	add_tm SUBSTITUTE	; f3
-NUM_TMS EQU __tmhm_value__ - 1
+DEF NUM_TMS EQU __tmhm_value__ - 1
 
-add_hm: MACRO
+MACRO add_hm
 ; Defines three constants:
 ; - HM_\1: the item id, starting at $f4
 ; - \1_TMNUM: the learnable TM/HM flag, starting at 61
 ; - HM##_MOVE: alias for the move id, equal to the value of \1
 	const HM_\1
-HM_VALUE = __tmhm_value__ - NUM_TMS
-HM{02d:HM_VALUE}_MOVE = \1
+	DEF HM_VALUE = __tmhm_value__ - NUM_TMS
+	DEF HM{02d:HM_VALUE}_MOVE = \1
 	add_tmnum \1
 ENDM
 
-HM01 EQU const_value
+DEF HM01 EQU const_value
 	add_hm CUT          ; f4
 	add_hm FLY          ; f5
 	add_hm SURF         ; f6
@@ -291,18 +291,18 @@ HM01 EQU const_value
 	add_hm FLASH        ; f8
 	add_hm WHIRLPOOL    ; f9
 	add_hm WATERFALL    ; fa
-NUM_HMS EQU __tmhm_value__ - NUM_TMS - 1
+DEF NUM_HMS EQU __tmhm_value__ - NUM_TMS - 1
 
-add_mt: MACRO
+MACRO add_mt
 ; Defines two constants:
 ; - \1_TMNUM: the learnable TM/HM flag, starting at 68
 ; - MT##_MOVE: alias for the move id, equal to the value of \1
-MT_VALUE = __tmhm_value__ - NUM_TMS - NUM_HMS
-MT{02d:MT_VALUE}_MOVE = \1
+	DEF MT_VALUE = __tmhm_value__ - NUM_TMS - NUM_HMS
+	DEF MT{02d:MT_VALUE}_MOVE = \1
 	add_tmnum \1
 ENDM
 
-MT01 EQU const_value
+DEF MT01 EQU const_value
 	add_mt FLAMETHROWER
 	add_mt THUNDERBOLT
 	add_mt ICE_BEAM
@@ -315,13 +315,13 @@ MT01 EQU const_value
 ;	add_mt SOFTBOILED
 ;	add_mt MEGA_PUNCH
 ;	add_mt MEGA_KICK
-NUM_TUTORS = __tmhm_value__ - NUM_TMS - NUM_HMS - 1
+DEF NUM_TUTORS = __tmhm_value__ - NUM_TMS - NUM_HMS - 1
 
-NUM_TM_HM_TUTOR EQU NUM_TMS + NUM_HMS + NUM_TUTORS
+DEF NUM_TM_HM_TUTOR EQU NUM_TMS + NUM_HMS + NUM_TUTORS
 
 
-USE_SCRIPT_VAR EQU $00
-ITEM_FROM_MEM  EQU $ff
+DEF USE_SCRIPT_VAR EQU $00
+DEF ITEM_FROM_MEM  EQU $ff
 
 ; leftovers from red
-SAFARI_BALL    EQU $08 ; MOON_STONE
+DEF SAFARI_BALL    EQU $08 ; MOON_STONE

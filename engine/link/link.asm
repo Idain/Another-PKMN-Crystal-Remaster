@@ -66,7 +66,7 @@ Gen2ToGen1LinkComms:
 .player_1
 	ld de, MUSIC_NONE
 	call PlayMusic
-	vc_patch NetworkDelay1
+	vc_patch Wireless_net_delay_5
 if DEF(_CRYSTAL11_VC)
 	ld c, 26
 else
@@ -82,7 +82,7 @@ endc
 	ld hl, wLinkBattleRNPreamble
 	ld de, wEnemyMon
 	ld bc, SERIAL_RN_PREAMBLE_LENGTH + SERIAL_RNS_LENGTH
-	vc_hook Network358
+	vc_hook Wireless_ExchangeBytes_1
 	call Serial_ExchangeBytes
 	ld a, SERIAL_NO_DATA_BYTE
 	ld [de], a
@@ -90,7 +90,7 @@ endc
 	ld hl, wLinkData
 	ld de, wOTPartyData
 	ld bc, SERIAL_PREAMBLE_LENGTH + NAME_LENGTH + 1 + PARTY_LENGTH + 1 + (REDMON_STRUCT_LENGTH + NAME_LENGTH * 2) * PARTY_LENGTH + 3
-	vc_hook Network359
+	vc_hook Wireless_ExchangeBytes_2
 	call Serial_ExchangeBytes
 	ld a, SERIAL_NO_DATA_BYTE
 	ld [de], a
@@ -98,7 +98,7 @@ endc
 	ld hl, wPlayerPatchLists
 	ld de, wOTPatchLists
 	ld bc, 200
-	vc_hook Network364
+	vc_hook Wireless_ExchangeBytes_3_Gen2toGen1Fix
 	call Serial_ExchangeBytes
 
 	xor a
@@ -227,7 +227,7 @@ Gen2ToGen2LinkComms:
 .player_1
 	ld de, MUSIC_NONE
 	call PlayMusic
-	vc_patch NetworkDelay4
+	vc_patch Wireless_net_delay_8
 if DEF(_CRYSTAL11_VC)
 	ld c, 26
 else
@@ -243,7 +243,7 @@ endc
 	ld hl, wLinkBattleRNPreamble
 	ld de, wEnemyMon
 	ld bc, SERIAL_RN_PREAMBLE_LENGTH + SERIAL_RNS_LENGTH
-	vc_hook Network360
+	vc_hook Wireless_ExchangeBytes_4
 	call Serial_ExchangeBytes
 	ld a, SERIAL_NO_DATA_BYTE
 	ld [de], a
@@ -251,7 +251,7 @@ endc
 	ld hl, wLinkData
 	ld de, wOTPartyData
 	ld bc, SERIAL_PREAMBLE_LENGTH + NAME_LENGTH + 1 + PARTY_LENGTH + 1 + 2 + (PARTYMON_STRUCT_LENGTH + NAME_LENGTH * 2) * PARTY_LENGTH + 3
-	vc_hook Network361
+	vc_hook Wireless_ExchangeBytes_5
 	call Serial_ExchangeBytes
 	ld a, SERIAL_NO_DATA_BYTE
 	ld [de], a
@@ -259,7 +259,7 @@ endc
 	ld hl, wPlayerPatchLists
 	ld de, wOTPatchLists
 	ld bc, 200
-	vc_hook Network362
+	vc_hook Wireless_ExchangeBytes_6
 	call Serial_ExchangeBytes
 
 	ld a, [wLinkMode]
@@ -268,7 +268,7 @@ endc
 	ld hl, wLinkPlayerMail
 	ld de, wLinkOTMail
 	ld bc, wLinkPlayerMailEnd - wLinkPlayerMail
-	vc_hook Network363
+	vc_hook Wireless_ExchangeBytes_7
 	call ExchangeBytes
 
 .not_trading
@@ -1595,7 +1595,7 @@ ExitLinkCommunications:
 	ldh [rSC], a
 	ld a, (1 << rSC_ON) | (1 << rSC_CLOCK)
 	ldh [rSC], a
-	vc_hook ret_heya
+	vc_hook ExitLinkCommunications_ret
 	ret
 
 ;GSPlaceTradeScreenFooter: ; unreferenced
@@ -1991,7 +1991,7 @@ LinkTrade:
 	ld de, String_TradeCompleted
 	call PlaceString
 	farcall Link_WaitBGMap
-	vc_hook save_game_end
+	vc_hook Trade_save_game_end
 	ld c, 40
 	call DelayFrames
 	ld a, [wLinkMode]
@@ -2126,7 +2126,7 @@ GetIncompatibleMonName:
 	jp GetPokemonName
 
 EnterTimeCapsule:
-	vc_patch NetworkDelay2
+	vc_patch Wireless_net_delay_6
 if DEF(_CRYSTAL11_VC)
 	ld c, 26
 else
@@ -2189,7 +2189,7 @@ WaitForOtherPlayerToExit:
 	ld [hl], a
 	ldh [hVBlank], a
 	ld [wLinkMode], a
-	vc_hook term_exit
+	vc_hook Wireless_term_exit
 	ret
 
 SetBitsForLinkTradeRequest:
@@ -2257,7 +2257,7 @@ WaitForLinkedFriend:
 ; USING_INTERNAL_CLOCK, which allows the player to proceed past the link
 ; receptionist's "Please wait." It assumes that hSerialConnectionStatus is at
 ; its original address.
-	vc_hook linkCable_fake_begin
+	vc_hook Link_fake_connection_status
 	vc_assert hSerialConnectionStatus == $ffcb, \
 		"hSerialConnectionStatus is no longer located at 00:ffcb."
 	vc_assert USING_INTERNAL_CLOCK == $02, \
@@ -2354,7 +2354,7 @@ CheckLinkTimeout_Gen2:
 	ld a, $6
 	ld [wPlayerLinkAction], a
 	ld hl, wLinkTimeoutFrames
-	vc_patch NetworkDelay6
+	vc_patch Wireless_net_delay_9
 if DEF(_CRYSTAL11_VC)
 	ld a, $3
 else
@@ -2381,7 +2381,7 @@ endc
 Link_CheckCommunicationError:
 	xor a
 	ldh [hSerialReceivedNewData], a
-	vc_hook linkCable_fake_end
+	vc_hook Wireless_prompt
 	ld hl, wLinkTimeoutFrames
 	ld a, [hli]
 	ld l, [hl]
@@ -2411,7 +2411,7 @@ Link_CheckCommunicationError:
 .CheckConnected:
 	call WaitLinkTransfer
 	ld hl, wLinkTimeoutFrames
-	vc_hook Network_RECHECK
+	vc_hook Wireless_net_recheck
 	ld a, [hli]
 	inc a
 	ret nz
@@ -2420,7 +2420,7 @@ Link_CheckCommunicationError:
 	ret
 
 .AcknowledgeSerial:
-	vc_patch NetworkDelay3
+	vc_patch Wireless_net_delay_7
 if DEF(_CRYSTAL11_VC)
 	ld b, 26
 else
@@ -2453,10 +2453,10 @@ TryQuickSave:
 	ld a, [wChosenCableClubRoom]
 	push af
 	farcall Link_SaveGame
-	vc_hook linkCable_block_input
+	vc_hook Wireless_TryQuickSave_block_input_1
 	ld a, TRUE
 	jr nc, .return_result
-	vc_hook linkCable_block_input2
+	vc_hook Wireless_TryQuickSave_block_input_2
 	xor a ; FALSE
 .return_result
 	ld [wScriptVar], a
@@ -2491,7 +2491,7 @@ CheckBothSelectedSameRoom:
 	ret
 
 TimeCapsule:
-	vc_hook to_play2_mons1
+	vc_hook Wireless_TimeCapsule
 	ld a, LINK_TIMECAPSULE
 	ld [wLinkMode], a
 	call DisableSpriteUpdates
@@ -2502,7 +2502,7 @@ TimeCapsule:
 	ret
 
 TradeCenter:
-	vc_hook to_play2_trade
+	vc_hook Wireless_TradeCenter
 	ld a, LINK_TRADECENTER
 	ld [wLinkMode], a
 	call DisableSpriteUpdates
@@ -2513,7 +2513,7 @@ TradeCenter:
 	ret
 
 Colosseum:
-	vc_hook to_play2_battle
+	vc_hook Wireless_Colosseum
 	ld a, LINK_COLOSSEUM
 	ld [wLinkMode], a
 	call DisableSpriteUpdates
@@ -2528,7 +2528,7 @@ CloseLink:
 	ld [wLinkMode], a
 	ld c, 3
 	call DelayFrames
-	vc_hook room_check
+	vc_hook Wireless_room_check
 	jp Link_ResetSerialRegistersAfterLinkClosure
 
 FailedLinkToPast:

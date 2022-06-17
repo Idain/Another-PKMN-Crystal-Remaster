@@ -255,8 +255,7 @@
 	const ICON_MISMAGIUS
 	const ICON_HONCHKROW
 	const ICON_EGG
-
-NUM_ICONS EQU const_value - 1
+DEF NUM_ICONS EQU const_value - 1
 
 ; LoadMenuMonIcon.Jumptable indexes (see engine/gfx/mon_icons.asm)
 	const_def

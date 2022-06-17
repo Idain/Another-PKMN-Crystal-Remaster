@@ -1,6 +1,4 @@
 BattleCommand_BellyDrum:
-; bellydrum
-
 	callfar GetHalfMaxHP
 	callfar CheckUserHasEnoughHP
 	jr nc, .failed

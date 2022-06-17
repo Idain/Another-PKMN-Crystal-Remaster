@@ -15,7 +15,7 @@
 	const DEXSTATE_UPDATE_UNOWN_MODE
 	const DEXSTATE_EXIT
 
-POKEDEX_SCX EQU 5
+DEF POKEDEX_SCX EQU 5
 EXPORT POKEDEX_SCX
 
 Pokedex:
@@ -348,7 +348,7 @@ Pokedex_UpdateDexEntryScreen:
 	ld a, [hl]
 	and B_BUTTON
 	jr nz, .return_to_prev_screen
-	vc_hook print_forbid_5
+	vc_hook Forbid_printing_Pokedex
 	ld a, [hl]
 	and A_BUTTON
 	jr nz, .do_menu_action
