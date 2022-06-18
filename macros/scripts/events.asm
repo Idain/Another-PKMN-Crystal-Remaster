@@ -78,14 +78,14 @@ MACRO ifless
 ENDM
 
 	const iflessorequal_command ; $0c
-iflessorequal: MACRO
+MACRO iflessorequal
 	db iflessorequal_command
 	db \1 ; byte
 	dw \2 ; pointer
 ENDM
 
 	const ifgreaterorequal_command ; $0d
-ifgreaterorequal: MACRO
+MACRO ifgreaterorequal
 	db ifgreaterorequal_command
 	db \1 ; byte
 	dw \2 ; pointer
