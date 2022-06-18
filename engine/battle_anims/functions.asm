@@ -3986,17 +3986,3 @@ BattleAnim_IncAnonJumptableIndex:
 	add hl, bc
 	inc [hl]
 	ret
-
-BattleAnim_AbsSinePrecise: ; unreferenced
-	ld a, e
-	call Sine
-	ld e, l
-	ld d, h
-	ret
-
-BattleAnim_AbsCosinePrecise: ; unreferenced
-	ld a, e
-	call Cosine
-	ld e, l
-	ld d, h
-	ret

@@ -163,7 +163,7 @@ ScriptCommandTable:
 	dw Script_opentext                   ; 47
 	dw Script_refreshscreen              ; 48
 	dw Script_closetext                  ; 49
-	dw Script_writeunusedbyte            ; 4a
+
 	dw Script_farwritetext               ; 4b
 	dw Script_writetext                  ; 4c
 	dw Script_repeattext                 ; 4d
@@ -2173,11 +2173,6 @@ Script_opentext:
 
 Script_refreshscreen:
 	jp RefreshScreen
-
-Script_writeunusedbyte:
-	call GetScriptByte
-	ld [wUnusedScriptByte], a
-	ret
 
 Script_closetext:
 	call _OpenAndCloseMenu_HDMATransferTilemapAndAttrmap

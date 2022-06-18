@@ -510,7 +510,6 @@ INCLUDE "mobile/mobile_42.asm"
 
 SECTION "Title", ROMX
 
-INCLUDE "engine/movie/unused_title.asm"
 INCLUDE "engine/movie/title.asm"
 
 

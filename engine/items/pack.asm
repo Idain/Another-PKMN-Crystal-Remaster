@@ -1680,10 +1680,6 @@ PC_Mart_MedicinePocketMenuHeader:
 	dba PlaceMenuItemQuantity
 	dba UpdateItemDescription
 
-;PackNoItemText: ; unreferenced
-;	text_far _PackNoItemText
-;	text_end
-
 AskThrowAwayText:
 	text_far _AskThrowAwayText
 	text_end
@@ -1719,10 +1715,6 @@ AskItemMoveText:
 PackEmptyText:
 	text_far _PackEmptyText
 	text_end
-
-;YouCantUseItInABattleText: ; unreferenced
-;	text_far _YouCantUseItInABattleText
-;	text_end
 
 PackMenuGFX:
 INCBIN "gfx/pack/pack_menu.2bpp"

@@ -43,18 +43,6 @@ ElmsSonText:
 	cont "professor!"
 	done
 
-ElmsHouseLabFoodText: ; unreferenced
-	text "There's some food"
-	line "here. It must be"
-	cont "for the Lab."
-	done
-
-ElmsHousePokemonFoodText: ; unreferenced
-	text "There's some food"
-	line "here. This must be"
-	cont "for #mon."
-	done
-
 ElmsHousePCText:
 	text "#mon. Where do"
 	line "they come from?"

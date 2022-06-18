@@ -69,12 +69,6 @@ NewGame:
 	ldh [hMapEntryMethod], a
 	jp FinishContinueFunction
 
-if DEF(_DEBUG)
-DebugRoom: ; unreferenced
-	farcall _DebugRoom
-	ret
-endc
-
 ResetWRAM:
 	xor a
 	ldh [hBGMapMode], a
@@ -95,13 +89,11 @@ ResetWRAM:
 	call ByteFill
 
 	ldh a, [rLY]
-	ldh [hUnusedBackup], a
 	call DelayFrame
 	ldh a, [hRandomSub]
 	ld [wPlayerID], a
 
 	ldh a, [rLY]
-	ldh [hUnusedBackup], a
 	call DelayFrame
 	ldh a, [hRandomAdd]
 	ld [wPlayerID + 1], a

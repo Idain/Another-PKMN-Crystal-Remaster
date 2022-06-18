@@ -257,11 +257,10 @@ endc
 	ld de, sMysteryGiftPartnerName
 	ld bc, NAME_LENGTH
 	call CopyBytes
-	assert sMysteryGiftPartnerName + NAME_LENGTH == sMysteryGiftUnusedFlag
+	assert sMysteryGiftPartnerName + NAME_LENGTH == sMysteryGiftTrainer
 	ld a, TRUE
 	ld [de], a
 	inc de
-	assert sMysteryGiftUnusedFlag + 1 == sMysteryGiftTrainer
 	ld hl, wMysteryGiftTrainer
 	ld bc, wMysteryGiftTrainerEnd - wMysteryGiftTrainer
 	call CopyBytes
@@ -1101,7 +1100,6 @@ ReceiveIRDataBlock:
 	ld b, 2
 	call ReceiveIRDataMessage
 	ldh a, [hMGExchangedWord + 1]
-	ldh [hMGUnusedMsgLength], a
 	ld b, a
 	pop hl
 	pop af

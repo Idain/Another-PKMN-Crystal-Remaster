@@ -218,8 +218,6 @@ DEF givepokeitem          EQUS "givepokemail"
 DEF checkpokeitem         EQUS "checkpokemail"
 DEF passtoengine          EQUS "autoinput"
 DEF verbosegiveitem2      EQUS "verbosegiveitemvar"
-DEF loadbytec2cf          EQUS "writeunusedbyte"
-DEF writeunusedbytebuffer EQUS "writeunusedbyte"
 
 ; macros/scripts/maps.asm
 

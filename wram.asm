@@ -30,7 +30,7 @@ endr
 wCurTrackDuty:: db
 wCurTrackVolumeEnvelope:: db
 wCurTrackFrequency:: dw
-wUnusedBCDNumber:: db ; BCD value, dummied out
+	ds 1
 wCurNoteDuration:: db ; used in MusicE0 and LoadNote
 
 wCurMusicByte:: db
@@ -135,7 +135,7 @@ wDebugFlags:: db
 wGameLogicPaused:: db
 wSpriteUpdatesEnabled:: db
 
-wUnusedScriptByte:: db
+	ds 1
 
 wMapTimeOfDay:: db
 
@@ -1603,7 +1603,8 @@ wFrameCounter2::
 wPrinterQueueLength::
 wUnusedSGB1eColorOffset::
 	db
-wUnusedTradeAnimPlayEvolutionMusic:: db
+	
+	ds 1
 
 NEXTU
 ; mobile

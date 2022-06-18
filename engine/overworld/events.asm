@@ -38,41 +38,6 @@ CheckBit5_ScriptFlags2:
 	bit 5, [hl]
 	ret
 
-;DisableWarpsConnxns: ; unreferenced
-;	ld hl, wScriptFlags2
-;	res 2, [hl]
-;	ret
-;
-;DisableCoordEvents: ; unreferenced
-;	ld hl, wScriptFlags2
-;	res 1, [hl]
-;	ret
-;
-;DisableStepCount: ; unreferenced
-;	ld hl, wScriptFlags2
-;	res 0, [hl]
-;	ret
-;
-;DisableWildEncounters: ; unreferenced
-;	ld hl, wScriptFlags2
-;	res 4, [hl]
-;	ret
-;
-;EnableWarpsConnxns: ; unreferenced
-;	ld hl, wScriptFlags2
-;	set 2, [hl]
-;	ret
-;
-;EnableCoordEvents: ; unreferenced
-;	ld hl, wScriptFlags2
-;	set 1, [hl]
-;	ret
-;
-;EnableStepCount: ; unreferenced
-;	ld hl, wScriptFlags2
-;	set 0, [hl]
-;	ret
-
 EnableWildEncounters:
 	ld hl, wScriptFlags2
 	set 4, [hl]
@@ -751,7 +716,6 @@ PlayerMovementPointers:
 CheckMenuOW:
 	xor a
 	ldh [hMenuReturn], a
-	ldh [hUnusedByte], a
 	ldh a, [hJoyPressed]
 
 	bit SELECT_F, a

@@ -47,12 +47,3 @@ Divide::
 	pop de
 	pop hl
 	ret
-
-SubtractAbsolute:: ; unreferenced
-; Return |a - b|, sign in carry.
-	sub b
-	ret nc
-	cpl
-	inc a
-	scf
-	ret

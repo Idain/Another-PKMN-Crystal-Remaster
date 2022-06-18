@@ -32,10 +32,6 @@ DEF DEBUGROOMMENU_NUM_PAGES EQU const_value
 ;	const DEBUGROOMMENUITEM_FIGHT_MENU				; 16
 
 _DebugRoom:
-;	ldh a, [hJoyDown]
-;	and SELECT | START
-;	cp SELECT | START
-;	ret nz
 	ldh a, [hDebugRoomMenuPage]
 	push af
 	xor a
@@ -1294,9 +1290,6 @@ DebugRoom_BoxStructStrings:
 .Move4:     db "MOVE 4@"
 .ID0:       db "ID[0]@"
 .ID1:       db "ID[1]@"
-.BaseExp0:  db "BASE EXP[0]@" ; unreferenced
-.BaseExp1:  db "BASE EXP[1]@" ; unreferenced
-.BaseExp2:  db "BASE EXP[2]@" ; unreferenced
 .HPEV:    db "HP EV@"
 .AttkEV:  db "ATK EV@"
 .DfnsEV:  db "DEF EV@"

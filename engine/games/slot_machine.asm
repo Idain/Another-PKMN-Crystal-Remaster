@@ -228,43 +228,6 @@ SlotsLoop:
 	lb bc, PRINTNUM_LEADINGZEROS | 2, 4
 	jp PrintNum
 
-DebugPrintSlotBias: ; unreferenced
-	ld a, [wSlotBias]
-	add 0
-	daa
-	ld e, a
-	and $f
-	add "0"
-	hlcoord 1, 0
-	ld [hl], a
-	ld a, e
-	swap a
-	and $f
-	add "0"
-	hlcoord 0, 0
-	ld [hl], a
-	ret
-
-AnimateSlotReelIcons: ; unreferenced
-; This animation was present in pokegold-spaceworld.
-	ld hl, wUnusedSlotReelIconDelay
-	ld a, [hl]
-	inc [hl]
-	and $7
-	ret nz
-	ld hl, wVirtualOAMSprite16TileID
-	ld c, NUM_SPRITE_OAM_STRUCTS - 16
-.loop
-	ld a, [hl]
-	xor $20 ; alternate between $00-$1f and $20-$3f
-	ld [hli], a ; tile id
-rept SPRITEOAMSTRUCT_LENGTH - 1
-	inc hl
-endr
-	dec c
-	jr nz, .loop
-	ret
-
 SlotsJumptable:
 	ld a, [wJumptableIndex]
 	ld hl, .Jumptable

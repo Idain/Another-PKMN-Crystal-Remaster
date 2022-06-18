@@ -1598,25 +1598,6 @@ ExitLinkCommunications:
 	vc_hook ExitLinkCommunications_ret
 	ret
 
-;GSPlaceTradeScreenFooter: ; unreferenced
-;; Fill the screen footer with pattern tile
-;	hlcoord 0, 16
-;	ld a, $7e
-;	ld bc, 2 * SCREEN_WIDTH
-;	call ByteFill
-;; Clear out area for cancel string
-;	hlcoord 1, 16
-;	ld a, " "
-;	ld bc, SCREEN_WIDTH - 2
-;	call ByteFill
-;; Place the string
-;	hlcoord 2, 16
-;	ld de, .CancelString
-;	jp PlaceString
-;
-;.CancelString:
-;	db "CANCEL@"
-
 LinkTradePlaceArrow:
 ; Indicates which pokemon the other player has selected to trade
 	ld a, [wOtherPlayerLinkMode]

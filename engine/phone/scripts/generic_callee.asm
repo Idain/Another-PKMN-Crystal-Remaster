@@ -1103,11 +1103,6 @@ PhoneScript_Generic_Male:
 	promptbutton
 	end
 
-.Unknown: ; unreferenced
-	farwritetext UnknownGenericText
-	promptbutton
-	end
-
 .Gaven:
 	farwritetext GavenGenericText
 	promptbutton
@@ -1248,9 +1243,6 @@ PhoneScript_MonFlavorText:
 	farsjump PhoneScript_HangUpText_Male
 
 .TooEnergetic:
-	farsjump .unnecessary
-
-.unnecessary
 	farwritetext UnknownTougherThanEverText
 	promptbutton
 	farsjump PhoneScript_HangUpText_Male

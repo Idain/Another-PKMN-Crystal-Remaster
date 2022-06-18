@@ -31,7 +31,7 @@ hVBlank:: db
 hMapEntryMethod:: db
 
 hMenuReturn:: db
-hUnusedByte:: db
+	ds 1
 
 hJoypadReleased:: db
 hJoypadPressed::  db
@@ -93,8 +93,7 @@ hMGExchangedByte:: db
 hMGExchangedWord:: dw
 hMGNumBits:: db
 hMGChecksum:: dw
-	ds 1
-hMGUnusedMsgLength:: db
+	ds 2
 hMGRole:: db
 hMGStatusFlags:: db
 ENDU
@@ -156,7 +155,7 @@ hLastTalked:: db
 hRandomAdd:: db
 hRandomSub:: db
 
-hUnusedBackup:: db
+	ds 1
 
 hBattleTurn::
 ; Which trainer's turn is it? 0: player, 1: opponent trainer
