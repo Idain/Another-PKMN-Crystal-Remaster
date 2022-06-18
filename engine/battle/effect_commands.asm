@@ -144,12 +144,12 @@ BattleCommand_CheckTurn:
 
 	ld hl, wBattleMonStatus
 	ld a, [hl]
-	and SLP
+	and SLP_MASK
 	jr z, .not_asleep
 
 	dec a
 	ld [wBattleMonStatus], a
-	and SLP
+	and SLP_MASK
 	jr z, .woke_up
 
 	xor a
@@ -353,7 +353,7 @@ CheckEnemyTurn:
 
 	ld hl, wEnemyMonStatus
 	ld a, [hl]
-	and SLP
+	and SLP_MASK
 	jr z, .not_asleep
 
 	dec a
@@ -712,7 +712,7 @@ BattleCommand_CheckObedience:
 	call BattleRandom
 	add a
 	swap a
-	and SLP
+	and SLP_MASK
 	jr z, .Nap
 
 	ld [wBattleMonStatus], a
@@ -870,7 +870,7 @@ IgnoreSleepOnly:
 .CheckSleep:
 	ld a, BATTLE_VARS_STATUS
 	call GetBattleVar
-	and SLP
+	and SLP_MASK
 	ret z
 
 ; 'ignored orders…sleeping!'
@@ -1633,7 +1633,7 @@ BattleCommand_CheckHit:
 
 	ld a, BATTLE_VARS_STATUS_OPP
 	call GetBattleVar
-	and SLP
+	and SLP_MASK
 	ret
 
 .Protect:
@@ -3768,7 +3768,7 @@ BattleCommand_SleepTarget:
 	ld d, h
 	ld e, l
 	ld a, [de]
-	and SLP
+	and SLP_MASK
 	ld hl, AlreadyAsleepText
 	jr nz, .fail
 
@@ -5022,7 +5022,7 @@ BattleCommand_Rampage:
 ; No rampage during Sleep Talk.
 	ld a, BATTLE_VARS_STATUS
 	call GetBattleVar
-	and SLP
+	and SLP_MASK
 	ret nz
 
 	ld de, wPlayerRolloutCount
@@ -5396,7 +5396,7 @@ BattleCommand_FakeOut:
 
 	ld a, BATTLE_VARS_STATUS_OPP
 	call GetBattleVar
-	and SLP
+	and SLP_MASK
 	jr nz, .fail
 
 	call CheckOpponentWentFirst
@@ -5413,7 +5413,7 @@ BattleCommand_FlinchTarget:
 
 	ld a, BATTLE_VARS_STATUS_OPP
 	call GetBattleVar
-	and SLP
+	and SLP_MASK
 	ret nz
 
 	call CheckOpponentWentFirst
@@ -5531,7 +5531,7 @@ BattleCommand_Charge:
 	call BattleCommand_ClearText
 	ld a, BATTLE_VARS_STATUS
 	call GetBattleVar
-	and SLP
+	and SLP_MASK
 	jr z, .awake
 
 	call BattleCommand_MoveDelay

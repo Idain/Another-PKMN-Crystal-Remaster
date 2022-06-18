@@ -330,7 +330,7 @@ PokeBallEffect:
 	and a
 	ld c, 0
 	jr z, .addstatus
-	and SLP
+	and SLP_MASK
 	ld c, 15
 	jr nz, .addstatus
 	ld c, 5
@@ -2118,7 +2118,7 @@ PokeFluteEffect:
 	xor a
 	ld [wPokeFluteCuredSleep], a
 
-	ld b, ~SLP
+	ld b, ~SLP_MASK
 
 	ld hl, wPartyMon1Status
 	call .CureSleep
@@ -2160,7 +2160,7 @@ PokeFluteEffect:
 .loop
 	ld a, [hl]
 	push af
-	and SLP
+	and SLP_MASK
 	jr z, .not_asleep
 	ld a, TRUE
 	ld [wPokeFluteCuredSleep], a

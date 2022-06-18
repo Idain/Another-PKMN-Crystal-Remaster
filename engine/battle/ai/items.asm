@@ -315,7 +315,7 @@ AI_Items:
 	jp c, .Use
 .FailToxicCheck:
 	ld a, [wEnemyMonStatus]
-	and SLP
+	and SLP_MASK
 	jp z, .DontUse
 	jp .Use
 

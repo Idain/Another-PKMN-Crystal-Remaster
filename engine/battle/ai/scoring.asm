@@ -1512,7 +1512,7 @@ AI_Smart_SleepTalk:
 ; Greatly discourage this move otherwise.
 
 	ld a, [wEnemyMonStatus]
-	and SLP
+	and SLP_MASK
 	cp 1
 	jr z, .discourage
 
@@ -1647,7 +1647,7 @@ AI_Smart_HealBell:
 	jr z, .ok
 	dec [hl]
 .ok
-	and SLP
+	and SLP_MASK
 	ret z
 	call AI_50_50
 	ret c

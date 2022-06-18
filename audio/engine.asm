@@ -318,7 +318,7 @@ UpdateChannels:
 	ldh a, [rNR52]
 	and %10001101 ; ch2 off
 	ldh [rNR52], a
-	ld hl, rNR20
+	ld hl, rNR21 - 1 ; there is no rNR20
 	jp ClearChannel
 
 .ch2_noise_sampling
@@ -434,7 +434,7 @@ UpdateChannels:
 	ldh a, [rNR52]
 	and %10000111 ; ch4 off
 	ldh [rNR52], a
-	ld hl, rNR40
+	ld hl, rNR41 - 1 ; there is no rNR40
 	jp ClearChannel
 
 .ch4_noise_sampling
@@ -2719,12 +2719,12 @@ ClearChannels::
 	ret
 
 ClearChannel:
-; input: hl = beginning hw sound register (rNR10, rNR20, rNR30, rNR40)
+; input: hl = beginning hw sound register (rNR10, rNR21 - 1, rNR30, rNR41 - 1)
 ; output: 00 00 80 00 80
 
 ;   sound channel   1      2      3      4
 	xor a
-	ld [hli], a ; rNR10, rNR20, rNR30, rNR40 ; sweep = 0
+	ld [hli], a ; rNR10, rNR21 - 1, rNR30, rNR41 -1 ; sweep = 0
 
 	ld [hli], a ; rNR11, rNR21, rNR31, rNR41 ; length/wavepattern = 0
 	ld a, $8

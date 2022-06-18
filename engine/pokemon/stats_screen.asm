@@ -1111,7 +1111,7 @@ CheckFaintedSlp:
 	ld hl, MON_STATUS
 	add hl, bc
 	ld a, [hl]
-	and SLP
+	and SLP_MASK
 	jr nz, .fainted_slp
 	and a
 	ret
