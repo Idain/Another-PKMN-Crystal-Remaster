@@ -5627,14 +5627,10 @@ Function11ad1b:
 	ldh [hObjectStructIndex], a
 	ld a, $10
 	ld [wCurIconTile], a
-	ld hl, LoadMenuMonIcon
-	ld a, BANK(LoadMenuMonIcon)
 	ld e, MONICON_MOBILE1
-	rst FarCall
-	ld hl, LoadMenuMonIcon
-	ld a, BANK(LoadMenuMonIcon)
+	farcall LoadMenuMonIcon
 	ld e, MONICON_MOBILE2
-	rst FarCall
+	farcall LoadMenuMonIcon
 	ld hl, wPokedexOrder
 	ld bc, $0115
 	xor a
