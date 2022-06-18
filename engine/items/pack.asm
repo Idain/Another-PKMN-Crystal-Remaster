@@ -1103,9 +1103,9 @@ DepositSellTutorial_InterpretJoypad:
 	ld a, [wJumptableIndex]
 	dec a
 	cp -1
-	jr nz, .left_ok
+	jr nz, .left_right_ok
 	ld a, NUM_POCKETS - 1
-.left_ok
+.left_right_ok
 	ld [wJumptableIndex], a
 	push de
 	ld de, SFX_SWITCH_POCKETS
@@ -1118,23 +1118,16 @@ DepositSellTutorial_InterpretJoypad:
 	ld a, [wJumptableIndex]
 	inc a
 	cp NUM_POCKETS
-	jr nz, .right_ok
+	jr nz, .left_right_ok
 	xor a
-.right_ok
-	ld [wJumptableIndex], a
-	push de
-	ld de, SFX_SWITCH_POCKETS
-	call PlaySFX
-	pop de
-	scf
-	ret
+	jr .left_right_ok
 
 TutorialPack:
 	call DepositSellInitPackBuffers
 	ld a, [wInputType]
 	or a
 	jr z, .loop
-	farcall _DudeAutoInput_RightA
+	farcall _DudeAutoInput_RightRightA
 .loop
 	call .RunJumptable
 	call DepositSellTutorial_InterpretJoypad
