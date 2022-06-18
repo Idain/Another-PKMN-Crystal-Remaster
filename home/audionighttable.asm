@@ -1,9 +1,9 @@
 NightMusicTable:
-night_music: MACRO
+MACRO night_music
 	db \1, \2
 ENDM
     night_music MUSIC_POKEMON_CENTER,   MUSIC_POKEMON_CENTER_NIGHT
-	night_music MUSIC_NEW_BARK_TOWN,    MUSIC_NEW_BARK_TOWN_NIGHT
+    night_music MUSIC_NEW_BARK_TOWN,    MUSIC_NEW_BARK_TOWN_NIGHT
     night_music MUSIC_ROUTE_29,         MUSIC_ROUTE_29_NIGHT
     night_music MUSIC_CHERRYGROVE_CITY, MUSIC_CHERRYGROVE_CITY_NIGHT
     night_music MUSIC_ROUTE_30,         MUSIC_ROUTE_30_NIGHT
