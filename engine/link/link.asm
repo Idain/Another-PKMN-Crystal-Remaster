@@ -82,7 +82,7 @@ endc
 	ld hl, wLinkBattleRNPreamble
 	ld de, wEnemyMon
 	ld bc, SERIAL_RN_PREAMBLE_LENGTH + SERIAL_RNS_LENGTH
-	vc_hook Wireless_ExchangeBytes_1
+	vc_hook Wireless_ExchangeBytes_Gen2toGen1_RNG_state
 	call Serial_ExchangeBytes
 	ld a, SERIAL_NO_DATA_BYTE
 	ld [de], a
@@ -90,7 +90,7 @@ endc
 	ld hl, wLinkData
 	ld de, wOTPartyData
 	ld bc, SERIAL_PREAMBLE_LENGTH + NAME_LENGTH + 1 + PARTY_LENGTH + 1 + (REDMON_STRUCT_LENGTH + NAME_LENGTH * 2) * PARTY_LENGTH + 3
-	vc_hook Wireless_ExchangeBytes_2
+	vc_hook Wireless_ExchangeBytes_Gen2toGen1_party_structs
 	call Serial_ExchangeBytes
 	ld a, SERIAL_NO_DATA_BYTE
 	ld [de], a
@@ -98,7 +98,7 @@ endc
 	ld hl, wPlayerPatchLists
 	ld de, wOTPatchLists
 	ld bc, 200
-	vc_hook Wireless_ExchangeBytes_3_Gen2toGen1Fix
+	vc_hook Wireless_ExchangeBytes_Gen2toGen1_patch_lists
 	call Serial_ExchangeBytes
 
 	xor a
@@ -243,7 +243,7 @@ endc
 	ld hl, wLinkBattleRNPreamble
 	ld de, wEnemyMon
 	ld bc, SERIAL_RN_PREAMBLE_LENGTH + SERIAL_RNS_LENGTH
-	vc_hook Wireless_ExchangeBytes_4
+	vc_hook Wireless_ExchangeBytes_RNG_state
 	call Serial_ExchangeBytes
 	ld a, SERIAL_NO_DATA_BYTE
 	ld [de], a
@@ -251,7 +251,7 @@ endc
 	ld hl, wLinkData
 	ld de, wOTPartyData
 	ld bc, SERIAL_PREAMBLE_LENGTH + NAME_LENGTH + 1 + PARTY_LENGTH + 1 + 2 + (PARTYMON_STRUCT_LENGTH + NAME_LENGTH * 2) * PARTY_LENGTH + 3
-	vc_hook Wireless_ExchangeBytes_5
+	vc_hook Wireless_ExchangeBytes_party_structs
 	call Serial_ExchangeBytes
 	ld a, SERIAL_NO_DATA_BYTE
 	ld [de], a
@@ -259,7 +259,7 @@ endc
 	ld hl, wPlayerPatchLists
 	ld de, wOTPatchLists
 	ld bc, 200
-	vc_hook Wireless_ExchangeBytes_6
+	vc_hook Wireless_ExchangeBytes_patch_lists
 	call Serial_ExchangeBytes
 
 	ld a, [wLinkMode]
@@ -268,7 +268,7 @@ endc
 	ld hl, wLinkPlayerMail
 	ld de, wLinkOTMail
 	ld bc, wLinkPlayerMailEnd - wLinkPlayerMail
-	vc_hook Wireless_ExchangeBytes_7
+	vc_hook Wireless_ExchangeBytes_mail
 	call ExchangeBytes
 
 .not_trading
