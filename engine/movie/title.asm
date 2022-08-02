@@ -298,7 +298,7 @@ DrawTitleGraphic:
 	ret
 
 InitializeBackground:
-	ld hl, wVirtualOAMSprite00
+	ld hl, wShadowOAMSprite00
 	lb de, -$22, $0
 	ld c, 5
 .loop
@@ -336,7 +336,7 @@ AnimateTitleCrystal:
 
 ; Stop at y=6
 ; y is really from the bottom of the sprite, which is two tiles high
-	ld hl, wVirtualOAMSprite00YCoord
+	ld hl, wShadowOAMSprite00YCoord
 	ld a, [hl]
 	cp 6 + 2 * TILE_WIDTH
 	ret z

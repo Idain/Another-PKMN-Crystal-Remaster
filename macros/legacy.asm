@@ -247,6 +247,9 @@ DEF PERSONTYPE_SCRIPT   EQUS "OBJECTTYPE_SCRIPT"
 DEF PERSONTYPE_ITEMBALL EQUS "OBJECTTYPE_ITEMBALL"
 DEF PERSONTYPE_TRAINER  EQUS "OBJECTTYPE_TRAINER"
 
+DEF SCENE_DEFAULT  EQU 0
+DEF SCENE_FINISHED EQU 1
+
 ; macros/scripts/movement.asm
 
 DEF show_person   EQUS "show_object"
@@ -335,6 +338,11 @@ DEF text_jump              EQUS "text_far"
 DEF anim_enemyfeetobj  EQUS "anim_battlergfx_2row"
 DEF anim_playerheadobj EQUS "anim_battlergfx_1row"
 DEF anim_clearsprites  EQUS "anim_keepsprites"
+
+; macros/scripts/oam_anims.asm
+DEF dorestart EQUS "oamrestart"
+DEF dowait EQUS "oamwait"
+DEF delanim EQUS "oamdel"
 
 ; engine/events/std_scripts.asm
 DEF pokecenternurse       EQUS "PokecenterNurseScript"

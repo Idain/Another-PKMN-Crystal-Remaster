@@ -5693,7 +5693,7 @@ GetWeatherImage:
 	ld hl, vTiles0
 	call Request2bpp
 	pop bc
-	ld hl, wVirtualOAMSprite00
+	ld hl, wShadowOAMSprite00
 	ld de, .WeatherImageOAMData
 .loop
 	ld a, [de]
@@ -8885,7 +8885,7 @@ CopyBackpic:
 	predef_jump PlaceGraphic
 
 .LoadTrainerBackpicAsOAM:
-	ld hl, wVirtualOAMSprite00
+	ld hl, wShadowOAMSprite00
 	xor a
 	ldh [hMapObjectIndex], a
 	ld b, 6

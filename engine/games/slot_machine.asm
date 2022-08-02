@@ -616,7 +616,7 @@ Slots_InitReelTiles:
 	ld bc, wReel1
 	ld hl, REEL_OAM_ADDR
 	add hl, bc
-	ld de, wVirtualOAMSprite16
+	ld de, wShadowOAMSprite16
 	ld [hl], e
 	inc hl
 	ld [hl], d
@@ -634,7 +634,7 @@ Slots_InitReelTiles:
 	ld bc, wReel2
 	ld hl, REEL_OAM_ADDR
 	add hl, bc
-	ld de, wVirtualOAMSprite24
+	ld de, wShadowOAMSprite24
 	ld [hl], e
 	inc hl
 	ld [hl], d
@@ -652,7 +652,7 @@ Slots_InitReelTiles:
 	ld bc, wReel3
 	ld hl, REEL_OAM_ADDR
 	add hl, bc
-	ld de, wVirtualOAMSprite32
+	ld de, wShadowOAMSprite32
 	ld [hl], e
 	inc hl
 	ld [hl], d

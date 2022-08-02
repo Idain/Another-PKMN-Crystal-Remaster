@@ -1625,7 +1625,7 @@ DoNameCardSwap:
 .SlideNameCardUpOffScreen:
 	ld c, 16
 .loop
-	ld hl, wVirtualOAMSprite00YCoord
+	ld hl, wShadowOAMSprite00YCoord
 	ld b, 8
 .dec_y_loop
 	dec [hl]
@@ -1634,7 +1634,7 @@ rept SPRITEOAMSTRUCT_LENGTH
 endr
 	dec b
 	jr nz, .dec_y_loop
-	ld hl, wVirtualOAMSprite08YCoord
+	ld hl, wShadowOAMSprite08YCoord
 	ld b, 8
 .inc_y_loop
 	inc [hl]
@@ -1818,7 +1818,7 @@ InitNameCardLayout:
 	ld [hl], $3c
 	hlcoord 17, 15
 	ld [hl], $3e
-	ld de, wVirtualOAMSprite00
+	ld de, wShadowOAMSprite00
 	ld hl, .NameCardOAMData
 	ld bc, 16 * SPRITEOAMSTRUCT_LENGTH
 	call CopyBytes

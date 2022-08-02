@@ -994,8 +994,8 @@ DebugColor_PlaceCursor:
 .place
 	ld [hl], "▶"
 
-	lb bc, $70, 5 ; initial tile id and initial palette
-	ld hl, wVirtualOAM
+	lb bc, $70, 5 ; b = initial tile id, c = initial palette
+	ld hl, wShadowOAM
 	ld de, wDebugRedChannel
 	call .placesprite
 	ld de, wDebugGreenChannel

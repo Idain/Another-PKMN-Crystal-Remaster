@@ -11,8 +11,8 @@
 
 DragonsDenB1F_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene0 ; SCENE_DRAGONSDENB1F_NOTHING
-	scene_script .DummyScene1 ; SCENE_DRAGONSDENB1F_CLAIR_GIVES_TM
+	scene_script .DummyScene0, SCENE_DRAGONSDENB1F_NOOP
+	scene_script .DummyScene1, SCENE_DRAGONSDENB1F_CLAIR_GIVES_TM
 
 	def_callbacks
 	callback MAPCALLBACK_NEWMAP, .CheckSilver
@@ -39,6 +39,7 @@ DragonsDenB1F_MapScripts:
 	endcallback
 
 DragonsDenB1F_ClairScene:
+; BUG: Clair can give TM24 Dragonbreath twice (see docs/bugs_and_glitches.md)
 	appear DRAGONSDENB1F_CLAIR
 	opentext
 	writetext ClairText_Wait
@@ -71,7 +72,7 @@ DragonsDenB1F_ClairScene:
 	pause 30
 	special RestartMapMusic
 	disappear DRAGONSDENB1F_CLAIR
-	setscene SCENE_DRAGONSDENB1F_NOTHING
+	setscene SCENE_DRAGONSDENB1F_NOOP
 	end
 
 TrainerCooltrainermDarin:

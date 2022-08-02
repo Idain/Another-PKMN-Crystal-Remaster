@@ -924,10 +924,10 @@ LoveBallMultiplier: ; Catch rate = x4
 	jr c, .done1 ; no effect on genderless
 
 	ld d, 0 ; male
-	jr nz, .playermale
+	jr nz, .got_player_gender
 	inc d   ; female
 
-.playermale
+.got_player_gender
 	; Check wild mon species
 	push de
 	ld a, [wTempEnemyMonSpecies]
@@ -938,10 +938,10 @@ LoveBallMultiplier: ; Catch rate = x4
 	jr c, .done2 ; no effect on genderless
 
 	ld d, 0 ; male
-	jr nz, .wildmale
+	jr nz, .got_wild_gender
 	inc d   ; female
 
-.wildmale
+.got_wild_gender
 	ld a, d
 	pop de
 	cp d

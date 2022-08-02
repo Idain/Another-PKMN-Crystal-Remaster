@@ -108,7 +108,7 @@ VBlank0::
 
 	ldh a, [hOAMUpdate]
 	and a
-	call z, hTransferVirtualOAM
+	call z, hTransferShadowOAM
 .done_oam
 
 	; vblank-sensitive operations are done
@@ -180,7 +180,7 @@ VBlank1::
 	call UpdateBGMap
 	call Serve2bppRequest_VBlank
 
-	call hTransferVirtualOAM
+	call hTransferShadowOAM
 
 .done
 	xor a
@@ -266,7 +266,7 @@ VBlank3::
 	call UpdateBGMap
 	call Serve2bppRequest_VBlank
 
-	call hTransferVirtualOAM
+	call hTransferShadowOAM
 .done
 
 	xor a
@@ -320,7 +320,7 @@ VBlank4::
 	call UpdateBGMap
 	call Serve2bppRequest
 
-	call hTransferVirtualOAM
+	call hTransferShadowOAM
 
 	call UpdateJoypad
 

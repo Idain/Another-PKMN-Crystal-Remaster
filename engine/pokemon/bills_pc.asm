@@ -1386,7 +1386,7 @@ BillsPC_UpdateSelectionCursor:
 
 ;place_cursor
 	ld hl, .OAM
-	ld de, wVirtualOAMSprite00
+	ld de, wShadowOAMSprite00
 .loop
 	ld a, [hl]
 	cp -1
@@ -1434,7 +1434,7 @@ endr
 
 BillsPC_UpdateInsertCursor:
 	ld hl, .OAM
-	ld de, wVirtualOAMSprite00
+	ld de, wShadowOAMSprite00
 .loop
 	ld a, [hl]
 	cp -1

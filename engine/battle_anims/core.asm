@@ -79,9 +79,9 @@ endr
 BattleAnimOAMUpdate:
 	call InitBattleAnimBuffer
 	call GetBattleAnimFrame
-	cp dowait_command
+	cp oamwait_command
 	jp z, .done
-	cp delanim_command
+	cp oamdelete_command
 	jp z, .delete
 
 	push af
@@ -105,7 +105,7 @@ BattleAnimOAMUpdate:
 	ld l, a
 	ld a, [wBattleAnimOAMPointerLo]
 	ld e, a
-	ld d, HIGH(wVirtualOAM)
+	ld d, HIGH(wShadowOAM)
 
 .loop
 	; Y Coord
@@ -178,7 +178,7 @@ BattleAnimOAMUpdate:
 	inc de
 	ld a, e
 	ld [wBattleAnimOAMPointerLo], a
-	cp LOW(wVirtualOAMEnd)
+	cp LOW(wShadowOAMEnd)
 	jr nc, .exit_set_carry
 	dec c
 	jr nz, .loop

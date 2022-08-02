@@ -73,8 +73,8 @@ ResetWRAM:
 	xor a
 	ldh [hBGMapMode], a
 
-	ld hl, wVirtualOAM
-	ld bc, wOptions - wVirtualOAM
+	ld hl, wShadowOAM
+	ld bc, wOptions - wShadowOAM
 	xor a
 	call ByteFill
 
@@ -846,7 +846,7 @@ Intro_PlacePlayerSprite:
 	ld hl, vTiles0
 	call Request2bpp
 
-	ld hl, wVirtualOAMSprite00
+	ld hl, wShadowOAMSprite00
 	ld de, .sprites
 	ld a, [de]
 	inc de
