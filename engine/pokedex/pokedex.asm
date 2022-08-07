@@ -62,7 +62,7 @@ Pokedex:
 	ld [wLastDexMode], a
 
 	ld a, [wPokedexShinyToggle]
-	xor 1
+	xor a
 	ld [wPokedexShinyToggle], a
 
 	pop af
