@@ -81,16 +81,14 @@ NamingScreen:
 	jr z, .party_mon
 
 	ld hl, sBoxMon1DVs
+	ld a, BANK(sBox)
+	call OpenSRAM
 	jr .start
 
 .party_mon
 	ld a, MON_DVS
 	call GetPartyParamLocation
 .start
-	ld a, [wMonType]
-	cp BOXMON
-	ld a, BANK(sBox)
-	call z, OpenSRAM
 	ld de, wTempMonDVs
 	ld a, [hli]
 	ld [de], a
