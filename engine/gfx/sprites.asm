@@ -282,7 +282,7 @@ UpdateAnimFrame:
 	; fourth byte: attributes
 	; [de] = GetSpriteOAMAttr([hl])
 	ld a, [hl]
-	cp -1 ; use whatever attributes were already loaded (for party icons)
+	inc a
 	jr z, .skip_attributes
 	call GetSpriteOAMAttr
 	ld [de], a
