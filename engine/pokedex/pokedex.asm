@@ -61,6 +61,10 @@ Pokedex:
 	ld a, [wCurDexMode]
 	ld [wLastDexMode], a
 
+	ld a, [wPokedexShinyToggle]
+	xor 1
+	ld [wPokedexShinyToggle], a
+
 	pop af
 	ldh [hInMenu], a
 	pop af
@@ -380,19 +384,13 @@ Pokedex_UpdateDexEntryScreen:
 
 .toggle_shininess
 ; toggle the current shininess setting
-	ld hl, wPokedexShinyToggle
-	bit 0, [hl]
-	jr z, .set
-	; already set, so clear it
-	res 0, [hl]
-	jr .update_palettes
-.set ; bit is not set, so set it
-	set 0, [hl]
-.update_palettes
-; refresh palettes
+	ld a, [wPokedexShinyToggle]
+	xor 1
+	ld [wPokedexShinyToggle], a
+	; refresh palettes
 	ld a, SCGB_POKEDEX
 	call Pokedex_GetSGBLayout	
-; play sound based on setting
+	; play sound based on setting
 	ld de, SFX_BUMP
 	ld a, [wPokedexShinyToggle]
 	bit 0, a
