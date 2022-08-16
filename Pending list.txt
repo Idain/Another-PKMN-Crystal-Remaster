@@ -10,6 +10,9 @@ Substitute (y todas sus propiedades)
 * Crear script Prof. Oak donde te da a Bulbasaur, Charmander y Squirtle.
 * Implementar NPC en Violet City que dé huevo de Slugma (Primo, de HG/SS).
 * Modificar Front y Back sprite de Gold.
+* Cambiar forma de Arbok dependiendo de la región.
+* Implementar diferencias de género.
+* Recolorear y cambiar sprites para que sean más cercanos a posteriores generaciones.
 
 In order to battle Suicune, you need to go with the Clear Bell, which is handed by the Director after you defeat Team Rocket and save the Radio Tower.
 ...Maybe I can make the Kimono Girls give it to you after defeating them.
