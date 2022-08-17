@@ -1,9 +1,9 @@
-	db "FLAME@" ; species name
-	dw 211, 550 ; height, weight
+	db "Flame@" ; species name
+	dw 211, 551 ; height, weight
 
 	db   "Once it has stored"
 	next "up enough heat,"
-	next "this #MON's"
+	next "this #mon's"
 
 	page "body temperature"
 	next "can reach up to"

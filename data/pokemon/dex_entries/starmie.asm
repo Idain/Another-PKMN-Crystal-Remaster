@@ -1,5 +1,5 @@
-	db "MYSTERIOUS@" ; species name
-	dw 307, 1760 ; height, weight
+	db "Mysterious@" ; species name
+	dw 307, 1764 ; height, weight
 
 	db   "It is said that it"
 	next "uses the seven-"

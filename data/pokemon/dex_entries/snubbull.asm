@@ -1,8 +1,8 @@
-	db "FAIRY@" ; species name
-	dw 200, 170 ; height, weight
+	db "Fairy@" ; species name
+	dw 200, 172 ; height, weight
 
 	db   "In truth, it is a"
-	next "cowardly #MON."
+	next "cowardly #mon."
 	next "It growls eagerly"
 
 	page "in order to hide"

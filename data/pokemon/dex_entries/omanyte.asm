@@ -1,5 +1,5 @@
-	db "SPIRAL@" ; species name
-	dw 104, 170 ; height, weight
+	db "Spiral@" ; species name
+	dw 104, 165 ; height, weight
 
 	db   "In prehistoric"
 	next "times, it swam on"

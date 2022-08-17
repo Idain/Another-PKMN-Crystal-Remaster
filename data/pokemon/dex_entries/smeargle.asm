@@ -1,5 +1,5 @@
-	db "PAINTER@" ; species name
-	dw 311, 1280 ; height, weight
+	db "Painter@" ; species name
+	dw 311, 1279 ; height, weight
 
 	db   "The color of the"
 	next "mysterious fluid"
@@ -7,4 +7,4 @@
 
 	page "tail is predeter-"
 	next "mined for each"
-	next "SMEARGLE.@"
+	next "Smeargle.@"

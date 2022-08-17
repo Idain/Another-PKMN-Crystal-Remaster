@@ -1,5 +1,5 @@
 	db "Egg@" ; species name
-	dw 104, 60 ; height, weight
+	dw 104, 55 ; height, weight
 
 	db   "If even one is"
 	next "separated from the"

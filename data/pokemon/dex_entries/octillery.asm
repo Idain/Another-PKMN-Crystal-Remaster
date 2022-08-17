@@ -1,5 +1,5 @@
-	db "JET@" ; species name
-	dw 211, 630 ; height, weight
+	db "Jet@" ; species name
+	dw 211, 628 ; height, weight
 
 	db   "Its instinct is to"
 	next "bury itself in"

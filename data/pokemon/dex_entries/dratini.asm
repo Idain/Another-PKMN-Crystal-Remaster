@@ -1,5 +1,5 @@
-	db "DRAGON@" ; species name
-	dw 511, 70 ; height, weight
+	db "Dragon@" ; species name
+	dw 511, 73 ; height, weight
 
 	db   "It sheds many lay-"
 	next "ers of skin as it"

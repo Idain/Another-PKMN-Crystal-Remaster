@@ -1,5 +1,5 @@
-	db "WOOL@" ; species name
-	dw 207, 290 ; height, weight
+	db "Wool@" ; species name
+	dw 207, 293 ; height, weight
 
 	db   "Because of its"
 	next "rubbery, electric-"

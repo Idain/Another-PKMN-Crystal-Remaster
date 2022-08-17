@@ -1,5 +1,5 @@
-	db "DRAGON@" ; species name
-	dw 311, 550 ; height, weight
+	db "Dragon@" ; species name
+	dw 311, 551 ; height, weight
 
 	db   "The male raises"
 	next "the young. If it"

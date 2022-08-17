@@ -1,5 +1,5 @@
-	db "PATIENT@" ; species name
-	dw 403, 630 ; height, weight
+	db "Patient@" ; species name
+	dw 403, 628 ; height, weight
 
 	db   "In order to con-"
 	next "ceal its black"

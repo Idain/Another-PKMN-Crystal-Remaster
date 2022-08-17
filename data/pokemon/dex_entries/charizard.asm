@@ -6,5 +6,5 @@
 	next "temperature of its"
 
 	page "fire increases as"
-	next "it gains exper-"
-	next "ience in battle.@"
+	next "it gains experi-"
+	next "ence in battle.@"

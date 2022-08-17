@@ -1,5 +1,5 @@
 	db "Mold@" ; species name
-	dw 200, 450 ; height, weight
+	dw 200, 452 ; height, weight
 
 	db   "The fluid secreted"
 	next "by its toes carves"

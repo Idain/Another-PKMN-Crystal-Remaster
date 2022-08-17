@@ -1,5 +1,5 @@
-	db "ROCK@" ; species name
-	dw 303, 2320 ; height, weight
+	db "Rock@" ; species name
+	dw 303, 2315 ; height, weight
 
 	db   "It travels by rol-"
 	next "ling on mountain"

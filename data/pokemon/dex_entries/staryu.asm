@@ -1,5 +1,5 @@
-	db "STARSHAPE@" ; species name
-	dw 207, 760 ; height, weight
+	db "Star Shape@" ; species name
+	dw 207, 761 ; height, weight
 
 	db   "When the stars"
 	next "twinkle at night,"

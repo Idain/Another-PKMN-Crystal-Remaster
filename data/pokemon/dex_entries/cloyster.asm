@@ -1,5 +1,5 @@
-	db "BIVALVE@" ; species name
-	dw 411, 2920 ; height, weight
+	db "Bivalve@" ; species name
+	dw 411, 2921 ; height, weight
 
 	db   "Even a missile"
 	next "can't break the"

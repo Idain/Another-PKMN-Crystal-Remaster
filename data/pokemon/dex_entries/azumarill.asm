@@ -1,5 +1,5 @@
-	db "AQUARABBIT@" ; species name
-	dw 207, 630 ; height, weight
+	db "Aqua Rabbit@" ; species name
+	dw 207, 628 ; height, weight
 
 	db   "The bubble-like"
 	next "pattern on its"

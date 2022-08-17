@@ -1,5 +1,5 @@
-	db "FOX@" ; species name
-	dw 200, 220 ; height, weight
+	db "Fox@" ; species name
+	dw 200, 218 ; height, weight
 
 	db   "As its body grows"
 	next "larger, its six"

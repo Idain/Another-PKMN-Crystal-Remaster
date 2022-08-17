@@ -1,5 +1,5 @@
-	db "BAT@" ; species name
-	dw 503, 1210 ; height, weight
+	db "Bat@" ; species name
+	dw 503, 1213 ; height, weight
 
 	db   "When it plunges"
 	next "its fangs into its"

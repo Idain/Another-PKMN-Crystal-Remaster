@@ -1,5 +1,5 @@
-	db "COTTONWEED@" ; species name
-	dw 104, 10 ; height, weight
+	db "Cottonweed@" ; species name
+	dw 104, 11 ; height, weight
 
 	db   "It can be carried"
 	next "away on even the"

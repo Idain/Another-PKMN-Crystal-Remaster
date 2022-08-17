@@ -1,7 +1,7 @@
-	db "LIGHT@" ; species name
-	dw 311, 500 ; height, weight
+	db "Light@" ; species name
+	dw 311, 496 ; height, weight
 
-	db   "This #MON uses"
+	db   "This #mon uses"
 	next "the bright part of"
 	next "its body, which"
 

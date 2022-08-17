@@ -1,5 +1,5 @@
-	db "FIVE STAR@" ; species name
-	dw 303, 240 ; height, weight
+	db "Five Star@" ; species name
+	dw 303, 238 ; height, weight
 
 	db   "It is timid and"
 	next "clusters together"

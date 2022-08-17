@@ -1,5 +1,5 @@
-	db "LONG TAIL@" ; species name
-	dw 207, 250 ; height, weight
+	db "Long Tail@" ; species name
+	dw 207, 254 ; height, weight
 
 	db   "It uses its tail"
 	next "to hang on to tree"

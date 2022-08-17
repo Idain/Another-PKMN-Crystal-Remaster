@@ -1,5 +1,5 @@
-	db "TWIN BIRD@" ; species name
-	dw 407, 860 ; height, weight
+	db "Twin Bird@" ; species name
+	dw 407, 864 ; height, weight
 
 	db   "It lives on a"
 	next "grassy plain where"

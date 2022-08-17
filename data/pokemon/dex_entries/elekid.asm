@@ -1,5 +1,5 @@
-	db "ELECTRIC@" ; species name
-	dw 200, 520 ; height, weight
+	db "Electric@" ; species name
+	dw 200, 518 ; height, weight
 
 	db   "It loves violent"
 	next "thunder. The space"

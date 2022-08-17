@@ -1,5 +1,5 @@
-	db "BALL@" ; species name
-	dw 311, 1470 ; height, weight
+	db "Sphere@" ; species name
+	dw 311, 1468 ; height, weight
 
 	db   "The more energy it"
 	next "charges up, the"

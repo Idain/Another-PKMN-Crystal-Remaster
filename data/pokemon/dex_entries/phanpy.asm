@@ -1,5 +1,5 @@
-	db "LONG NOSE@" ; species name
-	dw 108, 740 ; height, weight
+	db "Long Nose@" ; species name
+	dw 108, 739 ; height, weight
 
 	db   "During the desert-"
 	next "ed morning hours,"

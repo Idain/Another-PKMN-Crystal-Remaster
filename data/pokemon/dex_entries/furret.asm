@@ -1,5 +1,5 @@
-	db "LONG BODY@" ; species name
-	dw 511, 720 ; height, weight
+	db "Long Body@" ; species name
+	dw 511, 717 ; height, weight
 
 	db   "It lives in narrow"
 	next "burrows that fit"

@@ -1,5 +1,5 @@
-	db "BALLOON@" ; species name
-	dw 303, 260 ; height, weight
+	db "Balloon@" ; species name
+	dw 303, 265 ; height, weight
 
 	db   "The rich, fluffy"
 	next "fur that covers"

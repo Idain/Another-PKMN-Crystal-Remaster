@@ -1,5 +1,5 @@
-	db "ARMOR@" ; species name
-	dw 607, 4450 ; height, weight
+	db "Armor@" ; species name
+	dw 607, 4453 ; height, weight
 
 	db   "In just one of its"
 	next "mighty hands, it"
