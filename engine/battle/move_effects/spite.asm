@@ -76,4 +76,4 @@ BattleCommand_Spite:
 	jp StdBattleTextbox
 
 .failed
-	jp PrintDidntAffect2
+	jp PrintDidntAffect

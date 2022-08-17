@@ -3881,8 +3881,11 @@ BattleCommand_Poison:
 	and a
 	jr nz, .failed
 
+	ld hl, ProtectingItselfText
 	call CheckSubstituteOpp
 	jr nz, .failed
+
+	ld hl, EvadedText
 	ld a, [wAttackMissed]
 	and a
 	jr nz, .failed
