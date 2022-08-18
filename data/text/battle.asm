@@ -840,6 +840,11 @@ WasSeededText:
 	line "was seeded!"
 	prompt
 
+AlreadySeededText:
+    text "<TARGET>'s"
+    line "already seeded!"
+    prompt
+
 EvadedText:
 	text "<TARGET>"
 	line "evaded the attack!"
@@ -902,7 +907,7 @@ ItFailedText:
 	text "It failed!"
 	prompt
 
-DidntAffect1Text:
+DidntAffectText:
 	text "It didn't affect"
 	line "<TARGET>!"
 	prompt

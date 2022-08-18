@@ -2215,8 +2215,8 @@ BattleCommand_ApplyDamage:
 	ret
 
 GetFailureResultText:
-	ld hl, DidntAffect1Text
-	ld de, DidntAffect1Text
+	ld hl, DidntAffectText
+	ld de, ProtectingItselfText
 	ld a, [wTypeModifier]
 	and $7f
 	jr z, .got_text
@@ -3774,7 +3774,7 @@ BattleCommand_SleepTarget:
 	and a
 	jp nz, PrintDidntAffect2
 
-	ld hl, DidntAffect1Text
+	ld hl, DidntAffectText
 
 	ld a, [de]
 	and a
@@ -3848,7 +3848,7 @@ BattleCommand_PoisonTarget:
 	ret
 
 BattleCommand_Poison:
-	ld hl, DidntAffect1Text
+	ld hl, DidntAffectText
 	ld a, [wTypeModifier]
 	and $7f
 	jp z, .failed
@@ -3875,7 +3875,7 @@ BattleCommand_Poison:
 	jr .failed
 
 .do_poison
-	ld hl, DidntAffect1Text
+	ld hl, DidntAffectText
 	ld a, BATTLE_VARS_STATUS_OPP
 	call GetBattleVar
 	and a
@@ -6220,7 +6220,7 @@ FailMimic:
 	jp FailText_CheckOpponentProtect
 
 PrintDidntAffect:
-	ld hl, DidntAffect1Text
+	ld hl, DidntAffectText
 	jp StdBattleTextbox
 
 PrintDidntAffect2:

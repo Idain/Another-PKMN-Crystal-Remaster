@@ -1,7 +1,7 @@
 BattleCommand_Spite:
 	ld a, [wAttackMissed]
 	and a
-	jr nz, .failed
+	jp nz, PrintDidntAffect2
 	ld hl, wEnemyMonMoves
 	ldh a, [hBattleTurn]
 	and a

@@ -1,9 +1,9 @@
 BattleCommand_LeechSeed:
 	ld a, [wAttackMissed]
 	and a
-	jr nz, .evaded
+	jp nz, PrintDidntAffect2
 	call CheckSubstituteOpp
-	jr nz, .evaded
+	jp nz, PrintDidntAffect2
 
 	ld de, wEnemyMonType1
 	ldh a, [hBattleTurn]
@@ -23,7 +23,7 @@ BattleCommand_LeechSeed:
 	ld a, BATTLE_VARS_SUBSTATUS4_OPP
 	call GetBattleVarAddr
 	bit SUBSTATUS_LEECH_SEED, [hl]
-	jr nz, .evaded
+	jr nz, .already_seeded
 	set SUBSTATUS_LEECH_SEED, [hl]
 	call AnimateCurrentMove
 	ld hl, WasSeededText
@@ -33,7 +33,7 @@ BattleCommand_LeechSeed:
 	call AnimateFailedMove
 	jp PrintDidntAffect
 
-.evaded
+.already_seeded
 	call AnimateFailedMove
-	ld hl, EvadedText
+	ld hl, AlreadySeededText
 	jp StdBattleTextbox
