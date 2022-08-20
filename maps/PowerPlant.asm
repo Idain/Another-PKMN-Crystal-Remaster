@@ -9,13 +9,13 @@
 
 PowerPlant_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene0, SCENE_POWERPLANT_NOOP
-	scene_script .DummyScene1, SCENE_POWERPLANT_GUARD_GETS_PHONE_CALL
+	scene_script PowerPlantNoop1Scene, SCENE_POWERPLANT_NOOP
+	scene_script PowerPlantNoop2Scene, SCENE_POWERPLANT_GUARD_GETS_PHONE_CALL
 
 	def_callbacks
 
-.DummyScene0:
-.DummyScene1:
+PowerPlantNoop1Scene:
+PowerPlantNoop2Scene:
 	end
 
 PowerPlantGuardPhoneScript:

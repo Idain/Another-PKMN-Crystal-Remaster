@@ -5,38 +5,37 @@
 
 Route35NationalParkGate_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene0,       SCENE_ROUTE35NATIONALPARKGATE_NOOP
-	scene_script .DummyScene1,       SCENE_ROUTE35NATIONALPARKGATE_UNUSED
-	scene_script .LeaveContestEarly, SCENE_ROUTE35NATIONALPARKGATE_LEAVE_CONTEST_EARLY
+	scene_script Route35NationalParkGateNoop1Scene,             SCENE_ROUTE35NATIONALPARKGATE_NOOP
+	scene_script Route35NationalParkGateNoop2Scene,             SCENE_ROUTE35NATIONALPARKGATE_UNUSED
+	scene_script Route35NationalParkGateLeaveContestEarlyScene, SCENE_ROUTE35NATIONALPARKGATE_LEAVE_CONTEST_EARLY
 
 	def_callbacks
-	callback MAPCALLBACK_NEWMAP, .CheckIfContestRunning
-	callback MAPCALLBACK_OBJECTS, .CheckIfContestAvailable
+	callback MAPCALLBACK_NEWMAP, Route35NationalParkGateCheckIfContestRunningCallback
+	callback MAPCALLBACK_OBJECTS, Route35NationalParkGateCheckIfContestAvailableCallback
 
-	
-.LeaveContestEarly:
-	sdefer .LeavingContestEarly
-.DummyScene0:
-.DummyScene1:
+Route35NationalParkGateLeaveContestEarlyScene:
+	sdefer Route35NationalParkGateLeavingContestEarlyScript
+Route35NationalParkGateNoop1Scene:
+Route35NationalParkGateNoop2Scene:
 	end
 
-.CheckIfContestRunning:
+Route35NationalParkGateCheckIfContestRunningCallback:
 	checkflag ENGINE_BUG_CONTEST_TIMER
-	iftrue .BugContestIsRunning
+	iftrue Route35NationalParkBugContestIsRunningScript
 	setscene SCENE_ROUTE35NATIONALPARKGATE_NOOP
 	endcallback
 
-.BugContestIsRunning:
+Route35NationalParkBugContestIsRunningScript:
 	setscene SCENE_ROUTE35NATIONALPARKGATE_LEAVE_CONTEST_EARLY
 	endcallback
 
-.CheckIfContestAvailable:
+Route35NationalParkGateCheckIfContestAvailableCallback:
 	readvar VAR_WEEKDAY
 	ifequal TUESDAY, .SetContestOfficer
 	ifequal THURSDAY, .SetContestOfficer
 	ifequal SATURDAY, .SetContestOfficer
 	checkflag ENGINE_BUG_CONTEST_TIMER
-	iftrue .BugContestIsRunning
+	iftrue Route35NationalParkBugContestIsRunningScript
 	disappear ROUTE35NATIONALPARKGATE_OFFICER1
 	appear ROUTE35NATIONALPARKGATE_YOUNGSTER
 	appear ROUTE35NATIONALPARKGATE_OFFICER2
@@ -48,7 +47,7 @@ Route35NationalParkGate_MapScripts:
 	disappear ROUTE35NATIONALPARKGATE_OFFICER2
 	endcallback
 
-.LeavingContestEarly:
+Route35NationalParkGateLeavingContestEarlyScript:
 	applymovement PLAYER, Route35NationalParkGatePlayerApproachOfficer1Movement
 	turnobject ROUTE35NATIONALPARKGATE_OFFICER1, RIGHT
 	opentext

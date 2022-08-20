@@ -8,36 +8,36 @@
 	const AZALEATOWN_SLOWPOKE3
 	const AZALEATOWN_SLOWPOKE4
 	const AZALEATOWN_FRUIT_TREE
-	const AZALEATOWN_SILVER
+	const AZALEATOWN_RIVAL
 	const AZALEATOWN_AZALEA_ROCKET3
 	const AZALEATOWN_KURT_OUTSIDE
 
 AzaleaTown_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene0, SCENE_AZALEATOWN_NOOP
-	scene_script .DummyScene1, SCENE_AZALEATOWN_RIVAL_BATTLE
-	scene_script .DummyScene2, SCENE_AZALEATOWN_KURT_RETURNS_GS_BALL
+	scene_script AzaleaTownNoop1Scene, SCENE_AZALEATOWN_NOOP
+	scene_script AzaleaTownNoop2Scene, SCENE_AZALEATOWN_RIVAL_BATTLE
+	scene_script AzaleaTownNoop3Scene, SCENE_AZALEATOWN_KURT_RETURNS_GS_BALL
 
 	def_callbacks
-	callback MAPCALLBACK_NEWMAP, .Flypoint
+	callback MAPCALLBACK_NEWMAP, AzaleaTownFlypointCallback
 
-.DummyScene0:
-.DummyScene1:
-.DummyScene2:
+AzaleaTownNoop1Scene:
+AzaleaTownNoop2Scene:
+AzaleaTownNoop3Scene:
 	end
 
-.Flypoint:
+AzaleaTownFlypointCallback:
 	setflag ENGINE_FLYPOINT_AZALEA
 	endcallback
 
 AzaleaTownRivalBattleScene1:
-	moveobject AZALEATOWN_SILVER, 11, 11
+	moveobject AZALEATOWN_RIVAL, 11, 11
 	turnobject PLAYER, RIGHT
 	showemote EMOTE_SHOCK, PLAYER, 15
 	special FadeOutMusic
 	pause 15
-	appear AZALEATOWN_SILVER
-	applymovement AZALEATOWN_SILVER, AzaleaTownRivalBattleApproachMovement1
+	appear AZALEATOWN_RIVAL
+	applymovement AZALEATOWN_RIVAL, AzaleaTownRivalBattleApproachMovement1
 	turnobject PLAYER, DOWN
 	sjump AzaleaTownRivalBattleScript
 
@@ -46,8 +46,8 @@ AzaleaTownRivalBattleScene2:
 	showemote EMOTE_SHOCK, PLAYER, 15
 	special FadeOutMusic
 	pause 15
-	appear AZALEATOWN_SILVER
-	applymovement AZALEATOWN_SILVER, AzaleaTownRivalBattleApproachMovement2
+	appear AZALEATOWN_RIVAL
+	applymovement AZALEATOWN_RIVAL, AzaleaTownRivalBattleApproachMovement2
 	turnobject PLAYER, UP
 AzaleaTownRivalBattleScript:
 	playmusic MUSIC_RIVAL_ENCOUNTER
@@ -61,7 +61,7 @@ AzaleaTownRivalBattleScript:
 	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
 	iftrue .Chikorita
 	winlosstext AzaleaTownRivalWinText, AzaleaTownRivalLossText
-	setlasttalked AZALEATOWN_SILVER
+	setlasttalked AZALEATOWN_RIVAL
 	loadtrainer RIVAL1, RIVAL1_2_TOTODILE
 	startbattle
 	dontrestartmapmusic
@@ -70,7 +70,7 @@ AzaleaTownRivalBattleScript:
 
 .Totodile:
 	winlosstext AzaleaTownRivalWinText, AzaleaTownRivalLossText
-	setlasttalked AZALEATOWN_SILVER
+	setlasttalked AZALEATOWN_RIVAL
 	loadtrainer RIVAL1, RIVAL1_2_CHIKORITA
 	startbattle
 	dontrestartmapmusic
@@ -79,7 +79,7 @@ AzaleaTownRivalBattleScript:
 
 .Chikorita:
 	winlosstext AzaleaTownRivalWinText, AzaleaTownRivalLossText
-	setlasttalked AZALEATOWN_SILVER
+	setlasttalked AZALEATOWN_RIVAL
 	loadtrainer RIVAL1, RIVAL1_2_CYNDAQUIL
 	startbattle
 	dontrestartmapmusic
@@ -92,9 +92,9 @@ AzaleaTownRivalBattleScript:
 	waitbutton
 	closetext
 	turnobject PLAYER, LEFT
-	applymovement AZALEATOWN_SILVER, AzaleaTownRivalBattleExitMovement
+	applymovement AZALEATOWN_RIVAL, AzaleaTownRivalBattleExitMovement
 	playsound SFX_EXIT_BUILDING
-	disappear AZALEATOWN_SILVER
+	disappear AZALEATOWN_RIVAL
 	setscene SCENE_AZALEATOWN_NOOP
 	waitsfx
 	playmapmusic
@@ -470,6 +470,6 @@ AzaleaTown_MapEvents:
 	object_event 29,  9, SPRITE_SLOWPOKE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, AzaleaTownSlowpokeScript, EVENT_AZALEA_TOWN_SLOWPOKES
 	object_event 15, 15, SPRITE_SLOWPOKE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, AzaleaTownSlowpokeScript, EVENT_AZALEA_TOWN_SLOWPOKES
 	object_event  8,  2, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, WhiteApricornTree, -1
-	object_event 11, 10, SPRITE_SILVER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_RIVAL_AZALEA_TOWN
+	object_event 11, 10, SPRITE_RIVAL, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_RIVAL_AZALEA_TOWN
 	object_event 10, 16, SPRITE_ROCKET, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, AzaleaTownRocket2Script, EVENT_SLOWPOKE_WELL_ROCKETS
 	object_event  6,  5, SPRITE_KURT, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, AzaleaTownKurtScript, EVENT_AZALEA_TOWN_KURT

@@ -807,7 +807,7 @@ WipeLYOverrides:
 	ret
 
 StartTrainerBattle_ZoomToBlack:
-	vc_hook	Stop_reducing_battle_transition_flashing_ZoomToBlack
+	vc_hook Stop_reducing_battle_transition_flashing_ZoomToBlack
 	farcall RespawnPlayerAndOpponent
 	ld de, .boxes
 

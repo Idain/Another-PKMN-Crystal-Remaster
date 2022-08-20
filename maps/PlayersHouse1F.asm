@@ -7,13 +7,13 @@
 
 PlayersHouse1F_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene0, SCENE_PLAYERSHOUSE1F_MEET_MOM
-	scene_script .DummyScene1, SCENE_PLAYERSHOUSE1F_NOOP
+	scene_script PlayersHouse1FNoop1Scene, SCENE_PLAYERSHOUSE1F_MEET_MOM
+	scene_script PlayersHouse1FNoop2Scene, SCENE_PLAYERSHOUSE1F_NOOP
 
 	def_callbacks
 
-.DummyScene0:
-.DummyScene1:
+PlayersHouse1FNoop1Scene:
+PlayersHouse1FNoop2Scene:
 	end
 
 MeetMomLeftScript:

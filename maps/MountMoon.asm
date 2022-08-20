@@ -1,37 +1,35 @@
 	object_const_def
-	const MOUNTMOON_SILVER
+	const MOUNTMOON_RIVAL
 
 MountMoon_MapScripts:
 	def_scene_scripts
-	scene_script .RivalEncounter, SCENE_MOUNTMOON_RIVAL_BATTLE
-	scene_script .DummyScene,     SCENE_MOUNTMOON_NOOP
+	scene_script MountMoonRivalEncounterScene, SCENE_MOUNTMOON_RIVAL_BATTLE
+	scene_script MountMoonNoopScene,           SCENE_MOUNTMOON_NOOP
 
 	def_callbacks
 
-.RivalEncounter:
-	sdefer .RivalBattle
+MountMoonRivalEncounterScene:
+	sdefer MountMoonRivalBattleScript
+MountMoonNoopScene:
 	end
 
-.DummyScene:
-	end
-
-.RivalBattle:
+MountMoonRivalBattleScript:
 	turnobject PLAYER, RIGHT
 	showemote EMOTE_SHOCK, PLAYER, 15
 	special FadeOutMusic
 	pause 15
-	applymovement MOUNTMOON_SILVER, MountMoonSilverMovementBefore
+	applymovement MOUNTMOON_RIVAL, MountMoonRivalMovementBefore
 	playmusic MUSIC_RIVAL_ENCOUNTER
 	opentext
-	writetext MountMoonSilverTextBefore
+	writetext MountMoonRivalTextBefore
 	waitbutton
 	closetext
 	checkevent EVENT_GOT_TOTODILE_FROM_ELM
 	iftrue .Totodile
 	checkevent EVENT_GOT_CHIKORITA_FROM_ELM
 	iftrue .Chikorita
-	winlosstext MountMoonSilverTextWin, MountMoonSilverTextLoss
-	setlasttalked MOUNTMOON_SILVER
+	winlosstext MountMoonRivalTextWin, MountMoonRivalTextLoss
+	setlasttalked MOUNTMOON_RIVAL
 	loadtrainer RIVAL2, RIVAL2_1_TOTODILE
 	startbattle
 	dontrestartmapmusic
@@ -39,8 +37,8 @@ MountMoon_MapScripts:
 	sjump .FinishBattle
 
 .Totodile:
-	winlosstext MountMoonSilverTextWin, MountMoonSilverTextLoss
-	setlasttalked MOUNTMOON_SILVER
+	winlosstext MountMoonRivalTextWin, MountMoonRivalTextLoss
+	setlasttalked MOUNTMOON_RIVAL
 	loadtrainer RIVAL2, RIVAL2_1_CHIKORITA
 	startbattle
 	dontrestartmapmusic
@@ -48,8 +46,8 @@ MountMoon_MapScripts:
 	sjump .FinishBattle
 
 .Chikorita:
-	winlosstext MountMoonSilverTextWin, MountMoonSilverTextLoss
-	setlasttalked MOUNTMOON_SILVER
+	winlosstext MountMoonRivalTextWin, MountMoonRivalTextLoss
+	setlasttalked MOUNTMOON_RIVAL
 	loadtrainer RIVAL2, RIVAL2_1_CYNDAQUIL
 	startbattle
 	dontrestartmapmusic
@@ -58,23 +56,23 @@ MountMoon_MapScripts:
 .FinishBattle:
 	playmusic MUSIC_RIVAL_AFTER
 	opentext
-	writetext MountMoonSilverTextAfter
+	writetext MountMoonRivalTextAfter
 	waitbutton
 	closetext
-	applymovement MOUNTMOON_SILVER, MountMoonSilverMovementAfter
-	disappear MOUNTMOON_SILVER
+	applymovement MOUNTMOON_RIVAL, MountMoonRivalMovementAfter
+	disappear MOUNTMOON_RIVAL
 	setscene SCENE_MOUNTMOON_NOOP
 	setevent EVENT_BEAT_RIVAL_IN_MT_MOON
 	playmapmusic
 	end
 
-MountMoonSilverMovementBefore:
+MountMoonRivalMovementBefore:
 	step LEFT
 	step LEFT
 	step LEFT
 	step_end
 
-MountMoonSilverMovementAfter:
+MountMoonRivalMovementAfter:
 	step RIGHT
 	step RIGHT
 	step DOWN
@@ -84,7 +82,7 @@ MountMoonSilverMovementAfter:
 	step DOWN
 	step_end
 
-MountMoonSilverTextBefore:
+MountMoonRivalTextBefore:
 	text "<……> <……> <……>"
 
 	para "It's been a while,"
@@ -104,7 +102,7 @@ MountMoonSilverTextBefore:
 	line "show you!"
 	done
 
-MountMoonSilverTextWin:
+MountMoonRivalTextWin:
 	text "<……> <……> <……>"
 
 	para "I thought I raised"
@@ -117,7 +115,7 @@ MountMoonSilverTextWin:
 	line "wasn't enough…"
 	done
 
-MountMoonSilverTextAfter:
+MountMoonRivalTextAfter:
 	text "<……> <……> <……>"
 
 	para "…You won, fair"
@@ -143,7 +141,7 @@ MountMoonSilverTextAfter:
 	line "beating you."
 	done
 
-MountMoonSilverTextLoss:
+MountMoonRivalTextLoss:
 	text "<……> <……> <……>"
 
 	para "I've repaid my"
@@ -173,4 +171,4 @@ MountMoon_MapEvents:
 	def_bg_events
 
 	def_object_events
-	object_event  7,  3, SPRITE_SILVER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_MT_MOON_RIVAL
+	object_event  7,  3, SPRITE_RIVAL, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_MT_MOON_RIVAL

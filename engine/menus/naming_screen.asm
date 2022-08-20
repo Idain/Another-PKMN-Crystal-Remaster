@@ -140,8 +140,8 @@ NamingScreen:
 	db "Your name?@"
 
 .Rival:
-	ld de, SilverSpriteGFX
-	ld b, BANK(SilverSpriteGFX)
+	ld de, RivalSpriteGFX
+	ld b, BANK(RivalSpriteGFX)
 	call .LoadSprite
 	hlcoord 5, 2
 	ld de, .RivalNameString
@@ -930,7 +930,7 @@ _ComposeMailMessage:
 	ret
 
 .MailIcon:
-INCBIN "gfx/icons/mail_big.2bpp"
+INCBIN "gfx/naming_screen/mail.2bpp"
 
 .initwNamingScreenMaxNameLength
 	ld a, MAIL_MSG_LENGTH + 1

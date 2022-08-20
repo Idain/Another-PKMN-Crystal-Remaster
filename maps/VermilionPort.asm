@@ -5,22 +5,22 @@
 
 VermilionPort_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene0,   SCENE_VERMILIONPORT_ASK_ENTER_SHIP
-	scene_script .LeaveFastShip, SCENE_VERMILIONPORT_LEAVE_SHIP
+	scene_script VermilionPortNoopScene,      SCENE_VERMILIONPORT_ASK_ENTER_SHIP
+	scene_script VermilionPortLeaveShipScene, SCENE_VERMILIONPORT_LEAVE_SHIP
 
 	def_callbacks
-	callback MAPCALLBACK_NEWMAP, .FlyPoint
+	callback MAPCALLBACK_NEWMAP, VermilionPortFlypointCallback
 
-.LeaveFastShip:
-	sdefer .LeaveFastShipScript
-.DummyScene0:
+VermilionPortLeaveShipScene:
+	sdefer VermilionPortLeaveShipScript
+VermilionPortNoopScene:
 	end
 
-.FlyPoint:
+VermilionPortFlypointCallback:
 	setflag ENGINE_FLYPOINT_VERMILION
 	endcallback
 
-.LeaveFastShipScript:
+VermilionPortLeaveShipScript:
 	applymovement PLAYER, VermilionPortLeaveFastShipMovement
 	appear VERMILIONPORT_SAILOR1
 	setscene SCENE_VERMILIONPORT_ASK_ENTER_SHIP

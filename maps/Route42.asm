@@ -11,13 +11,13 @@
 
 Route42_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene0, SCENE_ROUTE42_NOOP
-	scene_script .DummyScene1, SCENE_ROUTE42_SUICUNE
+	scene_script Route42Noop1Scene, SCENE_ROUTE42_NOOP
+	scene_script Route42Noop2Scene, SCENE_ROUTE42_SUICUNE
 
 	def_callbacks
 
-.DummyScene0:
-.DummyScene1:
+Route42Noop1Scene:
+Route42Noop2Scene:
 	end
 
 Route42SuicuneScript:

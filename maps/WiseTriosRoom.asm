@@ -8,17 +8,17 @@
 
 WiseTriosRoom_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene0, SCENE_WISETRIOSROOM_SAGE_BLOCKS
-	scene_script .DummyScene1, SCENE_WISETRIOSROOM_NOOP
+	scene_script WiseTriosRoomNoop1Scene, SCENE_WISETRIOSROOM_SAGE_BLOCKS
+	scene_script WiseTriosRoomNoop2Scene, SCENE_WISETRIOSROOM_NOOP
 
 	def_callbacks
-	callback MAPCALLBACK_OBJECTS, .WiseTrioCallback
+	callback MAPCALLBACK_OBJECTS, WiseTriosRoomWiseTrioCallback
 
-.DummyScene0:
-.DummyScene1:
+WiseTriosRoomNoop1Scene:
+WiseTriosRoomNoop2Scene:
 	end
 
-.WiseTrioCallback:
+WiseTriosRoomWiseTrioCallback:
 	checkevent EVENT_FOUGHT_SUICUNE
 	iftrue .NoWiseTrio
 	checkevent EVENT_KOJI_ALLOWS_YOU_PASSAGE_TO_TIN_TOWER

@@ -7,17 +7,17 @@
 
 EcruteakPokecenter1F_MapScripts:
 	def_scene_scripts
-	scene_script .MeetBill,   SCENE_ECRUTEAKPOKECENTER1F_MEET_BILL
-	scene_script .DummyScene, SCENE_ECRUTEAKPOKECENTER1F_NOOP
+	scene_script EcruteakPokecenter1FMeetBillScene, SCENE_ECRUTEAKPOKECENTER1F_MEET_BILL
+	scene_script EcruteakPokecenter1FNoopScene,     SCENE_ECRUTEAKPOKECENTER1F_NOOP
 
 	def_callbacks
 
-.MeetBill:
-	sdefer .BillActivatesTimeCapsule
-.DummyScene:
+EcruteakPokecenter1FMeetBillScene:
+	sdefer EcruteakPokcenter1FBillActivatesTimeCapsuleScript
+EcruteakPokecenter1FNoopScene:
 	end
 
-.BillActivatesTimeCapsule:
+EcruteakPokcenter1FBillActivatesTimeCapsuleScript:
 	pause 30
 	playsound SFX_EXIT_BUILDING
 	appear ECRUTEAKPOKECENTER1F_BILL

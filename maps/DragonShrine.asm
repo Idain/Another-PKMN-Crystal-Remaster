@@ -6,19 +6,17 @@
 
 DragonShrine_MapScripts:
 	def_scene_scripts
-	scene_script .DragonShrineTest, SCENE_DRAGONSHRINE_TAKE_TEST
-	scene_script .DummyScene,       SCENE_DRAGONSHRINE_NOOP
+	scene_script DragonShrineTakeTestScene, SCENE_DRAGONSHRINE_TAKE_TEST
+	scene_script DragonShrineNoopScene,     SCENE_DRAGONSHRINE_NOOP
 
 	def_callbacks
 
-.DragonShrineTest:
-	sdefer .DragonShrineTestScript
+DragonShrineTakeTestScene:
+	sdefer DragonShrineTakeTestScript
+DragonShrineNoopScene:
 	end
 
-.DummyScene:
-	end
-
-.DragonShrineTestScript:
+DragonShrineTakeTestScript:
 	applymovement PLAYER, DragonShrinePlayerWalkInMovement
 	applymovement DRAGONSHRINE_ELDER1, DragonShrineElderStepDownMovement
 	opentext
@@ -230,7 +228,7 @@ DragonShrineElder1Script:
 	end
 
 .BeatRivalInMtMoon:
-	writetext DragonShrineSilverIsInTrainingText
+	writetext DragonShrineRivalIsInTrainingText
 	waitbutton
 	closetext
 	end
@@ -543,7 +541,7 @@ DragonShrineClairsGrandfatherText:
 	line "grandfather."
 	done
 
-DragonShrineSilverIsInTrainingText:
+DragonShrineRivalIsInTrainingText:
 	text "A boy close to"
 	line "your age is in"
 	cont "training here."

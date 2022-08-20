@@ -7,15 +7,15 @@
 
 RadioTower5F_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene0, SCENE_RADIOTOWER5F_FAKE_DIRECTOR
-	scene_script .DummyScene1, SCENE_RADIOTOWER5F_ROCKET_BOSS
-	scene_script .DummyScene2, SCENE_RADIOTOWER5F_NOOP
+	scene_script RadioTower5FNoop1Scene, SCENE_RADIOTOWER5F_FAKE_DIRECTOR
+	scene_script RadioTower5FNoop2Scene, SCENE_RADIOTOWER5F_ROCKET_BOSS
+	scene_script RadioTower5FNoop3Scene, SCENE_RADIOTOWER5F_NOOP
 
 	def_callbacks
 
-.DummyScene0:
-.DummyScene1:
-.DummyScene2:
+RadioTower5FNoop1Scene:
+RadioTower5FNoop2Scene:
+RadioTower5FNoop3Scene:
 	end
 
 FakeDirectorScript:
@@ -72,7 +72,7 @@ TrainerExecutivef1:
 	closetext
 	end
 
-RadioTower5FRocketBossScene:
+RadioTower5FRocketBossScript:
 	applymovement PLAYER, RadioTower5FPlayerTwoStepsLeftMovement
 	playmusic MUSIC_ROCKET_ENCOUNTER
 	turnobject RADIOTOWER5F_ROCKET, RIGHT
@@ -420,7 +420,7 @@ RadioTower5F_MapEvents:
 
 	def_coord_events
 	coord_event  0,  3, SCENE_RADIOTOWER5F_FAKE_DIRECTOR, FakeDirectorScript
-	coord_event 16,  5, SCENE_RADIOTOWER5F_ROCKET_BOSS, RadioTower5FRocketBossScene
+	coord_event 16,  5, SCENE_RADIOTOWER5F_ROCKET_BOSS, RadioTower5FRocketBossScript
 
 	def_bg_events
 	bg_event  3,  0, BGEVENT_READ, RadioTower5FDirectorsOfficeSign

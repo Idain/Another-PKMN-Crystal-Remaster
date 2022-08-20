@@ -103,6 +103,7 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
   - [`ReadObjectEvents` overflows into `wObjectMasks`](#readobjectevents-overflows-into-wobjectmasks)
   - [`ClearWRAM` only clears WRAM bank 1](#clearwram-only-clears-wram-bank-1)
   - [`BattleAnimCmd_ClearObjs` only clears the first 6⅔ objects](#battleanimcmd_clearobjs-only-clears-the-first-6-objects)
+  - [Options menu fails to clear joypad state on initialization](#options-menu-fails-to-clear-joypad-state-on-initialization)
 
 
 ## Multi-player battle engine
@@ -1731,7 +1732,7 @@ This is a mistake with the left-hand warp carpet corner tiles in [gfx/tilesets/p
 ![image](https://raw.githubusercontent.com/pret/pokecrystal/master/docs/images/port.png)
 
 
-## The Ruins of Alph research center's roof color at night looks wrong
+### The Ruins of Alph research center's roof color at night looks wrong
 
 The dungeons' map group mostly has indoor maps that don't need roof colors, but [maps/RuinsOfAlphOutside.blk](https://github.com/pret/pokecrystal/blob/master/maps/RuinsOfAlphOutside.blk) is an exception. It appears to have poorly-chosen roof colors: the morning/day colors are the same default gray as the unused group 0, and the night colors combine the light default gray and the dark red of Cinnabar's night roofs.
 
@@ -2628,4 +2629,22 @@ If `IsInArray` returns `nc`, data at `bc` will be executed as code.
  	dec a
  	jr nz, .loop
  	ret
+```
+
+
+### Options menu fails to clear joypad state on initialization
+
+([Video](https://www.youtube.com/watch?v=uhDSIkXkl3g))
+
+This bug allows all the options to be updated at once if the left or right buttons are pressed on the same frame that the options menu is opened.
+
+**Fix:** Edit `_Option` in [engine/menus/options_menu.asm](https://github.com/pret/pokecrystal/blob/master/engine/menus/options_menu.asm):
+
+```diff
+ _Option:
+-; BUG: Options menu fails to clear joypad state on initialization (see docs/bugs_and_glitches.md)
++	call ClearJoypad
+ 	ld hl, hInMenu
+ 	ld a, [hl]
+ 	push af
 ```

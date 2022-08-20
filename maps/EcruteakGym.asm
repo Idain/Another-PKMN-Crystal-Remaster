@@ -9,14 +9,14 @@
 
 EcruteakGym_MapScripts:
 	def_scene_scripts
-	scene_script .ForcedToLeave, SCENE_ECRUTEAKGYM_FORCED_TO_LEAVE
-	scene_script .DummyScene,    SCENE_ECRUTEAKGYM_NOOP
+	scene_script EcruteakGymForcedToLeaveScene, SCENE_ECRUTEAKGYM_FORCED_TO_LEAVE
+	scene_script EcruteakGymNoopScene,          SCENE_ECRUTEAKGYM_NOOP
 
 	def_callbacks
 
-.ForcedToLeave:
+EcruteakGymForcedToLeaveScene:
 	sdefer EcruteakGymClosed
-.DummyScene:
+EcruteakGymNoopScene:
 	end
 
 EcruteakGymMortyScript:

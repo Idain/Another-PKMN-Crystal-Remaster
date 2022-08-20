@@ -8,15 +8,15 @@ PlayersHouse2F_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
-	callback MAPCALLBACK_NEWMAP, .InitializeRoom
-	callback MAPCALLBACK_TILES, .SetUpTileDecorations
+	callback MAPCALLBACK_NEWMAP, PlayersHouse2FInitializeRoomCallback
+	callback MAPCALLBACK_TILES, PlayersHouse2FSetUpTileDecorationsCallback
 
-.InitializeRoom:
+PlayersHouse2FInitializeRoomCallback:
 	special ToggleDecorationsVisibility
 	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_8
 	endcallback
 
-.SetUpTileDecorations:
+PlayersHouse2FSetUpTileDecorationsCallback:
 	special ToggleMaptileDecorations
 	endcallback
 

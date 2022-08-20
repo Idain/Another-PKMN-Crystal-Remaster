@@ -9,17 +9,17 @@
 
 OlivinePort_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene0,   SCENE_OLIVINEPORT_ASK_ENTER_SHIP
-	scene_script .LeaveFastShip, SCENE_OLIVINEPORT_LEAVE_SHIP
+	scene_script OlivinePortNoopScene,      SCENE_OLIVINEPORT_ASK_ENTER_SHIP
+	scene_script OlivinePortLeaveShipScene, SCENE_OLIVINEPORT_LEAVE_SHIP
 
 	def_callbacks
-	
-.LeaveFastShip:
-	sdefer .LeaveFastShipScript
-.DummyScene0:
+
+OlivinePortLeaveShipScene:
+	sdefer OlivinePortLeaveShipScript
+OlivinePortNoopScene:
 	end
 
-.LeaveFastShipScript:
+OlivinePortLeaveShipScript:
 	applymovement PLAYER, OlivinePortLeaveFastShipMovement
 	appear OLIVINEPORT_SAILOR1
 	setscene SCENE_OLIVINEPORT_ASK_ENTER_SHIP

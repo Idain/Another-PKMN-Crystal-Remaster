@@ -8,6 +8,7 @@ MACRO move
 	db \6 percent ; accuracy
 	db \7 ; pp
 	db \8 percent ; effect chance
+	assert \7 <= 40, "PP must be 40 or less"
 ENDM
 
 Moves:

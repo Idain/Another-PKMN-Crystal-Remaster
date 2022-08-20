@@ -6,21 +6,19 @@
 
 FastShip1F_MapScripts:
 	def_scene_scripts
-	scene_script .DummyScene0,   SCENE_FASTSHIP1F_NOOP
-	scene_script .EnterFastShip, SCENE_FASTSHIP1F_ENTER_SHIP
-	scene_script .DummyScene2,   SCENE_FASTSHIP1F_MEET_GRANDPA
+	scene_script FastShip1FNoop1Scene,     SCENE_FASTSHIP1F_NOOP
+	scene_script FastShip1FEnterShipScene, SCENE_FASTSHIP1F_ENTER_SHIP
+	scene_script FastShip1FNoop2Scene,     SCENE_FASTSHIP1F_MEET_GRANDPA
 
 	def_callbacks
 
-.DummyScene0:
-.DummyScene2:
+FastShip1FEnterShipScene:
+	sdefer FastShip1FEnterShipScript
+FastShip1FNoop1Scene:
+FastShip1FNoop2Scene:
 	end
 
-.EnterFastShip:
-	sdefer .EnterFastShipScript
-	end
-
-.EnterFastShipScript:
+FastShip1FEnterShipScript:
 	applymovement FASTSHIP1F_SAILOR1, FastShip1F_SailorStepAsideMovement
 	applymovement PLAYER, FastShip1F_PlayerEntersShipMovement
 	applymovement FASTSHIP1F_SAILOR1, FastShip1F_SailorBlocksDoorMovement
