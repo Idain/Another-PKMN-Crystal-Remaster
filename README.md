@@ -1,4 +1,4 @@
-# Another Pokémon Crystal Game (Subject to changes) [![Build Status][ci-badge]][ci]
+# Another PKMN Crystal Remaster (Subject to changes) [![Build Status][ci-badge]][ci]
 
 This is a disassembly of Pokémon Crystal.
 

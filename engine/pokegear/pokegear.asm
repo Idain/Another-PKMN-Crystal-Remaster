@@ -492,9 +492,6 @@ Pokegear_UpdateClock:
 	bccoord 6, 6
 	jp PlaceHLTextAtBC
 
-	db "ごぜん@"
-	db "ごご@"
-
 .GearTodayText:
 	text_far _GearTodayText
 	text_end

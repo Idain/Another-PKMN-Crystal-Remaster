@@ -581,30 +581,28 @@ PrintHour:
 GetTimeOfDayString:
 	ld a, c
 	cp MORN_HOUR
-	jr c, .nite
+	ld de, .nite_string
+	ret c
+
 	cp DAY_HOUR
-	jr c, .morn
+	ld de, .morn_string
+	ret c
+
 	cp EVE_HOUR
-	jr c, .day
+	ld de, .day_string
+	ret c
+
 	cp NITE_HOUR
-	jr c, .eve
-.nite
+	ld de, .eve_string
+	ret c
+	
 	ld de, .nite_string
 	ret
-.morn
-	ld de, .morn_string
-	ret
-.day
-	ld de, .day_string
-	ret
-.eve
-	ld de, .eve_string
-	ret
 
-.nite_string: db "NITE@"
-.morn_string: db "MORN@"
-.day_string:  db "DAY@"
-.eve_string:  db "EVE@"
+.nite_string: db "Night@"
+.morn_string: db "Morning@"
+.day_string:  db "Day@"
+.eve_string:  db "Evening@"
 
 AdjustHourForAMorPM:
 ; Convert the hour stored in c (0-23) to a 1-12 value

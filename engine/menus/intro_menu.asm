@@ -24,16 +24,16 @@ PrintDayOfWeek:
 	jp PlaceString
 
 .Days:
-	db "SUN@"
-	db "MON@"
-	db "TUES@"
-	db "WEDNES@"
-	db "THURS@"
-	db "FRI@"
-	db "SATUR@"
+	db "Sun@"
+	db "Mon@"
+	db "Tues@"
+	db "Wednes@"
+	db "Thurs@"
+	db "Fri@"
+	db "Satur@"
 
 .Day:
-	db "DAY@"
+	db "day@"
 
 NewGame_ClearTilemapEtc:
 	xor a
@@ -426,17 +426,6 @@ FinishContinueFunction:
 	call SpawnAfterRed
 	jr .loop
 
-DisplaySaveInfoOnContinue:
-	call CheckRTCStatus
-	and %10000000
-	jr z, .clock_ok
-	lb de, 4, 8
-	jr DisplayContinueDataWithRTCError
-
-.clock_ok
-	lb de, 4, 8
-	jr DisplayNormalContinueData
-
 DisplaySaveInfoOnSave:
 	lb de, 4, 0
 	; fallthrough
@@ -447,6 +436,12 @@ DisplayNormalContinueData:
 	farcall LoadFontsExtra
 	jp UpdateSprites
 
+DisplaySaveInfoOnContinue:
+	call CheckRTCStatus
+	and %10000000
+	lb de, 4, 8
+	jr z, DisplayNormalContinueData
+	; fallthrough
 DisplayContinueDataWithRTCError:
 	call Continue_LoadMenuHeader
 	call Continue_DisplayBadgesDexPlayerName
@@ -1059,26 +1054,22 @@ TitleScreenMain:
 	ld a, [hl]
 	and D_UP + B_BUTTON + SELECT
 	cp  D_UP + B_BUTTON + SELECT
-	jr z, .delete_save_data
+	ld a, TITLESCREENOPTION_DELETE_SAVE_DATA
+	jr z, .done
 
 ; Press Down + B + Select to initiate the sequence.
 	ld a, [hl]
 	and D_DOWN + B_BUTTON + SELECT
 	cp  D_DOWN + B_BUTTON + SELECT
-	jr z, .reset_clock
+	ld a, TITLESCREENOPTION_RESET_CLOCK
+	jr z, .done
 
 ; Press Start or A to start the game.
 	ld a, [hl]
 	and START | A_BUTTON
 	ret z
-	; fallthrough
-.incave
 	ld a, TITLESCREENOPTION_MAIN_MENU
-	jr .done
-
-.delete_save_data
-	ld a, TITLESCREENOPTION_DELETE_SAVE_DATA
-
+	
 .done
 	ld [wTitleScreenSelectedOption], a
 
@@ -1101,15 +1092,6 @@ TitleScreenMain:
 
 	ld hl, wTitleScreenTimer
 	inc [hl]
-	ret
-
-.reset_clock
-	ld a, TITLESCREENOPTION_RESET_CLOCK
-	ld [wTitleScreenSelectedOption], a
-
-; Return to the intro sequence.
-	ld hl, wJumptableIndex
-	set 7, [hl]
 	ret
 
 TitleScreenEnd:

@@ -270,7 +270,7 @@ MainMenu_PrintCurrentTimeAndDay:
 	call GetWeekday
 	ld b, a
 	decoord 1, 15
-	call .PrintDayOfWeek
+	farcall PrintDayOfWeek
 	decoord 4, 16
 	ldh a, [hHours]
 	ld c, a
@@ -288,31 +288,6 @@ MainMenu_PrintCurrentTimeAndDay:
 
 .TimeNotSetString:
 	db "TIME NOT SET@"
-
-.PrintDayOfWeek:
-	push de
-	ld hl, .Days
-	ld a, b
-	call GetNthString
-	ld d, h
-	ld e, l
-	pop hl
-	call PlaceString
-	ld h, b
-	ld l, c
-	ld de, .Day
-	jp PlaceString
-
-.Days:
-	db "SUN@"
-	db "MON@"
-	db "TUES@"
-	db "WEDNES@"
-	db "THURS@"
-	db "FRI@"
-	db "SATUR@"
-.Day:
-	db "DAY@"
 
 ClearTilemapEtc:
 	xor a
