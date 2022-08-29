@@ -2275,8 +2275,7 @@ ApplyExperienceAfterEnemyCaught:
 	ld a, d
 	xor %00111111
 	ld [wBattleParticipantsNotFainted], a
-	and a
-	call nz, GiveExperiencePoints
+	call GiveExperiencePoints
 	pop af
 	ld [wBattleParticipantsNotFainted], a
 	ret
