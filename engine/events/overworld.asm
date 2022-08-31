@@ -1429,7 +1429,9 @@ FishFunction:
 	call GetFacingTileCoord
 	call GetTileCollision
 	cp WATER_TILE
-	jr z, .facingwater
+	jr nz, .fail
+	farcall CheckFacingObject
+	jr nc, .facingwater
 .fail
 	ld a, $3
 	ret
