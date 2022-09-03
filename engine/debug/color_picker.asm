@@ -797,8 +797,7 @@ DebugColor_PrintTMHMMove:
 	cp NUM_TMS
 	jr c, .tm
 ; hm - skip two gap items
-	inc a
-	inc a
+	add 2
 .tm
 	add TM01
 	ret

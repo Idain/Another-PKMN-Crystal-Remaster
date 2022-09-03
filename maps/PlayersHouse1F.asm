@@ -166,8 +166,7 @@ NeighborScript:
 .NiteScript:
 	writetext NeighborNiteIntroText
 	promptbutton
-	sjump .Main
-
+	; fallthrough
 .Main:
 	writetext NeighborText
 	waitbutton

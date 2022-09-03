@@ -911,8 +911,8 @@ IntroScene20:
 .AppearUnown:
 	sub $18
 	ld c, a
-	and $3
-	cp $3
+	or ~$3
+	inc a
 	ret nz
 	ld a, c
 	and $1c
@@ -1149,18 +1149,15 @@ CrystalIntro_UnownFade:
 	add a
 	ld e, a
 	ld d, 0
-	ld hl, wBGPals2
+	ld hl, wBGPals2 + 2
 	add hl, de
-	inc hl
-	inc hl
 	ld a, [wIntroSceneTimer]
 	and %111111
 	cp %011111
 	jr z, .okay
 	jr c, .okay
-	ld c, a
-	ld a, %111111
-	sub c
+	cpl
+	add %111111 + 1
 .okay
 
 	ld c, a
@@ -1303,11 +1300,8 @@ Intro_FadeUnownWordPals:
 	add a
 	ld e, a
 	ld d, 0
-	ld hl, wBGPals2
+	ld hl, wBGPals2 + 4
 	add hl, de
-rept 4
-	inc hl
-endr
 	ld a, [wIntroSceneTimer]
 	add a
 	ld c, a

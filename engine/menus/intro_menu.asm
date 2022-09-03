@@ -221,7 +221,7 @@ SetDefaultBoxNames:
 	cp 10
 	jr c, .less
 	sub 10
-	ld [hl], "1"
+	ld [hl], "1" ; no-optimize *hl++|*hl-- = N
 	inc hl
 
 .less
@@ -383,8 +383,8 @@ CheckVBA:
 	xor a
 	ldh [rSC], a
 	ldh a, [rSC]
-	and %01111100
-	cp %01111100
+	or ~%01111100
+	inc a
 	ret z
 	ld hl, .WarnVBAText
 	jp PrintText

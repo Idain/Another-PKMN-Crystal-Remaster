@@ -519,14 +519,9 @@ CheckPrinterStatus:
 	bit 7, a
 	jr nz, .error_1
 	bit 6, a
-	jr nz, .error_4
-	; paper error
-	ld a, PRINTER_ERROR_3
-	jr .load_text_index
-
-.error_4
-	; temperature error
-	ld a, PRINTER_ERROR_4
+	ld a, PRINTER_ERROR_4 ; temperature error
+	jr nz, .load_text_index
+	ld a, PRINTER_ERROR_3 ; paper error
 	jr .load_text_index
 
 .error_1
@@ -727,10 +722,10 @@ Printer_PrintBoxListSegment:
 	pop hl
 
 	push hl
-	ld a, [wAddrOfBoxToPrint]
+	ld hl, wAddrOfBoxToPrint
+	ld a, [hli]
+	ld h, [hl]
 	ld l, a
-	ld a, [wAddrOfBoxToPrint + 1]
-	ld h, a
 	ld bc, sBoxMonNicknames - sBox
 	add hl, bc
 	ld bc, MON_NAME_LENGTH
@@ -747,10 +742,10 @@ Printer_PrintBoxListSegment:
 	ld bc, MON_NAME_LENGTH
 	add hl, bc
 	push hl
-	ld a, [wAddrOfBoxToPrint]
+	ld hl, wAddrOfBoxToPrint
+	ld a, [hli]
+	ld h, [hl]
 	ld l, a
-	ld a, [wAddrOfBoxToPrint + 1]
-	ld h, a
 	ld bc, 2 + MONS_PER_BOX + MON_LEVEL
 	add hl, bc
 	ld bc, BOXMON_STRUCT_LENGTH
@@ -778,10 +773,10 @@ Printer_PrintBoxListSegment:
 
 Printer_GetMonGender:
 	push hl
-	ld a, [wAddrOfBoxToPrint]
+	ld hl, wAddrOfBoxToPrint
+	ld a, [hli]
+	ld h, [hl]
 	ld l, a
-	ld a, [wAddrOfBoxToPrint + 1]
-	ld h, a
 	ld bc, 2 + MONS_PER_BOX + MON_DVS
 	add hl, bc
 	ld bc, BOXMON_STRUCT_LENGTH
@@ -812,10 +807,10 @@ Printer_GetBoxMonSpecies:
 	push hl
 	ld e, a
 	ld d, 0
-	ld a, [wAddrOfBoxToPrint]
+	ld hl, wAddrOfBoxToPrint
+	ld a, [hli]
+	ld h, [hl]
 	ld l, a
-	ld a, [wAddrOfBoxToPrint + 1]
-	ld h, a
 	add hl, de
 	ld e, l
 	ld d, h

@@ -730,8 +730,8 @@ ENDM
 	cp PLAYER_NORMAL
 	ret nz
 	ldh a, [hJoypadDown]
-	and B_BUTTON
-	cp B_BUTTON
+	or ~B_BUTTON
+	inc a
 	ret
 
 .CheckWalkable:

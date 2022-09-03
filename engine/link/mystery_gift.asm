@@ -1702,8 +1702,7 @@ endr
 	call WaitBGMap
 	ld b, SCGB_DIPLOMA
 	call GetSGBLayout
-	call SetPalettes
-	ret
+	jp SetPalettes
 
 StageDataForNameCard:
 	ld de, wMysteryGiftStaging

@@ -30,7 +30,7 @@ PrintMonTypes:
 	; Erase any type name that was here before.
 	; Seems to be pointless in localized versions.
 	ld a, " "
-	ld bc, SCREEN_WIDTH - 3
+	ld bc, SCREEN_WIDTH - 3 ; no-optimize hl|bc|de = N / ... / inc|dec hl|bc|de
 	add hl, bc
 	ld [hl], a
 	inc bc

@@ -294,8 +294,7 @@ Printer_ResetData:
 	ld [wPrinterSendByteCounter + 1], a
 	ld hl, wGameboyPrinter2bppSource
 	ld bc, wGameboyPrinter2bppSourceEnd - wGameboyPrinter2bppSource
-	call Printer_ByteFill
-	ret
+	jp Printer_ByteFill
 
 Printer_ComputeChecksum:
 	ld hl, 0
@@ -470,8 +469,6 @@ _PrinterReceive::
 Printer_NextInstruction:
 	ld hl, wPrinterOpcode
 	inc [hl]
-	ret
-
 Printer_DoNothing:
 	ret
 

@@ -1068,8 +1068,8 @@ INCBIN "gfx/naming_screen/mail.2bpp"
 	ret nz
 	inc [hl]
 	call NamingScreen_GetTextCursorPosition
-	ld [hl], NAMINGSCREEN_UNDERLINE
-	dec hl
+	ld a, NAMINGSCREEN_UNDERLINE
+	ld [hld], a
 	ld [hl], "<NEXT>"
 	ret
 
@@ -1094,8 +1094,8 @@ INCBIN "gfx/naming_screen/mail.2bpp"
 	ret nz
 	dec [hl]
 	call NamingScreen_GetTextCursorPosition
-	ld [hl], NAMINGSCREEN_UNDERLINE
-	inc hl
+	ld a, NAMINGSCREEN_UNDERLINE
+	ld [hli], a
 	ld [hl], "<NEXT>"
 	ret
 

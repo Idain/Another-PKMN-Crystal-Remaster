@@ -227,7 +227,7 @@ endr
 	; Can't pick 3 since evening does not have wild data.
 .loop2
 	call Random
-	maskbits NUM_DAYTIMES
+	maskbits NUM_DAYTIMES ; no-optimize a & X == X
 	cp EVE_F
 	jr z, .loop2
 

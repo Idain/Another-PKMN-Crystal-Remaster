@@ -292,8 +292,8 @@ BattleAnimFunction_PokeBall:
 	call ReinitBattleAnimFrameset
 	ld hl, BATTLEANIMSTRUCT_VAR1
 	add hl, bc
-	ld [hl], $0
-	inc hl
+	xor a
+	ld [hli], a
 	ld [hl], $10
 .four
 	ld hl, BATTLEANIMSTRUCT_VAR1
@@ -445,8 +445,8 @@ BattleAnimFunction_Drop:
 	call BattleAnim_IncAnonJumptableIndex
 	ld hl, BATTLEANIMSTRUCT_VAR1
 	add hl, bc
-	ld [hl], $30
-	inc hl
+	ld a, $30
+	ld [hli], a
 	ld [hl], $48
 .one
 	ld hl, BATTLEANIMSTRUCT_VAR1
@@ -1494,8 +1494,8 @@ BattleAnimFunction_SolarBeam:
 	call BattleAnim_IncAnonJumptableIndex
 	ld hl, BATTLEANIMSTRUCT_VAR1
 	add hl, bc
-	ld [hl], $28
-	inc hl
+	ld a, $28
+	ld [hli], a
 	ld [hl], $0
 .one
 	ld hl, BATTLEANIMSTRUCT_PARAM
@@ -1940,9 +1940,9 @@ BattleAnimFunction_Egg:
 	; Object starts here then jumps to the jumptable index defined by the Obj Param
 	ld hl, BATTLEANIMSTRUCT_VAR1
 	add hl, bc
-	ld [hl], $28
-	inc hl ; BATTLEANIMSTRUCT_VAR2
-	ld [hl], $10
+	ld a, $28
+	ld [hli], a 
+	ld [hl], $10  ; hl = BATTLEANIMSTRUCT_VAR2
 	ld hl, BATTLEANIMSTRUCT_PARAM
 	add hl, bc
 	ld a, [hl]
@@ -2931,8 +2931,8 @@ BattleAnimFunction_ThiefPayday:
 	ret nz
 	ld hl, BATTLEANIMSTRUCT_VAR1
 	add hl, bc
-	ld [hl], $20
-	inc hl
+	ld a, $20
+	ld [hli], a
 	srl [hl]
 	ret
 

@@ -13,7 +13,7 @@ CheckShininess:
 	ret nc
 	and [hl]
 	and $ce
-	add a, LOW(-$ce) ; Change to -$ce when RGBDS v0.5.2 comes out.
+	add -$ce
 	ret
 
 InitPartyMenuPalettes:
@@ -720,8 +720,8 @@ PushSGBBorderPalsAndWait:
 	call _PushSGBPals
 	call SGBDelayCycles
 	ldh a, [rJOYP]
-	and $3
-	cp $3
+	or ~$3
+	inc a
 	jr nz, .carry
 	ld a, $20
 	ldh [rJOYP], a
@@ -748,8 +748,8 @@ endr
 	call SGBDelayCycles
 	call SGBDelayCycles
 	ldh a, [rJOYP]
-	and $3
-	cp $3
+	or ~$3
+	inc a
 	jr nz, .carry
 	call .FinalPush
 	and a

@@ -34,20 +34,22 @@ CatchTutorial::
 	jp CopyBytes
 
 .LoadDudeData:
-	ld a, 1
 	ld hl, wDudeNumItems
+	ld a, 1
 	ld [hli], a
-	ld [hl], POTION
-	inc hl
+	ld a, POTION
+	ld [hli], a
+	ld a, 1
 	ld [hli], a
 	ld [hl], -1
 
 	ld hl, wDudeNumKeyItems
-	ld [hl], 0
-	inc hl
+	dec a
+	ld [hli], a
 	ld [hl], -1
 	
 	ld hl, wDudeNumBalls
+	inc a
 	ld [hli], a
 	ld a, POKE_BALL
 	ld [hli], a

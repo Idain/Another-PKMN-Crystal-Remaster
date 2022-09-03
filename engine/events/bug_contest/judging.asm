@@ -237,7 +237,7 @@ ComputeAIContestantScores:
 .loop2
 	; 0, 1, or 2 for 1st, 2nd, or 3rd
 	call Random
-	and 3
+	and 3 ; no-optimize a & X == X
 	cp 3
 	jr z, .loop2
 	ld c, a

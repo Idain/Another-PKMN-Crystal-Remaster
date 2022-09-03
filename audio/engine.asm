@@ -1218,7 +1218,7 @@ ParseSFXOrCry:
 	ld [hl], a
 	; are we on the last channel? (noise sampling)
 	ld a, [wCurChannel]
-	maskbits NUM_MUSIC_CHANS
+	maskbits NUM_MUSIC_CHANS ; no-optimize a & X == X
 	cp CHAN4
 	ret z
 	; update hi frequency from next param
@@ -1822,7 +1822,7 @@ Music_NoteType:
 	add hl, bc
 	ld [hl], a
 	ld a, [wCurChannel]
-	maskbits NUM_MUSIC_CHANS
+	maskbits NUM_MUSIC_CHANS ; no-optimize a & X == X
 	cp CHAN4
 	ret z
 	; volume envelope
@@ -2320,7 +2320,7 @@ _PlayCry::
 
 ; No tempo for channel 4
 	ld a, [wCurChannel]
-	maskbits NUM_MUSIC_CHANS
+	maskbits NUM_MUSIC_CHANS ; no-optimize a & X == X
 	cp CHAN4
 	jr nc, .start
 

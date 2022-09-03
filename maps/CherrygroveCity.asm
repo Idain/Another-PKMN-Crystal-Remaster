@@ -27,8 +27,7 @@ CherrygroveCityGuideGent:
 	writetext GuideGentIntroText
 	yesorno
 	iffalse .No
-	sjump .Yes
-.Yes:
+	; fallthrough
 	writetext GuideGentTourText1
 	waitbutton
 	closetext
