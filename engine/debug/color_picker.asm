@@ -1,27 +1,27 @@
 	; DebugColor_GFX tile IDs
-	const_def $6a
-	const DEBUGTEST_TICKS_1 ; $6a
-	const DEBUGTEST_TICKS_2 ; $6b
-	const DEBUGTEST_WHITE   ; $6c
-	const DEBUGTEST_LIGHT   ; $6d
-	const DEBUGTEST_DARK    ; $6e
-	const DEBUGTEST_BLACK   ; $6f
-	const DEBUGTEST_0       ; $70
-	const DEBUGTEST_1       ; $71
-	const DEBUGTEST_2       ; $72
-	const DEBUGTEST_3       ; $73
-	const DEBUGTEST_4       ; $74
-	const DEBUGTEST_5       ; $75
-	const DEBUGTEST_6       ; $76
-	const DEBUGTEST_7       ; $77
-	const DEBUGTEST_8       ; $78
-	const DEBUGTEST_9       ; $79
-	const DEBUGTEST_A       ; $7a
-	const DEBUGTEST_B       ; $7b
-	const DEBUGTEST_C       ; $7c
-	const DEBUGTEST_D       ; $7d
-	const DEBUGTEST_E       ; $7e
-	const DEBUGTEST_F       ; $7f
+	const_def $5a
+	const DEBUGTEST_TICKS_1 ; $5a
+	const DEBUGTEST_TICKS_2 ; $5b
+	const DEBUGTEST_WHITE   ; $5c
+	const DEBUGTEST_LIGHT   ; $5d
+	const DEBUGTEST_DARK    ; $5e
+	const DEBUGTEST_BLACK   ; $5f
+	const DEBUGTEST_0       ; $60
+	const DEBUGTEST_1       ; $61
+	const DEBUGTEST_2       ; $62
+	const DEBUGTEST_3       ; $63
+	const DEBUGTEST_4       ; $64
+	const DEBUGTEST_5       ; $65
+	const DEBUGTEST_6       ; $66
+	const DEBUGTEST_7       ; $67
+	const DEBUGTEST_8       ; $68
+	const DEBUGTEST_9       ; $69
+	const DEBUGTEST_A       ; $6a
+	const DEBUGTEST_B       ; $6b
+	const DEBUGTEST_C       ; $6c
+	const DEBUGTEST_D       ; $6d
+	const DEBUGTEST_E       ; $6e
+	const DEBUGTEST_F       ; $6f
 
 	; DebugColorMain.Jumptable indexes
 	const_def
@@ -160,6 +160,11 @@ DebugColor_LoadGFX:
 	ld hl, DebugColor_GFX
 	ld de, vTiles2 tile DEBUGTEST_TICKS_1
 	ld bc, 22 tiles
+	call CopyBytes
+
+	ld hl, DebugColor_GFX tile 5
+	ld de, vTiles2 tile $7f
+	ld bc, 1 tiles
 	call CopyBytes
 
 	ld hl, DebugColor_UpArrowGFX
@@ -389,13 +394,13 @@ DebugColor_InitScreen:
 	ret
 
 .ShinyText:
-	db "Shiny", DEBUGTEST_BLACK, DEBUGTEST_BLACK, "@" ; Rare (shiny)
+	db "Shiny@" ; Rare (shiny)
 
 .NormalText:
 	db "Normal@" ; Normal
 
 .SwitchText:
-	db DEBUGTEST_A, DEBUGTEST_BLACK, "Switch▶@" ; (A) Switch
+	db DEBUGTEST_A, " Switch▶@" ; (A) Switch
 
 DebugColor_LoadRGBMeter:
 	decoord 0, 11, wAttrmap
@@ -783,10 +788,10 @@ DebugColor_PrintTMHMMove:
 	jp PlaceString
 
 .AbleText:
-	db "Can", DEBUGTEST_BLACK, "Learn@" ; Learnable"
+	db "Can Learn@" ; Learnable"
 
 .NotAbleText:
-	db "Can't", DEBUGTEST_BLACK, "Learn@"; Not learnable
+	db "Can't Learn@"; Not learnable
 
 .GetNumberedTMHM:
 	cp NUM_TMS
