@@ -513,7 +513,6 @@ NidokingEvosAttacks:
 ClefairyEvosAttacks:
 	db EVOLVE_ITEM, MOON_STONE, CLEFABLE
 	db 0 ; no more evolutions
-	db 1, SPLASH
 	db 1, SWEET_KISS
 	db 1, CHARM
 	db 1, POUND
@@ -533,7 +532,6 @@ ClefairyEvosAttacks:
 
 ClefableEvosAttacks:
 	db 0 ; no more evolutions
-	db 1, SPLASH
 	db 1, SING
 	db 1, SWEET_KISS
 	db 1, ENCORE
@@ -2643,15 +2641,14 @@ PichuEvosAttacks:
 	db 0 ; no more evolutions
 	db 1, THUNDERSHOCK
 	db 1, CHARM
-	db 6, TAIL_WHIP
-	db 8, THUNDER_WAVE
-	db 11, SWEET_KISS
+	db 5, TAIL_WHIP
+	db 10, SWEET_KISS
+	db 13, THUNDER_WAVE
 	db 0 ; no more level-up moves
 
 CleffaEvosAttacks:
 	db EVOLVE_HAPPINESS, TR_ANYTIME, CLEFAIRY
 	db 0 ; no more evolutions
-	db 1, SPLASH
 	db 1, POUND
 	db 1, CHARM
 	db 4, ENCORE
