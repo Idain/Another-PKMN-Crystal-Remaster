@@ -8846,7 +8846,7 @@ GetTrainerBackpic:
 	bit PLAYERSPRITESETUP_FEMALE_TO_MALE_F, a
 	jr nz, .Chris
 	ld a, [wPlayerGender]
-	bit PLAYERGENDER_FEMALE_F, a
+	and a
 	jr z, .Chris
 
 ; It's a girl.

@@ -164,7 +164,7 @@ InitPartyMenuBGPal0:
 
 _CGB_PokegearPals:
 	ld a, [wPlayerGender]
-	bit PLAYERGENDER_FEMALE_F, a
+	and a
 	ld hl, MalePokegearPals
 	jr z, .got_pals ; male
 	ld hl, FemalePokegearPals
@@ -737,7 +737,7 @@ _CGB_PackPals:
 	jr z, .got_gender ; Tutorial guy
 
 	ld a, [wPlayerGender]
-	bit PLAYERGENDER_FEMALE_F, a
+	and a
 	jr z, .got_gender ; male
 
 	ld hl, .KrisPackPals

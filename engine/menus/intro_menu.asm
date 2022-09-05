@@ -708,7 +708,7 @@ NamePlayer:
 	ld hl, wPlayerName
 	ld de, .Chris
 	ld a, [wPlayerGender]
-	bit PLAYERGENDER_FEMALE_F, a
+	and a
 	jr z, .Male
 	ld de, .Kris
 .Male:
@@ -860,7 +860,7 @@ Intro_PlacePlayerSprite:
 
 	ld b, PAL_OW_RED
 	ld a, [wPlayerGender]
-	bit PLAYERGENDER_FEMALE_F, a
+	and a
 	jr z, .male
 	ld b, PAL_OW_BLUE
 .male

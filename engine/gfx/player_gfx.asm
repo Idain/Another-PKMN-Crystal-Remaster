@@ -46,7 +46,7 @@ MovePlayerPic:
 ShowPlayerNamingChoices:
 	ld hl, ChrisNameMenuHeader
 	ld a, [wPlayerGender]
-	bit PLAYERGENDER_FEMALE_F, a
+	and a
 	jr z, .got_header
 	ld hl, KrisNameMenuHeader
 .got_header
@@ -63,7 +63,7 @@ GetPlayerIcon:
 	ld de, ChrisSpriteGFX
 	ld b, BANK(ChrisSpriteGFX)
 	ld a, [wPlayerGender]
-	bit PLAYERGENDER_FEMALE_F, a
+	and a
 	ret z
 	ld de, KrisSpriteGFX
 	ld b, BANK(KrisSpriteGFX)
@@ -72,7 +72,7 @@ GetPlayerIcon:
 GetCardPic:
 	ld hl, ChrisCardPic
 	ld a, [wPlayerGender]
-	bit PLAYERGENDER_FEMALE_F, a
+	and a
 	jr z, .got_pic
 	ld hl, KrisCardPic
 .got_pic
@@ -97,7 +97,7 @@ INCBIN "gfx/trainer_card/trainer_card.2bpp"
 
 GetPlayerBackpic:
 	ld a, [wPlayerGender]
-	bit PLAYERGENDER_FEMALE_F, a
+	and a
 	jp nz, GetKrisBackpic
 
 GetChrisBackpic:
@@ -115,7 +115,7 @@ HOF_LoadTrainerFrontpic:
 ; Get class
 	ld e, CHRIS
 	ld a, [wPlayerGender]
-	bit PLAYERGENDER_FEMALE_F, a
+	and a
 	jr z, .got_class
 	ld e, KRIS
 .got_class
@@ -125,7 +125,7 @@ HOF_LoadTrainerFrontpic:
 ; Load pic
 	ld de, ChrisPic
 	ld a, [wPlayerGender]
-	bit PLAYERGENDER_FEMALE_F, a
+	and a
 	jr z, .got_pic
 	ld de, KrisPic
 .got_pic
@@ -144,7 +144,7 @@ DrawIntroPlayerPic:
 ; Get class
 	ld e, CHRIS
 	ld a, [wPlayerGender]
-	bit PLAYERGENDER_FEMALE_F, a
+	and a
 	jr z, .got_class
 	ld e, KRIS
 .got_class
@@ -154,7 +154,7 @@ DrawIntroPlayerPic:
 ; Load pic
 	ld de, ChrisPic
 	ld a, [wPlayerGender]
-	bit PLAYERGENDER_FEMALE_F, a
+	and a
 	jr z, .got_pic
 	ld de, KrisPic
 .got_pic

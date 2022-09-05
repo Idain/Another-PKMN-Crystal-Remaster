@@ -568,7 +568,7 @@ Function89481:
 Function89492:
 	ld d, 0
 	ld a, [wPlayerGender]
-	bit PLAYERGENDER_FEMALE_F, a
+	and a
 	ret z
 	inc d
 	ret
@@ -1185,7 +1185,7 @@ Function897d5:
 Function89807:
 	ld hl, ChrisSilhouetteGFX
 	ld a, [wPlayerGender]
-	bit PLAYERGENDER_FEMALE_F, a
+	and a
 	jr z, .asm_89814
 	ld hl, KrisSilhouetteGFX
 .asm_89814
@@ -1195,8 +1195,7 @@ Function89807:
 	ld a, BANK(ChrisSilhouetteGFX) ; aka BANK(KrisSilhouetteGFX)
 	call FarCopyBytes
 	call EnableLCD
-	call DelayFrame
-	ret
+	jp DelayFrame
 
 Function89829:
 	push bc

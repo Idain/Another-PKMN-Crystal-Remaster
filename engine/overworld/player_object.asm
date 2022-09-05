@@ -33,7 +33,7 @@ SpawnPlayer:
 	bit PLAYERSPRITESETUP_FEMALE_TO_MALE_F, a
 	jr nz, .ok
 	ld a, [wPlayerGender]
-	bit PLAYERGENDER_FEMALE_F, a
+	and a
 	jr z, .ok
 	ln e, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT
 

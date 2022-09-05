@@ -615,7 +615,7 @@ PokegearMap_InitPlayerIcon:
 	depixel 0, 0
 	ld b, SPRITE_ANIM_INDEX_RED_WALK
 	ld a, [wPlayerGender]
-	bit PLAYERGENDER_FEMALE_F, a
+	and a
 	jr z, .got_gender
 	ld b, SPRITE_ANIM_INDEX_BLUE_WALK
 .got_gender
@@ -2391,7 +2391,7 @@ Pokedex_GetArea:
 	push bc
 	ld c, PAL_OW_RED
 	ld a, [wPlayerGender]
-	bit PLAYERGENDER_FEMALE_F, a
+	and a
 	jr z, .male
 	inc c ; PAL_OW_BLUE
 .male
@@ -2603,7 +2603,7 @@ TownMapPlayerIcon:
 	depixel 0, 0
 	ld b, SPRITE_ANIM_INDEX_RED_WALK ; Male
 	ld a, [wPlayerGender]
-	bit PLAYERGENDER_FEMALE_F, a
+	and a
 	jr z, .got_gender
 	ld b, SPRITE_ANIM_INDEX_BLUE_WALK ; Female
 .got_gender

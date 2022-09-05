@@ -307,7 +307,7 @@ asm_4828d:
 	ld a, [hli]
 	cp $50
 	jr nz, .asm_482e1
-	ld a, 1 << PLAYERGENDER_FEMALE_F
+	ld a, 1
 	ld [wPlayerGender], a
 	jr .asm_482f1
 .asm_482ed
