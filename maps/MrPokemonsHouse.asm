@@ -61,7 +61,7 @@ MrPokemonsHouse_MrPokemonScript:
 	writetext MrPokemonText_GimmeTheScale
 	yesorno
 	iffalse .refused
-	verbosegiveitem EXP_SHARE
+	verbosegiveitem EVIOLITE
 	iffalse .full
 	takeitem RED_SCALE
 .AlwaysNewDiscoveries:
@@ -334,8 +334,15 @@ MrPokemonText_GimmeTheScale:
 	line "care to trade it?"
 
 	para "I can offer this"
-	line "Exp.Share I got"
+	line "Eviolite I got"
 	cont "from Prof.Oak."
+
+	para "It increases the"
+	line "defenses of"
+
+	para "#mon that can"
+	line "still evolve"
+	cont "by 50 %!"
 	done
 
 MrPokemonText_Disappointed:

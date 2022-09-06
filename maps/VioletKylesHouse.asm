@@ -28,6 +28,9 @@ VioletKylesHousePokefanMText:
 
 	para "Badge, they may"
 	line "disobey you."
+
+	para "Even your own"
+	line "#mon!"
 	done
 
 VioletKylesHouse_MapEvents:

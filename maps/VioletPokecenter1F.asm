@@ -38,6 +38,32 @@ VioletPokecenter1F_ElmsAideScript:
 	ifequal UP, .AideWalksAroundPlayer
 	turnobject PLAYER, DOWN
 	applymovement VIOLETPOKECENTER1F_ELMS_AIDE, MovementData_AideWalksStraightOutOfPokecenter
+	showemote EMOTE_SHOCK, VIOLETPOKECENTER1F_ELMS_AIDE, 15
+	opentext
+	writetext VioletCityElmsAideAlmostForgotText
+	waitbutton
+	closetext
+	applymovement VIOLETPOKECENTER1F_ELMS_AIDE, MovementData_AideWalksStraightIntoPlayer
+	readvar VAR_XCOORD
+	ifequal 5, .AideFaceRight
+	turnobject VIOLETPOKECENTER1F_ELMS_AIDE, LEFT
+	turnobject PLAYER, RIGHT
+	sjump .HandleExpShare
+
+.AideFaceRight
+	turnobject VIOLETPOKECENTER1F_ELMS_AIDE, RIGHT
+	turnobject PLAYER, LEFT
+.HandleExpShare
+	opentext
+	writetext VioletCityElmsAideGiveExpShareText
+	promptbutton
+	verbosegiveitem EXP_SHARE
+	writetext VioletCityElmsAideExplainExpShareText
+	waitbutton
+	closetext
+	turnobject PLAYER, DOWN
+	applymovement VIOLETPOKECENTER1F_ELMS_AIDE, MovementData_AideWalksStraightOutOfPokecenterForReal
+	
 	playsound SFX_EXIT_BUILDING
 	disappear VIOLETPOKECENTER1F_ELMS_AIDE
 	waitsfx
@@ -47,6 +73,23 @@ VioletPokecenter1F_ElmsAideScript:
 	applymovement VIOLETPOKECENTER1F_ELMS_AIDE, MovementData_AideWalksLeftToExitPokecenter
 	turnobject PLAYER, DOWN
 	applymovement VIOLETPOKECENTER1F_ELMS_AIDE, MovementData_AideFinishesLeavingPokecenter
+	showemote EMOTE_SHOCK, VIOLETPOKECENTER1F_ELMS_AIDE, 15
+	opentext
+	writetext VioletCityElmsAideAlmostForgotText
+	waitbutton
+	closetext
+	applymovement VIOLETPOKECENTER1F_ELMS_AIDE, MovementData_AideReturnsToPokeCenter
+	turnobject VIOLETPOKECENTER1F_ELMS_AIDE, RIGHT
+	turnobject PLAYER, LEFT
+	opentext
+	writetext VioletCityElmsAideGiveExpShareText
+	promptbutton
+	verbosegiveitem EXP_SHARE
+	writetext VioletCityElmsAideExplainExpShareText
+	waitbutton
+	closetext
+	turnobject PLAYER, DOWN
+	applymovement VIOLETPOKECENTER1F_ELMS_AIDE, MovementData_AideLeavesPokecenterForReal
 	playsound SFX_EXIT_BUILDING
 	disappear VIOLETPOKECENTER1F_ELMS_AIDE
 	waitsfx
@@ -92,6 +135,22 @@ MovementData_AideWalksStraightOutOfPokecenter:
 	step DOWN
 	step_end
 
+MovementData_AideWalksStraightOutOfPokecenterForReal:
+	big_step DOWN
+MovementData_AideLeavesPokecenterForReal:
+	big_step DOWN
+	big_step DOWN
+	big_step DOWN
+	step_end
+
+MovementData_AideWalksStraightIntoPlayer:
+	big_step UP
+MovementData_AideReturnsToPokeCenter:
+	big_step UP
+	big_step UP
+	big_step UP
+	step_end
+
 MovementData_AideWalksLeftToExitPokecenter:
 	step LEFT
 	step DOWN
@@ -135,6 +194,34 @@ VioletPokecenterElmsAideGiveEggText:
 	para "Please call Prof."
 	line "Elm when that Egg"
 	cont "hatches!"
+	done
+
+VioletCityElmsAideAlmostForgotText:
+	text "I almost forgot!"
+	done
+
+VioletCityElmsAideGiveExpShareText:
+ 	text "Prof.Elm also"
+	line "wanted to give you"
+	cont "this."
+	done
+
+VioletCityElmsAideExplainExpShareText:
+	text "The Exp.Share is a"
+	line "special item that,"
+
+	para "when turned on,"
+	line "gives 50 % of the"
+
+	para "experience earned"
+	line "in battle to"
+
+	para "#mon that didn't"
+	line "participate."
+
+	para "Now I'm leaving"
+	line "for real. Take"
+	cont "care!"
 	done
 
 VioletCityElmsAideFullPartyText:
