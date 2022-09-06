@@ -124,6 +124,7 @@
 	charmap "└",         $be
 	charmap "┘",         $bf
 
+	charmap " %",		 $c0
 	charmap "′",         $ce
 	charmap "″",         $cf
 
