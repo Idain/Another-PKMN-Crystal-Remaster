@@ -19,13 +19,13 @@ NameInputUpper:
 	db "A B C D E F G H I"
 	db "J K L M N O P Q R"
 	db "S T U V W X Y Z  "
-	db "- ? ! / . ,      "
+	db "- ? ! / . ,  %    "
 	db "lower  DEL   END "
 
 BoxNameInputUpper:
 	db "A B C D E F G H I"
 	db "J K L M N O P Q R"
-	db "S T U V W X Y Z  "
+	db "S T U V W X Y Z  %"
 	db "× ( ) : ; [ ] <PK> <MN>"
 	db "- ? ! ♂ ♀ / . , &"
 	db "lower  DEL   END "
