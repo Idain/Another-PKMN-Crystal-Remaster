@@ -53,14 +53,14 @@ InitClock:
 .loop
 	ld hl, OakTimeWhatTimeIsItText
 	call PrintText
-	hlcoord 3, 7
-	lb bc, 2, 15
+	hlcoord 1, 7
+	lb bc, 2, 17
 	call Textbox
-	hlcoord 11, 7
+	hlcoord 10, 7
 	ld [hl], $1
-	hlcoord 11, 10
+	hlcoord 10, 10
 	ld [hl], $2
-	hlcoord 4, 9
+	hlcoord 2, 9
 	call DisplayHourOClock
 	ld c, 10
 	call DelayFrames
@@ -168,11 +168,11 @@ SetHour:
 	ld [hl], a
 
 .okay
-	hlcoord 4, 9
+	hlcoord 2, 9
 	ld a, " "
-	ld bc, 15
+	ld bc, 17
 	call ByteFill
-	hlcoord 4, 9
+	hlcoord 2, 9
 	call DisplayHourOClock
 	call WaitBGMap
 	and a
