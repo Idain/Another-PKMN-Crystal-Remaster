@@ -3,6 +3,9 @@ DEF NAMINGSCREEN_BORDER     EQU "■"  ; $df
 DEF NAMINGSCREEN_MIDDLELINE EQU "→"  ; $eb
 DEF NAMINGSCREEN_UNDERLINE  EQU "☎" ; $d9
 
+DEF NAMINGSCREEN_LOWER		EQU $10  ; vTiles2
+DEF NAMINGSCREEN_UPPER		EQU $14	 ; vTiles2
+
 _NamingScreen:
 	call DisableSpriteUpdates
 	call NamingScreen
@@ -42,11 +45,12 @@ NamingScreen:
 
 .SetUpNamingScreen:
 	call ClearBGPalettes
-	ld b, SCGB_DIPLOMA
+	call ClearTilemap
+	ld b, SCGB_NAME_INPUT_SCREEN
 	call GetSGBLayout
 	call DisableLCD
 	call LoadNamingScreenGFX
-	call NamingScreen_InitText
+	call NamingScreen_InitTilemapText
 	ld a, LCDC_DEFAULT
 	ldh [rLCDC], a
 	call .GetNamingScreenSetup
@@ -260,20 +264,16 @@ NamingScreen_IsTargetBox:
 	pop bc
 	ret
 
-NamingScreen_InitText:
+NamingScreen_InitTilemapText:
 	call WaitTop
-	hlcoord 0, 0
-	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
-	ld a, NAMINGSCREEN_BORDER
-	call ByteFill
-	hlcoord 1, 1
-	lb bc, 6, 18
+	ld hl, NameInput_Tilemap
 	call NamingScreen_IsTargetBox
 	jr nz, .not_box
-	lb bc, 4, 18
-
+	ld hl, BoxInput_Tilemap
 .not_box
-	call ClearBox
+	decoord 0, 0
+	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	call CopyBytes
 	ld de, NameInputUpper
 NamingScreen_ApplyTextInputMode:
 	call NamingScreen_IsTargetBox
@@ -283,31 +283,16 @@ NamingScreen_ApplyTextInputMode:
 	add hl, de
 	ld d, h
 	ld e, l
-
 .not_box
-	push de
-	hlcoord 1, 8
-	lb bc, 7, 18
-	call NamingScreen_IsTargetBox
-	jr nz, .not_box_2
-	hlcoord 1, 6
-	lb bc, 9, 18
-
-.not_box_2
-	call ClearBox
-	hlcoord 1, 16
-	lb bc, 1, 18
-	call ClearBox
-	pop de
 	hlcoord 2, 8
-	ld b, $5
+	ld b, 4
 	call NamingScreen_IsTargetBox
 	jr nz, .row
 	hlcoord 2, 6
-	ld b, $6
+	ld b, 5
 
 .row
-	ld c, $11
+	ld c, 17
 .col
 	ld a, [de]
 	ld [hli], a
@@ -315,11 +300,26 @@ NamingScreen_ApplyTextInputMode:
 	dec c
 	jr nz, .col
 	push de
-	ld de, 2 * SCREEN_WIDTH - $11
+	ld de, 2 * SCREEN_WIDTH - 17
 	add hl, de
 	pop de
 	dec b
 	jr nz, .row
+
+	; UPPER/lower text
+	ld a, [wNamingScreenLetterCase]
+	and a
+	ld a, NAMINGSCREEN_UPPER
+	jr nz, .Upper
+	ld a, NAMINGSCREEN_LOWER
+.Upper
+	hlcoord 2, 16
+	ld c, 4
+.copy_letter_option
+	ld [hli], a
+	inc a
+	dec c
+	jr nz, .copy_letter_option
 	ret
 
 NamingScreenJoypadLoop:
@@ -522,7 +522,7 @@ NamingScreen_AnimateCursor:
 	ld a, SPRITE_ANIM_FRAMESET_TEXT_ENTRY_CURSOR - SPRITE_ANIM_FRAMESET_TEXT_ENTRY_CURSOR ; 0
 	jr nz, .ok2
 	ld de, .CaseDelEnd
-	ld a, SPRITE_ANIM_FRAMESET_TEXT_ENTRY_CURSOR_BIG - SPRITE_ANIM_FRAMESET_TEXT_ENTRY_CURSOR ; 1
+	ld a, SPRITE_ANIM_FRAMESET_TEXT_ENTRY_CURSOR_SEMI_BIG - SPRITE_ANIM_FRAMESET_TEXT_ENTRY_CURSOR ; 1
 .ok2
 	ld hl, SPRITEANIMSTRUCT_VAR3
 	add hl, bc
@@ -816,17 +816,25 @@ LoadNamingScreenGFX:
 	lb bc, BANK(NamingScreenGFX_UnderLine), 1
 	call Get1bpp
 
+	ld de, NamingScreenGFX_Options
+	ld hl, vTiles2 tile $10
+	lb bc, BANK(NamingScreenGFX_Options), 14
+	call Get1bpp
+
 	ld de, vTiles0 tile NAMINGSCREEN_BORDER
 	ld hl, NamingScreenGFX_Border
 	ld bc, 1 tiles
-	ld a, BANK(NamingScreenGFX_Border)
-	call FarCopyBytes
+	call CopyBytes
 
 	ld de, vTiles0 tile NAMINGSCREEN_CURSOR
 	ld hl, NamingScreenGFX_Cursor
 	ld bc, 2 tiles
-	ld a, BANK(NamingScreenGFX_Cursor)
-	call FarCopyBytes
+	call CopyBytes
+
+	ld de, vTiles2 tile $00
+	ld hl, NamingScreenGFX_Screen
+	ld bc, 15 tiles
+	call CopyBytes
 
 	ld a, SPRITE_ANIM_DICT_TEXT_CURSOR
 	ld hl, wSpriteAnimDict + (NUM_SPRITEANIMDICT_ENTRIES - 1) * 2
@@ -858,6 +866,18 @@ INCBIN "gfx/naming_screen/middle_line.1bpp"
 
 NamingScreenGFX_UnderLine:
 INCBIN "gfx/naming_screen/underline.1bpp"
+
+NamingScreenGFX_Options:
+INCBIN "gfx/naming_screen/naming_options.1bpp"
+
+NamingScreenGFX_Screen:
+INCBIN "gfx/naming_screen/naming_screen.2bpp"
+
+NameInput_Tilemap:
+INCBIN "gfx/naming_screen/NameInput.tilemap"
+
+BoxInput_Tilemap:
+INCBIN "gfx/naming_screen/BoxInput.tilemap"
 
 _ComposeMailMessage:
 	ld hl, wNamingScreenDestinationPointer
@@ -1132,10 +1152,10 @@ ComposeMail_AnimateCursor:
 	ld [hl], e
 	cp $5
 	ld de, .LetterEntries
-	ld a, 0
+	ld a, SPRITE_ANIM_FRAMESET_TEXT_ENTRY_CURSOR - SPRITE_ANIM_FRAMESET_TEXT_ENTRY_CURSOR ; 0
 	jr nz, .got_pointer
 	ld de, .CaseDelEnd
-	ld a, 1
+	ld a, SPRITE_ANIM_FRAMESET_TEXT_ENTRY_CURSOR_BIG - SPRITE_ANIM_FRAMESET_TEXT_ENTRY_CURSOR ; 2
 .got_pointer
 	ld hl, SPRITEANIMSTRUCT_VAR3
 	add hl, bc

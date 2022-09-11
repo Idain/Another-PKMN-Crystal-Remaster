@@ -49,7 +49,6 @@ SECTION "bank4", ROMX
 INCLUDE "engine/items/pack.asm"
 INCLUDE "engine/overworld/time.asm"
 INCLUDE "engine/items/tmhm2.asm"
-INCLUDE "engine/menus/naming_screen.asm"
 INCLUDE "engine/events/misc_scripts.asm"
 INCLUDE "engine/events/heal_machine_anim.asm"
 INCLUDE "engine/events/whiteout.asm"
@@ -707,3 +706,8 @@ INCLUDE "data/pokemon/evolution_moves.asm"
 SECTION "Overworld Wildmon Data", ROMX
 
 INCLUDE "engine/overworld/wildmons.asm"
+
+
+SECTION "Naming Screen", ROMX
+
+INCLUDE "engine/menus/naming_screen.asm"

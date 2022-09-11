@@ -1047,6 +1047,9 @@ RoofPals:
 INCLUDE "gfx/tilesets/roofs.pal"
 	assert_table_length NUM_MAP_GROUPS + 1
 
+NameInputScreenPalettes:
+INCLUDE "gfx/naming_screen/input_screen.pal"
+
 DiplomaPalettes:
 INCLUDE "gfx/diploma/diploma.pal"
 

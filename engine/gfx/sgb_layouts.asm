@@ -31,7 +31,7 @@ SGBLayoutJumptable:
 	dw .SGB_PartyMenu
 	dw .SGB_Evolution
 	dw .SGB_GSTitleScreen
-	dw .SGB_Unused0D
+	dw .SGB_NameInputScreen
 	dw .SGB_MoveList
 	dw .SGB_BetaPikachuMinigame
 	dw .SGB_PokedexSearchOption
@@ -393,7 +393,7 @@ endr
 	ld de, BlkPacket_AllPal0
 	ret
 
-.SGB_Unused0D:
+.SGB_NameInputScreen:
 .SGB_TrainerCard:
 	ld hl, PalPacket_Diploma
 	ld de, BlkPacket_AllPal0

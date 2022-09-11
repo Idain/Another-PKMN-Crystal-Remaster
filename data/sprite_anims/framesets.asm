@@ -10,6 +10,7 @@ SpriteAnimFrameData:
 	dw .Frameset_PartyMonWithItemFast
 	dw .Frameset_GSTitleTrail
 	dw .Frameset_TextEntryCursor
+	dw .Frameset_TextEntryCursorSemiBig
 	dw .Frameset_TextEntryCursorBig
 	dw .Frameset_GameFreakLogo
 	dw .Frameset_GSGameFreakLogoStar
@@ -131,6 +132,11 @@ SpriteAnimFrameData:
 
 .Frameset_TextEntryCursor:
 	oamframe SPRITE_ANIM_OAMSET_TEXT_ENTRY_CURSOR,  1
+	oamwait 1
+	oamrestart
+
+.Frameset_TextEntryCursorSemiBig:
+	oamframe SPRITE_ANIM_OAMSET_TEXT_ENTRY_CURSOR_SEMI_BIG,  1
 	oamwait 1
 	oamrestart
 
