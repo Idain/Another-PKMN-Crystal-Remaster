@@ -41,7 +41,6 @@ SpriteAnimOAMData:
 	spriteanimoam $f8, .OAMData_GSTitleTrail             ; SPRITE_ANIM_OAMSET_GS_TITLE_TRAIL_1
 	spriteanimoam $fa, .OAMData_GSTitleTrail             ; SPRITE_ANIM_OAMSET_GS_TITLE_TRAIL_2
 	spriteanimoam $00, .OAMData_TextEntryCursor          ; SPRITE_ANIM_OAMSET_TEXT_ENTRY_CURSOR
-	spriteanimoam $00, .OAMData_TextEntryCursorSemiBig	 ; SPRITE_ANIM_OAMSET_TEXT_ENTRY_CURSOR_SEMI_BIG
 	spriteanimoam $00, .OAMData_TextEntryCursorBig       ; SPRITE_ANIM_OAMSET_TEXT_ENTRY_CURSOR_BIG
 	spriteanimoam $00, .OAMData_GSGameFreakLogo          ; SPRITE_ANIM_OAMSET_GS_GAMEFREAK_LOGO
 	spriteanimoam $0f, .OAMData_GSGameFreakLogoStar      ; SPRITE_ANIM_OAMSET_GS_GAMEFREAK_LOGO_STAR
@@ -430,7 +429,7 @@ SpriteAnimOAMData:
 	dbsprite -1,  0,  7,  0, $00, 0 | Y_FLIP
 	dbsprite  0,  0,  0,  0, $00, 0 | X_FLIP | Y_FLIP
 
-.OAMData_TextEntryCursorSemiBig:
+.OAMData_TextEntryCursorBig:
 	db 8
 	dbsprite  0, -0,  0,  0, $00, 0
 	dbsprite  1, -0,  0,  0, $01, 0
@@ -440,19 +439,6 @@ SpriteAnimOAMData:
 	dbsprite  1,  0,  0,  0, $01, 0 | Y_FLIP
 	dbsprite  2,  0,  0,  0, $01, 0 | Y_FLIP
 	dbsprite  3,  0,  0,  0, $00, 0 | X_FLIP | Y_FLIP
-
-.OAMData_TextEntryCursorBig:
-	db 10
-	dbsprite  0, -1,  0,  7, $00, 0
-	dbsprite  1, -1,  0,  7, $01, 0
-	dbsprite  2, -1,  0,  7, $01, 0
-	dbsprite  3, -1,  0,  7, $01, 0
-	dbsprite  4, -1,  0,  7, $00, 0 | X_FLIP
-	dbsprite  0,  0,  0,  0, $00, 0 | Y_FLIP
-	dbsprite  1,  0,  0,  0, $01, 0 | Y_FLIP
-	dbsprite  2,  0,  0,  0, $01, 0 | Y_FLIP
-	dbsprite  3,  0,  0,  0, $01, 0 | Y_FLIP
-	dbsprite  4,  0,  0,  0, $00, 0 | X_FLIP | Y_FLIP
 
 .OAMData_GSGameFreakLogo:
 	db 15

@@ -1,5 +1,4 @@
 DEF NAMINGSCREEN_CURSOR     EQU $7e
-DEF NAMINGSCREEN_BORDER     EQU "■"  ; $df
 DEF NAMINGSCREEN_MIDDLELINE EQU "→"  ; $eb
 DEF NAMINGSCREEN_UNDERLINE  EQU "☎" ; $d9
 
@@ -46,7 +45,7 @@ NamingScreen:
 .SetUpNamingScreen:
 	call ClearBGPalettes
 	call ClearTilemap
-	ld b, SCGB_NAME_INPUT_SCREEN
+	ld b, SCGB_INPUT_SCREEN
 	call GetSGBLayout
 	call DisableLCD
 	call LoadNamingScreenGFX
@@ -71,7 +70,7 @@ NamingScreen:
 	dw .Pokemon
 	dw .Player
 	dw .Rival
-	dw .Mom
+	dw .Mail ; inaccessible
 	dw .Box
 	dw .Tomodachi
 
@@ -155,7 +154,7 @@ NamingScreen:
 .RivalNameString:
 	db "Rival's name?@"
 
-.Mom:
+.Mail:
 	ld de, MomSpriteGFX
 	ld b, BANK(MomSpriteGFX)
 	call .LoadSprite
@@ -522,7 +521,7 @@ NamingScreen_AnimateCursor:
 	ld a, SPRITE_ANIM_FRAMESET_TEXT_ENTRY_CURSOR - SPRITE_ANIM_FRAMESET_TEXT_ENTRY_CURSOR ; 0
 	jr nz, .ok2
 	ld de, .CaseDelEnd
-	ld a, SPRITE_ANIM_FRAMESET_TEXT_ENTRY_CURSOR_SEMI_BIG - SPRITE_ANIM_FRAMESET_TEXT_ENTRY_CURSOR ; 1
+	ld a, SPRITE_ANIM_FRAMESET_TEXT_ENTRY_CURSOR_BIG - SPRITE_ANIM_FRAMESET_TEXT_ENTRY_CURSOR ; 1
 .ok2
 	ld hl, SPRITEANIMSTRUCT_VAR3
 	add hl, bc
@@ -821,11 +820,6 @@ LoadNamingScreenGFX:
 	lb bc, BANK(NamingScreenGFX_Options), 14
 	call Get1bpp
 
-	ld de, vTiles0 tile NAMINGSCREEN_BORDER
-	ld hl, NamingScreenGFX_Border
-	ld bc, 1 tiles
-	call CopyBytes
-
 	ld de, vTiles0 tile NAMINGSCREEN_CURSOR
 	ld hl, NamingScreenGFX_Cursor
 	ld bc, 2 tiles
@@ -853,9 +847,6 @@ LoadNamingScreenGFX:
 	ldh [hWX], a
 	ret
 
-NamingScreenGFX_Border:
-INCBIN "gfx/naming_screen/border.2bpp"
-
 NamingScreenGFX_Cursor:
 INCBIN "gfx/naming_screen/cursor.2bpp"
 
@@ -879,11 +870,16 @@ INCBIN "gfx/naming_screen/NameInput.tilemap"
 BoxInput_Tilemap:
 INCBIN "gfx/naming_screen/BoxInput.tilemap"
 
+MailInput_Tilemap:
+INCBIN "gfx/naming_screen/MailInput.tilemap"
+
 _ComposeMailMessage:
 	ld hl, wNamingScreenDestinationPointer
 	ld [hl], e
 	inc hl
 	ld [hl], d
+	ld hl, wNamingScreenType
+	ld [hl], b
 	ldh a, [hMapAnims]
 	push af
 	xor a
@@ -907,13 +903,13 @@ _ComposeMailMessage:
 
 .InitBlankMail:
 	call ClearBGPalettes
+	call ClearTilemap
 	call DisableLCD
 	call LoadNamingScreenGFX
 	ld de, vTiles0 tile $00
 	ld hl, .MailIcon
 	ld bc, 8 tiles
-	ld a, BANK(.MailIcon)
-	call FarCopyBytes
+	call CopyBytes
 	xor a ; SPRITE_ANIM_DICT_DEFAULT and tile offset $00
 	ld hl, wSpriteAnimDict
 	ld [hli], a
@@ -931,14 +927,11 @@ _ComposeMailMessage:
 	ld a, LCDC_DEFAULT
 	ldh [rLCDC], a
 	call .initwNamingScreenMaxNameLength
-	ld b, SCGB_DIPLOMA
+	ld b, SCGB_INPUT_SCREEN
 	call GetSGBLayout
 	call WaitBGMap
 	call WaitTop
-	ld a, %11100100
-	call DmgToCgbBGPals
-	ld a, %11100100
-	call DmgToCgbObjPal0
+	call SetPalettes
 	call NamingScreen_InitNameEntry
 	ld hl, wNamingScreenDestinationPointer
 	ld e, [hl]
@@ -959,22 +952,15 @@ INCBIN "gfx/naming_screen/mail.2bpp"
 
 .InitCharset:
 	call WaitTop
-	hlcoord 0, 0
-	ld bc, 6 * SCREEN_WIDTH
-	ld a, NAMINGSCREEN_BORDER
-	call ByteFill
-	hlcoord 0, 6
-	ld bc, 12 * SCREEN_WIDTH
-	ld a, " "
-	call ByteFill
-	hlcoord 1, 1
-	lb bc, 4, SCREEN_WIDTH - 2
-	call ClearBox
+	ld hl, MailInput_Tilemap
+	decoord 0, 0
+	ld bc, SCREEN_WIDTH * SCREEN_HEIGHT
+	call CopyBytes
 	ld de, MailEntry_Uppercase
 
 .PlaceMailCharset:
 	hlcoord 1, 7
-	ld b, 6
+	ld b, 5
 .next
 	ld c, SCREEN_WIDTH - 1
 .loop_
@@ -989,6 +975,21 @@ INCBIN "gfx/naming_screen/mail.2bpp"
 	pop de
 	dec b
 	jr nz, .next
+
+	; UPPER/lower text
+	ld a, [wNamingScreenLetterCase]
+	and a
+	ld a, NAMINGSCREEN_UPPER
+	jr nz, .uppercase
+	ld a, NAMINGSCREEN_LOWER
+.uppercase
+	hlcoord 2, 17
+	ld c, 4
+.copy_letter_option
+	ld [hli], a
+	inc a
+	dec c
+	jr nz, .copy_letter_option
 	ret
 
 .DoMailEntry:
@@ -1155,7 +1156,7 @@ ComposeMail_AnimateCursor:
 	ld a, SPRITE_ANIM_FRAMESET_TEXT_ENTRY_CURSOR - SPRITE_ANIM_FRAMESET_TEXT_ENTRY_CURSOR ; 0
 	jr nz, .got_pointer
 	ld de, .CaseDelEnd
-	ld a, SPRITE_ANIM_FRAMESET_TEXT_ENTRY_CURSOR_BIG - SPRITE_ANIM_FRAMESET_TEXT_ENTRY_CURSOR ; 2
+	ld a, SPRITE_ANIM_FRAMESET_TEXT_ENTRY_CURSOR_BIG - SPRITE_ANIM_FRAMESET_TEXT_ENTRY_CURSOR ; 1
 .got_pointer
 	ld hl, SPRITEANIMSTRUCT_VAR3
 	add hl, bc
@@ -1178,7 +1179,7 @@ ComposeMail_AnimateCursor:
 	db $00, $10, $20, $30, $40, $50, $60, $70, $80, $90
 
 .CaseDelEnd:
-	db $00, $00, $00, $30, $30, $30, $60, $60, $60, $60
+	db $08, $08, $08, $38, $38, $38, $68, $68, $68, $68
 
 .GetDPad:
 	ld hl, hJoyLast
@@ -1241,7 +1242,7 @@ ComposeMail_AnimateCursor:
 	ret
 
 .caps_del_done_left
-	dec a ; cp 1
+	dec a
 	jr nz, .wrap_around_command_left
 	ld a, 4
 .wrap_around_command_left

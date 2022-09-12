@@ -556,12 +556,12 @@ _CGB_NameInputScreen:
 	call WipeAttrmap
 	hlcoord 0, 0, wAttrmap
     lb bc, SCREEN_HEIGHT, SCREEN_WIDTH
+	; Set palette depending on naming screen type.
 	ld a, [wNamingScreenType]
-	cp NAME_BOX
-	ld a, 1 ; Palette 1
-	jr z, .box_palette
-	dec a 	; Palette 0
-.box_palette:
+	sub NAME_MAIL
+	jr nc, .apply_palette
+	ld a, 2
+.apply_palette
     call FillBoxCGB
 	jp ApplyAttrmap
 

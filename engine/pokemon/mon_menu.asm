@@ -420,6 +420,7 @@ StartMenuYesNo:
 
 ComposeMailMessage:
 	ld de, wTempMailMessage
+	ld b, NAME_MAIL
 	farcall _ComposeMailMessage
 	ld hl, wPlayerName
 	ld de, wTempMailAuthor
