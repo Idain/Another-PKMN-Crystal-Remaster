@@ -554,6 +554,15 @@ _CGB_NameInputScreen:
 	ld a, BANK(wBGPals1)
 	call FarCopyWRAM
 	call WipeAttrmap
+	hlcoord 0, 0, wAttrmap
+    lb bc, SCREEN_HEIGHT, SCREEN_WIDTH
+	ld a, [wNamingScreenType]
+	cp NAME_BOX
+	ld a, 1 ; Palette 1
+	jr z, .box_palette
+	dec a 	; Palette 0
+.box_palette:
+    call FillBoxCGB
 	jp ApplyAttrmap
 
 _CGB_UnownPuzzle:
