@@ -5,7 +5,7 @@ Spikes
 Substitute (y todas sus propiedades)
 
 
-* Editar Egg Moves.
+* Retrabajar sistema de herencia de DVs.
 * Editar learnsets.
 * Crear script Prof. Oak donde te da a Bulbasaur, Charmander y Squirtle.
 * Implementar NPC en Violet City que dé huevo de Slugma (Primo, de HG/SS).

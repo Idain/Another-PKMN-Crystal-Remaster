@@ -44,6 +44,7 @@ CAMBIOS:
 
 - General:
 	-- ¡Curva de dificultad ajustada!
+	-- ¡Sistema de experiencia renovado! Ahora funciona como en la 6ta generación. También el Repartir Experiencia ha sido modificado.
 	-- ¡Ahora es más mucho rápido salvar la partida!
 	-- Removido modificador de medallas que boosteaban ataques y stats.
 	-- La fórmula para determinar el género de un Pokémon ha sido retrabajada para que ciertos Pokémon hembra puedan tener mejores DVs en Ataque.
@@ -122,6 +123,7 @@ CAMBIOS:
 	-- La intefaz de batalla ha sido renovada, dándole un aspecto moderno mientras aún se asemeja a la original.
 	-- Si un Pokémon es afectado por un problema de estado, ahora este se muestra al lado del nivel en vez de reemplazarlo.
 	-- Los signos que aparecen cada vez que entras a un mapa ahora están animados.
+	-- Las pantallas de entrada de texto han sido totalmente renovadas.
 
 	-- Pokémon sprites:
 		-- Pikachu
