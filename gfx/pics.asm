@@ -141,7 +141,6 @@ BayleefFrontpic:     INCBIN "gfx/pokemon/bayleef/front.animated.2bpp.lz"
 MagmarFrontpic:      INCBIN "gfx/pokemon/magmar/front.animated.2bpp.lz"
 TentacruelFrontpic:  INCBIN "gfx/pokemon/tentacruel/front.animated.2bpp.lz"
 ElekidFrontpic:      INCBIN "gfx/pokemon/elekid/front.animated.2bpp.lz"
-JumpluffFrontpic:    INCBIN "gfx/pokemon/jumpluff/front.animated.2bpp.lz"
 MarowakFrontpic:     INCBIN "gfx/pokemon/marowak/front.animated.2bpp.lz"
 VulpixFrontpic:      INCBIN "gfx/pokemon/vulpix/front.animated.2bpp.lz"
 GligarFrontpic:      INCBIN "gfx/pokemon/gligar/front.animated.2bpp.lz"
@@ -701,7 +700,6 @@ SECTION "Pics 19", ROMX
 FisherPic:           INCBIN "gfx/trainers/fisher.2bpp.lz"
 SwimmerfPic:         INCBIN "gfx/trainers/swimmer_f.2bpp.lz"
 SagePic:             INCBIN "gfx/trainers/sage.2bpp.lz"
-; -------
 DelibirdFrontpic:    INCBIN "gfx/pokemon/delibird/front.animated.2bpp.lz"
 DelibirdBackpic:     INCBIN "gfx/pokemon/delibird/back.2bpp.lz"
 MismagiusFrontPic:   INCBIN "gfx/pokemon/mismagius/front.animated.2bpp.lz"
@@ -718,9 +716,10 @@ QuilavaFrontpic:     INCBIN "gfx/pokemon/quilava/front.animated.2bpp.lz"
 QuilavaBackpic:      INCBIN "gfx/pokemon/quilava/back.2bpp.lz"
 WeezingFrontpic:     INCBIN "gfx/pokemon/weezing/front.animated.2bpp.lz"
 
-; Sections "Pics 20" to "Pics 24" are not used for any graphics.
 
 SECTION "Pics 20", ROMX
+
+JumpluffFrontpic:    INCBIN "gfx/pokemon/jumpluff/front.animated.2bpp.lz"
 
 SECTION "Pics 21", ROMX
 
