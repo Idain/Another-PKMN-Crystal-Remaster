@@ -62,8 +62,7 @@ VioletPokecenter1F_ElmsAideScript:
 	waitbutton
 	closetext
 	turnobject PLAYER, DOWN
-	applymovement VIOLETPOKECENTER1F_ELMS_AIDE, MovementData_AideWalksStraightOutOfPokecenterForReal
-	
+	applymovement VIOLETPOKECENTER1F_ELMS_AIDE, MovementData_AideWalksStraightOutOfPokecenter
 	playsound SFX_EXIT_BUILDING
 	disappear VIOLETPOKECENTER1F_ELMS_AIDE
 	waitsfx
@@ -130,25 +129,18 @@ VioletPokecenter1FYoungsterScript:
 
 MovementData_AideWalksStraightOutOfPokecenter:
 	step DOWN
-	step DOWN
-	step DOWN
-	step DOWN
-	step_end
-
-MovementData_AideWalksStraightOutOfPokecenterForReal:
-	big_step DOWN
 MovementData_AideLeavesPokecenterForReal:
-	big_step DOWN
-	big_step DOWN
-	big_step DOWN
+	step DOWN
+	step DOWN
+	step DOWN
 	step_end
 
 MovementData_AideWalksStraightIntoPlayer:
-	big_step UP
+	step UP
 MovementData_AideReturnsToPokeCenter:
-	big_step UP
-	big_step UP
-	big_step UP
+	step UP
+	step UP
+	step UP
 	step_end
 
 MovementData_AideWalksLeftToExitPokecenter:
@@ -219,9 +211,8 @@ VioletCityElmsAideExplainExpShareText:
 	para "#mon that didn't"
 	line "participate."
 
-	para "Now I'm leaving"
-	line "for real. Take"
-	cont "care!"
+	para "Well then, take"
+	line "care, <PLAY_G>!"
 	done
 
 VioletCityElmsAideFullPartyText:
