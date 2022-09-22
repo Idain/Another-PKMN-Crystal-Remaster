@@ -1464,14 +1464,12 @@ StepFunction_Restore:
 	; fallthrough
 
 StepFunction_Standing:
-;	call Stubbed_UpdateYOffset
 	ld hl, OBJECT_WALKING
 	add hl, bc
 	ld [hl], STANDING
 	ret
 
 StepFunction_NPCWalk:
-;	call Stubbed_UpdateYOffset
 	call AddStepVector
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
@@ -1719,29 +1717,6 @@ StepFunction_SkyfallTop:
 	add hl, bc
 	ld [hl], STEP_TYPE_FROM_MOVEMENT
 	ret
-
-;Stubbed_UpdateYOffset:
-;; dummied out
-;	ret
-;	ld hl, OBJECT_1D
-;	add hl, bc
-;	inc [hl]
-;	ld a, [hl]
-;	srl a
-;	srl a
-;	and %00000111
-;	ld l, a
-;	ld h, 0
-;	ld de, .y_offsets
-;	add hl, de
-;	ld a, [hl]
-;	ld hl, OBJECT_SPRITE_Y_OFFSET
-;	add hl, bc
-;	ld [hl], a
-;	ret
-
-.y_offsets:
-	db 0, -1, -2, -3, -4, -3, -2, -1
 
 UpdateJumpPosition:
 	call GetStepVector
