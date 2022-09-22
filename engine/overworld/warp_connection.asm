@@ -325,7 +325,7 @@ CheckMovingOffEdgeOfMap::
 	ret nz 
 
 .right
-	ld a, [wPlayerStandingMapX]
+	ld a, [wPlayerMapX]
 	sub 4
 	ld b, a
 	ld a, [wMapWidth]
@@ -336,7 +336,7 @@ CheckMovingOffEdgeOfMap::
 	ret
 
 .down
-	ld a, [wPlayerStandingMapY]
+	ld a, [wPlayerMapY]
 	sub 4
 	ld b, a
 	ld a, [wMapHeight]
@@ -347,7 +347,7 @@ CheckMovingOffEdgeOfMap::
 	ret
 
 .up
-	ld a, [wPlayerStandingMapY]
+	ld a, [wPlayerMapY]
 	sub 4
 	cp -1
 	jr z, .ok
@@ -355,7 +355,7 @@ CheckMovingOffEdgeOfMap::
 	ret
 
 .left
-	ld a, [wPlayerStandingMapX]
+	ld a, [wPlayerMapX]
 	sub 4
 	cp -1
 	jr z, .ok
@@ -404,8 +404,8 @@ GetMapScreenCoords::
 	ld [wOverworldMapAnchor + 1], a
 	ld a, [wYCoord]
 	and 1
-	ld [wMetatileStandingY], a
+	ld [wPlayerMetatileY], a
 	ld a, [wXCoord]
 	and 1
-	ld [wMetatileStandingX], a
+	ld [wPlayerMetatileX], a
 	ret

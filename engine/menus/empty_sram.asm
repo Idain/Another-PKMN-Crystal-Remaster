@@ -1,11 +1,9 @@
 EmptyAllSRAMBanks:
-	ld a, 0
+for x, NUM_SRAM_BANKS - 1
+	ld a, x
 	call .EmptyBank
-	ld a, 1
-	call .EmptyBank
-	ld a, 2
-	call .EmptyBank
-	ld a, 3
+endr
+	ld a, NUM_SRAM_BANKS - 1
 	; fallthrough
 .EmptyBank:
 	call OpenSRAM

@@ -66,6 +66,7 @@ Fixes in the [multi-player battle engine](#multi-player-battle-engine) category 
   - [`LoadMetatiles` wraps around past 128 blocks](#loadmetatiles-wraps-around-past-128-blocks)
   - [Surfing directly across a map connection does not load the new map](#surfing-directly-across-a-map-connection-does-not-load-the-new-map)
   - [Swimming NPCs aren't limited by their movement radius](#swimming-npcs-arent-limited-by-their-movement-radius)
+  - [You can fish on top of NPCs](#you-can-fish-on-top-of-npcs)
   - [Pokémon deposited in the Day-Care might lose experience](#pok%C3%A9mon-deposited-in-the-day-care-might-lose-experience)
 - [Graphics](#graphics)
   - [In-battle “`…`” ellipsis is too high](#in-battle--ellipsis-is-too-high)
@@ -790,7 +791,6 @@ And edit [engine/battle/move_effects/frustration.asm](https://github.com/pret/po
  BattleCommand_FrustrationPower:
 -; BUG: Return and Frustration deal no damage when the user's happiness is low or high, respectively (see docs/bugs_and_glitches.md)
  	...
--; BUG: Return and Frustration deal no damage when the user's happiness is low or high, respectively (see docs/bugs_and_glitches.md)
  	call Multiply
  	ld a, 25
  	ldh [hDivisor], a
@@ -1657,11 +1657,39 @@ This bug is why the Lapras in [maps/UnionCaveB2F.asm](https://github.com/pret/po
 ```
 
 
+### You can fish on top of NPCs
+
+**Fix**: Edit [engine/events/overworld.asm](https://github.com/pret/pokecrystal/blob/master/engine/events/overworld.asm):
+
+```diff
+ FishFunction:
+ ...
+
+ .TryFish:
+-; BUG: You can fish on top of NPCs (see docs/bugs_and_glitches.md)
+ 	ld a, [wPlayerState]
+ 	cp PLAYER_SURF
+ 	jr z, .fail
+ 	cp PLAYER_SURF_PIKA
+ 	jr z, .fail
+ 	call GetFacingTileCoord
+ 	call GetTileCollision
+ 	cp WATER_TILE
+-	jr z, .facingwater
++	jr nz, .fail
++	farcall CheckFacingObject
++	jr nc, .facingwater
+ .fail
+ 	ld a, $3
+ 	ret
+```
+
+
 ### Pokémon deposited in the Day-Care might lose experience
 
 When a Pokémon is withdrawn from the Day-Care, its Exp. Points are reset to the minimum required for its level. This means that if it hasn't gained any levels, it may lose experience.
 
-**Fix**: Edit `RetrieveBreedmon` in [engine/pokemon/move_mon.asm](https://github.com/pret/pokecrystal/blob/master/engine/pokemon/move_mon.asm):
+**Fix:** Edit `RetrieveBreedmon` in [engine/pokemon/move_mon.asm](https://github.com/pret/pokecrystal/blob/master/engine/pokemon/move_mon.asm):
 
 ```diff
  RetrieveBreedmon:
@@ -2046,7 +2074,7 @@ If `[wWalkingDirection]` is `STANDING` (`$FF`), this will check `[.EdgeWarps + $
  	ld d, 0
  	ld hl, .EdgeWarps
  	add hl, de
- 	ld a, [wPlayerStandingTile]
+ 	ld a, [wPlayerTile]
  	cp [hl]
  	jr nz, .not_warp
 
@@ -2382,13 +2410,6 @@ This bug can prevent you from talking to Eusine in Celadon City or encountering 
 **Fix:** Edit `CheckOwnMonAnywhere` in [engine/pokemon/search_owned.asm](https://github.com/pret/pokecrystal/blob/master/engine/pokemon/search_owned.asm):
 
 ```diff
- 	; If there are no monsters in the party,
- 	; the player must not own any yet.
--; BUG: CheckOwnMon does not check the Day-Care (see docs/bugs_and_glitches.md)
- 	ld a, [wPartyCount]
- 	and a
- 	ret z
-
 -; BUG: CheckOwnMon does not check the Day-Care (see docs/bugs_and_glitches.md)
 +	ld hl, wBreedMon1Species
 +	ld bc, wBreedMon1OT
@@ -2399,6 +2420,11 @@ This bug can prevent you from talking to Eusine in Celadon City or encountering 
 +	ld bc, wBreedMon2OT
 +	call CheckOwnMon
 +	ret c ; found!
++
+ 	ld d, a
+ 	ld e, 0
+ 	ld hl, wPartyMon1Species
+ 	ld bc, wPartyMonOTs
 ```
 
 

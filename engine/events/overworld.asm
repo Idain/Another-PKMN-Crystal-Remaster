@@ -674,7 +674,7 @@ Script_UsedWaterfall:
 .CheckContinueWaterfall:
 	xor a
 	ld [wScriptVar], a
-	ld a, [wPlayerStandingTile]
+	ld a, [wPlayerTile]
 	call CheckWaterfallTile
 	ret z
 	ld a, TRUE
@@ -1661,7 +1661,7 @@ BikeFunction:
 	jr nz, .nope
 
 .ok
-	call GetPlayerStandingTile
+	call GetPlayerTile
 	and $f ; lo nybble only
 	jr nz, .nope ; not FLOOR_TILE
 	xor a
