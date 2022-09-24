@@ -671,8 +671,8 @@ RuinsOfAlphResearchCenter_Blocks:
 GoldenrodBikeShop_Blocks:
 	INCBIN "maps/GoldenrodBikeShop.ablk"
 
-DanceTheatre_Blocks:
-	INCBIN "maps/DanceTheatre.ablk"
+DanceTheater_Blocks:
+	INCBIN "maps/DanceTheater.ablk"
 
 EcruteakTinTowerEntrance_Blocks:
 	INCBIN "maps/EcruteakTinTowerEntrance.ablk"
