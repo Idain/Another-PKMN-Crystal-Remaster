@@ -4037,7 +4037,10 @@ Function119e4f:
 .loop2
 	ld a, [de]
 	inc de
+pushc
+setcharmap ascii
 	cp "\n"
+popc
 	jr z, .newline
 	cp [hl]
 	jr nz, .unequal
@@ -4062,7 +4065,10 @@ Function119e4f:
 	ld a, [hli]
 	ld [de], a
 	inc de
-	cp $d
+pushc
+setcharmap ascii
+	cp "\r"
+popc
 	jr z, .finish
 	dec c
 	jr nz, .loop3

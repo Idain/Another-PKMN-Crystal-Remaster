@@ -1,8 +1,3 @@
-INCLUDE "constants.asm"
-
-
-
-
 SECTION "Pic Pointers", ROMX
 
 INCLUDE "data/pokemon/pic_pointers.asm"
