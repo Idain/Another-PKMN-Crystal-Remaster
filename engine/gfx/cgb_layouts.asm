@@ -553,6 +553,13 @@ _CGB_NameInputScreen:
 	ld bc, 8 palettes
 	ld a, BANK(wBGPals1)
 	call FarCopyWRAM
+
+	ld hl, PartyMenuOBPals
+	ld de, wOBPals1
+	ld bc, 8 palettes
+	ld a, BANK(wOBPals1)
+	call FarCopyWRAM
+
 	call WipeAttrmap
 	hlcoord 0, 0, wAttrmap
     lb bc, SCREEN_HEIGHT, SCREEN_WIDTH
