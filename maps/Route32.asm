@@ -757,7 +757,7 @@ Text_RoarOutro:
 	text "WROOOAR!"
 	line "IT'S ROAR!"
 
-	para "EVEN POKÉMON RUN"
+	para "EVEN POKéMON RUN"
 	line "FROM A GOOD ROAR!"
 	done
 
