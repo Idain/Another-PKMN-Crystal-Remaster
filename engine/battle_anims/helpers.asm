@@ -160,6 +160,16 @@ rept PAL_COLOR_SIZE * 2 - 1
 endr
 	ld a, [hl]
 	ld [de], a
+	; load white background in PAL_BATTLE_OG_GREEN
+	ld hl, WhitePalette
+	ld de, wOBPals2 palette PAL_BATTLE_OB_GREEN color 1
+rept PAL_COLOR_SIZE - 1
+	ld a, [hli]
+	ld [de], a
+	inc de
+endr
+	ld a, [hl]
+	ld [de], a
 	; apply the updated colors to the palette RAM
 	ld a, $1
 	ldh [hCGBPalUpdate], a

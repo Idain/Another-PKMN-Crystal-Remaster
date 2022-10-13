@@ -27,3 +27,6 @@ BallColors:
 	RGB 31,31,31, 18,18,05
 	db -1 ; end
 	RGB 31,31,31, 16,16,16
+
+WhitePalette:
+	RGB 31, 31, 31

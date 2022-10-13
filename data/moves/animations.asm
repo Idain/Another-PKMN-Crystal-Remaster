@@ -310,12 +310,15 @@ BattleAnim_ThrowPokeBall:
 	anim_if_param_equal NO_ITEM, .TheTrainerBlockedTheBall
 	anim_if_param_equal MASTER_BALL, .MasterBall
 	; any other ball
-	anim_2gfx ANIM_GFX_POKE_BALL, ANIM_GFX_SMOKE
+	anim_3gfx ANIM_GFX_POKE_BALL, ANIM_GFX_POKE_BALL_BG, ANIM_GFX_SMOKE
 	anim_sound 6, 2, SFX_THROW_BALL
 	anim_obj ANIM_OBJ_POKE_BALL, 68, 92, $40
+	anim_obj ANIM_OBJ_POKE_BALL_BG, 68, 92, $40
 	anim_wait 36
 	anim_obj ANIM_OBJ_POKE_BALL, 136, 65, $0
-	anim_setobj $2, $7
+	anim_setobj $3, $7
+	anim_obj ANIM_OBJ_POKE_BALL_BG, 136, 65, $0
+	anim_setobj $4, $7
 	anim_wait 16
 	anim_sound 0, 1, SFX_BALL_POOF
 	anim_obj ANIM_OBJ_BALL_POOF, 136, 64, $10
@@ -332,33 +335,34 @@ BattleAnim_ThrowPokeBall:
 	anim_ret
 
 .MasterBall:
-	anim_3gfx ANIM_GFX_POKE_BALL, ANIM_GFX_SMOKE, ANIM_GFX_SPEED
+	anim_4gfx ANIM_GFX_POKE_BALL, ANIM_GFX_POKE_BALL_BG, ANIM_GFX_SMOKE, ANIM_GFX_SPEED
 	anim_sound 6, 2, SFX_THROW_BALL
 	anim_obj ANIM_OBJ_POKE_BALL, 64, 92, $20
+	anim_obj ANIM_OBJ_POKE_BALL_BG, 64, 92, $20
 	anim_wait 36
 	anim_obj ANIM_OBJ_POKE_BALL, 136, 65, $0
-	anim_setobj $2, $7
+	anim_setobj $3, $7
+	anim_obj ANIM_OBJ_POKE_BALL_BG, 136, 65, $0
+	anim_setobj $4, $7
 	anim_wait 16
 	anim_sound 0, 1, SFX_BALL_POOF
 	anim_obj ANIM_OBJ_BALL_POOF, 136, 64, $10
 	anim_wait 24
 	anim_sound 0, 1, SFX_MASTER_BALL
-	anim_obj ANIM_OBJ_MASTER_BALL_SPARKLE, 136, 56, $30
 	anim_obj ANIM_OBJ_MASTER_BALL_SPARKLE, 136, 56, $31
-	anim_obj ANIM_OBJ_MASTER_BALL_SPARKLE, 136, 56, $32
 	anim_obj ANIM_OBJ_MASTER_BALL_SPARKLE, 136, 56, $33
-	anim_obj ANIM_OBJ_MASTER_BALL_SPARKLE, 136, 56, $34
 	anim_obj ANIM_OBJ_MASTER_BALL_SPARKLE, 136, 56, $35
-	anim_obj ANIM_OBJ_MASTER_BALL_SPARKLE, 136, 56, $36
 	anim_obj ANIM_OBJ_MASTER_BALL_SPARKLE, 136, 56, $37
 	anim_wait 64
 .Shake:
 	anim_bgeffect ANIM_BG_RETURN_MON, $0, BG_EFFECT_TARGET, $0
 	anim_wait 8
-	anim_incobj 2
+	anim_incobj 3
+	anim_incobj 4
 	anim_wait 16
 	anim_sound 0, 1, SFX_CHANGE_DEX_MODE
 	anim_incobj 1
+	anim_incobj 2
 	anim_wait 32
 	anim_sound 0, 1, SFX_BALL_BOUNCE
 	anim_wait 32
@@ -372,6 +376,7 @@ BattleAnim_ThrowPokeBall:
 	anim_if_var_equal $1, .Click
 	anim_if_var_equal $2, .BreakFree
 	anim_incobj 1
+	anim_incobj 2
 	anim_sound 0, 1, SFX_BALL_WOBBLE
 	anim_jump .Loop
 
@@ -381,6 +386,7 @@ BattleAnim_ThrowPokeBall:
 
 .BreakFree:
 	anim_setobj $1, $b
+	anim_setobj $2, $b
 	anim_sound 0, 1, SFX_BALL_POOF
 	anim_obj ANIM_OBJ_BALL_POOF, 136, 64, $10
 	anim_wait 2

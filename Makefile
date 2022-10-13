@@ -236,6 +236,7 @@ gfx/battle_anims/misc.2bpp: tools/gfx += --remove-duplicates --remove-xflip
 gfx/battle_anims/noise.2bpp: tools/gfx += --remove-whitespace
 gfx/battle_anims/objects.2bpp: tools/gfx += --remove-whitespace --remove-xflip
 gfx/battle_anims/pokeball.2bpp: tools/gfx += --remove-xflip --keep-whitespace
+gfx/battle_anims/pokeball_background.2bpp: tools/gfx += --remove-xflip --keep-whitespace
 gfx/battle_anims/reflect.2bpp: tools/gfx += --remove-whitespace
 gfx/battle_anims/rocks.2bpp: tools/gfx += --remove-whitespace
 gfx/battle_anims/skyattack.2bpp: tools/gfx += --remove-whitespace
