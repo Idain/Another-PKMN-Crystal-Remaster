@@ -1713,7 +1713,7 @@ BattleAnimFunction_Absorb:
 	ret
 
 BattleAnimFunction_Wrap:
-; Plays out object Frameset. Use anim_incobj to move to next frameset
+; Plays out object frameset. Use anim_incobj to move to next frameset
 	call BattleAnim_AnonJumptable
 .anon_dw
 	dw .zero
@@ -1827,7 +1827,7 @@ BattleAnim_StepThrownToTarget:
 	ret
 
 BattleAnimFunction_Spikes:
-; Object is thrown at target. After $20 frames it stops and waits another $20 frames then disappear
+; Object is thrown at target. After 32 frames it stops and waits another 32 frames then disappear
 	call BattleAnim_AnonJumptable
 .anon_dw
 	dw .zero
@@ -2096,7 +2096,7 @@ BattleAnimFunction_Egg:
 	ret
 
 .twelve
-	; Top half of egg moves upward for $30 frames
+	; Top half of egg moves upward for 48 frames
 	ld hl, BATTLEANIMSTRUCT_VAR1
 	add hl, bc
 	ld a, [hl]
@@ -3020,7 +3020,7 @@ BattleAnimFunction_AbsorbCircle:
 	ret
 
 BattleAnimFunction_Conversion:
-; A rotating circle of objects centered at a position. It expands for $40 frames and then shrinks. Once radius reaches 0, the object disappears.
+; A rotating circle of objects centered at a position. It expands for 64 frames and then shrinks. Once radius reaches 0, the object disappears.
 ; Obj Param: Defines starting point in the circle
 	ld hl, BATTLEANIMSTRUCT_PARAM
 	add hl, bc
@@ -3239,7 +3239,7 @@ BattleAnimFunction_GrowthSwordsDance:
 	ret
 
 BattleAnimFunction_StrengthSeismicToss:
-; Moves object up for $e0 frames, then shakes it vertically and throws it at the target. Uses anim_incobj to move to final phase
+; Moves object up for 224 frames, then shakes it vertically and throws it at the target. Uses anim_incobj to move to final phase
 ; Obj Param: Defined but not used
 	call BattleAnim_AnonJumptable
 .anon_dw
@@ -3340,7 +3340,7 @@ BattleAnimFunction_SpeedLine:
 	ret
 
 BattleAnimFunction_Sludge:
-; Object moves upward for $c frames and switches to FRAMESET_20
+; Object moves upward for 12 frames and switches to FRAMESET_20
 	call BattleAnim_AnonJumptable
 .anon_dw
 	dw .zero
@@ -3468,7 +3468,7 @@ BattleAnimFunction_SafeguardProtect:
 
 BattleAnimFunction_LockOnMindReader:
 ; Moves objects towards a center position
-; Obj Param: Used to define object angle from 0 to 3. Lower nybble defines how much to increase from base frameset while upper nybble defines angle of movement. The object moves for $28 frames, then waits for $10 frames and disappears
+; Obj Param: Used to define object angle from 0 to 3. Lower nybble defines how much to increase from base frameset while upper nybble defines angle of movement. The object moves for 40 frames, then waits for 16 frames and disappears
 	call BattleAnim_AnonJumptable
 .anon_dw
 	dw .zero
@@ -3534,7 +3534,7 @@ BattleAnimFunction_LockOnMindReader:
 	jp DeinitBattleAnimation
 
 BattleAnimFunction_HealBellNotes:
-; Object moves horizontally in a sine wave, while also moving left every other frame and downwards for $38 frames after which it disappears
+; Object moves horizontally in a sine wave, while also moving left every other frame and downwards for 56 frames after which it disappears
 ; Obj Param: Defines a frameset offset from FRAMESET_24
 	call BattleAnim_AnonJumptable
 .anon_dw
@@ -3608,7 +3608,7 @@ BattleAnimFunction_BatonPass:
 
 BattleAnimFunction_EncoreBellyDrum:
 ; Object moves at an arc for 8 frames and disappears
-; Obj Param: Defines startging position in the arc
+; Obj Param: Defines starting position in the arc
 	ld hl, BATTLEANIMSTRUCT_VAR1
 	add hl, bc
 	ld a, [hl]
@@ -3945,7 +3945,7 @@ BattleAnimFunction_Cotton:
 	jr BattleAnim_StepCircle
 
 BattleAnimFunction_AncientPower:
-; Object moves up and down in an arc for $20 frames and then disappear
+; Object moves up and down in an arc for 32 frames and then disappear
 ; Obj Param: Defines range of arc motion
 	ld hl, BATTLEANIMSTRUCT_VAR1
 	add hl, bc
