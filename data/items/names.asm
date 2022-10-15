@@ -155,7 +155,7 @@ ItemNames::
 	li "Teru-sama"
 	li "Light Ball"
 	li "Friend Ball"
-	li "Monn Ball"
+	li "Moon Ball"
 	li "Love Ball"
 	li "Normal Box"
 	li "Gorgeous Box"
