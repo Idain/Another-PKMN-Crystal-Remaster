@@ -18,7 +18,7 @@ AnimObjGFX:
 	anim_obj_gfx  9, AnimObjExplosionGFX
 	anim_obj_gfx 17, AnimObjRocksGFX
 	anim_obj_gfx  6, AnimObjIceGFX
-	anim_obj_gfx 10, AnimObjPokeBallGFX
+	anim_obj_gfx 10, NULL ; use AnimBallObjGFX
 	anim_obj_gfx 10, AnimObjPokeBallBGGFX
 	anim_obj_gfx  9, AnimObjPoisonGFX
 	anim_obj_gfx 13, AnimObjBubbleGFX
@@ -52,3 +52,19 @@ AnimObjGFX:
 	anim_obj_gfx  1, NULL
 	anim_obj_gfx  1, NULL
 	assert_table_length NUM_ANIM_GFX + 1
+
+	
+AnimBallObjGFX:
+	dbw POKE_BALL, 		AnimObjPokeBallGFX
+	dbw GREAT_BALL, 	AnimObjGreatBallGFX
+	dbw ULTRA_BALL, 	AnimObjUltraBallGFX
+	dbw MASTER_BALL, 	AnimObjMasterBallGFX
+	dbw LEVEL_BALL, 	AnimObjLevelBallGFX
+	dbw LURE_BALL, 		AnimObjLureBallGFX
+	dbw MOON_BALL, 		AnimObjMoonBallGFX
+	dbw FRIEND_BALL, 	AnimObjFriendBallGFX
+	dbw FAST_BALL, 		AnimObjFastBallGFX
+	dbw HEAVY_BALL, 	AnimObjHeavyBallGFX
+	dbw LOVE_BALL, 		AnimObjLoveBallGFX
+	dbw PARK_BALL, 		AnimObjParkBallGFX
+	dbw -1, 			AnimObjPokeBallGFX ; failsafe
