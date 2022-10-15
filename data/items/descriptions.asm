@@ -1,11 +1,19 @@
 ItemDescriptions:
 ; entries correspond to item ids (see constants/item_constants.asm)
 	table_width 2, ItemDescriptions
-	dw MasterBallDesc
-	dw UltraBallDesc
-	dw BrightpowderDesc
-	dw GreatBallDesc
 	dw PokeBallDesc
+	dw GreatBallDesc
+	dw UltraBallDesc
+	dw MasterBallDesc
+	dw HeavyBallDesc
+	dw LevelBallDesc
+	dw LureBallDesc
+	dw FastBallDesc
+	dw FriendBallDesc
+	dw MoonBallDesc
+	dw LoveBallDesc
+	dw ParkBallDesc
+	dw BrightpowderDesc
 	dw TeruSamaDesc
 	dw BicycleDesc
 	dw MoonStoneDesc
@@ -148,16 +156,9 @@ ItemDescriptions:
 	dw TeruSamaDesc
 	dw TeruSamaDesc
 	dw SacredAshDesc
-	dw HeavyBallDesc
 	dw FlowerMailDesc
-	dw LevelBallDesc
-	dw LureBallDesc
-	dw FastBallDesc
 	dw TeruSamaDesc
 	dw LightBallDesc
-	dw FriendBallDesc
-	dw MoonBallDesc
-	dw LoveBallDesc
 	dw NormalBoxDesc
 	dw GorgeousBoxDesc
 	dw SunStoneDesc
@@ -168,7 +169,6 @@ ItemDescriptions:
 	dw GoldBerryDesc
 	dw SquirtBottleDesc
 	dw TeruSamaDesc
-	dw ParkBallDesc
 	dw RainbowWingDesc
 	dw TeruSamaDesc
 	dw BrickPieceDesc
@@ -815,7 +815,7 @@ LevelBallDesc:
 
 LureBallDesc:
 	db   "A Ball for #mon"
-	next "hooked by a ROD.@"
+	next "hooked by a Rod.@"
 
 FastBallDesc:
 	db   "A Ball for catch-"

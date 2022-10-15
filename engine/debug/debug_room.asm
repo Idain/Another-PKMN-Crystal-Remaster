@@ -1069,7 +1069,7 @@ DebugRoom_PrintItemName:
 
 DebugRoomMenu_ItemGet_Page1Values:
 	db 2
-	paged_value wDebugRoomItemID,       1, NUM_POKEMON, MASTER_BALL, .ItemNameString, DebugRoom_PrintItemName, FALSE
+	paged_value wDebugRoomItemID,       1, NUM_POKEMON, $01, 		 .ItemNameString, DebugRoom_PrintItemName, FALSE
 	paged_value wDebugRoomItemQuantity, 1, 99,          1,           .NumberString,   NULL,                    FALSE
 
 .ItemNameString: db "ITEM NAME@"

@@ -14,11 +14,19 @@ _DoItemEffect::
 ItemEffects:
 ; entries correspond to item ids (see constants/item_constants.asm)
 	table_width 2, ItemEffects
-	dw PokeBallEffect      ; MASTER_BALL
-	dw PokeBallEffect      ; ULTRA_BALL
-	dw NoEffect            ; BRIGHTPOWDER
-	dw PokeBallEffect      ; GREAT_BALL
 	dw PokeBallEffect      ; POKE_BALL
+	dw PokeBallEffect      ; GREAT_BALL
+	dw PokeBallEffect      ; ULTRA_BALL
+	dw PokeBallEffect      ; MASTER_BALL
+	dw PokeBallEffect      ; HEAVY_BALL
+	dw PokeBallEffect      ; LEVEL_BALL
+	dw PokeBallEffect      ; LURE_BALL
+	dw PokeBallEffect      ; FAST_BALL
+	dw PokeBallEffect      ; FRIEND_BALL
+	dw PokeBallEffect      ; MOON_BALL
+	dw PokeBallEffect      ; LOVE_BALL
+	dw PokeBallEffect      ; PARK_BALL
+	dw NoEffect            ; BRIGHTPOWDER
 	dw TownMapEffect       ; TOWN_MAP
 	dw BicycleEffect       ; BICYCLE
 	dw EvoStoneEffect      ; MOON_STONE
@@ -161,16 +169,9 @@ ItemEffects:
 	dw NoEffect            ; ITEM_9A
 	dw NoEffect            ; ITEM_9B
 	dw SacredAshEffect     ; SACRED_ASH
-	dw PokeBallEffect      ; HEAVY_BALL
 	dw NoEffect            ; FLOWER_MAIL
-	dw PokeBallEffect      ; LEVEL_BALL
-	dw PokeBallEffect      ; LURE_BALL
-	dw PokeBallEffect      ; FAST_BALL
 	dw NoEffect            ; ITEM_A2
 	dw NoEffect            ; LIGHT_BALL
-	dw PokeBallEffect      ; FRIEND_BALL
-	dw PokeBallEffect      ; MOON_BALL
-	dw PokeBallEffect      ; LOVE_BALL
 	dw NormalBoxEffect     ; NORMAL_BOX
 	dw GorgeousBoxEffect   ; GORGEOUS_BOX
 	dw EvoStoneEffect      ; SUN_STONE
@@ -181,7 +182,6 @@ ItemEffects:
 	dw RestoreHPEffect     ; GOLD_BERRY
 	dw SquirtbottleEffect  ; SQUIRTBOTTLE
 	dw NoEffect            ; ITEM_B0
-	dw PokeBallEffect      ; PARK_BALL
 	dw NoEffect            ; RAINBOW_WING
 	dw NoEffect            ; ITEM_B3
 	assert_table_length ITEM_B3
@@ -373,10 +373,10 @@ PokeBallEffect:
 	call DelayFrames
 
 	ld a, [wCurItem]
-	cp POKE_BALL + 1 ; Assumes Master/Ultra/Great come before
-	jr c, .not_kurt_ball
+	cp MASTER_BALL
+	jr z, .master_ball
 	ld a, POKE_BALL
-.not_kurt_ball
+.master_ball
 	ld [wBattleAnimParam], a
 
 	ld de, ANIM_THROW_POKE_BALL

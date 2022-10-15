@@ -126,29 +126,24 @@ LoadBattleAnimGFX:
 	ret
 
 .GetBall
-	; save the current WRAM bank
 	ldh a, [rSVBK]
 	push af
 
-	; switch banks an seek for the BallColors entry matching the current item
+	; switch banks and check which Ball was used
 	ld a, BANK(wCurItem)
 	ldh [rSVBK], a
 	ld a, [wCurItem]
-	ld b, a
-	push bc
-	ld hl, BallColors
-.palette_loop
-	ld a, [hli]
-	cp b 
-	jr z, .palette_done
-	inc a
-	jr z, .palette_done
-rept PAL_COLOR_SIZE * 2
-	inc hl
-endr
-	jr .palette_loop
+	dec a
+	ld e, a
+	ld d, 0
 
-.palette_done
+	; seek Ball's palette
+	push bc
+	push de
+	ld hl, BallColors
+rept 4
+	add hl, de
+endr
 	ld a, BANK(wOBPals2)
 	ldh [rSVBK], a
 	; load the RGB colors into the middle two colors of PAL_BATTLE_OB_RED
@@ -163,29 +158,20 @@ endr
 	; apply the updated colors to the palette RAM
 	ld a, $1
 	ldh [hCGBPalUpdate], a
-
-	; search for appropiate Ball GFX
+	pop de
 	pop bc
-	ld hl, AnimBallObjGFX
-.ball_loop
-	ld a, [hli]
-	cp b
-	jr z, .ball_done
-	inc a
-	jr z, .ball_done
-	inc hl
-	inc hl
-	jr .ball_loop
 
-.ball_done
+	pop af
+	ldh [rSVBK], a
+
+	; get Ball GFX pointer
+	ld b, BANK("Battle Ball Icons")
+	ld hl, AnimBallObjGFX
+	add hl, de
+	add hl, de
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	; load Ball's bank
-	ld b, BANK("Battle Ball Icons")
-	; restore the previous WRAM bank
-	pop af
-	ldh [rSVBK], a
 	ret
 
 INCLUDE "data/battle_anims/ball_colors.asm"

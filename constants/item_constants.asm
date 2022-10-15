@@ -6,11 +6,20 @@
 ; - ItemEffects (see engine/items/item_effects.asm)
 	const_def
 	const NO_ITEM      ; 00
-	const MASTER_BALL  ; 01
-	const ULTRA_BALL   ; 02
+	const POKE_BALL    ; 01
+	const GREAT_BALL   ; 02
+	const ULTRA_BALL   ; 03
+	const MASTER_BALL  ; 04
+	const HEAVY_BALL   ; 05
+	const LEVEL_BALL   ; 06
+	const LURE_BALL    ; 07
+	const FAST_BALL    ; 08
+	const FRIEND_BALL  ; 09
+	const MOON_BALL    ; 0a
+	const LOVE_BALL    ; 0b
+	const PARK_BALL    ; 0c
+DEF NUM_POKE_BALLS EQU const_value - 1
 	const BRIGHTPOWDER ; 03
-	const GREAT_BALL   ; 04
-	const POKE_BALL    ; 05
 	const TOWN_MAP     ; 06
 	const BICYCLE      ; 07
 	const MOON_STONE   ; 08
@@ -153,16 +162,9 @@
 	const ITEM_9A      ; 91
 	const ITEM_9B      ; 92
 	const SACRED_ASH   ; 93
-	const HEAVY_BALL   ; 94
 	const FLOWER_MAIL  ; 95
-	const LEVEL_BALL   ; 96
-	const LURE_BALL    ; 97
-	const FAST_BALL    ; 98
 	const ITEM_A2      ; 99
 	const LIGHT_BALL   ; 9a
-	const FRIEND_BALL  ; 9b
-	const MOON_BALL    ; 9c
-	const LOVE_BALL    ; 9d
 	const NORMAL_BOX   ; 9e
 	const GORGEOUS_BOX ; 9f
 	const SUN_STONE    ; a0
@@ -173,7 +175,6 @@
 	const GOLD_BERRY   ; a5
 	const SQUIRTBOTTLE ; a6
 	const ITEM_B0      ; a7
-	const PARK_BALL    ; a8
 	const RAINBOW_WING ; a9
 	const ITEM_B3      ; aa
 	const BRICK_PIECE  ; ab
