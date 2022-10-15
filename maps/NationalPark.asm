@@ -354,7 +354,7 @@ NationalParkYoungster2Text:
 
 NationalParkTeacher2Text:
 	text "I take walks in"
-	line "the Park, but I"
+	line "the park, but I"
 
 	para "never go into the"
 	line "grass."

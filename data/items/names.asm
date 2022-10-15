@@ -167,7 +167,7 @@ ItemNames::
 	li "Sitrus Berry"
 	li "SquirtBottle"
 	li "Teru-sama"
-	li "Park Ball"
+	li "Sport Ball"
 	li "Rainbow Wing"
 	li "Teru-sama"
 	li "Brick Piece"

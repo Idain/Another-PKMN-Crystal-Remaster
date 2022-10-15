@@ -94,9 +94,9 @@ Route35OfficerScriptContest:
 Route35NationalParkGate_OkayToProceed:
 	setflag ENGINE_BUG_CONTEST_TIMER
 	special PlayMapMusic
-	writetext Route35NationalParkGateOfficer1GiveParkBallsText
+	writetext Route35NationalParkGateOfficer1GiveSportBallsText
 	promptbutton
-	writetext Route35NationalParkGatePlayerReceivedParkBallsText
+	writetext Route35NationalParkGatePlayerReceivedSportBallsText
 	playsound SFX_ITEM
 	waitsfx
 	writetext Route35NationalParkGateOfficer1ExplainsRulesText
@@ -240,15 +240,15 @@ Route35NationalParkGateOfficer1AskToParticipateText:
 	line "give it a try?"
 	done
 
-Route35NationalParkGateOfficer1GiveParkBallsText:
-	text "Here are the Park"
+Route35NationalParkGateOfficer1GiveSportBallsText:
+	text "Here are the Sport"
 	line "Balls for the"
 	cont "Contest."
 	done
 
-Route35NationalParkGatePlayerReceivedParkBallsText:
+Route35NationalParkGatePlayerReceivedSportBallsText:
 	text "<PLAYER> received"
-	line "{d:BUG_CONTEST_BALLS} Park Balls."
+	line "{d:BUG_CONTEST_BALLS} Sport Balls."
 	done
 
 Route35NationalParkGateOfficer1ExplainsRulesText:
@@ -261,8 +261,8 @@ Route35NationalParkGateOfficer1ExplainsRulesText:
 	line "minutes."
 
 	para "If you run out of"
-	line "Park Balls, you're"
-	cont "done."
+	line "Sport Balls, you"
+	cont "are done."
 
 	para "You can keep the"
 	line "last #mon you"
