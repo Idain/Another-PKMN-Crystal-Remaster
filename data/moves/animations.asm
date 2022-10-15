@@ -310,7 +310,7 @@ BattleAnim_ThrowPokeBall:
 	anim_if_param_equal NO_ITEM, .TheTrainerBlockedTheBall
 	anim_if_param_equal MASTER_BALL, .MasterBall
 	; any other ball
-	anim_3gfx ANIM_GFX_POKE_BALL, ANIM_GFX_POKE_BALL_BG, ANIM_GFX_SMOKE
+	anim_4gfx ANIM_GFX_POKE_BALL, ANIM_GFX_POKE_BALL_BG, ANIM_GFX_SMOKE, ANIM_GFX_OBJECTS
 	anim_sound 6, 2, SFX_THROW_BALL
 	anim_obj ANIM_OBJ_POKE_BALL, 68, 92, $40
 	anim_obj ANIM_OBJ_POKE_BALL_BG, 68, 92, $40
@@ -335,7 +335,7 @@ BattleAnim_ThrowPokeBall:
 	anim_ret
 
 .MasterBall:
-	anim_4gfx ANIM_GFX_POKE_BALL, ANIM_GFX_POKE_BALL_BG, ANIM_GFX_SMOKE, ANIM_GFX_SPEED
+	anim_5gfx ANIM_GFX_POKE_BALL, ANIM_GFX_POKE_BALL_BG, ANIM_GFX_SMOKE, ANIM_GFX_SPEED, ANIM_GFX_OBJECTS
 	anim_sound 6, 2, SFX_THROW_BALL
 	anim_obj ANIM_OBJ_POKE_BALL, 64, 92, $20
 	anim_obj ANIM_OBJ_POKE_BALL_BG, 64, 92, $20
@@ -381,6 +381,9 @@ BattleAnim_ThrowPokeBall:
 	anim_jump .Loop
 
 .Click:
+	anim_obj ANIM_OBJ_ENCORE_STAR, 120, 48, $2c
+	anim_obj ANIM_OBJ_ENCORE_STAR, 152, 48, $34
+	anim_wait 8
 	anim_keepsprites
 	anim_ret
 
