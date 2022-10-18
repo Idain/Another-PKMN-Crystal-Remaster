@@ -90,7 +90,45 @@ BattleAnimRunScript:
 	call WaitSFX
 	call PlayHitSound
 	call RunBattleAnimScript
-	jp BattleAnim_RevertPals
+
+	ld a, [wBattleAnimFlags]
+	bit BATTLEANIM_KEEPSPRITES_F, a
+	jp z, BattleAnim_RevertPals
+	; fallthrough
+
+BattleAnimDarkenObjPals:
+; Shade colors by 3/4 of their original value.
+	push hl
+	push de
+	push bc
+
+	; Preserve VRAM bank
+	ldh a, [rSVBK]
+	push af
+	ld a, BANK(wOBPals2)
+	ldh [rSVBK], a
+
+	; Darken selected palettes by 1/4
+	ld hl, wOBPals2 palette PAL_BATTLE_OB_RED color 1
+	call DarkenColorByAQuarter
+	inc hl
+	inc hl
+	call DarkenColorByAQuarter
+
+	ld hl, wOBPals2 palette PAL_BATTLE_OB_GREEN color 1
+	call DarkenColorByAQuarter
+
+	; Request palette update
+	ld a, TRUE
+	ldh [hCGBPalUpdate], a
+
+	; Restore previous VRAM bank
+	pop af
+	ld [rSVBK], a
+	pop bc
+	pop de
+	pop hl
+	ret
 
 RunBattleAnimScript:
 	call ClearBattleAnims
@@ -130,24 +168,8 @@ RunBattleAnimScript:
 	bit BATTLEANIM_STOP_F, a
 	jr z, .playframe
 	bit BATTLEANIM_KEEPSPRITES_F, a
-	jr z, .delete
+	ret nz
 
-	; Instead of deleting the sprites, make them all use PAL_BATTLE_OB_ENEMY
-	ld hl, wShadowOAMSprite00Attributes
-	ld c, NUM_SPRITE_OAM_STRUCTS
-.loop
-	ld a, [hl]
-	and ~(PALETTE_MASK | VRAM_BANK_1) ; zeros out the palette bits
-	assert PAL_BATTLE_OB_ENEMY == 0
-	ld [hli], a
-rept SPRITEOAMSTRUCT_LENGTH - 1
-	inc hl
-endr
-	dec c
-	jr nz, .loop
-	ret
-
-.delete
 	ld hl, wShadowOAM
 	ld c, wShadowOAMEnd - wShadowOAM
 	xor a

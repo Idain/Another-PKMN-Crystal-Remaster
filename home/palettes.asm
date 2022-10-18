@@ -283,6 +283,75 @@ endr
 	jr nz, CopyPals
 	ret
 
+DarkenColorByAQuarter::
+	; Extract Red color and darken it
+	ld a, [hl]
+	and %00011111
+	ld d, a
+	srl d
+	srl d
+	sub d
+	ld d, a
+	; Store result back in red
+	ld a, [hl]
+	and %11100000
+	or d
+	ld [hl], a
+
+	; Extract Green color and darken it
+	ld a, [hli]
+	and %11100000
+	rrca
+	swap a
+	ld d, a ; d = 00000ggg
+	ld a, [hld]
+	and %00000011
+	swap a
+	rrca
+	or d
+	ld d, a
+	srl d
+	srl d
+	sub d
+	ld d, a
+	; Store a back in green
+	rlca
+	swap a
+	ld d, a
+	and %11100000
+	ld e, a
+	ld a, d
+	and %00000011
+	ld d, a
+	ld a, [hl]
+	and %00011111
+	or e
+	ld [hli], a
+	ld a, [hl]
+	and %11111100
+	or d
+	ld [hl], a
+
+	; Extract Blue color and darken it
+	ld a, [hl]
+	and %01111100
+	rrca
+	rrca
+	ld d, a
+	srl d
+	srl d
+	sub d
+	ld d, a
+	; store color back in blue
+	ld d, a
+	sla d
+	sla d
+	ld a, [hl]
+	and %10000011
+	or d
+	ld [hld], a
+	ret
+
 ClearVBank1::
 	ldh a, [hCGB]
 	and a
