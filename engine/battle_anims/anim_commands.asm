@@ -129,8 +129,33 @@ RunBattleAnimScript:
 	ld a, [wBattleAnimFlags]
 	bit BATTLEANIM_STOP_F, a
 	jr z, .playframe
+	bit BATTLEANIM_KEEPSPRITES_F, a
+	jr z, .delete
 
-	jp BattleAnim_ClearOAM
+	; Instead of deleting the sprites, make them all use PAL_BATTLE_OB_ENEMY
+	ld hl, wShadowOAMSprite00Attributes
+	ld c, NUM_SPRITE_OAM_STRUCTS
+.loop
+	ld a, [hl]
+	and ~(PALETTE_MASK | VRAM_BANK_1) ; zeros out the palette bits
+	assert PAL_BATTLE_OB_ENEMY == 0
+	ld [hli], a
+rept SPRITEOAMSTRUCT_LENGTH - 1
+	inc hl
+endr
+	dec c
+	jr nz, .loop
+	ret
+
+.delete
+	ld hl, wShadowOAM
+	ld c, wShadowOAMEnd - wShadowOAM
+	xor a
+.loop2
+	ld [hli], a
+	dec c
+	jr nz, .loop2
+	ret
 
 BattleAnimClearHud:
 	call DelayFrame
@@ -193,36 +218,6 @@ ClearActorHud:
 	hlcoord 9, 7
 	lb bc, 5, 11
 	jp ClearBox
-
-BattleAnim_ClearOAM:
-	ld a, [wBattleAnimFlags]
-	bit BATTLEANIM_KEEPSPRITES_F, a
-	jr z, .delete
-
-	; Instead of deleting the sprites, make them all use PAL_BATTLE_OB_ENEMY
-	ld hl, wShadowOAMSprite00Attributes
-	ld c, NUM_SPRITE_OAM_STRUCTS
-.loop
-	ld a, [hl]
-	and ~(PALETTE_MASK | VRAM_BANK_1) ; zeros out the palette bits
-	assert PAL_BATTLE_OB_ENEMY == 0
-	ld [hli], a
-rept SPRITEOAMSTRUCT_LENGTH - 1
-	inc hl
-endr
-	dec c
-	jr nz, .loop
-	ret
-
-.delete
-	ld hl, wShadowOAM
-	ld c, wShadowOAMEnd - wShadowOAM
-	xor a
-.loop2
-	ld [hli], a
-	dec c
-	jr nz, .loop2
-	ret
 
 RunBattleAnimCommand:
 	call .CheckTimer

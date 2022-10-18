@@ -156,7 +156,7 @@ endr
 	ld bc, PAL_COLOR_SIZE
 	call CopyBytes
 	; apply the updated colors to the palette RAM
-	ld a, $1
+	ld a, TRUE
 	ldh [hCGBPalUpdate], a
 	pop de
 	pop bc
