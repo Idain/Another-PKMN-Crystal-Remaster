@@ -381,7 +381,6 @@ BattleAnim_ThrowPokeBall:
 	anim_jump .Loop
 
 .Click:
-	anim_sound 0, 0, SFX_STOP_SLOT
 	anim_obj ANIM_OBJ_ENCORE_STAR, 120, 52, $2c
 	anim_obj ANIM_OBJ_ENCORE_STAR, 152, 52, $34
 	anim_wait 12
