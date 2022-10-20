@@ -111,8 +111,7 @@ BattleAnimDarkenObjPals:
 	; Darken selected palettes by 1/4
 	ld hl, wOBPals2 palette PAL_BATTLE_OB_RED color 1
 	call DarkenColorByAQuarter
-	inc hl
-	inc hl
+	ld hl, wOBPals2 palette PAL_BATTLE_OB_RED color 2
 	call DarkenColorByAQuarter
 
 	ld hl, wOBPals2 palette PAL_BATTLE_OB_GREEN color 1
