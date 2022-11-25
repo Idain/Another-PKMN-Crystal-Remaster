@@ -2625,6 +2625,8 @@ PlayerAttackDamage:
 	ld b, a
 	ld c, [hl]
 
+	call HailDefenseBoost
+
 	ld a, [wEnemyScreens]
 	bit SCREENS_REFLECT, a
 	jr z, .physicalcrit
@@ -2796,6 +2798,34 @@ SandstormSpDefBoost:
 	ld c, l
 	ret
 
+HailDefenseBoost: 
+; Raise Defense by 50% if there's Hail and the opponent
+; is Ice-type.
+
+; First, check if Hail is active.
+	ld a, [wBattleWeather]
+	cp WEATHER_HAIL
+	ret nz
+
+; Then, check the opponent's types.
+	push bc
+	push de
+	ld b, ICE
+	call CheckIfTargetIsSomeType
+	pop de
+	pop bc
+	ret nz
+
+; Start boost
+	ld h, b
+	ld l, c
+	srl b
+	rr c
+	add hl, bc
+	ld b, h
+	ld c, l
+	ret
+
 CheckDamageStatsCritical:
 ; Return carry if boosted stats should be used in damage calculations.
 ; Unboosted stats should be used if the attack is a critical hit,
@@ -2925,6 +2955,8 @@ EnemyAttackDamage:
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
+
+	call HailDefenseBoost
 
 	ld a, [wPlayerScreens]
 	bit SCREENS_REFLECT, a
