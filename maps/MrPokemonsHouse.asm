@@ -194,8 +194,8 @@ MrPokemonIntroText3:
 	line "Egg."
 
 	para "I was intrigued,"
-	line "so I sent mail to"
-	cont "Prof.Elm."
+	line "so I sent a mail"
+	cont "to Prof.Elm."
 
 	para "For #mon evolu-"
 	line "tion, Prof.Elm is"
@@ -287,7 +287,7 @@ MrPokemonsHouse_OakText1:
 
 	para "See? This is the"
 	line "latest version of"
-	cont "#dex."
+	cont "the #dex."
 
 	para "It automatically"
 	line "records data on"
