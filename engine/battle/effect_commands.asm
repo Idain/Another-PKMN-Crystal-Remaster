@@ -2636,14 +2636,14 @@ PlayerAttackDamage:
 .physicalcrit
 	ld hl, wBattleMonAttack
 	call CheckDamageStatsCritical
-	jr c, .thickclub ; I didn't change the name in case I need to modify it later.
+	jr c, .start_atk_boost_items
 
 	ld hl, wEnemyDefense
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
 	ld hl, wPlayerAttack
-	jr .thickclub ; Read the comment above.
+	jr .start_atk_boost_items
 
 .special
 	ld hl, wEnemyMonSpclDef
@@ -2690,17 +2690,17 @@ PlayerAttackDamage:
 	jr c, .cap
 	jr .end_atk_boost_items
 
-.thickclub
+.start_atk_boost_items
 ; Note: Returns player attack at hl in hl.
 	call ThickClubBoost
     jr c, .double_atk
     call LightBallBoost
-    jr nc, .no_double_atk
+	ld a, [hli]
+	ld l, [hl]
+	ld h, a
+    jr nc, .end_atk_boost_items
 
 .double_atk
-    ld a, [hli]
-    ld l, [hl]
-    ld h, a
 	add hl, hl
 
 	ld a, HIGH(MAX_STAT_VALUE)
@@ -2714,13 +2714,6 @@ PlayerAttackDamage:
 
 .cap
 	ld hl, MAX_STAT_VALUE
-    jr .end_atk_boost_items
-
-.no_double_atk
-    ld a, [hli]
-    ld l, [hl]
-    ld h, a
-	;fallthrough
 .end_atk_boost_items
 	call TruncateHL_BC
 
@@ -2873,8 +2866,6 @@ CheckDamageStatsCritical:
 	ret
 
 ThickClubBoost:
-; Return in hl the stat value at hl.
-
 ; If the attacking monster is Cubone or Marowak and
 ; it's holding a Thick Club, double it.
 	push bc
@@ -2887,8 +2878,6 @@ ThickClubBoost:
 	ret
 
 LightBallBoost:
-; Return in hl the stat value at hl.
-
 ; If the attacking monster is Pikachu and it's
 ; holding a Light Ball, double it.
 	push bc
@@ -2967,14 +2956,14 @@ EnemyAttackDamage:
 .physicalcrit
 	ld hl, wEnemyMonAttack
 	call CheckDamageStatsCritical
-	jr c, .thickclub ; Didn't change the name in case I need to change the code.
+	jr c, .start_atk_boost_items
 
 	ld hl, wPlayerDefense
 	ld a, [hli]
 	ld b, a
 	ld c, [hl]
 	ld hl, wEnemyAttack
-	jr .thickclub ; Read the comment above.
+	jr .start_atk_boost_items
 
 .special
 	ld hl, wBattleMonSpclDef
@@ -3020,16 +3009,17 @@ EnemyAttackDamage:
 	jr c, .cap
 	jr .end_atk_boost_items
 
-.thickclub
+.start_atk_boost_items
 ; Note: Returns enemy attack at hl in hl.
 	call ThickClubBoost
 	jr c, .double_atk
 	call LightBallBoost
-	jr nc, .no_double_atk
-.double_atk
 	ld a, [hli]
 	ld l, [hl]
 	ld h, a
+	jr nc, .end_atk_boost_items
+
+.double_atk
 	add hl, hl
 
 	ld a, HIGH(MAX_STAT_VALUE)
@@ -3043,13 +3033,6 @@ EnemyAttackDamage:
 
 .cap
 	ld hl, MAX_STAT_VALUE
-	jr .end_atk_boost_items
-
-.no_double_atk
-	ld a, [hli]
-	ld l, [hl]
-	ld h, a
-
 .end_atk_boost_items
 	call TruncateHL_BC
 
