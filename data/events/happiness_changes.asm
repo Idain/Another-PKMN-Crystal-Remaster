@@ -2,7 +2,7 @@ HappinessChanges:
 ; entries correspond to HAPPINESS_* constants
 	table_width 3, HappinessChanges
 	; change if happiness < 100, change if happiness < 200, change otherwise
-	db  +5,  +4,  +3 ; Gained a level
+	db  +5,  +3,  +2 ; Gained a level
 	db  +5,  +3,  +2 ; Vitamin
 	db  +1,  +1,  +0 ; X Item
 	db  +3,  +2,  +1 ; Battled a Gym Leader
