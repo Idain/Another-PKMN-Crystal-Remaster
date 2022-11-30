@@ -3576,8 +3576,6 @@ ShowSetEnemyMonAndSendOutAnimation:
 	predef CopyMonToTempMon
 	call GetEnemyMonFrontpic
 
-	call ApplyStatusEffectOnEnemyStats
-
 	xor a
 	ld [wNumHits], a
 	ld [wBattleAnimParam], a
@@ -6515,7 +6513,8 @@ LoadEnemyMon:
 	ld hl, wEnemyMonStats
 	ld de, wEnemyStats
 	ld bc, NUM_EXP_STATS * 2
-	jp CopyBytes
+	call CopyBytes
+	jp ApplyStatusEffectOnEnemyStats
 
 
 CheckSleepingTreeMon:
