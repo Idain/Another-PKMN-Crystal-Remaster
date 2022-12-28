@@ -7,12 +7,13 @@ endr
 ENDM
 
 UnlockedUnownLetterSets:
-; entries correspond to wUnlockedUnowns bits
+; entries correspond to UNLOCKED_UNOWNS_* constants
+	table_width 2, UnlockedUnownLetterSets
 	dw .Set_A_J ; ENGINE_UNLOCKED_UNOWNS_A_TO_J
 	dw .Set_K_Q ; ENGINE_UNLOCKED_UNOWNS_K_TO_Q
 	dw .Set_R_V ; ENGINE_UNLOCKED_UNOWNS_R_TO_V
 	dw .Set_W_Z ; ENGINE_UNLOCKED_UNOWNS_W_TO_Z
-.End
+	assert_table_length NUM_UNLOCKED_UNOWN_SETS
 
 .Set_A_J:
 	unown_set A, B, C, D, E, F, G, H, I, J
