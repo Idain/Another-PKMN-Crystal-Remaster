@@ -22,8 +22,6 @@ BattleTowerTrainers:
 	db "Kaufman@@@", SWIMMERM
 	db "Lancaster@", SKIER
 	db "McMahill@@", CAMPER
-	assert_table_length BATTLETOWER_NUM_UNIQUE_MON
-; The following can only be sampled in Crystal 1.1.
 	db "Obrien@@@@", GENTLEMAN
 	db "Frost@@@@@", BEAUTY
 	db "Morse@@@@@", SUPER_NERD
