@@ -795,6 +795,13 @@ ENDM
 
 .GetOutOfWater:
 	push bc
+	ld a, [wPlayerGender]
+	and a
+	jr nz, .Female
+	ld a, (PAL_NPC_RED << 4)
+	ld d, a
+	farcall _SetPlayerPalette
+.Female:
 	ld a, PLAYER_NORMAL
 	ld [wPlayerState], a
 	farcall UpdatePlayerSprite ; UpdateSprites

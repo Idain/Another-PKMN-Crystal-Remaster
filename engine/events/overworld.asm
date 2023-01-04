@@ -404,6 +404,11 @@ UsedSurfScript:
 	readmem wSurfingPlayerState
 	writevar VAR_MOVEMENT
 
+	checkflag ENGINE_PLAYER_IS_FEMALE
+	iftrue .Female
+	setval (PAL_NPC_BLUE << 4)
+	special SetPlayerPalette
+.Female
 	special UpdatePlayerSprite
 	special PlayMapMusic
 	special SurfStartStep
