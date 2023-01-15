@@ -403,12 +403,20 @@ UsedSurfScript:
 
 	readmem wSurfingPlayerState
 	writevar VAR_MOVEMENT
-
+	ifequal PLAYER_SURF_PIKA, .PikachuPaletteCheck
+;.NormalPaletteCheck
 	checkflag ENGINE_PLAYER_IS_FEMALE
-	iftrue .Female
+	iftrue .StartSurfing
 	setval (PAL_NPC_BLUE << 4)
 	special SetPlayerPalette
-.Female
+	sjump .StartSurfing
+
+.PikachuPaletteCheck
+	checkflag ENGINE_PLAYER_IS_FEMALE
+	iffalse .StartSurfing
+	setval (PAL_NPC_RED << 4)
+	special SetPlayerPalette
+.StartSurfing
 	special UpdatePlayerSprite
 	special PlayMapMusic
 	special SurfStartStep
