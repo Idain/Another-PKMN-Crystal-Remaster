@@ -1244,7 +1244,7 @@ Script_memcall:
 	ld d, [hl]
 	; fallthrough
 
-ScriptCall:
+ScriptCall::
 	ld hl, wScriptStackSize
 	ld a, [hl]
 	cp 5
@@ -1271,12 +1271,6 @@ ScriptCall:
 	ld a, d
 	ld [wScriptPos + 1], a
 	ret
-
-CallCallback::
-	ld a, [wScriptBank]
-	or $80
-	ld [wScriptBank], a
-	jp ScriptCall
 
 Script_sjump:
 	call GetScriptByte
@@ -2252,7 +2246,6 @@ ExitScriptSubroutine:
 	add hl, de
 	ld a, [hli]
 	ld b, a
-	and $7f
 	ld [wScriptBank], a
 	ld a, [hli]
 	ld e, a

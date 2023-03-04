@@ -961,7 +961,7 @@ RunMapCallback::
 
 ExecuteCallbackScript::
 ; Do map callback de and return to script bank b.
-	farcall CallCallback
+	farcall ScriptCall
 	ld a, [wScriptMode]
 	push af
 	ld hl, wScriptFlags
