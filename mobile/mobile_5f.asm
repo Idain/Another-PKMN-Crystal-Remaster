@@ -3846,7 +3846,7 @@ Function17f1d0:
 	call Function17f4f6
 	add hl, de
 	ld a, [hl]
-	ld a, $1
+	ld a, BANK(wNamedObjectIndex)
 	ldh [rSVBK], a
 	ld [wNamedObjectIndex], a
 	call GetPokemonName

@@ -406,7 +406,7 @@ StatsScreen_InitUpperHalf:
 	hlcoord 14, 0
 	call PrintLevel
 	ld hl, .NicknamePointers
-	call GetNicknamenamePointer
+	call GetNicknamePointer
 	call CopyNickname
 	hlcoord 8, 2
 	call PlaceString
@@ -741,7 +741,7 @@ LoadBluePage:
 	ld de, wTempMonID
 	call PrintNum
 	ld hl, .OTNamePointers
-	call GetNicknamenamePointer
+	call GetNicknamePointer
 	call CopyNickname
 	farcall CorrectNickErrors
 	hlcoord 2, 13
@@ -1087,7 +1087,7 @@ CopyNickname:
 	pop de
 	ret
 
-GetNicknamenamePointer:
+GetNicknamePointer:
 	ld a, [wMonType]
 	add a
 	ld c, a
