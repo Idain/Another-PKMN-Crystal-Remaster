@@ -123,8 +123,7 @@ _CGB_FinishBattleScreenLayout:
 	ld a, PAL_BATTLE_BG_ENEMY_HP
 	call FillBoxCGB
 	hlcoord 1, 1, wAttrmap
-	ld a, PAL_BATTLE_BG_5
-	ld [hl], a
+	ld [hl], PAL_BATTLE_BG_5
 	hlcoord 10, 7, wAttrmap
 	lb bc, 5, 10
 	ld a, PAL_BATTLE_BG_PLAYER_HP
@@ -591,8 +590,7 @@ _CGB_UnownPuzzle:
 	ld hl, wOBPals1
 	ld a, LOW(palred 31 + palgreen 0 + palblue 0)
 	ld [hli], a
-	ld a, HIGH(palred 31 + palgreen 0 + palblue 0)
-	ld [hl], a
+	ld [hl], HIGH(palred 31 + palgreen 0 + palblue 0)
 	pop af
 	ldh [rSVBK], a
 	call WipeAttrmap

@@ -62,8 +62,7 @@ _AnimateHPBar:
 	ld d, a
 	ld a, [hli]
 	ld c, a
-	ld a, [hli]
-	ld b, a
+	ld b, [hl]
 	pop hl
 	call ComputeHPBarPixels
 	ld a, e
@@ -89,8 +88,7 @@ _AnimateHPBar:
 	ld b, a
 	ld a, [hli]
 	ld e, a
-	ld a, [hli]
-	ld d, a
+	ld d, [hl]
 	pop hl
 	ld a, e
 	sub c

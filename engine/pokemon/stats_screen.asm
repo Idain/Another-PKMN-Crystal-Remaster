@@ -156,9 +156,8 @@ MonStatsInit:
 
 EggStatsInit:
 	call EggStatsScreen
-	ld a, [wJumptableIndex]
-	inc a
-	ld [wJumptableIndex], a
+	ld hl, wJumptableIndex
+	inc [hl]
 	ret
 
 EggStatsJoypad:
@@ -217,9 +216,8 @@ StatsScreen_LoadPage:
 	call StatsScreen_LoadGFX
 	ld hl, wStatsScreenFlags
 	res 4, [hl]
-	ld a, [wJumptableIndex]
-	inc a
-	ld [wJumptableIndex], a
+	ld hl, wJumptableIndex
+	inc [hl]
 	ret
 
 MonStatsJoypad:
@@ -235,9 +233,8 @@ MonStatsJoypad:
 StatsScreenWaitCry:
 	call IsSFXPlaying
 	ret nc
-	ld a, [wJumptableIndex]
-	inc a
-	ld [wJumptableIndex], a
+	ld hl, wJumptableIndex
+	inc [hl]
 	ret
 
 StatsScreen_CopyToTempMon:

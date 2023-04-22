@@ -135,44 +135,39 @@ PokeAnim_SetupCommands:
 PokeAnim_SetWait:
 	ld a, 18
 	ld [wPokeAnimWaitCounter], a
-	ld a, [wPokeAnimSceneIndex]
-	inc a
-	ld [wPokeAnimSceneIndex], a
+	ld hl, wPokeAnimSceneIndex
+	inc [hl]
 
 PokeAnim_Wait:
 	ld hl, wPokeAnimWaitCounter
 	dec [hl]
 	ret nz
-	ld a, [wPokeAnimSceneIndex]
-	inc a
-	ld [wPokeAnimSceneIndex], a
+	ld hl, wPokeAnimSceneIndex
+	inc [hl]
 	ret
 
 PokeAnim_Setup:
 	ld bc, FALSE
 	call PokeAnim_InitAnim
 	call PokeAnim_SetVBank1
-	ld a, [wPokeAnimSceneIndex]
-	inc a
-	ld [wPokeAnimSceneIndex], a
+	ld hl, wPokeAnimSceneIndex
+	inc [hl]
 	ret
 
 PokeAnim_Setup2:
 	lb bc, 4, FALSE
 	call PokeAnim_InitAnim
 	call PokeAnim_SetVBank1
-	ld a, [wPokeAnimSceneIndex]
-	inc a
-	ld [wPokeAnimSceneIndex], a
+	ld hl, wPokeAnimSceneIndex
+	inc [hl]
 	ret
 
 PokeAnim_Idle:
 	ld bc, TRUE
 	call PokeAnim_InitAnim
 	call PokeAnim_SetVBank1
-	ld a, [wPokeAnimSceneIndex]
-	inc a
-	ld [wPokeAnimSceneIndex], a
+	ld hl, wPokeAnimSceneIndex
+	inc [hl]
 	ret
 
 PokeAnim_Play:
@@ -181,9 +176,8 @@ PokeAnim_Play:
 	bit 7, a
 	ret z
 	call PokeAnim_PlaceGraphic
-	ld a, [wPokeAnimSceneIndex]
-	inc a
-	ld [wPokeAnimSceneIndex], a
+	ld hl, wPokeAnimSceneIndex
+	inc [hl]
 	ret
 
 PokeAnim_Play2:
@@ -191,16 +185,14 @@ PokeAnim_Play2:
 	ld a, [wPokeAnimJumptableIndex]
 	bit 7, a
 	ret z
-	ld a, [wPokeAnimSceneIndex]
-	inc a
-	ld [wPokeAnimSceneIndex], a
+	ld hl, wPokeAnimSceneIndex
+	inc [hl]
 	ret
 
 PokeAnim_BasePic:
 	call PokeAnim_DeinitFrames
-	ld a, [wPokeAnimSceneIndex]
-	inc a
-	ld [wPokeAnimSceneIndex], a
+	ld hl, wPokeAnimSceneIndex
+	inc [hl]
 	ret
 
 PokeAnim_Finish:
@@ -212,17 +204,15 @@ PokeAnim_Finish:
 PokeAnim_Cry:
 	ld a, [wPokeAnimSpecies]
 	call _PlayMonCry
-	ld a, [wPokeAnimSceneIndex]
-	inc a
-	ld [wPokeAnimSceneIndex], a
+	ld hl, wPokeAnimSceneIndex
+	inc [hl]
 	ret
 
 PokeAnim_CryNoWait:
 	ld a, [wPokeAnimSpecies]
 	call PlayMonCry2
-	ld a, [wPokeAnimSceneIndex]
-	inc a
-	ld [wPokeAnimSceneIndex], a
+	ld hl, wPokeAnimSceneIndex
+	inc [hl]
 	ret
 
 PokeAnim_StereoCry:
@@ -230,9 +220,8 @@ PokeAnim_StereoCry:
 	ld [wCryTracks], a
 	ld a, [wPokeAnimSpecies]
 	call PlayStereoCry2
-	ld a, [wPokeAnimSceneIndex]
-	inc a
-	ld [wPokeAnimSceneIndex], a
+	ld hl, wPokeAnimSceneIndex
+	inc [hl]
 	ret
 
 PokeAnim_DeinitFrames:
@@ -364,9 +353,8 @@ PokeAnim_DoAnimScript:
 	ld [wPokeAnimWaitCounter], a
 	call PokeAnim_StartWaitAnim
 .WaitAnim:
-	ld a, [wPokeAnimWaitCounter]
-	dec a
-	ld [wPokeAnimWaitCounter], a
+	ld hl, wPokeAnimWaitCounter
+	dec [hl]
 	ret nz
 	jr PokeAnim_StopWaitAnim
 
@@ -421,15 +409,13 @@ PokeAnim_GetFrame:
 	jp PokeAnim_ConvertAndApplyBitmask
 
 PokeAnim_StartWaitAnim:
-	ld a, [wPokeAnimJumptableIndex]
-	inc a
-	ld [wPokeAnimJumptableIndex], a
+	ld hl, wPokeAnimJumptableIndex
+	inc [hl]
 	ret
 
 PokeAnim_StopWaitAnim:
-	ld a, [wPokeAnimJumptableIndex]
-	dec a
-	ld [wPokeAnimJumptableIndex], a
+	ld hl, wPokeAnimJumptableIndex
+	dec [hl]
 	ret
 
 PokeAnim_IsUnown:
@@ -721,18 +707,18 @@ PokeAnim_ConvertAndApplyBitmask:
 	ret
 
 .NextBit:
-	ld a, [wPokeAnimBitmaskCurRow]
-	inc a
-	ld [wPokeAnimBitmaskCurRow], a
+	ld hl, wPokeAnimBitmaskCurRow
+	inc [hl]
+	ld a, [hl]
 	ld c, a
 	ld a, [wPokeAnimFrontpicHeight]
 	cp c
 	jr nz, .no_carry
 	xor a
 	ld [wPokeAnimBitmaskCurRow], a
-	ld a, [wPokeAnimBitmaskCurCol]
-	inc a
-	ld [wPokeAnimBitmaskCurCol], a
+	ld hl, wPokeAnimBitmaskCurCol
+	inc [hl]
+	ld a, [hl]
 	ld c, a
 	ld a, [wPokeAnimFrontpicHeight]
 	cp c

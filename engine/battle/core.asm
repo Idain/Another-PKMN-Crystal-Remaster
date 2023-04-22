@@ -710,9 +710,8 @@ HandleEncore:
 	ld hl, wPlayerSubStatus5
 	bit SUBSTATUS_ENCORED, [hl]
 	ret z
-	ld a, [wPlayerEncoreCount]
-	dec a
-	ld [wPlayerEncoreCount], a
+	ld hl, wPlayerEncoreCount
+	dec [hl]
 	jr z, .end_player_encore
 	ld hl, wBattleMonPP
 	ld a, [wCurMoveNum]
@@ -734,9 +733,8 @@ HandleEncore:
 	ld hl, wEnemySubStatus5
 	bit SUBSTATUS_ENCORED, [hl]
 	ret z
-	ld a, [wEnemyEncoreCount]
-	dec a
-	ld [wEnemyEncoreCount], a
+	ld hl, wEnemyEncoreCount
+	dec [hl]
 	jr z, .end_enemy_encore
 	ld hl, wEnemyMonPP
 	ld a, [wCurEnemyMoveNum]
@@ -1554,8 +1552,7 @@ HandleFutureSight:
 	ld a, BATTLE_VARS_MOVE
 	call GetBattleVarAddr
 	push af
-	ld a, FUTURE_SIGHT
-	ld [hl], a
+	ld [hl], FUTURE_SIGHT
 
 	callfar UpdateMoveData
 	xor a
@@ -4203,8 +4200,7 @@ PursuitSwitch:
 
 	ld a, BATTLE_VARS_MOVE
 	call GetBattleVarAddr
-	ld a, $ff
-	ld [hl], a
+	ld [hl], $ff
 
 	pop af
 	ld [wCurBattleMon], a
@@ -5487,9 +5483,9 @@ MoveSelectionScreen:
 
 	xor a
 	ld [wSwappingMove], a
-	ld a, [wMenuCursorY]
-	dec a
-	ld [wMenuCursorY], a
+	ld hl, wMenuCursorY
+	dec [hl]
+	ld a, [hl]
 	ld b, a
 	ld a, [wMoveSelectionMenuType]
 	dec a
@@ -6139,8 +6135,8 @@ LoadEnemyMon:
 	ld a, [wCurPartyMon]
 	ld hl, wOTPartyMon1DVs
 	call GetPartyLocation
-	ld b, [hl]
-	inc hl
+	ld a, [hli]
+	ld b, a
 	ld c, [hl]
 	jr .UpdateDVs
 
@@ -7665,8 +7661,8 @@ WithdrawMonText:
 	; compute enemy health lost as a percentage
 	ld hl, wEnemyMonHP + 1
 	ld de, wEnemyHPAtTimeOfPlayerSwitch + 1
-	ld b, [hl]
-	dec hl
+	ld a, [hld]
+	ld b, a
 	ld a, [de]
 	sub b
 	ldh [hMultiplicand + 2], a

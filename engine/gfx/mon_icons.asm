@@ -186,16 +186,13 @@ Mobile_InitAnimatedMonIcon:
 	call PartyMenu_InitAnimatedMonIcon
 	ld hl, SPRITEANIMSTRUCT_ANIM_SEQ_ID
 	add hl, bc
-	ld a, SPRITE_ANIM_SEQ_NULL
-	ld [hl], a
+	ld [hl], SPRITE_ANIM_SEQ_NULL
 	ld hl, SPRITEANIMSTRUCT_XCOORD
 	add hl, bc
-	ld a, 9 * 8
-	ld [hl], a
+	ld [hl], 9 * 8
 	ld hl, SPRITEANIMSTRUCT_YCOORD
 	add hl, bc
-	ld a, 9 * 8
-	ld [hl], a
+	ld [hl], 9 * 8
 	ret
 
 Mobile_InitPartyMenuBGPal71:
@@ -203,16 +200,13 @@ Mobile_InitPartyMenuBGPal71:
 	call SetPartyMonIconAnimSpeed
 	ld hl, SPRITEANIMSTRUCT_ANIM_SEQ_ID
 	add hl, bc
-	ld a, SPRITE_ANIM_SEQ_NULL
-	ld [hl], a
+	ld [hl], SPRITE_ANIM_SEQ_NULL
 	ld hl, SPRITEANIMSTRUCT_XCOORD
 	add hl, bc
-	ld a, 3 * 8
-	ld [hl], a
+	ld [hl], 3 * 8
 	ld hl, SPRITEANIMSTRUCT_YCOORD
 	add hl, bc
-	ld a, 12 * 8
-	ld [hl], a
+	ld [hl], 12 * 8
 	ld a, c
 	ld [wc608], a
 	ld a, b

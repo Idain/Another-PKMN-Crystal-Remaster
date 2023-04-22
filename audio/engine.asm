@@ -169,9 +169,9 @@ _UpdateSound::
 	add hl, bc
 	ld c, l
 	ld b, h
-	ld a, [wCurChannel]
-	inc a
-	ld [wCurChannel], a
+	ld hl, wCurChannel
+	inc [hl]
+	ld a, [hl]
 	cp NUM_CHANNELS ; are we done?
 	jp nz, .loop ; do it all again
 

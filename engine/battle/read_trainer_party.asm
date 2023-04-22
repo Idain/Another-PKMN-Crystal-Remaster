@@ -319,10 +319,10 @@ ReadTrainerPartyPieces:
 
 ; copy max HP to current HP
 	inc hl
-	ld c, [hl]
-	dec hl
-	ld b, [hl]
-	dec hl
+	ld a, [hld]
+	ld c, a
+	ld a, [hld]
+	ld b, a
 	ld [hl], c
 	dec hl
 	ld [hl], b
