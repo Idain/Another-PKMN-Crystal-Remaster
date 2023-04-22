@@ -175,7 +175,7 @@ DetermineContestWinners:
 	ld de, wBugContestSecondPlaceWinnerID
 	ld bc, BUG_CONTESTANT_SIZE
 	call CopyBytes
-	ld hl, wBugContestFirstPlaceWinnerID
+	ld de, wBugContestFirstPlaceWinnerID
 	jr CopyTempContestant
 
 .not_first_place
@@ -188,7 +188,7 @@ DetermineContestWinners:
 	ld de, wBugContestThirdPlaceWinnerID
 	ld bc, BUG_CONTESTANT_SIZE
 	call CopyBytes
-	ld hl, wBugContestSecondPlaceWinnerID
+	ld de, wBugContestSecondPlaceWinnerID
 	jr CopyTempContestant
 
 .not_second_place
@@ -197,20 +197,12 @@ DetermineContestWinners:
 	ld c, 2
 	call CompareBytes
 	ret c
-	ld hl, wBugContestThirdPlaceWinnerID
+	ld de, wBugContestThirdPlaceWinnerID
 	; fallthrough
 CopyTempContestant:
-; Could've just called CopyBytes.
-	ld de, wBugContestTempWinnerID
-rept BUG_CONTESTANT_SIZE - 1
-	ld a, [de]
-	inc de
-	ld [hli], a
-endr
-	ld a, [de]
-	inc de
-	ld [hl], a
-	ret
+	ld hl, wBugContestTempWinnerID
+	ld bc, BUG_CONTESTANT_SIZE
+	jp CopyBytes
 
 ComputeAIContestantScores:
 	ld e, 0

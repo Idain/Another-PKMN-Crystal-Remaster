@@ -135,11 +135,7 @@ MobileMenu_InitMenuBuffers:
 	ld [hli], a
 	ld a, $20 ; w2DMenuCursorOffsets
 	ld [hli], a
-	; could have done "ld a, A_BUTTON | D_UP | D_DOWN | B_BUTTON" instead
-	ld a, A_BUTTON
-	add D_UP
-	add D_DOWN
-	add B_BUTTON
+	ld a, A_BUTTON | D_UP | D_DOWN | B_BUTTON
 	ld [hli], a ; wMenuJoypadFilter
 	ld a, 1
 	ld [hli], a ; wMenuCursorY, wMenuCursorX

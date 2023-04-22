@@ -238,7 +238,7 @@ endc
 	ld hl, sNumDailyMysteryGiftPartnerIDs
 	ld a, [hl]
 	inc [hl]
-	ld hl, sDailyMysteryGiftPartnerIDs ; could have done "inc hl" instead
+	inc hl ; sDailyMysteryGiftPartnerIDs
 	ld e, a
 	ld d, 0
 	add hl, de
