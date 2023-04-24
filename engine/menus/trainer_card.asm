@@ -583,9 +583,10 @@ TrainerCard_JohtoBadgesOAM:
 	db $08, $20, $24, $20 | (1 << 7)
 
 	; Fogbadge
+	; X-flips on alternate cycles
 	db $68, $78, 3
-	db $0c, $20, $24, $20 | (1 << 7)
-	db $0c, $20, $24, $20 | (1 << 7)
+	db $0c, 		   $20, $24, $20 | (1 << 7)
+	db $0c | (1 << 7), $20, $24, $20 | (1 << 7)
 
 	; Mineralbadge
 	db $80, $38, 5
@@ -603,10 +604,9 @@ TrainerCard_JohtoBadgesOAM:
 	db $18, $20, $24, $20 | (1 << 7)
 
 	; Risingbadge
-	; X-flips on alternate cycles.
 	db $80, $78, 7
-	db $1c,            $20, $24, $20 | (1 << 7)
-	db $1c | (1 << 7), $20, $24, $20 | (1 << 7)
+	db $1c, $20, $24, $20 | (1 << 7)
+	db $1c, $20, $24, $20 | (1 << 7)
 
 
 TrainerCard_KantoBadgesOAM:
