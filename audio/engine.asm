@@ -1319,9 +1319,9 @@ MusicCommands:
 	dw Music_PitchOffset
 	dw MusicE7 ; unused
 	dw MusicE8 ; unused
-	dw Music_TempoRelative
+	dw Music_TempoRelative ; unused
 	dw Music_RestartChannel
-	dw Music_NewSong
+	dw Music_NewSong ; unused
 	dw Music_SFXPriorityOn
 	dw Music_SFXPriorityOff
 	dw MusicEE ; unused
