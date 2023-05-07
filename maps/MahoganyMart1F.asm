@@ -60,14 +60,16 @@ MahoganyMart1FBlackBeltScript:
 
 MahoganyMart1FLanceUncoversStaircaseScript:
 	pause 15
+	cry DRAGONITE
+	pause 15
 	opentext
 	writetext MahoganyMart1FLanceDragoniteOutrageText
 	pause 15
 	closetext
-	playsound SFX_TACKLE
+	playsound SFX_OUTRAGE
 	applymovement MAHOGANYMART1F_DRAGONITE, MahoganyMart1FDragoniteTackleMovement
 	applymovement MAHOGANYMART1F_BLACK_BELT, MahoganyMart1FBlackBeltKnockedBackMovement
-	pause 15
+	pause 30
 	disappear MAHOGANYMART1F_DRAGONITE
 	pause 15
 	applymovement MAHOGANYMART1F_LANCE, MahoganyMart1FLanceApproachPlayerMovement
