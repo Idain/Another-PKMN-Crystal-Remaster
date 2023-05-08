@@ -3307,9 +3307,15 @@ LookUpTheEffectivenessOfEveryMove:
 	push de
 	push bc
 	dec a
-	ld hl, Moves
+	ld hl, Moves + MOVE_POWER
 	ld bc, MOVE_LENGTH
 	call AddNTimes
+	ld a, BANK(Moves)
+	call GetFarByte
+	and a
+	jr z, .pop_loop
+	dec hl
+	dec hl
 	ld de, wEnemyMoveStruct
 	ld a, BANK(Moves)
 	call FarCopyBytes
@@ -3324,6 +3330,12 @@ LookUpTheEffectivenessOfEveryMove:
 	ld hl, wEnemyEffectivenessVsPlayerMons
 	set 0, [hl]
 	ret
+
+.pop_loop
+	pop bc
+	pop de
+	pop hl
+	jr .loop
 
 IsThePlayerMonTypesEffectiveAgainstOTMon:
 ; Calculates the effectiveness of the types of the PlayerMon
