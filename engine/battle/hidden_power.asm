@@ -1,13 +1,13 @@
-HiddenPowerDamage:
+BattleHiddenPowerDamage:
 ; Override Hidden Power's type based on the user's DVs.
 
 	ld bc, wBattleMonDVs
 	ldh a, [hBattleTurn]
 	and a
-	jr z, .got_dvs
+	jr z, HiddenPowerDamage
 	ld bc, wEnemyMonDVs
-.got_dvs
-
+	; fallthrough
+HiddenPowerDamage::
 	call GetHiddenPowerType
 
 ; Overwrite the current move type.

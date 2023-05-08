@@ -3306,8 +3306,7 @@ LookUpTheEffectivenessOfEveryMove:
 	push hl
 	push de
 	push bc
-	dec a
-	ld hl, Moves + MOVE_POWER
+	ld hl, (Moves + MOVE_POWER) - MOVE_LENGTH
 	ld bc, MOVE_LENGTH
 	call AddNTimes
 	ld a, BANK(Moves)
@@ -3320,6 +3319,20 @@ LookUpTheEffectivenessOfEveryMove:
 	ld a, BANK(Moves)
 	call FarCopyBytes
 	call SetEnemyTurn
+
+	ld hl, wEnemyMoveStruct
+	ld a, [hl]
+	cp HIDDEN_POWER
+	jr nz, .continue
+	pop bc
+	ld hl, wOTPartyMon1DVs
+	ld a, b
+	push bc
+	call GetPartyLocation
+	ld b, h
+	ld c, l
+	farcall HiddenPowerDamage
+.continue
 	callfar BattleCheckTypeMatchup
 	pop bc
 	pop de
