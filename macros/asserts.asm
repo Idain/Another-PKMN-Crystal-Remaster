@@ -71,5 +71,5 @@ MACRO jmp
 		jp \1, \2
 		shift
 	endc
-	assert warn, (\1) - @ > 127 || (\1) - @ < -129, "jp can be jr"
+	assert warn, (\1) - @ > 127 || (\1) - @ < -128, "jp can be jr"
 ENDM
