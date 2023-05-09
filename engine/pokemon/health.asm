@@ -46,8 +46,7 @@ HealPartyMon:
 	ld a, [hl]
 	ld [bc], a
 
-	farcall RestoreAllPP
-	ret
+	jp RestoreAllPP
 
 ComputeHPBarPixels:
 ; e = bc * (6 * 8) / de

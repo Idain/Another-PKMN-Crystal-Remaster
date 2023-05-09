@@ -126,7 +126,8 @@ MapEvents:
 .events:
 	call PlayerEvents
 	call DisableEvents
-	farcall ScriptEvents
+	jp ScriptEvents
+
 .no_events:
 	ret
 
@@ -220,9 +221,7 @@ PlayerEvents:
 	ret
 
 .ok
-	push af
-	farcall EnableScriptMode
-	pop af
+	call EnableScriptMode
 
 	ld [wScriptRunning], a
 	call DoPlayerEvent
@@ -359,8 +358,8 @@ endr
 	ld hl, wScriptFlags
 	res 3, [hl]
 
-	farcall EnableScriptMode
-	farcall ScriptEvents
+	call EnableScriptMode
+	call ScriptEvents
 
 	ld hl, wScriptFlags
 	bit 3, [hl]
@@ -810,7 +809,7 @@ CountStep:
 	jr c, .doscript
 
 .skip_poison
-	farcall DoBikeStep
+	call DoBikeStep
 
 .done
 	xor a

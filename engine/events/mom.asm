@@ -147,7 +147,7 @@ BankOfMom:
 	jr z, .CancelDeposit
 	ld de, wMoney
 	ld bc, wStringBuffer2
-	farcall CompareMoney
+	call CompareMoney
 	jr c, .InsufficientFundsInWallet
 	ld hl, wStringBuffer2
 	ld de, wStringBuffer2 + 3
@@ -155,11 +155,11 @@ BankOfMom:
 	call CopyBytes
 	ld bc, wMomsMoney
 	ld de, wStringBuffer2
-	farcall GiveMoney
+	call GiveMoney
 	jr c, .NotEnoughRoomInBank
 	ld bc, wStringBuffer2 + 3
 	ld de, wMoney
-	farcall TakeMoney
+	call TakeMoney
 	ld hl, wStringBuffer2
 	ld de, wMomsMoney
 	ld bc, 3
@@ -215,15 +215,15 @@ BankOfMom:
 	call CopyBytes
 	ld de, wMomsMoney
 	ld bc, wStringBuffer2
-	farcall CompareMoney
+	call CompareMoney
 	jr c, .InsufficientFundsInBank
 	ld bc, wMoney
 	ld de, wStringBuffer2
-	farcall GiveMoney
+	call GiveMoney
 	jr c, .NotEnoughRoomInWallet
 	ld bc, wStringBuffer2 + 3
 	ld de, wMomsMoney
-	farcall TakeMoney
+	call TakeMoney
 	ld hl, wStringBuffer2
 	ld de, wMoney
 	ld bc, 3
@@ -520,8 +520,7 @@ Mom_WithdrawDepositMenuJoypad:
 	ld c, l
 	ld b, h
 	ld de, wStringBuffer2
-	farcall GiveMoney
-	ret
+	jp GiveMoney
 
 .decrementdigit
 	ld hl, .DigitQuantities
@@ -529,8 +528,7 @@ Mom_WithdrawDepositMenuJoypad:
 	ld c, l
 	ld b, h
 	ld de, wStringBuffer2
-	farcall TakeMoney
-	ret
+	jp TakeMoney
 
 .getdigitquantity
 	ld a, [wMomBankDigitCursorPosition]

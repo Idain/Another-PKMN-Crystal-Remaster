@@ -1611,7 +1611,7 @@ Function118ded:
 	push af
 	ld a, $1
 	ldh [rSVBK], a
-	farcall Function11b93b
+	call Function11b93b
 	pop af
 	ldh [rSVBK], a
 
@@ -5388,7 +5388,7 @@ Function11a9ce:
 	call ReloadTilesetAndPalettes
 	call ExitMenu
 	farcall Function106464
-	farcall FinishExitMenu
+	call FinishExitMenu
 	jp UpdateSprites
 
 Function11a9f0:

@@ -124,7 +124,7 @@ LoadCableTradeBorderTilemap:
 PrintWaitingTextAndSyncAndExchangeNybble:
 	call LoadStandardMenuHeader
 	call .PrintWaitingText
-	farcall WaitLinkTransfer
+	call WaitLinkTransfer
 	call ExitMenu
 	jp WaitBGMap2
 

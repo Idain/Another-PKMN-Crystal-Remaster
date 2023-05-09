@@ -1202,7 +1202,7 @@ Script_reloadmapafterbattle:
 	jr z, Script_reloadmap
 	ld b, BANK(Script_SpecialBillCall)
 	ld de, Script_SpecialBillCall
-	farcall LoadScriptBDE
+	call LoadScriptBDE
 	; fallthrough
 
 Script_reloadmap:
@@ -2150,9 +2150,8 @@ Script_reloadmappart::
 Script_warpcheck:
 	call WarpCheck
 	ret nc
-	farcall EnableEvents
-	ret
-
+	jp EnableEvents
+	
 Script_newloadmap:
 	call GetScriptByte
 	ldh [hMapEntryMethod], a

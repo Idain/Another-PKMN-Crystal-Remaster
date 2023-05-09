@@ -24,14 +24,14 @@ SaveMenu:
 
 SaveAfterLinkTrade:
 	call PauseGameLogic
-	farcall StageRTCTimeForSave
+	call StageRTCTimeForSave
 	farcall BackupMysteryGift
 	call SavePokemonData
 	call SaveChecksum
 	call SaveBackupPokemonData
 	call SaveBackupChecksum
 	farcall BackupPartyMonMail
-	farcall SaveRTC
+	call SaveRTC
 	jp ResumeGameLogic
 
 ChangeBoxSaveGame:
@@ -86,7 +86,7 @@ MoveMonWOMail_InsertMon_SaveGame:
 	ld [wCurBox], a
 	ld a, TRUE
 	ld [wSaveFileExists], a
-	farcall StageRTCTimeForSave
+	call StageRTCTimeForSave
 	farcall BackupMysteryGift
 	call ValidateSave
 	call SaveOptions
@@ -100,7 +100,7 @@ MoveMonWOMail_InsertMon_SaveGame:
 	call SaveBackupChecksum
 	farcall BackupPartyMonMail
 	farcall BackupMobileEventIndex
-	farcall SaveRTC
+	call SaveRTC
 	call LoadBox
 	call ResumeGameLogic
 	ld de, SFX_SAVE
@@ -225,7 +225,7 @@ SavedTheGame:
 SaveGameData:
 	ld a, TRUE
 	ld [wSaveFileExists], a
-	farcall StageRTCTimeForSave
+	call StageRTCTimeForSave
 	farcall BackupMysteryGift
 	call ValidateSave
 	call SaveOptions
@@ -241,7 +241,7 @@ SaveGameData:
 	call UpdateStackTop
 	farcall BackupPartyMonMail
 	farcall BackupMobileEventIndex
-	farcall SaveRTC
+	call SaveRTC
 	ld a, BANK(sBattleTowerChallengeState)
 	call OpenSRAM
 	ld a, [sBattleTowerChallengeState]

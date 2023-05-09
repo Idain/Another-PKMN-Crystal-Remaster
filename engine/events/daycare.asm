@@ -187,7 +187,7 @@ DayCare_AskWithdrawBreedMon:
 .check_money
 	ld de, wMoney
 	ld bc, wStringBuffer2 + 2
-	farcall CompareMoney
+	call CompareMoney
 	jr c, .not_enough_money
 	ld a, [wPartyCount]
 	cp PARTY_LENGTH
@@ -213,7 +213,7 @@ DayCare_AskWithdrawBreedMon:
 DayCare_GetBackMonForMoney:
 	ld bc, wStringBuffer2 + 2
 	ld de, wMoney
-	farcall TakeMoney
+	call TakeMoney
 	ld a, DAYCARETEXT_WITHDRAW
 	call PrintDayCareText
 	ld a, [wCurPartySpecies]
@@ -601,7 +601,7 @@ DayCare_InitBreeding:
 	xor a ; FALSE
 	ld [wSkipMovesBeforeLevelUp], a
 	predef FillMoves
-	farcall InitEggMoves
+	call InitEggMoves
 	ld hl, wEggMonID
 	ld a, [wPlayerID]
 	ld [hli], a

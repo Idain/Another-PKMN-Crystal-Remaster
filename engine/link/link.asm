@@ -2492,7 +2492,7 @@ TimeCapsule:
 	ld a, LINK_TIMECAPSULE
 	ld [wLinkMode], a
 	call DisableSpriteUpdates
-	callfar LinkCommunications
+	call LinkCommunications
 	call EnableSpriteUpdates
 	xor a
 	ldh [hVBlank], a
@@ -2503,7 +2503,7 @@ TradeCenter:
 	ld a, LINK_TRADECENTER
 	ld [wLinkMode], a
 	call DisableSpriteUpdates
-	callfar LinkCommunications
+	call LinkCommunications
 	call EnableSpriteUpdates
 	xor a
 	ldh [hVBlank], a
@@ -2514,7 +2514,7 @@ Colosseum:
 	ld a, LINK_COLOSSEUM
 	ld [wLinkMode], a
 	call DisableSpriteUpdates
-	callfar LinkCommunications
+	call LinkCommunications
 	call EnableSpriteUpdates
 	xor a
 	ldh [hVBlank], a

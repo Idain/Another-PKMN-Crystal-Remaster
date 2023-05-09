@@ -748,7 +748,7 @@ RestorePPOfDepositedPokemon:
 	push bc
 	push hl
 	push de
-	farcall GetMaxPPOfMove
+	call GetMaxPPOfMove
 	pop de
 	pop hl
 	ld a, [wTempPP]
@@ -878,7 +878,7 @@ RetrieveBreedmon:
 	ld a, [wPartyCount]
 	dec a
 	ld [wCurPartyMon], a
-	farcall HealPartyMon
+	call HealPartyMon
 	; Check if there's an exp overflow
 	ld d, MAX_LEVEL
 	callfar CalcExpAtLevel

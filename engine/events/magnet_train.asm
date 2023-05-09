@@ -45,7 +45,7 @@ MagnetTrain:
 	jr z, .initialize
 	bit 7, a
 	jr nz, .done
-	callfar PlaySpriteAnimations
+	call PlaySpriteAnimations
 	call MagnetTrain_Jumptable
 	call MagnetTrain_UpdateLYOverrides
 	call PushLYOverrides
@@ -117,7 +117,7 @@ MagnetTrain_LoadGFX_PlayMusic:
 	call ClearBGPalettes
 	call ClearSprites
 	call DisableLCD
-	callfar ClearSpriteAnims
+	call ClearSpriteAnims
 	call SetMagnetTrainPals
 	call DrawMagnetTrain
 	ld a, SCREEN_HEIGHT_PX
@@ -375,7 +375,7 @@ MagnetTrain_Jumptable:
 	jp PlaySFX
 
 MagnetTrain_Jumptable_FirstRunThrough:
-	farcall PlaySpriteAnimations
+	call PlaySpriteAnimations
 	call MagnetTrain_Jumptable
 	call MagnetTrain_UpdateLYOverrides
 	call PushLYOverrides

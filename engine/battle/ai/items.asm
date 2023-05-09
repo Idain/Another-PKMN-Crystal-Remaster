@@ -342,12 +342,12 @@ AI_Items:
 	ld a, [bc]
 	bit CONTEXT_USE_F, a
 	jr nz, .CheckHalfOrQuarterHP
-	callfar AICheckEnemyHalfHP
+	call AICheckEnemyHalfHP
 	jp c, .DontUse
 	ld a, [bc]
 	bit UNKNOWN_USE_F, a
 	jp nz, .CheckQuarterHP
-	callfar AICheckEnemyQuarterHP
+	call AICheckEnemyQuarterHP
 	jp nc, .Use
 	call Random
 	cp 50 percent + 1
@@ -355,7 +355,7 @@ AI_Items:
 	jp .DontUse
 
 .CheckQuarterHP:
-	callfar AICheckEnemyQuarterHP
+	call AICheckEnemyQuarterHP
 	jp c, .DontUse
 	call Random
 	cp 20 percent - 1
@@ -363,9 +363,9 @@ AI_Items:
 	jp .Use
 
 .CheckHalfOrQuarterHP:
-	callfar AICheckEnemyHalfHP
+	call AICheckEnemyHalfHP
 	jp c, .DontUse
-	callfar AICheckEnemyQuarterHP
+	call AICheckEnemyQuarterHP
 	jp nc, .Use
 	call Random
 	cp 20 percent - 1

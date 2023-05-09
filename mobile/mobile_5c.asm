@@ -319,7 +319,7 @@ Function1719ed:
 	ld [wcd4b], a
 	call ClearBGPalettes
 	call ClearSprites
-	farcall Function171d2b
+	call Function171d2b
 	farcall ReloadMapPart
 	farcall ClearSpriteAnims
 	ret
@@ -385,7 +385,7 @@ Function171a5d:
 	ret
 
 Function171a95:
-	farcall Function171ccd
+	call Function171ccd
 	hlcoord 2, 8
 	ld de, String_171aa7
 	call PlaceString
