@@ -82,7 +82,6 @@ PoliwrathFrontpic:   INCBIN "gfx/pokemon/poliwrath/front.animated.2bpp.lz"
 ScytherFrontpic:     INCBIN "gfx/pokemon/scyther/front.animated.2bpp.lz"
 AerodactylFrontpic:  INCBIN "gfx/pokemon/aerodactyl/front.animated.2bpp.lz"
 SeakingFrontpic:     INCBIN "gfx/pokemon/seaking/front.animated.2bpp.lz"
-MukFrontpic:         INCBIN "gfx/pokemon/muk/front.animated.2bpp.lz"
 CroconawFrontpic:    INCBIN "gfx/pokemon/croconaw/front.animated.2bpp.lz"
 HypnoFrontpic:       INCBIN "gfx/pokemon/hypno/front.animated.2bpp.lz"
 NidorinoFrontpic:    INCBIN "gfx/pokemon/nidorino/front.animated.2bpp.lz"
@@ -223,7 +222,6 @@ BikerPic:            INCBIN "gfx/trainers/biker.2bpp.lz"
 NidoranMFrontpic:    INCBIN "gfx/pokemon/nidoran_m/front.animated.2bpp.lz"
 PorygonFrontpic:     INCBIN "gfx/pokemon/porygon/front.animated.2bpp.lz"
 BrunoPic:            INCBIN "gfx/trainers/bruno.2bpp.lz"
-GrimerFrontpic:      INCBIN "gfx/pokemon/grimer/front.animated.2bpp.lz"
 StaryuFrontpic:      INCBIN "gfx/pokemon/staryu/front.animated.2bpp.lz"
 HikerPic:            INCBIN "gfx/trainers/hiker.2bpp.lz"
 MeowthFrontpic:      INCBIN "gfx/pokemon/meowth/front.animated.2bpp.lz"
@@ -715,6 +713,8 @@ SECTION "Pics 20", ROMX
 
 JumpluffFrontpic:    INCBIN "gfx/pokemon/jumpluff/front.animated.2bpp.lz"
 SmeargleFrontpic:    INCBIN "gfx/pokemon/smeargle/front.animated.2bpp.lz"
+MukFrontpic:         INCBIN "gfx/pokemon/muk/front.animated.2bpp.lz"
+GrimerFrontpic:      INCBIN "gfx/pokemon/grimer/front.animated.2bpp.lz"
 
 
 SECTION "Pics 21", ROMX
