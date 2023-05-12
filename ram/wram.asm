@@ -1593,12 +1593,6 @@ wDebugColorCurColor:: db
 wDebugColorCurMon:: db
 
 NEXTU
-; debug tileset color picker
-wDebugTilesetCurPalette:: db
-wDebugTilesetRGBJumptableIndex:: db
-wDebugTilesetCurColor:: db
-
-NEXTU
 ; stats screen
 wStatsScreenFlags:: db
 
