@@ -395,24 +395,6 @@ CopyNameFromMenu::
 	pop hl
 	ret
 
-
-ColorPickerOptionBox::
-	ld hl, ColorPickerOptionMenuHeader	
-	call LoadMenuHeader
-	call VerticalMenu
-	push af
-	ld c, 15
-	call DelayFrames
-	call CloseWindow
-	pop af
-	ret c ; Cancel
-	ld a, [wMenuCursorY]
-	ret
-
-PlaceGenericTwoOptionBox:: ; unreferenced
-	call LoadMenuHeader
-	jr InterpretTwoOptionMenu
-
 YesNoBox::
 	lb bc, SCREEN_WIDTH - 6, 7
 
@@ -471,20 +453,6 @@ YesNoMenuHeader::
 	db 2
 	db "YES@"
 	db "NO@"
-
-
-ColorPickerOptionMenuHeader::
-	db MENU_BACKUP_TILES ; flags
-	menu_coords 10, 7, 19, 11
-	dw .MenuData
-	db 1 ; default option
-
-.MenuData:
-	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
-	db 2
-	db "POKéMON@"
-	db "TRAINER@"
-
 
 OffsetMenuHeader::
 	call _OffsetMenuHeader
@@ -716,15 +684,6 @@ PlaceNthMenuStrings::
 	ld e, a
 	pop hl
 	jp PlaceString
-
-GetNthMenuStrings:: ; unreferenced
-	call GetMenuDataPointerTableEntry
-	inc hl
-	inc hl
-	ld a, [hli]
-	ld d, [hl]
-	ld e, a
-	ret
 
 MenuJumptable::
 	ld a, [wMenuSelection]

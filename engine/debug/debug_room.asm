@@ -1630,8 +1630,16 @@ DebugRoomMenu_BTBugPoke:
 	done
 
 DebugRoomMenu_ColorPicker:
-	call ColorPickerOptionBox
+	ld hl, .MenuHeader	
+	call LoadMenuHeader
+	call VerticalMenu
+	push af
+	ld c, 15
+	call DelayFrames
+	call CloseWindow
+	pop af
 	ret c ; Cancel
+	ld a, [wMenuCursorY]
 	dec a
 	jr z, .pokemon
 ; Trainer
@@ -1639,6 +1647,18 @@ DebugRoomMenu_ColorPicker:
 .pokemon
 	farcall DebugColorPicker
 	ret
+
+.MenuHeader:
+	db MENU_BACKUP_TILES ; flags
+	menu_coords 10, 7, 19, 11
+	dw .MenuData
+	db 1 ; default option
+
+.MenuData:
+	db STATICMENU_CURSOR | STATICMENU_NO_TOP_SPACING ; flags
+	db 2
+	db "POKéMON@"
+	db "TRAINER@"
 
 DebugRoomMenu_FightMenu:
 ;	farcall DebugFightMenu
