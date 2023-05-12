@@ -74,9 +74,14 @@ DebugColorPicker:
 	ld [wDebugColorIsTrainer], a
 	pop af
 	ldh [hInMenu], a
+	call DisableLCD
+	call DebugColor_InitVRAM
 	farcall LoadFontsExtra
 	farcall LoadStandardFont
-	jp SetPalettes
+	call SetPalettes
+	call EnableLCD
+	ld de, MUSIC_MAIN_MENU
+	jp PlayMusic
 
 DebugColor_InitMonOrTrainerColor:
 	ld a, [wDebugColorIsTrainer]
@@ -788,10 +793,10 @@ DebugColor_PrintTMHMMove:
 	jp PlaceString
 
 .AbleText:
-	db "Can Learn@" ; Learnable"
+	db "Can learn@" ; Learnable"
 
 .NotAbleText:
-	db "Can't Learn@"; Not learnable
+	db "Can't learn@"; Not learnable
 
 .GetNumberedTMHM:
 	cp NUM_TMS
@@ -1024,9 +1029,9 @@ DebugColor_PlaceCursor:
 	ret
 
 DebugColor_AreYouFinishedString:
-	db   "Done?"             ; Are you finished?
-	next "YES<DOT><DOT>", DEBUGTEST_A     ; YES..(A)
-	next "NO<DOT><DOT><DOT>", DEBUGTEST_B ; NO...(B)
+	db   "Done?"             			  ; Are you finished?
+	next "Yes<DOT><DOT>", DEBUGTEST_A     ; YES..(A)
+	next "No<DOT><DOT><DOT>", DEBUGTEST_B ; NO...(B)
 	db   "@"
 
 DebugColor_UpArrowGFX:
