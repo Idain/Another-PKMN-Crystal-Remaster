@@ -24,4 +24,5 @@ MACRO homecall
 	call \1
 	pop af
 	rst Bankswitch
+	assert warn, BANK(\1) != 0, "unnecessary `homecall \1`"
 ENDM
