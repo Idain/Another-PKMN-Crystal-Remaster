@@ -130,9 +130,10 @@ RestartDebugFightMenu:
 	xor a
 	ld [wCurPartyMon], a
 	ld [wEnemyMon], a
-	ld [wEnemyMonLevel], a
 	ld [wTrainerClass], a
-	ld bc, 0
+	inc a
+	ld [wEnemyMonLevel], a
+	lb bc, 0, 1
 	ld hl, wOTPartyCount
 	call DebugFight_ResetParty
 	ld hl, wPartyCount
@@ -688,7 +689,7 @@ DebugFight_StartButton:
 	call PlaceString
 
 	hlcoord 1, 6
-	ld de, DebugFight_OpponentPartyHeaderText1
+	ld de, DebugFight_OpponentWildmonHeaderText
 	call PlaceString
 
 	hlcoord 0, 9
@@ -784,9 +785,6 @@ DebugFight_EnemyHeader:
 	jr .HandleJoypad
 
 .SwitchBattleMode:
-	hlcoord 1, 8
-	ld de, DebugFight_OpponentPartyHeaderText2
-	call PlaceString
 	hlcoord 5, 7
 	ld de, DebugFight_EmptyText
 	call PlaceString
@@ -807,11 +805,15 @@ DebugFight_EnemyHeader:
 	ld de, DebugFight_TrainerText
 	call PlaceString
 
+	hlcoord 1, 6
+	ld de, DebugFight_OpponentTrainerHeaderText
+	call PlaceString
+
 	hlcoord 0, 9
 	lb bc, (SCREEN_HEIGHT / 2), SCREEN_WIDTH
 	call ClearBox
-	ld bc, 0 ; Reset values of b and c
-	jp .HandleJoypad
+	lb bc, 0, 1 ; Reset values of b and c
+	jr .HandleJoypad
 
 .switch_to_wild:
 	ld a, WILD_BATTLE
@@ -821,10 +823,14 @@ DebugFight_EnemyHeader:
 	ld de, DebugFight_WildMonsterText
 	call PlaceString
 
+	hlcoord 1, 6
+	ld de, DebugFight_OpponentWildmonHeaderText
+	call PlaceString
+
 	hlcoord 0, 9
 	lb bc, (SCREEN_HEIGHT / 2), SCREEN_WIDTH
 	call ClearBox
-	ld bc, 0 ; Reset values of b and c
+	lb bc, 0, 1 ; Reset values of b and c
 	jp .HandleJoypad
 
 DebugFight_EnemyParty:
@@ -1443,12 +1449,12 @@ DebugFight_PlayerPartyHeaderText:
 	db "№．  Name       LVL@"
 
 DebugFight_DefaultPlayerPartyText:
-	db "000 ーーーーーーーーーー 000<NEXT>"
-	db "000 ーーーーーーーーーー 000<NEXT>"
-	db "000 ーーーーーーーーーー 000<NEXT>"
-	db "000 ーーーーーーーーーー 000<NEXT>"
-	db "000 ーーーーーーーーーー 000<NEXT>"
-	db "000 ーーーーーーーーーー 000@"
+	db "000 ーーーーーーーーーー 001<NEXT>"
+	db "000 ーーーーーーーーーー 001<NEXT>"
+	db "000 ーーーーーーーーーー 001<NEXT>"
+	db "000 ーーーーーーーーーー 001<NEXT>"
+	db "000 ーーーーーーーーーー 001<NEXT>"
+	db "000 ーーーーーーーーーー 001@"
 
 DebugFight_EmptyText:
 	db "          @"
@@ -1462,11 +1468,15 @@ DebugFight_WildMonsterText:
 DebugFight_TrainerText:
 	db "Trainer@" ; Trainer
 
-DebugFight_OpponentPartyHeaderText1:
+DebugFight_OpponentWildmonHeaderText:
     ;  No.   Name       LVL
 	db "№．  Name       LVL<NEXT>"
-DebugFight_OpponentPartyHeaderText2:
-	db "000 ーーーーーーーーーー 000@"
+	db "000 ーーーーーーーーーー 001@"
+
+DebugFight_OpponentTrainerHeaderText:
+    ;  No.   Class       ID
+	db "№．  Class       ID<NEXT>"
+	db "000 ーーーーーーーーーー 001@"
 
 DebugFight_GoldText:
 	db "GOLD@@"
