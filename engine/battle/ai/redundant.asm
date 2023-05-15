@@ -101,9 +101,9 @@ AI_Redundant:
 .Snore:
 .SleepTalk:
 	ld a, [wEnemyMonStatus]
+	cpl
 	and SLP_MASK
-	jr z, .Redundant
-	jr .NotRedundant
+	ret
 
 .MeanLook:
 	ld a, [wEnemySubStatus5]
@@ -165,9 +165,9 @@ AI_Redundant:
 
 .DreamEater:
 	ld a, [wBattleMonStatus]
+	cpl
 	and SLP_MASK
-	jr z, .Redundant
-	jr .NotRedundant
+	ret
 
 .Swagger:
 	ld a, [wPlayerSubStatus3]

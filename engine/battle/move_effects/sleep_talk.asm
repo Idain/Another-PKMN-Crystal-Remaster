@@ -115,7 +115,7 @@ BattleCommand_SleepTalk:
 	ret
 
 .check_unselectable_move  
-; If move can´t be selected, set Carry flag.
+; If move can't be selected, set Carry flag.
 	push hl
 	push de
 	push bc
