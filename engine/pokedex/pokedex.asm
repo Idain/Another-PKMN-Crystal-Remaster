@@ -1451,8 +1451,7 @@ Pokedex_PrintListing:
 	add a
 	inc a
 	ld b, a
-	ld a, " "
-	call FillBoxWithByte
+	call ClearBox
 
 ; Load de with wPokedexOrder + [wDexListingScrollOffset]
 	ld a, [wDexListingScrollOffset]
@@ -1814,8 +1813,7 @@ Pokedex_PlaceSearchScreenTypeStrings:
 	ldh [hBGMapMode], a
 	hlcoord 9, 3
 	lb bc, 4, 8
-	ld a, " "
-	call FillBoxWithByte
+	call ClearBox
 	ld a, [wDexSearchMonType1]
 	hlcoord 9, 4
 	call Pokedex_PlaceTypeString

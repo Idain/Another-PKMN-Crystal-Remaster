@@ -1295,10 +1295,9 @@ CheckAndSetMysteryGiftDecorationAlreadyReceived:
 	ld d, 0
 	ld b, CHECK_FLAG
 	ld hl, sMysteryGiftDecorationsReceived
-	lda_predef SmallFarFlagAction
 	push hl
 	push bc
-	call Predef
+	predef SmallFarFlagAction
 	call CloseSRAM
 	ld a, c
 	and a
@@ -1342,21 +1341,19 @@ UnlockMysteryGift:
 	ld hl, sMysteryGiftUnlocked
 	ld a, [hl]
 	inc a
-	jr nz, .ok
+	jp nz, CloseSRAM
 	ld [hld], a
 	assert sMysteryGiftUnlocked - 1 == sMysteryGiftItem
 	ld [hl], a
-.ok
 	jp CloseSRAM
 
 ResetDailyMysteryGiftLimitIfUnlocked:
 	call GetMysteryGiftBank
 	ld a, [sNumDailyMysteryGiftPartnerIDs]
 	cp -1 ; locked?
-	jr z, .dont_clear
+	jp z, CloseSRAM
 	xor a
 	ld [sNumDailyMysteryGiftPartnerIDs], a
-.dont_clear
 	jp CloseSRAM
 
 BackupMysteryGift:
