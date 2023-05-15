@@ -1,33 +1,99 @@
 DebugFightMenu:
-	ld a, 1
+	ldh a, [hInMenu]
+	push af
+	ld a, TRUE
 	ldh [hInMenu], a
+	ld de, MUSIC_NONE
+	call PlayMusic
 
-; All pokemon will obey
-	ld a, 1 << RISINGBADGE
-	ld [wJohtoBadges], a
+RestartDebugFightMenu:
+; All Pokémon will obey
+	ld a, 1 << EARTHBADGE
+	ld [wKantoBadges], a
 
 ; Zero out number of items
-	ld hl, wNumKeyItems
-	xor a
-	ld [hli], a
-	dec a
-	ld [hl], a
-
-	xor a
-	ld hl, wNumBalls
-	ld [hli], a
-	dec a
-	ld [hl], a
 
 	ld hl, wNumItems
 	xor a
 	ld [hli], a
 	dec a
-	ld [hld], a
+	ld [hli], a
+	inc a
+	ld bc, MAX_ITEMS * 2 
+	call ByteFill
+
+;	ld hl, wNumKeyItems
+	ld [hli], a
+	dec a
+	ld [hli], a
+	inc a
+	ld bc, MAX_KEY_ITEMS
+	call ByteFill
+
+;	ld hl, wNumBalls
+	ld [hli], a
+	dec a
+	ld [hli], a 
+	inc a
+	ld bc, MAX_BALLS * 2
+	call ByteFill
+	
+;	ld hl, wNumBerries
+	ld [hli], a
+	dec a
+	ld [hli], a
+	inc a
+	ld bc, MAX_BERRIES * 2
+	call ByteFill
+
+;	ld hl, wNumMedicines
+	ld [hli], a
+	dec a
+	ld [hli], a
+	inc a
+	ld bc, MAX_MEDICINE * 2
+	call ByteFill
+
+; Load medicine data
+	ld hl, wNumMedicines
+	ld de, DebugFight_MedicineData
+.loop_medicine
+	ld a, [de]
+	cp -1
+	jr z, .load_items
+	inc de
+	ld [wCurItem], a
+	ld a, [de]
+	inc de
+	ld [wItemQuantityChange], a
+	push de
+	call ReceiveItem
+	pop de
+	jr .loop_medicine
 
 ; Load item data
-	ld de, DebugFight_ItemData
 .load_items
+	ld hl, wNumItems
+	ld de, DebugFight_ItemData
+.loop_items
+	ld a, [de]
+	cp -1
+	jr z, .load_balls
+	inc de
+	ld [wCurItem], a
+	ld a, [de]
+	inc de
+	ld [wItemQuantityChange], a
+	push de
+	call ReceiveItem
+	pop de
+	jr .loop_items
+
+; Load Ball data
+.load_balls
+	ld hl, wNumBalls
+	ld de, DebugFight_PokeBallData
+.loop_balls
 	ld a, [de]
 	cp -1
 	jr z, .ChoosePlayerParty
@@ -39,7 +105,7 @@ DebugFightMenu:
 	push de
 	call ReceiveItem
 	pop de
-	jr .load_items
+	jr .loop_balls
 
 .ChoosePlayerParty:
 	callfar StatsScreen_LoadFont
@@ -47,18 +113,16 @@ DebugFightMenu:
 	call ClearSprites
 
 	hlcoord 0, 0
-	ld b, 1
-	ld c, 18
+	lb bc, 1, SCREEN_WIDTH - 2
 	call Textbox
-
-	hlcoord 6, 1
+	hlcoord 5, 1
 	ld de, DebugFight_TestFightText
 	call PlaceString
-
-	hlcoord 4, 4
+	hlcoord 1, 4
 	ld de, DebugFight_PlayerPartyHeaderText
 	call PlaceString
-
+	hlcoord 0, 6
+	ld [hl], "▶"
 	hlcoord 1, 6
 	ld de, DebugFight_DefaultPlayerPartyText
 	call PlaceString
@@ -68,16 +132,14 @@ DebugFightMenu:
 	ld [wEnemyMon], a
 	ld [wEnemyMonLevel], a
 	ld [wTrainerClass], a
-	ld [wdcb3], a
-	ld b, a
-	ld c, a
-	ld hl, wOTPartySpecies
+	ld bc, 0
+	ld hl, wOTPartyCount
 	call DebugFight_ResetParty
 	ld hl, wPartyCount
 	call DebugFight_ResetParty
 
 	ld de, wPartySpecies
-	hlcoord 4, 6
+	hlcoord 1, 6
 
 DebugFight_PlaceArrow:
 	push hl
@@ -85,7 +147,7 @@ DebugFight_PlaceArrow:
 	dec hl
 	ld a, "▶"
 	ld [hl], a
-	ld bc, 11
+	ld bc, 15
 	add hl, bc
 	ld a, " "
 	ld [hl], a
@@ -118,9 +180,12 @@ DebugFight_SpeciesJoypad:
 	bit SELECT_F, a
 	jr z, DebugFight_SpeciesJoypad
 ; If SELECT is pressed, return to the Debug Menu
+	pop af
+	ldh [hInMenu], a
 	ld hl, wDebugFlags
-	res 0, [hl]
-	predef_jump DebugMenu
+	res DEBUG_BATTLE_F, [hl]
+	ld de, MUSIC_MAIN_MENU
+	jp PlayMusic
 
 DebugFight_ResetParty:
 	xor a
@@ -131,32 +196,23 @@ ENDR
 	ret
 
 DebugFight_ItemData:
-	db MASTER_BALL,  99
-	db ULTRA_BALL,   99
-	db GREAT_BALL,   99
-	db POKE_BALL,    99
-	db HEAVY_BALL,   99
-	db LEVEL_BALL,   99
-	db LURE_BALL ,   99
-	db FAST_BALL,    99
-	db FRIEND_BALL,  99
-	db MOON_BALL,    99
-	db LOVE_BALL,    99
-
-	db FULL_RESTORE, 99
-	db REVIVE,       99
-	db MAX_REVIVE,   99
 	db X_ATTACK,     99
 	db X_DEFEND,     99
 	db X_SPEED,      99
 	db X_SPECIAL,    99
-	db ETHER,        99
-	db MAX_ETHER,    99
-	db ELIXER,       99
+	db X_SP_DEF,	 99
 	db GUARD_SPEC,   99
 	db POKE_DOLL,    99
 	db X_ACCURACY,   99
+	db -1
 
+DebugFight_MedicineData:
+	db FULL_RESTORE, 99
+	db REVIVE,       99
+	db MAX_REVIVE,   99
+	db ETHER,        99
+	db MAX_ETHER,    99
+	db ELIXER,       99
 	db FULL_HEAL,    99
 	db SUPER_POTION, 99
 	db ANTIDOTE,     99
@@ -166,10 +222,24 @@ DebugFight_ItemData:
 	db PARLYZ_HEAL,  99
 	db -1
 
+DebugFight_PokeBallData:
+	db MASTER_BALL,  99
+	db ULTRA_BALL,   99
+	db GREAT_BALL,   99
+	db POKE_BALL,    99
+	db HEAVY_BALL,   99
+	db LEVEL_BALL,   99
+	db LURE_BALL,    99
+	db FAST_BALL,    99
+	db FRIEND_BALL,  99
+	db MOON_BALL,    99
+	db LOVE_BALL,    99
+	db -1
+
 DebugFight_IncrementSpecies:
 	inc b
 	ld a, b
-	cp EGG + 1
+	cp EGG
 	jr c, DebugFight_DisplaySpeciesID
 	xor a
 	ld b, a
@@ -198,8 +268,8 @@ DebugFight_DisplaySpeciesID:
 	ld a, [wTempByteValue]
 	and a
 	jr nz, .print_monstername
-; If current mon is species 000, print "-----"
-	ld de, DebugFight_ChouonpuText
+; If current mon is species 000, print "----------"
+	ld de, DebugFight_DefaultSpeciesText
 	jr .dex_zero
 
 .print_monstername
@@ -215,9 +285,9 @@ DebugFight_DisplaySpeciesID:
 DebugFight_DecrementSpecies:
 	dec b
 	ld a, b
-	cp EGG + 1
+	cp NUM_POKEMON + 1
 	jp c, DebugFight_DisplaySpeciesID
-	ld a, EGG
+	ld a, NUM_POKEMON ; last Pokémon in Pokédex
 	ld b, a
 	jp DebugFight_DisplaySpeciesID
 
@@ -281,7 +351,7 @@ DebugFight_ChangeToLevelColumn:
 	ld a, " "
 	ld [hl], a
 ; Go to the level column
-	ld bc, 11
+	ld bc, 15
 	add hl, bc
 ; Place cursor
 	ld a, "▶"
@@ -336,7 +406,7 @@ DebugFight_DisplayLevel:
 	ld [de], a
 	push bc
 	push hl
-	ld bc, 11
+	ld bc, 15
 	add hl, bc
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 3
 	call PrintNum
@@ -370,7 +440,7 @@ DebugFight_PreviousLevel:
 	dec de
 ; Blank out cursor
 	push hl ; save current pos (in species no. column)
-	ld bc, 10
+	ld bc, 14
 	add hl, bc ; move to level cursor column (x = x + 10)
 	ld a, " "
 	ld [hl], a
@@ -379,7 +449,7 @@ DebugFight_PreviousLevel:
 	ld bc, -2 * SCREEN_WIDTH
 	add hl, bc ; move two lines up (y = y - 2)
 	push hl
-	ld bc, 10
+	ld bc, 14
 	add hl, bc
 	ld a, "▶"
 	ld [hl], a
@@ -399,7 +469,7 @@ DebugFight_NextLevel:
 	inc de
 ; Blank out cursor
 	push hl
-	ld bc, 10
+	ld bc, 14
 	add hl, bc
 	ld a, " "
 	ld [hl], a
@@ -408,7 +478,7 @@ DebugFight_NextLevel:
 	ld bc, 2 * SCREEN_WIDTH
 	add hl, bc
 	push hl
-	ld bc, 10
+	ld bc, 14
 	add hl, bc
 	ld a, "▶"
 	ld [hl], a
@@ -444,6 +514,104 @@ DebugFight_GetSpeciesAndLevel:
 	ld c, a
 	ret
 
+DebugFight_SelectButton:
+	hlcoord 0, 3
+	lb bc, SCREEN_HEIGHT - 3, SCREEN_WIDTH
+	call ClearBox
+; Give time to clear
+	ld c, 20
+	call DelayFrames
+
+; Clear Battle Mode
+	xor a
+	ld [wBattleMode], a
+	
+	hlcoord 5, 1
+	ld de, DebugFight_TestFightText
+	call PlaceString
+	hlcoord 1, 4
+	ld de, DebugFight_PlayerPartyHeaderText
+	call PlaceString
+	hlcoord 0, 6
+	ld [hl], "▶"
+	hlcoord 1, 6
+	ld de, DebugFight_DefaultPlayerPartyText
+	call PlaceString
+
+	ld de, wPartyCount
+	xor a
+	ld [de], a
+	ld [wCurPartyMon], a
+	inc de
+	hlcoord 1, 6
+	push de
+	push hl
+
+.Function_5683:
+	ld a, [wCurPartyMon]
+	ld de, wPartySpecies
+	add e
+	ld e, a
+	jr nc, .asm_568e
+	inc d
+.asm_568e:
+	ld a, [de]
+	cp -1
+	jr z, .Function_56e9
+
+	ld [wTempByteValue], a
+	push hl
+	lb bc, PRINTNUM_LEADINGZEROS | 1, 3
+	call PrintNum
+	inc hl
+	ld de, DebugFight_EmptyText
+	call PlaceString
+	call GetPokemonName
+	call PlaceString
+	pop hl
+
+	push hl
+	ld bc, 15
+	add hl, bc
+	push hl
+	ld a, MON_LEVEL
+	call GetPartyParamLocation
+	ld d, h
+	ld e, l
+	ld a, [de]
+	ld [wCurPartyLevel], a
+	pop hl
+	lb bc, PRINTNUM_LEADINGZEROS | 1, 3
+	call PrintNum
+
+	ld a, [wCurPartyMon]
+	ld de, wDebugFightMonLevel
+	add e
+	ld e, a
+	jr nc, .asm_56d6
+	inc d
+.asm_56d6:
+	ld a, [wCurPartyLevel]
+	ld [de], a
+	pop hl
+	ld a, [wCurPartyMon]
+	inc a
+	ld [wCurPartyMon], a
+	ld bc, 2 * SCREEN_WIDTH
+	add hl, bc
+	jr .Function_5683
+
+.Function_56e9:
+	pop hl
+	pop de
+	ld a, [wPartyMon1]
+	ld b, a
+	ld a, [wPartyMon1Level]
+	ld c, a
+	xor a
+	ld [wCurPartyMon], a
+	jp DebugFight_PlaceArrow
+
 DebugFight_StartButton:
 ; Player's mon selection screen
 	ld hl, wPartyCount
@@ -453,7 +621,7 @@ DebugFight_StartButton:
 	inc hl
 	ld a, [hli]
 	ld b, a
-; Loop for all pokemon in party
+; Loop for all Pokémon in party
 	ld c, PARTY_LENGTH
 	xor a
 	ld [wBattleMode], a
@@ -494,7 +662,7 @@ DebugFight_StartButton:
 .check_mon2:
 	inc de
 	dec b
-	jp z, DebugFightMenu
+	jp z, RestartDebugFightMenu
 ; Check species
 	ld a, [hli]
 	and a
@@ -504,15 +672,8 @@ DebugFight_StartButton:
 	and a
 	jr z, .check_mon2
 
-; Clear three times just to be safe
 	hlcoord 0, 3
-	lb bc, 15, 20
-	call ClearBox
-	hlcoord 0, 3
-	lb bc, 15, 20
-	call ClearBox
-	hlcoord 0, 3
-	lb bc, 15, 20
+	lb bc, SCREEN_HEIGHT - 3, SCREEN_WIDTH
 	call ClearBox
 ; Give time to clear
 	ld c, 20
@@ -522,15 +683,6 @@ DebugFight_StartButton:
 	ld a, WILD_BATTLE
 	ld [wBattleMode], a
 	ld de, DebugFight_WildMonsterText
-
-	ld a, [wdcb3]
-	cp 101
-	jr c, .place_text
-
-	ld a, TRAINER_BATTLE
-	ld [wBattleMode], a
-	ld de, DebugFight_TrainerText
-.place_text:
 ; Setup opponent selection screen UI
 	hlcoord 1, 4
 	call PlaceString
@@ -540,7 +692,7 @@ DebugFight_StartButton:
 	call PlaceString
 
 	hlcoord 0, 9
-	lb bc, 9, 20
+	lb bc, (SCREEN_HEIGHT / 2), SCREEN_WIDTH
 	call ClearBox
 
 	ld a, [wEnemyMonSpecies]
@@ -559,7 +711,7 @@ DebugFight_StartButton:
 	call PrintNum
 
 	hlcoord 5, 8
-	ld de, DebugFight_EmptyText2
+	ld de, DebugFight_EmptyText
 	call PlaceString
 
 	ld a, [wTrainerClass]
@@ -587,7 +739,7 @@ DebugFight_StartButton:
 	call PrintNum
 ; Display name
 	hlcoord 5, 8
-	ld de, DebugFight_EmptyText2
+	ld de, DebugFight_EmptyText
 	call PlaceString
 	call GetPokemonName
 	hlcoord 5, 8
@@ -627,6 +779,8 @@ DebugFight_EnemyHeader:
 	jp nz, DebugFight_TryStartBattle
 	bit D_DOWN_F, a
 	jp nz, DebugFight_EnemyParty
+	bit SELECT_F, a
+	jp nz, DebugFight_SelectButton
 	jr .HandleJoypad
 
 .SwitchBattleMode:
@@ -634,7 +788,7 @@ DebugFight_EnemyHeader:
 	ld de, DebugFight_OpponentPartyHeaderText2
 	call PlaceString
 	hlcoord 5, 7
-	ld de, DebugFight_EmptyText2
+	ld de, DebugFight_EmptyText
 	call PlaceString
 	xor a
 	ld b, a
@@ -647,33 +801,29 @@ DebugFight_EnemyHeader:
 	ld a, TRAINER_BATTLE
 	ld [wBattleMode], a
 ; Remove dakuten leftover from "wild monster" text
-	ld a, " "
-	ldcoord_a 4, 3
+	hlcoord 8, 4
+	lb bc, 1, 5
+	call ClearBox
 ; Place text
 	hlcoord 1, 4
 	ld de, DebugFight_TrainerText
 	call PlaceString
 
 	hlcoord 0, 9
-	ld b, 9
-	ld c, SCREEN_WIDTH
+	lb bc, (SCREEN_HEIGHT / 2), SCREEN_WIDTH
 	call ClearBox
 	jp .HandleJoypad
 
 .switch_to_wild:
 	ld a, WILD_BATTLE
 	ld [wBattleMode], a
-; Remove dakuten leftover from "trainer" text
-	ld a, " "
-	ldcoord_a 1, 3
 ; Place text
 	hlcoord 1, 4
 	ld de, DebugFight_WildMonsterText
 	call PlaceString
 
 	hlcoord 0, 9
-	ld b, 9
-	ld c, SCREEN_WIDTH
+	lb bc, (SCREEN_HEIGHT / 2), SCREEN_WIDTH
 	call ClearBox
 	jp .HandleJoypad
 
@@ -705,6 +855,8 @@ DebugFight_EnemyPartyJoypad:
 	jp nz, DebugFight_EnemyHeader
 	bit D_DOWN_F, a
 	jp nz, DebugFight_EnemyMoves
+	bit SELECT_F, a
+	jp nz, DebugFight_SelectButton
 	jr DebugFight_EnemyPartyJoypad
 
 
@@ -712,11 +864,11 @@ DebugFight_EnemyPartyJoypad:
 ; Clear out diacritics
 	push bc
 	hlcoord 5, 7
-	ld de, DebugFight_EmptyText2
+	ld de, DebugFight_EmptyText
 	call PlaceString
 ; Clear out name
 	hlcoord 5, 8
-	ld de, DebugFight_EmptyText2
+	ld de, DebugFight_EmptyText
 	call PlaceString
 	pop bc
 ; Check battle mode
@@ -754,7 +906,7 @@ DebugFight_EnemyPartyJoypad:
 .increment_mon:
 	inc b
 	ld a, b
-	cp EGG + 1
+	cp EGG
 	jr c, .DisplayPokemon
 	ld b, 1
 
@@ -767,7 +919,7 @@ DebugFight_EnemyPartyJoypad:
 	push bc
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 3
 	call PrintNum
-; Print pokemon name
+; Print Pokémon name
 	call GetPokemonName
 	hlcoord 5, 8
 	call PlaceString
@@ -780,10 +932,10 @@ DebugFight_EnemyPartyJoypad:
 ; Display text
 	push bc
 	hlcoord 5, 7
-	ld de, DebugFight_EmptyText2
+	ld de, DebugFight_EmptyText
 	call PlaceString
 	hlcoord 5, 8
-	ld de, DebugFight_EmptyText2
+	ld de, DebugFight_EmptyText
 	call PlaceString
 	pop bc
 ; Check battle mode
@@ -800,19 +952,19 @@ DebugFight_EnemyPartyJoypad:
 	jp nz, .DisplayTrainer
 
 .invalid_trainer
-	ld b, NUM_TRAINER_CLASSES - 6 ; ???
+	ld b, NUM_TRAINER_CLASSES
 	jp .DisplayTrainer
 
 .decrement_mon
 	dec b
 	ld a, b
-	cp EGG + 1
+	cp EGG
 	jr nc, .invalid_mon
 	and a
 	jp nz, .DisplayPokemon
 
 .invalid_mon
-	ld b, EGG
+	ld b, EGG - 1
 	jp .DisplayPokemon
 
 
@@ -841,6 +993,8 @@ DebugFight_EnemyLevelJoypad:
 	jp nz, DebugFight_EnemyHeader
 	bit D_DOWN_F, a
 	jp nz, DebugFight_EnemyMoves
+	bit SELECT_F, a
+	jp nz, DebugFight_SelectButton
 	jr DebugFight_EnemyLevelJoypad
 
 .IncrementLevel:
@@ -885,25 +1039,22 @@ DebugFight_UpdateAllMoves:
 	ld [wCurPartySpecies], a
 ; Clear out old moves
 	hlcoord 0, 9
-	ld b, 9
-	ld c, 20
+	lb bc, (SCREEN_HEIGHT / 2), SCREEN_WIDTH
 	call ClearBox
 	xor a
-	ld [wFieldMoveJumptableIndex], a
+	ld [wListMovesLineSpacing], a
 	ld hl, wListMoves_MoveIndicesBuffer
 	ld bc, NUM_MOVES
 	call ByteFill
 ; Load new moves based on level?
 	ld de, wListMoves_MoveIndicesBuffer
 	predef FillMoves
-	ld a, 40
-	ld [wFieldMoveJumptableIndex], a
+	ld a, SCREEN_WIDTH * 2
+	ld [wListMovesLineSpacing], a
 	hlcoord 5, 10
-	predef unk_014_547a
+	predef ListMoves
 
-	call DebugFight_PlacePPText
-
-; Print each move and its Max PP amount
+; Print each move and its PP amount
 	hlcoord 1, 10
 	ld de, wListMoves_MoveIndicesBuffer
 	ld b, NUM_MOVES
@@ -923,17 +1074,17 @@ DebugFight_UpdateAllMoves:
 	push af
 	call PrintNum
 	pop af
-; Get Max PP from current move
+; Get PP from current move
 	dec a
-	ld hl, Moves + 5
-	ld bc, 7
+	ld hl, Moves + MOVE_PP
+	ld bc, MOVE_LENGTH
 	call AddNTimes
 	ld a, BANK(Moves)
 	call GetFarByte
 	ld de, wStringBuffer1
 	ld [de], a
 	pop hl
-; Switch to Max PP column and print
+; Switch to PP column and print
 	ld bc, 15
 	add hl, bc
 	lb bc, $01, 3
@@ -1043,7 +1194,7 @@ DebugFight_EnemyMovesJoypad:
 	push hl
 	ld bc, -1 * SCREEN_WIDTH + 1
 	add hl, bc
-	lb bc, 2, 11
+	lb bc, 2, 16
 	call ClearBox
 	pop hl
 ; Clear move PP amount
@@ -1061,7 +1212,7 @@ DebugFight_EnemyMovesJoypad:
 	call PrintNum
 ; Print move name
 	ld a, MOVE_NAME
-	ld [wNamedObjectTypeBuffer], a
+	ld [wNamedObjectType], a
 	call GetName
 	ld de, wStringBuffer1
 	inc hl ; space after move id
@@ -1069,8 +1220,8 @@ DebugFight_EnemyMovesJoypad:
 ; Get move's max PP
 	ld a, [wCurSpecies]
 	dec a
-	ld hl, Moves + 5
-	ld bc, 7
+	ld hl, Moves + MOVE_PP
+	ld bc, MOVE_LENGTH
 	call AddNTimes
 	ld a, BANK(Moves)
 	call GetFarByte
@@ -1133,19 +1284,6 @@ DebugFight_EnemyMovesJoypad:
 	pop bc
 	jp DebugFight_TryStartBattle
 
-DebugFight_PlacePPText:
-	hlcoord 13, 10
-	ld de, 2 * SCREEN_WIDTH - 1
-	ld b, NUM_MOVES
-	ld a, "P"
-.loop
-	ld [hli], a
-	ld [hl], a
-	add hl, de
-	dec b
-	jr nz, .loop
-	ret
-
 DebugFight_TryStartBattle:
 ; c = Level
 ; b = ID
@@ -1175,25 +1313,22 @@ DebugFight_TryStartBattle:
 
 .asm_5601:
 	call SetPalettes
-; All pokemon will obey
-	ld a, 1 << RISINGBADGE
-	ld [wJohtoBadges], a
+; All Pokémon will obey
+	ld a, 1 << EARTHBADGE
+	ld [wKantoBadges], a
 ; Set player name
 	ld hl, DebugFight_GoldText
 	ld de, wPlayerName
 	ld bc, PLAYER_NAME_LENGTH
 	call CopyBytes
 
-	ld a, $16
-	call Predef
+	predef StartBattle
 
-	ld a, 1
+	ld a, TRUE
 	ldh [hBGMapMode], a
 	ldh [hInMenu], a
 
 	xor a
-	ld [wd145], a
-
 	ld hl, wPlayerSubStatus1
 	ld bc, 5
 	call ByteFill
@@ -1211,16 +1346,17 @@ DebugFight_TryStartBattle:
 	call DmgToCgbObjPals
 
 	hlcoord 0, 0
-	ld b, 1
-	ld c, 18
+	lb bc, 1, SCREEN_WIDTH - 2
 	call Textbox
 
-	hlcoord 6, 1
+	hlcoord 5, 1
 	ld de, DebugFight_TestFightText
 	call PlaceString
-	hlcoord 4, 4
+	hlcoord 1, 4
 	ld de, DebugFight_PlayerPartyHeaderText
 	call PlaceString
+	hlcoord 0, 6
+	ld [hl], "▶"
 	hlcoord 1, 6
 	ld de, DebugFight_DefaultPlayerPartyText
 	call PlaceString
@@ -1230,7 +1366,7 @@ DebugFight_TryStartBattle:
 	ld [de], a
 	ld [wCurPartyMon], a
 	inc de
-	hlcoord 4, 6
+	hlcoord 1, 6
 	push de
 	push hl
 
@@ -1244,7 +1380,7 @@ DebugFight_TryStartBattle:
 .asm_568e:
 	ld a, [de]
 	cp -1
-	jp z, .Function_56e9
+	jr z, .Function_56e9
 
 	ld [wTempByteValue], a
 	push hl
@@ -1258,13 +1394,11 @@ DebugFight_TryStartBattle:
 	pop hl
 
 	push hl
-	ld bc, 11
+	ld bc, 15
 	add hl, bc
 	push hl
-	ld a, [wCurPartyMon]
-	ld hl, wPartyMon1Level
-	ld bc, 48
-	call AddNTimes
+	ld a, MON_LEVEL
+	call GetPartyParamLocation
 	ld d, h
 	ld e, l
 	ld a, [de]
@@ -1288,7 +1422,7 @@ DebugFight_TryStartBattle:
 	ld [wCurPartyMon], a
 	ld bc, 2 * SCREEN_WIDTH
 	add hl, bc
-	jp .Function_5683
+	jr .Function_5683
 
 .Function_56e9:
 	pop hl
@@ -1305,48 +1439,34 @@ DebugFight_TestFightText:
 	db "Test Fight@" ; Test Fight
 
 DebugFight_PlayerPartyHeaderText:
-    ;  No.  Name    LVL
-	db "№．  Name    LVL@"
+    ;  No.   Name       LVL
+	db "№．  Name       LVL@"
 
 DebugFight_DefaultPlayerPartyText:
-	db "1．▶000 ーーーーー  000<NEXT>"
-	db "2． 000 ーーーーー  000<NEXT>"
-	db "3． 000 ーーーーー  000<NEXT>"
-	db "4． 000 ーーーーー  000<NEXT>"
-	db "5． 000 ーーーーー  000<NEXT>"
-	db "6． 000 ーーーーー  000@"
+	db "000 ーーーーーーーーーー 000<NEXT>"
+	db "000 ーーーーーーーーーー 000<NEXT>"
+	db "000 ーーーーーーーーーー 000<NEXT>"
+	db "000 ーーーーーーーーーー 000<NEXT>"
+	db "000 ーーーーーーーーーー 000<NEXT>"
+	db "000 ーーーーーーーーーー 000@"
 
 DebugFight_EmptyText:
-	db "     @"
+	db "          @"
 
-DebugFight_ChouonpuText:
-	db "ーーーーー@"
+DebugFight_DefaultSpeciesText:
+	db "ーーーーーーーーーー@"
 
 DebugFight_WildMonsterText:
 	db "Wild Monster@" ; Wild Monster
 
 DebugFight_TrainerText:
-	db "Dealer    @" ; Dealer (Trainer)
+	db "Trainer@" ; Trainer
 
 DebugFight_OpponentPartyHeaderText1:
-    ;  No.  Name        LVL
-	db "№．  Name        LVL<NEXT>"
+    ;  No.   Name       LVL
+	db "№．  Name       LVL<NEXT>"
 DebugFight_OpponentPartyHeaderText2:
 	db "000 ーーーーーーーーーー 000@"
 
-DebugFight_EmptyText2:
-	db "          @"
-
 DebugFight_GoldText:
-	db "Idain@@" ; Supposed to be GOLD, but I'm the master here.
-
-DebugFight_ItemData_Gen1:
-	db GREAT_BALL_RED,   99
-	db POKE_BALL_RED,    99
-	db ANTIDOTE_RED,     99
-	db FULL_RESTORE_RED, 99
-	db MAX_POTION_RED,   99
-	db HYPER_POTION_RED, 99
-	db SUPER_POTION_RED, 99
-	db POTION_RED,       99
-	db -1
+	db "GOLD@@"

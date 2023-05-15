@@ -29,7 +29,7 @@ DEF DEBUGROOMMENU_NUM_PAGES EQU const_value
 	const DEBUGROOMMENUITEM_CHANGE_SEX   			; 13
 	const DEBUGROOMMENUITEM_BT_BUG_POKE  			; 14
 	const DEBUGROOMMENUITEM_COLOR_PICKER	 		; 15
-;	const DEBUGROOMMENUITEM_FIGHT_MENU				; 16
+	const DEBUGROOMMENUITEM_FIGHT_MENU				; 16
 
 _DebugRoom:
 	ldh a, [hDebugRoomMenuPage]
@@ -107,7 +107,7 @@ _DebugRoom:
 	db "CHANGE SEX@"
 	db "BT BUG POKE@"
 	db "COLOR PICKER@"
-;	db "FIGHT MENU@"
+	db "FIGHT MENU@"
 
 .Jumptable:
 ; entries correspond to DEBUGROOMMENUITEM_* constants
@@ -133,7 +133,7 @@ _DebugRoom:
 	dw DebugRoomMenu_ChangeSex
 	dw DebugRoomMenu_BTBugPoke
 	dw DebugRoomMenu_ColorPicker
-;	dw DebugRoomMenu_FightMenu
+	dw DebugRoomMenu_FightMenu
 
 .MenuItems:
 ; entries correspond to DEBUGROOMMENU_* constants
@@ -163,14 +163,14 @@ _DebugRoom:
 	db -1
 
 	; DEBUGROOMMENU_PAGE_3
-	db 7
+	db 8
 	db DEBUGROOMMENUITEM_TEL_DEBUG
 	db DEBUGROOMMENUITEM_SUM_RECALC
 	db DEBUGROOMMENUITEM_RAM_FLAG_CLR
 	db DEBUGROOMMENUITEM_CHANGE_SEX
 	db DEBUGROOMMENUITEM_BT_BUG_POKE
 	db DEBUGROOMMENUITEM_COLOR_PICKER
-;	db DEBUGROOMMENUITEM_FIGHT_MENU
+	db DEBUGROOMMENUITEM_FIGHT_MENU
 	db DEBUGROOMMENUITEM_NEXT
 	db -1
 
@@ -1661,7 +1661,9 @@ DebugRoomMenu_ColorPicker:
 	db "TRAINER@"
 
 DebugRoomMenu_FightMenu:
-;	farcall DebugFightMenu
+	ld hl, wDebugFlags
+	set DEBUG_BATTLE_F, [hl]
+	farcall DebugFightMenu
 	ret
 
 PrintHexNumber:

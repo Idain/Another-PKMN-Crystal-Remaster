@@ -657,12 +657,8 @@ wDebugGreenChannel:: db
 wDebugBlueChannel::  db
 
 NEXTU
-; debug tileset color picker
-wDebugPalette::
-wDebugWhiteTileColor:: ds 2
-wDebugLightTileColor:: ds 2
-wDebugDarkTileColor::  ds 2
-wDebugBlackTileColor:: ds 2
+; debug fight menu
+wDebugFightMonLevel:: db
 
 NEXTU
 wMobileMonSender:: ds NAME_LENGTH_JAPANESE - 1
