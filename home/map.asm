@@ -882,10 +882,6 @@ FillEastConnectionStrip::
 	jr nz, .loop
 	ret
 
-LoadMapStatus::
-	ld [wMapStatus], a
-	ret
-
 CallScript::
 ; Call a script at a:hl.
 
