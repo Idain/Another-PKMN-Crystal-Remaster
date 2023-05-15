@@ -547,17 +547,17 @@ DebugFight_SelectButton:
 	push de
 	push hl
 
-.Function_5683:
+.reprint_party
 	ld a, [wCurPartyMon]
 	ld de, wPartySpecies
 	add e
 	ld e, a
-	jr nc, .asm_568e
+	jr nc, .start_reprint
 	inc d
-.asm_568e:
+.start_reprint
 	ld a, [de]
 	cp -1
-	jr z, .Function_56e9
+	jr z, .finish
 
 	ld [wTempByteValue], a
 	push hl
@@ -588,9 +588,9 @@ DebugFight_SelectButton:
 	ld de, wDebugFightMonLevel
 	add e
 	ld e, a
-	jr nc, .asm_56d6
+	jr nc, .load_level
 	inc d
-.asm_56d6:
+.load_level
 	ld a, [wCurPartyLevel]
 	ld [de], a
 	pop hl
@@ -599,9 +599,9 @@ DebugFight_SelectButton:
 	ld [wCurPartyMon], a
 	ld bc, 2 * SCREEN_WIDTH
 	add hl, bc
-	jr .Function_5683
+	jr .reprint_party
 
-.Function_56e9:
+.finish
 	pop hl
 	pop de
 	ld a, [wPartyMon1]
@@ -791,8 +791,6 @@ DebugFight_EnemyHeader:
 	ld de, DebugFight_EmptyText
 	call PlaceString
 	xor a
-	ld b, a
-	ld c, a
 	ld a, [wBattleMode]
 	dec a
 	jr nz, .switch_to_wild
@@ -812,6 +810,7 @@ DebugFight_EnemyHeader:
 	hlcoord 0, 9
 	lb bc, (SCREEN_HEIGHT / 2), SCREEN_WIDTH
 	call ClearBox
+	ld bc, 0 ; Reset values of b and c
 	jp .HandleJoypad
 
 .switch_to_wild:
@@ -825,6 +824,7 @@ DebugFight_EnemyHeader:
 	hlcoord 0, 9
 	lb bc, (SCREEN_HEIGHT / 2), SCREEN_WIDTH
 	call ClearBox
+	ld bc, 0 ; Reset values of b and c
 	jp .HandleJoypad
 
 DebugFight_EnemyParty:
@@ -1303,7 +1303,7 @@ DebugFight_TryStartBattle:
 	ld [wOtherTrainerClass], a
 	ld a, c
 	ld [wOtherTrainerID], a
-	jr .asm_5601
+	jr .start_battle
 
 .wild
 	ld a, c
@@ -1311,7 +1311,7 @@ DebugFight_TryStartBattle:
 	ld a, b
 	ld [wTempWildMonSpecies], a
 
-.asm_5601:
+.start_battle
 	call SetPalettes
 ; All Pokémon will obey
 	ld a, 1 << EARTHBADGE
@@ -1370,17 +1370,17 @@ DebugFight_TryStartBattle:
 	push de
 	push hl
 
-.Function_5683:
+.reprint_party
 	ld a, [wCurPartyMon]
 	ld de, wPartySpecies
 	add e
 	ld e, a
-	jr nc, .asm_568e
+	jr nc, .start_reprint
 	inc d
-.asm_568e:
+.start_reprint
 	ld a, [de]
 	cp -1
-	jr z, .Function_56e9
+	jr z, .finish
 
 	ld [wTempByteValue], a
 	push hl
@@ -1411,9 +1411,9 @@ DebugFight_TryStartBattle:
 	ld de, wDebugFightMonLevel
 	add e
 	ld e, a
-	jr nc, .asm_56d6
+	jr nc, .load_level
 	inc d
-.asm_56d6:
+.load_level
 	ld a, [wCurPartyLevel]
 	ld [de], a
 	pop hl
@@ -1422,9 +1422,9 @@ DebugFight_TryStartBattle:
 	ld [wCurPartyMon], a
 	ld bc, 2 * SCREEN_WIDTH
 	add hl, bc
-	jr .Function_5683
+	jr .reprint_party
 
-.Function_56e9:
+.finish
 	pop hl
 	pop de
 	ld a, [wPartyMon1]
