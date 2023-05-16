@@ -658,7 +658,7 @@ wDebugBlueChannel::  db
 
 NEXTU
 ; debug fight menu
-wDebugFightMonLevel:: db
+wDebugFightMonLevel:: ds PARTY_LENGTH
 
 NEXTU
 wMobileMonSender:: ds NAME_LENGTH_JAPANESE - 1

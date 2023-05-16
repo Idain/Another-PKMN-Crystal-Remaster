@@ -6,13 +6,11 @@ DebugFightMenu:
 	ld de, MUSIC_NONE
 	call PlayMusic
 
-RestartDebugFightMenu:
-; All Pokémon will obey
+	; All Pokémon will obey
 	ld a, 1 << EARTHBADGE
 	ld [wKantoBadges], a
 
-; Zero out number of items
-
+	; Zero out number of items
 	ld hl, wNumItems
 	xor a
 	ld [hli], a
@@ -111,7 +109,8 @@ RestartDebugFightMenu:
 	callfar StatsScreen_LoadFont
 	call ClearTilemap
 	call ClearSprites
-
+	; fallthrough
+RestartDebugFightMenu:
 	hlcoord 0, 0
 	lb bc, 1, SCREEN_WIDTH - 2
 	call Textbox
@@ -133,6 +132,11 @@ RestartDebugFightMenu:
 	ld [wTrainerClass], a
 	inc a
 	ld [wEnemyMonLevel], a
+	ld hl, wDebugFightMonLevel
+rept PARTY_LENGTH - 1
+	ld [hli], a
+endr
+	ld [hl], a
 	lb bc, 0, 1
 	ld hl, wOTPartyCount
 	call DebugFight_ResetParty
@@ -152,8 +156,6 @@ DebugFight_PlaceArrow:
 	add hl, bc
 	ld a, " "
 	ld [hl], a
-	push de
-	pop de
 	pop bc
 	pop hl
 
@@ -240,7 +242,7 @@ DebugFight_PokeBallData:
 DebugFight_IncrementSpecies:
 	inc b
 	ld a, b
-	cp EGG
+	cp NUM_POKEMON + 1
 	jr c, DebugFight_DisplaySpeciesID
 	xor a
 	ld b, a
@@ -643,6 +645,8 @@ DebugFight_StartButton:
 	ld a, [wCurPartySpecies]
 	and a
 	jr z, .next_mon
+	inc a
+	jr z, .next_mon
 ; Mon checks out, add it to the party
 	push hl
 	push de
@@ -667,6 +671,8 @@ DebugFight_StartButton:
 ; Check species
 	ld a, [hli]
 	and a
+	jr z, .check_mon2
+	inc a
 	jr z, .check_mon2
 ; Check level
 	ld a, [de]
@@ -912,7 +918,7 @@ DebugFight_EnemyPartyJoypad:
 .increment_mon:
 	inc b
 	ld a, b
-	cp EGG
+	cp NUM_POKEMON + 1
 	jr c, .DisplayPokemon
 	ld b, 1
 
@@ -958,19 +964,19 @@ DebugFight_EnemyPartyJoypad:
 	jp nz, .DisplayTrainer
 
 .invalid_trainer
-	ld b, NUM_TRAINER_CLASSES
+	ld b, NUM_TRAINER_CLASSES ; last Trainer class
 	jp .DisplayTrainer
 
 .decrement_mon
 	dec b
 	ld a, b
-	cp EGG
+	cp NUM_POKEMON + 1
 	jr nc, .invalid_mon
 	and a
 	jp nz, .DisplayPokemon
 
 .invalid_mon
-	ld b, EGG - 1
+	ld b, NUM_POKEMON ; last Pokémon
 	jp .DisplayPokemon
 
 
@@ -1288,8 +1294,7 @@ DebugFight_EnemyMovesJoypad:
 
 .TryStartBattle:
 	pop bc
-	jp DebugFight_TryStartBattle
-
+	; fallthrough
 DebugFight_TryStartBattle:
 ; c = Level
 ; b = ID
@@ -1319,9 +1324,6 @@ DebugFight_TryStartBattle:
 
 .start_battle
 	call SetPalettes
-; All Pokémon will obey
-	ld a, 1 << EARTHBADGE
-	ld [wKantoBadges], a
 ; Set player name
 	ld hl, DebugFight_GoldText
 	ld de, wPlayerName
