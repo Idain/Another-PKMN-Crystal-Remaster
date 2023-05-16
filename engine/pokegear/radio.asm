@@ -192,8 +192,8 @@ OaksPKMNTalk4:
 	ld b, 0
 	add hl, bc
 	add hl, bc
-	ld b, [hl]
-	inc hl
+	ld a, [hli]
+	ld b, a
 	ld c, [hl]
 	; bc now contains the chosen map's group and number indices.
 	push bc
@@ -439,11 +439,10 @@ OaksPKMNTalk9:
 	dec a
 	ld [wOaksPKMNTalkSegmentCounter], a
 	ld a, OAKS_POKEMON_TALK_4
-	jr nz, .ok
+	jp nz, NextRadioLine
 	ld a, 5
 	ld [wOaksPKMNTalkSegmentCounter], a
 	ld a, OAKS_POKEMON_TALK_10
-.ok
 	jp NextRadioLine
 
 .Adjectives:
@@ -1218,8 +1217,8 @@ PeoplePlaces6: ; Places
 	ld b, 0
 	add hl, bc
 	add hl, bc
-	ld b, [hl]
-	inc hl
+	ld a, [hli]
+	ld b, a
 	ld c, [hl]
 	call GetWorldMapLocation
 	ld e, a
@@ -1769,8 +1768,8 @@ StartRadioStation:
 	ld b, 0
 	add hl, bc
 	add hl, bc
-	ld e, [hl]
-	inc hl
+	ld a, [hli]
+	ld e, a
 	ld d, [hl]
 	callfar RadioMusicRestartDE
 	ret

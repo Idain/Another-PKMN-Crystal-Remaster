@@ -323,8 +323,8 @@ ReadTrainerPartyPieces:
 	ld c, a
 	ld a, [hld]
 	ld b, a
-	ld [hl], c
-	dec hl
+	ld a, c
+	ld [hld], a
 	ld [hl], b
 	pop hl
 .no_stat_recalc

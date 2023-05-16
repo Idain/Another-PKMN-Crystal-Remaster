@@ -1706,13 +1706,18 @@ Mobile_MoveSelectionScreen:
 	farcall CheckPlayerHasUsableMoves
 	ret z
 	call Function100dd8
-	jp c, xor_a_dec_a
+	jr c, .xor_a_dec_a
 	call Function100e72
 	call .GetMoveSelection
 	push af
 	farcall InitPartyMenuBGPal7
 	call Function100ed4
 	pop af
+	ret
+
+.xor_a_dec_a
+	xor a
+	dec a
 	ret
 
 .GetMoveSelection:

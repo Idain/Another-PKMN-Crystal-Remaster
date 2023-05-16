@@ -268,12 +268,12 @@ PokeBallEffect:
 	ldh [hMultiplicand + 2], a
 
 	ld hl, wEnemyMonHP
-	ld b, [hl]
-	inc hl
-	ld c, [hl]
-	inc hl
-	ld d, [hl]
-	inc hl
+	ld a, [hli]
+	ld b, a
+	ld a, [hli]
+	ld c, a
+	ld a, [hli]
+	ld d, a
 	ld e, [hl]
 	sla c
 	rl b
@@ -553,8 +553,7 @@ PokeBallEffect:
 	ld hl, wPartyMon1Happiness
 	call GetPartyLocation
 
-	ld a, FRIEND_BALL_HAPPINESS
-	ld [hl], a
+	ld [hl], FRIEND_BALL_HAPPINESS
 
 .SkipPartyMonFriendBall:
 	ld hl, AskGiveNicknameText
@@ -1424,8 +1423,8 @@ GetItemHealingAction:
 
 .found_it
 	inc hl
-	ld b, [hl]
-	inc hl
+	ld a, [hli]
+	ld b, a
 	ld a, [hl]
 	ld c, a
 	cp -1
@@ -1747,8 +1746,8 @@ ReviveFullHP:
 ContinueRevive:
 	ld a, MON_HP
 	call GetPartyParamLocation
-	ld [hl], d
-	inc hl
+	ld a, d
+	ld [hli], a
 	ld [hl], e
 	jp LoadCurHPIntoBuffer3
 
@@ -1895,9 +1894,9 @@ GetHealingItemAmount:
 	srl d
 	rr e
 	ld a, d
-	or e  	; Check if the result was 0.
+	or e  ; Check if the result was 0.
 	jr nz, .sitrus_berry_done
-	ld e, 1 ; If it was, convert it to 1.
+	inc e ; Heal at least 1 HP
 	jr .sitrus_berry_done
 
 .not_gold_berry
@@ -1916,8 +1915,8 @@ GetHealingItemAmount:
 .NotFound:
 	scf
 .done
-	ld e, [hl]
-	inc hl
+	ld a, [hli]
+	ld e, a
 	ld d, [hl]
 .sitrus_berry_done
 	pop hl

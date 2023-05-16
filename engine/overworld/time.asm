@@ -104,17 +104,20 @@ CheckDailyResetTimer::
 	ld [hl], a  ; wSwarmFlags + 1
 	ld [wLuckyNumberShowFlag], a
 	ld hl, wDailyRematchFlags
-rept 4
+rept 3
 	ld [hli], a
 endr
+	ld [hl], a
 	ld hl, wDailyPhoneItemFlags
-rept 4
+rept 3
 	ld [hli], a
 endr
+	ld [hl], a
 	ld hl, wDailyPhoneTimeOfDayFlags
-rept 4
+rept 3
 	ld [hli], a
 endr
+	ld [hl], a
 	ld hl, wKenjiBreakTimer
 	ld a, [hl]
 	and a
@@ -199,7 +202,7 @@ RestartLuckyNumberCountdown:
 
 .GetDaysUntilNextFriday:
 	call GetWeekday
-	ld c, a
+	ld c, a ; no-optimize a = N - a
 	ld a, FRIDAY
 	sub c
 	jr z, .friday_saturday

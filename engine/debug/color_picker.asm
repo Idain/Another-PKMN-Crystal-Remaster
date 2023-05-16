@@ -142,11 +142,10 @@ DebugColor_InitVRAM:
 	xor a
 	call ByteFill
 
-	ld a, $0
+	xor a
 	ldh [rVBK], a
 	ld hl, VRAM_Begin
 	ld bc, VRAM_End - VRAM_Begin
-	xor a
 	call ByteFill
 
 	hlcoord 0, 0, wAttrmap

@@ -42,7 +42,6 @@ _DebugRoom:
 	ld a, " "
 	call ByteFill
 	call DebugRoom_PrintStackBottomTop
-	call DebugRoom_PrintWindowStackBottomTop
 	call DebugRoom_PrintRTCHaltChk
 	call DebugRoom_PrintBattleSkip
 	call DebugRoom_PrintTelDebug
@@ -269,50 +268,6 @@ DebugRoomMenu_WinWorkClr:
 	xor a
 	call ByteFill
 	jp CloseSRAM
-
-DebugRoom_PrintWindowStackBottomTop:
-	ret ; stubbed out
-
-	ld a, $00
-	call OpenSRAM
-	ld hl, wWindowStack
-.loop
-	ld a, h
-	cp $c0
-	jr z, .ok
-	ld a, [hl]
-	or a
-	jr nz, .ok
-	inc hl
-	jr .loop
-.ok
-	call CloseSRAM
-	ld a, h
-	ld h, l
-	ld l, a
-	push hl
-	ld hl, sp+0
-	ld d, h
-	ld e, l
-	hlcoord 16, 17
-	ld c, 2
-	call PrintHexNumber
-	pop hl
-	lb de, LOW(wWindowStack), HIGH(wWindowStack)
-	push de
-	ld hl, sp+0
-	ld d, h
-	ld e, l
-	hlcoord 16, 16
-	ld c, 2
-	call PrintHexNumber
-	pop de
-	hlcoord 16, 15
-	ld de, .WSPString
-	jp PlaceString
-
-.WSPString:
-	db "WSP:@"
 
 DebugRoomMenu_PokedexComp:
 	call YesNoBox
@@ -652,10 +607,10 @@ DebugRoom_PageString:
 
 DebugRoom_IncrementPagedValue:
 	call DebugRoom_GetCurPagedValuePointer
-	ld e, [hl] ; de = value address
-	inc hl
-	ld d, [hl]
-	inc hl
+	ld a, [hli]
+	ld e, a ; de = value address
+	ld a, [hli]
+	ld d, a
 	inc hl
 	ld a, [de] ; a = max value
 	cp [hl]
@@ -850,10 +805,10 @@ DebugRoom_InitializePagedValues:
 	ld bc, PAGED_VALUE_SIZE
 	call AddNTimes
 	pop bc
-	ld e, [hl] ; de = value address
-	inc hl
-	ld d, [hl]
-	inc hl
+	ld a, [hli]
+	ld e, a ; de = value address
+	ld a, [hli]
+	ld d, a
 	inc hl
 	inc hl
 	ld a, [hl] ; a = initial value
@@ -916,18 +871,18 @@ DebugRoom_PrintPagedValue:
 	ld bc, PAGED_VALUE_SIZE
 	call AddNTimes
 	pop bc
-	ld e, [hl] ; de = value address
-	inc hl
-	ld d, [hl]
-	inc hl
+	ld a, [hli]
+	ld e, a ; de = value address
+	ld a, [hli]
+	ld d, a
 	push de
 	inc hl
 	inc hl
 	inc hl
-	ld e, [hl] ; de = label string
-	inc hl
-	ld d, [hl]
-	inc hl
+	ld a, [hli]
+	ld e, a ; de = label string
+	ld a, [hli]
+	ld d, a
 	push hl
 	hlcoord 2, 1
 	ld a, c

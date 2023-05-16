@@ -150,12 +150,10 @@ DebugFight_PlaceArrow:
 	push hl
 	push bc
 	dec hl
-	ld a, "▶"
-	ld [hl], a
-	ld bc, 15
+	ld [hl], "▶"
+	ld bc, SCREEN_WIDTH - 5
 	add hl, bc
-	ld a, " "
-	ld [hl], a
+	ld [hl], " "
 	pop bc
 	pop hl
 
@@ -169,7 +167,7 @@ DebugFight_SpeciesJoypad:
 
 	ldh a, [hJoyLast]
 	bit A_BUTTON_F, a
-	jp nz, DebugFight_IncrementSpecies
+	jr nz, DebugFight_IncrementSpecies
 	bit B_BUTTON_F, a
 	jp nz, DebugFight_DecrementSpecies
 	bit START_F, a
@@ -262,7 +260,7 @@ DebugFight_DisplaySpeciesID:
 	ld de, DebugFight_EmptyText
 	call PlaceString
 
-	ld bc, -20
+	ld bc, -SCREEN_WIDTH
 	add hl, bc
 	ld de, DebugFight_EmptyText
 	call PlaceString
@@ -289,10 +287,10 @@ DebugFight_DecrementSpecies:
 	dec b
 	ld a, b
 	cp NUM_POKEMON + 1
-	jp c, DebugFight_DisplaySpeciesID
+	jr c, DebugFight_DisplaySpeciesID
 	ld a, NUM_POKEMON ; last Pokémon in Pokédex
 	ld b, a
-	jp DebugFight_DisplaySpeciesID
+	jr DebugFight_DisplaySpeciesID
 
 DebugFight_PreviousMon:
 ; No need to decrement if we're already on the 0th option
@@ -305,16 +303,14 @@ DebugFight_PreviousMon:
 	dec de
 ; Blank out cursor
 	dec hl
-	ld a, " "
-	ld [hl], a
+	ld [hl], " "
 ; And place it on previous line
 	push bc
 	ld bc, -2 * SCREEN_WIDTH
 	add hl, bc
 	pop bc
 	ld a, "▶"
-	ld [hl], a
-	inc hl
+	ld [hli], a
 ; Load data from selected option
 	push hl
 	call DebugFight_GetSpeciesAndLevel
@@ -332,14 +328,12 @@ DebugFight_NextMon:
 	inc de
 ; Blank out cursor
 	dec hl
-	ld a, " "
-	ld [hl], a
+	ld [hl], " "
 ; And place it on next line
 	ld bc, 2 * SCREEN_WIDTH
 	add hl, bc
 	ld a, "▶"
-	ld [hl], a
-	inc hl
+	ld [hli], a
 ; Load data from selected option
 	push hl
 	call DebugFight_GetSpeciesAndLevel
@@ -351,14 +345,12 @@ DebugFight_ChangeToLevelColumn:
 	push bc
 ; Blank out cursor
 	dec hl
-	ld a, " "
-	ld [hl], a
+	ld [hl], " "
 ; Go to the level column
-	ld bc, 15
+	ld bc, SCREEN_WIDTH - 5
 	add hl, bc
 ; Place cursor
-	ld a, "▶"
-	ld [hl], a
+	ld [hl], "▶"
 	pop bc
 	pop hl
 
@@ -372,17 +364,17 @@ DebugFight_LevelJoypad:
 
 	ldh a, [hJoyLast]
 	bit A_BUTTON_F, a
-	jp nz, DebugFight_IncrementLevel
+	jr nz, DebugFight_IncrementLevel
 	bit B_BUTTON_F, a
-	jp nz, DebugFight_DecrementLevel
+	jr nz, DebugFight_DecrementLevel
 	bit START_F, a
 	jp nz, DebugFight_StartButton
 	bit D_LEFT_F, a
 	jp nz, DebugFight_PlaceArrow
 	bit D_UP_F, a
-	jp nz, DebugFight_PreviousLevel
+	jr nz, DebugFight_PreviousLevel
 	bit D_DOWN_F, a
-	jp nz, DebugFight_NextLevel
+	jr nz, DebugFight_NextLevel
 	jr DebugFight_LevelJoypad
 
 DebugFight_IncrementLevel:
@@ -391,8 +383,7 @@ DebugFight_IncrementLevel:
 	cp MAX_LEVEL + 1
 	jr c, DebugFight_DisplayLevel
 ; If level is above MAX_LEVEL, set it back to 1
-	ld a, 1
-	ld c, a
+	ld c, 1
 
 DebugFight_DisplayLevel:
 	ld a, [wCurPartyMon]
@@ -409,14 +400,14 @@ DebugFight_DisplayLevel:
 	ld [de], a
 	push bc
 	push hl
-	ld bc, 15
+	ld bc, SCREEN_WIDTH - 5
 	add hl, bc
 	lb bc, PRINTNUM_LEADINGZEROS | 1, 3
 	call PrintNum
 	pop hl
 	pop bc
 	pop de
-	jp DebugFight_LevelJoypad
+	jr DebugFight_LevelJoypad
 
 DebugFight_DecrementLevel:
 	dec c
@@ -424,20 +415,20 @@ DebugFight_DecrementLevel:
 	cp MAX_LEVEL + 1
 	jr nc, .invalid
 	and a
-	jp nz, DebugFight_DisplayLevel
+	jr nz, DebugFight_DisplayLevel
 
 .invalid
 ; If level is 0 or above MAX_LEVEL, set it back to MAX_LEVEL
 	ld a, MAX_LEVEL
 	ld c, a
-	jp DebugFight_DisplayLevel
+	jr DebugFight_DisplayLevel
 
 DebugFight_PreviousLevel:
 ; No need to go up if we're already on the 0th option
 	ld a, [wCurPartyMon]
 	dec a
 	cp -1
-	jp z, DebugFight_LevelJoypad
+	jr z, DebugFight_LevelJoypad
 ; Update selected option
 	ld [wCurPartyMon], a
 	dec de
@@ -445,8 +436,7 @@ DebugFight_PreviousLevel:
 	push hl ; save current pos (in species no. column)
 	ld bc, 14
 	add hl, bc ; move to level cursor column (x = x + 10)
-	ld a, " "
-	ld [hl], a
+	ld [hl], " "
 ; And place it on previous line
 	pop hl
 	ld bc, -2 * SCREEN_WIDTH
@@ -454,8 +444,7 @@ DebugFight_PreviousLevel:
 	push hl
 	ld bc, 14
 	add hl, bc
-	ld a, "▶"
-	ld [hl], a
+	ld [hl], "▶"
 ; Load data from selected option
 	call DebugFight_GetSpeciesAndLevel
 	pop hl
@@ -474,8 +463,7 @@ DebugFight_NextLevel:
 	push hl
 	ld bc, 14
 	add hl, bc
-	ld a, " "
-	ld [hl], a
+	ld [hl], " "
 ; And place it on next line
 	pop hl
 	ld bc, 2 * SCREEN_WIDTH
@@ -483,8 +471,7 @@ DebugFight_NextLevel:
 	push hl
 	ld bc, 14
 	add hl, bc
-	ld a, "▶"
-	ld [hl], a
+	ld [hl], "▶"
 ; Load data from selected option
 	call DebugFight_GetSpeciesAndLevel
 	pop hl
@@ -574,7 +561,7 @@ DebugFight_SelectButton:
 	pop hl
 
 	push hl
-	ld bc, 15
+	ld bc, SCREEN_WIDTH - 5
 	add hl, bc
 	push hl
 	ld a, MON_LEVEL
@@ -596,10 +583,9 @@ DebugFight_SelectButton:
 .load_level
 	ld a, [wCurPartyLevel]
 	ld [de], a
+	ld hl, wCurPartyMon
+	inc [hl]
 	pop hl
-	ld a, [wCurPartyMon]
-	inc a
-	ld [wCurPartyMon], a
 	ld bc, 2 * SCREEN_WIDTH
 	add hl, bc
 	jr .reprint_party
@@ -620,8 +606,7 @@ DebugFight_StartButton:
 	ld hl, wPartyCount
 	ld de, wDebugFightMonLevel - 1
 	xor a
-	ld [hl], a
-	inc hl
+	ld [hli], a
 	ld a, [hli]
 	ld b, a
 ; Loop for all Pokémon in party
@@ -781,11 +766,11 @@ DebugFight_EnemyHeader:
 
 	ldh a, [hJoyLast]
 	bit A_BUTTON_F, a
-	jp nz, .SwitchBattleMode
+	jr nz, .SwitchBattleMode
 	bit START_F, a
 	jp nz, DebugFight_TryStartBattle
 	bit D_DOWN_F, a
-	jp nz, DebugFight_EnemyParty
+	jr nz, DebugFight_EnemyParty
 	bit SELECT_F, a
 	jp nz, DebugFight_SelectButton
 	jr .HandleJoypad
@@ -856,7 +841,7 @@ DebugFight_EnemyPartyJoypad:
 
 	ldh a, [hJoyLast]
 	bit A_BUTTON_F, a
-	jp nz, .IncrementEnemyID
+	jr nz, .IncrementEnemyID
 	bit B_BUTTON_F, a
 	jp nz, .DecrementEnemyID
 	bit START_F, a
@@ -913,7 +898,7 @@ DebugFight_EnemyPartyJoypad:
 	ld de, wOTClassName
 	call PlaceString
 	pop bc
-	jp DebugFight_EnemyPartyJoypad
+	jr DebugFight_EnemyPartyJoypad
 
 .increment_mon:
 	inc b
@@ -961,11 +946,11 @@ DebugFight_EnemyPartyJoypad:
 	jr nc, .invalid_trainer
 ; Check zero
 	and a
-	jp nz, .DisplayTrainer
+	jr nz, .DisplayTrainer
 
 .invalid_trainer
 	ld b, NUM_TRAINER_CLASSES ; last Trainer class
-	jp .DisplayTrainer
+	jr .DisplayTrainer
 
 .decrement_mon
 	dec b
@@ -973,11 +958,11 @@ DebugFight_EnemyPartyJoypad:
 	cp NUM_POKEMON + 1
 	jr nc, .invalid_mon
 	and a
-	jp nz, .DisplayPokemon
+	jr nz, .DisplayPokemon
 
 .invalid_mon
 	ld b, NUM_POKEMON ; last Pokémon
-	jp .DisplayPokemon
+	jr .DisplayPokemon
 
 
 .ChangeToLevelColumn:
@@ -994,9 +979,9 @@ DebugFight_EnemyLevelJoypad:
 
 	ldh a, [hJoyLast]
 	bit A_BUTTON_F, a
-	jp nz, .IncrementLevel
+	jr nz, .IncrementLevel
 	bit B_BUTTON_F, a
-	jp nz, .DecrementLevel
+	jr nz, .DecrementLevel
 	bit START_F, a
 	jp nz, DebugFight_TryStartBattle
 	bit D_LEFT_F, a
@@ -1027,7 +1012,7 @@ DebugFight_EnemyLevelJoypad:
 	call PrintNum
 	pop bc
 	call DebugFight_UpdateAllMoves
-	jp DebugFight_EnemyLevelJoypad
+	jr DebugFight_EnemyLevelJoypad
 
 .DecrementLevel:
 	dec c
@@ -1035,11 +1020,11 @@ DebugFight_EnemyLevelJoypad:
 	cp MAX_LEVEL + 1
 	jr nc, .invalid
 	and a
-	jp nz, .PrintLevel
+	jr nz, .PrintLevel
 
 .invalid
 	ld c, MAX_LEVEL
-	jp .PrintLevel
+	jr .PrintLevel
 
 DebugFight_UpdateAllMoves:
 	ld a, [wBattleMode]
@@ -1097,7 +1082,7 @@ DebugFight_UpdateAllMoves:
 	ld [de], a
 	pop hl
 ; Switch to PP column and print
-	ld bc, 15
+	ld bc, SCREEN_WIDTH - 5
 	add hl, bc
 	lb bc, $01, 3
 	call PrintNum
@@ -1136,9 +1121,9 @@ DebugFight_EnemyMovesJoypad:
 
 	ldh a, [hJoyLast]
 	bit A_BUTTON_F, a
-	jp nz, .IncrementMove
+	jr nz, .IncrementMove
 	bit B_BUTTON_F, a
-	jp nz, .DecrementMove
+	jr nz, .DecrementMove
 	bit START_F, a
 	jp nz, .TryStartBattle
 	bit D_UP_F, a
@@ -1181,7 +1166,7 @@ DebugFight_EnemyMovesJoypad:
 	pop hl
 ; Clear move PP amount
 	push hl
-	ld bc, 17
+	ld bc, SCREEN_WIDTH - 3
 	add hl, bc
 	ld a, " "
 	ld [hli], a
@@ -1190,7 +1175,7 @@ DebugFight_EnemyMovesJoypad:
 	pop hl
 	pop bc
 	pop de
-	jp DebugFight_EnemyMovesJoypad
+	jr DebugFight_EnemyMovesJoypad
 
 .UpdateMove:
 ; Similar to UpdateAllMoves, but only works on a single move.
@@ -1211,7 +1196,7 @@ DebugFight_EnemyMovesJoypad:
 	pop hl
 ; Clear move PP amount
 	push hl
-	ld bc, 17
+	ld bc, SCREEN_WIDTH - 3
 	add hl, bc
 	ld a, " "
 	ld [hli], a
@@ -1241,7 +1226,7 @@ DebugFight_EnemyMovesJoypad:
 	ld de, wStringBuffer1
 	ld [de], a
 	pop hl
-	ld bc, 16
+	ld bc, SCREEN_WIDTH - 4
 	add hl, bc
 	lb bc, $01, 3
 	call PrintNum
@@ -1256,7 +1241,7 @@ DebugFight_EnemyMovesJoypad:
 	ld [hl], " "
 ; Check if exiting the move editor
 	dec b
-	jp z, .ReturnToEnemyParty
+	jr z, .ReturnToEnemyParty
 ; Decrement "Move List"
 	dec de
 ; Place new cursor
@@ -1340,7 +1325,7 @@ DebugFight_TryStartBattle:
 	ld hl, wPlayerSubStatus1
 	ld bc, 5
 	call ByteFill
-	ld hl, wEnemySubStatus1
+;	ld hl, wEnemySubStatus1
 	ld bc, 5
 	call ByteFill
 
@@ -1402,7 +1387,7 @@ DebugFight_TryStartBattle:
 	pop hl
 
 	push hl
-	ld bc, 15
+	ld bc, SCREEN_WIDTH - 5
 	add hl, bc
 	push hl
 	ld a, MON_LEVEL
@@ -1424,10 +1409,9 @@ DebugFight_TryStartBattle:
 .load_level
 	ld a, [wCurPartyLevel]
 	ld [de], a
+	ld hl, wCurPartyMon
+	inc [hl]
 	pop hl
-	ld a, [wCurPartyMon]
-	inc a
-	ld [wCurPartyMon], a
 	ld bc, 2 * SCREEN_WIDTH
 	add hl, bc
 	jr .reprint_party

@@ -12,9 +12,8 @@ SwitchItemsInBag:
 	ld a, [hl]
 	cp -1
 	ret z
-	ld a, [wSwitchItem]
-	dec a
-	ld [wSwitchItem], a
+	ld hl, wSwitchItem
+	dec [hl]
 	call .try_combining_stacks
 	jp c, .combine_stacks
 	ld a, [wScrollingMenuCursorPosition]
@@ -228,8 +227,8 @@ ItemSwitch_GetItemFormatSize:
 	ld hl, .item_format_sizes
 	add hl, bc
 	add hl, bc
-	ld c, [hl]
-	inc hl
+	ld a, [hli]
+	ld c, a
 	ld b, [hl]
 	pop hl
 	ret
