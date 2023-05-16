@@ -858,11 +858,7 @@ DebugFight_EnemyPartyJoypad:
 
 
 .IncrementEnemyID:
-; Clear out diacritics
 	push bc
-	hlcoord 5, 7
-	ld de, DebugFight_EmptyText
-	call PlaceString
 ; Clear out name
 	hlcoord 5, 8
 	ld de, DebugFight_EmptyText
@@ -894,6 +890,9 @@ DebugFight_EnemyPartyJoypad:
 	ld [wTrainerClass], a
 	ld c, a
 	callfar GetOTName
+	hlcoord 5, 8
+	lb bc, 1, 12
+	call ClearBox
 	hlcoord 5, 8
 	ld de, wOTClassName
 	call PlaceString
@@ -950,7 +949,7 @@ DebugFight_EnemyPartyJoypad:
 
 .invalid_trainer
 	ld b, NUM_TRAINER_CLASSES ; last Trainer class
-	jr .DisplayTrainer
+	jp .DisplayTrainer
 
 .decrement_mon
 	dec b
@@ -1309,9 +1308,14 @@ DebugFight_TryStartBattle:
 
 .start_battle
 	call SetPalettes
-; Set player name
+; Set player's name
 	ld hl, DebugFight_GoldText
 	ld de, wPlayerName
+	ld bc, PLAYER_NAME_LENGTH
+	call CopyBytes
+; Set rival's name
+	ld hl, DebugFight_RivalName
+	ld de, wRivalName
 	ld bc, PLAYER_NAME_LENGTH
 	call CopyBytes
 
@@ -1331,6 +1335,8 @@ DebugFight_TryStartBattle:
 
 	farcall LoadStandardFont
 	callfar StatsScreen_LoadFont
+	ld de, MUSIC_NONE
+	call PlayMusic
 	call ClearTilemap
 	call ClearSprites
 	ld a, %11100100
@@ -1465,4 +1471,7 @@ DebugFight_OpponentTrainerHeaderText:
 	db "000 ーーーーーーーーーー 001@"
 
 DebugFight_GoldText:
-	db "GOLD@@"
+	db "GOLD@"
+
+DebugFight_RivalName:
+	db "SILVER@"
