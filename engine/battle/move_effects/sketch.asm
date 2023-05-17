@@ -63,8 +63,7 @@ BattleCommand_Sketch:
 ; Copy the base PP from that move.
 	push bc
 	push hl
-	dec a
-	ld hl, Moves + MOVE_PP
+	ld hl, (Moves + MOVE_PP) - MOVE_LENGTH
 	call GetMoveAttr
 	pop hl
 	ld bc, wBattleMonPP - wBattleMonMoves

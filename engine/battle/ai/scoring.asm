@@ -1707,8 +1707,7 @@ AI_Smart_Conversion2:
 	jr z, .discourage
 
 	push hl
-	dec a
-	ld hl, Moves + MOVE_TYPE
+	ld hl, (Moves + MOVE_TYPE) - MOVE_LENGTH
 	ld bc, MOVE_LENGTH
 	call AddNTimes
 
@@ -3340,7 +3339,7 @@ AI_None:
 	ret
 
 AIGetEnemyMove:
-; Load attributes of move a into ram
+; Load attributes of move a into WRAM
 
 	push hl
 	push de

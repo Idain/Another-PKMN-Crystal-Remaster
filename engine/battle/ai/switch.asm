@@ -18,8 +18,7 @@ CheckPlayerMoveTypeMatchups:
 	and a
 	jr z, .exit
 	push hl
-	dec a
-	ld hl, Moves + MOVE_POWER
+	ld hl, (Moves + MOVE_POWER) - MOVE_LENGTH
 	call GetMoveAttr
 	and a
 	jr z, .next
@@ -105,8 +104,7 @@ CheckPlayerMoveTypeMatchups:
 	jr z, .exit2
 
 	inc de
-	dec a
-	ld hl, Moves + MOVE_POWER
+	ld hl, (Moves + MOVE_POWER) - MOVE_LENGTH
 	call GetMoveAttr
 	and a
 	jr z, .loop2
@@ -364,8 +362,7 @@ FindEnemyMonsImmuneToLastCounterMove:
 
 	; the player's last move is damaging...
 	ld a, [wLastPlayerCounterMove]
-	dec a
-	ld hl, Moves + MOVE_POWER
+	ld hl, (Moves + MOVE_POWER) - MOVE_LENGTH
 	call GetMoveAttr
 	and a
 	jr z, .next
@@ -450,8 +447,7 @@ FindEnemyMonsWithASuperEffectiveMove:
 	jr z, .break3
 
 	; if move has no power: continue
-	dec a
-	ld hl, Moves + MOVE_POWER
+	ld hl, (Moves + MOVE_POWER) - MOVE_LENGTH
 	call GetMoveAttr
 	and a
 	jr z, .nope
@@ -547,8 +543,7 @@ FindEnemyMonsThatResistPlayer:
 	and a
 	jr z, .skip_move
 
-	dec a
-	ld hl, Moves + MOVE_POWER
+	ld hl, (Moves + MOVE_POWER) - MOVE_LENGTH
 	call GetMoveAttr
 	and a
 	jr z, .skip_move

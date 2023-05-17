@@ -63,8 +63,7 @@ LearnMove:
 
 	push hl
 	push de
-	dec a
-	ld hl, Moves + MOVE_PP
+	ld hl, (Moves + MOVE_PP) - MOVE_LENGTH
 	ld bc, MOVE_LENGTH
 	call AddNTimes
 	ld a, BANK(Moves)

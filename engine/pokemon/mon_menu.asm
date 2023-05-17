@@ -1095,8 +1095,7 @@ PlaceMoveData:
 	ld [hli], a
 	predef PrintMoveType
 	ld a, [wCurSpecies]
-	dec a
-	ld hl, Moves + MOVE_POWER
+	ld hl, (Moves + MOVE_POWER) - MOVE_LENGTH
 	ld bc, MOVE_LENGTH
 	call AddNTimes
 	ld a, BANK(Moves)

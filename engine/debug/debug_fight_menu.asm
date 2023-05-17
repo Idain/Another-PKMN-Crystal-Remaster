@@ -1071,8 +1071,7 @@ DebugFight_UpdateAllMoves:
 	call PrintNum
 	pop af
 ; Get PP from current move
-	dec a
-	ld hl, Moves + MOVE_PP
+	ld hl, (Moves + MOVE_PP) - MOVE_LENGTH
 	ld bc, MOVE_LENGTH
 	call AddNTimes
 	ld a, BANK(Moves)
@@ -1215,8 +1214,7 @@ DebugFight_EnemyMovesJoypad:
 	call PlaceString
 ; Get move's max PP
 	ld a, [wCurSpecies]
-	dec a
-	ld hl, Moves + MOVE_PP
+	ld hl, (Moves + MOVE_PP) - MOVE_LENGTH
 	ld bc, MOVE_LENGTH
 	call AddNTimes
 	ld a, BANK(Moves)

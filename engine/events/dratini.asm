@@ -50,8 +50,7 @@ GiveDratini:
 	ld [de], a ; give the Pokémon the new move
 
 	; get the PP of the new move
-	dec a
-	ld hl, Moves + MOVE_PP
+	ld hl, (Moves + MOVE_PP) - MOVE_LENGTH
 	ld bc, MOVE_LENGTH
 	call AddNTimes
 	ld a, BANK(Moves)

@@ -618,8 +618,7 @@ FillMoves:
 	ld hl, MON_PP - MON_MOVES
 	add hl, de
 	push hl
-	dec a
-	ld hl, Moves + MOVE_PP
+	ld hl, (Moves + MOVE_PP) - MOVE_LENGTH
 	ld bc, MOVE_LENGTH
 	call AddNTimes
 	ld a, BANK(Moves)

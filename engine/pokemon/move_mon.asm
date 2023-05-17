@@ -372,11 +372,10 @@ FillPP:
 	ld a, [hli]
 	and a
 	jr z, .next
-	dec a
 	push hl
 	push de
 	push bc
-	ld hl, Moves
+	ld hl, Moves - MOVE_LENGTH
 	ld bc, MOVE_LENGTH
 	call AddNTimes
 	ld de, wStringBuffer1

@@ -2809,10 +2809,8 @@ GetMaxPPOfMove:
 
 .gotdatmove
 	ld a, [hl]
-	dec a
-
 	push hl
-	ld hl, Moves + MOVE_PP
+	ld hl, (Moves + MOVE_PP) - MOVE_LENGTH
 	ld bc, MOVE_LENGTH
 	call AddNTimes
 	ld a, BANK(Moves)
@@ -2893,10 +2891,8 @@ SimpleGetMaxPPOfMove:
 	add hl, bc
 
 	ld a, [hl]
-	dec a
-
 	push hl
-	ld hl, Moves + MOVE_PP
+	ld hl, (Moves + MOVE_PP) - MOVE_LENGTH
 	ld bc, MOVE_LENGTH
 	call AddNTimes
 	ld a, BANK(Moves)

@@ -833,8 +833,7 @@ INCLUDE "data/moves/effects_priorities.asm"
 
 GetMoveEffect:
 	ld a, b
-	dec a
-	ld hl, Moves + MOVE_EFFECT
+	ld hl, (Moves + MOVE_EFFECT) - MOVE_LENGTH
 	ld bc, MOVE_LENGTH
 	call AddNTimes
 	ld a, BANK(Moves)
@@ -844,8 +843,7 @@ GetMoveEffect:
 
 GetMoveAnim:
 	ld a, b
-	dec a
-	ld hl, Moves
+	ld hl, Moves - MOVE_LENGTH
 	ld bc, MOVE_LENGTH
 	call AddNTimes
 	ld a, BANK(Moves)

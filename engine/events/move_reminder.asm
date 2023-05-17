@@ -33,7 +33,7 @@ MoveReminder:
 	jr c, .skip_learn
 
 	ld a, [wMenuSelection]
-	ld [wd265], a
+	ld [wNamedObjectIndex], a
 	call GetMoveName
 	ld hl, wStringBuffer1
 	ld de, wStringBuffer2
@@ -224,7 +224,7 @@ ChooseMoveToLearn:
 .PrintMoveName
 	push de
 	ld a, [wMenuSelection]
-	ld [wd265], a
+	ld [wNamedObjectIndex], a
 	call GetMoveName
 	pop hl
 	jp PlaceString
@@ -239,11 +239,10 @@ ChooseMoveToLearn:
 	ret z
 	dec a
 	push de
-	dec a
 
 IF DEF(PSS)
 	ld bc, MOVE_LENGTH
-	ld hl, Moves + MOVE_CATEGORY
+	ld hl, (Moves + MOVE_CATEGORY) - MOVE_LENGTH
 	call AddNTimes
 	ld a, BANK(Moves)
 	call GetFarByte
@@ -265,15 +264,14 @@ IF DEF(PSS)
 	ld [hl], "/"
 
 	ld a, [wMenuSelection]
-	dec a
 ENDC
 
 	ld bc, MOVE_LENGTH
-	ld hl, Moves + MOVE_TYPE
+	ld hl, (Moves + MOVE_TYPE) - MOVE_LENGTH
 	call AddNTimes
 	ld a, BANK(Moves)
 	call GetFarByte
-	ld [wd265], a
+	ld [wTempByteValue], a
 
 ; bc = a * 4
 	add a
@@ -291,10 +289,8 @@ ENDC
 	ld [hl], "/"
 
 	ld a, [wMenuSelection]
-	dec a
-	
 	ld bc, MOVE_LENGTH
-	ld hl, Moves + MOVE_POWER
+	ld hl, (Moves + MOVE_POWER) - MOVE_LENGTH
 	call AddNTimes
 	ld a, BANK(Moves)
 	call GetFarByte
@@ -319,9 +315,8 @@ ENDC
 
 ; Print PP (works)
 	ld a, [wMenuSelection]
-	dec a
 	ld bc, MOVE_LENGTH
-	ld hl, Moves + MOVE_PP
+	ld hl, (Moves + MOVE_PP) - MOVE_LENGTH
 	call AddNTimes
 	ld a, BANK(Moves)
 	call GetFarByte
