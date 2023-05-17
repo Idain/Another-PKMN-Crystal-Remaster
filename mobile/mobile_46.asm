@@ -7269,7 +7269,7 @@ Function11b6b4:
 	ld a, MIN_LEVEL
 	jr c, .replace_level
 	ld a, [hl]
-	cp MAX_LEVEL
+	cp MAX_LEVEL + 1
 	jr c, .done_level
 	ld a, MAX_LEVEL
 .replace_level
@@ -7288,8 +7288,7 @@ Function11b6b4:
 	inc de
 	ld a, [de]
 	ld [hl], a
-	call AddMobileMonToParty
-	ret
+	jp AddMobileMonToParty
 
 Function11b7e5:
 	ld a, [wMobileMonSpecies]

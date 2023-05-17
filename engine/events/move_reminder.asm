@@ -246,7 +246,7 @@ IF DEF(PSS)
 	call AddNTimes
 	ld a, BANK(Moves)
 	call GetFarByte
-	and CATEGORY_MASK
+	and ~TYPE_MASK
 
 ; bc = a * 4
 	add a

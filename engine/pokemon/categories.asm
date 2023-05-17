@@ -9,7 +9,7 @@ GetMoveCategoryName:
 	call GetFarByte
 
 ; Mask out the type
-	and $ff ^ TYPE_MASK
+	and ~TYPE_MASK
 ; Shift the category bits into the range 0-2
 	rlca
 	rlca
