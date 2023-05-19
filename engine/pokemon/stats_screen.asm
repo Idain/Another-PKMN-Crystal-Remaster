@@ -416,7 +416,6 @@ StatsScreen_InitUpperHalf:
 	ld [wNamedObjectIndex], a
 	call GetPokemonName
 	call PlaceString
-	call StatsScreen_PlaceHorizontalDivider
 	call StatsScreen_PlacePageSwitchArrows
 	jr StatsScreen_PlaceShinyIcon
 
@@ -457,11 +456,33 @@ StatsScreen_InitUpperHalf:
 StatsScreen_PlaceHorizontalDivider:
 	hlcoord 0, 7
 	ld b, SCREEN_WIDTH
-	ld a, $76 ; horizontal divider ()
+	ld a, $32 ; horizontal divider ()
 .loop
 	ld [hli], a
 	dec b
 	jr nz, .loop
+
+	; Place T divider
+	ld a, [wStatsScreenFlags]
+	maskbits NUM_STAT_PAGES
+	ld c, a
+	srl a
+	jr nc, .skip_t_divider
+	and a
+	hlcoord 9, 7
+	jr z, .got_vertical_pos
+	inc hl
+.got_vertical_pos
+	ld [hl], $33
+.skip_t_divider
+	hlcoord 0, 7, wAttrmap
+	ld a, c
+	add $2
+	ld b, SCREEN_WIDTH
+.loop2
+	ld [hli], a
+	dec b
+	jr nz, .loop2
 	ret
 
 StatsScreen_PlacePageSwitchArrows:
@@ -490,15 +511,17 @@ StatsScreen_LoadGFX:
 	call .LoadPals
 	ld hl, wStatsScreenFlags
 	bit 4, [hl]
-	jp z, SetPalettes
-; place_frontpic
-	jp StatsScreen_PlaceFrontpic
+	jp nz, StatsScreen_PlaceFrontpic
+	call SetPalettes
+	farcall ApplyAttrmap
+	ret
 
 .ClearBox:
 	ld a, [wStatsScreenFlags]
 	maskbits NUM_STAT_PAGES
 	ld c, a
 	call StatsScreen_LoadPageIndicators
+	call StatsScreen_PlaceHorizontalDivider
 	hlcoord 0, 8
 	lb bc, 10, 20
 	jp ClearBox
