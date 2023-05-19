@@ -197,9 +197,16 @@ LoadStatsScreenPals:
 	ld [wBGPals1 palette 2 + 1], a
 	pop af
 	ldh [rSVBK], a
-	call ApplyPals
-	ld a, $1
-	ret
+	hlcoord 0, 7, wAttrmap
+	ld a, c
+	add $3
+	ld b, SCREEN_WIDTH
+.loop
+	ld [hli], a
+	dec b
+	jr nz, .loop
+	call ApplyAttrmap
+	jp ApplyPals
 
 LoadMailPalettes:
 	ld l, e
