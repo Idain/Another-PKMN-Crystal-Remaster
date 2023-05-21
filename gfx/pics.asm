@@ -248,7 +248,6 @@ BoarderPic:          INCBIN "gfx/trainers/boarder.2bpp.lz"
 PsyduckFrontpic:     INCBIN "gfx/pokemon/psyduck/front.animated.2bpp.lz"
 SquirtleFrontpic:    INCBIN "gfx/pokemon/squirtle/front.animated.2bpp.lz"
 MachampBackpic:      INCBIN "gfx/pokemon/machamp/back.2bpp.lz"
-KoffingFrontpic:     INCBIN "gfx/pokemon/koffing/front.animated.2bpp.lz"
 VenonatFrontpic:     INCBIN "gfx/pokemon/venonat/front.animated.2bpp.lz"
 ExeggutorBackpic:    INCBIN "gfx/pokemon/exeggutor/back.2bpp.lz"
 LanturnFrontpic:     INCBIN "gfx/pokemon/lanturn/front.animated.2bpp.lz"
@@ -715,6 +714,7 @@ SmeargleFrontpic:    INCBIN "gfx/pokemon/smeargle/front.animated.2bpp.lz"
 MukFrontpic:         INCBIN "gfx/pokemon/muk/front.animated.2bpp.lz"
 GrimerFrontpic:      INCBIN "gfx/pokemon/grimer/front.animated.2bpp.lz"
 HitmonchanFrontpic:  INCBIN "gfx/pokemon/hitmonchan/front.animated.2bpp.lz"
+KoffingFrontpic:     INCBIN "gfx/pokemon/koffing/front.animated.2bpp.lz"
 
 
 SECTION "Pics 21", ROMX
