@@ -136,7 +136,7 @@ _FinishMenuMonIconColor:
 	pop hl
 	ret
 
-GetMenuMonIconPalette:
+GetMenuMonIconPalette::
 	ld c, l
 	ld b, h
 	farcall CheckShininess
@@ -155,6 +155,7 @@ GetMenuMonIconPalette_PredeterminedShininess:
 	swap a
 .shiny
 	and $f
+	ld e, a
 	ret
 
 LoadMenuMonIcon:
