@@ -1845,9 +1845,8 @@ Pokedex_SearchForMons:
 	call nz, .Search
 	ld a, [wDexSearchMonType1]
 	and a
-	call nz, .Search
-	ret
-
+	ret z
+	; fallthrough
 .Search:
 	dec a
 	ld e, a

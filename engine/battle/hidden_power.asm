@@ -38,15 +38,6 @@ GetHiddenPowerType::
 ; Skip Normal
 	inc a
 
-; Skip Bird
-	cp BIRD
-	jr c, .done
-	inc a
-
-; Skip unused types
-	cp UNUSED_TYPES
-	jr c, .done
-	add UNUSED_TYPES_END - UNUSED_TYPES
 .done
 	ld e, a
 	ret

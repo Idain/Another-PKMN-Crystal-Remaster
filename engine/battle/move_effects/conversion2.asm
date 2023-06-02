@@ -22,12 +22,8 @@ BattleCommand_Conversion2:
 
 .loop
 	call BattleRandom
-	maskbits TYPES_END
-	cp UNUSED_TYPES
-	jr c, .okay
-	cp UNUSED_TYPES_END
-	jr c, .loop
-	cp TYPES_END
+	maskbits NUM_TYPES
+	cp NUM_TYPES
 	jr nc, .loop
 .okay
 	ld [hli], a
