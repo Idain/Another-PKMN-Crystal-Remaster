@@ -20,11 +20,9 @@ FieldMoveJumptable:
 
 GetPartyNickname:
 ; write wCurPartyMon nickname to wStringBuffer1-3
-	ld hl, wPartyMonNicknames
 	ld a, BOXMON
 	ld [wMonType], a
-	ld a, [wCurPartyMon]
-	call GetNickname
+	call GetCurNickname
 	call CopyName1
 ; copy text from wStringBuffer2 to wStringBuffer3
 	ld de, wStringBuffer2

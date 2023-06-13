@@ -125,9 +125,7 @@ DayCareAskDepositPokemon:
 	ld d, [hl]
 	farcall ItemIsMail
 	jr c, .HoldingMail
-	ld hl, wPartyMonNicknames
-	ld a, [wCurPartyMon]
-	call GetNickname
+	call GetCurNickname
 	and a
 	ret
 

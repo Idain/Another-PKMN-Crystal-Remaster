@@ -1671,9 +1671,7 @@ DepositPokemon:
 	ld hl, wBillsPC_ScrollPosition
 	add [hl]
 	ld [wCurPartyMon], a
-	ld hl, wPartyMonNicknames
-	ld a, [wCurPartyMon]
-	call GetNickname
+	call GetCurNickname
 	ld a, PC_DEPOSIT
 	ld [wPokemonWithdrawDepositParameter], a
 	predef SendGetMonIntoFromBox
