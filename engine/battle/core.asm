@@ -6512,7 +6512,9 @@ LoadEnemyMon:
 	ld a, [wCurPartyMon]
 	ld hl, wOTPartyMonNicknames
 	call SkipNames
-	jr .got_nickname
+	ld a, [hl]
+	cp "@"
+	jr nz, .got_nickname
 .no_nickname
 	call GetPokemonName
 	ld hl, wStringBuffer1
