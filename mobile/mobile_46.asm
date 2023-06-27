@@ -6738,10 +6738,10 @@ Function11b3d9:
 	jr .loop1
 
 .skip
-	ld b, 14 * 8
+	ld b, 14 * TILE_WIDTH
 
 .load_sprites
-	ld a, 2 * 8 + 5
+	ld a, 2 * TILE_WIDTH + 5
 	add b
 	pop hl
 	ld [hli], a
@@ -6758,7 +6758,7 @@ Function11b3d9:
 	jr z, .version2
 
 .version1
-	ld a, 19 * 8 + 3
+	ld a, 19 * TILE_WIDTH + 3
 	ld [hli], a
 	ld a, [wcd4c]
 	add $3c
@@ -6769,7 +6769,7 @@ Function11b3d9:
 	ret
 
 .version2
-	ld a, 19 * 8 + 3
+	ld a, 19 * TILE_WIDTH + 3
 	ld [hli], a
 	ld a, $39
 	ld [hli], a

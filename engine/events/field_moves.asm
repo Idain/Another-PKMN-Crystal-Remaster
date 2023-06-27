@@ -345,7 +345,7 @@ FlyToAnim:
 	ld [hl], SPRITE_ANIM_SEQ_FLY_TO
 	ld hl, SPRITEANIMSTRUCT_VAR4
 	add hl, bc
-	ld [hl], 11 * 8
+	ld [hl], 11 * TILE_WIDTH
 	ld a, 64
 	ld [wFrameCounter], a
 .loop
@@ -433,9 +433,9 @@ FlyFunction_FrameTimer:
 	and $7
 	ret nz
 	ld a, [hl]
-	and (6 * 8) >> 1
+	and (6 * TILE_WIDTH) >> 1
 	add a
-	add 8 * 8 ; gives a number in [$40, $50, $60, $70]
+	add 8 * TILE_WIDTH ; gives a number in [$40, $50, $60, $70]
 	ld d, a
 	ld e, 0
 	ld a, SPRITE_ANIM_INDEX_FLY_LEAF

@@ -381,7 +381,7 @@ ConfirmContinue:
 
 CheckVBA:
 	xor a
-	ldh [rSC], a
+	ldh [rSC], a ; no-optimize Redundant loads
 	ldh a, [rSC]
 	or ~%01111100
 	inc a
@@ -874,10 +874,10 @@ Intro_PlacePlayerSprite:
 .sprites
 	db 4
 	; y pxl, x pxl, tile offset
-	db  9 * 8 + 4,  9 * 8, 0
-	db  9 * 8 + 4, 10 * 8, 1
-	db 10 * 8 + 4,  9 * 8, 2
-	db 10 * 8 + 4, 10 * 8, 3
+	db  9 * TILE_WIDTH + 4,  9 * TILE_WIDTH, 0
+	db  9 * TILE_WIDTH + 4, 10 * TILE_WIDTH, 1
+	db 10 * TILE_WIDTH + 4,  9 * TILE_WIDTH, 2
+	db 10 * TILE_WIDTH + 4, 10 * TILE_WIDTH, 3
 
 
 	const_def
@@ -1028,24 +1028,24 @@ TitleScreenTimer:
 ; Start a timer
 	ld hl, wTitleScreenTimer
 	ld de, 73 * 60 + 36
-	ld [hl], e
-	inc hl
+	ld a, e
+	ld [hli], a
 	ld [hl], d
 	ret
 
 TitleScreenMain:
 ; Run the timer down.
 	ld hl, wTitleScreenTimer
-	ld e, [hl]
-	inc hl
+	ld a, [hli]
+	ld e, a
 	ld d, [hl]
 	ld a, e
 	or d
 	jr z, .end
 
 	dec de
-	ld [hl], d
-	dec hl
+	ld a, d
+	ld [hld], a
 	ld [hl], e
 
 ; Save data can be deleted by pressing Up + B + Select.

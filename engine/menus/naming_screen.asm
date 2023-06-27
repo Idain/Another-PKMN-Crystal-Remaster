@@ -12,8 +12,8 @@ _NamingScreen:
 
 NamingScreen:
 	ld hl, wNamingScreenDestinationPointer
-	ld [hl], e
-	inc hl
+	ld a, e
+	ld [hli], a
 	ld [hl], d
 	ld hl, wNamingScreenType
 	ld [hl], b
@@ -354,8 +354,8 @@ NamingScreenJoypadLoop:
 	lb bc, 1, 18
 	call ClearBox
 	ld hl, wNamingScreenDestinationPointer
-	ld e, [hl]
-	inc hl
+	ld a, [hli]
+	ld e, a
 	ld d, [hl]
 	ld hl, wNamingScreenStringEntryCoord
 	ld a, [hli]
@@ -380,7 +380,7 @@ NamingScreenJoypadLoop:
 	depixel 10, 3
 	call NamingScreen_IsTargetBox
 	jr nz, .got_cursor_position
-	ld d, 8 * 8
+	ld d, 8 * TILE_WIDTH
 .got_cursor_position
 	ld a, SPRITE_ANIM_INDEX_NAMING_SCREEN_CURSOR
 	call InitSpriteAnimStruct
@@ -427,8 +427,8 @@ NamingScreenJoypadLoop:
 
 .start
 	ld hl, wNamingScreenCursorObjectPointer
-	ld c, [hl]
-	inc hl
+	ld a, [hli]
+	ld c, a
 	ld b, [hl]
 	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
@@ -462,8 +462,8 @@ NamingScreenJoypadLoop:
 
 .GetCursorPosition:
 	ld hl, wNamingScreenCursorObjectPointer
-	ld c, [hl]
-	inc hl
+	ld a, [hli]
+	ld c, a
 	ld b, [hl]
 
 NamingScreen_GetCursorPosition:
@@ -756,8 +756,8 @@ NamingScreen_StoreEntry:
 
 NamingScreen_GetLastCharacter:
 	ld hl, wNamingScreenCursorObjectPointer
-	ld c, [hl]
-	inc hl
+	ld a, [hli]
+	ld c, a
 	ld b, [hl]
 	ld hl, SPRITEANIMSTRUCT_XOFFSET
 	add hl, bc
@@ -875,8 +875,8 @@ INCBIN "gfx/naming_screen/MailInput.tilemap"
 
 _ComposeMailMessage:
 	ld hl, wNamingScreenDestinationPointer
-	ld [hl], e
-	inc hl
+	ld a, e
+	ld [hli], a
 	ld [hl], d
 	ld hl, wNamingScreenType
 	ld [hl], b
@@ -934,8 +934,8 @@ _ComposeMailMessage:
 	call SetPalettes
 	call NamingScreen_InitNameEntry
 	ld hl, wNamingScreenDestinationPointer
-	ld e, [hl]
-	inc hl
+	ld a, [hli]
+	ld e, a
 	ld d, [hl]
 	ld hl, MAIL_LINE_LENGTH
 	add hl, de
@@ -1020,8 +1020,8 @@ INCBIN "gfx/naming_screen/mail.2bpp"
 	lb bc, 4, 18
 	call ClearBox
 	ld hl, wNamingScreenDestinationPointer
-	ld e, [hl]
-	inc hl
+	ld a, [hli]
+	ld e, a
 	ld d, [hl]
 	hlcoord 2, 2
 	call PlaceString
@@ -1096,8 +1096,8 @@ INCBIN "gfx/naming_screen/mail.2bpp"
 
 .start
 	ld hl, wNamingScreenCursorObjectPointer
-	ld c, [hl]
-	inc hl
+	ld a, [hli]
+	ld c, a
 	ld b, [hl]
 	ld hl, SPRITEANIMSTRUCT_VAR1
 	add hl, bc
@@ -1283,8 +1283,8 @@ ComposeMail_AnimateCursor:
 
 NamingScreen_PressedA_GetCursorCommand:
 	ld hl, wNamingScreenCursorObjectPointer
-	ld c, [hl]
-	inc hl
+	ld a, [hli]
+	ld c, a
 	ld b, [hl]
 
 ComposeMail_GetCursorPosition:

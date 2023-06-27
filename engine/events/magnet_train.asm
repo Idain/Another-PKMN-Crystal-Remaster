@@ -3,13 +3,13 @@ MagnetTrain:
 	and a
 	jr nz, .ToGoldenrod
 	ld a, 1 ; forwards
-	lb bc, 8 * TILE_WIDTH, 12 * TILE_WIDTH
+	bcpixel 8, 12
 	lb de, (11 * TILE_WIDTH) - (11 * TILE_WIDTH + 4), -12 * TILE_WIDTH
 	jr .continue
 
 .ToGoldenrod:
 	ld a, -1 ; backwards
-	lb bc, -8 * TILE_WIDTH, -12 * TILE_WIDTH
+	bcpixel -8, -12
 	lb de, (11 * TILE_WIDTH) + (11 * TILE_WIDTH + 4), 12 * TILE_WIDTH
 
 .continue
