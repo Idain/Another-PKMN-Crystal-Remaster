@@ -151,8 +151,8 @@ Options_TextSpeed:
 	ld hl, .Strings
 	add hl, bc
 	add hl, bc
-	ld e, [hl]
-	inc hl
+	ld a, [hli]
+	ld e, a
 	ld d, [hl]
 	hlcoord 11, 3
 	call PlaceString
@@ -271,23 +271,20 @@ Options_Sound:
 	bit D_LEFT_F, a
 	jr nz, .LeftRightPressed
 	bit D_RIGHT_F, a
-	jr z, .NonePressed
+	jr nz, .LeftRightPressed
+;.NonePressed:
+	bit STEREO, [hl]
+	jr nz, .ToggleStereo
+	jr .ToggleMono
 
 ; Left/Right pressed
 .LeftRightPressed:
 	bit STEREO, [hl]
 	jr z, .SetStereo
-	jr .SetMono
-
-.NonePressed:
-	bit STEREO, [hl]
-	jr nz, .ToggleStereo
-	jr .ToggleMono
-
+	; fallthrough
 .SetMono:
 	res STEREO, [hl]
 	call RestartMapMusic
-
 .ToggleMono:
 	ld de, .Mono
 	jr .Display
@@ -295,10 +292,8 @@ Options_Sound:
 .SetStereo:
 	set STEREO, [hl]
 	call RestartMapMusic
-
 .ToggleStereo:
 	ld de, .Stereo
-
 .Display:
 	hlcoord 11, 9
 	call PlaceString
@@ -351,8 +346,8 @@ Options_Print:
 	ld hl, .Strings
 	add hl, bc
 	add hl, bc
-	ld e, [hl]
-	inc hl
+	ld a, [hli]
+	ld e, a
 	ld d, [hl]
 	hlcoord 11, 11
 	call PlaceString

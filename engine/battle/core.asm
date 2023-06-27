@@ -8911,10 +8911,10 @@ CopyBackpic:
 	ld c, 3
 	ld d, 8 * TILE_WIDTH
 .inner_loop
-	ld [hl], d ; y
-	inc hl
-	ld [hl], e ; x
-	inc hl
+	ld a, d
+	ld [hli], a ; y
+	ld a, e
+	ld [hli], a ; x
 	ldh a, [hMapObjectIndex]
 	ld [hli], a ; tile id
 	inc a

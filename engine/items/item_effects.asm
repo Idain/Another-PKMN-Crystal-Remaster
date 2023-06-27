@@ -1324,7 +1324,7 @@ HealPowderEffect:
 	farcall ChangeHappiness
 	call LooksBitterMessage
 
-	ld a, $0
+	xor a
 	jp StatusHealer_Jumptable
 
 StatusHealingEffect:
@@ -1542,7 +1542,7 @@ FullRestoreEffect:
 	ld [wPartyMenuActionText], a
 	call ItemActionTextWaitButton
 	call UseDisposableItem
-	ld a, 0
+	xor a
 	ret
 
 BitterBerryEffect:
@@ -1559,7 +1559,7 @@ BitterBerryEffect:
 	ld hl, ConfusedNoMoreText
 	call StdBattleTextbox
 
-	ld a, 0
+	xor a
 	jp StatusHealer_Jumptable
 
 RestoreHPEffect:
@@ -1578,13 +1578,11 @@ EnergypowderEnergyRootCommon:
 	call ItemRestoreHP
 	pop bc
 	and a
-	jr nz, .skip_happiness
+	jp nz, StatusHealer_Jumptable ; skip happiness
 
 	farcall ChangeHappiness
 	call LooksBitterMessage
-	ld a, 0
-
-.skip_happiness
+	xor a
 	jp StatusHealer_Jumptable
 
 ItemRestoreHP:
@@ -1611,7 +1609,7 @@ ItemRestoreHP:
 	ld [wPartyMenuActionText], a
 	call ItemActionTextWaitButton
 	call UseDisposableItem
-	ld a, 0
+	xor a
 	ret
 
 HealHP_SFX_GFX:

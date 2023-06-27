@@ -17,7 +17,7 @@ Load2DMenuData::
 	xor a
 	ld [hli], a ; wCursorOffCharacter
 	ld [hli], a ; wCursorCurrentTile
-	ld [hli], a
+	ld [hl], a
 	pop bc
 	pop hl
 	ret
@@ -170,8 +170,8 @@ GetWindowStackTop::
 PlaceVerticalMenuItems::
 	call CopyMenuData
 	ld hl, wMenuDataPointer
-	ld e, [hl]
-	inc hl
+	ld a, [hli]
+	ld e, a
 	ld d, [hl]
 	call GetMenuTextStartCoord
 	call Coord2Tile ; hl now contains the tilemap address where we will start printing text.

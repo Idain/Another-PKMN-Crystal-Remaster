@@ -635,7 +635,7 @@ _CGB_TrainerCard:
 	and a
 	ld a, $1 ; kris
 	jr z, .got_gender
-	ld a, $0 ; chris
+	xor a ; chris
 .got_gender
 	call ByteFill
 	; fill trainer sprite area with same-gender palette
@@ -643,9 +643,9 @@ _CGB_TrainerCard:
 	lb bc, 7, 5
 	ld a, [wPlayerGender]
 	and a
-	ld a, $0 ; chris
-	jr z, .got_gender2
 	ld a, $1 ; kris
+	jr nz, .got_gender2
+	xor a ; chris
 .got_gender2
 	call FillBoxCGB
 	hlcoord 3, 10, wAttrmap
@@ -741,7 +741,7 @@ _CGB_TrainerCardKanto:
 	and a
 	ld a, $1 ; kris
 	jr z, .got_gender
-	ld a, $0 ; chris
+	xor a ; chris
 .got_gender
 	call ByteFill
 	; fill trainer sprite area with same-gender palette
@@ -749,9 +749,9 @@ _CGB_TrainerCardKanto:
 	lb bc, 7, 5
 	ld a, [wPlayerGender]
 	and a
-	ld a, $0 ; chris
-	jr z, .got_gender2
 	ld a, $1 ; kris
+	jr nz, .got_gender2
+	xor a ; chris
 .got_gender2
 	call FillBoxCGB
 	hlcoord 3, 10, wAttrmap
@@ -791,7 +791,7 @@ _CGB_TrainerCardKanto:
 	and a
 	ld a, $1 ; kris
 	jr z, .got_gender3
-	ld a, $0 ; chris
+	xor a ; chris
 .got_gender3
 	hlcoord 18, 1, wAttrmap
 	ld [hl], a

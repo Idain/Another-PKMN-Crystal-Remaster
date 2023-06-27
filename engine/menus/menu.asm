@@ -108,8 +108,8 @@ Get2DMenuNumberOfRows:
 
 Place2DMenuItemStrings:
 	ld hl, wMenuData_2DMenuItemStringsAddr
-	ld e, [hl]
-	inc hl
+	ld a, [hli]
+	ld e, a
 	ld d, [hl]
 	call GetMenuTextStartCoord
 	call Coord2Tile
@@ -514,8 +514,8 @@ _PushWindow::
 	ldh [rSVBK], a
 
 	ld hl, wWindowStackPointer
-	ld e, [hl]
-	inc hl
+	ld a, [hli]
+	ld e, a
 	ld d, [hl]
 	push de
 
@@ -566,8 +566,8 @@ _PushWindow::
 	ld [de], a
 	dec de
 	ld hl, wWindowStackPointer
-	ld [hl], e
-	inc hl
+	ld a, e
+	ld [hli], a
 	ld [hl], d
 
 	pop af
@@ -705,10 +705,10 @@ _InitVerticalMenuCursor::
 .load_at_the_top
 	ld c, 1
 .load_position
-	ld [hl], c
-	inc hl
+	ld a, c
+	ld [hli], a
 ; wMenuCursorX
-	ld a, 1
+;	ld a, 1
 	ld [hli], a
 ; wCursorOffCharacter, wCursorCurrentTile
 	xor a

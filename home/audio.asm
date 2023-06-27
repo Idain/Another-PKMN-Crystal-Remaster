@@ -120,10 +120,10 @@ rept MON_CRY_LENGTH
 	add hl, de
 endr
 
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	inc hl
+	ld a, [hli]
+	ld e, a
+	ld a, [hli]
+	ld d, a
 
 	ld a, [hli]
 	ld [wCryPitch], a

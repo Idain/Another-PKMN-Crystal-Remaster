@@ -167,11 +167,11 @@ Serial_ExchangeByte::
 	and (1 << SERIAL) | (1 << TIMER) | (1 << LCD_STAT) | (1 << VBLANK)
 	cp 1 << SERIAL
 	jr nz, .loop
-	ld a, [wLinkByteTimeout]
+	ld a, [wLinkByteTimeout] ; no-optimize Inefficient WRAM increment/decrement
 	dec a
 	ld [wLinkByteTimeout], a
 	jr nz, .loop
-	ld a, [wLinkByteTimeout + 1]
+	ld a, [wLinkByteTimeout + 1] ; no-optimize Inefficient WRAM increment/decrement
 	dec a
 	ld [wLinkByteTimeout + 1], a
 	jr nz, .loop

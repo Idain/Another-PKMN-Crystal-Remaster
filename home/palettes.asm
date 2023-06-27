@@ -248,17 +248,17 @@ CopyPals::
 	ld l, a
 	ld h, 0
 	add hl, de
-	ld e, [hl]
-	inc hl
+	ld a, [hli]
+	ld e, a
 	ld d, [hl]
 
 ; dest
 	pop hl
 ; write color
-	ld [hl], e
-	inc hl
-	ld [hl], d
-	inc hl
+	ld a, e
+	ld [hli], a
+	ld a, d
+	ld [hli], a
 ; next pal color
 rept PAL_COLOR_SIZE
 	srl b
@@ -364,7 +364,7 @@ ClearVBank1::
 	xor a
 	call ByteFill
 
-	ld a, 0
+;	xor a
 	ldh [rVBK], a
 	ret
 

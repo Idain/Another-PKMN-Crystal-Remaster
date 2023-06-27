@@ -1064,12 +1064,8 @@ LoadMapPals:
 	add a
 	ld e, a
 	ld d, 0
-	ld hl, PartyMenuOBPals
+	ld hl, PartyMenuOBPals color 1
 	add hl, de
-
-	inc hl
-	inc hl
-
 	ld de, wOBPals1 palette PAL_OW_PINK color 1
 	ld bc, 1 palettes - 2
 	ld a, BANK(wOBPals1)
@@ -1093,12 +1089,8 @@ LoadMapPals:
 	add a
 	ld e, a
 	ld d, 0
-	ld hl, PartyMenuOBPals
+	ld hl, PartyMenuOBPals color 1
 	add hl, de
-
-	inc hl
-	inc hl
-
 	ld de, wOBPals1 palette PAL_OW_ROCK + color 1
 	ld bc, 1 palettes - 2
 	ld a, BANK(wOBPals1)

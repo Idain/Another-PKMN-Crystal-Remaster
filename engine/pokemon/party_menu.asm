@@ -484,8 +484,8 @@ PlacePartyMonMobileBattleSelection:
 	ld e, MON_NAME_LENGTH
 	sub e
 	ld l, a
-	ld a, h
-	sbc $0
+	sbc l
+	add h
 	ld h, a
 	ld de, .String_Kettei_Yameru
 	call PlaceString

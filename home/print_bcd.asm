@@ -58,7 +58,7 @@ PrintBCDDigit::
 ; if bit 7 is set, then no numbers have been printed yet
 	bit PRINTNUM_MONEY_F, b
 	jr z, .skipCurrencySymbol
-	ld [hl], "¥"
+	ld [hl], "¥" ; no-optimize *hl++|*hl-- = N
 	inc hl
 	res PRINTNUM_MONEY_F, b
 .skipCurrencySymbol

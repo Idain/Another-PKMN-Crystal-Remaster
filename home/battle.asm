@@ -203,8 +203,8 @@ GetBattleAnimByte::
 	push de
 
 	ld hl, wBattleAnimAddress
-	ld e, [hl]
-	inc hl
+	ld a, [hli]
+	ld e, a
 	ld d, [hl]
 
 	ld a, BANK(BattleAnimations)
@@ -217,8 +217,8 @@ GetBattleAnimByte::
 	ld a, BANK(BattleAnimCommands)
 	rst Bankswitch
 
-	ld [hl], d
-	dec hl
+	ld a, d
+	ld [hld], a
 	ld [hl], e
 
 	pop de

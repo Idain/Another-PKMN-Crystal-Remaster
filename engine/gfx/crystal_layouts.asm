@@ -252,10 +252,9 @@ _InitMG_Mobile_LinkTradePalMap:
 	ld [hli], a
 	ld [hli], a
 	ld [hli], a
-	ld a, $2
-	ld [hl], a
+	ld [hl], 2
 	hlcoord 2, 17, wAttrmap
-	ld a, $3
+	ld a, 3
 	ld bc, 6
 	jp ByteFill
 

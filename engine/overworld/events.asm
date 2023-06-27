@@ -963,10 +963,10 @@ LoadScriptBDE::
 	ld a, 1
 	ld [hli], a
 ; Load the script pointer b:de into (wMapReentryScriptBank):(wMapReentryScriptAddress)
-	ld [hl], b
-	inc hl
-	ld [hl], e
-	inc hl
+	ld a, b
+	ld [hli], a
+	ld a, e
+	ld [hli], a
 	ld [hl], d
 	scf
 	ret

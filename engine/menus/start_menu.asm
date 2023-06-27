@@ -432,27 +432,23 @@ StartMenu_Status:
 	call FadeToMenu
 	farcall TrainerCard
 	call CloseSubmenu
-	ld a, 0
+	xor a
 	ret
 
 StartMenu_Pokedex:
 	ld a, [wPartyCount]
 	and a
-	jr z, .empty
+	ret z ; empty
 
 	call FadeToMenu
 	farcall Pokedex
-	call CloseSubmenu
-
-.empty
-	ld a, 0
-	ret
+	jp CloseSubmenu
 
 StartMenu_Pokegear:
 	call FadeToMenu
 	farcall PokeGear
 	call CloseSubmenu
-	ld a, 0
+	xor a
 	ret
 
 StartMenu_Pack:
@@ -462,7 +458,7 @@ StartMenu_Pack:
 	and a
 	jr nz, .used_item
 	call CloseSubmenu
-	ld a, 0
+	xor a
 	ret
 
 .used_item
@@ -509,7 +505,7 @@ StartMenu_Pokemon:
 
 .return
 	call CloseSubmenu
-	ld a, 0
+	xor a
 	ret
 
 .quit

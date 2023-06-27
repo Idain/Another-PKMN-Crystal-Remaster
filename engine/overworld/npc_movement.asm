@@ -248,7 +248,7 @@ CheckFacingObject::
 	ld e, a
 
 .not_counter
-	ld a, 0
+	xor a
 	ldh [hMapObjectIndex], a
 	call IsNPCAtCoord
 	ret nc

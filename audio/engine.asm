@@ -413,7 +413,7 @@ UpdateChannels:
 	ldh [rWave_d], a
 	ld a, [hli]
 	ldh [rWave_e], a
-	ld a, [hli]
+	ld a, [hl]
 	ldh [rWave_f], a
 	pop hl
 	ld a, [wCurTrackVolumeEnvelope]
@@ -673,8 +673,8 @@ LoadNote:
 	; get frequency
 	ld hl, CHANNEL_FREQUENCY
 	add hl, bc
-	ld e, [hl]
-	inc hl
+	ld a, [hli]
+	ld e, a
 	ld d, [hl]
 	; get direction of pitch slide
 	ld hl, CHANNEL_PITCH_SLIDE_TARGET
@@ -682,8 +682,8 @@ LoadNote:
 	ld a, e
 	sub [hl]
 	ld e, a
-	ld a, d
-	sbc 0
+	sbc e
+	add d
 	ld d, a
 	ld hl, CHANNEL_PITCH_SLIDE_TARGET + 1
 	add hl, bc
@@ -695,8 +695,8 @@ LoadNote:
 	; get frequency
 	ld hl, CHANNEL_FREQUENCY
 	add hl, bc
-	ld e, [hl]
-	inc hl
+	ld a, [hli]
+	ld e, a
 	ld d, [hl]
 	; ????
 	ld hl, CHANNEL_PITCH_SLIDE_TARGET
@@ -704,8 +704,8 @@ LoadNote:
 	ld a, [hl]
 	sub e
 	ld e, a
-	ld a, d
-	sbc 0
+	sbc e
+	add d
 	ld d, a
 	; ????
 	ld hl, CHANNEL_PITCH_SLIDE_TARGET + 1
@@ -722,8 +722,8 @@ LoadNote:
 	; get frequency
 	ld hl, CHANNEL_FREQUENCY
 	add hl, bc
-	ld e, [hl]
-	inc hl
+	ld a, [hli]
+	ld e, a
 	ld d, [hl]
 	; get distance from pitch slide target
 	ld hl, CHANNEL_PITCH_SLIDE_TARGET
@@ -731,8 +731,8 @@ LoadNote:
 	ld a, e
 	sub [hl]
 	ld e, a
-	ld a, d
-	sbc 0
+	sbc e
+	add d
 	ld d, a
 	ld hl, CHANNEL_PITCH_SLIDE_TARGET + 1
 	add hl, bc
@@ -798,8 +798,8 @@ HandleTrackVibrato:
 	jr z, .vibrato
 	ld hl, CHANNEL_PITCH_OFFSET
 	add hl, bc
-	ld e, [hl]
-	inc hl
+	ld a, [hli]
+	ld e, a
 	ld d, [hl]
 	ld hl, wCurTrackFrequency
 	ld a, [hli]
@@ -809,8 +809,8 @@ HandleTrackVibrato:
 	ld e, l
 	ld d, h
 	ld hl, wCurTrackFrequency
-	ld [hl], e
-	inc hl
+	ld a, e
+	ld [hli], a
 	ld [hl], d
 .vibrato
 	; is vibrato on?
@@ -868,7 +868,7 @@ HandleTrackVibrato:
 	ld a, e
 	sub d
 	jr nc, .no_carry
-	ld a, 0
+	ld a, 0 ; no-optimize a = 0
 	jr .no_carry
 
 .down
@@ -899,8 +899,8 @@ ApplyPitchSlide:
 	; de = Frequency
 	ld hl, CHANNEL_FREQUENCY
 	add hl, bc
-	ld e, [hl]
-	inc hl
+	ld a, [hli]
+	ld e, a
 	ld d, [hl]
 	; check whether pitch slide is going up or down
 	ld hl, CHANNEL_FLAGS3
@@ -951,8 +951,8 @@ ApplyPitchSlide:
 	ld e, [hl]
 	sub e
 	ld e, a
-	ld a, d
-	sbc 0
+	sbc e
+	add d
 	ld d, a
 	; [Channel*Field25] *= 2
 	; if rollover: Frequency -= 1
@@ -990,8 +990,8 @@ ApplyPitchSlide:
 .continue_pitch_slide
 	ld hl, CHANNEL_FREQUENCY
 	add hl, bc
-	ld [hl], e
-	inc hl
+	ld a, e
+	ld [hli], a
 	ld [hl], d
 	ld hl, CHANNEL_NOTE_FLAGS
 	add hl, bc
@@ -1035,8 +1035,8 @@ ReadNoiseSample:
 
 	; de = [wNoiseSampleAddress]
 	ld hl, wNoiseSampleAddress
-	ld e, [hl]
-	inc hl
+	ld a, [hli]
+	ld e, a
 	ld d, [hl]
 
 	; is it empty?
@@ -1063,8 +1063,8 @@ ReadNoiseSample:
 	ld [wCurTrackFrequency + 1], a
 
 	ld hl, wNoiseSampleAddress
-	ld [hl], e
-	inc hl
+	ld a, e
+	ld [hli], a
 	ld [hl], d
 
 	ld hl, CHANNEL_NOTE_FLAGS
@@ -1118,8 +1118,8 @@ ParseMusic:
 	call GetFrequency
 	ld hl, CHANNEL_FREQUENCY
 	add hl, bc
-	ld [hl], e
-	inc hl
+	ld a, e
+	ld [hli], a
 	ld [hl], d
 	; ????
 	ld hl, CHANNEL_NOTE_FLAGS
@@ -1365,13 +1365,13 @@ Music_Ret:
 	; copy LastMusicAddress to MusicAddress
 	ld hl, CHANNEL_LAST_MUSIC_ADDRESS
 	add hl, bc
-	ld e, [hl]
-	inc hl
+	ld a, [hli]
+	ld e, a
 	ld d, [hl]
 	ld hl, CHANNEL_MUSIC_ADDRESS
 	add hl, bc
-	ld [hl], e
-	inc hl
+	ld a, e
+	ld [hli], a
 	ld [hl], d
 	ret
 
@@ -1387,20 +1387,20 @@ Music_Call:
 	; copy MusicAddress to LastMusicAddress
 	ld hl, CHANNEL_MUSIC_ADDRESS
 	add hl, bc
-	ld e, [hl]
-	inc hl
+	ld a, [hli]
+	ld e, a
 	ld d, [hl]
 	ld hl, CHANNEL_LAST_MUSIC_ADDRESS
 	add hl, bc
-	ld [hl], e
-	inc hl
+	ld a, e
+	ld [hli], a
 	ld [hl], d
 	; load pointer into MusicAddress
 	pop de
 	ld hl, CHANNEL_MUSIC_ADDRESS
 	add hl, bc
-	ld [hl], e
-	inc hl
+	ld a, e
+	ld [hli], a
 	ld [hl], d
 	; set subroutine flag
 	ld hl, CHANNEL_FLAGS1
@@ -1418,8 +1418,8 @@ Music_Jump:
 	ld d, a
 	ld hl, CHANNEL_MUSIC_ADDRESS
 	add hl, bc
-	ld [hl], e
-	inc hl
+	ld a, e
+	ld [hli], a
 	ld [hl], d
 	ret
 
@@ -1461,8 +1461,8 @@ Music_Loop:
 	; load new pointer into MusicAddress
 	ld hl, CHANNEL_MUSIC_ADDRESS
 	add hl, bc
-	ld [hl], e
-	inc hl
+	ld a, e
+	ld [hli], a
 	ld [hl], d
 	ret
 
@@ -1474,13 +1474,13 @@ Music_Loop:
 	; skip to next command
 	ld hl, CHANNEL_MUSIC_ADDRESS
 	add hl, bc
-	ld e, [hl]
-	inc hl
+	ld a, [hli]
+	ld e, a
 	ld d, [hl]
 	inc de ; skip
 	inc de ; pointer
-	ld [hl], d
-	dec hl
+	ld a, d
+	ld [hld], a
 	ld [hl], e
 	ret
 
@@ -1516,15 +1516,15 @@ Music_JumpIf:
 	; get address
 	ld hl, CHANNEL_MUSIC_ADDRESS
 	add hl, bc
-	ld e, [hl]
-	inc hl
+	ld a, [hli]
+	ld e, a
 	ld d, [hl]
 	; skip pointer
 	inc de
 	inc de
 	; update address
-	ld [hl], d
-	dec hl
+	ld a, d
+	ld [hld], a
 	ld [hl], e
 	ret
 
@@ -1538,8 +1538,8 @@ Music_JumpIf:
 	; update pointer in MusicAddress
 	ld hl, CHANNEL_MUSIC_ADDRESS
 	add hl, bc
-	ld [hl], e
-	inc hl
+	ld a, e
+	ld [hli], a
 	ld [hl], d
 	ret
 
@@ -1567,15 +1567,15 @@ MusicEE:
 	; get address
 	ld hl, CHANNEL_MUSIC_ADDRESS
 	add hl, bc
-	ld e, [hl]
-	inc hl
+	ld a, [hli]
+	ld e, a
 	ld d, [hl]
 	; skip pointer
 	inc de
 	inc de
 	; update address
-	ld [hl], d
-	dec hl
+	ld a, d
+	ld [hld], a
 	ld [hl], e
 	ret
 
@@ -1590,8 +1590,8 @@ MusicEE:
 	; update address
 	ld hl, CHANNEL_MUSIC_ADDRESS
 	add hl, bc
-	ld [hl], e
-	inc hl
+	ld a, e
+	ld [hli], a
 	ld [hl], d
 	ret
 
@@ -1994,8 +1994,8 @@ Music_RestartChannel:
 	ld l, a
 	call GetMusicByte
 	ld h, a
-	ld e, [hl]
-	inc hl
+	ld a, [hli]
+	ld e, a
 	ld d, [hl]
 	push bc ; save current channel
 	call LoadChannel
@@ -2072,8 +2072,8 @@ GetFrequency:
 	add hl, hl ; skip 2 bytes for each
 	ld de, FrequencyTable
 	add hl, de
-	ld e, [hl]
-	inc hl
+	ld a, [hli]
+	ld e, a
 	ld d, [hl]
 	; get our octave
 	pop af
@@ -2110,8 +2110,8 @@ SetNoteDuration:
 	; store Tempo in de
 	ld hl, CHANNEL_TEMPO
 	add hl, bc
-	ld e, [hl]
-	inc hl
+	ld a, [hli]
+	ld e, a
 	ld d, [hl]
 	; add ???? to the next result
 	ld hl, CHANNEL_FIELD16
@@ -2188,8 +2188,8 @@ Tempo:
 	; update Tempo
 	ld hl, CHANNEL_TEMPO
 	add hl, bc
-	ld [hl], e
-	inc hl
+	ld a, e
+	ld [hli], a
 	ld [hl], d
 	; clear ????
 	xor a
@@ -2214,7 +2214,7 @@ SetLRTracks:
 	maskbits NUM_MUSIC_CHANS
 	ld e, a
 	ld d, 0
-	call GetLRTracks
+	ld hl, Tracks
 	add hl, de ; de = channel 0-3
 	ld a, [hl]
 	; load lr tracks into Tracks
@@ -2228,8 +2228,8 @@ _PlayMusic::
 ; load music
 	call MusicOff
 	ld hl, wMusicID
-	ld [hl], e ; song number
-	inc hl
+	ld a, e ; song number
+	ld [hli], a
 	ld [hl], d ; (always 0)
 	ld hl, Music
 	add hl, de ; three
@@ -2237,8 +2237,8 @@ _PlayMusic::
 	add hl, de ; pointer
 	ld a, [hli]
 	ld [wMusicBank], a
-	ld e, [hl]
-	inc hl
+	ld a, [hli]
+	ld e, a
 	ld d, [hl] ; music header address
 	call LoadMusicByte ; store first byte of music header in a
 	rlca
@@ -2273,8 +2273,8 @@ _PlayCry::
 
 ; Overload the music id with the cry id
 	ld hl, wMusicID
-	ld [hl], e
-	inc hl
+	ld a, e
+	ld [hli], a
 	ld [hl], d
 
 ; 3-byte pointers (bank, address)
@@ -2286,8 +2286,8 @@ _PlayCry::
 	ld a, [hli]
 	ld [wMusicBank], a
 
-	ld e, [hl]
-	inc hl
+	ld a, [hli]
+	ld e, a
 	ld d, [hl]
 
 ; Read the cry's sound header
@@ -2438,8 +2438,8 @@ _PlaySFX::
 .chscleared
 ; start reading sfx header for # chs
 	ld hl, wMusicID
-	ld [hl], e
-	inc hl
+	ld a, e
+	ld [hli], a
 	ld [hl], d
 	ld hl, SFX
 	add hl, de ; three
@@ -2449,8 +2449,8 @@ _PlaySFX::
 	ld a, [hli]
 	ld [wMusicBank], a
 	; get address
-	ld e, [hl]
-	inc hl
+	ld a, [hli]
+	ld e, a
 	ld d, [hl]
 	; get # channels
 	call LoadMusicByte
@@ -2485,8 +2485,8 @@ PlayStereoSFX::
 
 ; else, let's go ahead with this
 	ld hl, wMusicID
-	ld [hl], e
-	inc hl
+	ld a, e
+	ld [hli], a
 	ld [hl], d
 
 ; get sfx ptr
@@ -2499,8 +2499,8 @@ PlayStereoSFX::
 	ld a, [hli]
 	ld [wMusicBank], a
 ; address
-	ld e, [hl]
-	inc hl
+	ld a, [hli]
+	ld e, a
 	ld d, [hl]
 
 ; bit 2-3
@@ -2524,7 +2524,7 @@ PlayStereoSFX::
 	maskbits NUM_MUSIC_CHANS
 	ld e, a
 	ld d, 0
-	call GetLRTracks
+	ld hl, Tracks
 	add hl, de
 	ld a, [hl]
 	ld hl, wStereoPanningMask
@@ -2585,8 +2585,8 @@ LoadChannel:
 	ld hl, ChannelPointers
 	add hl, bc
 	add hl, bc
-	ld c, [hl]
-	inc hl
+	ld a, [hli]
+	ld c, a
 	ld b, [hl] ; bc = channel pointer
 	ld hl, CHANNEL_FLAGS1
 	add hl, bc
@@ -2661,29 +2661,10 @@ INCLUDE "audio/wave_samples.asm"
 
 INCLUDE "audio/drumkits.asm"
 
-GetLRTracks:
-; gets the default sound l/r channels
-; stores mono/stereo table in hl
-	ld a, [wOptions]
-	bit STEREO, a
-	; made redundant, could have had a purpose in gold
-	jr nz, .stereo
-	ld hl, MonoTracks
-	ret
-
-.stereo
-	ld hl, StereoTracks
-	ret
-
-MonoTracks:
+Tracks:
 ; bit corresponds to track #
 ; hi: left channel
 ; lo: right channel
-	db $11, $22, $44, $88
-
-StereoTracks:
-; made redundant
-; seems to be modified on a per-song basis
 	db $11, $22, $44, $88
 
 ChannelPointers:

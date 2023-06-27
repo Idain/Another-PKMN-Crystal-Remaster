@@ -1927,8 +1927,7 @@ SECTION UNION "Miscellaneous WRAM 1", WRAMX
 ; movement buffer data
 wMovementBufferCount:: db
 wMovementBufferObject:: db
-wUnusedMovementBufferBank:: db
-wUnusedMovementBufferPointer:: dw
+	ds 3
 wMovementBuffer:: ds 55
 
 

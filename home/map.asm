@@ -71,8 +71,8 @@ GetMapSceneID::
 	jr .done
 
 .found
-	ld e, [hl]
-	inc hl
+	ld a, [hli]
+	ld e, a
 	ld d, [hl]
 
 .done
@@ -569,7 +569,7 @@ ReadObjectEvents::
 ; get NUM_OBJECTS - [wCurMapObjectEventCount] - 1 
 	ld a, [wCurMapObjectEventCount]
 
-	ld c, a
+	ld c, a ; no-optimize a = N - a
 	ld a, NUM_OBJECTS - 1
 	sub c
 
@@ -579,9 +579,9 @@ ReadObjectEvents::
 	inc hl
 	ld bc, MAPOBJECT_LENGTH
 .loop
-	ld [hl],  0
+	ld [hl],  0 ; no-optimize *hl++|*hl-- = N
 	inc hl
-	ld [hl], -1
+	ld [hl], -1 ; no-optimize *hl++|*hl-- = N
 	dec hl
 	add hl, bc
 	dec a
@@ -661,7 +661,7 @@ GetWarpDestCoords::
 LoadBlockData::
 	ld hl, wOverworldMapBlocks
 	ld bc, wOverworldMapBlocksEnd - wOverworldMapBlocks
-	ld a, 0
+	xor a
 	call ByteFill
 	call ChangeMap
 	call FillMapConnections
@@ -1039,14 +1039,14 @@ GetScriptByte::
 	rst Bankswitch
 
 	ld hl, wScriptPos
-	ld c, [hl]
-	inc hl
+	ld a, [hli]
+	ld c, a
 	ld b, [hl]
 
 	ld a, [bc]
 
 	inc bc
-	ld [hl], b
+	ld [hl], b ; no-optimize *hl++|*hl-- = b|c|d|e
 	dec hl
 	ld [hl], c
 
@@ -1249,11 +1249,9 @@ UpdateBGMapRow::
 	ld a, e
 	inc a
 	inc a
+	xor e
 	and $1f
-	ld b, a
-	ld a, e
-	and $e0
-	or b
+	xor e
 	ld e, a
 	dec c
 	jr nz, .loop
@@ -1621,10 +1619,10 @@ GetFacingTileCoord::
 	ld de, .Directions
 	add hl, de
 
-	ld d, [hl]
-	inc hl
-	ld e, [hl]
-	inc hl
+	ld a, [hli]
+	ld d, a
+	ld a, [hli]
+	ld e, a
 
 	ld a, [hli]
 	ld h, [hl]
@@ -1977,8 +1975,8 @@ GetAnyMapField::
 
 	call GetAnyMapPointer
 	add hl, de
-	ld c, [hl]
-	inc hl
+	ld a, [hli]
+	ld c, a
 	ld b, [hl]
 
 	; bankswitch back
