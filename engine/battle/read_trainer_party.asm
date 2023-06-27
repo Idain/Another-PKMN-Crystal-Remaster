@@ -347,7 +347,7 @@ Battle_GetTrainerName::
 	ld a, [wInBattleTowerBattle]
 	and a
 	ld hl, wOTPlayerName
-	ld a, BANK(Battle_GetTrainerName)
+	ld a, BANK(@)
 	ld [wTrainerGroupBank], a
 	jp nz, CopyTrainerName
 

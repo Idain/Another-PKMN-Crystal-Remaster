@@ -123,7 +123,7 @@ BattleAnimDarkenObjPals:
 
 	; Restore previous VRAM bank
 	pop af
-	ld [rSVBK], a
+	ldh [rSVBK], a
 	pop bc
 	pop de
 	pop hl

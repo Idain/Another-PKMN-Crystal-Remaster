@@ -333,7 +333,7 @@ DarkenColorByAQuarter::
 	ld [hl], a
 
 	; Extract Blue color and darken it
-	ld a, [hl]
+;	ld a, [hl]
 	and %01111100
 	rrca
 	rrca
@@ -343,7 +343,6 @@ DarkenColorByAQuarter::
 	sub d
 	ld d, a
 	; store color back in blue
-	ld d, a
 	sla d
 	sla d
 	ld a, [hl]

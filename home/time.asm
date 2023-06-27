@@ -182,18 +182,13 @@ InitTime::
 	ret
 
 ClearClock::
-	call .ClearhRTC
-	jp SetClock
-
-.ClearhRTC:
 	xor a
 	ldh [hRTCSeconds], a
 	ldh [hRTCMinutes], a
 	ldh [hRTCHours], a
 	ldh [hRTCDayLo], a
 	ldh [hRTCDayHi], a
-	ret
-
+	; fallthrough
 SetClock::
 ; set clock data from hram
 

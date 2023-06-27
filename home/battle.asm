@@ -19,47 +19,36 @@ UserPartyAttr::
 	push af
 	ldh a, [hBattleTurn]
 	and a
-	jr nz, .ot
+	jr nz, OTPartyAttrPre
+BattlePartyAttrPre:
 	pop af
-	jr BattlePartyAttr
-.ot
-	pop af
-	jr OTPartyAttr
+BattlePartyAttr::
+; Get attribute a from the party struct of the active battle mon.
+	ld hl, wPartyMons
+	push bc
+	ld c, a
+	ld a, [wCurBattleMon]
+DoBattlePartyAttr:
+	ld b, 0
+	add hl, bc
+	call GetPartyLocation
+	pop bc
+	ret
 
 OpponentPartyAttr::
 	push af
 	ldh a, [hBattleTurn]
 	and a
-	jr z, .ot
+	jr nz, BattlePartyAttrPre
+OTPartyAttrPre:
 	pop af
-	jr BattlePartyAttr
-.ot
-	pop af
-	jr OTPartyAttr
-
-BattlePartyAttr::
-; Get attribute a from the party struct of the active battle mon.
-	push bc
-	ld c, a
-	ld b, 0
-	ld hl, wPartyMons
-	add hl, bc
-	ld a, [wCurBattleMon]
-	call GetPartyLocation
-	pop bc
-	ret
-
 OTPartyAttr::
 ; Get attribute a from the party struct of the active enemy mon.
+	ld hl, wOTPartyMons
 	push bc
 	ld c, a
-	ld b, 0
-	ld hl, wOTPartyMon1Species
-	add hl, bc
 	ld a, [wCurOTMon]
-	call GetPartyLocation
-	pop bc
-	ret
+	jr DoBattlePartyAttr
 
 ResetDamage::
 	xor a
