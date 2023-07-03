@@ -2110,8 +2110,8 @@ SetNoteDuration:
 	; store Tempo in de
 	ld hl, CHANNEL_TEMPO
 	add hl, bc
-	ld a, [hli]
-	ld e, a
+	ld e, [hl]
+	inc hl
 	ld d, [hl]
 	; add ???? to the next result
 	ld hl, CHANNEL_FIELD16
