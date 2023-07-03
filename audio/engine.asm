@@ -374,13 +374,23 @@ UpdateChannels:
 
 .load_wave_pattern
 	push hl
+	; load wavetable into hl
+	ld a, [wCurTrackWaveTable]
+	add a
+	ld e, a
+	ld d, 0
+	ld hl, WaveTables
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	; point to wavepattern in hl
 	ld a, [wCurTrackVolumeEnvelope]
 	and $f ; only 0-10 are valid
 	; each wavepattern is $f bytes long, so seeking is done in $10s
 	swap a ; a << 4
-	ld l, a
-	ld h, 0
-	ld de, WaveSamples
+	ld e, a
+	ld d, 0
 	add hl, de
 	; load wavepattern into rWave_0-rWave_f
 	ld a, [hli]
@@ -1312,13 +1322,13 @@ MusicCommands:
 	dw Music_ToggleSFX
 	dw Music_PitchSlide
 	dw Music_Vibrato
-	dw MusicE2 ; unused
+	dw Music_WaveTable
 	dw Music_ToggleNoise
 	dw Music_ForceStereoPanning
 	dw Music_Volume
 	dw Music_PitchOffset
-	dw MusicE7 ; unused
-	dw MusicE8 ; unused
+	dw Music_WaveType
+	dw Music_WaveForm
 	dw Music_TempoRelative ; unused
 	dw Music_RestartChannel
 	dw Music_NewSong ; unused
@@ -1595,16 +1605,26 @@ MusicEE:
 	ld [hl], d
 	ret
 
-MusicE2:
-; unused
+Music_WaveType:
+; wavetype
+; params: 3
+	; wave table
+	call Music_WaveTable
+	jp Music_NoteType
+
+Music_WaveForm:
+; waveform
+; params: 2
+	; wave table
+	call Music_WaveTable
+	jp Music_VolumeEnvelope
+
+Music_WaveTable:
+; set the wave table index
 ; params: 1
 	call GetMusicByte
-	ld hl, CHANNEL_FIELD2C
-	add hl, bc
-	ld [hl], a
-	ld hl, CHANNEL_FLAGS2
-	add hl, bc
-	set SOUND_UNKN_0B, [hl]
+	and $f ; only 0-15 are valid
+	ld [wCurTrackWaveTable], a
 	ret
 
 Music_Vibrato:
@@ -1708,18 +1728,6 @@ Music_PitchOffset:
 	ld [hl], a
 	ret
 
-MusicE7:
-; unused
-; params: 1
-	ld hl, CHANNEL_FLAGS2
-	add hl, bc
-	set SOUND_UNKN_0E, [hl]
-	call GetMusicByte
-	ld hl, CHANNEL_FIELD29
-	add hl, bc
-	ld [hl], a
-	ret
-
 Music_DutyCyclePattern:
 ; sequence of 4 duty cycles to be looped
 ; params: 1 (4 2-bit duty cycle arguments)
@@ -1736,18 +1744,6 @@ Music_DutyCyclePattern:
 	; update duty cycle
 	and $c0 ; only uses top 2 bits
 	ld hl, CHANNEL_DUTY_CYCLE
-	add hl, bc
-	ld [hl], a
-	ret
-
-MusicE8:
-; unused
-; params: 1
-	ld hl, CHANNEL_FLAGS2
-	add hl, bc
-	set SOUND_UNKN_0D, [hl]
-	call GetMusicByte
-	ld hl, CHANNEL_FIELD2A
 	add hl, bc
 	ld [hl], a
 	ret
@@ -2227,6 +2223,8 @@ SetLRTracks:
 _PlayMusic::
 ; load music
 	call MusicOff
+	xor a
+	ld [wCurTrackWaveTable], a
 	ld hl, wMusicID
 	ld a, e ; song number
 	ld [hli], a
@@ -2657,6 +2655,7 @@ LoadMusicByte::
 
 INCLUDE "audio/notes.asm"
 
+INCLUDE "audio/wave_tables.asm"
 INCLUDE "audio/wave_samples.asm"
 
 INCLUDE "audio/drumkits.asm"

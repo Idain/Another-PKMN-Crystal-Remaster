@@ -1,4 +1,19 @@
-WaveSamples:
+WaveSamples1:
+WaveSamples2: 	; unused
+WaveSamples3:	; unused
+WaveSamples4:	; unused
+WaveSamples5:	; unused
+WaveSamples6:	; unused
+WaveSamples7:	; unused
+WaveSamples8:	; unused
+WaveSamples9:	; unused
+WaveSamples10:	; unused
+WaveSamples11:	; unused
+WaveSamples12:	; unused
+WaveSamples13:	; unused
+WaveSamples14:	; unused
+WaveSamples15:	; unused
+WaveSamples16:	; unused
 	; These are streams of 32 nybbles (4-bit values) used as wave patterns.
 	; Plot them as a line chart to see the wave's shape.
 	dn  0,  2,  4,  6,  8, 10, 12, 14, 15, 15, 15, 14, 14, 13, 13, 12, 12, 11, 10,  9,  8,  7,  6,  5,  4,  4,  3,  3,  2,  2,  1,  1

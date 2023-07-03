@@ -132,3 +132,7 @@ DEF DANGER_ON_F    EQU 7
 
 ; wMusicFade
 DEF MUSIC_FADE_IN_F EQU 7
+
+; WaveTable and WaveSample constants
+DEF NUM_WAVETABLES EQU 16
+DEF NUM_WAVEFORMS  EQU 16

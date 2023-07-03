@@ -17,7 +17,7 @@ for n, 1, NUM_CHANNELS + 1
 wChannel{d:n}:: channel_struct wChannel{d:n}
 endr
 
-	ds 1
+wCurTrackWaveTable:: db
 
 wCurTrackDuty:: db
 wCurTrackVolumeEnvelope:: db
