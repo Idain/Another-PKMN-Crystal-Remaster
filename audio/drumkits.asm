@@ -307,110 +307,110 @@ Kick2:
 	noise_note 32, 7, 1, 0
 	sound_ret
 
-;Softer Noise Notes
+; Softer Noise Notes
 Snare12_Soft:
-	noise C#,  1, $81, $33
+	noise_note 32, 8, 1, 51
 	sound_ret
 
 Snare13_Soft:
-	noise C#,  1, $41, $32
+	noise_note 32, 4, 1, 50
 	sound_ret
 
 Snare14_Soft:
-	noise C#,  1, $71, $31
+	noise_note 32, 7, 1, 49
 	sound_ret
 
 Kick1_Soft:
-	noise C#,  1, $78, $6b
-	noise C#,  1, $61, $00
+	noise_note 32, 7, 8, 107
+	noise_note 32, 6, 1, 0
 	sound_ret
 
 Triangle5_Soft:
-	noise D_,  1, $81, $18
+	noise_note 48, 8, 1, 24
 	sound_ret
 
 Drum27_Soft:
-	noise C#,  8, $82, $10
+	noise_note 39, 8, 2, 16
 	sound_ret
 
 Drum28_Soft:
-	noise D_,  4, $81, $00
-	noise D_,  4, $11, $00
+	noise_note 51, 8, 1, 0
+	noise_note 51, 1, 1, 0
 	sound_ret
 
 Drum29_Soft:
-	noise D_,  4, $81, $11
-	noise D_,  4, $11, $00
+	noise_note 51, 8, 1, 17
+	noise_note 51, 1, 1, 0
 	sound_ret
 
 Snare4_Soft:
-	noise C#,  1, $71, $33
+	noise_note 32, 7, 1, 51
 	sound_ret
 
 Snare5_Soft:
-	noise C#,  1, $72, $23
+	noise_note 32, 7, 2, 35
 	sound_ret
 
 Snare6_Soft:
-	noise C#,  1, $72, $25
+	noise_note 32, 7, 2, 37
 	sound_ret
 
 Snare7_Soft:
-	noise C#,  1, $72, $26
+	noise_note 32, 7, 2, 38
 	sound_ret
 
 Snare8_Soft:
-	noise C#,  1, $92, $50
+	noise_note 32, 9, 2, 80
 	sound_ret
 
 Snare9_Soft:
-	noise C#,  1, $81, $22
+	noise_note 32, 8, 1, 34
 	sound_ret
 
 Snare10_Soft:
-	noise C#,  1, $61, $22
+	noise_note 32, 6, 1, 34
 	sound_ret
 
 Snare11_Soft:
-	noise C#,  1, $51, $22
+	noise_note 32, 5, 1, 34
 	sound_ret
 
 Kick2_Soft:
-	noise C#,  1, $98, $6b
-	noise C#,  1, $61, $00
+	noise_note 32, 9, 8, 107
+	noise_note 32, 6, 1, 0
 	sound_ret
 
 Crash2_Soft:
-	noise C#,  1, $74, $12
+	noise_note 32, 7, 4, 18
 	sound_ret
 
 Triangle1_Soft:
-	noise C#,  1, $61, $2a
+	noise_note 32, 6, 1, 42
 	sound_ret
 
 Triangle2_Soft:
-	noise C#,  2, $31, $2b
-	noise C#,  1, $51, $2a
+	noise_note 33, 3, 1, 43
+	noise_note 32, 5, 1, 42
 	sound_ret
 
 Triangle3_Soft:
-	noise C#,  1, $91, $18
-	noise C#,  1, $21, $33
+	noise_note 32, 9, 1, 24
+	noise_note 32, 2, 1, 51
 	sound_ret
 
 Triangle4_Soft:
-	noise C#,  3, $81, $28
-	noise C#,  1, $61, $18
+	noise_note 34, 8, 1, 40
+	noise_note 32, 6, 1, 24
 	sound_ret
 
 HiHat1_Soft:
-	noise C#,  1, $71, $10
+	noise_note 32, 7, 1, 16
 	sound_ret
 
 HiHat2_Soft:
-	noise C#,  1, $91, $10
+	noise_note 32, 9, 1, 16
 	sound_ret
 
 HiHat3_Soft:
-	noise C#,  1, $92, $11
+	noise_note 32, 9, 2, 17
 	sound_ret

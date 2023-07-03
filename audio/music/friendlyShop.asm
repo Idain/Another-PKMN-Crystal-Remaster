@@ -6,16 +6,17 @@
 ; ============================================================================================================
 
 Music_FriendlyShop:
-	musicheader 4, 1, Music_FriendlyShop_Ch1
-	musicheader 1, 2, Music_FriendlyShop_Ch2
-	musicheader 1, 3, Music_FriendlyShop_Ch3
-	musicheader 1, 4, Music_FriendlyShop_Ch4
+	channel_count 4
+	channel 1, Music_FriendlyShop_Ch1
+	channel 2, Music_FriendlyShop_Ch2
+	channel 3, Music_FriendlyShop_Ch3
+	channel 4, Music_FriendlyShop_Ch4
 
 Music_FriendlyShop_Ch1:
-	volume $77
-	stereopanning $f0
-	dutycycle $3
-	notetype 12, $92
+	volume 7, 7
+	stereo_panning TRUE, FALSE
+	duty_cycle $3
+	note_type 12, 9, 2
 	tempo 140
 ;Bar 1
 	octave 4
@@ -26,11 +27,11 @@ Music_FriendlyShop_Ch1:
 	octave 3
 	note B_, 6
 ;Bar 2
-	intensity $94
+	volume_envelope 9, 4
 	note A#, 12
 ;Bar 3
 Music_FriendlyShop_Ch1_loop:
-	notetype 6, $a1
+	note_type 6, 10, 1
 	note D#, 8
 	octave 2
 	note A#, 4
@@ -87,26 +88,26 @@ Music_FriendlyShop_Ch1_loop:
 	note F#, 4
 	note B_, 4
 	note F#, 4
-	notetype 12, $95
+	note_type 12, 9, 5
 	note F_, 2
 	note F#, 2
 	note G#, 2
 ;Bar 10
-	intensity $a3
+	volume_envelope 10, 3
 	note A#, 16
 ;Bar 11
-	notetype 6, $95
+	note_type 6, 9, 5
 	note A#, 8
-	callchannel Music_FriendlyShop_Ch1_Bar11
+	sound_call Music_FriendlyShop_Ch1_Bar11
 ;Bar 12
-	intensity $a1
+	volume_envelope 10, 1
 	note B_, 4
 	note F#, 4
 	note B_, 4
 	octave 4
-	intensity $a5
+	volume_envelope 10, 5
 	note C#, 8
-	intensity $a1
+	volume_envelope 10, 1
 	octave 3
 	note B_, 4
 	octave 4
@@ -114,30 +115,30 @@ Music_FriendlyShop_Ch1_loop:
 	note D#, 4
 ;Bar 13
 	octave 3
-	intensity $a5
+	volume_envelope 10, 5
 	note A_, 8
-	callchannel Music_FriendlyShop_Ch1_Bar11
+	sound_call Music_FriendlyShop_Ch1_Bar11
 ;Bar 14
-	notetype 6, $a1
+	note_type 6, 10, 1
 	note A_, 4
 	note D#, 4
 	note F#, 4
-	intensity $a5
+	volume_envelope 10, 5
 	note B_, 8
 	note A_, 8
 	note F#, 2
 	note A_, 2
 ;Bar 15
 	note B_, 8
-	intensity $a1
+	volume_envelope 10, 1
 	note B_, 4
-	intensity $a5
+	volume_envelope 10, 5
 	note E_, 8
-	intensity $a1
+	volume_envelope 10, 1
 	note B_, 8
 	note E_, 8
 ;Bar 16
-	intensity $a2
+	volume_envelope 10, 2
 	octave 2
 	note F_, 4
 	octave 3
@@ -146,25 +147,25 @@ Music_FriendlyShop_Ch1_loop:
 	note D_, 8
 	note G#, 4
 ;Bar 17
-	intensity $a5
+	volume_envelope 10, 5
 	note B_, 8
 	note F#, 1
-	note __, 3
+	rest 3
 	octave 4
 	note C#, 2
 	octave 3
 	note B_, 2
 	note F#, 1
-	note __, 3
+	rest 3
 	note F_, 4
 	note F#, 4
 	note G#, 4
 ;Bar 18
 	note A#, 5
-	note __, 11
-	intensity $a5
+	rest 11
+	volume_envelope 10, 5
 	note E_, 4
-	intensity $b1
+	volume_envelope 11, 1
 	note C#, 4
 	note F#, 4
 	note E_, 4
@@ -206,55 +207,55 @@ Music_FriendlyShop_Ch1_loop:
 	octave 2
 	note G#, 4
 ;Bar 23
-	intensity $a2
+	volume_envelope 10, 2
 	octave 3
 	note G_, 4
-	intensity $a1
+	volume_envelope 10, 1
 	note D#, 4
-	intensity $a2
+	volume_envelope 10, 2
 	note G_, 4
-	intensity $a1
+	volume_envelope 10, 1
 	note D#, 4
-	intensity $a5
+	volume_envelope 10, 5
 	note A#, 4
 	note A_, 1
-	note __, 3
+	rest 3
 	note A#, 1
-	note __, 3
+	rest 3
 	octave 4
 	note D#, 4
 ;Bar 24
-	intensity $a2
+	volume_envelope 10, 2
 	octave 3
 	note D#, 4
 	octave 2
 	note A#, 4
-	intensity $92
+	volume_envelope 9, 2
 	octave 4
 	note D#, 2
 	note D_, 2
 	note D#, 2
-	note __, 2
+	rest 2
 	note F_, 2
 	note E_, 2
 	note F_, 2
-	note __, 2
+	rest 2
 	note G_, 2
 	note F#, 2
 	note G_, 2
-	note __, 2
+	rest 2
 ;Bar 25
 	note C#, 4
 	octave 3
 	note G#, 2
-	note __, 2
+	rest 2
 	octave 4
 	note D#, 2
-	note __, 2
+	rest 2
 	octave 3
 	note B_, 4
-	note __, 4
-	intensity $a1
+	rest 4
+	volume_envelope 10, 1
 	note D#, 8
 	note C#, 8
 ;Bar 26
@@ -262,10 +263,10 @@ Music_FriendlyShop_Ch1_loop:
 	note C#, 4
 	note D#, 4
 	octave 3
-	intensity $a5
+	volume_envelope 10, 5
 	note B_, 4
-	note __, 4
-	intensity $a1
+	rest 4
+	volume_envelope 10, 1
 	note D#, 8
 	octave 2
 	note G#, 4
@@ -296,42 +297,42 @@ Music_FriendlyShop_Ch1_loop:
 	octave 3
 	note C#, 4
 	note F#, 4
-	intensity $95
+	volume_envelope 9, 5
 	note B_, 4
 	octave 4
 	note C#, 2
-	note __, 2
+	rest 2
 	octave 3
 	note B_, 2
-	note __, 2
+	rest 2
 ;Bar 30
 	octave 4
 	note C#, 4
-	intensity $a1
+	volume_envelope 10, 1
 	octave 3
 	note B_, 8
 	note A#, 4
-	note __, 16
-	loopchannel 0, Music_FriendlyShop_Ch1_loop
+	rest 16
+	sound_loop 0, Music_FriendlyShop_Ch1_loop
 
 Music_FriendlyShop_Ch1_Bar11:
-	intensity $a1
+	volume_envelope 10, 1
 	note B_, 4
-	intensity $a5
+	volume_envelope 10, 5
 	note D#, 8
-	intensity $a1
+	volume_envelope 10, 1
 	note F#, 8
-	intensity $a2
+	volume_envelope 10, 2
 	note D#, 2
 	note F#, 2
-	endchannel
+	sound_ret
 
 ; ============================================================================================================
 
 Music_FriendlyShop_Ch2:
-	dutycycle $1
-	notetype 12, $82
-	vibrato $12, $14
+	duty_cycle $1
+	note_type 12, 8, 2
+	vibrato 18, 1, 4
 ;Bar 1
 	octave 4
 	note F#, 4
@@ -340,165 +341,165 @@ Music_FriendlyShop_Ch2:
 	note F#, 4
 	note F#, 6
 ;Bar 2
-	intensity $86
+	volume_envelope 8, 6
 	note F#, 6
-	intensity $95
+	volume_envelope 9, 5
 	octave 3
 	note F#, 2
 	note G#, 1
-	note __, 1
+	rest 1
 	note A#, 1
-	note __, 1
+	rest 1
 
 Music_FriendlyShop_Ch2_loop:
-	dutycycle $1
-	notetype 12, $b5
-	vibrato $12, $14
+	duty_cycle $1
+	note_type 12, 11, 5
+	vibrato 18, 1, 4
 	octave 4
 	note C#, 3
-	intensity $95
+	volume_envelope 9, 5
 	octave 3
 	note F#, 1
-	intensity $b5
+	volume_envelope 11, 5
 	octave 4
 	note D#, 1
-	note __, 1
+	rest 1
 	octave 3
 	note B_, 4
-	note __, 4
+	rest 4
 	note B_, 1
 	octave 4
 	note C#, 1
 ;Bar 4
 	note D#, 2
 	note D_, 1
-	note __, 1
+	rest 1
 	note D#, 1
-	note __, 1
+	rest 1
 	note E_, 4
-	note __, 2
+	rest 2
 	note D#, 1
 	note E_, 1
 	note F#, 1
-	note __, 1
+	rest 1
 ;Bar 5
 	note C#, 3
-	intensity $95
+	volume_envelope 9, 5
 	octave 3
 	note F#, 1
-	intensity $b5
+	volume_envelope 11, 5
 	octave 4
 	note D#, 1
-	note __, 1
+	rest 1
 	octave 3
 	note B_, 4
-	note __, 4 
+	rest 4 
 	note B_, 1
 	octave 4
 	note C#, 1
 ;Bar 6
 	note D#, 2
 	note D_, 1
-	note __, 1
+	rest 1
 	note D#, 1
-	note __, 1
+	rest 1
 	note G#, 4
-	note __, 2
+	rest 2
 	note E_, 1
 	note D#, 1
 	note C#, 1
-	note __, 1
+	rest 1
 ;Bar 7
 	note D#, 3
-	intensity $95
+	volume_envelope 9, 5
 	octave 3
 	note G#, 1
-	intensity $b5
+	volume_envelope 11, 5
 	octave 4
 	note E_, 1
-	note __, 1
+	rest 1
 	note C#, 4
-	note __, 8
+	rest 8
 ;Bar 8
 	octave 3
-	intensity $b5
+	volume_envelope 11, 5
 	note G#, 6
 	note A#, 2
-	note __, 2
+	rest 2
 	note B_, 2
-	note __, 2
+	rest 2
 ;Bar 9
 	octave 4
 	note D#, 6
 	note E_, 1
 	note D#, 1
 	note C#, 1
-	note __, 1
+	rest 1
 	octave 3
 	note B_, 2
 	note A#, 2
 	note B_, 2
 ;Bar 10
 	octave 4
-	intensity $93
+	volume_envelope 9, 3
 	note C#, 3
-	note __, 4
-	notetype 6, $95
-	note __, 1
+	rest 4
+	note_type 6, 9, 5
+	rest 1
 	note A#, 1
-	notetype 12, $b5
+	note_type 12, 11, 5
 	note B_, 1
-	note __, 1
+	rest 1
 	note F#, 2
 	note E_, 2
 	note D#, 2
 ;Bar 11
 	note C#, 3
-	intensity $95
+	volume_envelope 9, 5
 	octave 3
 	note F#, 1
-	intensity $b5
+	volume_envelope 11, 5
 	octave 4
 	note D#, 1
-	note __, 1
+	rest 1
 	octave 3
 	note B_, 4
-	note __, 4
+	rest 4
 	note B_, 1
 	octave 4
 	note C#, 1
 ;Bar 12
 	note D#, 3
-	note __, 3
+	rest 3
 	note E_, 4
 	note D#, 1
-	note __, 1
+	rest 1
 	note E_, 1
-	note __, 1
+	rest 1
 	note F#, 1
-	note __, 1
+	rest 1
 ;Bar 13
 	note C#, 3
-	intensity $95
+	volume_envelope 9, 5
 	octave 3
 	note F#, 1
-	intensity $b5
+	volume_envelope 11, 5
 	octave 4
 	note D#, 1
-	note __, 1
+	rest 1
 	octave 3
 	note B_, 4
-	note __, 4
+	rest 4
 	note B_, 1
 	octave 4
 	note C#, 1
 ;Bar 14
 	note D#, 3
-	note __, 2
-	notetype 6, $95
-	note __, 1
+	rest 2
+	note_type 6, 9, 5
+	rest 1
 	note G_, 1
-	notetype 12, $b5
+	note_type 12, 11, 5
 	note G#, 4
 	note F#, 4
 	octave 3
@@ -507,83 +508,83 @@ Music_FriendlyShop_Ch2_loop:
 	note C#, 1
 ;Bar 15
 	note D#, 3
-	intensity $95
+	volume_envelope 9, 5
 	octave 3
 	note G#, 1
-	intensity $b5
+	volume_envelope 11, 5
 	octave 4
 	note E_, 1
-	note __, 1
+	rest 1
 	note C#, 5
-	note __, 7
+	rest 7
 ;Bar 16
 	octave 3
 	note G#, 2
 	note G_, 2
 	note G#, 2
 	note A#, 1
-	note __, 1
+	rest 1
 	note G#, 2
 	note A#, 2
-	notetype 6, $b5
+	note_type 6, 11, 5
 	note B_, 3
 ;Bar 17
-	intensity $95
+	volume_envelope 9, 5
 	octave 4
 	note D_, 1
-	notetype 12, $b5
+	note_type 12, 11, 5
 	note D#, 6
 	note E_, 1
 	note D#, 1
 	note C#, 1
-	note __, 1
+	rest 1
 	octave 3
 	note B_, 2
 	note A#, 2
 	note B_, 2
 ;Bar 18
 	octave 4
-	intensity $93
+	volume_envelope 9, 3
 	note C#, 3
-	note __, 9
-	dutycycle $2
-	intensity $a7
+	rest 9
+	duty_cycle $2
+	volume_envelope 10, 7
 	octave 3
 	note B_, 1
-	note __, 1
+	rest 1
 	octave 4
 	note C#, 1
-	note __, 1
+	rest 1
 ;Bar 19
 	note D#, 2
-	note __, 2
+	rest 2
 	note D#, 2
-	note __, 2
+	rest 2
 	note D#, 2
 	note D_, 2
-	notetype 6, $a7
+	note_type 6, 10, 7
 	note D#, 3
-	intensity $87
+	volume_envelope 8, 7
 	note G#, 1
-	notetype 12, $a7
+	note_type 12, 10, 7
 	note A#, 6
 ;Bar 20
-	intensity $b5
+	volume_envelope 11, 5
 	note G_, 2
-	note __, 2
+	rest 2
 	note D#, 2
-	note __, 2
+	rest 2
 	note C#, 2
-	note __, 2
+	rest 2
 ;Bar 21
-	intensity $a7
+	volume_envelope 10, 7
 	note C#, 3
-	notetype 6, $97
+	note_type 6, 9, 7
 	note C#, 1
 	note D_, 1
-	notetype 12, $a7
+	note_type 12, 10, 7
 	note D#, 1
-	note __, 1
+	rest 1
 	octave 3
 	note B_, 4
 	note A#, 2
@@ -593,555 +594,555 @@ Music_FriendlyShop_Ch2_loop:
 ;Bar 22
 	note D#, 2
 	note G#, 4
-	note __, 2
+	rest 2
 	octave 3
 	note B_, 2
 	octave 4
 	note C#, 1
-	note __, 1
+	rest 1
 ;Bar 23
 	note D#, 2
-	note __, 2
+	rest 2
 	note D#, 2
-	note __, 2
+	rest 2
 	note D#, 2
 	note D_, 2
-	notetype 6, $a7
+	note_type 6, 10, 7
 	note D#, 3
-	intensity $97
+	volume_envelope 9, 7
 	note G#, 1
-	notetype 12, $a7
+	note_type 12, 10, 7
 	note A#, 6
 ;Bar 24
 	note G_, 1
-	intensity $97
+	volume_envelope 9, 7
 	note F#, 1
-	intensity $a7
+	volume_envelope 10, 7
 	note G_, 1
-	note __, 1
+	rest 1
 	note G#, 1
-	intensity $97
+	volume_envelope 9, 7
 	note G_, 1
-	intensity $a7
+	volume_envelope 10, 7
 	note G#, 1
-	note __, 1
+	rest 1
 	note A#, 1
-	intensity $97
+	volume_envelope 9, 7
 	note A_, 1
-	intensity $a7
+	volume_envelope 10, 7
 	note A#, 1
-	note __, 1
+	rest 1
 ;Bar 25
 	note A#, 4
 	note B_, 1
-	note __, 1
+	rest 1
 	note G#, 4
 	note G_, 2
 	note G#, 2
 	note A#, 6
 ;Bar 26
 	note B_, 1
-	note __, 1
-	notetype 6, $97
+	rest 1
+	note_type 6, 9, 7
 	note G#, 7
-	dutycycle $0
-	vibrato $08, $24
+	duty_cycle $0
+	vibrato 8, 2, 4
 	octave 5
 	note C_, 1
-	notetype 12, $98
+	note_type 12, 9, 8
 	note C#, 2
 	octave 4
 	note B_, 1
-	note __, 1
+	rest 1
 	note A#, 1
-	note __, 1
+	rest 1
 ;Bar 27
 	note B_, 11
-	intensity $95
-	vibrato $00, $24
+	volume_envelope 9, 5
+	vibrato 0, 2, 4
 	note B_, 4
-	vibrato $08, $24
-	notetype 6, $98
+	vibrato 8, 2, 4
+	note_type 6, 9, 8
 	note G#, 1
 	note A#, 1
 ;Bar 28
-	notetype 12, $98
+	note_type 12, 9, 8
 	note B_, 6
-	intensity $95
-	vibrato $00, $24
+	volume_envelope 9, 5
+	vibrato 0, 2, 4
 	note B_, 4
-	vibrato $08, $24
-	intensity $98
+	vibrato 8, 2, 4
+	volume_envelope 9, 8
 	note G#, 2
 	note A#, 1
-	note __, 1
+	rest 1
 	note B_, 1
-	note __, 1
+	rest 1
 ;Bar 29
 	note A#, 6
-	vibrato $00, $24
-	intensity $95
+	vibrato 0, 2, 4
+	volume_envelope 9, 5
 	note A#, 4
-	vibrato $08, $24
-	intensity $98
+	vibrato 8, 2, 4
+	volume_envelope 9, 8
 	note G#, 2
 	note A#, 1
-	note __, 1
+	rest 1
 	note G#, 1
-	note __, 1
+	rest 1
 ;Bar 30
 	note A#, 2
 	note G#, 1
-	note __, 3
+	rest 3
 	note F#, 4
-	vibrato $08, $24
-	intensity $95
+	vibrato 8, 2, 4
+	volume_envelope 9, 5
 	note F#, 4
-	note __, 2
-	loopchannel 0, Music_FriendlyShop_Ch2_loop
+	rest 2
+	sound_loop 0, Music_FriendlyShop_Ch2_loop
 
 ; ============================================================================================================
 
 Music_FriendlyShop_Ch3:
-	notetype 12, $25
-	vibrato $08, $1a
+	note_type 12, 2, 5
+	vibrato 8, 1, 10
 ;Bar 1
 	octave 4
 	note D#, 1
-	note __, 3
+	rest 3
 	note D#, 1
-	note __, 3
+	rest 3
 	note D_, 1
-	note __, 1
+	rest 1
 	note D_, 1
-	note __, 3
+	rest 3
 	note C#, 1
-	note __, 5
+	rest 5
 ;Bar 2
 	octave 3
 	note F#, 4
-	note __, 8
+	rest 8
 ;Bar 3
 Music_FriendlyShop_Ch3_loop:
 	octave 2
-	callchannel Music_FriendlyShop_Ch3_Bar3
+	sound_call Music_FriendlyShop_Ch3_Bar3
 ;Bar 4
-	callchannel Music_FriendlyShop_Ch3_Bar3
+	sound_call Music_FriendlyShop_Ch3_Bar3
 ;Bar 5
-	callchannel Music_FriendlyShop_Ch3_Bar3
+	sound_call Music_FriendlyShop_Ch3_Bar3
 ;Bar 6
-	callchannel Music_FriendlyShop_Ch3_Bar3
+	sound_call Music_FriendlyShop_Ch3_Bar3
 ;Bar 7
 	note E_, 4
-	note __, 2
+	rest 2
 	note E_, 1
-	note __, 1
+	rest 1
 	note B_, 4
-	note __, 2
+	rest 2
 	note B_, 1
-	note __, 1
+	rest 1
 ;Bar 8
 	note F_, 4
-	note __, 2
+	rest 2
 	note F_, 1
-	note __, 1
+	rest 1
 	note B_, 4
-	note __, 2
+	rest 2
 	note B_, 1
-	note __, 1
+	rest 1
 ;Bar 9
 	note F#, 4
-	note __, 2
+	rest 2
 	note F#, 1
-	note __, 1
+	rest 1
 	octave 3
 	note F#, 4
-	note __, 2
+	rest 2
 	note F#, 1
-	note __, 1
+	rest 1
 ;Bar 10
 	octave 2
 	note F#, 2
-	note __, 14
+	rest 14
 ;Bar 11
-	callchannel Music_FriendlyShop_Ch3_Bar11
+	sound_call Music_FriendlyShop_Ch3_Bar11
 ;Bar 12
-	callchannel Music_FriendlyShop_Ch3_Bar11
+	sound_call Music_FriendlyShop_Ch3_Bar11
 ;Bar 13
-	callchannel Music_FriendlyShop_Ch3_Bar11
+	sound_call Music_FriendlyShop_Ch3_Bar11
 ;Bar 14
-	callchannel Music_FriendlyShop_Ch3_Bar11
+	sound_call Music_FriendlyShop_Ch3_Bar11
 ;Bar 15
 	note E_, 4
 	octave 6
-	intensity $35
+	volume_envelope 3, 5
 	note G#, 1
-	intensity $25
+	volume_envelope 2, 5
 	octave 2
-	note __, 1
+	rest 1
 	note E_, 1
-	note __, 1
+	rest 1
 	note B_, 4
 	octave 5
-	intensity $35
+	volume_envelope 3, 5
 	note G#, 1
-	intensity $25
+	volume_envelope 2, 5
 	octave 2
-	note __, 1
+	rest 1
 	note B_, 1
-	note __, 1
+	rest 1
 ;Bar 16
 	note F_, 4
 	octave 6
-	intensity $35
+	volume_envelope 3, 5
 	note G#, 1
-	intensity $25
+	volume_envelope 2, 5
 	octave 2
-	note __, 1
+	rest 1
 	note F_, 1
-	note __, 1
+	rest 1
 	note B_, 4
 	octave 6
-	intensity $35
+	volume_envelope 3, 5
 	note G#, 1
-	intensity $25
+	volume_envelope 2, 5
 	octave 2
-	note __, 1
+	rest 1
 	note B_, 1
-	note __, 1
+	rest 1
 ;Bar 17
 	note F#, 4
 	octave 6
-	intensity $35
+	volume_envelope 3, 5
 	note F#, 1
-	intensity $25
+	volume_envelope 2, 5
 	octave 2
-	note __, 1
+	rest 1
 	note F#, 1
-	note __, 1
+	rest 1
 	octave 3
 	note F#, 4
 	octave 6
-	intensity $35
+	volume_envelope 3, 5
 	note G#, 1
-	intensity $25
+	volume_envelope 2, 5
 	octave 3
-	note __, 1
+	rest 1
 	note F#, 1
-	note __, 1
+	rest 1
 ;Bar 18
 	octave 2
 	note F#, 1
-	note __, 7
+	rest 7
 	octave 3
 	note C#, 4
 	octave 2
 	note F#, 4
 ;Bar 19
 	note D#, 4
-	note __, 2
+	rest 2
 	note D#, 1
-	note __, 1
+	rest 1
 	note G_, 4
-	note __, 2
+	rest 2
 	note G_, 1
-	note __, 1
+	rest 1
 ;Bar 20
 	note A#, 4
-	note __, 2
+	rest 2
 	note A#, 1
-	note __, 1
+	rest 1
 	note D#, 4
 	note G_, 4
 ;Bar 21
 	note G#, 4
-	note __, 2
+	rest 2
 	note G#, 1
-	note __, 1
+	rest 1
 	note G_, 4
-	note __, 2
+	rest 2
 	note G_, 1
-	note __, 1
+	rest 1
 ;Bar 22
 	note F#, 4
-	note __, 2
+	rest 2
 	note F#, 1
-	note __, 1
+	rest 1
 	note F_, 4
 	note E_, 4
 ;Bar 23
 	note D#, 4
 	octave 4
-	intensity $35
+	volume_envelope 3, 5
 	note A#, 1
-	intensity $25
+	volume_envelope 2, 5
 	octave 2
-	note __, 1
+	rest 1
 	note D#, 1
-	note __, 1
+	rest 1
 	note G_, 4
 	octave 4
-	intensity $35
+	volume_envelope 3, 5
 	note G_, 1
-	intensity $25
+	volume_envelope 2, 5
 	octave 2
-	note __, 1
+	rest 1
 	note G_, 1
-	note __, 1
+	rest 1
 ;Bar 24
 	note A#, 4
 	octave 4
-	intensity $35
+	volume_envelope 3, 5
 	note A#, 1
-	intensity $25
+	volume_envelope 2, 5
 	octave 2
-	note __, 1
+	rest 1
 	note A#, 1
-	note __, 1
+	rest 1
 	note D#, 4
 	note G_, 4
 ;Bar 25
 	note G#, 4
 	octave 6
-	intensity $35
+	volume_envelope 3, 5
 	note D#, 1
-	intensity $25
+	volume_envelope 2, 5
 	octave 2
-	note __, 1
+	rest 1
 	note G#, 1
-	note __, 1
+	rest 1
 	note G_, 4
 	octave 6
-	intensity $35
+	volume_envelope 3, 5
 	note D#, 1
-	intensity $25
+	volume_envelope 2, 5
 	octave 2
-	note __, 1
+	rest 1
 	note G_, 1
-	note __, 1
+	rest 1
 ;Bar 26
 	note F#, 4
 	octave 6
-	intensity $35
+	volume_envelope 3, 5
 	note D#, 1
-	note __, 1
-	intensity $25
+	rest 1
+	volume_envelope 2, 5
 	octave 2
 	note F#, 1
-	note __, 1
+	rest 1
 	note F_, 4
 	octave 6
-	intensity $35
+	volume_envelope 3, 5
 	note D#, 1
-	note __, 1
-	intensity $25
+	rest 1
+	volume_envelope 2, 5
 	octave 2
 	note F_, 1
-	note __, 1
+	rest 1
 ;Bar 27
 	note E_, 4
 	octave 6
-	intensity $35
+	volume_envelope 3, 5
 	note G#, 1
-	note __, 1
-	intensity $25
+	rest 1
+	volume_envelope 2, 5
 	octave 2
 	note E_, 1
-	note __, 1
+	rest 1
 	octave 1
 	note B_, 4
 	octave 5
-	intensity $35
+	volume_envelope 3, 5
 	note G#, 1
-	note __, 1
-	intensity $25
+	rest 1
+	volume_envelope 2, 5
 	octave 1
 	note B_, 1
-	note __, 1
+	rest 1
 ;Bar 28
 	octave 2
 	note F_, 4
 	octave 6
-	intensity $35
+	volume_envelope 3, 5
 	note G#, 1
-	note __, 1
-	intensity $25
+	rest 1
+	volume_envelope 2, 5
 	octave 2
 	note F_, 1
-	note __, 1
+	rest 1
 	octave 1
 	note B_, 4
 	octave 6
-	intensity $35
+	volume_envelope 3, 5
 	note D_, 1
-	note __, 1
-	intensity $25
+	rest 1
+	volume_envelope 2, 5
 	octave 1
 	note B_, 1
-	note __, 1
+	rest 1
 ;Bar 29
 	octave 2
 	note F#, 4
 	octave 6
-	intensity $35
+	volume_envelope 3, 5
 	note F#, 1
-	note __, 1
-	intensity $25
+	rest 1
+	volume_envelope 2, 5
 	octave 2
 	note F#, 1
-	note __, 1
+	rest 1
 	octave 3
 	note C#, 4
 	octave 5
-	intensity $35
+	volume_envelope 3, 5
 	note F#, 1
-	note __, 1
-	intensity $25
+	rest 1
+	volume_envelope 2, 5
 	octave 3
 	note C#, 1
-	note __, 1
+	rest 1
 ;Bar 30
 	octave 2
 	note F#, 1
-	note __, 1
+	rest 1
 	note F#, 1
-	note __, 3
+	rest 3
 	note F#, 4
 	note F#, 1
-	note __, 1
+	rest 1
 	note G#, 1
-	note __, 1
+	rest 1
 	note A#, 1
-	note __, 1
-	loopchannel 0, Music_FriendlyShop_Ch3_loop
+	rest 1
+	sound_loop 0, Music_FriendlyShop_Ch3_loop
 
 Music_FriendlyShop_Ch3_Bar3:
 	note B_, 4
-	note __, 2
+	rest 2
 	note B_, 1
-	note __, 1
+	rest 1
 	note F#, 4
-	note __, 2
+	rest 2
 	note F#, 1
-	note __, 1
-	endchannel
+	rest 1
+	sound_ret
 
 Music_FriendlyShop_Ch3_Bar11:
 	note B_, 4
 	octave 6
-	intensity $35
+	volume_envelope 3, 5
 	note F#, 1
-	intensity $25
+	volume_envelope 2, 5
 	octave 2
-	note __, 1
+	rest 1
 	note B_, 1
-	note __, 1
+	rest 1
 	note F#, 4
 	octave 5
-	intensity $35
+	volume_envelope 3, 5
 	note F#, 1
-	intensity $25
+	volume_envelope 2, 5
 	octave 2
-	note __, 1
+	rest 1
 	note F#, 1
-	note __, 1
-	endchannel
+	rest 1
+	sound_ret
 
 ; ============================================================================================================
 
 Music_FriendlyShop_Ch4:
-	togglenoise 3
-	stereopanning $f
-	notetype 12
+	toggle_noise 3
+	stereo_panning FALSE, TRUE
+	drum_speed 12
 ;Bar 1
-	note D_, 4
-	note D_, 4
-	note D_, 2
-	note D_, 4
-	note D_, 6
+	drum_note 3, 4
+	drum_note 3, 4
+	drum_note 3, 2
+	drum_note 3, 4
+	drum_note 3, 6
 ;Bar 2
 	noisesampleset 1
-	note F_, 12
+	drum_note 6, 12
 	noisesampleset 3
 ;Bar 3
 Music_FriendlyShop_Ch4_loop:
-	note B_, 4
-	note D_, 2
-	note C#, 2
-	note C#, 2
-	note D_, 2
-	note C#, 2
-	note C#, 2
+	drum_note 12, 4
+	drum_note 3, 2
+	drum_note 2, 2
+	drum_note 2, 2
+	drum_note 3, 2
+	drum_note 2, 2
+	drum_note 2, 2
 ;Bar 4
-	callchannel Music_FriendlyShop_Ch4_Bar4
+	sound_call Music_FriendlyShop_Ch4_Bar4
 ;Bar 5
-	callchannel Music_FriendlyShop_Ch4_Bar5
+	sound_call Music_FriendlyShop_Ch4_Bar5
 ;Bar 6
-	callchannel Music_FriendlyShop_Ch4_Bar4
+	sound_call Music_FriendlyShop_Ch4_Bar4
 ;Bar 7
-	callchannel Music_FriendlyShop_Ch4_Bar5
+	sound_call Music_FriendlyShop_Ch4_Bar5
 ;Bar 8
-	callchannel Music_FriendlyShop_Ch4_Bar4
+	sound_call Music_FriendlyShop_Ch4_Bar4
 ;Bar 9
-	callchannel Music_FriendlyShop_Ch4_Bar5
+	sound_call Music_FriendlyShop_Ch4_Bar5
 ;Bar 10
-	note D_, 16
+	drum_note 3, 16
 ;Bar 11
-	callchannel Music_FriendlyShop_Ch4_Bar5
+	sound_call Music_FriendlyShop_Ch4_Bar5
 ;Bar 12
-	callchannel Music_FriendlyShop_Ch4_Bar4
+	sound_call Music_FriendlyShop_Ch4_Bar4
 ;Bar 13
-	callchannel Music_FriendlyShop_Ch4_Bar5
+	sound_call Music_FriendlyShop_Ch4_Bar5
 ;Bar 14
-	callchannel Music_FriendlyShop_Ch4_Bar4
+	sound_call Music_FriendlyShop_Ch4_Bar4
 ;Bar 15
-	callchannel Music_FriendlyShop_Ch4_Bar5
+	sound_call Music_FriendlyShop_Ch4_Bar5
 ;Bar 16
-	callchannel Music_FriendlyShop_Ch4_Bar4
+	sound_call Music_FriendlyShop_Ch4_Bar4
 ;Bar 17
-	callchannel Music_FriendlyShop_Ch4_Bar5
+	sound_call Music_FriendlyShop_Ch4_Bar5
 ;Bar 18
-	note D_, 16
+	drum_note 3, 16
 ;Bar 19
 Music_FriendlyShop_Ch4_part2:
 	noisesampleset 1
-	note F_, 4
+	drum_note 6, 4
 	noisesampleset 3
-	note D_, 2
-	note C#, 2
-	loopchannel 22, Music_FriendlyShop_Ch4_part2
+	drum_note 3, 2
+	drum_note 2, 2
+	sound_loop 22, Music_FriendlyShop_Ch4_part2
 ;Bar 30
-	note D_, 2
+	drum_note 3, 2
 	noisesampleset 1
-	note F_, 4
-	note F_, 4
+	drum_note 6, 4
+	drum_note 6, 4
 	noisesampleset 3
-	note C#, 2
-	note D_, 2
-	note D_, 2
-	loopchannel 0, Music_FriendlyShop_Ch4_loop
+	drum_note 2, 2
+	drum_note 3, 2
+	drum_note 3, 2
+	sound_loop 0, Music_FriendlyShop_Ch4_loop
 
 Music_FriendlyShop_Ch4_Bar4:
-	note D_, 2;
-	note C#, 2
-	note C#, 2
-	note D_, 2
-	note C#, 2
-	note C#, 2
-	note D_, 2
-	note C#, 2
-	endchannel
+	drum_note 3, 2;
+	drum_note 2, 2
+	drum_note 2, 2
+	drum_note 3, 2
+	drum_note 2, 2
+	drum_note 2, 2
+	drum_note 3, 2
+	drum_note 2, 2
+	sound_ret
 
 Music_FriendlyShop_Ch4_Bar5:
-	note D_, 2;
-	note C#, 2
-	note D_, 2
-	note C#, 2
-	note C#, 2
-	note D_, 2
-	note C#, 2
-	note C#, 2
-	endchannel
+	drum_note 3, 2;
+	drum_note 2, 2
+	drum_note 3, 2
+	drum_note 2, 2
+	drum_note 2, 2
+	drum_note 3, 2
+	drum_note 2, 2
+	drum_note 2, 2
+	sound_ret
 
 ; ============================================================================================================
 

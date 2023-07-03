@@ -666,22 +666,22 @@ Music_KantoWildBattle_Ch3loop:
 	note D#, 6
 	octave 5
 	note D#, 2
-	note __, 2
+	rest 2
 	note G_, 2
 	note G#, 1
-	note __, 2
+	rest 2
 	octave 4
 	note G#, 1
-	note __, 2
+	rest 2
 	octave 5
 	note G#, 1
-	note __, 3
+	rest 3
 	octave 4
 	note G#, 1
-	note __, 1
+	rest 1
 	octave 5
 	note G#, 1
-	note __, 2
+	rest 2
 	octave 4
 	note G#, 1
 	octave 6
@@ -698,7 +698,7 @@ Music_KantoWildBattle_Ch3loop:
 	note D_, 1
 	octave 4
 	note B_, 1
-	callchannel Music_KantoWildBattle_Type1
+	sound_call Music_KantoWildBattle_Type1
 	octave 4
 	note G_, 1
 	note C_, 1
@@ -708,22 +708,22 @@ Music_KantoWildBattle_Ch3loop:
 	note G_, 6
 	octave 5
 	note D#, 2
-	note __, 2
+	rest 2
 	note G_, 2
 	note G#, 1
-	note __, 2
+	rest 2
 	octave 4
 	note G_, 1
-	note __, 2
+	rest 2
 	octave 5
 	note G#, 1
-	note __, 3
+	rest 3
 	octave 4
 	note G_, 1
-	note __, 1
+	rest 1
 	octave 5
 	note G#, 1
-	note __, 2
+	rest 2
 	octave 4
 	note G_, 1
 	note C#, 4
@@ -732,9 +732,9 @@ Music_KantoWildBattle_Ch3loop:
 	note F_, 7
 	note F#, 1
 	note G_, 2
-	intensity $24
-	callchannel Music_KantoWildBattle_Type2
-	intensity $14
+	volume_envelope 2, 4
+	sound_call Music_KantoWildBattle_Type2
+	volume_envelope 1, 4
 	octave 5
 	note F#, 2
 	volume_envelope 2, 4
@@ -901,42 +901,42 @@ endr
 	sound_call Music_KantoWildBattle_Type6
 	octave 2
 	note A#, 2
-	note __, 2
+	rest 2
 	note A#, 2
-	note __, 2
-	notetype $c, $14
+	rest 2
+	note_type 12, 1, 4
 	note G#, 16
 	note G#, 16
 	note A#, 2
-	note __, 2
+	rest 2
 	note A#, 1
-	note __, 3
+	rest 3
 	note A#, 1
-	note __, 1
+	rest 1
 	octave 3
 	note A#, 1
-	note __, 1
+	rest 1
 	octave 2
 	note A#, 1
-	note __, 1
+	rest 1
 	octave 3
 	note A#, 1
-	note __, 1
+	rest 1
 	note D_, 2
-	note __, 2
+	rest 2
 	note D_, 1
-	note __, 3
+	rest 3
 	note D_, 1
-	note __, 1
+	rest 1
 	octave 4
 	note D_, 1
-	note __, 1
+	rest 1
 	octave 2
 	note B_, 1
-	note __, 1
+	rest 1
 	octave 3
 	note B_, 1
-	note __, 1
+	rest 1
 	octave 5
 	note E_, 4
 	octave 4
@@ -946,12 +946,12 @@ endr
 	note B_, 1
 	octave 5
 	note C_, 1
-	note __, 1
+	rest 1
 	note E_, 1
-	note __, 5
+	rest 5
 	note F_, 2
 	note E_, 1
-	note __, 1
+	rest 1
 	octave 4
 	note C_, 1
 	octave 3
@@ -976,28 +976,28 @@ endr
 	octave 5
 	note C_, 1
 	note C#, 1
-	note __, 1
+	rest 1
 	note F_, 1
-	note __, 5
+	rest 5
 	note G#, 2
 	note G_, 1
-	note __, 5
+	rest 5
 	note F_, 8
-	intensity $13
+	volume_envelope 1, 3
 	note G_, 6
 	note F#, 6
 	note E_, 2
-	note __, 2
+	rest 2
 	note G_, 6
 	note A_, 6
 	note G_, 2
-	note __, 2
+	rest 2
 	note G#, 12
 	note G_, 2
 	note F_, 2
 	note G#, 2
 	note G_, 2
-	note __, 4
+	rest 4
 	octave 6
 	note C#, 8
 	octave 5
@@ -1005,18 +1005,18 @@ endr
 	octave 4
 	note A#, 6
 	note G#, 2
-	note __, 2
+	rest 2
 	octave 5
 	note C#, 6
 	note C_, 6
 	octave 4
 	note A#, 2
-	note __, 2
+	rest 2
 	octave 5
 	note F_, 6
 	note E_, 6
 	note D_, 2
-	note __, 2
+	rest 2
 	octave 4
 	note A#, 4
 	octave 5
@@ -1027,7 +1027,7 @@ endr
 	note G#, 16
 	note G_, 16
 	note G_, 16
-	loopchannel 0, Music_KantoWildBattle_Ch3loop
+	sound_loop 0, Music_KantoWildBattle_Ch3loop
 
 Music_KantoWildBattle_Ch3Intro:
 	octave 3
@@ -1152,17 +1152,18 @@ Music_KantoWildBattle_Type6:
 ; ============================================================================================================
 
 Music_KantoWildBattleNight:
-	musicheader 3, 1, Music_KantoWildBattleNight_Ch1
-	musicheader 1, 2, Music_KantoWildBattleNight_Ch2
-	musicheader 1, 3, Music_KantoWildBattleNight_Ch3
+	channel_count 3
+	channel 1, Music_KantoWildBattleNight_Ch1
+	channel 2, Music_KantoWildBattleNight_Ch2
+	channel 3, Music_KantoWildBattleNight_Ch3
 
 Music_KantoWildBattleNight_Ch1:
 	tempo 117
-	volume $77
-	vibrato $12, $22
-	dutycycle $2
-	notetype $c, $b7
-	note __, 16
+	volume 7, 7
+	vibrato 18, 2, 2
+	duty_cycle $2
+	note_type 12, 11, 7
+	rest 16
 	octave 4
 	note A#, 6
 	note A_, 1
@@ -1175,14 +1176,14 @@ Music_KantoWildBattleNight_Ch1:
 	note G_, 1
 	note F#, 1
 	note F_, 1
-	callchannel Music_KantoWildBattle_Ch1_loop
+	sound_call Music_KantoWildBattle_Ch1_loop
 
 ; ============================================================================================================
 
 Music_KantoWildBattleNight_Ch2:
-	dutycycle $3
-	vibrato $12, $22
-	notetype $c, $b1
+	duty_cycle $3
+	vibrato 18, 2, 2
+	note_type 12, 11, 1
 	octave 4
 rept 5
 	note G_, 1
@@ -1202,18 +1203,18 @@ endr
 	note D#, 1
 	note D_, 1
 	note C#, 1
-	dutycycle $2
-	callchannel Music_KantoWildBattle_Ch2_loop
+	duty_cycle $2
+	sound_call Music_KantoWildBattle_Ch2_loop
 
 ; ============================================================================================================
 
 Music_KantoWildBattleNight_Ch3:
-	vibrato $12, $23
-	notetype $c, $12
-	callchannel Music_KantoWildBattle_Ch3Intro
+	vibrato 18, 2, 3
+	note_type 12, 1, 2
+	sound_call Music_KantoWildBattle_Ch3Intro
 Music_KantoWildBattleNight_Ch3loop:
-	notetype $c, $12
-	callchannel Music_KantoWildBattle_Type1
+	note_type 12, 1, 2
+	sound_call Music_KantoWildBattle_Type1
 	octave 4
 	note G_, 1
 	octave 3
@@ -1257,7 +1258,7 @@ Music_KantoWildBattleNight_Ch3loop:
 	note D_, 1
 	octave 4
 	note B_, 1
-	callchannel Music_KantoWildBattle_Type1
+	sound_call Music_KantoWildBattle_Type1
 	octave 4
 	note G_, 1
 	note C_, 1
@@ -1291,38 +1292,38 @@ Music_KantoWildBattleNight_Ch3loop:
 	note F_, 7
 	note F#, 1
 	note G_, 2
-	intensity $22
-	callchannel Music_KantoWildBattle_Type2
-	intensity $12
+	volume_envelope 2, 2
+	sound_call Music_KantoWildBattle_Type2
+	volume_envelope 1, 2
 	octave 5
 	note F#, 2
-	intensity $22
-	callchannel Music_KantoWildBattle_Type2
-	intensity $12
+	volume_envelope 2, 2
+	sound_call Music_KantoWildBattle_Type2
+	volume_envelope 1, 2
 	octave 5
 	note E_, 2
-	intensity $22
+	volume_envelope 2, 2
 	note C_, 1
 	octave 4
 	note G_, 1
-	intensity $12
+	volume_envelope 1, 2
 	octave 5
 	note G_, 2
-	intensity $22
-	callchannel Music_KantoWildBattle_Type2
-	intensity $12
+	volume_envelope 2, 2
+	sound_call Music_KantoWildBattle_Type2
+	volume_envelope 1, 2
 	octave 5
 	note A_, 2
-	intensity $22
-	callchannel Music_KantoWildBattle_Type2
-	intensity $12
+	volume_envelope 2, 2
+	sound_call Music_KantoWildBattle_Type2
+	volume_envelope 1, 2
 	octave 5
 	note G_, 2
-	intensity $22
+	volume_envelope 2, 2
 	note C_, 1
 	octave 4
 	note G#, 1
-	intensity $12
+	volume_envelope 1, 2
 	octave 5
 	note G#, 12
 	note G_, 2
@@ -1337,49 +1338,49 @@ Music_KantoWildBattleNight_Ch3loop:
 	note C#, 8
 	octave 5
 	note C_, 2
-	intensity $22
-	callchannel Music_KantoWildBattle_Type3
-	intensity $12
+	volume_envelope 2, 2
+	sound_call Music_KantoWildBattle_Type3
+	volume_envelope 1, 2
 	note A#, 2
-	intensity $22
-	callchannel Music_KantoWildBattle_Type3
-	intensity $12
+	volume_envelope 2, 2
+	sound_call Music_KantoWildBattle_Type3
+	volume_envelope 1, 2
 	note G#, 2
-	intensity $22
+	volume_envelope 2, 2
 	note E_, 1
 	note G_, 1
-	intensity $12
+	volume_envelope 1, 2
 	octave 5
 	note C#, 2
-	intensity $22
-	callchannel Music_KantoWildBattle_Type3
-	intensity $12
+	volume_envelope 2, 2
+	sound_call Music_KantoWildBattle_Type3
+	volume_envelope 1, 2
 	octave 5
 	note C_, 2
-	intensity $22
-	callchannel Music_KantoWildBattle_Type3
-	intensity $12
+	volume_envelope 2, 2
+	sound_call Music_KantoWildBattle_Type3
+	volume_envelope 1, 2
 	note A#, 2
-	intensity $22
+	volume_envelope 2, 2
 	note E_, 1
 	note G_, 1
-	intensity $12
+	volume_envelope 1, 2
 	octave 5
 	note F_, 2
-	intensity $22
-	callchannel Music_KantoWildBattle_Type4
-	intensity $12
+	volume_envelope 2, 2
+	sound_call Music_KantoWildBattle_Type4
+	volume_envelope 1, 2
 	note E_, 2
-	intensity $22
-	callchannel Music_KantoWildBattle_Type4
-	intensity $12
+	volume_envelope 2, 2
+	sound_call Music_KantoWildBattle_Type4
+	volume_envelope 1, 2
 	note D_, 2
-	intensity $22
+	volume_envelope 2, 2
 	octave 4
 	note G_, 1
 	octave 5
 	note C_, 1
-	intensity $12
+	volume_envelope 1, 2
 	octave 4
 	note A#, 4
 	octave 5
@@ -1387,83 +1388,83 @@ Music_KantoWildBattleNight_Ch3loop:
 	note D_, 4
 	note F_, 4
 	note G#, 16
-	notetype $6, $12
+	note_type 6, 1, 2
 	note G#, 1
-	note __, 1
-	intensity $22
+	rest 1
+	volume_envelope 2, 2
 	note G#, 1
-	note __, 1
-	intensity $32
-	callchannel Music_KantoWildBattle_Type5
-	intensity $22
-	callchannel Music_KantoWildBattle_Type5
-	intensity $12
+	rest 1
+	volume_envelope 3, 2
+	sound_call Music_KantoWildBattle_Type5
+	volume_envelope 2, 2
+	sound_call Music_KantoWildBattle_Type5
+	volume_envelope 1, 2
 	note G#, 1
-	note __, 1
+	rest 1
 	note G#, 1
-	note __, 1
+	rest 1
 	octave 6
 rept 4
 	note C#, 1
-	note __, 1
+	rest 1
 endr
 	octave 5
 	note G_, 2
 	note F_, 2
 	note E_, 2
 	note F_, 2
-	notetype $c, $12
+	note_type 12, 1, 2
 	note G_, 12
 	note G_, 8
-	notetype $6, $12
+	note_type 6, 1, 2
 rept 4
 	note G_, 1
-	note __, 1
+	rest 1
 endr
-	intensity $22
+	volume_envelope 2, 2
 	note G_, 1
-	note __, 1
+	rest 1
 	note G_, 1
-	note __, 1
-	intensity $12
+	rest 1
+	volume_envelope 1, 2
 	note G_, 1
-	note __, 1
+	rest 1
 	note G_, 1
-	note __, 1
-	notetype $c, $12
+	rest 1
+	note_type 12, 1, 2
 	octave 2
 	note A#, 16
 	note A#, 1
-	note __, 2
+	rest 2
 	note A#, 1
-	note __, 2
+	rest 2
 	note A#, 1
-	note __, 1
+	rest 1
 	octave 3
 	note A#, 1
-	note __, 2
+	rest 2
 	note A#, 1
-	note __, 2
+	rest 2
 	note A#, 1
-	note __, 1
+	rest 1
 	note C_, 1
-	note __, 2
-	notetype $6, $12
-	callchannel Music_KantoWildBattle_Type6
+	rest 2
+	note_type 6, 1, 2
+	sound_call Music_KantoWildBattle_Type6
 	octave 4
 	note C_, 2
-	note __, 2
+	rest 2
 	octave 3
 	note C_, 4
 	note C_, 2
-	note __, 4
-	callchannel Music_KantoWildBattle_Type6
+	rest 4
+	sound_call Music_KantoWildBattle_Type6
 	octave 2
 	note A#, 2
-	note __, 2
+	rest 2
 	note A#, 2
-	note __, 2
-	notetype $c, $12
+	rest 2
+	note_type 12, 1, 2
 	note G#, 16
 	note G#, 16
 	note A#, 2
@@ -1542,7 +1543,7 @@ endr
 	note G_, 1
 	rest 5
 	note F_, 8
-	intensity $11
+	volume_envelope 1, 1
 	note G_, 6
 	note F#, 6
 	note E_, 2
@@ -1586,4 +1587,4 @@ endr
 	note G#, 16
 	note G_, 16
 	note G_, 16
-	loopchannel 0, Music_KantoWildBattleNight_Ch3loop
+	sound_loop 0, Music_KantoWildBattleNight_Ch3loop
