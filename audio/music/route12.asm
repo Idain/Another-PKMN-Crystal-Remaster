@@ -428,7 +428,7 @@ Music_Route12_branch_ec6b4: ; ec6b4
 ; ============================================================================================================
 
 Music_Route12_Ch4: ; ec6ce
-	toggle_noise $4
+	toggle_noise 4
 Music_Route12_Ch4_Entry:
 	stereo_panning TRUE, FALSE
 	drum_speed 12
@@ -544,5 +544,5 @@ Music_Route12_Night_Ch3:
 	sound_call Music_Route12_Ch3_Entry
 
 Music_Route12_Night_Ch4:
-	toggle_noise $9
+	toggle_noise 10
 	sound_call Music_Route12_Ch4_Entry

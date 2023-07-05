@@ -486,7 +486,7 @@ Music_Route3_Ch3_Intro:
 	sound_ret
 
 Music_Route3_Ch4: ; ec4eb
-	toggle_noise $4
+	toggle_noise 4
 	drum_speed 12
 	rest 10
 Music_Route3_branch_ec4f0: ; ec4f0
@@ -544,7 +544,7 @@ Music_Route3_Night_Ch2_loop:
 	sound_call Music_Route3_Ch2_Part2
 	sound_loop 0, Music_Route3_Night_Ch2_loop
 
-Music_Route3_Night_Ch3: ; ec45b
+Music_Route3_Night_Ch3:
 	stereo_panning TRUE, TRUE
 	vibrato 6, 0, 3
 	note_type 12, 1, 0
@@ -561,8 +561,8 @@ Music_Route3_Night_Ch3: ; ec45b
 	sound_call Music_Route3_branch_ec4bd
 	sound_call Music_Route3_branch_ec47f
 
-Music_Route3_Night_Ch4: ; ec4eb
-	toggle_noise $9
+Music_Route3_Night_Ch4:
+	toggle_noise 10
 	drum_speed 12
 	rest 10
 	sound_call Music_Route3_branch_ec4f0

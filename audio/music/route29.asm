@@ -508,7 +508,7 @@ Music_Route29_branch_f0504: ; f0504
 
 Music_Route29_Ch4: ; f05a9
 	stereo_panning FALSE, TRUE
-	toggle_noise $0
+	toggle_noise 0
 	drum_speed 12
 	rest 2
 Music_Route29_branch_f05b0: ; f05b0
@@ -569,7 +569,7 @@ Music_Route29Night_Ch3:
 ; ============================================================================================================
 Music_Route29Night_Ch4:
 	stereo_panning FALSE, TRUE
-	toggle_noise $6
+	toggle_noise 6
 	drum_speed 12
 	rest 2
 

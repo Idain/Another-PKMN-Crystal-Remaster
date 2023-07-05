@@ -468,7 +468,7 @@ Music_Route36_branch_e9684:
 	sound_loop 0, Music_Route36_branch_e9684
 
 Music_Route36_Ch4:
-	toggle_noise $1
+	toggle_noise 1
 	drum_speed 12
 	sound_call Music_Route36_branch_e9734
 	sound_call Music_Route36_branch_e9741
@@ -612,7 +612,7 @@ Music_Route36Night_Ch3:
 	
 ; ============================================================================================================
 Music_Route36Night_Ch4:
-	toggle_noise $7
+	toggle_noise 7
 	drum_speed 12
 	sound_call Music_Route36_branch_e9734
 	sound_call Music_Route36_branch_e9741

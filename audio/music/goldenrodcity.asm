@@ -397,7 +397,7 @@ Music_GoldenrodCity_branch_eb5d2: ; eb5d2
 ; eb606
 
 Music_GoldenrodCity_Ch4: ; eb606
-	toggle_noise $3
+	toggle_noise 3
 	drum_speed 12
 	rest 16
 	rest 16
@@ -605,7 +605,7 @@ Music_GoldenrodCityNight_Ch3:
 	
 ; ============================================================================================================
 Music_GoldenrodCityNight_Ch4:
-	toggle_noise $8
+	toggle_noise 9
 	drum_speed 12
 	rest 16
 	rest 16

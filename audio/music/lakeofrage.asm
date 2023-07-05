@@ -301,7 +301,7 @@ Music_LakeOfRage_branch_ee7d0: ; ee7d0
 
 Music_LakeOfRage_Ch4: ; ee835
 	stereo_panning TRUE, FALSE
-	toggle_noise $3
+	toggle_noise 3
 	drum_speed 12
 Music_LakeOfRage_branch_ee83b: ; ee83b
 	drum_note 3, 2
@@ -387,6 +387,6 @@ Music_LakeOfRageNight_Ch3:
 
 Music_LakeOfRageNight_Ch4:
 	stereo_panning TRUE, FALSE
-	toggle_noise $8
+	toggle_noise 9
 	drum_speed 12
 	sound_loop 0, Music_LakeOfRage_branch_ee83b

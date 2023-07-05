@@ -664,11 +664,11 @@ Music_AzaleaTown_Ch3_Type2:
 	rest 1
 	sound_ret
 
-Music_AzaleaTown_Ch4: ; f5ae5
-	toggle_noise $3
+Music_AzaleaTown_Ch4:
+	toggle_noise 3
 	drum_speed 12
 	drum_note 6, 2
-Music_AzaleaTown_branch_f5aea: ; f5aea
+Music_AzaleaTown_branch_f5aea:
 	drum_note 4, 2
 	drum_note 7, 2
 	drum_note 3, 2
@@ -708,7 +708,6 @@ Music_AzaleaTownNight_Ch1:
 	volume 7, 7
 	duty_cycle $2
 	stereo_panning FALSE, TRUE
-	; pitchoffset 1, A_
 	note_type 12, 10, 1
 	rest 2
 
@@ -737,7 +736,6 @@ Music_AzaleaTownNight_branch_f5952:
 ; ============================================================================================================
 Music_AzaleaTownNight_Ch3:
 	stereo_panning TRUE, TRUE
-	; pitchoffset 1, A_
 	vibrato 6, 1, 6
 	note_type 12, 2, 4
 
@@ -793,7 +791,7 @@ Music_AzaleaTownNight_branch_f5acf:
 	
 ; ============================================================================================================
 Music_AzaleaTownNight_Ch4:
-	toggle_noise $8
+	toggle_noise 9
 	drum_speed 12
 	rest 2
 	sound_call Music_AzaleaTown_branch_f5aea

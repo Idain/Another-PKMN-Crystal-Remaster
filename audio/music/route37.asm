@@ -396,7 +396,7 @@ Music_Route37_branch_eeb3c:
 
 Music_Route37_Ch4:
 	stereo_panning FALSE, TRUE
-	toggle_noise $0
+	toggle_noise 0
 Music_Route37_branch_eeb51:
 	drum_speed 12
 	sound_call Music_Route37_branch_eeb6b
@@ -496,5 +496,5 @@ Music_Route37Night_Ch3:
 
 Music_Route37Night_Ch4:
 	stereo_panning FALSE, TRUE
-	toggle_noise $6
+	toggle_noise 6
 	sound_loop 0, Music_Route37_branch_eeb51

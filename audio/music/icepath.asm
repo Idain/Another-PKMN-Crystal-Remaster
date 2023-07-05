@@ -856,7 +856,7 @@ Music_IcePathHGSS_Ch3_loop2:
 Music_IcePathHGSS_Ch4:
 	drum_speed 12
 	stereo_panning TRUE, TRUE
-	toggle_noise $3
+	toggle_noise 3
 
 ;Bar1:
 	sound_call Music_IcePathHGSS_Ch4_loop

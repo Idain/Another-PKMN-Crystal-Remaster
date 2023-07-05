@@ -587,7 +587,7 @@ Music_Route26_branch_ef22f:
 	sound_ret
 
 Music_Route26_Ch4:
-	toggle_noise $4
+	toggle_noise 4
 	drum_speed 12
 Music_Route26_branch_ef23c:
 	drum_note 12, 6
@@ -931,7 +931,7 @@ Music_Route26Night_Ch3_Branch2:
 	
 ; ============================================================================================================
 Music_Route26Night_Ch4:
-	toggle_noise $9
+	toggle_noise 10
 	drum_speed 12
 
 	sound_call Music_Route26_branch_ef23c

@@ -769,7 +769,7 @@ Music_VioletCity_branch_f0311: ; f0311
 ; f031e
 
 Music_VioletCity_Ch4: ; f031e
-	toggle_noise $3
+	toggle_noise 3
 	drum_speed 12
 	drum_note 4, 2
 	drum_note 3, 2
@@ -912,7 +912,7 @@ Music_VioletCityNight_Ch3_Master:
 	
 ; ============================================================================================================
 Music_VioletCityNight_Ch4:
-	toggle_noise $8
+	toggle_noise 9
 	drum_speed 12
 
 	sound_loop 0, Music_VioletCityNight_Ch4_Intro

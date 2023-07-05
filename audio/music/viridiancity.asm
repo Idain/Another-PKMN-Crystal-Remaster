@@ -709,7 +709,7 @@ Music_GSCViridianCity_Ch3_Branch2:
 	sound_ret
 
 Music_GSCViridianCity_Ch4: ; f42df
-	toggle_noise $3
+	toggle_noise 3
 	drum_speed 12
 	sound_call Music_GSCViridianCity_branch_f431d
 	sound_call Music_GSCViridianCity_branch_f432c
@@ -848,7 +848,7 @@ Music_GSCViridianCity_Night_loop: ; f4246
 	sound_loop 0, Music_GSCViridianCity_Night_loop
 
 Music_GSCViridianCity_Night_Ch4:
-	toggle_noise $8
+	toggle_noise 9
 	drum_speed 12
 	sound_call Music_GSCViridianCity_branch_f431d
 	sound_call Music_GSCViridianCity_branch_f432c

@@ -581,7 +581,7 @@ Music_Route30_branch_efd79: ; efd79
 ; efe7a
 
 Music_Route30_Ch4: ; efe7a
-	toggle_noise $3
+	toggle_noise 3
 	drum_speed 12
 	sound_call Music_Route30_branch_efeb8
 	sound_call Music_Route30_branch_efec1
@@ -772,7 +772,7 @@ Music_Route30Night_Ch3:
 	
 ; ============================================================================================================
 Music_Route30Night_Ch4:
-	toggle_noise $8
+	toggle_noise 9
 	drum_speed 12
 	sound_call Music_Route30_branch_efeb8
 	sound_call Music_Route30_branch_efec1
