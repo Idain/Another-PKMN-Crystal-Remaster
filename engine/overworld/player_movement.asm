@@ -37,10 +37,8 @@ IF DEF(_DEBUG)
 	call .GetAction
 	ld a, [wWalkingTile]
 	cp -1
+	jp nz, .HandleWalkAndRun
 	ld a, STEP_BACK_LEDGE
-	jr z, .hopback
-	ld a, STEP_BIKE
-.hopback
 	call .DoStep
 	scf
 	ret
@@ -320,19 +318,19 @@ ENDC
 	cp STANDING
 	jr z, .ensurewalk
 	ldh a, [hJoypadDown]
-	and B_BUTTON
-	cp B_BUTTON
+	or ~B_BUTTON
+	inc a
 	jr nz, .ensurewalk
-    ld a, [wPlayerState]
-    cp PLAYER_RUN
-    call nz, .StartRunning
-    jr .fast
+	ld a, [wPlayerState]
+	cp PLAYER_RUN
+	call nz, .StartRunning
+	jr .fast
 
 .ensurewalk
-    ld a, [wPlayerState]
-    cp PLAYER_NORMAL
-    call nz, .StartWalking
-    jr .walk
+	ld a, [wPlayerState]
+	cp PLAYER_NORMAL
+	call nz, .StartWalking
+	jr .walk
 
 .TrySurf:
 	call .CheckSurfPerms
@@ -815,20 +813,20 @@ ENDM
 	ret
 
 .StartRunning:
-    ld a, PLAYER_RUN
-    ld [wPlayerState], a
-    push bc
-    farcall UpdatePlayerSprite
-    pop bc
-    ret
+	ld a, PLAYER_RUN
+	ld [wPlayerState], a
+	push bc
+	farcall UpdatePlayerSprite
+	pop bc
+	ret
 
 .StartWalking:
-    ld a, PLAYER_NORMAL
-    ld [wPlayerState], a
-    push bc
-    farcall UpdatePlayerSprite
-    pop bc
-    ret
+	ld a, PLAYER_NORMAL
+	ld [wPlayerState], a
+	push bc
+	farcall UpdatePlayerSprite
+	pop bc
+	ret
 
 CheckStandingOnIce::
 	ld a, [wPlayerTurningDirection]
