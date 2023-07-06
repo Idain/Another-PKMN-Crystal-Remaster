@@ -37,17 +37,15 @@ _ClearSprites: ; mobile
 	ret
 
 RefreshSprites::
-	call .Refresh
-	jp LoadUsedSpritesGFX
-
-.Refresh:
 	xor a
 	ld bc, wUsedSpritesEnd - wUsedSprites
 	ld hl, wUsedSprites
 	call ByteFill
 	call GetPlayerSprite
 	call AddMapSprites
-	jp LoadAndSortSprites
+	call LoadSpriteGFX
+	call ArrangeUsedSprites
+	jp LoadUsedSpritesGFX
 
 GetPlayerSprite:
 ; Get Chris or Kris's sprite.
@@ -288,10 +286,6 @@ _GetSpritePalette::
 	ld c, a
 	ret
 
-LoadAndSortSprites:
-	call LoadSpriteGFX
-	jr ArrangeUsedSprites
-
 AddSpriteGFX:
 ; Add any new sprite ids to a list of graphics to be loaded.
 ; Return carry if the list is full.
@@ -416,10 +410,6 @@ GetSpriteLength:
 	jr z, .AnyDirection
 	cp STILL_SPRITE
 	jr z, .OneDirection
-
-	ld a, 12
-	ret
-
 .AnyDirection:
 	ld a, 12
 	ret

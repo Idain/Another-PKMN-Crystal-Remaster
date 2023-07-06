@@ -102,6 +102,8 @@
 	const SPRITE_SUICUNE ; 62
 	const SPRITE_ENTEI ; 63
 	const SPRITE_RAIKOU ; 64
+	const SPRITE_CHRIS_RUN ; 65
+	const SPRITE_KRIS_RUN ; 66
 DEF NUM_OVERWORLD_SPRITES EQU const_value - 1
 
 ; SpriteMons indexes (see data/sprites/sprite_mons.asm)
