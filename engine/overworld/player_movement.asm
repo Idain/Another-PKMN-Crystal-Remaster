@@ -45,7 +45,7 @@ IF DEF(_DEBUG)
 	scf
 	ret
 .regular_move
-	ENDC
+ENDC
 	ld a, [wPlayerState]
 	cp PLAYER_NORMAL
 	jr z, .Normal
@@ -268,13 +268,6 @@ IF DEF(_DEBUG)
 	ret
 
 .TryStep:
-; Surfing actually calls .TrySurf directly instead of passing through here.
-	ld a, [wPlayerState]
-	cp PLAYER_SURF
-	jr z, .TrySurf
-	cp PLAYER_SURF_PIKA
-	jr z, .TrySurf
-
 	call .CheckLandPerms
 	jr c, .bump
 
@@ -301,7 +294,8 @@ IF DEF(_DEBUG)
 	ld a, [wWalkingDirection]
 	cp DOWN
 	jr z, .fast
-
+	; fallthrough
+.walk
 	ld a, STEP_WALK
 	call .DoStep
 	scf
@@ -309,12 +303,6 @@ IF DEF(_DEBUG)
 
 .fast
 	ld a, STEP_BIKE
-	call .DoStep
-	scf
-	ret
-
-.walk
-	ld a, STEP_WALK
 	call .DoStep
 	scf
 	ret
@@ -640,7 +628,6 @@ ENDM
 	add e
 	ld e, a
 ; Find an object struct with coordinates equal to d,e
-	ld bc, wObjectStructs ; redundant
 	farcall IsNPCAtCoord
 	jr nc, .no_npc
 	call .CheckStrengthBoulder
@@ -849,6 +836,6 @@ StopPlayerForEvent::
 	ret z
 
 	ld [hl], a
-	ld a, 0
+	xor a
 	ld [wPlayerTurningDirection], a
 	ret
