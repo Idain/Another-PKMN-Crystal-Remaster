@@ -1009,23 +1009,20 @@ Function106464::
 
 Function10649b: ; unreferenced
 	ld a, [wTextboxFrame]
-	maskbits NUM_FRAMES
-	ld bc, 6 * LEN_1BPP_TILE
+	ld bc, TEXTBOX_FRAME_TILES * LEN_1BPP_TILE
 	ld hl, Frames
 	call AddNTimes
 	ld d, h
 	ld e, l
 	ld hl, vTiles0 tile "┌" ; $ba
-	ld c, 6 ; "┌" to "┘"
+	ld c, TEXTBOX_FRAME_TILES ; "┌" to "┘"
 	ld b, BANK(Frames)
 	call Function1064c3
 	ld hl, vTiles2 tile " " ; $7f
 	ld de, TextboxSpaceGFX
 	ld c, 1
 	ld b, BANK(TextboxSpaceGFX)
-	call Function1064c3
-	ret
-
+	; fallthrough
 Function1064c3:
 	ldh a, [rSVBK]
 	push af
@@ -1056,8 +1053,7 @@ Function1064d8: ; unreferenced
 	pop bc
 	pop af
 	ldh [rSVBK], a
-	jr asm_1064ed
-
+	; fallthrough
 asm_1064ed:
 	ld de, wDecompressScratch
 	ld b, $0

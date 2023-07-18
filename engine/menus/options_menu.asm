@@ -454,14 +454,19 @@ Options_Frame:
 .RightPressed:
 	ld a, [hl]
 	inc a
+	cp NUM_FRAMES
+	jr nz, .Save
+	xor a
 	jr .Save
 
 .LeftPressed:
 	ld a, [hl]
 	dec a
+	cp -1
+	jr nz, .Save
+	ld a, NUM_FRAMES - 1
 
 .Save:
-	maskbits NUM_FRAMES
 	ld [hl], a
 UpdateFrame:
 	ld a, [wTextboxFrame]
