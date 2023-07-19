@@ -1,15 +1,12 @@
 GiveDratini:
-; if wScriptVar is 0 or 1, change the moveset of the last Dratini in the party.
-;  0: give it a special moveset with Extremespeed.
-;  1: give it the normal moveset of a level 15 Dratini.
+; Change the moveset of the last Dratini in the party.
+; Give it a special moveset with Extremespeed.
 
-	ld a, [wScriptVar]
-	cp $2
-	ret nc
 	ld bc, wPartyCount
 	ld a, [bc]
-	ld hl, MON_SPECIES
-	call .GetNthPartyMon
+	dec a
+	ld hl, wPartyMon1Species
+	call GetPartyLocation
 	ld a, [bc]
 	ld c, a
 	ld de, PARTYMON_STRUCT_LENGTH
@@ -29,82 +26,24 @@ GiveDratini:
 	ret
 
 .GiveMoveset:
-	push hl
-	ld a, [wScriptVar]
-	ld hl, .Movesets
-	ld bc, .Moveset1 - .Moveset0
-	call AddNTimes
-
-	; get address of mon's first move
-	pop de
-	inc de
-	inc de
-
-.GiveMoves:
-	ld a, [hl]
-	and a ; is the move 00?
-	ret z ; if so, we're done here
-
-	push hl
-	push de
-	ld [de], a ; give the Pokémon the new move
+	; Insert Extremespeed in Pokémon's first move slot
+	ld de, MON_MOVES - MON_SPECIES
+	add hl, de
+	ld a, EXTREMESPEED
+	ld [hl], a
 
 	; get the PP of the new move
+	push hl
 	ld hl, (Moves + MOVE_PP) - MOVE_LENGTH
 	ld bc, MOVE_LENGTH
 	call AddNTimes
 	ld a, BANK(Moves)
 	call GetFarByte
+	pop hl
 
 	; get the address of the move's PP and update the PP
-	ld hl, MON_PP - MON_MOVES
+	ld de, MON_PP - MON_MOVES
 	add hl, de
 	ld [hl], a
-
-	pop de
-	pop hl
-	inc de
-	inc hl
-	jr .GiveMoves
-
-.Movesets:
-.Moveset0:
-; Dratini does not normally learn Extremespeed. This is a special gift.
-	db EXTREMESPEED
-	db THUNDER_WAVE
-	db TWISTER
-	db DRAGON_RAGE
-	db 0
-.Moveset1:
-; This is the normal moveset of a level 15 Dratini
-	db LEER
-	db THUNDER_WAVE
-	db TWISTER
-	db DRAGON_RAGE
-	db 0
-
-.GetNthPartyMon:
-; inputs:
-; hl must be set to 0 before calling this function.
-; a must be set to the number of Pokémon in the party.
-
-; outputs:
-; returns the address of the last Pokémon in the party in hl.
-; sets carry if a is 0.
-
-	ld de, wPartyMon1
-	add hl, de
-	and a
-	jr z, .EmptyParty
-	dec a
-	ret z
-	ld de, PARTYMON_STRUCT_LENGTH
-.loop
-	add hl, de
-	dec a
-	jr nz, .loop
 	ret
 
-.EmptyParty:
-	scf
-	ret

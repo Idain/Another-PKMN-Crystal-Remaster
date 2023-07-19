@@ -211,9 +211,11 @@ DragonShrineElder1Script:
 	writetext DragonShrinePlayerReceivedDratiniText
 	playsound SFX_CAUGHT_MON
 	waitsfx
-	givepoke DRATINI, 15
+	givepoke DRATINI, 25
 	checkevent EVENT_ANSWERED_DRAGON_MASTER_QUIZ_WRONG
+	iftrue .NoExtremeSpeedDratini
 	special GiveDratini
+.NoExtremeSpeedDratini
 	setevent EVENT_GOT_DRATINI
 	setevent EVENT_TEMPORARY_UNTIL_MAP_RELOAD_7
 	writetext DragonShrineSymbolicDragonText
