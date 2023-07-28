@@ -112,6 +112,8 @@ Music:
 	dba Music_IcePathHGSS
 	dba Music_FriendlyShop
 	dba Music_KantoEliteFourFRLG
+	dba Music_HoOhBattleHGSS
+	dba Music_LugiaBattleHGSS
 ; custom night songs
 	dba Music_PKMN_Center_Night
 	dba Music_KantoWildBattleNight
