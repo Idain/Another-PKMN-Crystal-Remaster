@@ -111,6 +111,7 @@ Music:
 	dba Music_CinnabarIslandGBS
 	dba Music_IcePathHGSS
 	dba Music_FriendlyShop
+	dba Music_KantoEliteFourFRLG
 ; custom night songs
 	dba Music_PKMN_Center_Night
 	dba Music_KantoWildBattleNight
