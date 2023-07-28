@@ -114,6 +114,7 @@ Music:
 	dba Music_KantoEliteFourFRLG
 	dba Music_HoOhBattleHGSS
 	dba Music_LugiaBattleHGSS
+	dba Music_KantoLegendBattleXY
 ; custom night songs
 	dba Music_PKMN_Center_Night
 	dba Music_KantoWildBattleNight
