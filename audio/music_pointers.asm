@@ -115,6 +115,8 @@ Music:
 	dba Music_HoOhBattleHGSS
 	dba Music_LugiaBattleHGSS
 	dba Music_KantoLegendBattleXY
+	dba Music_LugiasSong2000
+	dba Music_SummoningDanceHGSS
 ; custom night songs
 	dba Music_PKMN_Center_Night
 	dba Music_KantoWildBattleNight
