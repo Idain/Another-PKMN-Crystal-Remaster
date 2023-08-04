@@ -247,7 +247,6 @@ PidgeottoEvosAttacks:
 
 PidgeotEvosAttacks:
 	db 0 ; no more evolutions
-	db 1, SKY_ATTACK
 	db 1, TACKLE
 	db 5, SAND_ATTACK
 	db 9, GUST
