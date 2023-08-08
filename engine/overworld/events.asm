@@ -30,34 +30,9 @@ EnableEvents::
 	ld [wScriptFlags2], a
 	ret
 
-CheckBit5_ScriptFlags2:
-	ld hl, wScriptFlags2
-	bit 5, [hl]
-	ret
-
 EnableWildEncounters:
 	ld hl, wScriptFlags2
 	set 4, [hl]
-	ret
-
-CheckWarpConnxnScriptFlag:
-	ld hl, wScriptFlags2
-	bit 2, [hl]
-	ret
-
-CheckCoordEventScriptFlag:
-	ld hl, wScriptFlags2
-	bit 1, [hl]
-	ret
-
-CheckStepCountScriptFlag:
-	ld hl, wScriptFlags2
-	bit 0, [hl]
-	ret
-
-CheckWildEncountersScriptFlag:
-	ld hl, wScriptFlags2
-	bit 4, [hl]
 	ret
 
 StartMap:
@@ -74,7 +49,10 @@ EnterMap:
 	xor a
 	ld [wXYComparePointer], a
 	ld [wXYComparePointer + 1], a
-	call SetUpFiveStepWildEncounterCooldown
+	; Set up wild encounter cooldown of five steps
+	ld a, 5
+	ld [wWildEncounterCooldown], a
+
 	farcall RunMapSetupScript
 	call DisableEvents
 
@@ -97,7 +75,10 @@ EnterMap:
 	ret
 
 HandleMap:
-	call ResetOverworldDelay
+	; Reset overworld delay
+	ld a, 2
+	ld [wOverworldDelay], a
+
 	call HandleMapTimeAndJoypad
 	call HandleStoneTable
 	call MapEvents
@@ -116,6 +97,7 @@ MapEvents:
 	ld a, [wMapEventStatus]
 	ld hl, .Jumptable
 	rst JumpTable
+.no_events:
 	ret
 
 .Jumptable:
@@ -127,17 +109,6 @@ MapEvents:
 	call PlayerEvents
 	call DisableEvents
 	jp ScriptEvents
-
-.no_events:
-	ret
-
-MaxOverworldDelay:
-	db 2
-
-ResetOverworldDelay:
-	ld a, [MaxOverworldDelay]
-	ld [wOverworldDelay], a
-	ret
 
 NextOverworldFrame:
 	ld a, [wOverworldDelay]
@@ -262,7 +233,9 @@ CheckTrainerBattle_GetPlayerEvent:
 CheckTileEvent:
 ; Check for warps, coord events, or wild battles.
 
-	call CheckWarpConnxnScriptFlag
+	; CheckWarpConnxnScriptFlag
+	ld hl, wScriptFlags2
+	bit 2, [hl]
 	jr z, .connections_disabled
 
 	farcall CheckMovingOffEdgeOfMap
@@ -272,21 +245,27 @@ CheckTileEvent:
 	jr c, .warp_tile
 
 .connections_disabled
-	call CheckCoordEventScriptFlag
+	; CheckCoordEventScriptFlag
+	ld hl, wScriptFlags2
+	bit 1, [hl]
 	jr z, .coord_events_disabled
 
 	call CheckCurrentMapCoordEvents
 	jr c, .coord_event
 
 .coord_events_disabled
-	call CheckStepCountScriptFlag
+	; CheckStepCountScriptFlag
+	ld hl, wScriptFlags2
+	bit 0, [hl]
 	jr z, .step_count_disabled
 
 	call CountStep
 	ret c
 
 .step_count_disabled
-	call CheckWildEncountersScriptFlag
+	; CheckWildEncountersScriptFlag
+	ld hl, wScriptFlags2
+	bit 4, [hl]
 	jr z, .ok
 
 	call RandomEncounter
@@ -330,11 +309,6 @@ CheckWildEncounterCooldown::
 	dec [hl]
 	ret z
 	scf
-	ret
-
-SetUpFiveStepWildEncounterCooldown:
-	ld a, 5
-	ld [wWildEncounterCooldown], a
 	ret
 
 RunSceneScript:
