@@ -40,92 +40,54 @@ PlayBattleMusic:
 	call DelayFrame
 	call MaxVolume
 
-	ld a, [wBattleType]
-	cp BATTLETYPE_SUICUNE
-	ld de, MUSIC_SUICUNE_BATTLE
-	jp z, .done
-	cp BATTLETYPE_ROAMING
-	jp z, .done
-
 	; Are we fighting a trainer?
 	ld a, [wOtherTrainerClass]
 	and a
 	jr nz, .trainermusic
 
-	farcall RegionCheck
-	ld a, e
-	and a
-	jr nz, .kantowild
+	ld a, [wTempEnemyMonSpecies]
+	ld hl, BattleMusic_Legendaries
+	call .loadfromarray
+	jr c, .done
 
-	ld de, MUSIC_JOHTO_WILD_BATTLE
-	ld a, [wTimeOfDay]
-	cp NITE_F
-	jr c, .done ; not NITE_F or EVE_F
-	ld de, MUSIC_JOHTO_WILD_BATTLE_NIGHT
-	jr .done
-
-.kantowild
-	ld de, MUSIC_KANTO_WILD_BATTLE
-	ld a, [wTimeOfDay]
-	cp NITE_F
-	jr c, .done ; not NITE_F or EVE_F
-	ld de, MUSIC_KANTO_WILD_BATTLE_NIGHT
+	ld hl, BattleMusic_RegionalWilds
+	call .getregionmusicfromarray
 	jr .done
 
 .trainermusic
+	ld a, [wOtherTrainerClass]
+	cp RIVAL2
+	jr nz, .othertrainer
+	ld a, [wOtherTrainerID]
+	cp RIVAL2_2_CHIKORITA ; Rival in Indigo Plateau
+	jr c, .othertrainer
 	ld de, MUSIC_CHAMPION_BATTLE
-	cp CHAMPION
-	jr z, .done
-	cp RED
-	jr z, .done
+	jr .done
 
-	ld de, MUSIC_ROCKET_BATTLE
-	cp GRUNTM
-	jr z, .done
-	cp GRUNTF
-	jr z, .done
-	cp EXECUTIVEM
-	jr z, .done
-	cp EXECUTIVEF
-	jr z, .done
-	cp SCIENTIST
-	jr z, .done
+.othertrainer
+	ld a, [wOtherTrainerClass]
+	ld hl, BattleMusic_Trainers
+	call .loadfromarray
+	jr c, .done
 
 	ld de, MUSIC_KANTO_GYM_LEADER_BATTLE
 	farcall IsKantoGymLeader
 	jr c, .done
 
-	; IsGymLeader also counts CHAMPION, RED, and the Kanto gym leaders
-	; but they have been taken care of before this
+	; IsGymLeader also counts CHAMPION, RED, the Elite Four and
+	; the Kanto gym leaders but they have been taken care of 
+	; before this
 	ld de, MUSIC_JOHTO_GYM_LEADER_BATTLE
 	farcall IsGymLeader
 	jr c, .done
 
-	ld de, MUSIC_RIVAL_BATTLE
-	ld a, [wOtherTrainerClass]
-	cp RIVAL1
-	jr z, .done
-	cp RIVAL2
-	jr nz, .othertrainer
-
-	ld a, [wOtherTrainerID]
-	cp RIVAL2_2_CHIKORITA ; Rival in Indigo Plateau
-	jr c, .done
-	ld de, MUSIC_CHAMPION_BATTLE
-	jr .done
-
-.othertrainer
 	ld a, [wLinkMode]
 	and a
 	ld de, MUSIC_JOHTO_TRAINER_BATTLE
 	jr nz, .done
 
-	farcall RegionCheck
-	ld a, e
-	and a
-	ld de, MUSIC_KANTO_TRAINER_BATTLE ; Kanto Trainer
-	jr nz, .done
-	ld de, MUSIC_JOHTO_TRAINER_BATTLE ; Johto Trainer
+	ld hl, BattleMusic_RegionalTrainers
+	call .getregionmusicfromarray
 	; fallthrough
 .done
 	call PlayMusic
@@ -134,6 +96,38 @@ PlayBattleMusic:
 	pop de
 	pop hl
 	ret
+
+.loadfromarray
+	ld de, 2
+	call IsInArray
+	ret nc
+	inc hl
+	ld e, [hl]
+	ld d, 0
+	ret
+
+.getregionmusicfromarray
+	push hl
+	farcall RegionCheck
+	pop hl
+	ld a, [wTimeOfDay]
+	cp NITE
+	; a = carry ? 0 : NUM_REGIONS
+	ccf
+	sbc a
+	and NUM_REGIONS
+	add e
+	add a
+	ld e, a
+	ld d, 0
+	add hl, de
+.found
+	ld a, [hli]
+	ld d, [hl]
+	ld e, a
+	ret
+
+INCLUDE "data/battle/music.asm"
 
 ClearBattleRAM:
 	xor a
