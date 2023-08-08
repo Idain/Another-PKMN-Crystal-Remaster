@@ -140,5 +140,5 @@ DoPoisonStep::
 	ret
 
 .PoisonRecoveryText:
-	text_far _PoisonFaintText
+	text_far _PoisonRecoveryText
 	text_end

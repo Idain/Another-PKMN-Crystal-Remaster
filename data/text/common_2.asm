@@ -590,7 +590,7 @@ _ItemfinderNopeText::
 	cont "ing."
 	prompt
 
-_PoisonFaintText::
+_PoisonRecoveryText::
 	text_ram wStringBuffer3
 	text_start
 	line "survived the"
