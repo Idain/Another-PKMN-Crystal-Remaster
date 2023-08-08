@@ -621,9 +621,18 @@ StartTrainerBattle_LoadPokeBallGraphics:
 	dec b
 	jr nz, .pal_loop
 
-	call .loadpokeballgfx
+	ld a, [wOtherTrainerClass]
+	farcall IsGymLeader
+	ld de, GymLeaderTransition
+	jr c, .got_transition
+	ld a, [wOtherTrainerClass]
+	ld hl, TeamRocketTrainerClasses
+	call IsInByteArray
+	ld de, TeamRocketTransition
+	jr c, .got_transition
+	ld de, PokeBallTransition
+.got_transition
 	hlcoord 2, 1
-
 	ld b, SCREEN_WIDTH - 4
 .tile_loop
 	push hl
@@ -665,8 +674,8 @@ StartTrainerBattle_LoadPokeBallGraphics:
 	jr nz, .cgb
 	ld a, 1
 	ldh [hBGMapMode], a
-	call DelayFrame
-	call DelayFrame
+	ld c, 2
+	call DelayFrames
 	jp StartTrainerBattle_NextScene
 
 .cgb
@@ -723,22 +732,6 @@ INCLUDE "gfx/overworld/trainer_battle.pal"
 .darkpals:
 INCLUDE "gfx/overworld/trainer_battle_dark.pal"
 
-.loadpokeballgfx:
-	ld de, TeamRocketTransition
-	ld a, [wOtherTrainerClass]
-	cp GRUNTM
-	ret z
-	cp GRUNTF
-	ret z
-	cp EXECUTIVEM
-	ret z
-	cp EXECUTIVEF
-	ret z
-	cp SCIENTIST
-	ret z
- 	ld de, PokeBallTransition
- 	ret
-
 PokeBallTransition:
 ; 16x16 overlay of a Poke Ball
 pusho
@@ -781,6 +774,29 @@ opt b.X ; . = 0, X = 1
 	bigdw %XXXXX......XXXXX
 	bigdw %XXXXX......XXXXX
 popo
+
+GymLeaderTransition:
+pusho
+	opt b.X ; . = 0, X = 1
+	bigdw %.....XX......XX.
+	bigdw %...XXXXXX.XXXXX.
+	bigdw %..XXX..XXXXXXX..
+	bigdw %.XX......X..XX..
+	bigdw %.XX..XX.X..XX...
+	bigdw %XX..X..X...XX...
+	bigdw %XX..X..X..XX....
+	bigdw %.XXX.XX...XX....
+	bigdw %.XX......XX.....
+	bigdw %..XXX....XX.....
+	bigdw %...XXXX.XX......
+	bigdw %.....XX.XX......
+	bigdw %......XXX.......
+	bigdw %......XXX.......
+	bigdw %......XX........
+	bigdw %......XX........
+popo
+
+INCLUDE "data/trainers/team_rocket.asm"
 
 WipeLYOverrides:
 	ldh a, [rSVBK]
