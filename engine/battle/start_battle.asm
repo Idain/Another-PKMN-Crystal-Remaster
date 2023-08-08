@@ -74,9 +74,6 @@ PlayBattleMusic:
 	farcall IsKantoGymLeader
 	jr c, .done
 
-	; IsGymLeader also counts CHAMPION, RED, the Elite Four and
-	; the Kanto gym leaders but they have been taken care of 
-	; before this
 	ld de, MUSIC_JOHTO_GYM_LEADER_BATTLE
 	farcall IsGymLeader
 	jr c, .done

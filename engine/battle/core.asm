@@ -2600,7 +2600,7 @@ PlayVictoryMusic:
 
 .trainer_victory
 	ld de, MUSIC_GYM_VICTORY
-	call IsGymLeader
+	call IsBossTrainer
 	jr c, .play_music
 	ld de, MUSIC_TRAINER_VICTORY
 
@@ -2613,11 +2613,15 @@ PlayVictoryMusic:
 
 IsKantoGymLeader:
 	ld hl, KantoGymLeaders
-	jr IsGymLeaderCommon
+	jr IsBossTrainerCommon
 
 IsGymLeader:
 	ld hl, GymLeaders
-IsGymLeaderCommon:
+	jr IsBossTrainerCommon
+
+IsBossTrainer:
+	ld hl, BossTrainers
+IsBossTrainerCommon:
 	push de
 	ld a, [wOtherTrainerClass]
 	call IsInByteArray
@@ -8106,7 +8110,7 @@ InitEnemyTrainer:
 	ld a, TRAINER_BATTLE
 	ld [wBattleMode], a
 
-	call IsGymLeader
+	call IsBossTrainer
 	ret nc
 	xor a
 	ld [wCurPartyMon], a
