@@ -276,7 +276,7 @@ AI_Items:
 	dbw X_ATTACK,     .XAttack
 	dbw X_DEFEND,     .XDefend
 	dbw X_SPEED,      .XSpeed
-	dbw X_SPECIAL,    .XSpecial
+	dbw X_SP_ATK,     .XSpAtk
 	dbw X_SP_DEF,	  .XSpDef
 	db -1 ; end
 
@@ -413,10 +413,10 @@ AI_Items:
 	call EnemyUsedXSpeed
 	jr .Use
 
-.XSpecial:
+.XSpAtk:
 	call .XItem
 	jr c, .DontUse
-	call EnemyUsedXSpecial
+	call EnemyUsedXSpAtk
 	jr .Use
 
 .XSpDef:
@@ -703,9 +703,9 @@ EnemyUsedXSpDef: 	; Boost by 2 stages
 	ld a, X_SP_DEF
 	jr EnemyUsedXItem
 
-EnemyUsedXSpecial: 	; Boost by 2 stages
+EnemyUsedXSpAtk: 	; Boost by 2 stages
 	ld b, $10 | SP_ATTACK
-	ld a, X_SPECIAL
+	ld a, X_SP_ATK
 	jr EnemyUsedXItem
 
 EnemyUsedXAccuracy: ; Boost by 2 stages

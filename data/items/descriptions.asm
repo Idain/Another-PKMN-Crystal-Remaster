@@ -58,7 +58,7 @@ ItemDescriptions:
 	dw XAttackDesc
 	dw XDefendDesc
 	dw XSpeedDesc
-	dw XSpecialDesc
+	dw XSpAtkDesc
 	dw XSpDefDesc
 	dw CoinCaseDesc
 	dw ItemfinderDesc
@@ -451,7 +451,7 @@ XSpeedDesc:
 	db   "Sharply raises"
 	next "Speed. (1 BTL)@"
 
-XSpecialDesc:
+XSpAtkDesc:
 	db   "Sharply raises"
 	next "Sp.Atk. (1 BTL)@"
 

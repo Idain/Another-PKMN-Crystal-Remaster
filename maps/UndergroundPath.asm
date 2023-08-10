@@ -6,8 +6,8 @@ UndergroundPath_MapScripts:
 UndergroundPathHiddenFullRestore:
 	hiddenitem FULL_RESTORE, EVENT_UNDERGROUND_PATH_HIDDEN_FULL_RESTORE
 
-UndergroundPathHiddenXSpecial:
-	hiddenitem X_SPECIAL, EVENT_UNDERGROUND_PATH_HIDDEN_X_SPECIAL
+UndergroundPathHiddenXSpAtk:
+	hiddenitem X_SP_ATK, EVENT_UNDERGROUND_PATH_HIDDEN_X_SP_ATK
 
 UndergroundPath_MapEvents:
 	def_warp_events
@@ -18,6 +18,6 @@ UndergroundPath_MapEvents:
 
 	def_bg_events
 	bg_event  3,  9, BGEVENT_ITEM, UndergroundPathHiddenFullRestore
-	bg_event  1, 19, BGEVENT_ITEM, UndergroundPathHiddenXSpecial
+	bg_event  1, 19, BGEVENT_ITEM, UndergroundPathHiddenXSpAtk
 
 	def_object_events

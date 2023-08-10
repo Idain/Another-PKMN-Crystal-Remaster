@@ -117,7 +117,7 @@ TrainerClassAttributes:
 	dw CONTEXT_USE | SWITCH_SOMETIMES
 
 ; Scientist
-	db X_SPECIAL, X_SPEED ; items
+	db X_SP_ATK, X_SPEED ; items
 	db 8 ; base reward
 	dw AI_BASIC | AI_SETUP | AI_TYPES | AI_STATUS | AI_RISKY
 	dw CONTEXT_USE | SWITCH_SOMETIMES

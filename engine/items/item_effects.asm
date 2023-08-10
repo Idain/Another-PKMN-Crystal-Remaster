@@ -71,7 +71,7 @@ ItemEffects:
 	dw XItemEffect         ; X_ATTACK
 	dw XItemEffect         ; X_DEFEND
 	dw XItemEffect         ; X_SPEED
-	dw XItemEffect         ; X_SPECIAL
+	dw XItemEffect         ; X_SP_ATK
 	dw XItemEffect         ; X_SP_DEF
 	dw CoinCaseEffect      ; COIN_CASE
 	dw ItemfinderEffect    ; ITEMFINDER

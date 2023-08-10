@@ -446,7 +446,7 @@ MartCeladon5F2:
 	db GUARD_SPEC
 	db DIRE_HIT
 	db X_ACCURACY
-	db X_SPECIAL
+	db X_SP_ATK
 	db X_SP_DEF	
 	db -1 ; end
 

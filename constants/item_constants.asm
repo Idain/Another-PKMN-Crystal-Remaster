@@ -64,7 +64,7 @@ DEF NUM_POKE_BALLS EQU const_value - 1
 	const X_ATTACK     ; 2f
 	const X_DEFEND     ; 30
 	const X_SPEED      ; 31
-	const X_SPECIAL    ; 32
+	const X_SP_ATK     ; 32
 	const X_SP_DEF     ; 33
 	const COIN_CASE    ; 34
 	const ITEMFINDER   ; 35

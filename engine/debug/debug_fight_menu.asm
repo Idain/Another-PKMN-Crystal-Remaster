@@ -200,7 +200,7 @@ DebugFight_ItemData:
 	db X_ATTACK,     99
 	db X_DEFEND,     99
 	db X_SPEED,      99
-	db X_SPECIAL,    99
+	db X_SP_ATK,     99
 	db X_SP_DEF,	 99
 	db GUARD_SPEC,   99
 	db POKE_DOLL,    99
