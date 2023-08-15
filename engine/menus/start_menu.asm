@@ -442,7 +442,9 @@ StartMenu_Pokedex:
 
 	call FadeToMenu
 	farcall Pokedex
-	jp CloseSubmenu
+	call CloseSubmenu
+	xor a
+	ret
 
 StartMenu_Pokegear:
 	call FadeToMenu
