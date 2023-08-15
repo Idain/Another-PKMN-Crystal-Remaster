@@ -1,6 +1,6 @@
 CheckForHiddenItems:
 ; Checks to see if there are hidden items on the screen that have not yet been found.  If it finds one, returns carry.
-	call GetMapScriptsBank
+	ld a, [wMapScriptsBank]
 	ld [wCurMapScriptBank], a
 ; Get the coordinate of the bottom right corner of the screen, and load it in wBottomRightYCoord/wBottomRightXCoord.
 	ld a, [wXCoord]

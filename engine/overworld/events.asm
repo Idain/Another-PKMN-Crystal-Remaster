@@ -298,7 +298,7 @@ CheckTileEvent:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	call GetMapScriptsBank
+	ld a, [wMapScriptsBank]
 	jp CallScript
 
 CheckWildEncounterCooldown::
@@ -331,9 +331,9 @@ rept SCENE_SCRIPT_SIZE
 	add hl, de
 endr
 
-	call GetMapScriptsBank
+	ld a, [wMapScriptsBank]
 	call GetFarWord
-	call GetMapScriptsBank
+	ld a, [wMapScriptsBank]
 	call CallScript
 
 	ld hl, wScriptFlags
@@ -489,7 +489,7 @@ ObjectEventTypeArray:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	call GetMapScriptsBank
+	ld a, [wMapScriptsBank]
 	jp CallScript
 
 .itemball
@@ -498,7 +498,7 @@ ObjectEventTypeArray:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	call GetMapScriptsBank
+	ld a, [wMapScriptsBank]
 	ld de, wItemBallData
 	ld bc, wItemBallDataEnd - wItemBallData
 	call FarCopyBytes
@@ -563,7 +563,7 @@ BGEventJumptable:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	call GetMapScriptsBank
+	ld a, [wMapScriptsBank]
 	call CallScript
 	scf
 	ret
@@ -572,7 +572,7 @@ BGEventJumptable:
 	call CheckBGEventFlag
 	jp nz, .dontread
 	call PlayTalkObject
-	call GetMapScriptsBank
+	ld a, [wMapScriptsBank]
 	ld de, wHiddenItemData
 	ld bc, wHiddenItemDataEnd - wHiddenItemData
 	call FarCopyBytes
@@ -585,7 +585,7 @@ BGEventJumptable:
 .copy:
 	call CheckBGEventFlag
 	jr nz, .dontread
-	call GetMapScriptsBank
+	ld a, [wMapScriptsBank]
 	ld de, wHiddenItemData
 	ld bc, wHiddenItemDataEnd - wHiddenItemData
 	call FarCopyBytes
@@ -605,9 +605,9 @@ BGEventJumptable:
 	pop hl
 	inc hl
 	inc hl
-	call GetMapScriptsBank
+	ld a, [wMapScriptsBank]
 	call GetFarWord
-	call GetMapScriptsBank
+	ld a, [wMapScriptsBank]
 	call CallScript
 	scf
 	ret
@@ -622,7 +622,7 @@ CheckBGEventFlag:
 	ld h, [hl]
 	ld l, a
 	push hl
-	call GetMapScriptsBank
+	ld a, [wMapScriptsBank]
 	call GetFarWord
 	ld e, l
 	ld d, h
