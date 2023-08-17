@@ -1,5 +1,4 @@
-	frame 1, 02
-	frame 2, 02
+	frame 1, 04
 	frame 3, 12
 	frame 0, 10
 	setrepeat 3
