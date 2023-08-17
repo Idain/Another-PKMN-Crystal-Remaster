@@ -1,13 +1,7 @@
 BattleCommand_Teleport:
 	ld a, [wBattleType]
-	cp BATTLETYPE_FORCESHINY
-	jr z, .failed
-	cp BATTLETYPE_TRAP
-	jr z, .failed
-	cp BATTLETYPE_CELEBI
-	jr z, .failed
-	cp BATTLETYPE_SUICUNE
-	jr z, .failed
+	cp BATTLETYPE_TRAP ; or BATTLETYPE_CELEBI, BATTLETYPE_FORCESHINY, BATTLETYPE_SUICUNE
+	jr nc, .failed
 
 	ld a, BATTLE_VARS_SUBSTATUS5_OPP
 	call GetBattleVar
