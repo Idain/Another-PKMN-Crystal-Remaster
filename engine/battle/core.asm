@@ -3740,11 +3740,11 @@ TryToRunAwayFromBattle:
 	jp z, .can_escape
 	cp BATTLETYPE_CONTEST
 	jp z, .can_escape
-	cp BATTLETYPE_SHINY
-	jp z, .cant_escape
 	cp BATTLETYPE_TRAP
 	jp z, .cant_escape
 	cp BATTLETYPE_CELEBI
+	jp z, .cant_escape
+	cp BATTLETYPE_FORCESHINY
 	jp z, .cant_escape
 	cp BATTLETYPE_SUICUNE
 	jp z, .cant_escape
@@ -6215,7 +6215,7 @@ LoadEnemyMon:
 
 ; Forced shiny battle type
 ; Used by Red Gyarados at Lake of Rage
-	cp BATTLETYPE_SHINY
+	cp BATTLETYPE_FORCESHINY
 	jr nz, .GenerateDVs
 
 	lb bc, ATKDEFDV_SHINY, SPDSPCDV_SHINY ; Both are $ff
@@ -8255,7 +8255,7 @@ CheckPayDay:
 	jp ClearBGPalettes
 
 ShowLinkBattleParticipantsAfterEnd:
-	farcall BackupMobileEventIndex
+	farcall BackupGSBallFlag
 	ld a, [wCurOTMon]
 	ld hl, wOTPartyMon1Status
 	call GetPartyLocation
@@ -8292,7 +8292,7 @@ DisplayLinkBattleResult:
 .store_result
 	hlcoord 6, 8
 	call PlaceString
-	farcall BackupMobileEventIndex
+	farcall BackupGSBallFlag
 	ld c, 180
 	call DelayFrames
 

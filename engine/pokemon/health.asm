@@ -49,7 +49,7 @@ HealPartyMon:
 	jp RestoreAllPP
 
 ComputeHPBarPixels:
-; e = bc * (HP_BAR_LENGTH_PX) / de
+; e = bc * HP_BAR_LENGTH_PX / de
 	ld a, b
 	or c
 	jr z, .zero

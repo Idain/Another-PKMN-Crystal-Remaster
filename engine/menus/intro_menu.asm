@@ -196,7 +196,7 @@ endc
 
 	farcall DeletePartyMonMail
 
-	farcall DeleteMobileEventIndex
+	farcall ClearGSBallFlag
 
 	jp ResetGameTime
 

@@ -724,6 +724,9 @@ DEF NUM_BATTLEANIMFRAMESETS EQU const_value
 	const BATTLEANIMOAMSET_HAIL
 DEF NUM_BATTLEANIMOAMSETS EQU const_value
 
+assert NUM_BATTLEANIMOAMSETS <= FIRST_OAM_CMD, \
+	"BATTLEANIMOAMSET_* constants overlap oam*_command constants"
+
 ; BattleBGEffects indexes (see engine/battle_anims/bg_effects.asm)
 	const_def 1
 	const ANIM_BG_FLASH_INVERTED

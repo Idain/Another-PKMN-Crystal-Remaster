@@ -100,8 +100,8 @@ endc
 	cp RESERVED_GAME_VERSION
 	jr z, .skip_append_save
 	call .SaveMysteryGiftTrainerName
-	call RestoreMobileEventIndex
-	call BackupMobileEventIndex
+	call RestoreGSBallFlag
+	call BackupGSBallFlag
 .skip_append_save
 	ld a, [wMysteryGiftPartnerSentDeco]
 	and a

@@ -38,6 +38,13 @@ function register_bank(amount) {
 		printf "Bank %3d: %5d/16384 (%.2f%%)\n", bank_num, amount, amount * 100 / 16384
 	}
 }
+function register_bank_str(str) {
+    if (str ~ /\$[0-9A-F]+/) {
+        register_bank(strtonum("0x" substr(str, 2)))
+    } else {
+        printf "Malformed number? \"%s\" does not start with '$'\n", str
+    }
+}
 
 function register_bank_str(str) {
     if (str ~ /\$[0-9A-F]+/) {
@@ -53,10 +60,9 @@ rom_bank && toupper($0) ~ /^[ \t]*EMPTY$/ {
 }
 
 rom_bank && toupper($0) ~ /^[ \t]*SLACK:[ \t]/ {
-	# Old (rgbds <=0.6.0) end-of-bank free space
+    # Old (rgbds <=0.6.0) end-of-bank free space
     register_bank_str($2)
 }
-
 rom_bank && toupper($0) ~ /^[ \t]*TOTAL EMPTY:[ \t]/ {
     # New (rgbds >=0.6.1) total free space
     register_bank_str($3)

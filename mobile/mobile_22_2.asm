@@ -8,7 +8,7 @@ Function8b35d: ; unreferenced
 
 Function8b363: ; unreferenced
 	push bc
-	farcall Mobile_AlwaysReturnNotCarry
+	farcall CheckMobileAdapterStatus
 	pop bc
 	ret
 

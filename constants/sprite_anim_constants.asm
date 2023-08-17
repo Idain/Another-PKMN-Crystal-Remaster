@@ -336,3 +336,6 @@ DEF NUM_SPRITE_ANIM_FRAMESETS EQU const_value
 	const SPRITE_ANIM_OAMSET_PARTY_MON_1                ; 8c
 	const SPRITE_ANIM_OAMSET_PARTY_MON_2                ; 8d
 DEF NUM_SPRITE_ANIM_OAMSETS EQU const_value
+
+assert NUM_SPRITE_ANIM_OAMSETS <= FIRST_OAM_CMD, \
+	"SPRITE_ANIM_OAMSET_* constants overlap oam*_command constants"
