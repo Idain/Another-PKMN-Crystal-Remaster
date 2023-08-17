@@ -15,29 +15,28 @@ BattleCommand_Substitute:
 	jr nz, .already_has_sub
 
 	ld a, [hli]
-	ld b, [hl]
-	srl a
-	rr b
-	srl a
-	rr b
+	and ~%11
+	or [hl]
 	dec hl
 	dec hl
-	ld a, b
+	dec hl
+	rrca
+	rrca
+	ld b, a
 	ld [de], a
-	ld a, [hld]
+	ld a, [hli]
+	and a
+	jr nz, .subtract
+	ld a, b
+	cp [hl]
+	jr nc, .too_weak_to_sub
+.subtract
+	ld a, [hl]
 	sub b
-	ld e, a
-	sbc e
-	add [hl]
-	ld d, a
-	jr c, .too_weak_to_sub
-	ld a, d
-	or e
-	jr z, .too_weak_to_sub
-	ld [hl], d
-	inc hl
-	ld [hl], e
-
+	ld [hld], a
+	jr nc, .ok
+	dec [hl]
+.ok
 	ld a, BATTLE_VARS_SUBSTATUS4
 	call GetBattleVarAddr
 	set SUBSTATUS_SUBSTITUTE, [hl]
