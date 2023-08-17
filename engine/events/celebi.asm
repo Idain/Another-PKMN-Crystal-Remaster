@@ -259,16 +259,3 @@ CelebiEvent_SetBattleType:
 	ld a, BATTLETYPE_CELEBI
 	ld [wBattleType], a
 	ret
-
-CheckCaughtCelebi:
-	ld a, [wBattleResult]
-	bit BATTLERESULT_CAUGHT_CELEBI, a
-	jr z, .false
-	ld a, TRUE
-	ld [wScriptVar], a
-	ret
-
-.false
-	xor a ; FALSE
-	ld [wScriptVar], a
-	ret

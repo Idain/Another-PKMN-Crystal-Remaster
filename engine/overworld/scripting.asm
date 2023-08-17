@@ -1198,7 +1198,7 @@ Script_reloadmapafterbattle:
 
 .was_wild
 	ld a, [wBattleResult]
-	bit BATTLERESULT_BOX_FULL, a
+	bit BATTLERESULT_BOX_FULL_F, a
 	jr z, Script_reloadmap
 	ld b, BANK(Script_SpecialBillCall)
 	ld de, Script_SpecialBillCall

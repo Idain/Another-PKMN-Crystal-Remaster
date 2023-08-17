@@ -260,3 +260,11 @@ UpdateOTPointer:
 	ld c, l
 	pop hl
 	ret
+
+CheckBattleCaughtResult:
+	ld a, [wBattleResult]
+	and 1 << BATTLERESULT_CAUGHT_POKEMON_F
+	rlca
+	rlca
+	ldh [hScriptVar], a
+	ret
