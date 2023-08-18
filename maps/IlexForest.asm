@@ -436,6 +436,8 @@ IlexForestShrineScript:
 
 .AskCelebiEvent:
 	opentext
+	writetext Text_IlexForestShrine
+	promptbutton
 	writetext Text_ShrineCelebiEvent
 	yesorno
 	iftrue .CelebiEvent
@@ -861,14 +863,7 @@ Text_IlexForestShrine:
 	done
 
 Text_ShrineCelebiEvent:
-	text "Ilex Forest"
-	line "Shrine…"
-
-	para "It's in honor of"
-	line "the forest's"
-	cont "protector…"
-
-	para "Oh? What is this?"
+	text "Oh? What is this?"
 
 	para "It's a hole."
 	line "It looks like the"
