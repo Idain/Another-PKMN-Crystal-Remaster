@@ -9,6 +9,7 @@ BattleText_PlayerPickedUpPayDayMoney:
 
 WildPokemonAppearedText:
 	text "Wild @"
+WildCelebiAppearedText:
 	text_ram wEnemyMonNickname
 	text_start
 	line "appeared!"
@@ -26,13 +27,6 @@ PokemonFellFromTreeText:
 	text_ram wEnemyMonNickname
 	text " fell"
 	line "out of the tree!"
-	prompt
-
-WildCelebiAppearedText:
-	text "Wild @"
-	text_ram wEnemyMonNickname
-	text_start
-	line "appeared!"
 	prompt
 
 WantsToBattleText::

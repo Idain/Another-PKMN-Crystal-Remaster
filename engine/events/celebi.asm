@@ -45,7 +45,9 @@ CelebiShrineEvent:
 	pop af
 	ld [wVramState], a
 	call .RestorePlayerSprite_DespawnLeaves
-	jp CelebiEvent_SetBattleType
+	ld a, BATTLETYPE_CELEBI
+	ld [wBattleType], a
+	ret
 
 .RestorePlayerSprite_DespawnLeaves:
 	ld hl, wShadowOAMSprite00TileID
@@ -253,9 +255,4 @@ GetCelebiSpriteTile:
 	add e
 	ld d, a
 	pop af
-	ret
-
-CelebiEvent_SetBattleType:
-	ld a, BATTLETYPE_CELEBI
-	ld [wBattleType], a
 	ret
