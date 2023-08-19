@@ -79,8 +79,7 @@ TinTower1FStairsCallback:
 TinTower1FSuicuneBattleScript:
 	applymovement PLAYER, TinTower1FPlayerEntersMovement
 	pause 15
-	setval RAIKOU
-	special MonCheck
+	checkflag ENGINE_PLAYER_CAUGHT_RAIKOU
 	iftrue .Next1 ; if player caught Raikou, it doesn't appear in Tin Tower
 	applymovement TINTOWER1F_RAIKOU, TinTower1FRaikouApproachesMovement
 	turnobject PLAYER, LEFT
@@ -92,8 +91,7 @@ TinTower1FSuicuneBattleScript:
 	playsound SFX_EXIT_BUILDING
 	waitsfx
 .Next1:
-	setval ENTEI
-	special MonCheck
+	checkflag ENGINE_PLAYER_CAUGHT_ENTEI
 	iftrue .Next2 ; if player caught Entei, it doesn't appear in Tin Tower
 	applymovement TINTOWER1F_ENTEI, TinTower1FEnteiApproachesMovement
 	turnobject PLAYER, RIGHT
