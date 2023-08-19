@@ -44,12 +44,8 @@ CelebiShrineEvent:
 .done
 	pop af
 	ld [wVramState], a
-	call .RestorePlayerSprite_DespawnLeaves
-	ld a, BATTLETYPE_LEGENDARY
-	ld [wBattleType], a
-	ret
 
-.RestorePlayerSprite_DespawnLeaves:
+;RestorePlayerSprite_DespawnLeaves:
 	ld hl, wShadowOAMSprite00TileID
 	xor a
 	ld c, 4
@@ -64,7 +60,11 @@ endr
 	ld hl, wShadowOAMSprite04
 	ld bc, wShadowOAMEnd - wShadowOAMSprite04
 	xor a
-	jp ByteFill
+	call ByteFill
+
+	ld a, BATTLETYPE_LEGENDARY
+	ld [wBattleType], a
+	ret
 
 LoadCelebiGFX:
 	farcall ClearSpriteAnims
