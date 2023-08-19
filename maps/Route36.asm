@@ -78,6 +78,10 @@ WateredWeirdTreeScript:: ; export (for when you use Squirtbottle from pack)
 	ifequal DRAW, DidntCatchSudowoodo
 	disappear ROUTE36_WEIRD_TREE
 	reloadmapafterbattle
+	special CheckBattleCaughtResult
+	iffalse .nocatch
+	setflag ENGINE_PLAYER_CAUGHT_SUDOWOODO
+.nocatch
 	end
 
 DidntUseSquirtbottleScript:

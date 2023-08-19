@@ -58,6 +58,10 @@ VermilionSnorlax:
 	disappear VERMILIONCITY_BIG_SNORLAX
 	setevent EVENT_FOUGHT_SNORLAX
 	reloadmapafterbattle
+	special CheckBattleCaughtResult
+	iffalse .nocatch
+	setflag ENGINE_PLAYER_CAUGHT_SNORLAX
+.nocatch
 	end
 
 VermilionGymBadgeGuy:

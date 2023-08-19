@@ -266,5 +266,5 @@ CheckBattleCaughtResult:
 	and 1 << BATTLERESULT_CAUGHT_POKEMON_F
 	rlca
 	rlca
-	ldh [hScriptVar], a
+	ld [wScriptVar], a
 	ret

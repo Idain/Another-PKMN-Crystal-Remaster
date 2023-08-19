@@ -172,3 +172,4 @@ SpecialsPointers::
 	add_special HiddenPowerGuru
 	add_special InitialSetDSTFlag
 	add_special InitialClearDSTFlag
+	add_special RespawnOneOffs

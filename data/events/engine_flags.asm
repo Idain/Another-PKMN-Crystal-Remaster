@@ -199,4 +199,19 @@ EngineFlags:
 	engine_flag wSwarmFlags, SWARMFLAGS_DUNSPARCE_SWARM_F
 	engine_flag wSwarmFlags, SWARMFLAGS_YANMA_SWARM_F
 
+	engine_flag wPlayerCaught, PLAYER_CAUGHT_HO_OH_F
+	engine_flag wPlayerCaught, PLAYER_CAUGHT_LUGIA_F
+	engine_flag wPlayerCaught, PLAYER_CAUGHT_RAIKOU_F
+	engine_flag wPlayerCaught, PLAYER_CAUGHT_ENTEI_F
+	engine_flag wPlayerCaught, PLAYER_CAUGHT_SUICUNE_F
+	engine_flag wPlayerCaught, PLAYER_CAUGHT_ARTICUNO_F
+	engine_flag wPlayerCaught, PLAYER_CAUGHT_ZAPDOS_F
+	engine_flag wPlayerCaught, PLAYER_CAUGHT_MOLTRES_F
+
+	engine_flag wPlayerCaught2, PLAYER_CAUGHT_MEW_F
+	engine_flag wPlayerCaught2, PLAYER_CAUGHT_MEWTWO_F
+	engine_flag wPlayerCaught2, PLAYER_CAUGHT_CELEBI_F
+	engine_flag wPlayerCaught2, PLAYER_CAUGHT_SUDOWOODO_F
+	engine_flag wPlayerCaught2, PLAYER_CAUGHT_SNORLAX_F
+
 	assert_table_length NUM_ENGINE_FLAGS

@@ -468,6 +468,7 @@ IlexForestShrineScript:
 	pause 20
 	special CheckBattleCaughtResult
 	iffalse .DidntCatchCelebi
+	setflag ENGINE_PLAYER_CAUGHT_CELEBI
 	appear ILEXFOREST_KURT
 	applymovement ILEXFOREST_KURT, IlexForestKurtStepsUpMovement
 	opentext

@@ -44,8 +44,7 @@ TinTower1FNPCsCallback:
 	checkevent EVENT_FOUGHT_SUICUNE
 	iftrue .FoughtSuicune
 	appear TINTOWER1F_SUICUNE
-	setval RAIKOU
-	special MonCheck
+	checkflag ENGINE_PLAYER_CAUGHT_RAIKOU
 	iftrue .NoRaikou
 	appear TINTOWER1F_RAIKOU
 	sjump .CheckEntei
@@ -53,8 +52,7 @@ TinTower1FNPCsCallback:
 .NoRaikou:
 	disappear TINTOWER1F_RAIKOU
 .CheckEntei:
-	setval ENTEI
-	special MonCheck
+	checkflag ENGINE_PLAYER_CAUGHT_ENTEI
 	iftrue .NoEntei
 	appear TINTOWER1F_ENTEI
 	endcallback
@@ -128,6 +126,10 @@ TinTower1FSuicuneBattleScript:
 	setscene SCENE_TINTOWER1F_NOOP
 	clearevent EVENT_SET_WHEN_FOUGHT_HO_OH
 	reloadmapafterbattle
+	special CheckBattleCaughtResult
+	iffalse .nocatch
+	setflag ENGINE_PLAYER_CAUGHT_SUICUNE
+.nocatch
 	pause 20
 	turnobject PLAYER, DOWN
 	playmusic MUSIC_MYSTICALMAN_ENCOUNTER

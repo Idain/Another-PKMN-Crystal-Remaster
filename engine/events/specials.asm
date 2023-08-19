@@ -275,7 +275,6 @@ CheckPokerus:
 ResetLuckyNumberShowFlag:
 	farcall LoadOrRegenerateLuckyIDNumber
 	ret
-	
 
 CheckLuckyNumberShowFlag:
 	ld hl, wLuckyNumberShowFlag
@@ -361,3 +360,92 @@ TrainerHouse:
 	ld a, [sMysteryGiftTrainerHouseFlag]
 	ld [wScriptVar], a
 	jp CloseSRAM
+
+RespawnOneOffs:
+	; Set CHECK_FLAG once to be used multiple times
+	ld b, CHECK_FLAG
+	ld de, ENGINE_PLAYER_CAUGHT_SUDOWOODO
+	farcall EngineFlagAction
+	jr nz, .CaughtSudowoodo
+	eventflagreset EVENT_ROUTE_36_SUDOWOODO
+.CaughtSudowoodo
+	ld de, ENGINE_PLAYER_CAUGHT_SNORLAX
+	farcall EngineFlagAction
+	jr nz, .CaughtSnorlax
+	eventflagreset EVENT_VERMILION_CITY_SNORLAX
+.CaughtSnorlax
+	ld de, ENGINE_PLAYER_CAUGHT_RAIKOU
+	farcall EngineFlagAction
+	jr nz, .CaughtRaikou
+	ld hl, wRoamMon1Species
+	ld a, [hl]
+	and a
+	call z, RespawnRoamingRaikou
+.CaughtRaikou
+	ld de, ENGINE_PLAYER_CAUGHT_ENTEI
+	farcall EngineFlagAction
+	jr nz, .CaughtEntei
+	ld hl, wRoamMon2Species
+	ld a, [hl]
+	and a
+	call z, RespawnRoamingEntei
+.CaughtEntei
+	eventflagcheck EVENT_FOUGHT_SUICUNE
+	jr z, .CaughtOrNeverFoughtSuicune
+	ld de, ENGINE_PLAYER_CAUGHT_SUICUNE
+	farcall EngineFlagAction
+	jr nz, .CaughtOrNeverFoughtSuicune
+	ld hl, wRoamMon3Species
+	ld a, [hl]
+	and a
+	call z, RespawnRoamingSuicune
+.CaughtOrNeverFoughtSuicune
+	ld de, ENGINE_PLAYER_CAUGHT_LUGIA
+	farcall EngineFlagAction
+	jr nz, .CaughtLugia
+	eventflagreset EVENT_FOUGHT_LUGIA
+.CaughtLugia
+	ld de, ENGINE_PLAYER_CAUGHT_HO_OH
+	farcall EngineFlagAction
+	ret nz
+	eventflagreset EVENT_FOUGHT_HO_OH
+	ret
+
+RespawnRoamingRaikou:
+	ld a, RAIKOU
+	ld [wRoamMon1Species], a
+	ld a, 40
+	ld [wRoamMon1Level], a
+	ld a, GROUP_ROUTE_42
+	ld [wRoamMon1MapGroup], a
+	ld a, MAP_ROUTE_42
+	ld [wRoamMon1MapNumber], a
+	xor a ; generate new stats
+	ld [wRoamMon1HP], a
+	ret
+
+RespawnRoamingEntei:
+	ld a, ENTEI
+	ld [wRoamMon2Species], a
+	ld a, 40
+	ld [wRoamMon2Level], a
+	ld a, GROUP_ROUTE_37
+	ld [wRoamMon2MapGroup], a
+	ld a, MAP_ROUTE_37
+	ld [wRoamMon2MapNumber], a
+	xor a ; generate new stats
+	ld [wRoamMon2HP], a
+	ret
+
+RespawnRoamingSuicune:
+	ld a, SUICUNE
+	ld [wRoamMon3Species], a
+	ld a, 40
+	ld [wRoamMon3Level], a
+	ld a, GROUP_ROUTE_38
+	ld [wRoamMon3MapGroup], a
+	ld a, MAP_ROUTE_38
+	ld [wRoamMon3MapNumber], a
+	xor a ; generate new stats
+	ld [wRoamMon3HP], a
+	ret

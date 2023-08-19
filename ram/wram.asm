@@ -3107,7 +3107,8 @@ wEventFlags:: flag_array NUM_EVENTS
 
 wCurBox:: db
 
-	ds 2
+wPlayerCaught:: db
+wPlayerCaught2:: db
 
 wBoxNames:: ds BOX_NAME_LENGTH * NUM_BOXES
 
