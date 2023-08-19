@@ -6103,9 +6103,14 @@ LoadEnemyMon:
 ; Used for Ho-Oh, Lugia and Snorlax encounters
 	ld a, [wBattleType]
 	cp BATTLETYPE_FORCEITEM
+	jr z, .UseItem1
+	cp BATTLETYPE_LEGENDARY
+	jr nz, .NoGuaranteedItem
+.UseItem1
 	ld a, [wBaseItem1]
-	jr z, .UpdateItem
+	jr .UpdateItem
 
+.NoGuaranteedItem
 ; Failing that, it's all up to chance
 ;  Effective chances:
 ;    45% None
