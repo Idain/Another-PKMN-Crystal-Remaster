@@ -6,8 +6,8 @@
 
 	db PSYCHIC_TYPE, FLYING ; type
 	db 3 ; catch rate
-	db 220 ; base exp
-	db NO_ITEM, NO_ITEM ; items
+	db 306 ; base exp
+	db LUCKY_EGG, LUCKY_EGG ; items
 	db GENDER_UNKNOWN ; gender ratio
 	db 120 ; step cycles to hatch
 	INCBIN "gfx/pokemon/lugia/front.dimensions"
