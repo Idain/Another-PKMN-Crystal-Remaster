@@ -9,7 +9,7 @@ BattleText_PlayerPickedUpPayDayMoney:
 
 WildPokemonAppearedText:
 	text "Wild @"
-WildCelebiAppearedText:
+LegendaryAppearedText:
 	text_ram wEnemyMonNickname
 	text_start
 	line "appeared!"

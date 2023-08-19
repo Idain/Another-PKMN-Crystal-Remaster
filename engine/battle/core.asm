@@ -3740,7 +3740,7 @@ TryToRunAwayFromBattle:
 	jp z, .can_escape
 	cp BATTLETYPE_CONTEST
 	jp z, .can_escape
-	cp BATTLETYPE_TRAP ; or BATTLETYPE_CELEBI, BATTLETYPE_FORCESHINY, BATTLETYPE_SUICUNE
+	cp BATTLETYPE_TRAP ; or BATTLETYPE_FORCESHINY, BATTLETYPE_LEGENDARY
 	jp nc, .cant_escape
 
 	ld a, [wLinkMode]
@@ -8995,8 +8995,8 @@ BattleStartMessage:
 	ld hl, PokemonFellFromTreeText
 	cp BATTLETYPE_TREE
 	jr z, .PlaceBattleStartText
-	ld hl, WildCelebiAppearedText
-	cp BATTLETYPE_CELEBI
+	ld hl, LegendaryAppearedText
+	cp BATTLETYPE_LEGENDARY
 	jr z, .PlaceBattleStartText
 	ld hl, WildPokemonAppearedText
 

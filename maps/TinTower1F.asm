@@ -110,7 +110,7 @@ TinTower1FSuicuneBattleScript:
 	cry SUICUNE
 	pause 20
 	loadwildmon SUICUNE, 40
-	loadvar VAR_BATTLETYPE, BATTLETYPE_SUICUNE
+	loadvar VAR_BATTLETYPE, BATTLETYPE_LEGENDARY
 	startbattle
 	dontrestartmapmusic
 	disappear TINTOWER1F_SUICUNE

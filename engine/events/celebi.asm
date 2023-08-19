@@ -45,7 +45,7 @@ CelebiShrineEvent:
 	pop af
 	ld [wVramState], a
 	call .RestorePlayerSprite_DespawnLeaves
-	ld a, BATTLETYPE_CELEBI
+	ld a, BATTLETYPE_LEGENDARY
 	ld [wBattleType], a
 	ret
 

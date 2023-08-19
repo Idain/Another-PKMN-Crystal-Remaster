@@ -95,8 +95,7 @@ DEF SPDSPCDV_SHINY EQU $FF
 	const BATTLETYPE_TREE
 	const BATTLETYPE_TRAP
 	const BATTLETYPE_FORCESHINY
-	const BATTLETYPE_CELEBI
-	const BATTLETYPE_SUICUNE
+	const BATTLETYPE_LEGENDARY
 
 ; BattleVarPairs indexes (see home/battle_vars.asm)
 	const_def

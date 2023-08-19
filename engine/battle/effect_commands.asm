@@ -5069,7 +5069,7 @@ SetBattleDraw:
 
 BattleCommand_ForceSwitch:
 	ld a, [wBattleType]
-	cp BATTLETYPE_TRAP ; or BATTLETYPE_CELEBI, BATTLETYPE_FORCESHINY, BATTLETYPE_SUICUNE
+	cp BATTLETYPE_TRAP ; or BATTLETYPE_FORCESHINY, BATTLETYPE_LEGENDARY
 	jp nc, .fail
 	ldh a, [hBattleTurn]
 	and a
