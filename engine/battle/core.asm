@@ -9004,6 +9004,8 @@ BattleStartMessage:
 	cp BATTLETYPE_TREE
 	jr z, .PlaceBattleStartText
 	ld hl, LegendaryAppearedText
+	cp BATTLETYPE_ROAMING
+	jr z, .PlaceBattleStartText
 	cp BATTLETYPE_LEGENDARY
 	jr z, .PlaceBattleStartText
 	ld hl, WildPokemonAppearedText
