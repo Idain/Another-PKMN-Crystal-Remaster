@@ -41,6 +41,7 @@ WantToBattlePluralText::
 
 BattleText_WildFled:
 	text "Wild @"
+BattleText_LegendaryFled:
 	text_ram wEnemyMonNickname
 	text_start
 	line "fled!"

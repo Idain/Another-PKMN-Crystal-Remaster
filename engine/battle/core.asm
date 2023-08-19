@@ -116,6 +116,14 @@ WildFled_EnemyFled_LinkBattleCanceled:
 	and BATTLERESULT_BITMASK
 	add DRAW
 	ld [wBattleResult], a
+
+	ld hl, BattleText_LegendaryFled
+	ld a, [wBattleType]
+	cp BATTLETYPE_ROAMING
+	jr z, .print_text
+	cp BATTLETYPE_LEGENDARY
+	jr z, .print_text
+
 	ld a, [wLinkMode]
 	and a
 	ld hl, BattleText_WildFled
