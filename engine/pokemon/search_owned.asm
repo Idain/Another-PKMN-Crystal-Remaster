@@ -1,24 +1,11 @@
 BeastsCheck:
-; Check if the player owns all three legendary beasts.
-; They must exist in either party or PC, and have the player's OT and ID.
+; Check if the player has caught all three legendary beasts.
 ; Return the result in wScriptVar.
 
-	ld a, RAIKOU
-	ld [wScriptVar], a
-	call CheckOwnMonAnywhere
-	jr nc, .notexist
-
-	ld a, ENTEI
-	ld [wScriptVar], a
-	call CheckOwnMonAnywhere
-	jr nc, .notexist
-
-	ld a, SUICUNE
-	ld [wScriptVar], a
-	call CheckOwnMonAnywhere
-	jr nc, .notexist
-
-	; they exist
+	ld a, [wPlayerCaught]
+	or ~CAUGHT_BEASTS_MASK
+	inc a
+	jr nz, .notexist
 	ld a, TRUE
 	ld [wScriptVar], a
 	ret
