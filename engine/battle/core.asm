@@ -6100,7 +6100,7 @@ LoadEnemyMon:
 ; In a wild battle, we pull from the item slots in BaseData
 
 ; Force Item1
-; Used for Ho-Oh, Lugia and Snorlax encounters
+; Used for Legendaries and Snorlax encounters
 	ld a, [wBattleType]
 	cp BATTLETYPE_FORCEITEM
 	jr z, .UseItem1
@@ -6117,19 +6117,20 @@ LoadEnemyMon:
 ;    50% Item1
 ;     5% Item2
 
-; 55% chance of getting an item
+; 50% chance of getting Item1
 	call BattleRandom
-	cp 45 percent + 1
-	ld a, NO_ITEM
+	cp 50 percent + 1
+	ld a, [wBaseItem1]
 	jr c, .UpdateItem
 
-; From there, an 9% chance for Item2
+; 5% chance of getting Item2 (10% of 50% = 5%)
 	call BattleRandom
-	cp 9 percent + 1; 9% of 55% = ~5% Item2
-	ld a, [wBaseItem1]
-	jr nc, .UpdateItem
+	cp 10 percent
 	ld a, [wBaseItem2]
+	jr c, .UpdateItem
 
+; 45% chance of not getting an item (100% - 50% - 5% = 45%)
+	xor a ; NO_ITEM
 .UpdateItem:
 	ld [wEnemyMonItem], a
 
