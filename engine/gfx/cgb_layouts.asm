@@ -114,25 +114,25 @@ _CGB_FinishBattleScreenLayout:
 	hlcoord 0, 4, wAttrmap
 	lb bc, 8, 10
 	ld a, PAL_BATTLE_BG_PLAYER
-	call FillBoxCGB
+	call FillBoxWithByte
 	hlcoord 10, 0, wAttrmap
 	lb bc, 7, 10
 	ld a, PAL_BATTLE_BG_ENEMY
-	call FillBoxCGB
+	call FillBoxWithByte
 	hlcoord 0, 0, wAttrmap
 	lb bc, 4, 10
 	ld a, PAL_BATTLE_BG_ENEMY_HP
-	call FillBoxCGB
+	call FillBoxWithByte
 	hlcoord 1, 1, wAttrmap
 	ld [hl], PAL_BATTLE_BG_5
 	hlcoord 10, 7, wAttrmap
 	lb bc, 5, 10
 	ld a, PAL_BATTLE_BG_PLAYER_HP
-	call FillBoxCGB
+	call FillBoxWithByte
 	hlcoord 10, 11, wAttrmap
 	lb bc, 1, 9
 	ld a, PAL_BATTLE_BG_EXP
-	call FillBoxCGB
+	call FillBoxWithByte
 	hlcoord 0, 12, wAttrmap
 	ld bc, 6 * SCREEN_WIDTH
 	ld a, PAL_BATTLE_BG_TEXT
@@ -209,7 +209,7 @@ _CGB_StatsScreenHPPals:
 	hlcoord 0, 0, wAttrmap
 	lb bc, 8, SCREEN_WIDTH
 	ld a, $1 ; mon palette
-	call FillBoxCGB
+	call FillBoxWithByte
 
 	hlcoord 10, 16, wAttrmap
 	ld bc, 10
@@ -219,17 +219,17 @@ _CGB_StatsScreenHPPals:
 	hlcoord 13, 5, wAttrmap
 	lb bc, 2, 2
 	ld a, $3 ; pink page palette
-	call FillBoxCGB
+	call FillBoxWithByte
 
 	hlcoord 15, 5, wAttrmap
 	lb bc, 2, 2
 	ld a, $4 ; green page palette
-	call FillBoxCGB
+	call FillBoxWithByte
 
 	hlcoord 17, 5, wAttrmap
 	lb bc, 2, 2
 	ld a, $5 ; blue page palette
-	call FillBoxCGB
+	call FillBoxWithByte
 
 	call ApplyAttrmap
 	call ApplyPals
@@ -270,7 +270,7 @@ endr
 	hlcoord 1, 1, wAttrmap
 	lb bc, 7, 7
 	ld a, $1 ; green question mark palette
-	call FillBoxCGB
+	call FillBoxWithByte
 	call InitPartyMenuOBPals
 	ld hl, PokedexCursorPalette
 	ld de, wOBPals1 palette 7 ; green cursor palette
@@ -310,7 +310,7 @@ _CGB_BillsPC:
 	hlcoord 1, 4, wAttrmap
 	lb bc, 7, 7
 	ld a, $1 ; mon palette
-	call FillBoxCGB
+	call FillBoxWithByte
 	call InitPartyMenuOBPals
 	call ApplyAttrmap
 	call ApplyPals
@@ -333,7 +333,7 @@ _CGB_PokedexUnownMode:
 	hlcoord 7, 5, wAttrmap
 	lb bc, 7, 7
 	ld a, $1 ; mon palette
-	call FillBoxCGB
+	call FillBoxWithByte
 	call InitPartyMenuOBPals
 	call ApplyAttrmap
 	call ApplyPals
@@ -351,39 +351,39 @@ _CGB_SlotMachine:
 	hlcoord 0, 2, wAttrmap
 	lb bc, 10, 3
 	ld a, $2 ; "3" palette
-	call FillBoxCGB
+	call FillBoxWithByte
 	hlcoord 17, 2, wAttrmap
 	lb bc, 10, 3
 	ld a, $2 ; "3" palette
-	call FillBoxCGB
+	call FillBoxWithByte
 	hlcoord 0, 4, wAttrmap
 	lb bc, 6, 3
 	ld a, $3 ; "2" palette
-	call FillBoxCGB
+	call FillBoxWithByte
 	hlcoord 17, 4, wAttrmap
 	lb bc, 6, 3
 	ld a, $3 ; "2" palette
-	call FillBoxCGB
+	call FillBoxWithByte
 	hlcoord 0, 6, wAttrmap
 	lb bc, 2, 3
 	ld a, $4 ; "1" palette
-	call FillBoxCGB
+	call FillBoxWithByte
 	hlcoord 17, 6, wAttrmap
 	lb bc, 2, 3
 	ld a, $4 ; "1" palette
-	call FillBoxCGB
+	call FillBoxWithByte
 	hlcoord 4, 2, wAttrmap
 	lb bc, 2, 12
 	ld a, $1 ; Vileplume palette
-	call FillBoxCGB
+	call FillBoxWithByte
 	hlcoord 3, 2, wAttrmap
 	lb bc, 10, 1
 	ld a, $1 ; lights palette
-	call FillBoxCGB
+	call FillBoxWithByte
 	hlcoord 16, 2, wAttrmap
 	lb bc, 10, 1
 	ld a, $1 ; lights palette
-	call FillBoxCGB
+	call FillBoxWithByte
 	hlcoord 0, 12, wAttrmap
 	ld bc, 6 * SCREEN_WIDTH
 	ld a, $7 ; text palette
@@ -405,7 +405,7 @@ _CGB_BetaTitleScreen:
 	hlcoord 0, 6, wAttrmap
 	lb bc, 12, SCREEN_WIDTH
 	ld a, $1
-	call FillBoxCGB
+	call FillBoxWithByte
 	call ApplyAttrmap
 	call ApplyPals
 	ld a, TRUE
@@ -574,7 +574,7 @@ _CGB_NameInputScreen:
 	jr nc, .apply_palette
 	ld a, 2
 .apply_palette
-    call FillBoxCGB
+    call FillBoxWithByte
 	jp ApplyAttrmap
 
 _CGB_UnownPuzzle:
@@ -647,35 +647,35 @@ _CGB_TrainerCard:
 	jr nz, .got_gender2
 	xor a ; chris
 .got_gender2
-	call FillBoxCGB
+	call FillBoxWithByte
 	hlcoord 3, 10, wAttrmap
 	lb bc, 3, 3
 	ld a, $1 ; falkner
-	call FillBoxCGB
+	call FillBoxWithByte
 	hlcoord 7, 10, wAttrmap
 	lb bc, 3, 3
 	ld a, $2 ; bugsy
-	call FillBoxCGB
+	call FillBoxWithByte
 	hlcoord 11, 10, wAttrmap
 	lb bc, 3, 3
 	ld a, $3 ; whitney
-	call FillBoxCGB
+	call FillBoxWithByte
 	hlcoord 15, 10, wAttrmap
 	lb bc, 3, 3
 	ld a, $4 ; morty
-	call FillBoxCGB
+	call FillBoxWithByte
 	hlcoord 3, 13, wAttrmap
 	lb bc, 3, 3
 	ld a, $5 ; chuck
-	call FillBoxCGB
+	call FillBoxWithByte
 	hlcoord 7, 13, wAttrmap
 	lb bc, 3, 3
 	ld a, $6 ; jasmine
-	call FillBoxCGB
+	call FillBoxWithByte
 	hlcoord 11, 13, wAttrmap
 	lb bc, 3, 3
 	ld a, $7 ; pryce
-	call FillBoxCGB
+	call FillBoxWithByte
 	; clair uses kris's palette
 	ld a, [wPlayerGender]
 	and a
@@ -684,7 +684,7 @@ _CGB_TrainerCard:
 	hlcoord 15, 13, wAttrmap
 	lb bc, 3, 3
 	ld a, $1
-	call FillBoxCGB
+	call FillBoxWithByte
 .got_gender3
 	pop af
 	ld c, $0
@@ -753,39 +753,39 @@ _CGB_TrainerCardKanto:
 	jr nz, .got_gender2
 	xor a ; chris
 .got_gender2
-	call FillBoxCGB
+	call FillBoxWithByte
 	hlcoord 3, 10, wAttrmap
 	lb bc, 3, 3
 	ld a, $2 ; brock
-	call FillBoxCGB
+	call FillBoxWithByte
 	hlcoord 7, 10, wAttrmap
 	lb bc, 3, 3
 	ld a, $7 ; misty / blue
-	call FillBoxCGB
+	call FillBoxWithByte
 	hlcoord 11, 10, wAttrmap
 	lb bc, 3, 3
 	ld a, $3 ; lt.surge / erika
-	call FillBoxCGB
+	call FillBoxWithByte
 	hlcoord 15, 10, wAttrmap
 	lb bc, 3, 3
 	ld a, $3 ; erika / lt.surge
-	call FillBoxCGB
+	call FillBoxWithByte
 	hlcoord 3, 13, wAttrmap
 	lb bc, 3, 3
 	ld a, $4 ; janine
-	call FillBoxCGB
+	call FillBoxWithByte
 	hlcoord 7, 13, wAttrmap
 	lb bc, 3, 3
 	ld a, $5 ; sabrina
-	call FillBoxCGB
+	call FillBoxWithByte
 	hlcoord 11, 13, wAttrmap
 	lb bc, 3, 3
 	ld a, $6 ; blaine
-	call FillBoxCGB
+	call FillBoxWithByte
 	hlcoord 15, 13, wAttrmap
 	lb bc, 3, 3
 	ld a, $7 ; blue / misty
-	call FillBoxCGB
+	call FillBoxWithByte
 	; top-right corner still uses the border's palette
 	ld a, [wPlayerGender]
 	and a
@@ -821,7 +821,7 @@ _CGB_MoveList:
 	hlcoord 11, 1, wAttrmap
 	lb bc, 2, 9
 	ld a, $1
-	call FillBoxCGB
+	call FillBoxWithByte
 	call ApplyAttrmap
 	call ApplyPals
 	ld a, TRUE
@@ -871,23 +871,23 @@ _CGB_PackPals:
 	hlcoord 0, 0, wAttrmap
 	lb bc, 1, 10
 	ld a, $1
-	call FillBoxCGB
+	call FillBoxWithByte
 	hlcoord 10, 0, wAttrmap
 	lb bc, 1, 10
 	ld a, $2
-	call FillBoxCGB
+	call FillBoxWithByte
 	hlcoord 7, 2, wAttrmap
 	lb bc, 9, 1
 	ld a, $3
-	call FillBoxCGB
+	call FillBoxWithByte
 	hlcoord 0, 7, wAttrmap
 	lb bc, 3, 5
 	ld a, $4
-	call FillBoxCGB
+	call FillBoxWithByte
 	hlcoord 0, 2, wAttrmap
 	lb bc, 4, 5
 	ld a, $5
-	call FillBoxCGB
+	call FillBoxWithByte
 	call ApplyAttrmap
 	call ApplyPals
 	ld a, TRUE
@@ -930,7 +930,7 @@ _CGB_Pokepic:
 	inc a
 	ld c, a
 	ld a, PAL_BG_GRAY
-	call FillBoxCGB
+	call FillBoxWithByte
 	jp ApplyAttrmap
 
 _CGB_MagnetTrain: ; unused
@@ -940,11 +940,11 @@ _CGB_MagnetTrain: ; unused
 	hlcoord 0, 4, wAttrmap
 	lb bc, 10, SCREEN_WIDTH
 	ld a, PAL_BG_GREEN
-	call FillBoxCGB
+	call FillBoxWithByte
 	hlcoord 0, 6, wAttrmap
 	lb bc, 6, SCREEN_WIDTH
 	ld a, PAL_BG_RED
-	call FillBoxCGB
+	call FillBoxWithByte
 	call ApplyAttrmap
 	call ApplyPals
 	ld a, TRUE
@@ -1022,23 +1022,23 @@ _CGB_MysteryGift:
 	hlcoord 3, 7, wAttrmap
 	lb bc, 8, 14
 	ld a, $1
-	call FillBoxCGB
+	call FillBoxWithByte
 	hlcoord 1, 5, wAttrmap
 	lb bc, 1, 18
 	ld a, $1
-	call FillBoxCGB
+	call FillBoxWithByte
 	hlcoord 1, 16, wAttrmap
 	lb bc, 1, 18
 	ld a, $1
-	call FillBoxCGB
+	call FillBoxWithByte
 	hlcoord 0, 0, wAttrmap
 	lb bc, 17, 2
 	ld a, $1
-	call FillBoxCGB
+	call FillBoxWithByte
 	hlcoord 18, 5, wAttrmap
 	lb bc, 12, 1
 	ld a, $1
-	call FillBoxCGB
+	call FillBoxWithByte
 	jp ApplyAttrmap
 
 .MysteryGiftPalettes:
