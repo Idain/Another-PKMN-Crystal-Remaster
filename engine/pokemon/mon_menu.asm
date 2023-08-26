@@ -717,7 +717,7 @@ ChooseMoveToDelete:
 	jr .enter_loop
 
 .loop
-	call ScrollingMenuJoypad
+	call DoMenuJoypadLoop
 	bit B_BUTTON_F, a
 	jr nz, .b_button
 	bit A_BUTTON_F, a
@@ -785,7 +785,7 @@ MoveScreenLoop:
 	jr .skip_joy
 
 .joy_loop
-	call ScrollingMenuJoypad
+	call DoMenuJoypadLoop
 	bit 1, a
 	jr nz, .b_button
 	bit 0, a

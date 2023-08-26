@@ -8,6 +8,7 @@ _InitScrollingMenu::
 	call ScrollingMenu_InitFlags
 	call ScrollingMenu_ValidateSwitchItem
 	call ScrollingMenu_InitDisplay
+	call Place2DMenuCursor
 	call ApplyTilemap
 	xor a
 	ldh [hBGMapMode], a
@@ -17,7 +18,7 @@ _ScrollingMenu::
 .loop
 	call ScrollingMenuJoyAction
 	jr c, .exit
-	call z, .zero
+	call z, ScrollingMenu_InitDisplay
 	jr .loop
 
 .exit
@@ -25,16 +26,6 @@ _ScrollingMenu::
 	ld [wMenuJoypad], a
 	xor a
 	ldh [hInMenu], a
-	ret
-
-.zero
-	call ScrollingMenu_InitDisplay
-	ld a, 1
-	ldh [hBGMapMode], a
-	ld c, 3
-	call DelayFrames
-	xor a
-	ldh [hBGMapMode], a
 	ret
 
 ScrollingMenu_InitDisplay:
@@ -53,29 +44,24 @@ ScrollingMenu_InitDisplay:
 
 ScrollingMenuJoyAction:
 .loop
-	call ScrollingMenuJoypad
-	ldh a, [hJoyLast]
-	and D_PAD
-	ld b, a
-	ldh a, [hJoyPressed]
-	and BUTTONS
-	or b
-	bit A_BUTTON_F, a
-	jr nz, .a_button
-	bit B_BUTTON_F, a
-	jr nz, .b_button
-	bit SELECT_F, a
-	jr nz, .select
-	bit START_F, a
-	jr nz, .start
-	bit D_RIGHT_F, a
-	jr nz, .d_right
-	bit D_LEFT_F, a
-	jr nz, .d_left
-	bit D_UP_F, a
-	jp nz, .d_up
-	bit D_DOWN_F, a
-	jp nz, .d_down
+	call _DoMenuJoypadLoop
+	call GetMenuJoypad
+	rrca
+	jr c, .a_button
+	rrca
+	jr c, .b_button
+	rrca
+	jr c, .select
+	rrca
+	jr c, .start
+	rrca
+	jr c, .d_right
+	rrca
+	jr c, .d_left
+	rrca
+	jp c, .d_up
+	rrca
+	jp c, .d_down
 	jr .loop
 
 .a_button
@@ -129,8 +115,8 @@ ScrollingMenuJoyAction:
 	ret
 
 .d_left
-	ld hl, w2DMenuFlags2
-	bit 7, [hl]
+	ld a, [w2DMenuFlags2]
+	bit 7, a
 	jr z, .xor_dec_a
 	ld a, [wMenuDataFlags]
 	bit 3, a
@@ -140,8 +126,8 @@ ScrollingMenuJoyAction:
 	ret
 
 .d_right
-	ld hl, w2DMenuFlags2
-	bit 7, [hl]
+	ld a, [w2DMenuFlags2]
+	bit 7, a
 	jr z, .xor_dec_a
 	ld a, [wMenuDataFlags]
 	bit 2, a
@@ -151,36 +137,36 @@ ScrollingMenuJoyAction:
 	ret
 
 .d_up
-	ld hl, w2DMenuFlags2
-	bit 7, [hl]
-	jr z, .xor_a
-	ld hl, wMenuScrollPosition
-	ld a, [hl]
-	and a
-	jr z, .xor_dec_a
-	dec [hl]
-.xor_a
-	xor a
-	ret
-
-.xor_dec_a
-	xor a
+	call ScrollingMenu_GetCursorPosition
 	dec a
+	jr z, .checkCallFunction3
+	ld a, [w2DMenuFlags2]
+	bit 7, a
+	jr z, .checkCallFunction3
+	ld hl, wMenuScrollPosition
+	dec [hl]
+	xor a
 	ret
 
 .d_down
-	ld hl, w2DMenuFlags2
-	bit 7, [hl]
-	jr z, .xor_a
-	ld hl, wMenuScrollPosition
-	ld a, [wMenuData_ScrollingMenuHeight]
-	add [hl]
+	call ScrollingMenu_GetCursorPosition
 	ld b, a
 	ld a, [wScrollingMenuListSize]
 	cp b
-	jr c, .xor_dec_a
+	jr c, .checkCallFunction3
+	ld a, [w2DMenuFlags2]
+	bit 7, a
+	jr z, .checkCallFunction3
+	ld hl, wMenuScrollPosition
 	inc [hl]
 	xor a
+	ret
+
+.checkCallFunction3
+	call ScrollingMenu_CheckCallFunction3
+.xor_dec_a
+	xor a
+	dec a
 	ret
 
 ScrollingMenu_GetCursorPosition:

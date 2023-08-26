@@ -701,8 +701,8 @@ PartyMenu2DMenuData:
 	db 0 ; accepted buttons
 
 PartyMenuSelect:
-; sets carry if exitted menu.
-	call StaticMenuJoypad
+; sets carry if exited menu.
+	call DoMenuJoypadLoop
 	call PlaceHollowCursor
 	ld a, [wPartyCount]
 	inc a

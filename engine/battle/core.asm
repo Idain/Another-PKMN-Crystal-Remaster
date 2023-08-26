@@ -5499,7 +5499,7 @@ MoveSelectionScreen:
 .interpret_joypad
 	ld a, $1
 	ldh [hBGMapMode], a
-	call ScrollingMenuJoypad
+	call DoMenuJoypadLoop
 	bit D_UP_F, a
 	jp nz, .pressed_up
 	bit D_DOWN_F, a

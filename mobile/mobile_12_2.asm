@@ -508,7 +508,7 @@ Function4ab1a:
 	ld a, $2
 	ld [w2DMenuNumCols], a
 	call Function4adf7
-	call StaticMenuJoypad
+	call DoMenuJoypadLoop
 	call Function4abc3
 	jr c, .asm_4ab1a
 	push af
@@ -756,7 +756,7 @@ Function4acaa:
 	call InitVerticalMenuCursor
 	ld hl, w2DMenuFlags1
 	set 6, [hl]
-	call StaticMenuJoypad
+	call DoMenuJoypadLoop
 	ld de, SFX_READ_TEXT_2
 	call PlaySFX
 	ldh a, [hJoyPressed]

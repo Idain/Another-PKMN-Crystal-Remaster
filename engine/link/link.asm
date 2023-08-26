@@ -1414,7 +1414,7 @@ LinkTrade_TradeStatsMenu:
 	xor a
 	ld [w2DMenuFlags1], a
 	ld [w2DMenuFlags2], a
-	call ScrollingMenuJoypad
+	call DoMenuJoypadLoop
 	bit D_RIGHT_F, a
 	jr nz, .d_right
 	bit B_BUTTON_F, a
@@ -1446,7 +1446,7 @@ LinkTrade_TradeStatsMenu:
 	xor a
 	ld [w2DMenuFlags1], a
 	ld [w2DMenuFlags2], a
-	call ScrollingMenuJoypad
+	call DoMenuJoypadLoop
 	bit D_LEFT_F, a
 	jp nz, .joy_loop
 	bit B_BUTTON_F, a
@@ -1696,7 +1696,7 @@ LinkTrade:
 	ld [wMenuCursorY], a
 	ld [wMenuCursorX], a
 	farcall Link_WaitBGMap
-	call ScrollingMenuJoypad
+	call DoMenuJoypadLoop
 	push af
 	call ExitMenu
 	call WaitBGMap2

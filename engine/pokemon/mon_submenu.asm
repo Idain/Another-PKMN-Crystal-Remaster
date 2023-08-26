@@ -44,7 +44,7 @@ MonMenuLoop:
 	call InitVerticalMenuCursor
 	ld hl, w2DMenuFlags1
 	set 6, [hl]
-	call StaticMenuJoypad
+	call DoMenuJoypadLoop
 	ld de, SFX_READ_TEXT_2
 	call PlaySFX
 	ldh a, [hJoyPressed]
@@ -247,7 +247,7 @@ BattleMonMenu:
 	call InitVerticalMenuCursor
 	ld hl, w2DMenuFlags1
 	set 6, [hl]
-	call StaticMenuJoypad
+	call DoMenuJoypadLoop
 	ld de, SFX_READ_TEXT_2
 	call PlaySFX
 	ldh a, [hJoyPressed]

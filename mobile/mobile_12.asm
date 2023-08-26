@@ -111,14 +111,14 @@ InitMobileProfile:
 	call Function48187
 	call WaitBGMap2
 	call SetPalettes
-	call StaticMenuJoypad
+	call DoMenuJoypadLoop
 	ld hl, wMenuCursorY
 	ld b, [hl]
 	push bc
 	jr asm_4815f
 
 Function48157:
-	call ScrollingMenuJoypad
+	call DoMenuJoypadLoop
 	ld hl, wMenuCursorY
 	ld b, [hl]
 	push bc
@@ -293,7 +293,7 @@ asm_4828d:
 	ld a, [wPlayerGender]
 	inc a
 	ld [wMenuCursorPosition], a
-	call StaticMenuJoypad
+	call DoMenuJoypadLoop
 	call PlayClickSFX
 	call ExitMenu
 	bit 0, a
@@ -1223,7 +1223,7 @@ Function48a3a:
 	hlcoord 12, 10
 	ld de, String_48aa1
 	call PlaceString
-	call StaticMenuJoypad
+	call DoMenuJoypadLoop
 	push af
 	call PlayClickSFX
 	call ExitMenu
