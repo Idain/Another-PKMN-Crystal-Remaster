@@ -1309,11 +1309,7 @@ ClearBattleAnims::
 	ld bc, wBattleAnimEnd - wLYOverrides
 .loop
 	xor a
-	ld [hli], a
-	dec bc
-	ld a, c
-	or b
-	jr nz, .loop
+	call ByteFill
 
 	ld hl, wFXAnimID
 	ld e, [hl]
