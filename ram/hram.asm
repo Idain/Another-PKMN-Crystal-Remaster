@@ -1,6 +1,7 @@
 SECTION "HRAM", HRAM
 
 hROMBankBackup:: db
+hBuffer::
 hFarByte::
 hTempBank:: db
 hSRAMBank:: db
@@ -18,9 +19,8 @@ hHours:: db
 hMinutes:: db
 	ds 1
 hSeconds:: db
-	ds 1
 
-hBuffer:: db
+hLZAddress:: dw
 
 hVBlankCounter:: db
 

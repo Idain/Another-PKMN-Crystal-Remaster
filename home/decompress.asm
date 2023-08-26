@@ -1,10 +1,10 @@
 FarDecompress::
 ; Decompress graphics data from a:hl to de.
 
-	ld [wLZBank], a
+	ldh [hTempBank], a
 	ldh a, [hROMBank]
 	push af
-	ld a, [wLZBank]
+	ldh a, [hTempBank]
 	rst Bankswitch
 
 	call Decompress
@@ -81,9 +81,9 @@ DEF LZ_LONG_HI   EQU %00000011
 	; Save the output address
 	; for rewrite commands.
 	ld a, l
-	ld [wLZAddress], a
+	ldh [hLZAddress], a
 	ld a, h
-	ld [wLZAddress + 1], a
+	ldh [hLZAddress + 1], a
 
 .Main
 	ld a, [de]
@@ -243,9 +243,9 @@ DEF LZ_LONG_HI   EQU %00000011
 	inc de
 	ld a, [de]
 	ld l, a
-	ld a, [wLZAddress]
+	ld a, [hLZAddress]
 	ld e, a
-	ld a, [wLZAddress + 1]
+	ld a, [hLZAddress + 1]
 	ld d, a
 
 .ok
