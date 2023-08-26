@@ -269,6 +269,8 @@ Serve1bppRequest::
 	and a
 	ret z
 
+	ld b, a
+
 ; Back out if we're too far into VBlank
 	ldh a, [rLY]
 	cp LY_VBLANK
@@ -293,44 +295,27 @@ Serve1bppRequest::
 	ld h, [hl]
 	ld l, a
 
-; # tiles to copy
-	ld a, [wRequested1bppSize]
-	ld b, a
-
+; # tiles to copy is in b
 	xor a
 	ld [wRequested1bppSize], a
 
 .next
 
-rept 3
+rept 4
 	pop de
-	ld [hl], e
-	inc l
-	ld [hl], e
-	inc l
-	ld [hl], d
-	inc l
-	ld [hl], d
-	inc l
-endr
-	pop de
-	ld [hl], e
-	inc l
-	ld [hl], e
-	inc l
-	ld [hl], d
-	inc l
+	ld a, e
+	ld [hli], a
+	ld [hli], a
 	ld a, d
 	ld [hli], a
+	ld [hli], a
+endr
 	dec b
 	jr nz, .next
 
-	ld a, l
-	ld [wRequested1bppDest], a
-	ld a, h
-	ld [wRequested1bppDest + 1], a
-
 	ld [wRequested1bppSource], sp
+	ld sp, hl
+	ld [wRequested1bppDest], sp
 
 	ldh a, [hSPBuffer]
 	ld l, a
@@ -346,6 +331,8 @@ Serve2bppRequest::
 	and a
 	ret z
 
+	ld b, a
+
 ; Back out if we're too far into VBlank
 	ldh a, [rLY]
 	cp LY_VBLANK
@@ -358,6 +345,9 @@ Serve2bppRequest_VBlank::
 	ld a, [wRequested2bppSize]
 	and a
 	ret z
+
+	ld b, a
+	; fallthrough
 
 _Serve2bppRequest::
 ; Copy [wRequested2bppSize] 2bpp tiles from [wRequested2bppSource] to [wRequested2bppDest]
@@ -377,36 +367,24 @@ _Serve2bppRequest::
 	ld h, [hl]
 	ld l, a
 
-; # tiles to copy
-	ld a, [wRequested2bppSize]
-	ld b, a
-
+; # tiles to copy is in b
 	xor a
 	ld [wRequested2bppSize], a
 
 .next
 
-rept 7
-	pop de
-	ld [hl], e
-	inc l
-	ld [hl], d
-	inc l
-endr
-	pop de
-	ld [hl], e
-	inc l
+rept 8
+	ld a, e
+	ld [hli], a
 	ld a, d
 	ld [hli], a
+endr
 	dec b
 	jr nz, .next
 
-	ld a, l
-	ld [wRequested2bppDest], a
-	ld a, h
-	ld [wRequested2bppDest + 1], a
-
 	ld [wRequested2bppSource], sp
+	ld sp, hl
+	ld [wRequested2bppDest], sp
 
 	ldh a, [hSPBuffer]
 	ld l, a
