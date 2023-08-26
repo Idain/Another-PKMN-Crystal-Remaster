@@ -24,11 +24,11 @@ SaveMenu_CopyTilemapAtOnce:
 	ld a, BANK(vBGMap2)
 	ldh [rVBK], a
 	hlcoord 0, 0, wAttrmap
-	call .CopyBGMapViaStack
+	call CopyBGMapViaStack
 	ld a, BANK(vBGMap0)
 	ldh [rVBK], a
 	hlcoord 0, 0
-	call .CopyBGMapViaStack
+	call CopyBGMapViaStack
 
 .wait2
 	ldh a, [rLY]
@@ -40,44 +40,4 @@ SaveMenu_CopyTilemapAtOnce:
 	ldh [hMapAnims], a
 	pop af
 	ldh [hBGMapMode], a
-	ret
-
-.CopyBGMapViaStack:
-; Copy all tiles to vBGMap
-	ld [hSPBuffer], sp
-	ld sp, hl
-	ldh a, [hBGMapAddress + 1]
-	ld h, a
-	ld l, 0
-	ld a, SCREEN_HEIGHT
-	ldh [hTilesPerCycle], a
-	lb bc, 1 << 1, LOW(rSTAT) ; not in v/hblank
-
-.loop
-rept SCREEN_WIDTH / 2
-	pop de
-; if in v/hblank, wait until not in v/hblank
-.loop\@
-	ldh a, [c]
-	and b
-	jr nz, .loop\@
-; load vBGMap
-	ld [hl], e
-	inc l
-	ld [hl], d
-	inc l
-endr
-
-	ld de, BG_MAP_WIDTH - SCREEN_WIDTH
-	add hl, de
-	ldh a, [hTilesPerCycle]
-	dec a
-	ldh [hTilesPerCycle], a
-	jr nz, .loop
-
-	ldh a, [hSPBuffer]
-	ld l, a
-	ldh a, [hSPBuffer + 1]
-	ld h, a
-	ld sp, hl
 	ret

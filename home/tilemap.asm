@@ -62,11 +62,11 @@ CopyTilemapAtOnce::
 	ld a, BANK(vBGMap2)
 	ldh [rVBK], a
 	hlcoord 0, 0, wAttrmap
-	call .CopyBGMapViaStack
+	call CopyBGMapViaStack
 	ld a, BANK(vBGMap0)
 	ldh [rVBK], a
 	hlcoord 0, 0
-	call .CopyBGMapViaStack
+	call CopyBGMapViaStack
 
 .wait2
 	ldh a, [rLY]
@@ -80,7 +80,7 @@ CopyTilemapAtOnce::
 	ldh [hBGMapMode], a
 	ret
 
-.CopyBGMapViaStack:
+CopyBGMapViaStack::
 ; Copy all tiles to vBGMap
 	ld [hSPBuffer], sp
 	ld sp, hl
