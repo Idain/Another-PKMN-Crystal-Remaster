@@ -1432,15 +1432,15 @@ Intro_RustleGrass:
 	ld hl, .RustlingGrassPointers
 	add hl, de
 	ld a, [hli]
-	ld [wRequested2bppSource], a
+	ldh [hRequestedVTileSource], a
 	ld a, [hli]
-	ld [wRequested2bppSource + 1], a
+	ldh [hRequestedVTileSource + 1], a
 	ld a, LOW(vTiles2 tile $09)
-	ld [wRequested2bppDest], a
+	ldh [hRequestedVTileDest], a
 	ld a, HIGH(vTiles2 tile $09)
-	ld [wRequested2bppDest + 1], a
+	ldh [hRequestedVTileDest + 1], a
 	ld a, 4
-	ld [wRequested2bppSize], a
+	ldh [hRequested2bppSize], a
 	ret
 
 .RustlingGrassPointers:

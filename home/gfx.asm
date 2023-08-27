@@ -115,37 +115,17 @@ Request2bpp::
 
 	ldh a, [hTilesPerCycle]
 	push af
-	ld a, TILES_PER_CYCLE
-	ldh [hTilesPerCycle], a
-
-	ld a, [wLinkMode]
-	cp LINK_MOBILE
-	jr nz, .NotMobile
-	ldh a, [hMobile]
-	and a
-	jr nz, .NotMobile
-	ld a, MOBILE_TILES_PER_CYCLE
-	ldh [hTilesPerCycle], a
-
-.NotMobile:
-	ld a, e
-	ld [wRequested2bppSource], a
-	ld a, d
-	ld [wRequested2bppSource + 1], a
-	ld a, l
-	ld [wRequested2bppDest], a
-	ld a, h
-	ld [wRequested2bppDest + 1], a
+	call WriteVCopyRegistersToHRAM
 .loop
 	ld a, c
 	ld hl, hTilesPerCycle
 	cp [hl]
 	jr nc, .cycle
 
-	ld [wRequested2bppSize], a
+	ldh [hRequested2bppSize], a
 .wait
 	call DelayFrame
-	ld a, [wRequested2bppSize]
+	ldh a, [hRequested2bppSize]
 	and a
 	jr nz, .wait
 
@@ -161,11 +141,11 @@ Request2bpp::
 
 .cycle
 	ldh a, [hTilesPerCycle]
-	ld [wRequested2bppSize], a
+	ldh [hRequested2bppSize], a
 
 .wait2
 	call DelayFrame
-	ld a, [wRequested2bppSize]
+	ldh a, [hRequested2bppSize]
 	and a
 	jr nz, .wait2
 
@@ -189,37 +169,17 @@ Request1bpp::
 
 	ldh a, [hTilesPerCycle]
 	push af
-	ld a, TILES_PER_CYCLE
-	ldh [hTilesPerCycle], a
-
-	ld a, [wLinkMode]
-	cp LINK_MOBILE
-	jr nz, .NotMobile
-	ldh a, [hMobile]
-	and a
-	jr nz, .NotMobile
-	ld a, MOBILE_TILES_PER_CYCLE
-	ldh [hTilesPerCycle], a
-
-.NotMobile:
-	ld a, e
-	ld [wRequested1bppSource], a
-	ld a, d
-	ld [wRequested1bppSource + 1], a
-	ld a, l
-	ld [wRequested1bppDest], a
-	ld a, h
-	ld [wRequested1bppDest + 1], a
+	call WriteVCopyRegistersToHRAM
 .loop
 	ld a, c
 	ld hl, hTilesPerCycle
 	cp [hl]
 	jr nc, .cycle
 
-	ld [wRequested1bppSize], a
+	ldh [hRequested1bppSize], a
 .wait
 	call DelayFrame
-	ld a, [wRequested1bppSize]
+	ldh a, [hRequested1bppSize]
 	and a
 	jr nz, .wait
 
@@ -235,11 +195,11 @@ Request1bpp::
 
 .cycle
 	ldh a, [hTilesPerCycle]
-	ld [wRequested1bppSize], a
+	ldh [hRequested1bppSize], a
 
 .wait2
 	call DelayFrame
-	ld a, [wRequested1bppSize]
+	ldh a, [hRequested1bppSize]
 	and a
 	jr nz, .wait2
 
@@ -248,6 +208,30 @@ Request1bpp::
 	sub [hl]
 	ld c, a
 	jr .loop
+
+WriteVCopyRegistersToHRAM:
+	ld a, TILES_PER_CYCLE
+	ldh [hTilesPerCycle], a
+
+	ld a, [wLinkMode]
+	cp LINK_MOBILE
+	jr nz, .NotMobile
+	ldh a, [hMobile]
+	and a
+	jr nz, .NotMobile
+	ld a, MOBILE_TILES_PER_CYCLE
+	ldh [hTilesPerCycle], a
+
+.NotMobile:
+	ld a, e
+	ldh [hRequestedVTileSource], a
+	ld a, d
+	ldh [hRequestedVTileSource + 1], a
+	ld a, l
+	ldh [hRequestedVTileDest], a
+	ld a, h
+	ldh [hRequestedVTileDest + 1], a
+	ret
 
 Get2bpp::
 ; copy c 2bpp tiles from b:de to hl

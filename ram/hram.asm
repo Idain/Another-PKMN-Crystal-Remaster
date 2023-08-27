@@ -172,5 +172,11 @@ hSystemBooted:: db
 if DEF(_DEBUG)
 hDebugRoomMenuPage::
 endc
+	ds 1
 
-	ds 20
+hRequested2bppSize:: db
+hRequested1bppSize:: db
+hRequestedVTileSource:: dw
+hRequestedVTileDest::   dw
+
+	ds 13

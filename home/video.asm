@@ -265,7 +265,7 @@ endr
 Serve1bppRequest::
 ; Only call during the first fifth of VBlank
 
-	ld a, [wRequested1bppSize]
+	ldh a, [hRequested1bppSize]
 	and a
 	ret z
 
@@ -278,29 +278,28 @@ Serve1bppRequest::
 	cp LY_VBLANK + 2
 	ret nc
 
-; Copy [wRequested1bppSize] 1bpp tiles from [wRequested1bppSource] to [wRequested1bppDest]
+; Copy [hRequested1bppSize] 1bpp tiles from [hRequestedVTileSource] to [hRequestedVTileDest]
 
 	ld [hSPBuffer], sp
 
 ; Source
-	ld hl, wRequested1bppSource
+	ld hl, hRequestedVTileSource
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	ld sp, hl
 
 ; Destination
-	ld hl, wRequested1bppDest
+	ld hl, hRequestedVTileDest
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 
 ; # tiles to copy is in b
 	xor a
-	ld [wRequested1bppSize], a
+	ldh [hRequested1bppSize], a
 
 .next
-
 rept 4
 	pop de
 	ld a, e
@@ -313,21 +312,12 @@ endr
 	dec b
 	jr nz, .next
 
-	ld [wRequested1bppSource], sp
-	ld sp, hl
-	ld [wRequested1bppDest], sp
-
-	ldh a, [hSPBuffer]
-	ld l, a
-	ldh a, [hSPBuffer + 1]
-	ld h, a
-	ld sp, hl
-	ret
+	jr _FinishRequest
 
 Serve2bppRequest::
 ; Only call during the first fifth of VBlank
 
-	ld a, [wRequested2bppSize]
+	ldh a, [hRequested2bppSize]
 	and a
 	ret z
 
@@ -342,7 +332,7 @@ Serve2bppRequest::
 	jr _Serve2bppRequest
 
 Serve2bppRequest_VBlank::
-	ld a, [wRequested2bppSize]
+	ldh a, [hRequested2bppSize]
 	and a
 	ret z
 
@@ -350,26 +340,26 @@ Serve2bppRequest_VBlank::
 	; fallthrough
 
 _Serve2bppRequest::
-; Copy [wRequested2bppSize] 2bpp tiles from [wRequested2bppSource] to [wRequested2bppDest]
+; Copy [hRequested2bppSize] 2bpp tiles from [hRequestedVTileSource] to [hRequestedVTileDest]
 
 	ld [hSPBuffer], sp
 
 ; Source
-	ld hl, wRequested2bppSource
+	ld hl, hRequestedVTileSource
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 	ld sp, hl
 
 ; Destination
-	ld hl, wRequested2bppDest
+	ld hl, hRequestedVTileDest
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
 
 ; # tiles to copy is in b
 	xor a
-	ld [wRequested2bppSize], a
+	ldh [hRequested2bppSize], a
 
 .next
 rept 8
@@ -382,9 +372,10 @@ endr
 	dec b
 	jr nz, .next
 
-	ld [wRequested2bppSource], sp
+_FinishRequest:
+	ld [hRequestedVTileSource], sp
 	ld sp, hl
-	ld [wRequested2bppDest], sp
+	ld [hRequestedVTileDest], sp
 
 	ldh a, [hSPBuffer]
 	ld l, a
