@@ -372,8 +372,8 @@ _Serve2bppRequest::
 	ld [wRequested2bppSize], a
 
 .next
-
 rept 8
+	pop de
 	ld a, e
 	ld [hli], a
 	ld a, d
