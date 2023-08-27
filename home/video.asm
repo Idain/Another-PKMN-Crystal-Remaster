@@ -101,16 +101,16 @@ WaitTop::
 
 	ldh a, [hBGMapMode]
 	and a
-	ret z
+	jr nz, .handleLoop
+	ret
 
+.loop
+	call DelayFrame
+.handleLoop
 	ldh a, [hBGMapThird]
 	and a
-	jr z, .done
+	jr nz, .loop
 
-	call DelayFrame
-	jr WaitTop
-
-.done
 	xor a
 	ldh [hBGMapMode], a
 	ret
