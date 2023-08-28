@@ -205,6 +205,8 @@ NamingScreen:
 	push bc
 	call Request2bpp
 	pop bc
+	pop de
+	push de
 	ld hl, 12 tiles
 	add hl, de
 	ld e, l
