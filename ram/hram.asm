@@ -179,4 +179,9 @@ hRequested1bppSize:: db
 hRequestedVTileSource:: dw
 hRequestedVTileDest::   dw
 
-	ds 13
+hPredefID:: db
+hPredefHL:: dw
+hPredefAddress:: dw
+hFarCallBC:: dw
+
+	ds 6
