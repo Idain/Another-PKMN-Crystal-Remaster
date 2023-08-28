@@ -73,10 +73,7 @@ DEF LZ_LONG_HI   EQU %00000011
 ; y: the length
 
 	; Swap de and hl for speed
-	push de
-	ld d, h
-	ld e, l
-	pop hl
+	rst SwapHLDE
 
 	; Save the output address
 	; for rewrite commands.
@@ -91,10 +88,7 @@ DEF LZ_LONG_HI   EQU %00000011
 	jr c, .short
 	cp LZ_END
 	jr nz, .long
-	push de
-	ld d, h
-	ld e, l
-	pop hl
+	rst SwapHLDE
 	ret
 
 .long

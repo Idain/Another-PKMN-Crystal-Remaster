@@ -35,8 +35,12 @@ JumpTable::
 	jp hl
 
 SECTION "rst38", ROM0[$0038]
-	rst $38
-
+SwapHLDE::
+	push de
+	ld d, h
+	ld e, l
+	pop hl
+	ret
 
 ; Game Boy hardware interrupts
 

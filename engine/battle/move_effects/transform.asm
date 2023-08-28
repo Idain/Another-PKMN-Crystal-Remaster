@@ -75,10 +75,7 @@ BattleCommand_Transform:
 ; init the power points
 	ld bc, wBattleMonMoves - wBattleMonStructEnd
 	add hl, bc
-	push de
-	ld d, h
-	ld e, l
-	pop hl
+	rst SwapHLDE
 	ld bc, wBattleMonPP - wBattleMonStructEnd
 	add hl, bc
 	ld b, NUM_MOVES
@@ -143,9 +140,6 @@ BattleSideCopy:
 	jr z, .copy
 
 ; Swap hl and de
-	push hl
-	ld h, d
-	ld l, e
-	pop de
+	rst SwapHLDE
 .copy
 	jp CopyBytes

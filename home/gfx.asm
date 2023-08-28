@@ -242,10 +242,7 @@ Get2bpp::
 	; fallthrough
 
 Copy2bpp:
-	push hl
-	ld h, d
-	ld l, e
-	pop de
+	rst SwapHLDE
 
 ; bank
 	ld a, b

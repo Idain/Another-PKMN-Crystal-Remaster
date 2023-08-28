@@ -837,10 +837,7 @@ QueryWhichSide:
 	cp 1 ; right side
 	ret z
 	; left side, swap hl and de
-	push hl
-	ld h, d
-	ld l, e
-	pop de
+	rst SwapHLDE
 	ret
 
 DecoSideMenuHeader:

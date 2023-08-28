@@ -1077,10 +1077,7 @@ Link_ConvertPartyStruct1to2:
 	push bc
 	ld hl, MON_ITEM
 	add hl, bc
-	push hl
-	ld h, d
-	ld l, e
-	pop de
+	rst SwapHLDE
 	push bc
 	ld a, [hli]
 	ld b, a
@@ -1103,10 +1100,7 @@ Link_ConvertPartyStruct1to2:
 	push bc
 	ld hl, $24
 	add hl, bc
-	push hl
-	ld h, d
-	ld l, e
-	pop de
+	rst SwapHLDE
 	ld bc, 8
 	call CopyBytes
 	pop bc

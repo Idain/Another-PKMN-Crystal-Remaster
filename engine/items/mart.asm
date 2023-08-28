@@ -637,10 +637,7 @@ MenuHeader_Buy:
 	add hl, bc
 	add hl, bc
 	add hl, bc
-	push de
-	ld d, h
-	ld e, l
-	pop hl
+	rst SwapHLDE
 	ld bc, SCREEN_WIDTH
 	add hl, bc
 	ld c, PRINTNUM_LEADINGZEROS | PRINTNUM_MONEY | 3

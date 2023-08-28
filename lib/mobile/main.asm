@@ -7722,10 +7722,7 @@ Function113273:
 
 Function113281:
 	ld c, $0
-	push hl
-	ld l, e
-	ld h, d
-	pop de
+	rst SwapHLDE
 .asm_113287
 	ld a, [de]
 	inc de
@@ -7742,10 +7739,7 @@ Function113281:
 	scf
 
 .asm_113298
-	push hl
-	ld l, e
-	ld h, d
-	pop de
+	rst SwapHLDE
 	ret
 
 Function11329d:
