@@ -114,6 +114,7 @@ DEF LZ_LONG_HI   EQU %00000011
 
 	; read at least 1 byte
 	inc bc
+	inc a
 	jr .command
 
 .short
@@ -131,8 +132,6 @@ DEF LZ_LONG_HI   EQU %00000011
 
 .command
 	; Modify loop counts to support 8 bit loop counters
-	ld a, c
-	and a
 	jr z, .multiple_of_256
 	inc b
 .multiple_of_256
