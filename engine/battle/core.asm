@@ -6637,7 +6637,7 @@ BattleWinSlideInEnemyTrainerFrontpic:
 	ret z
 	xor a
 	ldh [hBGMapMode], a
-	ldh [hBGMapThird], a
+	ldh [hBGMapHalf], a
 	ld d, $0
 	push bc
 	push hl

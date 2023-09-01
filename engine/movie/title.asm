@@ -235,7 +235,7 @@ SuicuneFrameIterator:
 	ld a, $1
 	ldh [hBGMapMode], a
 	ld a, $3
-	ldh [hBGMapThird], a
+	ldh [hBGMapHalf], a
 	ret
 
 .Frames:

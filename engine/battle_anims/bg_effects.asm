@@ -317,7 +317,7 @@ BattleBGEffect_HideMon:
 	call ClearBox
 	pop bc
 	xor a
-	ldh [hBGMapThird], a
+	ldh [hBGMapHalf], a
 	ld a, $1
 	ldh [hBGMapMode], a
 	ret
@@ -546,7 +546,7 @@ BattleBGEffect_RemoveMon:
 	jr nz, .row2
 .okay2
 	xor a
-	ldh [hBGMapThird], a
+	ldh [hBGMapHalf], a
 	ld a, $1
 	ldh [hBGMapMode], a
 	call BattleBGEffects_IncAnonJumptableIndex

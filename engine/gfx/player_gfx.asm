@@ -20,7 +20,7 @@ MovePlayerPic:
 	lb bc, 7, 7
 	predef PlaceGraphic
 	xor a
-	ldh [hBGMapThird], a
+	ldh [hBGMapHalf], a
 	call WaitBGMap
 	call DelayFrame
 	pop de
