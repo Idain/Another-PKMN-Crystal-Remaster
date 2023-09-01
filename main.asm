@@ -114,7 +114,6 @@ INCLUDE "engine/battle/read_trainer_dvs.asm"
 INCLUDE "engine/battle/returntobattle_useball.asm"
 INCLUDE "engine/battle/consume_held_item.asm"
 INCLUDE "data/moves/effects.asm"
-INCLUDE "engine/events/kurt_selectquantity_interpretjoypad.asm"
 
 
 SECTION "bankA", ROMX
@@ -554,11 +553,6 @@ INCLUDE "data/phone/text/liz_caller.asm"
 INCLUDE "data/phone/text/anthony_caller.asm"
 INCLUDE "data/phone/text/todd_caller.asm"
 INCLUDE "data/phone/text/gina_caller.asm"
-
-
-SECTION "UpdateBattleHUDs", ROMX
-
-INCLUDE "engine/battle/update_battle_huds.asm"
 
 
 SECTION "mobile5E", ROMX
