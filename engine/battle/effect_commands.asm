@@ -4402,7 +4402,7 @@ MinimizeDropSub:
 	xor a
 	ldh [hBGMapMode], a
 	ld a, BANK("Battle Core")
-	rst FarCall
+	call FarCall_hl
 	call WaitBGMap
 	jp BattleCommand_MoveDelay
 
@@ -4880,7 +4880,7 @@ BattleCommand_RaiseSubNoAnim:
 	xor a
 	ldh [hBGMapMode], a
 	ld a, BANK("Battle Core")
-	rst FarCall
+	call FarCall_hl
 	jp WaitBGMap
 
 BattleCommand_LowerSubNoAnim:
@@ -4893,7 +4893,7 @@ BattleCommand_LowerSubNoAnim:
 	xor a
 	ldh [hBGMapMode], a
 	ld a, BANK("Battle Core")
-	rst FarCall
+	call FarCall_hl
 	jp WaitBGMap
 
 CalcPlayerStats:
@@ -6454,7 +6454,7 @@ BattleCommand_WeatherBasedHeal:
 	ld h, [hl] 
 	ld l, a  
 	ld a, BANK(GetMaxHP)
-	rst FarCall
+	call FarCall_hl
 
 	call AnimateCurrentMove
 	call BattleCommand_SwitchTurn

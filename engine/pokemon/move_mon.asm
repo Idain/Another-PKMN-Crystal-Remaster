@@ -1797,5 +1797,4 @@ InitNickname:
 	call InitName
 	ld a, $4 ; ExitAllMenus is in bank 0; maybe it used to be in bank 4
 	ld hl, ExitAllMenus
-	rst FarCall
-	ret
+	jp FarCall_hl

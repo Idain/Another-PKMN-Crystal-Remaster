@@ -182,6 +182,6 @@ hRequestedVTileDest::   dw
 hPredefID:: db
 hPredefHL:: dw
 hPredefAddress:: dw
-hFarCallBC:: dw
+hFarCallSavedA:: db
 
-	ds 6
+	ds 7
