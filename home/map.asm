@@ -994,25 +994,6 @@ MapTextbox::
 	rst Bankswitch
 	ret
 
-Call_a_de::
-; Call a:de.
-
-	ldh [hTempBank], a
-	ldh a, [hROMBank]
-	push af
-	ldh a, [hTempBank]
-	rst Bankswitch
-
-	call .de
-
-	pop af
-	rst Bankswitch
-	ret
-
-.de
-	push de
-	ret
-
 GetMovementData::
 ; Initialize the movement data for object c at b:hl
 	ldh a, [hROMBank]
