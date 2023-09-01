@@ -77,8 +77,7 @@ LoadMapObjects:
 	ld a, MAPCALLBACK_OBJECTS
 	call RunMapCallback
 	farcall LoadObjectMasks
-	farcall InitializeVisibleSprites
-	ret
+	farjp InitializeVisibleSprites
 
 ResetPlayerObjectAction:
 	ld hl, wPlayerSpriteSetupFlags
@@ -165,8 +164,7 @@ FadeOutMapMusic:
 	jp SkipMusic
 
 ApplyMapPalettes:
-	farcall _UpdateTimePals
-	ret
+	farjp _UpdateTimePals
 
 FadeMapMusicAndPalettes:
 	ld de, MUSIC_NONE

@@ -34,8 +34,7 @@ InitPartyMenuLayout:
 LoadPartyMenuGFX:
 	farcall LoadFontsBattleExtra
 	callfar InitPartyMenuPalettes
-	callfar ClearSpriteAnims2
-	ret
+	farjp ClearSpriteAnims2
 
 WritePartyMenuTilemap:
 	ld hl, wOptions
@@ -643,8 +642,7 @@ InitPartyMenuGFX:
 	pop bc
 	dec c
 	jr nz, .loop
-	callfar PlaySpriteAnimations
-	ret
+	farjp PlaySpriteAnimations
 
 InitPartyMenuWithCancel:
 ; with cancel

@@ -540,6 +540,7 @@ OaksPKMNTalk10:
 	ld [wCurRadioLine], a
 	ld a, 100
 	ld [wRadioTextDelay], a
+BenFernMusic7:
 	ret
 
 OPT_PokemonChannelText:
@@ -840,9 +841,7 @@ StartPokemonMusicChannel:
 	jr z, .SunTueThurSun
 	ld de, MUSIC_POKEMON_LULLABY
 .SunTueThurSun:
-	callfar RadioMusicRestartDE
-BenFernMusic7:
-	ret
+	farjp RadioMusicRestartDE
 
 BenIntroText1:
 	text_far _BenIntroText1
@@ -1771,8 +1770,7 @@ StartRadioStation:
 	ld a, [hli]
 	ld e, a
 	ld d, [hl]
-	callfar RadioMusicRestartDE
-	ret
+	farjp RadioMusicRestartDE
 
 INCLUDE "data/radio/channel_music.asm"
 

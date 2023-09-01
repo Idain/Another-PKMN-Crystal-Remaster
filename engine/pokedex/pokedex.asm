@@ -824,8 +824,7 @@ Pokedex_UpdateUnownMode:
 	call DelayFrame
 	call Pokedex_CheckSGB
 	jr nz, .decompress
-	farcall LoadSGBPokedexGFX2
-	ret
+	farjp LoadSGBPokedexGFX2
 
 .decompress
 	ld hl, PokedexLZ

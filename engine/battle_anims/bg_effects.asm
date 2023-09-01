@@ -472,8 +472,7 @@ BattleBGEffect_BattlerObj_2Row:
 	jp EndBattleBGEffect
 
 _QueueBattleAnimation:
-	callfar QueueBattleAnimation
-	ret
+	farjp QueueBattleAnimation
 
 BattleBGEffect_RemoveMon:
 ; Slides mon out of screen

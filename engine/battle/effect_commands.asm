@@ -883,8 +883,7 @@ IgnoreSleepOnly:
 	ret
 
 BattleCommand_UsedMoveText:
-	farcall DisplayUsedMoveText
-	ret
+	farjp DisplayUsedMoveText
 
 CheckUserIsCharging:
 	ldh a, [hBattleTurn]
@@ -3549,8 +3548,7 @@ PlayFXAnimID:
 
 	ld c, 3
 	call DelayFrames
-	callfar PlayBattleAnim
-	ret
+	farjp PlayBattleAnim
 
 DoEnemyDamage:
 	ld hl, wCurDamage
@@ -3858,8 +3856,7 @@ BattleCommand_PoisonTarget:
 	ld hl, WasPoisonedText
 	call StdBattleTextbox
 
-	farcall UseHeldStatusHealingItem
-	ret
+	farjp UseHeldStatusHealingItem
 
 BattleCommand_Poison:
 	ld hl, DidntAffectText
@@ -3921,8 +3918,7 @@ BattleCommand_Poison:
 	call StdBattleTextbox
 
 .finished
-	farcall UseHeldStatusHealingItem
-	ret
+	farjp UseHeldStatusHealingItem
 
 .failed
 	push hl
@@ -4112,8 +4108,7 @@ BattleCommand_BurnTarget:
 	ld hl, WasBurnedText
 	call StdBattleTextbox
 
-	farcall UseHeldStatusHealingItem
-	ret
+	farjp UseHeldStatusHealingItem
 
 Defrost:
 	ld a, [hl]
@@ -4179,8 +4174,7 @@ BattleCommand_FreezeTarget:
 	ld hl, WasFrostbittenText
 	call StdBattleTextbox
 
-	farcall UseHeldStatusHealingItem
-	ret
+	farjp UseHeldStatusHealingItem
 
 BattleCommand_ParalyzeTarget:
 	xor a
@@ -4215,8 +4209,7 @@ BattleCommand_ParalyzeTarget:
 	call PlayOpponentBattleAnim
 	call RefreshBattleHuds
 	call PrintParalyze
-	farcall UseHeldStatusHealingItem
-	ret
+	farjp UseHeldStatusHealingItem
 
 BattleCommand_AttackUp:
 	ld b, ATTACK
@@ -5139,8 +5132,7 @@ BattleCommand_ForceSwitch:
 	ld hl, DraggedOutText
 	call StdBattleTextbox
 
-	farcall SpikesDamage
-	ret
+	farjp SpikesDamage
 
 .force_player_switch
 	ld a, [wAttackMissed]
@@ -5212,8 +5204,7 @@ BattleCommand_ForceSwitch:
 	ld hl, DraggedOutText
 	call StdBattleTextbox
 
-	farcall SpikesDamage
-	ret
+	farjp SpikesDamage
 
 .fail
 	call BattleCommand_LowerSub
@@ -5892,8 +5883,7 @@ BattleCommand_FinishConfusingTarget:
 	cp HELD_HEAL_CONFUSION
 	ret nz
 .heal_confusion
-	farcall UseConfusionHealingItem
-	ret
+	farjp UseConfusionHealingItem
 
 BattleCommand_Confuse_CheckSnore_Swagger_ConfuseHit:
 	ld a, BATTLE_VARS_MOVE_EFFECT
@@ -5950,8 +5940,7 @@ BattleCommand_Paralyze:
 	farcall ApplyPrzEffectOnSpeed
 	call UpdateBattleHuds
 	call PrintParalyze
-	farcall UseHeldStatusHealingItem
-	ret
+	farjp UseHeldStatusHealingItem
 
 .paralyzed
 	call AnimateFailedMove
@@ -6786,16 +6775,13 @@ GetMoveByte:
 	jp GetFarByte
 
 DisappearUser:
-	farcall _DisappearUser
-	ret
+	farjp _DisappearUser
 
 AppearUserLowerSub:
-	farcall _AppearUserLowerSub
-	ret
+	farjp _AppearUserLowerSub
 
 AppearUserRaiseSub:
-	farcall _AppearUserRaiseSub
-	ret
+	farjp _AppearUserRaiseSub
 
 _CheckBattleScene:
 ; Checks the options.  Returns carry if battle animations are disabled.

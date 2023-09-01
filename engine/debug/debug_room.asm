@@ -1600,8 +1600,7 @@ DebugRoomMenu_ColorPicker:
 ; Trainer
 	ld [wDebugColorIsTrainer], a
 .pokemon
-	farcall DebugColorPicker
-	ret
+	farjp DebugColorPicker
 
 .MenuHeader:
 	db MENU_BACKUP_TILES ; flags
@@ -1618,8 +1617,7 @@ DebugRoomMenu_ColorPicker:
 DebugRoomMenu_FightMenu:
 	ld hl, wDebugFlags
 	set DEBUG_BATTLE_F, [hl]
-	farcall DebugFightMenu
-	ret
+	farjp DebugFightMenu
 
 PrintHexNumber:
 ; Print the c-byte value from de to hl as hexadecimal digits.

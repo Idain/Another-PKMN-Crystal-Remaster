@@ -88,8 +88,7 @@ Kurt_SelectApricorn:
 	ld a, [wMenuSelection]
 	and a
 	ret z
-	farcall PlaceMenuItemName
-	ret
+	farjp PlaceMenuItemName
 
 .Quantity:
 	ld a, [wMenuSelection]
@@ -98,8 +97,7 @@ Kurt_SelectApricorn:
 	ret z
 	ld a, [wItemQuantityChange]
 	ld [wMenuSelectionQuantity], a
-	farcall PlaceMenuItemQuantity
-	ret
+	farjp PlaceMenuItemQuantity
 
 Kurt_SelectQuantity:
 	ld a, [wCurItem]
@@ -146,8 +144,7 @@ Kurt_SelectQuantity:
 	add hl, de
 	ld d, h
 	ld e, l
-	farcall PlaceMenuItemName
-	ret
+	farjp PlaceMenuItemName
 
 PlaceApricornQuantity:
 	call MenuBoxCoord2Tile

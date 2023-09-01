@@ -205,16 +205,13 @@ AnimSeq_GSIntroHoOhLugia:
 	ret
 
 AnimSeq_NamingScreenCursor:
-	callfar NamingScreen_AnimateCursor
-	ret
+	farjp NamingScreen_AnimateCursor
 
 AnimSeq_MailCursor:
-	callfar ComposeMail_AnimateCursor
-	ret
+	farjp ComposeMail_AnimateCursor
 
 AnimSeq_GameFreakLogo:
-	callfar GameFreakLogoSpriteAnim
-	ret
+	farjp GameFreakLogoSpriteAnim
 
 AnimSeq_GSGameFreakLogoStar:
 	ld hl, SPRITEANIMSTRUCT_VAR1
@@ -340,8 +337,7 @@ AnimSeq_GSGameFreakLogoSparkle:
 	ret
 
 AnimSeq_SlotsGolem:
-	callfar Slots_AnimateGolem
-	ret
+	farjp Slots_AnimateGolem
 
 AnimSeq_SlotsChansey:
 	callfar Slots_AnimateChansey
@@ -386,16 +382,13 @@ AnimSeq_SlotsChanseyEgg:
 	ret
 
 AnimSeq_UnusedCursor:
-	callfar UnusedCursor_InterpretJoypad_AnimateCursor
-	ret
+	farjp UnusedCursor_InterpretJoypad_AnimateCursor
 
 AnimSeq_PokegearArrow:
-	callfar AnimatePokegearModeIndicatorArrow
-	ret
+	farjp AnimatePokegearModeIndicatorArrow
 
 AnimSeq_MemoryGameCursor:
-	callfar MemoryGame_InterpretJoypad_AnimateCursor
-	ret
+	farjp MemoryGame_InterpretJoypad_AnimateCursor
 
 AnimSeq_TradePokeBall:
 	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX
@@ -534,8 +527,7 @@ AnimSeq_TradeTubeBulge:
 	jp PlaySFX
 
 AnimSeq_TrademonInTube:
-	callfar TradeAnim_AnimateTrademonInTube
-	ret
+	farjp TradeAnim_AnimateTrademonInTube
 
 AnimSeq_RevealNewMon:
 	ld hl, SPRITEANIMSTRUCT_VAR1
@@ -571,8 +563,7 @@ AnimSeq_RevealNewMon:
 	ret
 
 AnimSeq_RadioTuningKnob:
-	callfar AnimateTuningKnob
-	ret
+	farjp AnimateTuningKnob
 
 AnimSeq_CutLeaves:
 	ld hl, SPRITEANIMSTRUCT_VAR2
@@ -710,12 +701,10 @@ AnimSeq_FlyTo:
 	ret
 
 AnimSeq_MobileTradeSentPulse:
-	farcall MobileTradeAnim_AnimateSentPulse
-	ret
+	farjp MobileTradeAnim_AnimateSentPulse
 
 AnimSeq_MobileTradeOTPulse:
-	farcall MobileTradeAnim_AnimateOTPulse
-	ret
+	farjp MobileTradeAnim_AnimateOTPulse
 
 AnimSeq_IntroSuicune:
 	ld a, [wIntroSceneTimer]
@@ -803,12 +792,10 @@ AnimSeq_IntroSuicuneAway:
 	ret
 
 AnimSeq_EZChatCursor:
-	farcall AnimateEZChatCursor
-	ret
+	farjp AnimateEZChatCursor
 
 AnimSeq_Celebi:
-	farcall UpdateCelebiPosition
-	ret
+	farjp UpdateCelebiPosition
 
 AnimSeqs_IncAnonJumptableIndex:
 	ld hl, SPRITEANIMSTRUCT_JUMPTABLE_INDEX

@@ -298,17 +298,13 @@ ClearTilemapEtc:
 	jp ClearWindowData
 
 MainMenu_NewGame:
-	farcall NewGame
-	ret
+	farjp NewGame
 
 MainMenu_Option:
-	farcall Option
-	ret
+	farjp Option
 
 MainMenu_Continue:
-	farcall Continue
-	ret
+	farjp Continue
 
 MainMenu_MysteryGift:
-	farcall MysteryGift
-	ret
+	farjp MysteryGift

@@ -8,5 +8,4 @@ UpdateItemDescription:
 	inc a
 	ret z
 	decoord 1, 14
-	farcall PrintItemDescription
-	ret
+	farjp PrintItemDescription

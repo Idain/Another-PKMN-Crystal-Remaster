@@ -31,8 +31,7 @@ _BillsPC:
 	call PrintText
 	pop af
 	ld [wOptions], a
-	farcall LoadFontsBattleExtra
-	ret
+	farjp LoadFontsBattleExtra
 
 .PCWhatText:
 	text_far _PCWhatText

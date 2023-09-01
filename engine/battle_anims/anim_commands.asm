@@ -591,8 +591,7 @@ BattleAnimCmd_BGEffect:
 	ld [wBattleBGEffectTempTurn], a
 	call GetBattleAnimByte
 	ld [wBattleBGEffectTempParam], a
-	farcall QueueBGEffect
-	ret
+	farjp QueueBGEffect
 
 BattleAnimCmd_BGP:
 	call GetBattleAnimByte
@@ -1152,9 +1151,7 @@ BattleAnimCmd_Sound:
 	call GetBattleAnimByte
 	ld e, a
 	ld d, 0
-	callfar PlayStereoSFX
-
-	ret
+	farjp PlayStereoSFX
 
 .GetPanning:
 	db $f0, $0f, $f0, $0f

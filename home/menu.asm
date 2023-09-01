@@ -59,8 +59,7 @@ HideCursor::
 	ret
 
 PushWindow::
-	callfar _PushWindow
-	ret
+	farjp _PushWindow
 
 ExitMenu::
 	push af
@@ -69,8 +68,7 @@ ExitMenu::
 	ret
 
 InitVerticalMenuCursor::
-	callfar _InitVerticalMenuCursor
-	ret
+	farjp _InitVerticalMenuCursor
 
 CloseWindow::
 	push af

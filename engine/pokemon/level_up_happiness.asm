@@ -16,5 +16,4 @@ LevelUpHappinessMod:
 	ld c, HAPPINESS_GAINLEVELATHOME
 
 .ok
-	callfar ChangeHappiness
-	ret
+	farjp ChangeHappiness

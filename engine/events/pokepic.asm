@@ -37,8 +37,7 @@ ClosePokepic::
 	call OverworldTextModeSwitch
 	call ApplyTilemap
 	call UpdateSprites
-	farcall LoadStandardFont
-	ret
+	farjp LoadStandardFont
 
 PokepicMenuHeader:
 	db MENU_BACKUP_TILES ; flags

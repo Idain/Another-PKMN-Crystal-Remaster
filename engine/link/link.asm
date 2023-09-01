@@ -1995,8 +1995,7 @@ String_TooBadTheTradeWasCanceled:
 LinkTextboxAtHL:
 	ld d, h
 	ld e, l
-	farcall LinkTextbox
-	ret
+	farjp LinkTextbox
 
 SetTradeRoomBGPals:
 	farcall _LoadTradeRoomBGPals

@@ -134,8 +134,7 @@ HandleMapObjects:
 HandleMapBackground:
 	farcall _UpdateSprites
 	farcall ScrollScreen
-	farcall PlaceMapNameSign
-	ret
+	farjp PlaceMapNameSign
 
 CheckPlayerState:
 	ld a, [wPlayerStepFlags]
@@ -160,8 +159,7 @@ _CheckObjectEnteringVisibleRange:
 	ld hl, wPlayerStepFlags
 	bit PLAYERSTEP_STOP_F, [hl]
 	ret z
-	farcall CheckObjectEnteringVisibleRange
-	ret
+	farjp CheckObjectEnteringVisibleRange
 
 PlayerEvents:
 	xor a
@@ -1117,8 +1115,7 @@ _TryWildEncounter_BugContest:
 	call TryWildEncounter_BugContest
 	ret nc
 	call ChooseWildEncounter_BugContest
-	farcall CheckRepelEffect
-	ret
+	farjp CheckRepelEffect
 
 ChooseWildEncounter_BugContest::
 ; Pick a random mon out of ContestMons.

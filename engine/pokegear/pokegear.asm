@@ -1818,9 +1818,7 @@ PlayRadio:
 	ld l, a
 	ld a, [wPokegearRadioChannelBank]
 	and a
-	jr z, .zero
-	call FarCall_hl
-.zero
+	call nz, FarCall_hl
 	call DelayFrame
 	jr .loop
 
@@ -2445,8 +2443,7 @@ Pokedex_GetArea:
 	ld a, [wTownMapPlayerIconLandmark]
 	cp LANDMARK_FAST_SHIP
 	jr z, .FastShip
-	farcall GetPlayerIcon
-	ret
+	farjp GetPlayerIcon
 
 .FastShip:
 	ld de, FastShipGFX
