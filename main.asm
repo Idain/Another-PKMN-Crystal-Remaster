@@ -193,11 +193,9 @@ SECTION "bank13", ROMX
 
 INCLUDE "data/collision/collision_permissions.asm"
 INCLUDE "engine/menus/empty_sram.asm"
-INCLUDE "engine/menus/savemenu_copytilemapatonce.asm"
 INCLUDE "engine/events/checksave.asm"
 INCLUDE "data/maps/scenes.asm"
 INCLUDE "engine/overworld/load_map_part.asm"
-INCLUDE "engine/phone/phonering_copytilemapatonce.asm"
 
 
 SECTION "bank13_2", ROMX
@@ -279,6 +277,7 @@ INCLUDE "engine/printer/printer_serial.asm"
 INCLUDE "engine/printer/printer.asm"
 INCLUDE "gfx/battle_anims.asm"
 INCLUDE "engine/events/halloffame.asm"
+INCLUDE "engine/gfx/copy_tilemap_at_once.asm"
 
 
 SECTION "Crystal Features 2", ROMX

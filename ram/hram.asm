@@ -121,6 +121,7 @@ ENDU
 hLCDCPointer::     db
 hLYOverrideStart:: db
 hLYOverrideEnd::   db
+hLYOverrideStackCopyAmount:: db
 
 hMobileReceive::             db
 hSerialReceivedNewData::     db
@@ -144,8 +145,6 @@ hSPBuffer::  dw
 
 hBGMapUpdate::    db
 hBGMapTileCount:: db
-
-	ds 1
 
 hMapAnims::      db
 hTileAnimFrame:: db

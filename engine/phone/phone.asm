@@ -506,13 +506,13 @@ Phone_StartRinging:
 	call PlaySFX
 	call Phone_CallerTextbox
 	call UpdateSprites
-	farjp PhoneRing_CopyTilemapAtOnce
+	jp CopyTilemapAtOnce
 
 HangUp_Wait20Frames:
 Phone_Wait20Frames:
 	ld c, 20
 	call DelayFrames
-	farjp PhoneRing_CopyTilemapAtOnce
+	jp CopyTilemapAtOnce
 
 Phone_TextboxWithName:
 	push bc

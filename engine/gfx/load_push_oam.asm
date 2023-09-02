@@ -14,13 +14,9 @@ OAMDMACode:
 ; copied to and called from HRAM.
 LOAD "OAM DMA", HRAM
 hTransferShadowOAM::
-	; initiate DMA
-	ld a, HIGH(wShadowOAM)
-	ldh [rDMA], a
-	; wait for DMA to finish
-	ld a, NUM_SPRITE_OAM_STRUCTS
+	ldh [c], a
 .wait
-	dec a
+	dec b
 	jr nz, .wait
 	ret
 ENDL

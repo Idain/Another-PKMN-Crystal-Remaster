@@ -1,5 +1,14 @@
 ; Functions dealing with VRAM.
 
+PushOAM::
+	ld a, [hOAMUpdate]
+	and a
+	ret nz
+ForcePushOAM:
+	lb bc, NUM_SPRITE_OAM_STRUCTS + 1, LOW(rDMA)
+	ld a, HIGH(wShadowOAM)
+	jp hTransferShadowOAM
+
 DMATransfer::
 ; Return carry if the transfer is completed.
 
@@ -334,14 +343,19 @@ Serve2bppRequest::
 	ret c
 	cp LY_VBLANK + 2
 	ret nc
+
+	xor a
+	ldh [hRequested2bppSize], a
 	jr _Serve2bppRequest
 
-Serve2bppRequest_VBlank::
-	ldh a, [hRequested2bppSize]
+LYOverrideStackCopy::
+	ldh a, [hLYOverrideStackCopyAmount]
 	and a
 	ret z
 
 	ld b, a
+	xor a
+	ld [hLYOverrideStackCopyAmount], a
 	; fallthrough
 
 _Serve2bppRequest::
@@ -361,10 +375,6 @@ _Serve2bppRequest::
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-
-; # tiles to copy is in b
-	xor a
-	ldh [hRequested2bppSize], a
 
 .next
 rept 8

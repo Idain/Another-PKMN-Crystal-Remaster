@@ -51,7 +51,7 @@ VBlank::
 	dw VBlank4
 	dw VBlank5
 	dw VBlank6
-	dw VBlank0 ; just in case
+	dw VBlank7
 
 VBlank0::
 ; normal operation
@@ -95,11 +95,7 @@ VBlank0::
 
 .done
 
-	ldh a, [hOAMUpdate]
-	and a
-	call z, hTransferShadowOAM
-.done_oam
-
+	call PushOAM
 	; vblank-sensitive operations are done
 
 	; inc frame counter
@@ -139,12 +135,16 @@ VBlank0::
 	call UpdateJoypad
 	; fallthrough
 
-VBlank2::
+VBlankUpdateSound::
 ; sound only
 
 	ld a, BANK(_UpdateSound)
 	rst Bankswitch
 	jp _UpdateSound
+
+VBlank2::
+	call AnimateTileset
+	jr VBlankUpdateSound
 
 VBlank1::
 ; scx, scy
@@ -160,47 +160,12 @@ VBlank1::
 	ldh [rSCY], a
 
 	call UpdatePals
-	jr c, .done
+	jr c, VBlank1EntryPoint
 
 	call UpdateBGMap
-	call Serve2bppRequest_VBlank
+	call Serve2bppRequest
 
-	call hTransferShadowOAM
-
-.done
-	; get requested ints
-	ldh a, [rIF]
-	ld b, a
-	; discard requested ints
-	xor a
-	ldh [rIF], a
-	; enable lcd stat
-	ld a, 1 << LCD_STAT
-	ldh [rIE], a
-	; rerequest serial int if applicable (still disabled)
-	; request lcd stat
-	ld a, b
-	and 1 << SERIAL
-	or 1 << LCD_STAT
-	ldh [rIF], a
-
-	ei
-	call VBlank2
-	di
-
-	; get requested ints
-	ldh a, [rIF]
-	ld b, a
-	; discard requested ints
-	xor a
-	ldh [rIF], a
-	; enable ints besides joypad
-	ld a, IE_DEFAULT
-	ldh [rIE], a
-	; rerequest ints
-	ld a, b
-	ldh [rIF], a
-	ret
+	jr VBlank1EntryPoint
 
 UpdatePals::
 ; update pals for either dmg or cgb
@@ -233,17 +198,17 @@ VBlank3::
 	ldh a, [hSCY]
 	ldh [rSCY], a
 
-	ldh a, [hCGBPalUpdate]
-	and a
-	call nz, ForceUpdateCGBPals
-	jr c, .done
+	call UpdateCGBPals
+	jr c, VBlank1EntryPoint
 
 	call UpdateBGMap
-	call Serve2bppRequest_VBlank
+	call Serve2bppRequest
+	call LYOverrideStackCopy
 
-	call hTransferShadowOAM
-.done
+VBlank1EntryPoint:
+	call PushOAM
 
+	; get requested ints
 	ldh a, [rIF]
 	push af
 	xor a
@@ -253,7 +218,7 @@ VBlank3::
 	ldh [rIF], a
 
 	ei
-	call VBlank2
+	call VBlankUpdateSound
 	di
 
 	; request lcdstat
@@ -285,13 +250,13 @@ VBlank4::
 	call UpdateBGMap
 	call Serve2bppRequest
 
-	call hTransferShadowOAM
+	call PushOAM
 
 	call UpdateJoypad
 
 	call AskSerial
 
-	jp VBlank2
+	jp VBlankUpdateSound
 
 VBlank5::
 ; scx
@@ -299,6 +264,7 @@ VBlank5::
 ; bg map
 ; tiles
 ; joypad
+; sound
 
 	ldh a, [hSCX]
 	ldh [rSCX], a
@@ -320,7 +286,7 @@ VBlank5::
 	ldh [rIF], a
 
 	ei
-	call VBlank2
+	call VBlankUpdateSound
 	di
 
 	xor a
@@ -347,4 +313,12 @@ VBlank6::
 	call Serve1bppRequest
 	call DMATransfer
 .done
-	jp VBlank2
+	jp VBlankUpdateSound
+
+VBlank7::
+; special vblank routine
+; copies tilemap in one frame without any tearing
+; also updates oam, and pals if specified
+	ld a, BANK(VBlankSafeCopyTilemapAtOnce)
+	rst Bankswitch
+	jp VBlankSafeCopyTilemapAtOnce

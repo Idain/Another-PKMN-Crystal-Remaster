@@ -3,7 +3,7 @@ Pokepic::
 	call CopyMenuHeader
 	call MenuBox
 	call UpdateSprites
-	call ApplyTilemap
+	call CopyTilemapAtOnce
 	ld b, SCGB_POKEPIC
 	call GetSGBLayout
 	xor a

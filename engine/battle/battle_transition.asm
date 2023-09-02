@@ -71,7 +71,8 @@ DoBattleTransition:
 	call UpdateSprites
 	call DelayFrame
 	call .NonMobile_LoadPokeballTiles
-	call CGBOnly_CopyTilemapAtOnce
+	ld b, 3
+	call SafeCopyTilemapAtOnce
 	jr .resume
 
 .mobile

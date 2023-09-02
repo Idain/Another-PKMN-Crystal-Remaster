@@ -243,5 +243,5 @@ PushLYOverrides::
 	ldh [hRequestedVTileDest + 1], a
 
 	ld a, (wLYOverridesEnd - wLYOverrides) / LEN_2BPP_TILE
-	ldh [hRequested2bppSize], a
+	ldh [hLYOverrideStackCopyAmount], a
 	ret

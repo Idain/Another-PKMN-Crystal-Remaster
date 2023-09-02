@@ -3,7 +3,7 @@ SaveMenu:
 	farcall DisplaySaveInfoOnSave
 	call SpeechTextbox
 	call UpdateSprites
-	farcall SaveMenu_CopyTilemapAtOnce
+	call CopyTilemapAtOnce
 	ld hl, WouldYouLikeToSaveTheGameText
 	call SaveTheGame_yesorno
 	jr nz, .refused
@@ -18,7 +18,7 @@ SaveMenu:
 
 .refused
 	call ExitMenu
-	farcall SaveMenu_CopyTilemapAtOnce
+	call CopyTilemapAtOnce
 	scf
 	ret
 
@@ -182,8 +182,6 @@ SaveTheGame_yesorno:
 	ld a, [wMenuCursorY]
 	dec a
 	call CloseWindow
-	push af
-	pop af
 	and a
 	ret
 
