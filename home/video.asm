@@ -200,7 +200,7 @@ UpdateBGMap::
 	and a ; 0
 	jr z, .AttributeMapTop
 ; bottom row
-	coord sp, 0, 9, wAttrmap
+	coord sp, 0, HALF_HEIGHT, wAttrmap
 	ld de, HALF_HEIGHT * BG_MAP_WIDTH
 	add hl, de
 ; Next time: top half
@@ -224,7 +224,7 @@ UpdateBGMap::
 	and a ; 0
 	jr z, .TileMapTop
 ; bottom row
-	coord sp, 0, 9
+	coord sp, 0, HALF_HEIGHT
 	ld de, HALF_HEIGHT * BG_MAP_WIDTH
 	add hl, de
 ; Next time: top half
@@ -239,7 +239,7 @@ UpdateBGMap::
 ; Which half to update next time
 	ldh [hBGMapHalf], a
 ; Rows of tiles in a half
-	ld a, SCREEN_HEIGHT / 2
+	ld a, HALF_HEIGHT
 .startCustomCopy
 ; Discrepancy between wTilemap and wBGMap
 	ld bc, BG_MAP_WIDTH - (SCREEN_WIDTH - 1)
