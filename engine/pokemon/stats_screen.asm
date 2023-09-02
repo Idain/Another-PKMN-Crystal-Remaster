@@ -464,14 +464,25 @@ StatsScreen_PlaceHorizontalDivider:
 	; Place T divider
 	ld a, [wStatsScreenFlags]
 	maskbits NUM_STAT_PAGES
+	ld c, a
 	srl a
-	ret nc
+	jr nc, .skip_t_divider
 	and a
 	hlcoord 9, 7
 	jr z, .got_vertical_pos
 	inc hl
 .got_vertical_pos
 	ld [hl], $33
+.skip_t_divider
+	hlcoord 0, 7, wAttrmap
+	ld a, c
+	add $2
+	ld b, SCREEN_WIDTH
+.loop2
+	ld [hli], a
+	dec b
+	jr nz, .loop2
+	ld b, 0
 	ret
 
 StatsScreen_PlacePageSwitchArrows:
@@ -501,7 +512,8 @@ StatsScreen_LoadGFX:
 	ld hl, wStatsScreenFlags
 	bit 4, [hl]
 	jp nz, StatsScreen_PlaceFrontpic
-	jp SetPalettes
+	ld b, 2
+	jp SafeCopyTilemapAtOnce
 
 .ClearBox:
 	ld a, [wStatsScreenFlags]
