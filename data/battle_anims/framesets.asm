@@ -187,8 +187,8 @@ BattleAnimFrameData:
 	dw .Frameset_EnemyFeet2Row       ; BATTLEANIMFRAMESET_ENEMYFEET_2ROW
 	dw .Frameset_PlayerHead2Row      ; BATTLEANIMFRAMESET_PLAYERHEAD_2ROW
 	dw .Frameset_Hail 				 ; BATTLEANIMFRAMESET_HAIL
-	dw .Frameset_ba 				 ; BATTLEANIMFRAMESET_BA
-	dw .Frameset_bb 				 ; BATTLEANIMFRAMESET_BB
+	dw .Frameset_LeerShine 			 ; BATTLEANIMFRAMESET_LEER_SHINE
+	dw .Frameset_Moonblast 			 ; BATTLEANIMFRAMESET_MOONBLAST
 	assert_table_length NUM_BATTLEANIMFRAMESETS
 
 .Frameset_HitBig:
@@ -1276,11 +1276,11 @@ BattleAnimFrameData:
 	oamframe BATTLEANIMOAMSET_HAIL, 32
 	oamend
 
-.Frameset_ba:
+.Frameset_LeerShine:
 	oamframe BATTLEANIMOAMSET_75,  6
 	oamframe BATTLEANIMOAMSET_74,  6
 	oamdelete
 
-.Frameset_bb:
+.Frameset_Moonblast:
 	oamframe BATTLEANIMOAMSET_54, 40
 	oamend
