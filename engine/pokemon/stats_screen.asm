@@ -511,7 +511,7 @@ StatsScreen_LoadGFX:
 	call .LoadPals
 	ld hl, wStatsScreenFlags
 	bit 4, [hl]
-	jp nz, StatsScreen_PlaceFrontpic
+	call nz, StatsScreen_PlaceFrontpic
 	ld b, 2
 	jp SafeCopyTilemapAtOnce
 
