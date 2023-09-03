@@ -236,9 +236,9 @@ DEF LZ_LONG_HI   EQU %00000011
 	inc de
 	ld a, [de]
 	ld l, a
-	ld a, [hLZAddress]
+	ldh a, [hLZAddress]
 	ld e, a
-	ld a, [hLZAddress + 1]
+	ldh a, [hLZAddress + 1]
 	ld d, a
 
 .ok
