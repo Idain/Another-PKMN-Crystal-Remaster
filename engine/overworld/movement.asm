@@ -57,6 +57,10 @@ MovementPointers:
 	dw Movement_fast_jump_step_up     ; 35
 	dw Movement_fast_jump_step_left   ; 36
 	dw Movement_fast_jump_step_right  ; 37
+	dw Movement_stairs_step_down
+	dw Movement_stairs_step_up
+	dw Movement_stairs_step_left
+	dw Movement_stairs_step_right	
 	dw Movement_remove_sliding        ; 38
 	dw Movement_set_sliding           ; 39
 	dw Movement_remove_fixed_facing   ; 3a
@@ -628,6 +632,41 @@ Movement_fast_jump_step_left:
 Movement_fast_jump_step_right:
 	ld a, STEP_BIKE << 2 | RIGHT
 	jp JumpStep
+
+Movement_stairs_step_down:
+	ld a, STEP_WALK << 2 | DOWN
+	jr DiagonalStairsStep
+
+Movement_stairs_step_up:
+	ld a, STEP_WALK << 2 | UP
+	jr DiagonalStairsStep
+
+Movement_stairs_step_left:
+	ld a, STEP_WALK << 2 | LEFT
+	jr DiagonalStairsStep
+
+Movement_stairs_step_right:
+	ld a, STEP_WALK << 2 | RIGHT
+	; fallthrough
+DiagonalStairsStep:
+	call InitStep
+	ld hl, OBJECT_JUMP_HEIGHT
+	add hl, bc
+	ld [hl], $0
+
+	ld hl, OBJECT_ACTION
+	add hl, bc
+	ld [hl], OBJECT_ACTION_STEP
+
+	ld hl, wCenteredObject
+	ldh a, [hMapObjectIndex]
+	cp [hl]
+	ld hl, OBJECT_STEP_TYPE
+	add hl, bc
+	ld [hl], STEP_TYPE_NPC_STAIRS
+	ret nz
+	ld [hl], STEP_TYPE_PLAYER_STAIRS
+	ret
 
 Movement_turn_step_down:
 	ld a, OW_DOWN

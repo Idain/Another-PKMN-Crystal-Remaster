@@ -3003,7 +3003,7 @@ wPlayerState:: db
 wHallOfFameCount:: db
 wExpShareToggle:: db
 wTradeFlags:: flag_array NUM_NPC_TRADES
-	ds 1
+wPlayerGoingUpStairs:: db
 wMooMooBerries:: db
 wUndergroundSwitchPositions:: db
 wFarfetchdPosition:: db

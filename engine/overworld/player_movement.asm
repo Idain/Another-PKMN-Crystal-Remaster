@@ -67,6 +67,8 @@ ENDC
 	ret c
 	call .TryJump
 	ret c
+	call .TryStairs
+	ret c
 	call .CheckWarp
 	ret c
 	jr .NotMoving
@@ -92,6 +94,8 @@ ENDC
 	call .TryStep
 	ret c
 	call .TryJump
+	ret c
+	call .TryStairs
 	ret c
 	call .CheckWarp
 	ret c
@@ -405,6 +409,46 @@ ENDC
 	db FACE_UP | FACE_RIGHT   ; COLL_HOP_UP_RIGHT
 	db FACE_UP | FACE_LEFT    ; COLL_HOP_UP_LEFT
 
+.TryStairs:
+	ld a, [wPlayerTile]
+	ld e, a
+	and $f0
+	cp HI_NYBBLE_STAIRS
+	jr nz, .DontStairs
+
+	ld a, e
+	and 7
+	ld e, a
+	ld d, 0
+	ld hl, .FacingStairsTable
+	add hl, de
+	ld a, [wFacingDirection]
+	and [hl]
+	jr z, .DontStairs
+
+	ld a, [wPlayerTile]
+	cp COLL_STAIRS_UP_RIGHT
+	; a = carry ? FALSE : TRUE
+	sbc a
+	inc a
+	ld [wPlayerGoingUpStairs], a
+
+	ld a, STEP_STAIRS
+	call .DoStep
+	ld a, 7
+	scf
+	ret
+
+.FacingStairsTable:
+	db FACE_RIGHT
+	db FACE_LEFT
+	db FACE_RIGHT
+	db FACE_LEFT
+
+.DontStairs:
+	xor a
+	ret
+
 .CheckWarp:
 	ld a, [wWalkingDirection]
 	cp STANDING
@@ -484,6 +528,7 @@ ENDC
 	dw .TurningStep
 	dw .BackJumpStep
 	dw .FinishFacing
+	dw .StairsStep
 	assert_table_length NUM_STEPS
 
 .SlowStep:
@@ -526,6 +571,11 @@ ENDC
 	db $80 | UP
 	db $80 | LEFT
 	db $80 | RIGHT
+.StairsStep:
+	stairs_step DOWN
+	stairs_step UP
+	stairs_step LEFT
+	stairs_step RIGHT
 
 .StandInPlace:
 	ld a, 0

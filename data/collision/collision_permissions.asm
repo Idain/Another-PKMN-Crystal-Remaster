@@ -209,10 +209,10 @@ TileCollisionTable::
 	db WATER_TILE        ; cd
 	db WATER_TILE        ; ce
 	db WATER_TILE        ; cf
-	db LAND_TILE         ; d0
-	db LAND_TILE         ; d1
-	db LAND_TILE         ; d2
-	db LAND_TILE         ; d3
+	db LAND_TILE         ; COLL_STAIRS_DOWN_RIGHT
+	db LAND_TILE         ; COLL_STAIRS_DOWN_LEFT
+	db LAND_TILE         ; COLL_STAIRS_UP_RIGHT
+	db LAND_TILE         ; COLL_STAIRS_UP_LEFT
 	db LAND_TILE         ; d4
 	db LAND_TILE         ; d5
 	db LAND_TILE         ; d6
