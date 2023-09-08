@@ -306,7 +306,7 @@ BurnHealDesc:
 	next "#mon.@"
 
 IceHealDesc:
-	db   "Defrosts frostbit-"
+	db   "Heals a frostbit-"
 	next "ten #mon.@"
 
 AwakeningDesc:

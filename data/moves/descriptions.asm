@@ -299,7 +299,7 @@ FirePunchDescription:
 
 IcePunchDescription:
 	db   "An icy punch. May"
-	next "cause freezing.@"
+	next "cause frostbite.@"
 
 ThunderpunchDescription:
 	db   "An electric punch."

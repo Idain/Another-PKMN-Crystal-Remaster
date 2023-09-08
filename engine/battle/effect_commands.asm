@@ -4175,7 +4175,7 @@ BattleCommand_FreezeTarget:
 	call PlayOpponentBattleAnim
 	call RefreshBattleHuds
 
-	ld hl, WasFrostbittenText
+	ld hl, GotAFrostbiteText
 	call StdBattleTextbox
 
 	farjp UseHeldStatusHealingItem

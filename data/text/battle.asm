@@ -727,9 +727,9 @@ DefrostedOpponentText:
 	line "was defrosted!"
 	prompt
 
-WasFrostbittenText:
+GotAFrostbiteText:
 	text "<TARGET>"
-	line "was frostbitten!"
+	line "got a frostbite!"
 	prompt
 
 WontRiseAnymoreText:
