@@ -3868,6 +3868,10 @@ BattleCommand_Poison:
 	call CheckIfTargetIsSomeType
 	jp z, .failed
 
+	ld b, STEEL
+	call CheckIfTargetIsSomeType
+	jp z, .failed
+
 	ld a, BATTLE_VARS_STATUS_OPP
 	call GetBattleVar
 	ld b, a
