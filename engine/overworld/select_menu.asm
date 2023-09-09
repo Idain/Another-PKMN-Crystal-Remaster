@@ -21,6 +21,7 @@ CheckRegisteredItem:
 	and REGISTERED_POCKET
 	rlca
 	rlca
+	rlca
 	ld hl, .Pockets
 	rst JumpTable
 	ret
