@@ -426,16 +426,9 @@ ENDC
 	and [hl]
 	jr z, .DontStairs
 
-	ld a, [wPlayerTile]
-	cp COLL_STAIRS_UP_RIGHT
-	; a = carry ? FALSE : TRUE
-	sbc a
-	inc a
-	ld [wPlayerGoingUpStairs], a
-
 	ld a, STEP_STAIRS
 	call .DoStep
-	ld a, 7
+	ld a, PLAYERMOVEMENT_JUMP
 	scf
 	ret
 

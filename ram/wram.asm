@@ -3003,7 +3003,7 @@ wPlayerState:: db
 wHallOfFameCount:: db
 wExpShareToggle:: db
 wTradeFlags:: flag_array NUM_NPC_TRADES
-wPlayerGoingUpStairs:: db
+	ds 1
 wMooMooBerries:: db
 wUndergroundSwitchPositions:: db
 wFarfetchdPosition:: db
@@ -3090,7 +3090,10 @@ wMountMoonSquareSceneID::                         db
 wMobileTradeRoomSceneID::                         db
 wMobileBattleRoomSceneID::                        db
 
-	ds 67
+	ds 65
+
+wPlayerGoingUpStairs:: db
+wObjectGoingUpStairs:: db
 
 wEventFlags:: flag_array NUM_EVENTS
 
