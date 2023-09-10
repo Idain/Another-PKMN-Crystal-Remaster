@@ -822,6 +822,11 @@ ENDM
 	ret
 
 .BumpSound:
+	ld a, [wPlayerLastTile]
+	and $f0
+	cp HI_NYBBLE_STAIRS
+	ret z
+
 	call CheckSFX
 	ret c
 	ld de, SFX_BUMP
