@@ -1757,10 +1757,25 @@ StepFunction_NPCDiagonalStairs:
 	ld hl, OBJECT_LAST_TILE
 	add hl, bc
 	ld a, [hl]
-	cp COLL_STAIRS_UP_RIGHT
-	; a = carry ? DOWN : UP
-	sbc a
-	inc a
+	and $f
+	ld e, a
+	ld d, 0
+	ld hl, FacingStairsTable
+	add hl, de
+
+	push hl
+	ld hl, OBJECT_WALKING
+	add hl, bc
+	ld a, [hl]
+	maskbits NUM_DIRECTIONS
+	pop hl
+
+	cp RIGHT
+	ld a, [hl]
+	jr z, .dont_swap
+	swap a
+.dont_swap
+	and $f
 	ld [wObjectGoingUpDownStairs], a
 	jp ObjectStep_IncAnonJumptableIndex
 
@@ -1817,13 +1832,23 @@ StepFunction_PlayerDiagonalStairs:
 	dw .InitVertical
 
 .Start:
-	ld hl, OBJECT_LAST_TILE
-	add hl, bc
+	ld a, [wPlayerLastTile]
+	and $f
+	ld e, a
+	ld d, 0
+	ld hl, FacingStairsTable
+	add hl, de
+
+	ld a, [wPlayerWalking]
+	maskbits NUM_DIRECTIONS
+	ld [wPlayerGoingLeftRightStairs], a
+	cp RIGHT
 	ld a, [hl]
-	cp COLL_STAIRS_UP_RIGHT
-	; a = carry ? DOWN+1 : UP+1
-	sbc a
-	add UP+1
+	jr z, .dont_swap
+	swap a
+.dont_swap
+	and $f
+	inc a ; Either DOWN+1 or UP+1
 	ld [wPlayerGoingUpDownStairs], a
 	jp ObjectStep_IncAnonJumptableIndex
 
@@ -1959,6 +1984,20 @@ SlowDiagonalStairsPosition:
 	add e
 	ld [hl], a
 	ret
+
+MACRO stairtable
+	dn \1, \2
+ENDM
+
+FacingStairsTable:
+	stairtable 	DOWN, 	DOWN, ; COLL_STAIRS_DOWN_RIGHT
+	stairtable	DOWN, 	DOWN, ; COLL_STAIRS_DOWN_LEFT
+	stairtable 	UP, 	UP,   ; COLL_STAIRS_UP_RIGHT
+	stairtable	UP, 	UP,   ; COLL_STAIRS_UP_LEFT
+	stairtable	UP, 	UP,	  ; COLL_STAIRS_UP_LEFT_UP_RIGHT
+	stairtable	DOWN, 	UP,   ; COLL_STAIRS_DOWN_LEFT_UP_RIGHT
+	stairtable	UP, 	DOWN, ; COLL_STAIRS_UP_LEFT_DOWN_RIGHT
+	stairtable	DOWN, 	DOWN, ; COLL_STAIRS_DOWN_LEFT_DOWN_RIGHT
 
 GetPlayerNextMovementIndex:
 ; copy [wPlayerNextMovement] to [wPlayerMovement]
