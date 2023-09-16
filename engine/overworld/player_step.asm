@@ -95,6 +95,7 @@ UpdatePlayerCoords:
 
 UpdateOverworldMap:
 	ld a, [wPlayerStepDirection]
+.SkipDirection:
 	cp UP
 	jr z, .step_up
 	cp LEFT

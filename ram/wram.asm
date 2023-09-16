@@ -3090,10 +3090,11 @@ wMountMoonSquareSceneID::                         db
 wMobileTradeRoomSceneID::                         db
 wMobileBattleRoomSceneID::                        db
 
-	ds 65
+	ds 64
 
-wPlayerGoingUpStairs:: db
-wObjectGoingUpStairs:: db
+wPlayerGoingUpDownStairs:: db
+wObjectGoingUpDownStairs:: db
+wPlayerGoingLeftRightStairs:: db
 
 wEventFlags:: flag_array NUM_EVENTS
 

@@ -1761,7 +1761,7 @@ StepFunction_NPCDiagonalStairs:
 	; a = carry ? DOWN : UP
 	sbc a
 	inc a
-	ld [wObjectGoingUpStairs], a
+	ld [wObjectGoingUpDownStairs], a
 	jp ObjectStep_IncAnonJumptableIndex
 
 .InitHorizontal2:
@@ -1769,7 +1769,7 @@ StepFunction_NPCDiagonalStairs:
 	call ObjectStep_IncAnonJumptableIndex
 .StepHorizontal:
 	call AddStepVector
-	ld a, [wObjectGoingUpStairs]
+	ld a, [wObjectGoingUpDownStairs]
 	call SlowDiagonalStairsPosition
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
@@ -1785,7 +1785,7 @@ StepFunction_NPCDiagonalStairs:
 	ld hl, OBJECT_ACTION
 	add hl, bc
 	ld [hl], OBJECT_ACTION_STAND
-	ld a, [wObjectGoingUpStairs]
+	ld a, [wObjectGoingUpDownStairs]
 	and a
 	ld a, STEP_WALK << 2 | DOWN
 	jr z, .got_dir
@@ -1797,17 +1797,9 @@ StepFunction_NPCDiagonalStairs:
 	call GetNextTile
 	call ObjectStep_IncAnonJumptableIndex
 .StepVertical:
-	call AddStepVector
-	ld a, [wObjectGoingUpStairs]
-	xor 1
-	call WalkDiagonalStairsPosition
-	ld hl, OBJECT_STEP_DURATION
-	add hl, bc
-	dec [hl]
-	ret nz
 	call CopyCoordsTileToLastCoordsTile
 	xor a
-	ld [wObjectGoingUpStairs], a
+	ld [wObjectGoingUpDownStairs], a
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
 	ld [hl], STEP_TYPE_FROM_MOVEMENT
@@ -1817,33 +1809,60 @@ StepFunction_PlayerDiagonalStairs:
 	call ObjectStep_AnonJumptable
 ; anonymous dw
 	dw .Start
+	dw .PreloadMap
 	dw .InitHorizontal1
 	dw .StepHorizontal
 	dw .InitHorizontal2
-	dw .StepHorizontal
+	dw .StepHorizontal2
 	dw .InitVertical
-	dw .StepVertical
 
 .Start:
 	ld hl, OBJECT_LAST_TILE
 	add hl, bc
 	ld a, [hl]
 	cp COLL_STAIRS_UP_RIGHT
-	; a = carry ? DOWN : UP
+	; a = carry ? DOWN+1 : UP+1
 	sbc a
-	inc a
-	ld [wPlayerGoingUpStairs], a
+	add UP+1
+	ld [wPlayerGoingUpDownStairs], a
 	jp ObjectStep_IncAnonJumptableIndex
 
-.InitHorizontal2:
-	call GetNextTile
+.PreloadMap
+	push bc
+
+	; Scroll map twice in X-axis
+	ld a, [wPlayerGoingLeftRightStairs]
+	farcall UpdateOverworldMap.SkipDirection
+	ld a, [wPlayerGoingLeftRightStairs]
+	farcall UpdateOverworldMap.SkipDirection
+
+	; Scroll map in Y-axis
+	ld a, [wPlayerGoingUpDownStairs]
+	dec a
+	farcall UpdateOverworldMap.SkipDirection
+
+	; Scroll map back in X-axis
+	ld a, [wPlayerGoingLeftRightStairs]
+	xor 1
+	farcall UpdateOverworldMap.SkipDirection
+	ld a, [wPlayerGoingLeftRightStairs]
+	xor 1
+	farcall UpdateOverworldMap.SkipDirection
+
+	; Scroll map back in Y-axis
+	ld a, [wPlayerGoingUpDownStairs]
+	and UP | DOWN
+	farcall UpdateOverworldMap.SkipDirection
+
+	pop bc
+	jp ObjectStep_IncAnonJumptableIndex
+
 .InitHorizontal1:
 	ld hl, wPlayerStepFlags
 	set PLAYERSTEP_START_F, [hl]
 	call ObjectStep_IncAnonJumptableIndex
 .StepHorizontal:
-	ld a, [wPlayerGoingUpStairs]
-	call SlowDiagonalStairsPosition
+	call PlayerUpdatePosition
 	call UpdatePlayerStep
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
@@ -1856,63 +1875,90 @@ StepFunction_PlayerDiagonalStairs:
 	ld hl, wPlayerStepFlags
 	set PLAYERSTEP_STOP_F, [hl]
 	set PLAYERSTEP_MIDAIR_F, [hl]
+	; Fix wYCoord offset
+	ld a, [wPlayerGoingUpDownStairs]
+	dec a
+	ld e, 1
+	jr z, .fix_offset
+	ld e, -1
+.fix_offset
+	ld a, [wYCoord]
+	add e
+	ld [wYCoord], a
 	jp ObjectStep_IncAnonJumptableIndex
 
-.InitVertical:
-	ld hl, OBJECT_ACTION
-	add hl, bc
-	ld [hl], OBJECT_ACTION_STAND
-	ld a, [wPlayerGoingUpStairs]
-	and a
-	ld a, STEP_WALK << 2 | DOWN
-	jr z, .got_dir
-	ld a, STEP_WALK << 2 | UP
-.got_dir
-	ld hl, OBJECT_WALKING
-	add hl, bc
-	ld [hl], a
+.InitHorizontal2:
 	call GetNextTile
 	ld hl, wPlayerStepFlags
 	set PLAYERSTEP_START_F, [hl]
 	call ObjectStep_IncAnonJumptableIndex
-.StepVertical:
-	ld a, [wPlayerGoingUpStairs]
-	xor 1
-	call WalkDiagonalStairsPosition
+.StepHorizontal2:
+	call PlayerUpdatePosition
 	call UpdatePlayerStep
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	dec [hl]
 	ret nz
+	call CopyCoordsTileToLastCoordsTile
+	ld hl, wPlayerStepFlags
+	set PLAYERSTEP_STOP_F, [hl]
+	jp ObjectStep_IncAnonJumptableIndex
+
+.InitVertical:
+	ld hl, wPlayerStepFlags
+	set PLAYERSTEP_START_F, [hl]
+	ld hl, OBJECT_ACTION
+	add hl, bc
+	ld [hl], OBJECT_ACTION_STAND
+	ld a, [wPlayerGoingUpDownStairs]
+	dec a
+	ld hl, OBJECT_WALKING
+	add hl, bc
+	ld [hl], a
+	ld [wPlayerStepDirection], a
+	call GetNextTile
 	ld hl, wPlayerStepFlags
 	set PLAYERSTEP_STOP_F, [hl]
 	call CopyCoordsTileToLastCoordsTile
 	xor a
-	ld [wPlayerGoingUpStairs], a
+	ld [wPlayerGoingUpDownStairs], a
+	ld [wPlayerGoingLeftRightStairs], a
 	ld hl, OBJECT_STEP_TYPE
 	add hl, bc
 	ld [hl], STEP_TYPE_FROM_MOVEMENT
 	ret
 
+PlayerUpdatePosition:
+	ld a, [wPlayerGoingUpDownStairs]
+	dec a
+	ld e, 1
+	jr z, .goingdown
+	ld e, -1
+.goingdown
+	ld a, [hSCY]
+	add e
+	ld [hSCY], a
+	ld a, [wPlayerBGMapOffsetY]
+	sub e
+	ld [wPlayerBGMapOffsetY], a
+	ld hl, wPlayerStepFlags
+	set PLAYERSTEP_CONTINUE_F, [hl]
+
+	ld a, [wPlayerGoingUpDownStairs]
+	dec a
+	; fallthrough
 SlowDiagonalStairsPosition:
 	and a
 	ld e, 1
-	jr z, UpdateDiagonalStairsPosition
+	jr z, .updatePosition
 	ld e, -1
-UpdateDiagonalStairsPosition:
+.updatePosition
 	ld hl, OBJECT_SPRITE_Y_OFFSET
 	add hl, bc
 	ld a, [hl]
 	add e
 	ld [hl], a
 	ret
-
-WalkDiagonalStairsPosition:
-	and a
-	ld e, 2
-	jr z, UpdateDiagonalStairsPosition
-	ld e, -2
-	jr UpdateDiagonalStairsPosition
 
 GetPlayerNextMovementIndex:
 ; copy [wPlayerNextMovement] to [wPlayerMovement]

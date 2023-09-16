@@ -422,9 +422,13 @@ ENDC
 	ld d, 0
 	ld hl, .FacingStairsTable
 	add hl, de
+	add hl, de
 	ld a, [wFacingDirection]
 	and [hl]
 	jr z, .DontStairs
+	inc hl
+	ld a, [hl]
+	ld [wPlayerGoingLeftRightStairs], a
 
 	ld a, STEP_STAIRS
 	call .DoStep
@@ -433,10 +437,10 @@ ENDC
 	ret
 
 .FacingStairsTable:
-	db FACE_RIGHT
-	db FACE_LEFT
-	db FACE_RIGHT
-	db FACE_LEFT
+	db FACE_RIGHT, RIGHT
+	db FACE_LEFT, LEFT
+	db FACE_RIGHT, RIGHT
+	db FACE_LEFT, LEFT
 
 .DontStairs:
 	xor a
