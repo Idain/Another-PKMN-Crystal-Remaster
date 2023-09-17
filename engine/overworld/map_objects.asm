@@ -1784,8 +1784,7 @@ StepFunction_NPCDiagonalStairs:
 	call ObjectStep_IncAnonJumptableIndex
 .StepHorizontal:
 	call AddStepVector
-	ld a, [wObjectGoingUpDownStairs]
-	call SlowDiagonalStairsPosition
+	call NPCDiagonalStairsUpdatePosition
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	dec [hl]
@@ -1887,8 +1886,8 @@ StepFunction_PlayerDiagonalStairs:
 	set PLAYERSTEP_START_F, [hl]
 	call ObjectStep_IncAnonJumptableIndex
 .StepHorizontal:
-	call PlayerUpdatePosition
 	call UpdatePlayerStep
+	call PlayerDiagonalStairsUpdatePosition
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	dec [hl]
@@ -1918,8 +1917,8 @@ StepFunction_PlayerDiagonalStairs:
 	set PLAYERSTEP_START_F, [hl]
 	call ObjectStep_IncAnonJumptableIndex
 .StepHorizontal2:
-	call PlayerUpdatePosition
 	call UpdatePlayerStep
+	call PlayerDiagonalStairsUpdatePosition
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	dec [hl]
@@ -1953,7 +1952,7 @@ StepFunction_PlayerDiagonalStairs:
 	ld [hl], STEP_TYPE_FROM_MOVEMENT
 	ret
 
-PlayerUpdatePosition:
+PlayerDiagonalStairsUpdatePosition:
 	ld a, [wPlayerGoingUpDownStairs]
 	dec a
 	ld e, 1
@@ -1966,19 +1965,23 @@ PlayerUpdatePosition:
 	ld a, [wPlayerBGMapOffsetY]
 	sub e
 	ld [wPlayerBGMapOffsetY], a
+	ld hl, OBJECT_SPRITE_Y
+	add hl, bc
+	ld a, [hl]
+	add e
+	ld [hl], a
 	ld hl, wPlayerStepFlags
 	set PLAYERSTEP_CONTINUE_F, [hl]
+	ret
 
-	ld a, [wPlayerGoingUpDownStairs]
-	dec a
-	; fallthrough
-SlowDiagonalStairsPosition:
+NPCDiagonalStairsUpdatePosition:
+	ld a, [wObjectGoingUpDownStairs]
 	and a
 	ld e, 1
 	jr z, .updatePosition
 	ld e, -1
 .updatePosition
-	ld hl, OBJECT_SPRITE_Y_OFFSET
+	ld hl, OBJECT_SPRITE_Y
 	add hl, bc
 	ld a, [hl]
 	add e
