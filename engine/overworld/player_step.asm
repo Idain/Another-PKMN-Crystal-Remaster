@@ -93,9 +93,19 @@ UpdatePlayerCoords:
 	inc [hl]
 	ret
 
+UpdateOWMapStairs:
+.loop
+	push bc
+	ld a, b
+	call UpdateOWMapDirection
+	pop bc
+	dec c
+	jr nz, .loop
+	ret
+
 UpdateOverworldMap:
 	ld a, [wPlayerStepDirection]
-.SkipDirection:
+UpdateOWMapDirection:
 	cp UP
 	jr z, .step_up
 	cp LEFT

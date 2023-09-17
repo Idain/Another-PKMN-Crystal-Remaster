@@ -1856,27 +1856,30 @@ StepFunction_PlayerDiagonalStairs:
 
 	; Scroll map twice in X-axis
 	ld a, [wPlayerGoingLeftRightStairs]
-	farcall UpdateOverworldMap.SkipDirection
-	ld a, [wPlayerGoingLeftRightStairs]
-	farcall UpdateOverworldMap.SkipDirection
+	ld b, a
+	ld c, 2
+	farcall UpdateOWMapStairs
 
 	; Scroll map in Y-axis
 	ld a, [wPlayerGoingUpDownStairs]
 	dec a
-	farcall UpdateOverworldMap.SkipDirection
+	ld b, a
+	ld c, 1
+	farcall UpdateOWMapStairs
 
 	; Scroll map back in X-axis
 	ld a, [wPlayerGoingLeftRightStairs]
 	xor 1
-	farcall UpdateOverworldMap.SkipDirection
-	ld a, [wPlayerGoingLeftRightStairs]
-	xor 1
-	farcall UpdateOverworldMap.SkipDirection
+	ld b, a
+	ld c, 2
+	farcall UpdateOWMapStairs
 
 	; Scroll map back in Y-axis
 	ld a, [wPlayerGoingUpDownStairs]
 	and UP | DOWN
-	farcall UpdateOverworldMap.SkipDirection
+	ld b, a
+	ld c, 1
+	farcall UpdateOWMapStairs
 
 	pop bc
 	jp ObjectStep_IncAnonJumptableIndex
