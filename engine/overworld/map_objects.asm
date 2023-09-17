@@ -1748,10 +1748,8 @@ StepFunction_NPCDiagonalStairs:
 ; anonymous dw
 	dw .Start
 	dw .StepHorizontal
-	dw .InitHorizontal2
-	dw .StepHorizontal
+	dw .StepHorizontal2
 	dw .InitVertical
-	dw .StepVertical
 
 .Start:
 	ld hl, OBJECT_LAST_TILE
@@ -1779,20 +1777,36 @@ StepFunction_NPCDiagonalStairs:
 	ld [wObjectGoingUpDownStairs], a
 	jp ObjectStep_IncAnonJumptableIndex
 
-.InitHorizontal2:
-	call GetNextTile
-	call ObjectStep_IncAnonJumptableIndex
 .StepHorizontal:
 	call AddStepVector
-	call NPCDiagonalStairsUpdatePosition
+	ld hl, OBJECT_STEP_DURATION
+	add hl, bc
+	ld a, [hl]
+	cp 5
+	call c, NPCDiagonalStairsUpdatePosition
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	dec [hl]
 	ret nz
 	call CopyCoordsTileToLastCoordsTile
+	call GetNextTile
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
 	res OVERHEAD_F, [hl]
+	jp ObjectStep_IncAnonJumptableIndex
+
+.StepHorizontal2:
+	call AddStepVector
+	ld hl, OBJECT_STEP_DURATION
+	add hl, bc
+	ld a, [hl]
+	cp 5
+	call nc, NPCDiagonalStairsUpdatePosition
+	ld hl, OBJECT_STEP_DURATION
+	add hl, bc
+	dec [hl]
+	ret nz
+	call CopyCoordsTileToLastCoordsTile
 	jp ObjectStep_IncAnonJumptableIndex
 
 .InitVertical:
@@ -1800,17 +1814,10 @@ StepFunction_NPCDiagonalStairs:
 	add hl, bc
 	ld [hl], OBJECT_ACTION_STAND
 	ld a, [wObjectGoingUpDownStairs]
-	and a
-	ld a, STEP_WALK << 2 | DOWN
-	jr z, .got_dir
-	ld a, STEP_WALK << 2 | UP
-.got_dir
 	ld hl, OBJECT_WALKING
 	add hl, bc
 	ld [hl], a
 	call GetNextTile
-	call ObjectStep_IncAnonJumptableIndex
-.StepVertical:
 	call CopyCoordsTileToLastCoordsTile
 	xor a
 	ld [wObjectGoingUpDownStairs], a
@@ -1988,9 +1995,9 @@ PlayerDiagonalStairsUpdatePosition:
 NPCDiagonalStairsUpdatePosition:
 	ld a, [wObjectGoingUpDownStairs]
 	and a
-	ld e, 1
+	ld e, 2
 	jr z, .updatePosition
-	ld e, -1
+	ld e, -2
 .updatePosition
 	ld hl, OBJECT_SPRITE_Y
 	add hl, bc
