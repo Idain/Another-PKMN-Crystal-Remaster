@@ -1887,7 +1887,11 @@ StepFunction_PlayerDiagonalStairs:
 	call ObjectStep_IncAnonJumptableIndex
 .StepHorizontal:
 	call UpdatePlayerStep
-	call PlayerDiagonalStairsUpdatePosition
+	ld hl, OBJECT_STEP_DURATION
+	add hl, bc
+	ld a, [hl]
+	cp 5
+	call c, PlayerDiagonalStairsUpdatePosition
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	dec [hl]
@@ -1918,7 +1922,11 @@ StepFunction_PlayerDiagonalStairs:
 	call ObjectStep_IncAnonJumptableIndex
 .StepHorizontal2:
 	call UpdatePlayerStep
-	call PlayerDiagonalStairsUpdatePosition
+	ld hl, OBJECT_STEP_DURATION
+	add hl, bc
+	ld a, [hl]
+	cp 5
+	call nc, PlayerDiagonalStairsUpdatePosition
 	ld hl, OBJECT_STEP_DURATION
 	add hl, bc
 	dec [hl]
@@ -1955,9 +1963,9 @@ StepFunction_PlayerDiagonalStairs:
 PlayerDiagonalStairsUpdatePosition:
 	ld a, [wPlayerGoingUpDownStairs]
 	dec a
-	ld e, 1
+	ld e, 2
 	jr z, .goingdown
-	ld e, -1
+	ld e, -2
 .goingdown
 	ld a, [hSCY]
 	add e
