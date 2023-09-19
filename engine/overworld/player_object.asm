@@ -468,16 +468,15 @@ CopyTempObjectToObjectStruct:
 	ld hl, wPlayerBGMapOffsetY
 	sub [hl]
 
-	; If we're in the middle of the stairs and object loads, fix offset
+	; If we're taking the stairs and any object loads, fix Y-offset
 	push af
 	ld c, 0
 	and $f
 	jr z, .FinishYCoord
 	; If going down, offset by +8; else by -8
 	ld a, [wPlayerGoingUpDownStairs]
-	and a
-	jr z, .FinishYCoord
 	dec a
+	jr c, .FinishYCoord
 	ld c, 8
 	jr z, .FinishYCoord
 	ld c, -8
