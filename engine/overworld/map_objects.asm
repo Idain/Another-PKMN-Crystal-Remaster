@@ -1749,7 +1749,6 @@ StepFunction_NPCDiagonalStairs:
 	dw .Start
 	dw .StepHorizontal
 	dw .StepHorizontal2
-	dw .InitVertical
 
 .Start:
 	ld hl, OBJECT_LAST_TILE
@@ -1789,10 +1788,20 @@ StepFunction_NPCDiagonalStairs:
 	dec [hl]
 	ret nz
 	call CopyCoordsTileToLastCoordsTile
-	call GetNextTile
 	ld hl, OBJECT_FLAGS2
 	add hl, bc
 	res OVERHEAD_F, [hl]
+	ld a, [wObjectGoingUpDownStairs]
+	and a
+	ld a, 1
+	jr z, .fix_offsets
+	ld a, -1
+.fix_offsets
+	ld hl, OBJECT_LAST_MAP_Y
+	add hl, bc
+	add [hl]
+	ld [hl], a
+	call GetNextTile
 	jp ObjectStep_IncAnonJumptableIndex
 
 .StepHorizontal2:
@@ -1806,15 +1815,6 @@ StepFunction_NPCDiagonalStairs:
 	add hl, bc
 	dec [hl]
 	ret nz
-	call CopyCoordsTileToLastCoordsTile
-	jp ObjectStep_IncAnonJumptableIndex
-
-.InitVertical:
-	ld a, [wObjectGoingUpDownStairs]
-	ld hl, OBJECT_WALKING
-	add hl, bc
-	ld [hl], a
-	call GetNextTile
 	call CopyCoordsTileToLastCoordsTile
 	xor a
 	ld [wObjectGoingUpDownStairs], a
@@ -1856,27 +1856,23 @@ StepFunction_PlayerDiagonalStairs:
 
 .PreloadMap
 	push bc
-
 	; Scroll map twice in X-axis
 	ld a, [wPlayerGoingLeftRightStairs]
 	ld b, a
 	ld c, 2
 	farcall UpdateOWMapStairs
-
 	; Scroll map in Y-axis
 	ld a, [wPlayerGoingUpDownStairs]
 	dec a
 	ld b, a
 	ld c, 1
 	farcall UpdateOWMapStairs
-
 	; Scroll map back in X-axis
 	ld a, [wPlayerGoingLeftRightStairs]
 	xor 1
 	ld b, a
 	ld c, 2
 	farcall UpdateOWMapStairs
-
 	pop bc
 	jp ObjectStep_IncAnonJumptableIndex
 
