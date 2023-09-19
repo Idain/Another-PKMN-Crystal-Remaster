@@ -1944,9 +1944,9 @@ PlayerDiagonalStairsUpdatePosition:
 	ld a, [wPlayerGoingUpDownStairs]
 	dec a
 	ld e, 2
-	jr z, .goingdown
+	jr z, .updatePosition
 	ld e, -2
-.goingdown
+.updatePosition
 	ld a, [hSCY]
 	add e
 	ld [hSCY], a
@@ -1958,8 +1958,6 @@ PlayerDiagonalStairsUpdatePosition:
 	ld a, [hl]
 	add e
 	ld [hl], a
-	ld hl, wPlayerStepFlags
-	set PLAYERSTEP_CONTINUE_F, [hl]
 	ret
 
 NPCDiagonalStairsUpdatePosition:
