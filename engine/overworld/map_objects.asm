@@ -1810,9 +1810,6 @@ StepFunction_NPCDiagonalStairs:
 	jp ObjectStep_IncAnonJumptableIndex
 
 .InitVertical:
-	ld hl, OBJECT_ACTION
-	add hl, bc
-	ld [hl], OBJECT_ACTION_STAND
 	ld a, [wObjectGoingUpDownStairs]
 	ld hl, OBJECT_WALKING
 	add hl, bc
@@ -1913,16 +1910,19 @@ StepFunction_PlayerDiagonalStairs:
 	ld hl, wPlayerStepFlags
 	set PLAYERSTEP_STOP_F, [hl]
 	set PLAYERSTEP_MIDAIR_F, [hl]
-	; Fix wYCoord offset
+	; Fix Y-coordinate offsets
 	ld a, [wPlayerGoingUpDownStairs]
 	dec a
 	ld e, 1
-	jr z, .fix_offset
+	jr z, .fix_offsets
 	ld e, -1
-.fix_offset
+.fix_offsets
 	ld a, [wYCoord]
 	add e
 	ld [wYCoord], a
+	ld a, [wPlayerLastMapY]
+	add e
+	ld [wPlayerLastMapY], a
 	jp ObjectStep_IncAnonJumptableIndex
 
 .InitHorizontal2:
@@ -1949,19 +1949,14 @@ StepFunction_PlayerDiagonalStairs:
 .InitVertical:
 	ld hl, wPlayerStepFlags
 	set PLAYERSTEP_START_F, [hl]
-	ld hl, OBJECT_ACTION
-	add hl, bc
-	ld [hl], OBJECT_ACTION_STAND
 	ld a, [wPlayerGoingUpDownStairs]
 	dec a
 	ld hl, OBJECT_WALKING
 	add hl, bc
 	ld [hl], a
 	ld [wPlayerStepDirection], a
-	call GetNextTile
 	ld hl, wPlayerStepFlags
 	set PLAYERSTEP_STOP_F, [hl]
-	call CopyCoordsTileToLastCoordsTile
 	xor a
 	ld [wPlayerGoingUpDownStairs], a
 	ld [wPlayerGoingLeftRightStairs], a
