@@ -1832,7 +1832,6 @@ StepFunction_PlayerDiagonalStairs:
 	dw .StepHorizontal
 	dw .InitHorizontal2
 	dw .StepHorizontal2
-	dw .InitVertical
 
 .Start:
 	ld a, [wPlayerLastTile]
@@ -1876,13 +1875,6 @@ StepFunction_PlayerDiagonalStairs:
 	xor 1
 	ld b, a
 	ld c, 2
-	farcall UpdateOWMapStairs
-
-	; Scroll map back in Y-axis
-	ld a, [wPlayerGoingUpDownStairs]
-	and UP | DOWN
-	ld b, a
-	ld c, 1
 	farcall UpdateOWMapStairs
 
 	pop bc
@@ -1942,19 +1934,6 @@ StepFunction_PlayerDiagonalStairs:
 	dec [hl]
 	ret nz
 	call CopyCoordsTileToLastCoordsTile
-	ld hl, wPlayerStepFlags
-	set PLAYERSTEP_STOP_F, [hl]
-	jp ObjectStep_IncAnonJumptableIndex
-
-.InitVertical:
-	ld hl, wPlayerStepFlags
-	set PLAYERSTEP_START_F, [hl]
-	ld a, [wPlayerGoingUpDownStairs]
-	dec a
-	ld hl, OBJECT_WALKING
-	add hl, bc
-	ld [hl], a
-	ld [wPlayerStepDirection], a
 	ld hl, wPlayerStepFlags
 	set PLAYERSTEP_STOP_F, [hl]
 	xor a
