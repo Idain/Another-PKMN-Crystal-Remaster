@@ -84,8 +84,6 @@ GetMapSceneID::
 	pop bc
 	ret
 
-OverworldTextModeSwitch::
-	; fallthrough
 LoadMapPart::
 	ldh a, [hROMBank]
 	push af
@@ -1896,7 +1894,7 @@ ReloadTilesetAndPalettes::
 	ld c, a
 	call SwitchToAnyMapAttributesBank
 	farcall UpdateTimeOfDayPal
-	call OverworldTextModeSwitch
+	call LoadMapPart
 	call LoadTilesetGFX
 	ld a, 9
 	call SkipMusic

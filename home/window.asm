@@ -31,7 +31,7 @@ CloseText::
 	call ClearWindowData
 	xor a
 	ldh [hBGMapMode], a
-	call OverworldTextModeSwitch
+	call LoadMapPart
 	call _OpenAndCloseMenu_HDMATransferTilemapAndAttrmap
 	xor a
 	ldh [hBGMapMode], a

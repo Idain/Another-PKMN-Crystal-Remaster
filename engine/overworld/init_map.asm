@@ -12,7 +12,7 @@ ReanchorBGMap_NoOAMUpdate::
 	ldh [hBGMapMode], a
 	ld a, $90
 	ldh [hWY], a
-	call OverworldTextModeSwitch
+	call LoadMapPart
 	ld a, HIGH(vBGMap1)
 	ldh [hBGMapAddress + 1], a
 	xor a

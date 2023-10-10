@@ -218,7 +218,7 @@ LoadMapTimeOfDay:
 	ld [wSpriteUpdatesEnabled], a
 	farcall ReplaceTimeOfDayPals
 	farcall UpdateTimeOfDayPal
-	call OverworldTextModeSwitch
+	call LoadMapPart
 	call .ClearBGMap
 	jr .PushAttrmap
 
