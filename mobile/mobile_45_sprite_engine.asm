@@ -632,7 +632,7 @@ Function11636e:
 	ld hl, wShadowOAM
 	ld bc, 16 * SPRITEOAMSTRUCT_LENGTH
 	call ByteFill
-	ld a, $90
+	ld a, SCREEN_HEIGHT_PX
 	ldh [hWY], a
 	call UpdateSprites
 	pop af
@@ -674,7 +674,7 @@ Function1163c0:
 	ldh [rSVBK], a
 	call SetPalettes
 	call DelayFrame
-	ld a, $90
+	ld a, SCREEN_HEIGHT_PX
 	ldh [hWY], a
 	call UpdateSprites
 	farcall _ClearSprites
@@ -708,7 +708,7 @@ Function1163c0:
 
 Function116441:
 	farcall Function17d405
-	ld a, $90
+	ld a, SCREEN_HEIGHT_PX
 	ldh [hWY], a
 	farcall ReloadMapPart
 	ld a, $8

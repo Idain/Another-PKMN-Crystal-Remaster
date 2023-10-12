@@ -8795,7 +8795,7 @@ InitBattleDisplay:
 	xor a
 	ldh [hMapAnims], a
 	ldh [hSCY], a
-	ld a, $90
+	ld a, SCREEN_HEIGHT_PX
 	ldh [hWY], a
 	ldh [rWY], a
 	call WaitBGMap
@@ -8818,7 +8818,7 @@ InitBattleDisplay:
 	ld b, SCGB_BATTLE_COLORS
 	call GetSGBLayout
 	call SetPalettes
-	ld a, $90
+	ld a, SCREEN_HEIGHT_PX
 	ldh [hWY], a
 	xor a
 	ldh [hSCX], a

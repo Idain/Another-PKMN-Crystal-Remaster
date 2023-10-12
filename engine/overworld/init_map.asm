@@ -10,7 +10,7 @@ ReanchorBGMap_NoOAMUpdate::
 	ldh [hBGMapMode], a
 	ldh [hLCDCPointer], a
 	ldh [hBGMapMode], a
-	ld a, $90
+	ld a, SCREEN_HEIGHT_PX
 	ldh [hWY], a
 	call LoadMapPart
 	ld a, HIGH(vBGMap1)
@@ -54,7 +54,7 @@ LoadFonts_NoOAMUpdate::
 	ldh [hOAMUpdate], a
 
 	farcall LoadFontsExtra
-	ld a, $90
+	ld a, SCREEN_HEIGHT_PX
 	ldh [hWY], a
 	call SafeUpdateSprites
 	farcall LoadStandardFont

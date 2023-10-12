@@ -190,7 +190,7 @@ RunTradeAnimScript:
 	ldh [hSCY], a
 	ld a, $7
 	ldh [hWX], a
-	ld a, $90
+	ld a, SCREEN_HEIGHT_PX
 	ldh [hWY], a
 	farcall GetTrademonFrontpic
 	call EnableLCD
@@ -418,7 +418,7 @@ TradeAnim_TubeToOT3:
 	ldh a, [hSCX]
 	add $2
 	ldh [hSCX], a
-	cp $a0
+	cp SCREEN_WIDTH_PX
 	ret nz
 	ld a, TRADEANIMSTATE_2
 	call TradeAnim_TubeAnimJumptable
@@ -483,7 +483,7 @@ TradeAnim_TubeToPlayer8:
 	call ByteFill
 	xor a
 	ldh [hSCX], a
-	ld a, $90
+	ld a, SCREEN_HEIGHT_PX
 	ldh [hWY], a
 	call EnableLCD
 	call LoadTradeBallAndCableGFX
@@ -617,7 +617,7 @@ TradeAnim_PlaceTrademonStatsOnTubeAnim:
 TradeAnim_EnterLinkTube1:
 	call ClearTilemap
 	call WaitTop
-	ld a, $a0
+	ld a, SCREEN_WIDTH_PX
 	ldh [hSCX], a
 	call DelayFrame
 	hlcoord 8, 2
@@ -650,7 +650,7 @@ TradeAnim_EnterLinkTube2:
 
 TradeAnim_ExitLinkTube:
 	ldh a, [hSCX]
-	cp $a0
+	cp SCREEN_WIDTH_PX
 	jr z, .done
 	sub $4
 	ldh [hSCX], a
@@ -699,7 +699,7 @@ TradeAnim_FrontpicScrollStart:
 TradeAnim_TextboxScrollStart:
 	ld a, $7
 	ldh [hWX], a
-	ld a, $90
+	ld a, SCREEN_HEIGHT_PX
 	ldh [hWY], a
 	jp TradeAnim_AdvanceScriptPointer
 
@@ -721,7 +721,7 @@ TradeAnim_ScrollOutRight:
 
 TradeAnim_ScrollOutRight2:
 	ldh a, [hWX]
-	cp $a1
+	cp SCREEN_WIDTH_PX + 1
 	jr nc, .done
 	add $4
 	ldh [hWX], a
@@ -733,7 +733,7 @@ TradeAnim_ScrollOutRight2:
 	call WaitBGMap
 	ld a, $7
 	ldh [hWX], a
-	ld a, $90
+	ld a, SCREEN_HEIGHT_PX
 	ldh [hWY], a
 	ld a, HIGH(vBGMap0)
 	ldh [hBGMapAddress + 1], a

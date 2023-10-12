@@ -99,7 +99,7 @@ Function16c0a8:
 	ld [wd1eb], a
 	ld [wd1f1], a
 	call ClearSprites
-	ld a, $90
+	ld a, SCREEN_HEIGHT_PX
 	ldh [hWY], a
 	call Function16c0fa
 	ret

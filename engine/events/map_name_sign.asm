@@ -79,7 +79,7 @@ InitMapNameSign::
 .dont_do_map_sign
 	ld a, [wCurLandmark]
 	ld [wPrevLandmark], a
-	ld a, $90
+	ld a, SCREEN_HEIGHT_PX
 	ldh [rWY], a
 	ldh [hWY], a
 	xor a

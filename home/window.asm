@@ -36,7 +36,7 @@ CloseText::
 	xor a
 	ldh [hBGMapMode], a
 	call SafeUpdateSprites
-	ld a, $90
+	ld a, SCREEN_HEIGHT_PX
 	ldh [hWY], a
 	homecall UpdatePlayerSprite
 	farcall InitMapNameSign

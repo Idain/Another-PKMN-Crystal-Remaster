@@ -301,7 +301,7 @@ Pokedex_UpdateMainScreen:
 	ld [wJumptableIndex], a
 	xor a
 	ldh [hSCX], a
-	ld a, $a7
+	ld a, SCREEN_WIDTH_PX + 7
 	ldh [hWX], a
 	jp DelayFrame
 
@@ -311,7 +311,7 @@ Pokedex_UpdateMainScreen:
 	ld [wJumptableIndex], a
 	xor a
 	ldh [hSCX], a
-	ld a, $a7
+	ld a, SCREEN_WIDTH_PX + 7
 	ldh [hWX], a
 	jp DelayFrame
 
@@ -335,7 +335,7 @@ Pokedex_InitDexEntryScreen:
 	farcall DisplayDexEntry
 	call Pokedex_DrawFootprint
 	call WaitBGMap
-	ld a, $a7
+	ld a, SCREEN_WIDTH_PX + 7
 	ldh [hWX], a
 	call Pokedex_GetSelectedMon
 	ld [wCurPartySpecies], a
@@ -455,7 +455,7 @@ DexEntryScreen_MenuActionJumptable:
 	call DelayFrame
 	ld a, $7
 	ldh [hWX], a
-	ld a, $90
+	ld a, SCREEN_HEIGHT_PX
 	ldh [hWY], a
 	call Pokedex_GetSelectedMon
 	ld a, [wDexCurLocation]
@@ -465,7 +465,7 @@ DexEntryScreen_MenuActionJumptable:
 	call DelayFrame
 	xor a
 	ldh [hBGMapMode], a
-	ld a, $90
+	ld a, SCREEN_HEIGHT_PX
 	ldh [hWY], a
 	ld a, POKEDEX_SCX
 	ldh [hSCX], a
@@ -794,7 +794,7 @@ Pokedex_UpdateSearchResultsScreen:
 	ld [wJumptableIndex], a
 	xor a
 	ldh [hSCX], a
-	ld a, $a7
+	ld a, SCREEN_WIDTH_PX + 7
 	ldh [hWX], a
 	ret
 

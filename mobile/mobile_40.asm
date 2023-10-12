@@ -3644,7 +3644,7 @@ Function101913:
 	ld [wc305], a
 	ld hl, wcd29
 	res 7, [hl]
-	ld a, $90
+	ld a, SCREEN_HEIGHT_PX
 	ldh [hWY], a
 	ld a, [wcd21]
 	cp $01

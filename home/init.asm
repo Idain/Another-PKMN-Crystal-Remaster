@@ -108,7 +108,7 @@ Init::
 	ld a, $8 ; HBlank int enable
 	ldh [rSTAT], a
 
-	ld a, $90
+	ld a, SCREEN_HEIGHT_PX
 	ldh [hWY], a
 	ldh [rWY], a
 

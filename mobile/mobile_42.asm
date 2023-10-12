@@ -174,7 +174,7 @@ Function1080b7:
 	ldh [hSCY], a
 	ld a, $7
 	ldh [hWX], a
-	ld a, $90
+	ld a, SCREEN_HEIGHT_PX
 	ldh [hWY], a
 	farcall ClearSpriteAnims
 
@@ -234,7 +234,7 @@ Function108157:
 	ldh [hSCY], a
 	ld a, $7
 	ldh [hWX], a
-	ld a, $90
+	ld a, SCREEN_HEIGHT_PX
 	ldh [hWY], a
 	farcall ClearSpriteAnims
 	xor a ; SPRITE_ANIM_DICT_DEFAULT
@@ -340,7 +340,7 @@ MobileTradeAnim_JumptableLoop:
 	ldh [hSCY], a
 	ld a, $7
 	ldh [hWX], a
-	ld a, $90
+	ld a, SCREEN_HEIGHT_PX
 	ldh [hWY], a
 	farcall LoadStandardFont
 	farcall LoadFontsBattleExtra
@@ -517,7 +517,7 @@ MobileTradeAnim_ShowOTMonFromTrade:
 	ldh [hSCY], a
 	ld a, $7
 	ldh [hWX], a
-	ld a, $90
+	ld a, SCREEN_HEIGHT_PX
 	ldh [hWY], a
 	depixel 10, 11, 4, 0
 	ld a, SPRITE_ANIM_INDEX_MOBILE_TRADE_OT_BALL
@@ -657,7 +657,7 @@ MobileTradeAnim_ShowOTMonFromGTS:
 	ldh [hSCY], a
 	ld a, $7
 	ldh [hWX], a
-	ld a, $90
+	ld a, SCREEN_HEIGHT_PX
 	ldh [hWY], a
 	depixel 10, 11, 4, 0
 	ld a, SPRITE_ANIM_INDEX_MOBILE_TRADE_OT_BALL
@@ -724,7 +724,7 @@ MobileTradeAnim_GetOddEgg:
 	ldh [hSCY], a
 	ld a, $7
 	ldh [hWX], a
-	ld a, $90
+	ld a, SCREEN_HEIGHT_PX
 	ldh [hWY], a
 	depixel 10, 11, 4, 0
 	ld a, SPRITE_ANIM_INDEX_MOBILE_TRADE_OT_BALL
@@ -781,7 +781,7 @@ MobileTradeAnim_02:
 	ldh [hSCY], a
 	ld a, $7
 	ldh [hWX], a
-	ld a, $90
+	ld a, SCREEN_HEIGHT_PX
 	ldh [hWY], a
 	ldh a, [rSVBK]
 	push af
@@ -825,7 +825,7 @@ MobileTradeAnim_10:
 	ldh [hSCY], a
 	ld a, $7
 	ldh [hWX], a
-	ld a, $90
+	ld a, SCREEN_HEIGHT_PX
 	ldh [hWY], a
 	ldh a, [rSVBK]
 	push af
@@ -867,7 +867,7 @@ MobileTradeAnim_11:
 	ldh [hSCY], a
 	ld a, $7
 	ldh [hWX], a
-	ld a, $90
+	ld a, SCREEN_HEIGHT_PX
 	ldh [hWY], a
 	ldh a, [rSVBK]
 	push af
@@ -1478,7 +1478,7 @@ MobileTradeAnim_AnimateOTPulse:
 	ret
 
 Function108bec:
-	ld a, $90
+	ld a, SCREEN_HEIGHT_PX
 	ldh [hWY], a
 	ld hl, .MobilePlayerWillTradeMonText
 	call PrintText
@@ -1502,7 +1502,7 @@ Function108bec:
 	text_end
 
 Function108c16:
-	ld a, $90
+	ld a, SCREEN_HEIGHT_PX
 	ldh [hWY], a
 	ld hl, .MobileTakeGoodCareOfMonText
 	call PrintText
@@ -1514,7 +1514,7 @@ Function108c16:
 	text_end
 
 Function108c2b:
-	ld a, $90
+	ld a, SCREEN_HEIGHT_PX
 	ldh [hWY], a
 	ld hl, .MobilePlayersMonTrade2Text
 	call PrintText
@@ -1526,7 +1526,7 @@ Function108c2b:
 	text_end
 
 Function108c40:
-	ld a, $90
+	ld a, SCREEN_HEIGHT_PX
 	ldh [hWY], a
 	ld a, [wcf65]
 	and %10000000

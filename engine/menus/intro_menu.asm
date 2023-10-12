@@ -920,7 +920,7 @@ StartTitleScreen:
 	ldh [hSCY], a
 	ld a, $7
 	ldh [hWX], a
-	ld a, $90
+	ld a, SCREEN_HEIGHT_PX
 	ldh [hWY], a
 	ld b, SCGB_DIPLOMA
 	call GetSGBLayout
@@ -1153,7 +1153,7 @@ GameInit::
 	ldh [hJoyDown], a
 	ldh [hSCX], a
 	ldh [hSCY], a
-	ld a, $90
+	ld a, SCREEN_HEIGHT_PX
 	ldh [hWY], a
 	call WaitBGMap
 	jp IntroSequence
