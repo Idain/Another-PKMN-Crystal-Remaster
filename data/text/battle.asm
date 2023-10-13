@@ -278,10 +278,6 @@ BattleText_AnEGGCantBattle:
 	line "battle!"
 	prompt
 
-BattleText_CantEscape2:
-	text "Can't escape!"
-	prompt
-
 BattleText_TheresNoEscapeFromTrainerBattle:
 	text "No! There's no"
 	line "running from a"

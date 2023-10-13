@@ -3845,9 +3845,6 @@ TryToRunAwayFromBattle:
 	jr nc, .can_escape
 	ld a, BATTLEPLAYERACTION_USEITEM
 	ld [wBattlePlayerAction], a
-	ld hl, BattleText_CantEscape2
-	jr .print_inescapable_text
-
 .cant_escape
 	ld hl, BattleText_CantEscape
 	jr .print_inescapable_text
