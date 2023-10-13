@@ -40,8 +40,7 @@ CloseText::
 	ldh [hWY], a
 	homecall UpdatePlayerSprite
 	farcall InitMapNameSign
-	farcall LoadOverworldFont
-	ret
+	farjp LoadOverworldFont
 
 OpenText::
 	call ClearWindowData

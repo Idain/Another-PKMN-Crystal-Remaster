@@ -644,8 +644,7 @@ GetWarpDestCoords::
 	ld a, [hli]
 	cp -1
 	call z, .backup
-	farcall GetMapScreenCoords
-	ret
+	farjp GetMapScreenCoords
 
 .backup
 	ld a, [wPrevWarp]

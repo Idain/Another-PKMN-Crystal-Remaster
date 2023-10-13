@@ -1,6 +1,5 @@
 GiveOddEgg:
-	farcall _GiveOddEgg
-	ret
+	farjp _GiveOddEgg
 
 Function11765d:
 	ldh a, [hInMenu]
