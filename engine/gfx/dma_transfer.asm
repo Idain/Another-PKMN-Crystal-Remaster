@@ -51,7 +51,6 @@ ReloadMapPart::
 	decoord 0, 0
 	ld hl, wScratchTilemap
 	call PadTilemapForHDMATransfer
-	call DelayFrame
 
 	di
 	ldh a, [rVBK]
@@ -59,11 +58,11 @@ ReloadMapPart::
 	ld a, $1
 	ldh [rVBK], a
 	ld hl, wScratchAttrmap
-	call HDMATransfer_Wait127Scanlines_toBGMap
+	call DoHBlankHDMATransfer_toBGMap
 	xor a
 	ldh [rVBK], a
 	ld hl, wScratchTilemap
-	call HDMATransfer_Wait127Scanlines_toBGMap
+	call DoHBlankHDMATransfer_toBGMap
 	pop af
 	ldh [rVBK], a
 	reti
@@ -78,7 +77,6 @@ Mobile_ReloadMapPart:
 	decoord 0, 0
 	ld hl, wScratchTilemap
 	call PadTilemapForHDMATransfer
-	call DelayFrame
 
 	di
 	ldh a, [rVBK]
@@ -91,37 +89,6 @@ Mobile_ReloadMapPart:
 	ldh [rVBK], a
 	ld hl, wScratchTilemap
 	call HDMATransfer_NoDI
-	pop af
-	ldh [rVBK], a
-	reti
-
-OpenAndCloseMenu_HDMATransferTilemapAndAttrmap::
-; OpenText
-	call StackCallInSafeGFXMode
-
-.Function:
-	; Transfer wAttrmap and Tilemap to BGMap
-	; Fill vBGAttrs with $00
-	; Fill vBGTiles with " "
-	decoord 0, 0, wAttrmap
-	ld hl, wScratchAttrmap
-	call PadAttrmapForHDMATransfer
-	decoord 0, 0
-	ld hl, wScratchTilemap
-	call PadTilemapForHDMATransfer
-	call DelayFrame
-
-	di
-	ldh a, [rVBK]
-	push af
-	ld a, $1
-	ldh [rVBK], a
-	ld hl, wScratchAttrmap
-	call HDMATransfer_Wait123Scanlines_toBGMap
-	xor a
-	ldh [rVBK], a
-	ld hl, wScratchTilemap
-	call HDMATransfer_Wait123Scanlines_toBGMap
 	pop af
 	ldh [rVBK], a
 	reti
@@ -144,11 +111,11 @@ Mobile_OpenAndCloseMenu_HDMATransferTilemapAndAttrmap:
 	ld a, $1
 	ldh [rVBK], a
 	ld hl, wScratchAttrmap
-	call HDMATransfer_Wait127Scanlines_toBGMap
+	call DoHBlankHDMATransfer_toBGMap
 	xor a
 	ldh [rVBK], a
 	ld hl, wScratchTilemap
-	jr HDMATransfer_Wait127Scanlines_toBGMap
+	jr DoHBlankHDMATransfer_toBGMap
 
 StackCallInSafeGFXMode:
 	pop hl
@@ -180,40 +147,70 @@ StackCallInSafeGFXMode:
 	ret
 
 HDMATransferToWRAMBank3:
-	call _LoadHDMAParameters
+	; Load HDMA Parameters
+	ld a, h
+	ldh [rHDMA1], a
+	ld a, l
+	ldh [rHDMA2], a
+	ldh a, [hBGMapAddress + 1]
+	and $1f
+	ldh [rHDMA3], a
+	ldh a, [hBGMapAddress]
+	ldh [rHDMA4], a
+
 	ld a, $23
 	ldh [hDMATransfer], a
+	; fallthrough
 
 WaitDMATransfer:
+	jr .handleLoop ; no-optimize stub jump
 .loop
 	call DelayFrame
+.handleLoop
 	ldh a, [hDMATransfer]
 	and a
 	jr nz, .loop
 	ret
 
-HDMATransfer_Wait127Scanlines_toBGMap:
+DoHBlankHDMATransfer_toBGMap:
 ; HDMA transfer from hl to [hBGMapAddress]
 ; hBGMapAddress -> de
-; 2 * SCREEN_HEIGHT -> c
+; (2 * SCREEN_HEIGHT) - 1 -> c
 	ldh a, [hBGMapAddress + 1]
 	ld d, a
 	ldh a, [hBGMapAddress]
 	ld e, a
-	ld c, 2 * SCREEN_HEIGHT
-	jr HDMATransfer_Wait127Scanlines
-
-HDMATransfer_Wait123Scanlines_toBGMap:
-; HDMA transfer from hl to [hBGMapAddress]
-; hBGMapAddress -> de
-; 2 * SCREEN_HEIGHT -> c
-; $7b --> b
-	ldh a, [hBGMapAddress + 1]
-	ld d, a
-	ldh a, [hBGMapAddress]
-	ld e, a
-	ld c, 2 * SCREEN_HEIGHT
-	jr HDMATransfer_Wait123Scanlines
+	ld c, (2 * SCREEN_HEIGHT) - 1
+	; [rHDMA1, rHDMA2] = hl & $fff0
+	ld a, h
+	ldh [rHDMA1], a
+	ld a, l
+	and $f0 ; high nybble
+	ldh [rHDMA2], a
+	; [rHDMA3, rHDMA4] = de & $1ff0
+	ld a, d
+	and $1f ; lower 5 bits
+	ldh [rHDMA3], a
+	ld a, e
+	and $f0 ; high nybble
+	ldh [rHDMA4], a
+	di
+	ldh a, [rLY]
+	add c ; calculate end LY
+	cp $80 ; is the end LY greater than the max LY
+	call nc, DI_DelayFrame ; if so, delay a frame to reset the LY
+	set 7, c
+.waitHBlank
+	ldh a, [rSTAT]
+	and rSTAT_MODE_MASK
+	jr nz, .waitHBlank
+	ld hl, rHDMA5
+	ld [hl], c
+	ld a, $ff
+.waitHDMALoop
+	cp [hl]
+	jr nz, .waitHDMALoop
+	reti
 
 HDMATransfer_NoDI:
 ; HDMA transfer from hl to [hBGMapAddress]
@@ -239,48 +236,29 @@ HDMATransfer_NoDI:
 	and $f0
 	ldh [rHDMA4], a
 	; b = c | %10000000
-	ld a, c
 	dec c
-	or $80
-	ld b, a
-	; d = $7f - c + 1
-	ld a, $7f
-	sub c
-	ld d, a
-	; while [rLY] >= d: pass
-.loop1
+	ld b, c
+	set 7, b
 	ldh a, [rLY]
-	cp d
-	jr nc, .loop1
-	; while not [rSTAT] & 3: pass
-.loop2
+	add c ; calculate end LY
+	cp $7f ; is the end LY greater than the max LY
+	call nc, DI_DelayFrame ; if so, delay a frame to reset the LY
+
+	; while not [rSTAT] & rSTAT_MODE_MASK: pass
+.noHBlankWait
 	ldh a, [rSTAT]
-	and $3
-	jr z, .loop2
+	and rSTAT_MODE_MASK
+	jr z, .noHBlankWait
 	; load the 5th byte of HDMA
-	ld a, b
-	ldh [rHDMA5], a
-	; wait until rLY advances (c + 1) times
-	ldh a, [rLY]
-	inc c
-	ld hl, rLY
-.loop3
-	cp [hl]
-	jr z, .loop3
-	ld a, [hl]
-	dec c
-	jr nz, .loop3
 	ld hl, rHDMA5
-	res 7, [hl]
+	ld [hl], b
+	ld a, $ff
+.waitForHDMA
+	cp [hl]
+	jr nz, .waitForHDMA
 	ret
 
-HDMATransfer_Wait123Scanlines:
-	ld b, $7b
-	jr _continue_HDMATransfer
-
-HDMATransfer_Wait127Scanlines:
-	ld b, $7f
-_continue_HDMATransfer:
+DoHBlankHDMATransfer:
 ; a lot of waiting around for hardware registers
 	; [rHDMA1, rHDMA2] = hl & $fff0
 	ld a, h
@@ -296,58 +274,32 @@ _continue_HDMATransfer:
 	and $f0 ; high nybble
 	ldh [rHDMA4], a
 	; e = c | %10000000
-	ld a, c
-	dec c
-	or $80
-	ld e, a
-	; d = b - c + 1
-	ld a, b
-	sub c
-	ld d, a
-	; while [rLY] >= d: pass
-.ly_loop
+	dec c ; c = number of LYs needed
+	ld e, c
+	set 7, e ; hblank dma transfers
 	ldh a, [rLY]
-	cp d
-	jr nc, .ly_loop
+	add c ; calculate end LY
+	cp $7f ; is the end LY greater than the max LY
+	call nc, DI_DelayFrame ; if so, delay a frame to reset the LY
 
-	di
-	; while [rSTAT] & 3: pass
-.rstat_loop_1
-	ldh a, [rSTAT]
-	and $3
-	jr nz, .rstat_loop_1
-	; while not [rSTAT] & 3: pass
-.rstat_loop_2
-	ldh a, [rSTAT]
-	and $3
-	jr z, .rstat_loop_2
+	lb bc, rSTAT_MODE_MASK, LOW(rSTAT)
+	; while not [rSTAT] & rSTAT_MODE_MASK: pass
+.noHBlankWait
+	ldh a, [c]
+	and b
+	jr z, .noHBlankWait
+	; while [rSTAT] & rSTAT_MODE_MASK: pass
+.hBlankWaitLoop
+	ldh a, [c]
+	and b
+	jr nz, .hBlankWaitLoop
 	; load the 5th byte of HDMA
-	ld a, e
-	ldh [rHDMA5], a
-	; wait until rLY advances (c + 1) times
-	ldh a, [rLY]
-	inc c
-	ld hl, rLY
-.final_ly_loop
-	cp [hl]
-	jr z, .final_ly_loop
-	ld a, [hl]
-	dec c
-	jr nz, .final_ly_loop
 	ld hl, rHDMA5
-	res 7, [hl]
-	reti
-
-_LoadHDMAParameters:
-	ld a, h
-	ldh [rHDMA1], a
-	ld a, l
-	ldh [rHDMA2], a
-	ldh a, [hBGMapAddress + 1]
-	and $1f
-	ldh [rHDMA3], a
-	ldh a, [hBGMapAddress]
-	ldh [rHDMA4], a
+	ld [hl], e
+	ld a, $ff
+.waitForHDMA
+	cp [hl]
+	jr nz, .waitForHDMA
 	ret
 
 PadTilemapForHDMATransfer:
@@ -431,7 +383,7 @@ HDMATransfer2bpp::
 	ld d, h
 	ld e, l
 	ld hl, wScratchTilemap
-	call HDMATransfer_Wait127Scanlines
+	call DoHBlankHDMATransfer
 
 	; restore the previous bank
 	pop af
@@ -496,7 +448,7 @@ HDMATransfer1bpp::
 	ld d, h
 	ld e, l
 	ld hl, wScratchTilemap
-	call HDMATransfer_Wait127Scanlines
+	call DoHBlankHDMATransfer
 
 	pop af
 	ldh [rSVBK], a
@@ -512,18 +464,20 @@ HDMATransfer_OnlyTopFourRows:
 	ld hl, wScratchTilemap + $80
 	decoord 0, 0, wAttrmap
 	call .Copy
+	di
 	ld a, $1
 	ldh [rVBK], a
 	ld c, $8
 	ld hl, wScratchTilemap + $80
 	debgcoord 0, 0, vBGMap1
-	call HDMATransfer_Wait127Scanlines
+	call DoHBlankHDMATransfer
 	xor a
 	ldh [rVBK], a
 	ld c, $8
 	ld hl, wScratchTilemap
 	debgcoord 0, 0, vBGMap1
-	jp HDMATransfer_Wait127Scanlines
+	call DoHBlankHDMATransfer
+	reti
 
 .Copy:
 	ld b, 4
@@ -543,4 +497,18 @@ HDMATransfer_OnlyTopFourRows:
 	ld h, a
 	dec b
 	jr nz, .outer_loop
+	ret
+
+DI_DelayFrame:
+	ldh a, [rLY]
+	push bc
+	ld b, a
+.loop
+	ldh a, [rLY]
+	and a
+	jr z, .done
+	cp b
+	jr nc, .loop
+.done
+	pop bc
 	ret
