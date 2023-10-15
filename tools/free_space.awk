@@ -46,14 +46,6 @@ function register_bank_str(str) {
     }
 }
 
-function register_bank_str(str) {
-    if (str ~ /\$[0-9A-F]+/) {
-        register_bank(strtonum("0x" substr(str, 2)))
-    } else {
-        printf "Malformed number? \"%s\" does not start with '$'\n", str
-    }
-}
-
 rom_bank && toupper($0) ~ /^[ \t]*EMPTY$/ {
 	# Empty bank
 	register_bank(16384)
