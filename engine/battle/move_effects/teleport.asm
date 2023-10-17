@@ -6,7 +6,7 @@ BattleCommand_Teleport:
 	; Can't teleport from a trainer battle
 	ld a, [wBattleMode]
 	dec a
-	jr z, .run_away
+	jp nz, BattleCommand_BatonPass
 	; fallthrough
 .failed
 	call AnimateFailedMove

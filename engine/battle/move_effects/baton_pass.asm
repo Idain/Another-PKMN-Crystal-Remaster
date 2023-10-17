@@ -10,7 +10,7 @@ BattleCommand_BatonPass:
 	call UpdateBattleMonInParty
 	call AnimateCurrentMove
 
-	ld c, 30
+	ld c, 15
 	call DelayFrames
 
 ; Transition into switchmon menu
@@ -101,13 +101,12 @@ BatonPass_LinkEnemySwitch:
 	cp BATTLEACTION_SWITCH1
 	jr c, .baton_pass
 	cp b
-	jr c, .switch
+	jp c, CloseWindow
 
 .baton_pass
 	ld a, [wCurOTMon]
 	add BATTLEACTION_SWITCH1
 	ld [wBattleAction], a
-.switch
 	jp CloseWindow
 
 FailedBatonPass:
@@ -153,55 +152,52 @@ ResetBatonPassStatus:
 	ld [wEnemyWrapCount], a
 	ret
 
+CheckAnyOtherAliveMons:
+; These return nz if any is alive
+	ldh a, [hBattleTurn]
+	and a
+	jr nz, CheckAnyOtherAliveEnemyMons
+	; fallthrough
 CheckAnyOtherAlivePartyMons:
 	ld hl, wPartyMon1HP
+	ld de, wCurBattleMon
 	ld a, [wPartyCount]
-	ld d, a
-	ld a, [wCurBattleMon]
-	ld e, a
-	jr CheckAnyOtherAliveMons
-
-CheckAnyOtherAliveEnemyMons:
-	ld hl, wOTPartyMon1HP
-	ld a, [wOTPartyCount]
-	ld d, a
-	ld a, [wCurOTMon]
-	ld e, a
-
-	; fallthrough
-
-CheckAnyOtherAliveMons:
-; Check for nonzero HP starting from partymon
-; HP at hl for d partymons, besides current mon e.
-
-; Return nz if any are alive.
-
-	xor a
-	ld b, a
-	ld c, a
-.loop
-	ld a, c
-	cp d
-	jr z, .done
-	cp e
-	jr z, .next
-
-	ld a, [hli]
-	or b
-	ld b, a
-	ld a, [hld]
-	or b
-	ld b, a
-
-.next
-	push bc
-	ld bc, PARTYMON_STRUCT_LENGTH
-	add hl, bc
-	pop bc
-	inc c
-	jr .loop
-
-.done
-	ld a, b
+	jr DoCheckAnyOtherAliveMons
+CheckAnyOtherAliveOpponentMons:
+	ldh a, [hBattleTurn]
 	and a
+	jr nz, CheckAnyOtherAlivePartyMons
+	; fallthrough
+CheckAnyOtherAliveEnemyMons:
+	ld a, [wBattleMode]
+	dec a
+	ret z
+	ld hl, wOTPartyMon1HP
+	ld de, wCurOTMon
+	ld a, [wOTPartyCount]
+	; fallthrough
+DoCheckAnyOtherAliveMons:
+	ld b, a
+	ld a, [de]
+	ld e, a
+	ld d, b
+	inc e
+	; - 1 to account for the hl++
+	ld bc, PARTYMON_STRUCT_LENGTH - 1
+
+.loop
+	ld a, [hli]
+	or [hl]
+	jr z, .not_alive
+
+	; Ignore current mon
+	dec e
+	jr z, .not_alive2
+	ret
+.not_alive
+	dec e
+.not_alive2
+	add hl, bc
+	dec d
+	jr nz, .loop
 	ret
