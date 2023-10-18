@@ -5006,13 +5006,6 @@ BattleCommand_CheckRampage:
 	jr nz, .continue_rampage
 
 	res SUBSTATUS_RAMPAGE, [hl]
-	call BattleCommand_SwitchTurn
-	call SafeCheckSafeguard
-	push af
-	call BattleCommand_SwitchTurn
-	pop af
-	jr nz, .continue_rampage
-
 	set SUBSTATUS_CONFUSED, [hl]
 	call BattleRandom
 	and 1
