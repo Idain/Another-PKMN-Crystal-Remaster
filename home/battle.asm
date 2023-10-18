@@ -56,6 +56,16 @@ ResetDamage::
 	ld [wCurDamage + 1], a
 	ret
 
+StackCallOpponentTurn::
+	ldh [hFarCallSavedA], a
+	ld a, h
+	ldh [hPredefHL + 1], a
+	ld a, l
+	ldh [hPredefHL], a
+	pop hl
+	call SwitchTurn
+	call RetrieveHLAndCallFunction
+	; fallthrough
 BattleCommand_SwitchTurn::
 SwitchTurn::
 ; Preserves all registers.

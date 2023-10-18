@@ -2316,15 +2316,30 @@ AI_Smart_Earthquake:
 	ret
 
 AI_Smart_BatonPass:
-; Discourage this move if the player hasn't shown super-effective moves against the enemy.
-; Consider player's type(s) if its moves are unknown.
+; Check total net stat boost effect:
+; <0: Discourage
+; >2: Encourage
+	ld hl, wEnemyStatLevels
+	ld b, 7
+	xor a
+.loop
+	add [hl]
+	inc hl
+	dec b
+	jr nz, .loop
 
-	push hl
-	callfar CheckPlayerMoveTypeMatchups
-	ld a, [wEnemyAISwitchScore]
-	cp BASE_AI_SWITCH_SCORE
-	pop hl
+	sub BASE_STAT_LEVEL * 7
+	jr c, .discourage
+	cp 3
 	ret c
+
+	; Encourage
+	dec [hl]
+	dec [hl]
+	ret
+
+.discourage
+	inc [hl]
 	inc [hl]
 	ret
 

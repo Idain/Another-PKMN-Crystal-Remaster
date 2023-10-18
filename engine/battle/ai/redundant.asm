@@ -43,6 +43,9 @@ AI_Redundant:
 	dbw EFFECT_SWAGGER,      .Swagger
 	dbw EFFECT_FUTURE_SIGHT, .FutureSight
 	dbw EFFECT_HAIL,         .Hail
+	dbw EFFECT_FORCE_SWITCH, .WhirlwindRoar
+	dbw EFFECT_TELEPORT,     .Teleport
+	dbw EFFECT_BATON_PASS,   .BatonPass
 	db -1
 
 .LightScreen:
@@ -136,8 +139,7 @@ AI_Redundant:
 .Sandstorm:
 	ld a, [wBattleWeather]
 	cp WEATHER_SANDSTORM
-	jr z, .Redundant
-	jr .NotRedundant
+	jr .InvertZero
 
 .Attract:
 	farcall CheckOppositeGender
@@ -154,14 +156,12 @@ AI_Redundant:
 .RainDance:
 	ld a, [wBattleWeather]
 	cp WEATHER_RAIN
-	jr z, .Redundant
-	jr .NotRedundant
+	jr .InvertZero
 
 .SunnyDay:
 	ld a, [wBattleWeather]
 	cp WEATHER_SUN
-	jr z, .Redundant
-	jr .NotRedundant
+	jr .InvertZero
 
 .DreamEater:
 	ld a, [wBattleMonStatus]
@@ -182,20 +182,33 @@ AI_Redundant:
 .Hail:
 	ld a, [wBattleWeather]
 	cp WEATHER_HAIL
-	jr z, .Redundant
-	jr .NotRedundant
+	jr .InvertZero
+
+.BatonPass:
+.Teleport:
+	call StackCallOpponentTurn
+.WhirlwindRoar:
+	push hl
+	push de
+	push bc
+	farcall CheckAnyOtherAliveOpponentMons
+	pop bc
+	pop de
+	pop hl
+	jr .InvertZero
 
 .Heal:
 .WeatherHeal:
 	farcall AICheckEnemyMaxHP
 	jr nc, .NotRedundant
 
-.Teleport:
 .Redundant:
 	ld a, 1
 	and a
 	ret
 
+.InvertZero:
+	jr z, .Redundant
 .NotRedundant:
 	xor a
 	ret
