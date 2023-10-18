@@ -1540,6 +1540,8 @@ BattleCommand_CheckHit:
 	call GetBattleVar
 	cp EFFECT_ALWAYS_HIT
 	ret z
+	cp EFFECT_FORCE_SWITCH
+	ret z
 	; If the move is OHKO, ignore accuracy and evasion stat modifiers.
 	cp EFFECT_OHKO
 	jr z, .skip_stat_modifiers
@@ -1642,13 +1644,11 @@ BattleCommand_CheckHit:
 	bit SUBSTATUS_PROTECT, a
 	ret z
 
-; Roar and Whirlwind can bypass protection status.
-	ld a, BATTLE_VARS_MOVE_ANIM
+; EFFECT_FORCE_SWITCH can bypass protection status.
+	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
-	cp ROAR
+	cp EFFECT_FORCE_SWITCH
 	ret z
-	cp WHIRLWIND
-	ret z	
 
 	ld c, 20
 	call DelayFrames
@@ -5055,12 +5055,12 @@ BattleCommand_ForceSwitch:
 	ld a, [wBattleType]
 	cp BATTLETYPE_TRAP ; or BATTLETYPE_FORCESHINY, BATTLETYPE_LEGENDARY
 	jp nc, .fail
-	ldh a, [hBattleTurn]
-	and a
-	jp nz, .force_player_switch
 	ld a, [wAttackMissed]
 	and a
 	jp nz, .fail
+	ldh a, [hBattleTurn]
+	and a
+	jp nz, .force_player_switch
 	ld a, [wBattleMode]
 	dec a
 	jr nz, .trainer
@@ -5126,10 +5126,6 @@ BattleCommand_ForceSwitch:
 	farjp SpikesDamage
 
 .force_player_switch
-	ld a, [wAttackMissed]
-	and a
-	jp nz, .fail
-
 	ld a, [wBattleMode]
 	dec a
 	jr nz, .vs_trainer
