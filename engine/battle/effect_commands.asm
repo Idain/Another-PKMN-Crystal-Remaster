@@ -2058,12 +2058,6 @@ BattleCommand_StatUpDownAnim:
 	ld d, 0
 	jp PlayFXAnimID
 
-BattleCommand_SwitchTurn:
-	ldh a, [hBattleTurn]
-	xor 1
-	ldh [hBattleTurn], a
-	ret
-
 BattleCommand_RaiseSub:
 	ld a, BATTLE_VARS_SUBSTATUS4
 	call GetBattleVar

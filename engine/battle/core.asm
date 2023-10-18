@@ -440,7 +440,7 @@ HandleBerserkGene:
 	ld [wNumHits], a
 	ld de, ANIM_CONFUSED
 	call Call_PlayBattleAnim_OnlyIfVisible
-	call SwitchTurnCore
+	call SwitchTurn
 	ld hl, BecameConfusedText
 	jp StdBattleTextbox
 
@@ -1097,7 +1097,7 @@ ResidualDamage:
 	bit SUBSTATUS_LEECH_SEED, [hl]
 	jr z, .not_seeded
 
-	call SwitchTurnCore
+	call SwitchTurn
 	xor a
 	ld [wNumHits], a
 	ld de, ANIM_SAP
@@ -1105,7 +1105,7 @@ ResidualDamage:
 	call GetBattleVar
 	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
 	call z, Call_PlayBattleAnim_OnlyIfVisible
-	call SwitchTurnCore
+	call SwitchTurn
 
 	call GetEighthMaxHP
 	call SubtractHPFromUser
@@ -1284,12 +1284,12 @@ HandleWrap:
 	and 1 << SUBSTATUS_FLYING | 1 << SUBSTATUS_UNDERGROUND
 	jr nz, .skip_anim
 
-	call SwitchTurnCore
+	call SwitchTurn
 	xor a
 	ld [wNumHits], a
 	ld [wFXAnimID + 1], a
 	predef PlayBattleAnim
-	call SwitchTurnCore
+	call SwitchTurn
 
 .skip_anim
 	call GetEighthMaxHP
@@ -1302,12 +1302,6 @@ HandleWrap:
 
 .print_text
 	jp StdBattleTextbox
-
-SwitchTurnCore:
-	ldh a, [hBattleTurn]
-	xor 1
-	ldh [hBattleTurn], a
-	ret
 
 HandleLeftovers:
 	ld a, [wEnemyIsFaster]
@@ -1355,7 +1349,7 @@ HandleLeftovers:
 
 .restore
 	call GetSixteenthMaxHP
-	call SwitchTurnCore
+	call SwitchTurn
 	call RestoreHP
 	ld hl, BattleText_TargetRecoveredWithItem
 	jp StdBattleTextbox
@@ -1515,9 +1509,9 @@ HandleLeppaBerry:
 
 .skip_consumption
 	call GetItemName
-	call SwitchTurnCore
+	call SwitchTurn
 	call ItemRecoveryAnim
-	call SwitchTurnCore
+	call SwitchTurn
 	ld hl, BattleText_UserRecoveredPPUsing
 	jp StdBattleTextbox
 
@@ -1811,10 +1805,10 @@ HandleWeather:
 	cp STEEL
 	ret z
 
-	call SwitchTurnCore
+	call SwitchTurn
 	xor a
 	ld [wNumHits], a
-	call SwitchTurnCore
+	call SwitchTurn
 	call GetEighthMaxHP
 	call SubtractHPFromUser
 
@@ -1861,10 +1855,10 @@ HandleWeather:
 	cp ICE
 	ret z
 
-	call SwitchTurnCore
+	call SwitchTurn
 	xor a
 	ld [wNumHits], a
-	call SwitchTurnCore
+	call SwitchTurn
 
 	call GetSixteenthMaxHP
 	call SubtractHPFromUser
@@ -2096,9 +2090,9 @@ RestoreHP:
 	ld [wHPBuffer3], a
 .overflow
 
-	call SwitchTurnCore
+	call SwitchTurn
 	call UpdateHPBarBattleHuds
-	jp SwitchTurnCore
+	jp SwitchTurn
 
 UpdateHPBarBattleHuds:
 	call UpdateHPBar
@@ -4377,9 +4371,9 @@ HandleHPHealingItem:
 	pop hl
 	jr nz, .not_sitrus_berry ; If it's not, continue the normal routine.
 
-	call SwitchTurnCore  ; Temporary Switch turn
+	call SwitchTurn ; Temporary Switch turn
 	call GetQuarterMaxHP
-	call SwitchTurnCore ; Back to normal.
+	call SwitchTurn ; Back to normal.
 	call RestoreHP
 	jr UseOpponentItem
 
@@ -4442,12 +4436,12 @@ ItemRecoveryAnim:
 	call EmptyBattleTextbox
 	ld a, RECOVER
 	ld [wFXAnimID], a
-	call SwitchTurnCore
+	call SwitchTurn
 	xor a
 	ld [wNumHits], a
 	ld [wFXAnimID + 1], a
 	predef PlayBattleAnim
-	call SwitchTurnCore
+	call SwitchTurn
 	pop bc
 	pop de
 	pop hl
@@ -4493,10 +4487,10 @@ UseHeldStatusHealingItem:
 	ld hl, CalcPlayerStats
 
 .got_pointer
-	call SwitchTurnCore
+	call SwitchTurn
 	ld a, BANK(CalcPlayerStats) ; aka BANK(CalcEnemyStats)
 	call FarCall_hl
-	call SwitchTurnCore
+	call SwitchTurn
 	call ItemRecoveryAnim
 	call UseOpponentItem
 	ld a, $1

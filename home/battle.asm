@@ -56,6 +56,16 @@ ResetDamage::
 	ld [wCurDamage + 1], a
 	ret
 
+BattleCommand_SwitchTurn::
+SwitchTurn::
+; Preserves all registers.
+	push af
+	ldh a, [hBattleTurn]
+	xor 1
+	ldh [hBattleTurn], a
+	pop af
+	ret
+
 SetPlayerTurn::
 	xor a
 	ldh [hBattleTurn], a
