@@ -5081,8 +5081,8 @@ BattleCommand_ForceSwitch:
 	jp .succeed
 
 .trainer
-	call FindAliveEnemyMons
-	jp c, .fail
+	call CheckAnyOtherAliveOpponentMons
+	jp z, .fail
 	call UpdateEnemyMonInParty
 	ld a, 1
 	ld [wBattleAnimParam], a
@@ -5147,8 +5147,8 @@ BattleCommand_ForceSwitch:
 	jr .succeed
 
 .vs_trainer
-	call CheckPlayerHasMonToSwitchTo
-	jr c, .fail
+	call CheckAnyOtherAliveOpponentMons
+	jr z, .fail
 
 	call UpdateBattleMonInParty
 	ld a, $1
@@ -5214,34 +5214,6 @@ BattleCommand_ForceSwitch:
 	jp z, StdBattleTextbox
 	ld hl, BlownAwayText
 	jp StdBattleTextbox
-
-CheckPlayerHasMonToSwitchTo:
-	ld a, [wPartyCount]
-	ld d, a
-	ld e, 0
-	ld bc, PARTYMON_STRUCT_LENGTH
-.loop
-	ld a, [wCurBattleMon]
-	cp e
-	jr z, .next
-
-	ld a, e
-	ld hl, wPartyMon1HP
-	call AddNTimes
-	ld a, [hli]
-	or [hl]
-	jr nz, .not_fainted
-
-.next
-	inc e
-	dec d
-	jr nz, .loop
-	scf
-	ret
-
-.not_fainted
-	and a
-	ret
 
 BattleCommand_EndLoop:
 ; Loop back to 'critical'.
@@ -5984,6 +5956,56 @@ DoubleDamage:
 	ld a, $ff
 	ld [hli], a
 	ld [hl], a
+	ret
+
+CheckAnyOtherAliveMons:
+; These return nz if any is alive
+	ldh a, [hBattleTurn]
+	and a
+	jr nz, CheckAnyOtherAliveEnemyMons
+	; fallthrough
+CheckAnyOtherAlivePartyMons:
+	ld hl, wPartyMon1HP
+	ld de, wCurBattleMon
+	ld a, [wPartyCount]
+	jr DoCheckAnyOtherAliveMons
+CheckAnyOtherAliveOpponentMons:
+	ldh a, [hBattleTurn]
+	and a
+	jr nz, CheckAnyOtherAlivePartyMons
+	; fallthrough
+CheckAnyOtherAliveEnemyMons:
+	ld a, [wBattleMode]
+	dec a
+	ret z
+	ld hl, wOTPartyMon1HP
+	ld de, wCurOTMon
+	ld a, [wOTPartyCount]
+	; fallthrough
+DoCheckAnyOtherAliveMons:
+	ld b, a
+	ld a, [de]
+	ld e, a
+	ld d, b
+	inc e
+	; - 1 to account for the hl++
+	ld bc, PARTYMON_STRUCT_LENGTH - 1
+
+.loop
+	ld a, [hli]
+	or [hl]
+	jr z, .not_alive
+
+	; Ignore current mon
+	dec e
+	jr z, .not_alive2
+	ret
+.not_alive
+	dec e
+.not_alive2
+	add hl, bc
+	dec d
+	jr nz, .loop
 	ret
 
 INCLUDE "engine/battle/move_effects/mimic.asm"
