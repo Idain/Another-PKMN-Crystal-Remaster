@@ -704,9 +704,8 @@ PokeBallEffect:
 BallMultiplierFunctionTable:
 ; table of routines that increase or decrease the catch rate based on
 ; which ball is used in a certain situation.
-	dbw ULTRA_BALL,  UltraBallMultiplier
 	dbw GREAT_BALL,  GreatBallMultiplier
-	dbw SAFARI_BALL, SafariBallMultiplier ; Safari Ball, leftover from RBY
+	dbw ULTRA_BALL,  UltraBallMultiplier
 	dbw HEAVY_BALL,  HeavyBallMultiplier
 	dbw LEVEL_BALL,  LevelBallMultiplier
 	dbw LURE_BALL,   LureBallMultiplier
@@ -723,7 +722,6 @@ UltraBallMultiplier:
 	ld b, $ff
 	ret
 
-SafariBallMultiplier:
 GreatBallMultiplier:
 ParkBallMultiplier:
 ; multiply catch rate by 1.5
@@ -954,7 +952,7 @@ LoveBallMultiplier: ; Catch rate = x4
 	ret
 
 FastBallMultiplier:
-; Multiply catch rate by 4 if enemy's speed >=100
+; Multiply catch rate by 4 if enemy's base speed >=100
 	ld hl, wEnemyMonBaseStats + 3
 	ld a, [hl]
 	cp 100
