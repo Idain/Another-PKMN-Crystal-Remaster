@@ -37,7 +37,6 @@ BattleCommand_BatonPass:
 	jp c, EndMoveEffect
 
 	farcall PassedBattleMonEntrance
-
 	jp ResetBatonPassStatus
 
 .Enemy:
@@ -65,9 +64,7 @@ BattleCommand_BatonPass:
 	ld a, TRUE
 	ld [wApplyStatLevelMultipliersToEnemy], a
 	farcall ApplyStatLevelMultiplierOnAllStats
-
 	farcall SpikesDamage
-
 	jr ResetBatonPassStatus
 
 BatonPass_LinkPlayerSwitch:
@@ -145,7 +142,7 @@ ResetBatonPassStatus:
 	; New mon hasn't used a move yet.
 	ld a, BATTLE_VARS_LAST_MOVE
 	call GetBattleVarAddr
-	ld [hl], 0
+	ld [hl], NO_MOVE
 
 	xor a
 	ld [wPlayerWrapCount], a
