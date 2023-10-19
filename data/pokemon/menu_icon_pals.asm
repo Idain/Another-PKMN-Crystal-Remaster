@@ -155,7 +155,7 @@ MonMenuIconPals:
 	icon_pals BLUE, PURPLE ; DRATINI
 	icon_pals BLUE, PURPLE ; DRAGONAIR
 	icon_pals RED, GRAY ; DRAGONITE
-	icon_pals PURPLE, BROWN ; MEWTWO
+	icon_pals PURPLE, GREEN ; MEWTWO
 	icon_pals PINK, BLUE ; MEW
 	icon_pals GREEN, BROWN ; CHIKORITA
 	icon_pals GREEN, BROWN ; BAYLEEF
