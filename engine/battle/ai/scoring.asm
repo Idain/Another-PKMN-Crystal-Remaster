@@ -3096,14 +3096,64 @@ AIDamageCalc:
 	ld a, 1
 	ldh [hBattleTurn], a
 	ld a, [wEnemyMoveStruct + MOVE_EFFECT]
+	cp EFFECT_MULTI_HIT
+	jr z, .multihit
+	cp EFFECT_DOUBLE_HIT
+	jr z, .doublehit
+	cp EFFECT_HIDDEN_POWER
+	jr z, .hidden_power
+	cp EFFECT_MAGNITUDE
+	jr z, .magnitude
+	cp EFFECT_RETURN
+	jr z, .return_move
+	cp EFFECT_REVERSAL
+	jr z, .reversal
 	ld hl, ConstantDamageEffects
 	call IsInByteArray
-	jr nc, .notconstant
-	farjp BattleCommand_ConstantDamage
+	jr nc, .regular_damage
+	farcall BattleCommand_ConstantDamage
+	farjp BattleCommand_ResetTypeMatchup
 
-.notconstant
-	callfar EnemyAttackDamage
-	callfar BattleCommand_DamageCalc
+.multihit
+	; Multiply base power by 3 for multi-hit moves
+	ld b, 3
+	jr .multihit_boost
+.doublehit
+	; Multiply base power by 2
+	ld b, 2
+.multihit_boost
+	ld a, [wEnemyMoveStruct + MOVE_POWER]
+	ld c, a
+.multihit_loop
+	dec b
+	jr z, .regular_damage ; With proper BP, we can use regular calc now
+	add c
+	ld [wEnemyMoveStruct + MOVE_POWER], a
+	jr .multihit_loop
+
+.hidden_power
+	farcall BattleHiddenPowerDamage
+	jr .regular_damage
+
+.return_move
+	farcall EnemyAttackDamage
+	farcall BattleCommand_HappinessPower
+	jr .damage_calc
+
+.reversal
+	farcall BattleCommand_ConstantDamage
+	jr .stab
+
+.magnitude
+	; Assume that base power is 70 (average)
+	ld a, 70
+	ld [wEnemyMoveStruct + MOVE_POWER], a
+	; fallthrough
+.regular_damage
+	farcall EnemyAttackDamage
+.damage_calc
+	farcall BattleCommand_DamageCalc
+.stab
 	farjp BattleCommand_Stab
 
 INCLUDE "data/battle/ai/constant_damage_effects.asm"
