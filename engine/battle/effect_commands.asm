@@ -1520,6 +1520,9 @@ BattleCommand_CheckHit:
 	call .DrainSub
 	jp z, .Miss
 
+	call .Pursuit
+	ret z
+
 	call .Toxic
 	ret z
 
@@ -1619,6 +1622,24 @@ BattleCommand_CheckHit:
 	ret z
 	ld a, [hl]
 	cp POISON
+	ret
+
+.Pursuit:
+; Pursuit used when a foe is switching always hits
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	cp EFFECT_PURSUIT
+	ret nz
+
+	ld hl, wEnemyIsSwitching
+	ldh a, [hBattleTurn]
+	and a
+	jr z, .switching
+	ld hl, wPlayerIsSwitching
+
+.switching
+	ld a, [hl]
+	xor 1
 	ret
 
 .DreamEater:
