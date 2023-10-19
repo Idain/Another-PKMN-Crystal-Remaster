@@ -4,6 +4,7 @@
 MACRO add_predef
 \1Predef::
 	dab \1
+	assert warn, BANK(\1) != 0, "Predef in ROM0 \1"
 ENDM
 
 PredefPointers::
