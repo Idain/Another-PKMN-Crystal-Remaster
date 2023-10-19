@@ -1529,10 +1529,7 @@ BattleCommand_CheckHit:
 	call .FlyDigMoves
 	jp nz, .Miss
 
-	call .ThunderRain
-	ret z
-	 
-	call .BlizzardHail
+	call .WeatherAccCheck
 	ret z
 
 	; Perfect-accuracy moves
@@ -1744,26 +1741,25 @@ BattleCommand_CheckHit:
 	cp MAGNITUDE
 	ret
 
-.ThunderRain:
-; Return z if the current move always hits in rain, and it is raining.
+.WeatherAccCheck:
+; Return z if the move used always hits in the current weather
+	ld a, [wBattleWeather]
+	cp WEATHER_RAIN
+	jr z, .RainAccCheck
+	cp WEATHER_HAIL
+	jr z, .HailAccCheck
+	ret
+
+.RainAccCheck:
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
 	cp EFFECT_THUNDER
-	ret nz
-
-	ld a, [wBattleWeather]
-	cp WEATHER_RAIN
 	ret
 
-.BlizzardHail:
-; Return z if the current move always hits in hail, and it is hailing.
+.HailAccCheck:
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
 	cp EFFECT_BLIZZARD
-	ret nz
-
-	ld a, [wBattleWeather]
-	cp WEATHER_HAIL
 	ret
 
 .StatModifiers:
