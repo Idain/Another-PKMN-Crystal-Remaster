@@ -2800,11 +2800,11 @@ AICheckPlayerHalfHP:
 	ld hl, wBattleMonHP
 	ld a, [hli]
 	ld b, a
-	ld c, [hl]
+	ld a, [hli]
+	ld c, a
+	inc hl
 	sla c
 	rl b
-	inc hl
-	inc hl
 	ld a, [hld]
 	cp c
 	ld a, [hl]
@@ -2819,11 +2819,11 @@ AICheckEnemyHalfHP:
 	ld hl, wEnemyMonHP
 	ld a, [hli]
 	ld b, a
-	ld c, [hl]
+	ld a, [hli]
+	ld c, a
+	inc hl
 	sla c
 	rl b
-	inc hl
-	inc hl
 	ld a, [hld]
 	cp c
 	ld a, [hl]
@@ -2840,13 +2840,13 @@ AICheckEnemyQuarterHP:
 	ld hl, wEnemyMonHP
 	ld a, [hli]
 	ld b, a
-	ld c, [hl]
+	ld a, [hli]
+	ld c, a
+	inc hl
 	sla c
 	rl b
 	sla c
 	rl b
-	inc hl
-	inc hl
 	ld a, [hld]
 	cp c
 	ld a, [hl]
@@ -2861,13 +2861,13 @@ AICheckPlayerQuarterHP:
 	ld hl, wBattleMonHP
 	ld a, [hli]
 	ld b, a
-	ld c, [hl]
+	ld a, [hli]
+	ld c, a
+	inc hl
 	sla c
 	rl b
 	sla c
 	rl b
-	inc hl
-	inc hl
 	ld a, [hld]
 	cp c
 	ld a, [hl]
