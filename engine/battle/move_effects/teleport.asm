@@ -51,6 +51,7 @@ BattleCommand_Teleport:
 	ld [wCurBattleMon], a
 	farcall AddBattleParticipant
 	farcall InitBattleMon
+	farcall ResetPlayerStatLevels
 	farcall SendOutPlayerMon
 	farcall EmptyBattleTextbox
 	call LoadTilemapToTempTilemap
@@ -78,6 +79,7 @@ BattleCommand_Teleport:
 ; Passed enemy PartyMon entrance
 	xor a
 	ld [wEnemySwitchMonIndex], a
+	farcall ResetEnemyStatLevels
 	farcall EnemySwitch_SetMode
 	farcall ResetBattleParticipants
 	farcall SpikesDamage
