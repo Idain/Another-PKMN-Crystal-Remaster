@@ -1511,9 +1511,6 @@ BattleCommand_DamageVariation:
 	ret
 
 BattleCommand_CheckHit:
-	call .Toxic
-	ret z
-
 	call .DreamEater
 	jp z, .Miss
 
@@ -1522,6 +1519,9 @@ BattleCommand_CheckHit:
 
 	call .DrainSub
 	jp z, .Miss
+
+	call .Toxic
+	ret z
 
 	call .LockOn
 	ret nz
