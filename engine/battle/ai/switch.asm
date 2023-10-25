@@ -460,7 +460,7 @@ FindEnemyMonsWithASuperEffectiveMove:
 
 	; if immune or not very effective: continue
 	ld a, [wTypeMatchup]
-	cp 10
+	cp EFFECTIVE
 	jr c, .nope
 
 	; if neutral: load 1 and continue
@@ -557,7 +557,7 @@ FindEnemyMonsThatResistPlayer:
 	ld hl, wBaseType
 	call CheckTypeMatchup
 	ld a, [wTypeMatchup]
-	cp 10 + 1
+	cp EFFECTIVE + 1
 	jr nc, .dont_choose_mon
 	ld a, [wBattleMonType2]
 
