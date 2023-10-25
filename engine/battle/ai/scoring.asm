@@ -548,9 +548,9 @@ AI_Smart_Selfdestruct:
 
 ; Unless this is the enemy's last Pokémon...
 	push hl
-	farcall FindAliveEnemyMons
+	farcall CheckAnyOtherAliveEnemyMons
 	pop hl
-	jr nc, .notlastmon
+	jr nz, .notlastmon
 
 ; ...greatly discourage this move unless this is the player's last Pokémon too.
 	push hl
@@ -1895,9 +1895,9 @@ AI_Smart_Curse:
 	jp nz, AIDiscourageMove
 
 	push hl
-	farcall FindAliveEnemyMons
+	farcall CheckAnyOtherAliveEnemyMons
 	pop hl
-	jr nc, .notlastmon
+	jr nz, .notlastmon
 
 	push hl
 	call AICheckLastPlayerMon
@@ -2031,9 +2031,9 @@ AI_Smart_Foresight:
 
 AI_Smart_PerishSong:
 	push hl
-	callfar FindAliveEnemyMons
+	farcall CheckAnyOtherAliveEnemyMons
 	pop hl
-	jr c, .no
+	jr z, .no
 
 	ld a, [wPlayerSubStatus5]
 	bit SUBSTATUS_CANT_RUN, a
@@ -3068,8 +3068,8 @@ AI_Aggressive:
 	call AIGetEnemyMove
 
 ; Ignore this move if its power is 0 or 1.
-; Moves such as Seismic Toss, Hidden Power,
-; Counter and Fissure have a base power of 1.
+; Moves such as Seismic Toss, Counter and
+; Fissure have a base power of 1.
 	ld a, [wEnemyMoveStruct + MOVE_POWER]
 	cp 2
 	jr c, .checkmove2

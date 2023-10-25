@@ -167,20 +167,20 @@ CheckPlayerMoveTypeMatchups:
 CheckAbleToSwitch:
 	xor a
 	ld [wEnemySwitchMonParam], a
-	call FindAliveEnemyMons
-	ret c
+	call CheckAnyOtherAliveEnemyMons
+	ret z
 
 	ld a, [wEnemySubStatus1]
 	bit SUBSTATUS_PERISH, a
 	jr z, .no_perish
 
 	ld a, [wEnemyPerishCount]
-	cp 1
+	dec a
 	jr nz, .no_perish
 
 	; Perish count is 1
 
-	call FindAliveEnemyMons
+	call CheckAnyOtherAliveEnemyMons
 	call FindEnemyMonsWithAtLeastQuarterMaxHP
 	call FindEnemyMonsThatResistPlayer
 	call FindAliveEnemyMonsWithASuperEffectiveMove
@@ -195,7 +195,7 @@ CheckAbleToSwitch:
 	ret
 
 .not_2
-	call FindAliveEnemyMons
+	call CheckAnyOtherAliveEnemyMons
 	sla c
 	sla c
 	ld b, $ff
@@ -266,7 +266,7 @@ CheckAbleToSwitch:
 	cp 10
 	ret nc
 
-	call FindAliveEnemyMons
+	call CheckAnyOtherAliveEnemyMons
 	call FindEnemyMonsWithAtLeastQuarterMaxHP
 	call FindEnemyMonsThatResistPlayer
 	call FindAliveEnemyMonsWithASuperEffectiveMove
@@ -278,55 +278,6 @@ CheckAbleToSwitch:
 	ld a, [wEnemyAISwitchScore]
 	add $10
 	ld [wEnemySwitchMonParam], a
-	ret
-
-FindAliveEnemyMons:
-	ld a, [wOTPartyCount]
-	cp 2
-	jr c, .only_one
-
-	ld d, a
-	ld e, 0
-	lb bc, (1 << (PARTY_LENGTH - 1)), 0
-	ld hl, wOTPartyMon1HP
-
-.loop
-	ld a, [wCurOTMon]
-	cp e
-	jr z, .next
-
-	push bc
-	ld a, [hli]
-	ld b, a
-	ld a, [hld]
-	or b
-	pop bc
-	jr z, .next
-
-	ld a, c
-	or b
-	ld c, a
-
-.next
-	srl b
-	push bc
-	ld bc, PARTYMON_STRUCT_LENGTH
-	add hl, bc
-	pop bc
-	inc e
-	dec d
-	jr nz, .loop
-
-	ld a, c
-	and a
-	jr nz, .more_than_one
-
-.only_one
-	scf
-	ret
-
-.more_than_one
-	and a
 	ret
 
 FindEnemyMonsImmuneToLastCounterMove:
