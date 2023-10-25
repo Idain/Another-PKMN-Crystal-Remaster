@@ -3750,6 +3750,16 @@ TryToRunAwayFromBattle:
 	dec a
 	jp nz, .cant_run_from_trainer
 
+	ld bc, wBattleMonType1
+	ld a, [bc]
+	cp GHOST
+	jp z, .can_escape
+
+	inc bc
+	ld a, [bc]
+	cp GHOST
+	jp z, .can_escape
+
 	ld a, [wEnemySubStatus5]
 	bit SUBSTATUS_CANT_RUN, a
 	jp nz, .cant_escape
@@ -5173,12 +5183,21 @@ TryPlayerSwitch:
 	ld d, a
 	ld a, [wCurPartyMon]
 	cp d
-	jr nz, .check_trapped
+	jr nz, .check_ghost_type
 	ld hl, BattleText_MonIsAlreadyOut
 	call StdBattleTextbox
 	jp BattleMenuPKMN_Loop
 
-.check_trapped
+.check_ghost_type
+	ld hl, wBattleMonType1
+	ld a, [hli]
+	cp GHOST
+	jr z, .try_switch
+	ld a, [hl]
+	cp GHOST
+	jr z, .try_switch
+
+;check_trapped
 	ld a, [wPlayerWrapCount]
 	and a
 	jr nz, .trapped

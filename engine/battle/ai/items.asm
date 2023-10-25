@@ -12,6 +12,14 @@ AI_SwitchOrTryItem:
 	farcall CheckEnemyLockedIn
 	ret nz
 
+	ld hl, wEnemyMonType1
+	ld a, [hli]
+	cp GHOST
+	jr z, .try_switch
+	ld a, [hl]
+	cp GHOST
+	jr z, .try_switch
+
 	ld a, [wPlayerSubStatus5]
 	bit SUBSTATUS_CANT_RUN, a
 	jp nz, AI_TryItem
@@ -20,6 +28,7 @@ AI_SwitchOrTryItem:
 	and a
 	jp nz, AI_TryItem
 
+.try_switch
 	; always load the first trainer class in wTrainerClass for Battle Tower trainers
 	ld hl, TrainerClassAttributes + TRNATTR_AI_ITEM_SWITCH
 	ld a, [wInBattleTowerBattle]
