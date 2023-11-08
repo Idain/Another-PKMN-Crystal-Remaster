@@ -212,24 +212,20 @@ AI_TryItem:
 	jr c, .loop
 
 ; used item
-	xor a
-	ld [de], a
-	inc a
-	ld [wEnemyGoesFirst], a
-
 	ld hl, wEnemySubStatus3
 	res SUBSTATUS_BIDE, [hl]
 
 	xor a
+	ld [de], a
 	ld [wEnemyFuryCutterCount], a
 	ld [wEnemyProtectCount], a
 	ld [wEnemyRageCounter], a
+	ld [wLastEnemyCounterMove], a
+	inc a
+	ld [wEnemyGoesFirst], a
 
 	ld hl, wEnemySubStatus4
 	res SUBSTATUS_RAGE, [hl]
-
-	xor a
-	ld [wLastEnemyCounterMove], a
 
 	scf
 	ret
@@ -277,7 +273,6 @@ AI_Items:
 	dbw ENERGYPOWDER, .HealingItem
 	dbw ENERGY_ROOT,  .HealingItem
 	dbw BERRY_JUICE,  .HealingItem
-	dbw X_ACCURACY,   .XAccuracy
 	dbw MIRACLEBERRY, .FullHeal
 	dbw FULL_HEAL,    .FullHeal
 	dbw GUARD_SPEC,   .GuardSpec
@@ -287,6 +282,7 @@ AI_Items:
 	dbw X_SPEED,      .XSpeed
 	dbw X_SP_ATK,     .XSpAtk
 	dbw X_SP_DEF,	  .XSpDef
+	dbw X_ACCURACY,   .XAccuracy
 	db -1 ; end
 
 .FullHeal:
