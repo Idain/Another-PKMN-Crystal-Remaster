@@ -5281,7 +5281,7 @@ EnemyMonEntrance:
 BattleMonEntrance:
 	call WithdrawMonText
 
-	ld c, 40
+	ld c, 30
 	call DelayFrames
 
 	ld hl, wPlayerSubStatus4
@@ -5314,7 +5314,7 @@ BattleMonEntrance:
 	ret
 
 PassedBattleMonEntrance:
-	ld c, 40
+	ld c, 30
 	call DelayFrames
 
 	hlcoord 9, 7
