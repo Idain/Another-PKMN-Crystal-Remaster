@@ -119,8 +119,7 @@ ReadTrainerPartyPieces:
 
 	push hl
 	ld a, [wOTPartyCount]
-	dec a
-	ld hl, wOTPartyMonNicknames
+	ld hl, wOTPartyMonNicknames - MON_NAME_LENGTH
 	ld bc, MON_NAME_LENGTH
 	call AddNTimes
 	ld d, h

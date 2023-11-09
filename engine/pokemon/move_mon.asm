@@ -524,18 +524,16 @@ SendGetMonIntoFromBox:
 	ld [hl], $ff
 	ld a, [wPokemonWithdrawDepositParameter]
 	dec a
-	ld hl, wPartyMon1Species
+	ld hl, wPartyMon1Species - PARTYMON_STRUCT_LENGTH
 	ld bc, PARTYMON_STRUCT_LENGTH
 	ld a, [wPartyCount]
 	jr nz, .okay2
-	ld hl, sBoxMon1Species
+	ld hl, sBoxMon1Species - BOXMON_STRUCT_LENGTH
 	ld bc, BOXMON_STRUCT_LENGTH
 	ld a, [sBoxCount]
 
 .okay2
-	dec a ; wPartyCount - 1
 	call AddNTimes
-
 .breedmon
 	push hl
 	ld e, l

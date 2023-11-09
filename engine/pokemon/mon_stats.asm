@@ -206,8 +206,7 @@ GetGender:
 ; We need the gender ratio to do anything with this.
 	push bc
 	ld a, [wCurPartySpecies]
-	dec a
-	ld hl, BaseData + BASE_GENDER
+	ld hl, (BaseData + BASE_GENDER) - BASE_DATA_SIZE
 	ld bc, BASE_DATA_SIZE
 	call AddNTimes
 	pop bc

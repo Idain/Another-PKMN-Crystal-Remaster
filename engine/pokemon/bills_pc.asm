@@ -2003,7 +2003,6 @@ CopyOTNameToTemp:
 	ld a, [wCurPartyMon]
 	call SkipNames
 	ld de, wBufferMonOT
-;	ld bc, NAME_LENGTH
 	jp CopyBytes
 
 CopyMonToTemp:

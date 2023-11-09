@@ -632,9 +632,7 @@ GetWarpDestCoords::
 	inc hl ; get to the warp coords
 	ld a, [wWarpNumber]
 	dec a
-	ld c, a
-	ld b, 0
-	ld a, WARP_EVENT_SIZE
+	ld bc, WARP_EVENT_SIZE
 	call AddNTimes
 	ld a, [hli]
 	ld [wYCoord], a

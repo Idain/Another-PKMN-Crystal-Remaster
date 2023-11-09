@@ -221,11 +221,8 @@ CheckSpecialPhoneCall::
 	and a
 	jr z, .NoPhoneCall
 
-	dec a
-	ld c, a
-	ld b, 0
-	ld hl, SpecialPhoneCallList
-	ld a, SPECIALCALL_SIZE
+	ld bc, SPECIALCALL_SIZE
+	ld hl, SpecialPhoneCallList - SPECIALCALL_SIZE
 	call AddNTimes
 	ld a, [hli]
 	ld h, [hl]
@@ -265,11 +262,8 @@ CheckSpecialPhoneCall::
 
 .DoSpecialPhoneCall:
 	ld a, [wSpecialPhoneCallID]
-	dec a
-	ld c, a
-	ld b, 0
-	ld hl, SpecialPhoneCallList
-	ld a, SPECIALCALL_SIZE
+	ld bc, SPECIALCALL_SIZE
+	ld hl, SpecialPhoneCallList - SPECIALCALL_SIZE
 	jp AddNTimes
 
 SpecialCallOnlyWhenOutside:

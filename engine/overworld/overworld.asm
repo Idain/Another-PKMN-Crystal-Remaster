@@ -156,11 +156,8 @@ GetSprite:
 	call GetMonSprite
 	ret c
 
-	ld hl, OverworldSprites + SPRITEDATA_ADDR
-	dec a
-	ld c, a
-	ld b, 0
-	ld a, NUM_SPRITEDATA_FIELDS
+	ld hl, (OverworldSprites + SPRITEDATA_ADDR) - NUM_SPRITEDATA_FIELDS
+	ld bc, NUM_SPRITEDATA_FIELDS
 	call AddNTimes
 	; load the address into de
 	ld a, [hli]
@@ -249,11 +246,8 @@ _DoesSpriteHaveFacings::
 
 	push hl
 	push bc
-	ld hl, OverworldSprites + SPRITEDATA_TYPE
-	dec a
-	ld c, a
-	ld b, 0
-	ld a, NUM_SPRITEDATA_FIELDS
+	ld hl, (OverworldSprites + SPRITEDATA_TYPE) - NUM_SPRITEDATA_FIELDS
+	ld bc, NUM_SPRITEDATA_FIELDS
 	call AddNTimes
 	ld a, [hl]
 	pop bc
@@ -272,11 +266,8 @@ _GetSpritePalette::
 	call GetMonSprite
 	jr c, .is_pokemon
 
-	ld hl, OverworldSprites + SPRITEDATA_PALETTE
-	dec a
-	ld c, a
-	ld b, 0
-	ld a, NUM_SPRITEDATA_FIELDS
+	ld hl, (OverworldSprites + SPRITEDATA_PALETTE) - NUM_SPRITEDATA_FIELDS
+	ld bc, NUM_SPRITEDATA_FIELDS
 	call AddNTimes
 	ld c, [hl]
 	ret

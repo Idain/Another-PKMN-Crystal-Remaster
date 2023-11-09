@@ -787,8 +787,7 @@ Link_PrepPartyData_Gen1:
 
 .skip_steel
 	push bc
-	dec a
-	ld hl, BaseData + BASE_TYPES
+	ld hl, (BaseData + BASE_TYPES) -BASE_DATA_SIZE
 	ld bc, BASE_DATA_SIZE
 	call AddNTimes
 	ld bc, BASE_CATCH_RATE - BASE_TYPES
@@ -1736,9 +1735,8 @@ LinkTrade:
 	jr .copy_mail
 
 .copy_player_data
-	ld hl, sPartyMail
+	ld hl, sPartyMail - MAIL_STRUCT_LENGTH
 	ld a, [wPartyCount]
-	dec a
 	ld bc, MAIL_STRUCT_LENGTH
 	call AddNTimes
 	push hl

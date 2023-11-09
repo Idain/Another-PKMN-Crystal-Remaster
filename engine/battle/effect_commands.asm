@@ -6605,11 +6605,8 @@ GetItemHeldEffect:
 	ret z
 
 	push hl
-	ld hl, ItemAttributes + ITEMATTR_EFFECT
-	dec a
-	ld c, a
-	ld b, 0
-	ld a, ITEMATTR_STRUCT_LENGTH
+	ld hl, (ItemAttributes + ITEMATTR_EFFECT) - ITEMATTR_STRUCT_LENGTH
+	ld bc, ITEMATTR_STRUCT_LENGTH
 	call AddNTimes
 	ld a, BANK(ItemAttributes)
 	call GetFarWord

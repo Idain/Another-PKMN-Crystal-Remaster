@@ -57,7 +57,6 @@ LoadOpponentTrainerAndPokemon:
 ; Copy name (10 bytes) and class (1 byte) of trainer
 	ld hl, BattleTowerTrainers
 	call SkipNames
-;	ld bc, NAME_LENGTH
 	call CopyBytes
 
 	call LoadRandomBattleTowerMon
@@ -94,8 +93,7 @@ LoadRandomBattleTowerMon:
 	; From Which LevelGroup are the mon loaded
 	; a = 1..10
 	ld a, [wBTChoiceOfLvlGroup]
-	dec a
-	ld hl, BattleTowerMons
+	ld hl, BattleTowerMons - (BATTLETOWER_NUM_UNIQUE_MON * NICKNAMED_MON_STRUCT_LENGTH)
 	ld bc, BATTLETOWER_NUM_UNIQUE_MON * NICKNAMED_MON_STRUCT_LENGTH
 	call AddNTimes
 

@@ -394,13 +394,7 @@ TMHMPocket_GetCurrentLineCoord:
 	ld bc, 2 * SCREEN_WIDTH
 	ld a, 6
 	sub d
-	ld e, a
-	; AddNTimes
-.loop
-	add hl, bc
-	dec e
-	jr nz, .loop
-	ret
+	jp AddNTimes
 
 TMHM_CancelString:
 	db "CANCEL@"

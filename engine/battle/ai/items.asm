@@ -167,8 +167,7 @@ AI_TryItem:
 	ret nc
 
 	ld a, [wTrainerClass]
-	dec a
-	ld hl, TrainerClassAttributes + TRNATTR_AI_ITEM_SWITCH
+	ld hl, (TrainerClassAttributes + TRNATTR_AI_ITEM_SWITCH) - NUM_TRAINER_ATTRIBUTES
 	ld bc, NUM_TRAINER_ATTRIBUTES
 	call AddNTimes
 	ld b, h

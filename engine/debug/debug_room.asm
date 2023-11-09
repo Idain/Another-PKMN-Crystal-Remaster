@@ -1178,10 +1178,9 @@ _DebugRoom_FinishGetName:
 	jp PlaceString
 
 DebugRoom_UpdateExpForLevel:
-	ld hl, BaseData + BASE_GROWTH_RATE
+	ld hl, (BaseData + BASE_GROWTH_RATE) - BASE_DATA_SIZE
 	ld bc, BASE_DATA_SIZE
 	ld a, [wDebugRoomMonSpecies]
-	dec a
 	call AddNTimes
 	ld a, BANK(BaseData)
 	call GetFarByte
