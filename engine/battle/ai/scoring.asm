@@ -1151,7 +1151,7 @@ AI_Smart_SpDefenseUp2:
 	push hl
 ; Get the pointer for the player's Pokémon's base Attack
 	ld a, [wBattleMonSpecies]
-	ld hl, BaseData + BASE_ATK
+	ld hl, (BaseData + BASE_ATK) - BASE_DATA_SIZE
 	ld bc, BASE_DATA_SIZE
 	call AddNTimes
 ; Get the Pokémon's base Attack
@@ -1872,6 +1872,9 @@ AI_Smart_Curse:
 	ret nc
 
 	ld a, [wBattleMonType1]
+	cp GHOST
+	jr z, .greatly_encourage
+	ld a, [wBattleMonType2]
 	cp GHOST
 	jr z, .greatly_encourage
 	call AI_80_20
