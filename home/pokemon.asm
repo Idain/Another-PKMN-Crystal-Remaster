@@ -290,7 +290,7 @@ GetNickname::
 	call CopyBytes
 	pop de
 
-	callfar CorrectNickErrors
+	farcall CorrectNickErrors
 
 	pop bc
 	pop hl

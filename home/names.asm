@@ -188,7 +188,7 @@ GetTMHMName::
 	push de
 	ld a, [wNamedObjectIndex]
 	ld c, a
-	callfar GetTMHMNumber
+	farcall GetTMHMNumber
 	pop de
 
 ; HM numbers start from 51, not 1

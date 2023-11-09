@@ -33,7 +33,7 @@ InitPartyMenuLayout:
 
 LoadPartyMenuGFX:
 	farcall LoadFontsBattleExtra
-	callfar InitPartyMenuPalettes
+	farcall InitPartyMenuPalettes
 	farjp ClearSpriteAnims2
 
 WritePartyMenuTilemap:

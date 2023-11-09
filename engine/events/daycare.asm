@@ -559,8 +559,8 @@ DayCare_InitBreeding:
 
 .GotMother:
 	ld [wCurPartySpecies], a
-	callfar GetPreEvolution
-	callfar GetPreEvolution
+	farcall GetPreEvolution
+	farcall GetPreEvolution
 	ld a, EGG_LEVEL
 	ld [wCurPartyLevel], a
 
@@ -605,7 +605,7 @@ DayCare_InitBreeding:
 	ld [hl], a
 	ld a, [wCurPartyLevel]
 	ld d, a
-	callfar CalcExpAtLevel
+	farcall CalcExpAtLevel
 	ld hl, wEggMonExp
 	ldh a, [hMultiplicand]
 	ld [hli], a

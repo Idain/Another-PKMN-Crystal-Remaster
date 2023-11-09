@@ -231,7 +231,7 @@ PartyMenu_InitAnimatedMonIcon:
 	push hl
 	push bc
 	ld d, a
-	callfar ItemIsMail
+	farcall ItemIsMail
 	pop bc
 	pop hl
 ; If carry, SPRITE_ANIM_FRAMESET_PARTY_MON_WITH_MAIL

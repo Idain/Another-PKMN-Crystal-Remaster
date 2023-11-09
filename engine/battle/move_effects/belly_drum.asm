@@ -1,6 +1,6 @@
 BattleCommand_BellyDrum:
-	callfar GetHalfMaxHP
-	callfar CheckUserHasEnoughHP
+	farcall GetHalfMaxHP
+	farcall CheckUserHasEnoughHP
 	jr nc, .failed
 
 	push bc
@@ -14,7 +14,7 @@ BattleCommand_BellyDrum:
 	push bc
 	call AnimateCurrentMove
 	pop bc
-	callfar SubtractHPFromUser
+	farcall SubtractHPFromUser
 	call UpdateUserInParty
 	ld a, MAX_STAT_LEVEL - BASE_STAT_LEVEL - 1
 

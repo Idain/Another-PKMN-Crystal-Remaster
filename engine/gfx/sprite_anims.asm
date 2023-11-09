@@ -340,7 +340,7 @@ AnimSeq_SlotsGolem:
 	farjp Slots_AnimateGolem
 
 AnimSeq_SlotsChansey:
-	callfar Slots_AnimateChansey
+	farcall Slots_AnimateChansey
 	ld hl, wSlotsDelay
 	ld a, [hl]
 	cp $2

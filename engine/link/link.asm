@@ -172,7 +172,7 @@ endc
 	ld [wTempSpecies], a
 	push hl
 	push de
-	callfar ConvertMon_1to2
+	farcall ConvertMon_1to2
 	pop de
 	pop hl
 	ld a, [wTempSpecies]
@@ -708,7 +708,7 @@ Link_PrepPartyData_Gen1:
 	ld [wTempSpecies], a
 	push hl
 	push de
-	callfar ConvertMon_2to1
+	farcall ConvertMon_2to1
 	pop de
 	pop hl
 	ld a, [wTempSpecies]
@@ -749,7 +749,7 @@ Link_PrepPartyData_Gen1:
 	push bc
 	ld a, [hl]
 	ld [wTempSpecies], a
-	callfar ConvertMon_2to1
+	farcall ConvertMon_2to1
 	pop bc
 	pop de
 	ld a, [wTempSpecies]
@@ -1039,7 +1039,7 @@ Link_ConvertPartyStruct1to2:
 	push bc
 	push de
 	ld [wTempSpecies], a
-	callfar ConvertMon_1to2
+	farcall ConvertMon_1to2
 	pop de
 	pop bc
 	ld a, [wTempSpecies]
@@ -1855,7 +1855,7 @@ LinkTrade:
 
 	xor a ; REMOVE_PARTY
 	ld [wPokemonWithdrawDepositParameter], a
-	callfar RemoveMonFromPartyOrBox
+	farcall RemoveMonFromPartyOrBox
 	ld a, [wPartyCount]
 	dec a
 	ld [wCurPartyMon], a
@@ -1905,7 +1905,7 @@ LinkTrade:
 	ld a, [wPartyCount]
 	dec a
 	ld [wCurPartyMon], a
-	callfar EvolvePokemon
+	farcall EvolvePokemon
 	call ClearScreen
 	farcall LoadTradeScreenBorderGFX
 	call SetTradeRoomBGPals

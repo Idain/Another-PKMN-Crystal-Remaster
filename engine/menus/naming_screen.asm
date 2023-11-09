@@ -336,7 +336,7 @@ NamingScreenJoypadLoop:
 	ret
 
 .quit
-	callfar ClearSpriteAnims
+	farcall ClearSpriteAnims
 	call ClearSprites
 	xor a
 	ldh [hSCX], a
@@ -803,7 +803,7 @@ NamingScreen_GetLastCharacter:
 
 LoadNamingScreenGFX:
 	call ClearSprites
-	callfar ClearSpriteAnims
+	farcall ClearSpriteAnims
 	farcall LoadStandardFont
 	farcall LoadFontsExtra
 
@@ -1007,7 +1007,7 @@ INCBIN "gfx/naming_screen/mail.2bpp"
 	ret
 
 .exit_mail
-	callfar ClearSpriteAnims
+	farcall ClearSpriteAnims
 	call ClearSprites
 	xor a
 	ldh [hSCX], a

@@ -121,7 +121,7 @@ BattleCommand_SleepTalk:
 	push bc
 
 	ld b, a
-	callfar GetMoveAnim
+	farcall GetMoveAnim
 	ld a, b
 	ld hl, SleepTalk_unallowed_moves
 	call IsInByteArray

@@ -106,7 +106,7 @@ DebugFightMenu:
 	jr .loop_balls
 
 .ChoosePlayerParty:
-	callfar StatsScreen_LoadFont
+	farcall StatsScreen_LoadFont
 	call ClearTilemap
 	call ClearSprites
 	; fallthrough
@@ -708,7 +708,7 @@ DebugFight_StartButton:
 
 	ld a, [wTrainerClass]
 	ld c, a
-	callfar GetOTName
+	farcall GetOTName
 
 	hlcoord 5, 8
 	ld de, wOTClassName
@@ -889,7 +889,7 @@ DebugFight_EnemyPartyJoypad:
 	ld a, [wTempByteValue]
 	ld [wTrainerClass], a
 	ld c, a
-	callfar GetOTName
+	farcall GetOTName
 	hlcoord 5, 8
 	lb bc, 1, 12
 	call ClearBox
@@ -1332,7 +1332,7 @@ DebugFight_TryStartBattle:
 	call ByteFill
 
 	farcall LoadStandardFont
-	callfar StatsScreen_LoadFont
+	farcall StatsScreen_LoadFont
 	ld de, MUSIC_NONE
 	call PlayMusic
 	call ClearTilemap

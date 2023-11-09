@@ -49,7 +49,7 @@ AI_SwitchOrTryItem:
 	jp z, AI_TryItem
 	; fallthrough
 SwitchOften:
-	callfar CheckAbleToSwitch
+	farcall CheckAbleToSwitch
 	ld a, [wEnemySwitchMonParam]
 	and $f0
 	jp z, AI_TryItem
@@ -84,7 +84,7 @@ SwitchOften:
 	jp AI_TrySwitch
 
 SwitchRarely:
-	callfar CheckAbleToSwitch
+	farcall CheckAbleToSwitch
 	ld a, [wEnemySwitchMonParam]
 	and $f0
 	jr z, AI_TryItem
@@ -118,7 +118,7 @@ SwitchRarely:
 	jp AI_TrySwitch
 
 SwitchSometimes:
-	callfar CheckAbleToSwitch
+	farcall CheckAbleToSwitch
 	ld a, [wEnemySwitchMonParam]
 	and $f0
 	jr z, AI_TryItem
@@ -618,7 +618,7 @@ AI_Switch:
 	res SUBSTATUS_RAGE, [hl]
 	xor a
 	ldh [hBattleTurn], a
-	callfar PursuitSwitch
+	farcall PursuitSwitch
 
 	push af
 	ld a, [wCurOTMon]
@@ -638,8 +638,8 @@ AI_Switch:
 .skiptext
 	ld a, 1
 	ld [wBattleHasJustStarted], a
-	callfar NewEnemyMonStatus
-	callfar ResetEnemyStatLevels
+	farcall NewEnemyMonStatus
+	farcall ResetEnemyStatLevels
 	ld hl, wPlayerSubStatus1
 	res SUBSTATUS_IN_LOVE, [hl]
 	farcall EnemySwitch

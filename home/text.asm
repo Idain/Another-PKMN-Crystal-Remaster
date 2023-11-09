@@ -320,7 +320,7 @@ PlaceEnemysName::
 	ld de, String_Space
 	call PlaceString
 	push bc
-	callfar Battle_GetTrainerName
+	farcall Battle_GetTrainerName
 	pop hl
 	ld de, wStringBuffer1
 	jr PlaceCommandCharacter
