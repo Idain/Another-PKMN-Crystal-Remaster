@@ -1096,7 +1096,6 @@ SkyAttack:
 	checkfaint
 	buildopponentrage
 	flinchtarget
-;	kingsrock
 	endmove
 
 Substitute:
@@ -1336,7 +1335,6 @@ Snore:
 	checkfaint
 	buildopponentrage
 	flinchtarget
-;	kingsrock
 	endmove
 
 Conversion2:
@@ -1502,6 +1500,7 @@ FlameWheel:
 	defrost
 	checkfaint
 	buildopponentrage
+	kingsrock
 	burntarget
 	endmove
 
@@ -1713,6 +1712,7 @@ SacredFire:
 	defrost
 	checkfaint
 	buildopponentrage
+	kingsrock
 	burntarget
 	endmove
 
@@ -1952,6 +1952,7 @@ FutureSight:
 	applydamage
 	checkfaint
 	buildopponentrage
+	kingsrock
 	endmove
 
 Gust:
@@ -2039,6 +2040,7 @@ Thunder:
 	supereffectivetext
 	checkfaint
 	buildopponentrage
+	kingsrock
 	paralyzetarget
 	endmove
 
