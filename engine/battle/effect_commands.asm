@@ -1507,7 +1507,7 @@ BattleCommand_CheckHit:
 	call .Protect
 	jp nz, .Miss
 
-	call .DrainSub
+	call .Substitute
 	jp z, .Miss
 
 	call .Pursuit
@@ -1690,20 +1690,17 @@ BattleCommand_CheckHit:
 	and a
 	ret
 
-.DrainSub:
-; Return z if using an HP drain move on a substitute.
+.Substitute:
+; Return nz if the opponent is behind a Substitute for certain moves
 	call CheckSubstituteOpp
-	jr z, .not_draining_sub
+	jr z, .not_blocked
 
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
-
-	cp EFFECT_LEECH_HIT
-	ret z
-	cp EFFECT_DREAM_EATER
+	cp EFFECT_SWAGGER
 	ret z
 
-.not_draining_sub
+.not_blocked
 	ld a, 1
 	and a
 	ret
@@ -5778,10 +5775,10 @@ BattleCommand_Confuse:
 
 .not_already_confused
 	call CheckSubstituteOpp
-	jr nz, BattleCommand_Confuse_CheckSnore_Swagger_ConfuseHit
+	jr nz, BattleCommand_Confuse_CheckSwagger_ConfuseHit
 	ld a, [wAttackMissed]
 	and a
-	jr nz, BattleCommand_Confuse_CheckSnore_Swagger_ConfuseHit
+	jr nz, BattleCommand_Confuse_CheckSwagger_ConfuseHit
 BattleCommand_FinishConfusingTarget:
 	ld bc, wEnemyConfuseCount
 	ldh a, [hBattleTurn]
@@ -5822,12 +5819,10 @@ BattleCommand_FinishConfusingTarget:
 .heal_confusion
 	farjp UseConfusionHealingItem
 
-BattleCommand_Confuse_CheckSnore_Swagger_ConfuseHit:
+BattleCommand_Confuse_CheckSwagger_ConfuseHit:
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
 	cp EFFECT_CONFUSE_HIT
-	ret z
-	cp EFFECT_SNORE
 	ret z
 	cp EFFECT_SWAGGER
 	ret z
@@ -6283,20 +6278,23 @@ ResetTurn:
 INCLUDE "engine/battle/move_effects/thief.asm"
 
 BattleCommand_ArenaTrap:
-; Doesn't work on an absent opponent.
-
+	; Doesn't work on an absent opponent.
 	call CheckHiddenOpponent
 	jr nz, .failed
 
-; Don't trap if the opponent is already trapped.
+	; Can't trap an opponent using a Substitute
+	ld a, BATTLE_VARS_SUBSTATUS4_OPP
+	call GetBattleVarAddr
+	bit SUBSTATUS_SUBSTITUTE, [hl]
+	jr nz, .failed
 
+	; Don't trap if the opponent is already trapped.
 	ld a, BATTLE_VARS_SUBSTATUS5
 	call GetBattleVarAddr
 	bit SUBSTATUS_CANT_RUN, [hl]
 	jr nz, .failed
 
-; Otherwise trap the opponent.
-
+	; Otherwise trap the opponent.
 	set SUBSTATUS_CANT_RUN, [hl]
 	call AnimateCurrentMove
 	ld hl, CantEscapeNowText
