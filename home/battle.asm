@@ -142,6 +142,30 @@ UpdateBattleHuds::
 
 INCLUDE "home/battle_vars.asm"
 
+CheckIfUserIsSomeType::
+	ldh a, [hBattleTurn]
+	xor 1
+CheckIfSomeoneIsSomeType::
+; Register b contains the type to compare to.
+	ld c, a
+	ld de, wEnemyMonType1
+	ld a, c
+	and a
+	jr z, .ok
+	ld de, wBattleMonType1
+.ok
+	ld a, [de]
+	inc de
+	cp b
+	ret z
+	ld a, [de]
+	cp b
+	ret
+
+CheckIfTargetIsSomeType::
+	ldh a, [hBattleTurn]
+	jr CheckIfSomeoneIsSomeType
+
 FarCopyRadioText::
 	inc hl
 	ldh a, [hROMBank]

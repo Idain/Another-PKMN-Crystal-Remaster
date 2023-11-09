@@ -1418,20 +1418,10 @@ BattleCommand_CheckPowder:
 	ret nc
 
 ; If the opponent is Grass-type, the move fails.
-	ld hl, wEnemyMonType1
-	ldh a, [hBattleTurn]
-	and a
-	jr z, .checkgrasstype
-	ld hl, wBattleMonType1
-
-.checkgrasstype:
-	ld a, [hli]
-	cp GRASS
-	jr z, .Immune
-	ld a, [hl]
-	cp GRASS
+	ld b, GRASS
+	call CheckIfTargetIsSomeType
 	ret nz
-	;fallthrough
+	; fallthrough
 .Immune:
 	ld a, 1
 	ld [wAttackMissed], a
@@ -3109,7 +3099,7 @@ BattleCommand_DamageCalc:
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
 
-; Variable-hit moves and Conversion can have a power of 0.
+; Variable-hit moves and Conversion can't have a power of 0.
 	cp EFFECT_MULTI_HIT
 	jr z, .skip_zero_damage_check
 
@@ -3958,24 +3948,6 @@ BattleCommand_Poison:
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
 	cp EFFECT_TOXIC
-	ret
-
-CheckIfTargetIsSomeType:   
-; Check if the opponent is a certain type.
-; Register b contains the type to compare to.
-
-	ld de, wEnemyMonType1
-	ldh a, [hBattleTurn]
-	and a
-	jr z, .ok
-	ld de, wBattleMonType1
-.ok
-	ld a, [de]
-	inc de
-	cp b
-	ret z
-	ld a, [de]
-	cp b
 	ret
 
 PoisonOpponent:
