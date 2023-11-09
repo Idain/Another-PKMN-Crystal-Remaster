@@ -1600,19 +1600,8 @@ BattleCommand_CheckHit:
 
 ; If the user is Poison-type, Toxic will never fail, 
 ; even if the target is in a semi-invulnerable turn
-	ld hl, wBattleMonType1
-	ldh a, [hBattleTurn]
-	and a
-	jr z, .CheckUserPoisonType
-	ld hl, wEnemyMonType1
-
-.CheckUserPoisonType:
-	ld a, [hli]
-	cp POISON
-	ret z
-	ld a, [hl]
-	cp POISON
-	ret
+	ld b, POISON
+	jp CheckIfUserIsSomeType 
 
 .Pursuit:
 ; Pursuit used when a foe is switching always hits
