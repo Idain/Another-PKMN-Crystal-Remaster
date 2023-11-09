@@ -6844,7 +6844,7 @@ ApplyStatLevelMultiplier:
 	sub LOW(MAX_STAT_VALUE)
 	ldh a, [hQuotient + 2]
 	sbc HIGH(MAX_STAT_VALUE)
-	jp c, .okay3
+	jr c, .okay3
 
 	ld a, HIGH(MAX_STAT_VALUE)
 	ldh [hQuotient + 2], a
