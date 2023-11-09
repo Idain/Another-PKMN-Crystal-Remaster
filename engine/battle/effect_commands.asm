@@ -1383,12 +1383,16 @@ CheckTypeMatchup:
 	jr .TypesLoop
 
 .Yup:
+	; Stop if we found a NO_EFFECT matchup
+	ld a, [hli]
+	and a ; NO_EFFECT
+	jr z, .Immune
+
+	ldh [hMultiplicand + 2], a
 	xor a
 	ldh [hDividend + 0], a
 	ldh [hMultiplicand + 0], a
 	ldh [hMultiplicand + 1], a
-	ld a, [hli]
-	ldh [hMultiplicand + 2], a
 	ld a, [wTypeMatchup]
 	ldh [hMultiplier], a
 	call Multiply
@@ -1402,6 +1406,8 @@ CheckTypeMatchup:
 	ld [wTypeMatchup], a
 	jr .TypesLoop
 
+.Immune
+	ld [wTypeMatchup], a
 .End:
 	pop bc
 	pop de
