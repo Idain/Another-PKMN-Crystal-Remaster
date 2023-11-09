@@ -60,4 +60,7 @@ INCLUDE "home/sprite_anims.asm"
 INCLUDE "home/audio.asm"
 INCLUDE "home/audionighttable.asm"
 INCLUDE "home/mobile.asm"
-INCLUDE "home/powder_moves.asm"
+
+; Data used in multiple banks, or one full bank, outside home
+INCLUDE "data/moves/powder_moves.asm"
+INCLUDE "data/moves/sound_moves.asm"

@@ -6227,6 +6227,21 @@ PrintParalyze:
 	jp StdBattleTextbox
 
 CheckSubstituteOpp:
+	push bc
+	push de
+	push hl
+	ld a, BATTLE_VARS_MOVE_ANIM
+	call GetBattleVar
+	ld hl, SoundMoves
+	call IsInByteArray
+	pop hl
+	pop de
+	pop bc
+	jr nc, .no_sound_move
+	xor a
+	ret
+
+.no_sound_move
 	ld a, BATTLE_VARS_SUBSTATUS4_OPP
 	call GetBattleVar
 	bit SUBSTATUS_SUBSTITUTE, a
