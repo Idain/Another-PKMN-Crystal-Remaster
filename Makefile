@@ -169,7 +169,7 @@ pokecrystal11_vc_opt    = -Cjv -t PM_CRYSTAL -i BYTE -n 1 -k 01 -l 0x33 -m 0x10 
 ### LZ compression rules
 
 %.lz: %
-	tools/lzcomp $(LZFLAGS) -- $< $@
+	tools/lzcomp -- $< $@
 
 
 ### Pokemon pic animation rules
