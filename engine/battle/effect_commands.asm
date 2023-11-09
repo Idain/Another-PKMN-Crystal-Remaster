@@ -6294,11 +6294,20 @@ BattleCommand_ArenaTrap:
 	bit SUBSTATUS_CANT_RUN, [hl]
 	jr nz, .failed
 
+	; Ghost-types are immune to trapping effects
+	ld b, GHOST
+	call CheckIfTargetIsSomeType
+	jr z, .immune
+
 	; Otherwise trap the opponent.
 	set SUBSTATUS_CANT_RUN, [hl]
 	call AnimateCurrentMove
 	ld hl, CantEscapeNowText
 	jp StdBattleTextbox
+
+.immune
+	call AnimateFailedMove
+	jp PrintDidntAffect
 
 .failed
 	call AnimateFailedMove
