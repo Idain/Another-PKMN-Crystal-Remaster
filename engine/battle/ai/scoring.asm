@@ -1778,6 +1778,10 @@ AI_Smart_MeanLook:
 	pop hl
 	jp z, AIDiscourageMove
 
+	ld b, GHOST
+	call CheckIfTargetIsSomeType
+	jp z, AIDiscourageMove
+
 ; 80% chance to greatly encourage this move if the player is badly poisoned
 	ld a, [wBattleMonStatus]
 	bit TOX, a
@@ -2560,9 +2564,9 @@ AI_Smart_PsychUp:
 	pop hl
 	jr nc, .discourage
 
-; Else, 80% chance to encourage this move unless player's accuracy level is lower than -1...
+; Else, 80% chance to encourage this move unless player's accuracy level is lower than +0...
 	ld a, [wPlayerAccLevel]
-	cp BASE_STAT_LEVEL - 1
+	cp BASE_STAT_LEVEL
 	ret c
 
 ; ...or enemy's evasion level is higher than +0.
