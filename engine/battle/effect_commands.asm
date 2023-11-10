@@ -1232,11 +1232,11 @@ BattleCommand_Stab:
 	ld hl, TypeMatchups
 .TypesLoop:
 	ld a, [hli]
-	inc a
+	cp -1
 	jr z, .end
 
 	; foresight
-	inc a
+	cp -2
 	jr nz, .SkipForesightCheck
 	ld a, BATTLE_VARS_SUBSTATUS1_OPP
 	call GetBattleVar
@@ -1246,8 +1246,6 @@ BattleCommand_Stab:
 	jr .TypesLoop
 
 .SkipForesightCheck:
-	dec a
-	dec a
 	cp b
 	jr nz, .SkipType
 	ld a, [hl]
