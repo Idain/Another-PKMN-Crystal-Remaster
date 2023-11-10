@@ -2594,6 +2594,8 @@ PlayVictoryMusic:
 	ld hl, wPayDayMoney
 	ld a, [hli]
 	or [hl]
+	inc hl
+	or [hl]
 	jr nz, .play_music
 	ld a, [wBattleParticipantsNotFainted]
 	and a
