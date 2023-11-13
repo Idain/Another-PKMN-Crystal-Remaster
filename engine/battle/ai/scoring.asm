@@ -2038,35 +2038,47 @@ AI_Smart_Foresight:
 
 AI_Smart_PerishSong:
 	push hl
+
 	farcall CheckAnyOtherAliveEnemyMons
-	pop hl
 	jr z, .no
 
-	ld a, [wPlayerSubStatus5]
+	ld a, [wPlayerPerishCount]
+	and a
+	jr nz, .no
+
+	farcall GetSwitchScores
+	ld a, [wEnemyAISwitchScore]
+	and a
+	jr z, .no
+
+	; Encourage if player can't switch out
+	farcall CheckAnyOtherAlivePartyMons
+	jr z, .yes
+
+	ld b, GHOST
+	call CheckIfTargetIsSomeType
+	jr z, .neutral
+
+	ld a, [wPlayerWrapCount]
+	and a
+	jr nz, .yes
+
+	ld a, [wEnemySubStatus5]
 	bit SUBSTATUS_CANT_RUN, a
 	jr nz, .yes
 
-	push hl
-	farcall CheckPlayerMoveTypeMatchups
-	ld a, [wEnemyAISwitchScore]
-	cp BASE_AI_SWITCH_SCORE
+.neutral
 	pop hl
-	ret c
-
-	call AI_50_50
-	ret c
-
-	inc [hl]
 	ret
 
 .yes
-	call AI_50_50
-	ret c
-
+	pop hl
+	dec [hl]
 	dec [hl]
 	ret
 
 .no
+	pop hl
 	ld a, [hl]
 	add 5
 	ld [hl], a
