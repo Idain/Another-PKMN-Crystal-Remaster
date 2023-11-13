@@ -1,4 +1,4 @@
-DEF MAP_NAME_SIGN_START EQU $c0
+DEF MAP_NAME_SIGN_START EQU $c1
 
 ; wLandmarkSignTimer
 DEF MAPSIGNSTAGE_1_SLIDEOLD EQU $63
@@ -16,7 +16,7 @@ InitMapNameSign::
 	ld c, a
 	call GetWorldMapLocation
 	ld [wCurLandmark], a
-	call .CheckNationalParkGate
+	call .CheckExcludedMaps
 	jr z, .gate
 
 	call GetMapEnvironment
@@ -116,14 +116,24 @@ InitMapNameSign::
 	and a
 	ret
 
-.CheckNationalParkGate:
+.CheckExcludedMaps:
 	ld a, [wMapGroup]
+	assert GROUP_ROUTE_35_NATIONAL_PARK_GATE == GROUP_ROUTE_36_NATIONAL_PARK_GATE
 	cp GROUP_ROUTE_35_NATIONAL_PARK_GATE
-	ret nz
+	jr nz, .not_national_park_gate
 	ld a, [wMapNumber]
 	cp MAP_ROUTE_35_NATIONAL_PARK_GATE
 	ret z
 	cp MAP_ROUTE_36_NATIONAL_PARK_GATE
+	ret
+.not_national_park_gate
+	assert GROUP_OLIVINE_PORT == GROUP_VERMILION_PORT
+	cp GROUP_OLIVINE_PORT
+	ret nz
+	ld a, [wMapNumber]
+	cp MAP_OLIVINE_PORT
+	ret z
+	cp MAP_VERMILION_PORT
 	ret
 
 PlaceMapNameSign::
@@ -175,10 +185,79 @@ PlaceMapNameSign::
 	ret
 
 InitMapNameFrame:
+; InitMapSignAttrmap
 	hlcoord 0, 0, wAttrmap
-	lb bc, 3, SCREEN_WIDTH
-	call InitMapSignAttrmap
-	jr PlaceMapNameFrame
+	ld a, PAL_BG_TEXT | PRIORITY
+	; top row
+	ld a, PRIORITY | PAL_BG_TEXT
+	ld bc, SCREEN_WIDTH - 1
+	call ByteFill
+	or X_FLIP
+	ld [hli], a
+	; middle row
+	and ~X_FLIP
+	ld [hli], a
+	ld bc, SCREEN_WIDTH - 2
+	call ByteFill
+	or X_FLIP
+	ld [hli], a
+	; bottom row
+	and ~X_FLIP
+	ld bc, SCREEN_WIDTH - 1
+	call ByteFill
+	or X_FLIP
+	ld [hl], a
+; PlaceMapNameFrame
+	hlcoord 0, 0
+	; top left
+	ld a, MAP_NAME_SIGN_START
+	ld [hli], a
+	; top row
+	inc a ; MAP_NAME_SIGN_START + 1
+	call .FillTopBottom
+	; top right
+	dec a ; MAP_NAME_SIGN_START
+	ld [hli], a
+	; middle left
+	ld a, MAP_NAME_SIGN_START + 3
+	ld [hli], a
+	; middle row
+	ld c, SCREEN_WIDTH - 2
+	ld a, MAP_NAME_SIGN_START + 8
+.middleloop
+	ld [hli], a
+	dec c
+	jr nz, .middleloop
+	; middle right
+	ld a, MAP_NAME_SIGN_START + 4
+	ld [hli], a
+	; bottom left
+	inc a ; MAP_NAME_SIGN_START + 5
+	ld [hli], a
+	; bottom
+	inc a ; MAP_NAME_SIGN_START + 6
+	call .FillTopBottom
+	; bottom right
+	dec a ; MAP_NAME_SIGN_START + 5
+	ld [hl], a
+	ret
+
+.FillTopBottom:
+	ld c, (SCREEN_WIDTH - 2) / 4 + 1
+	jr .enterloop
+
+.continueloop
+	ld [hli], a
+	ld [hli], a
+
+.enterloop
+	inc a
+	ld [hli], a
+	ld [hli], a
+	dec a
+	dec c
+	jr nz, .continueloop
+	ret
 
 PlaceMapNameCenterAlign:
 	ld a, [wCurLandmark]
@@ -209,73 +288,4 @@ PlaceMapNameCenterAlign:
 	jr .loop
 .stop
 	pop hl
-	ret
-
-InitMapSignAttrmap:
-	ld a, PAL_BG_TEXT | PRIORITY
-.loop
-	push bc
-.inner_loop
-	ld [hli], a
-	dec c
-	jr nz, .inner_loop
-	pop bc
-	dec b
-	jr nz, .loop
-	ret
-
-PlaceMapNameFrame:
-	hlcoord 0, 0
-	; top left
-	ld a, MAP_NAME_SIGN_START + 1
-	ld [hli], a
-	; top row
-	ld a, MAP_NAME_SIGN_START + 2
-	call .FillTopBottom
-	; top right
-	ld a, MAP_NAME_SIGN_START + 4
-	ld [hli], a
-	; left, first line
-	ld a, MAP_NAME_SIGN_START + 5
-	ld [hli], a
-	; first line
-	call .FillMiddle
-	; right, first line
-	ld a, MAP_NAME_SIGN_START + 12
-	ld [hli], a
-	; bottom left
-	ld a, MAP_NAME_SIGN_START + 7
-	ld [hli], a
-	; bottom
-	ld a, MAP_NAME_SIGN_START + 8
-	call .FillTopBottom
-	; bottom right
-	ld a, MAP_NAME_SIGN_START + 10
-	ld [hl], a
-	ret
-
-.FillMiddle:
-	ld c, SCREEN_WIDTH - 2
-	ld a, MAP_NAME_SIGN_START + 13
-.loop
-	ld [hli], a
-	dec c
-	jr nz, .loop
-	ret
-
-.FillTopBottom:
-	ld c, (SCREEN_WIDTH - 2) / 4 + 1
-	jr .enterloop
-
-.continueloop
-	ld [hli], a
-	ld [hli], a
-
-.enterloop
-	inc a
-	ld [hli], a
-	ld [hli], a
-	dec a
-	dec c
-	jr nz, .continueloop
 	ret
