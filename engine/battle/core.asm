@@ -1467,11 +1467,8 @@ HandleLeppaBerry:
 	pop bc
 	ld b, 0
 	add hl, bc
-	push hl
-	ld h, d
-	ld l, e
+	rst SwapHLDE
 	add hl, bc
-	pop de
 	pop bc
 
 	ld a, [wTempByteValue]
@@ -6022,8 +6019,7 @@ CheckEnemyLockedIn:
 	and 1 << SUBSTATUS_RECHARGE
 	ret nz
 
-	ld hl, wEnemySubStatus3
-	ld a, [hl]
+	ld a, [wEnemySubStatus3]
 	and 1 << SUBSTATUS_CHARGED | 1 << SUBSTATUS_RAMPAGE | 1 << SUBSTATUS_BIDE
 	ret nz
 
