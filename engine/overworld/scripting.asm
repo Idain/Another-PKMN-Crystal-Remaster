@@ -1478,49 +1478,8 @@ Script_random:
 	ld [wScriptVar], a
 	and a
 	ret z
-
-	ld c, a
-	call .Divide256byC
-	and a
-	jr z, .no_restriction ; 256 % b == 0
-	ld b, a
-	xor a
-	sub b
-	ld b, a
-.loop
-	push bc
-	call Random
-	pop bc
-	ldh a, [hRandomAdd]
-	cp b
-	jr nc, .loop
-	jr .finish
-
-.no_restriction
-	push bc
-	call Random
-	pop bc
-	ldh a, [hRandomAdd]
-
-.finish
-	push af
-	ld a, [wScriptVar]
-	ld c, a
-	pop af
-	call SimpleDivide
+	call RandomRange
 	ld [wScriptVar], a
-	ret
-
-.Divide256byC:
-	xor a
-	ld b, a
-	sub c
-.mod_loop
-	inc b
-	sub c
-	jr nc, .mod_loop
-	dec b
-	add c
 	ret
 
 Script_readvar:
