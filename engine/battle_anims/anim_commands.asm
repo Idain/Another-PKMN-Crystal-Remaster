@@ -362,12 +362,12 @@ BattleAnimCmd_Ret:
 	ld hl, wBattleAnimFlags
 	res BATTLEANIM_IN_SUBROUTINE_F, [hl]
 	ld hl, wBattleAnimParent
-	ld e, [hl]
-	inc hl
+	ld a, [hli]
+	ld e, a
 	ld d, [hl]
 	ld hl, wBattleAnimAddress
-	ld [hl], e
-	inc hl
+	ld a, e
+	ld [hli], a
 	ld [hl], d
 	ret
 
@@ -378,17 +378,17 @@ BattleAnimCmd_Call:
 	ld d, a
 	push de
 	ld hl, wBattleAnimAddress
-	ld e, [hl]
-	inc hl
+	ld a, [hli]
+	ld e, a
 	ld d, [hl]
 	ld hl, wBattleAnimParent
-	ld [hl], e
-	inc hl
+	ld a, e
+	ld [hli], a
 	ld [hl], d
 	pop de
 	ld hl, wBattleAnimAddress
-	ld [hl], e
-	inc hl
+	ld a, e
+	ld [hli], a
 	ld [hl], d
 	ld hl, wBattleAnimFlags
 	set BATTLEANIM_IN_SUBROUTINE_F, [hl]
@@ -400,8 +400,8 @@ BattleAnimCmd_Jump:
 	call GetBattleAnimByte
 	ld d, a
 	ld hl, wBattleAnimAddress
-	ld [hl], e
-	inc hl
+	ld a, e
+	ld [hli], a
 	ld [hl], d
 	ret
 
@@ -427,8 +427,8 @@ BattleAnimCmd_Loop:
 	call GetBattleAnimByte
 	ld d, a
 	ld hl, wBattleAnimAddress
-	ld [hl], e
-	inc hl
+	ld a, e
+	ld [hli], a
 	ld [hl], d
 	ret
 
@@ -436,13 +436,13 @@ BattleAnimCmd_Loop:
 	ld hl, wBattleAnimFlags
 	res BATTLEANIM_IN_LOOP_F, [hl]
 	ld hl, wBattleAnimAddress
-	ld e, [hl]
-	inc hl
+	ld a, [hli]
+	ld e, a
 	ld d, [hl]
 	inc de
 	inc de
-	ld [hl], d
-	dec hl
+	ld a, d
+	ld [hld], a
 	ld [hl], e
 	ret
 
@@ -458,20 +458,20 @@ BattleAnimCmd_JumpUntil:
 	call GetBattleAnimByte
 	ld d, a
 	ld hl, wBattleAnimAddress
-	ld [hl], e
-	inc hl
+	ld a, e
+	ld [hli], a
 	ld [hl], d
 	ret
 
 .dont_jump
 	ld hl, wBattleAnimAddress
-	ld e, [hl]
-	inc hl
+	ld a, [hli]
+	ld e, a
 	ld d, [hl]
 	inc de
 	inc de
-	ld [hl], d
-	dec hl
+	ld a, d
+	ld [hld], a
 	ld [hl], e
 	ret
 
@@ -492,13 +492,13 @@ BattleAnimCmd_IfVarEqual:
 	jr z, .jump
 
 	ld hl, wBattleAnimAddress
-	ld e, [hl]
-	inc hl
+	ld a, [hli]
+	ld e, a
 	ld d, [hl]
 	inc de
 	inc de
-	ld [hl], d
-	dec hl
+	ld a, d
+	ld [hld], a
 	ld [hl], e
 	ret
 
@@ -508,8 +508,8 @@ BattleAnimCmd_IfVarEqual:
 	call GetBattleAnimByte
 	ld d, a
 	ld hl, wBattleAnimAddress
-	ld [hl], e
-	inc hl
+	ld a, e
+	ld [hli], a
 	ld [hl], d
 	ret
 
@@ -520,13 +520,13 @@ BattleAnimCmd_IfParamEqual:
 	jr z, .jump
 
 	ld hl, wBattleAnimAddress
-	ld e, [hl]
-	inc hl
+	ld a, [hli]
+	ld e, a
 	ld d, [hl]
 	inc de
 	inc de
-	ld [hl], d
-	dec hl
+	ld a, d
+	ld [hld], a
 	ld [hl], e
 	ret
 
@@ -536,8 +536,8 @@ BattleAnimCmd_IfParamEqual:
 	call GetBattleAnimByte
 	ld d, a
 	ld hl, wBattleAnimAddress
-	ld [hl], e
-	inc hl
+	ld a, e
+	ld [hli], a
 	ld [hl], d
 	ret
 
@@ -549,13 +549,13 @@ BattleAnimCmd_IfParamAnd:
 	jr nz, .jump
 
 	ld hl, wBattleAnimAddress
-	ld e, [hl]
-	inc hl
+	ld a, [hli]
+	ld e, a
 	ld d, [hl]
 	inc de
 	inc de
-	ld [hl], d
-	dec hl
+	ld a, d
+	ld [hld], a
 	ld [hl], e
 	ret
 
@@ -565,8 +565,8 @@ BattleAnimCmd_IfParamAnd:
 	call GetBattleAnimByte
 	ld d, a
 	ld hl, wBattleAnimAddress
-	ld [hl], e
-	inc hl
+	ld a, e
+	ld [hli], a
 	ld [hl], d
 	ret
 
@@ -761,8 +761,7 @@ BattleAnimCmd_BattlerGFX_1Row:
 	ld [hli], a
 	ld a, ANIM_GFX_ENEMYFEET
 	ld [hli], a
-	ld a, ($80 - 6) - BATTLEANIM_BASE_TILE
-	ld [hl], a
+	ld [hl], ($80 - 6) - BATTLEANIM_BASE_TILE
 
 	ld hl, vTiles0 tile ($80 - 6 - 7)
 	ld de, vTiles2 tile $06 ; Enemy feet start tile
@@ -813,8 +812,7 @@ BattleAnimCmd_BattlerGFX_2Row:
 	ld [hli], a
 	ld a, ANIM_GFX_ENEMYFEET
 	ld [hli], a
-	ld a, ($80 - 6 * 2) - BATTLEANIM_BASE_TILE
-	ld [hl], a
+	ld [hl], ($80 - 6 * 2) - BATTLEANIM_BASE_TILE
 
 	ld hl, vTiles0 tile ($80 - 6 * 2 - 7 * 2)
 	ld de, vTiles2 tile $05 ; Enemy feet start tile
@@ -1309,8 +1307,8 @@ ClearBattleAnims::
 	call ByteFill
 
 	ld hl, wFXAnimID
-	ld e, [hl]
-	inc hl
+	ld a, [hli]
+	ld e, a
 	ld d, [hl]
 	ld hl, BattleAnimations
 	add hl, de
@@ -1385,7 +1383,7 @@ BattleAnim_SetOBPals:
 	ret
 
 BattleAnim_UpdateOAM_All:
-	ld a, 0
+	xor a
 	ld [wBattleAnimOAMPointerLo], a
 	ld hl, wActiveAnimObjects
 	ld e, NUM_ANIM_OBJECTS

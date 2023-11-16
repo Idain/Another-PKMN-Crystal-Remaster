@@ -117,8 +117,8 @@ TradeAnimationPlayer2:
 
 RunTradeAnimScript:
 	ld hl, wTradeAnimAddress
-	ld [hl], e
-	inc hl
+	ld a, e
+	ld [hli], a
 	ld [hl], d
 	ldh a, [hMapAnims]
 	push af
@@ -164,7 +164,7 @@ RunTradeAnimScript:
 	ld bc, VRAM_End - VRAM_Begin
 	xor a
 	call ByteFill
-	ld a, $0
+	xor a
 	ldh [rVBK], a
 
 .NotCGB:
@@ -291,14 +291,14 @@ TradeAnim_IncrementJumptableIndex:
 
 TradeAnim_AdvanceScriptPointer:
 	ld hl, wTradeAnimAddress
-	ld e, [hl]
-	inc hl
+	ld a, [hli]
+	ld e, a
 	ld d, [hl]
 	ld a, [de]
 	ld [wJumptableIndex], a
 	inc de
-	ld [hl], d
-	dec hl
+	ld a, d
+	ld [hld], a
 	ld [hl], e
 	ret
 
@@ -552,8 +552,7 @@ TradeAnim_TubeAnimJumptable:
 	ld a, $60
 	call ByteFill
 	hlcoord 17, 3
-	ld a, $5d
-	ld [hl], a
+	ld [hl], $5d
 
 	ld a, $61
 	ld de, SCREEN_WIDTH
@@ -567,8 +566,7 @@ TradeAnim_TubeAnimJumptable:
 	add hl, de
 	ld a, $5f
 	ld [hld], a
-	ld a, $5b
-	ld [hl], a
+	ld [hl], $5b
 	hlcoord 10, 6
 	; fallthrough
 TradeAnim_CopyTradeGameBoyTilemap:

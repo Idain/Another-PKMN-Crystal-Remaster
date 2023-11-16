@@ -389,10 +389,9 @@ DebugFight_DisplayLevel:
 	ld a, [wCurPartyMon]
 	push de
 ; Calculate which mon's level is displayed
-	ld de, wDebugFightMonLevel
-	add e
+	add LOW(wDebugFightMonLevel)
 	ld e, a
-	adc d
+	adc HIGH(wDebugFightMonLevel)
 	sub e
 	ld d, a
 	ld a, c
@@ -536,10 +535,9 @@ DebugFight_SelectButton:
 
 .reprint_party
 	ld a, [wCurPartyMon]
-	ld de, wPartySpecies
-	add e
+	add LOW(wPartySpecies)
 	ld e, a
-	adc d
+	adc HIGH(wPartySpecies)
 	sub e
 	ld d, a
 	ld a, [de]
@@ -572,10 +570,9 @@ DebugFight_SelectButton:
 	call PrintNum
 
 	ld a, [wCurPartyMon]
-	ld de, wDebugFightMonLevel
-	add e
+	add LOW(wDebugFightMonLevel)
 	ld e, a
-	adc d
+	adc HIGH(wDebugFightMonLevel)
 	sub e
 	ld d, a
 	ld a, [wCurPartyLevel]
@@ -1366,10 +1363,9 @@ DebugFight_TryStartBattle:
 
 .reprint_party
 	ld a, [wCurPartyMon]
-	ld de, wPartySpecies
-	add e
+	add LOW(wPartySpecies)
 	ld e, a
-	adc d
+	adc HIGH(wPartySpecies)
 	sub e
 	ld d, a
 	ld a, [de]
@@ -1402,10 +1398,9 @@ DebugFight_TryStartBattle:
 	call PrintNum
 
 	ld a, [wCurPartyMon]
-	ld de, wDebugFightMonLevel
-	add e
+	add LOW(wDebugFightMonLevel)
 	ld e, a
-	adc d
+	adc HIGH(wDebugFightMonLevel)
 	sub e
 	ld d, a
 	ld a, [wCurPartyLevel]

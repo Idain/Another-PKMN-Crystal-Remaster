@@ -952,9 +952,9 @@ _DebugColor_PushSGBPals:
 	ldh [rJOYP], a
 	ld de, 7000
 .wait
-	nop
-	nop
-	nop
+	nop ; no-optimize nops
+	nop ; no-optimize nops
+	nop ; no-optimize nops
 	dec de
 	ld a, d
 	or e

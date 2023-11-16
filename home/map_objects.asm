@@ -168,7 +168,6 @@ CheckIceTile::
 	ret
 
 CheckWhirlpoolTile::
-	nop
 	cp COLL_WHIRLPOOL
 	ret z
 	cp COLL_WHIRLPOOL_2C

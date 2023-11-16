@@ -1,7 +1,7 @@
 ; Functions dealing with VRAM.
 
 PushOAM::
-	ld a, [hOAMUpdate]
+	ldh a, [hOAMUpdate]
 	and a
 	ret nz
 ForcePushOAM:
@@ -172,7 +172,7 @@ UpdateBGMap::
 	add hl, hl ; hl = (5*hl)*4
 	add hl, bc
 	ld sp, hl
-	ld a, [hBGMapHalf] ; multiply by 32 to get the bg map offset
+	ldh a, [hBGMapHalf] ; multiply by 32 to get the bg map offset
 	; assumes [hBGMapHalf] < 16
 	swap a
 	add a
@@ -355,7 +355,7 @@ LYOverrideStackCopy::
 
 	ld b, a
 	xor a
-	ld [hLYOverrideStackCopyAmount], a
+	ldh [hLYOverrideStackCopyAmount], a
 	; fallthrough
 
 _Serve2bppRequest::

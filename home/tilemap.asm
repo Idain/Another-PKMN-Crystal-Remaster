@@ -30,7 +30,7 @@ ApplyTilemap::
 	jr z, WaitBGMap
 
 	ld a, 1
-	ld [hBGMapMode], a
+	ldh [hBGMapMode], a
 	ld a, [wSpriteUpdatesEnabled]
 	and a
 	ld b, 3

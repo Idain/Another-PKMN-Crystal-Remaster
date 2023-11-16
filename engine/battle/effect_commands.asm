@@ -3346,7 +3346,7 @@ BattleCommand_ConstantDamage:
 	ld a, BATTLE_VARS_MOVE_POWER
 	call GetBattleVar
 	ld b, a
-	ld a, 0
+	xor a
 	jr .got_power
 
 .psywave
@@ -3361,7 +3361,7 @@ BattleCommand_ConstantDamage:
 	cp b
 	jr nc, .psywave_loop
 	ld b, a
-	ld a, 0
+	xor a
 	jr .got_power
 
 .super_fang

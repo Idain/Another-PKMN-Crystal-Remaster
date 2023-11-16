@@ -1448,7 +1448,7 @@ RevivalHerbEffect:
 	farcall ChangeHappiness
 	call LooksBitterMessage
 
-	ld a, $0
+	xor a
 	jp StatusHealer_Jumptable
 
 ReviveEffect:

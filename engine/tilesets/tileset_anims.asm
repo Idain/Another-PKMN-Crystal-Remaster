@@ -23,10 +23,10 @@ _AnimateTileset::
 
 ; 2-byte parameter
 ; All functions take input de
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	inc hl
+	ld a, [hli]
+	ld e, a
+	ld a, [hli]
+	ld d, a
 
 ; Function address
 	ld a, [hli]
@@ -722,10 +722,10 @@ AnimateWhirlpoolTile:
 ; de = the destination in VRAM
 	ld l, e
 	ld h, d
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	inc hl
+	ld a, [hli]
+	ld e, a
+	ld a, [hli]
+	ld d, a
 
 ; A cycle of 4 frames, updating every tick
 	ld a, [wTileAnimationTimer]
@@ -782,14 +782,14 @@ WriteTile:
 ; copy data with a "pop slide".
 
 	pop de
-	ld [hl], e
-	inc hl
+	ld a, e
+	ld [hli], a
 	ld [hl], d
 rept (LEN_2BPP_TILE - 2) / 2
 	pop de
 	inc hl
-	ld [hl], e
-	inc hl
+	ld a, e
+	ld [hli], a
 	ld [hl], d
 endr
 

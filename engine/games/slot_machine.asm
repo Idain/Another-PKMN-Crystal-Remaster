@@ -429,19 +429,19 @@ SlotsAction_PayoutAnim:
 	jp z, SlotsAction_Next
 	ld e, [hl]
 	dec de
-	ld [hl], e
-	dec hl
+	ld a, e
+	ld [hld], a
 	ld [hl], d
 	ld hl, wCoins
-	ld d, [hl]
-	inc hl
+	ld a, [hli]
+	ld d, a
 	ld e, [hl]
 	call Slots_CheckCoinCaseFull
 	jr c, .okay
 	inc de
 .okay
-	ld [hl], e
-	dec hl
+	ld a, e
+	ld [hld], a
 	ld [hl], d
 	ld a, [wSlotsDelay]
 	and $7
@@ -619,14 +619,14 @@ Slots_InitReelTiles:
 	ld hl, REEL_OAM_ADDR
 	add hl, bc
 	ld de, wShadowOAMSprite16
-	ld [hl], e
-	inc hl
+	ld a, e
+	ld [hli], a
 	ld [hl], d
 	ld hl, REEL_TILEMAP_ADDR
 	add hl, bc
 	ld de, Reel1Tilemap
-	ld [hl], e
-	inc hl
+	ld a, e
+	ld [hli], a
 	ld [hl], d
 	ld hl, REEL_X_COORD
 	add hl, bc
@@ -637,14 +637,14 @@ Slots_InitReelTiles:
 	ld hl, REEL_OAM_ADDR
 	add hl, bc
 	ld de, wShadowOAMSprite24
-	ld [hl], e
-	inc hl
+	ld a, e
+	ld [hli], a
 	ld [hl], d
 	ld hl, REEL_TILEMAP_ADDR
 	add hl, bc
 	ld de, Reel2Tilemap
-	ld [hl], e
-	inc hl
+	ld a, e
+	ld [hli], a
 	ld [hl], d
 	ld hl, REEL_X_COORD
 	add hl, bc
@@ -655,14 +655,14 @@ Slots_InitReelTiles:
 	ld hl, REEL_OAM_ADDR
 	add hl, bc
 	ld de, wShadowOAMSprite32
-	ld [hl], e
-	inc hl
+	ld a, e
+	ld [hli], a
 	ld [hl], d
 	ld hl, REEL_TILEMAP_ADDR
 	add hl, bc
 	ld de, Reel3Tilemap
-	ld [hl], e
-	inc hl
+	ld a, e
+	ld [hli], a
 	ld [hl], d
 	ld hl, REEL_X_COORD
 	add hl, bc
@@ -881,8 +881,7 @@ ReelAction_StopReelIgnoreJoypad:
 .EndReel:
 	ld hl, REEL_ACTION
 	add hl, bc
-	ld a, REEL_ACTION_DO_NOTHING
-	ld [hl], a
+	ld [hl], REEL_ACTION_DO_NOTHING
 	ret
 
 ReelAction_StopReel1:
