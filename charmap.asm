@@ -15,7 +15,6 @@
 	charmap "<ENEMY>",   $3f
 	charmap "<MOM>",     $49 ; wMomsName
 	charmap "<PKMN>",    $4a ; "<PK><MN>"
-	charmap "<_CONT>",   $4b ; implements "<CONT>"
 	charmap "<SCROLL>",  $4c
 	charmap "<NEXT>",    $4e
 	charmap "<LINE>",    $4f

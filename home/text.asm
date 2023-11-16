@@ -202,7 +202,6 @@ ENDM
 	dict "<CR>",      CarriageReturnChar
 	dict "<NULL>",    NullChar
 	dict "<SCROLL>",  _ContTextNoPause
-	dict "<_CONT>",   _ContText
 	dict "<PARA>",    Paragraph
 	dict "<MOM>",     PrintMomsName
 	dict "<PLAYER>",  PrintPlayerName
@@ -454,12 +453,11 @@ Paragraph::
 	pop de
 	jp NextChar
 
-_ContText::
+ContText::
 	ld a, [wLinkMode]
 	or a
 	call z, LoadBlinkingCursor
 
-.communication
 	call Text_WaitBGMap
 
 	push de
@@ -478,19 +476,6 @@ _ContTextNoPause::
 	hlcoord TEXTBOX_INNERX, TEXTBOX_INNERY + 2
 	pop de
 	jp NextChar
-
-ContText::
-	push de
-	ld de, .cont
-	ld b, h
-	ld c, l
-	call PlaceString
-	ld h, b
-	ld l, c
-	pop de
-	jp NextChar
-
-.cont: db "<_CONT>@"
 
 PlaceDexEnd::
 ; Ends a Pokédex entry in Gen 1.
