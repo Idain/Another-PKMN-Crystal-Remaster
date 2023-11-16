@@ -85,8 +85,8 @@ endr
 	inc hl
 
 .time_species
-	ld d, [hl]
-	inc hl
+	ld a, [hli]
+	ld d, a
 	ret
 
 GetFishGroupIndex:

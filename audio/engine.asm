@@ -2106,7 +2106,7 @@ SetNoteDuration:
 	; store Tempo in de
 	ld hl, CHANNEL_TEMPO
 	add hl, bc
-	ld e, [hl]
+	ld e, [hl] ; no-optimize b|c|d|e = *hl++|*hl--
 	inc hl
 	ld d, [hl]
 	; add ???? to the next result

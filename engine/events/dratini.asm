@@ -29,7 +29,7 @@ GiveDratini:
 	; Insert Extremespeed in Pokémon's first move slot
 	ld de, MON_MOVES - MON_SPECIES
 	add hl, de
-	ld a, EXTREMESPEED
+	ld a, EXTREMESPEED ; no-optimize *hl = N
 	ld [hl], a
 
 	; get the PP of the new move

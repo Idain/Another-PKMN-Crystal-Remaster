@@ -189,8 +189,8 @@ IsFieldMove:
 	ret z
 	cp MONMENU_MENUOPTION
 	ret z
-	ld d, [hl]
-	inc hl
+	ld a, [hli]
+	ld d, a
 	ld a, [hli]
 	cp b
 	jr nz, .next

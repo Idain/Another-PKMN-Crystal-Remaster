@@ -621,10 +621,10 @@ DebugRoom_IncrementPagedValue:
 
 DebugRoom_DecrementPagedValue:
 	call DebugRoom_GetCurPagedValuePointer
-	ld e, [hl] ; de = value address
-	inc hl
-	ld d, [hl]
-	inc hl
+	ld a, [hli]; de = value address
+	ld e, a
+	ld a, [hli]
+	ld d, a
 	ld a, [de] ; a = min value
 	cp [hl]
 	ret z

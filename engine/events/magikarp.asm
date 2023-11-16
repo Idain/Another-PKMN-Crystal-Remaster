@@ -259,8 +259,8 @@ CalcMagikarpLength:
 	ld e, a
 
 	ld hl, wMagikarpLength
-	ld [hl], d ; ft
-	inc hl
+	ld a, d ; ft
+	ld [hli], a
 	ld [hl], e ; in
 	ret
 

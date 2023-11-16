@@ -96,7 +96,6 @@ CheckPhoneCall::
 	jr z, .no_call
 
 	farcall CheckReceiveCallTimer ; time check
-	nop
 	jr nc, .no_call
 
 	; 50% chance for a call
@@ -356,8 +355,6 @@ LoadOutOfAreaScript:
 	endcallback
 
 LoadCallerScript:
-	nop
-	nop
 	ld a, e
 	ld [wCurCaller], a
 	and a
@@ -616,8 +613,8 @@ GetCallerLocation:
 	ld hl, PhoneContacts + PHONE_CONTACT_MAP_GROUP
 	ld bc, PHONE_CONTACT_SIZE
 	call AddNTimes
-	ld b, [hl]
-	inc hl
+	ld a, [hli]
+	ld b, a
 	ld c, [hl]
 	push bc
 	call GetWorldMapLocation

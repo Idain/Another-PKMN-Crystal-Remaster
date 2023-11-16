@@ -41,7 +41,7 @@ InitMapNameSign::
 	call .CheckSpecialMap
 	jr z, .dont_do_map_sign
 
-; Landmark sign timer: descends $64-$00
+; Landmark sign timer: descends $63-$00
 ; $62-$57: Sliding out (old sign)
 ; $56-$54: Loading new graphics
 ; $53-$48: Sliding in
@@ -189,7 +189,6 @@ InitMapNameFrame:
 	hlcoord 0, 0, wAttrmap
 	ld a, PAL_BG_TEXT | PRIORITY
 	; top row
-	ld a, PRIORITY | PAL_BG_TEXT
 	ld bc, SCREEN_WIDTH - 1
 	call ByteFill
 	or X_FLIP

@@ -152,9 +152,9 @@ RestartClock:
 	ld [de], a
 	cp b
 	jr c, .done_scroll
-	ld a, 0
+	xor a ; done_scroll
 	ld [de], a
-	jr .done_scroll
+	ret
 
 .pressed_down
 	ld a, [wRestartClockCurDivision]

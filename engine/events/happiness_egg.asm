@@ -185,8 +185,7 @@ DayCareStep::
 	ld a, [hl]
 	cp HIGH(MAX_DAY_CARE_EXP >> 8)
 	jr c, .day_care_lady
-	ld a, HIGH(MAX_DAY_CARE_EXP >> 8)
-	ld [hl], a
+	ld [hl], HIGH(MAX_DAY_CARE_EXP >> 8)
 
 .day_care_lady
 	ld a, [wDayCareLady]
@@ -207,8 +206,7 @@ DayCareStep::
 	ld a, [hl]
 	cp HIGH(MAX_DAY_CARE_EXP >> 8)
 	jr c, .check_egg
-	ld a, HIGH(MAX_DAY_CARE_EXP >> 8)
-	ld [hl], a
+	ld [hl], HIGH(MAX_DAY_CARE_EXP >> 8)
 
 .check_egg
 	ld hl, wDayCareMan

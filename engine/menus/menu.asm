@@ -642,7 +642,7 @@ Error_Cant_ExitMenu:
 	ld hl, .WindowPoppingErrorText
 	call PrintText
 	call WaitBGMap
-.infinite_loop
+.infinite_loop ; no-optimize stub jump
 	jr .infinite_loop
 
 .WindowPoppingErrorText:

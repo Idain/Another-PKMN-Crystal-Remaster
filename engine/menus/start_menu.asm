@@ -394,8 +394,8 @@ StartMenu_Quit:
 
 	ld hl, .StartMenuContestEndText
 	call StartMenuYesNo
-	ld a, 0
-	ret c ;.DontEndContest
+	ld a, 0 ; no-optimize a = 0
+	ret c
 	ld a, BANK(BugCatchingContestReturnToGateScript)
 	ld hl, BugCatchingContestReturnToGateScript
 	call FarQueueScript

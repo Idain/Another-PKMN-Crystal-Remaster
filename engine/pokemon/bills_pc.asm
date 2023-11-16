@@ -143,9 +143,8 @@ BillsPCDepositFuncDeposit:
 	jp c, BillsPCDepositFuncCancel
 	call DepositPokemon
 	jr c, .box_full
-	ld a, $0
-	ld [wJumptableIndex], a
 	xor a
+	ld [wJumptableIndex], a
 	ld [wBillsPC_CursorPosition], a
 	ld [wBillsPC_ScrollPosition], a
 	ret
@@ -189,9 +188,8 @@ BillsPCDepositFuncRelease:
 	ld [wPokemonWithdrawDepositParameter], a
 	farcall RemoveMonFromPartyOrBox
 	call ReleasePKMN_ByePKMN
-	ld a, $0
-	ld [wJumptableIndex], a
 	xor a
+	ld [wJumptableIndex], a
 	ld [wBillsPC_CursorPosition], a
 	ld [wBillsPC_ScrollPosition], a
 	pop af
@@ -205,7 +203,7 @@ BillsPCDepositFuncRelease:
 	ret
 
 BillsPCDepositFuncCancel:
-	ld a, $0
+	xor a
 	ld [wJumptableIndex], a
 	ret
 
@@ -370,9 +368,8 @@ BillsPC_Withdraw:
 	jp c, .cancel
 	call TryWithdrawPokemon
 	jr c, .FailedWithdraw
-	ld a, $0
-	ld [wJumptableIndex], a
 	xor a
+	ld [wJumptableIndex], a
 	ld [wBillsPC_CursorPosition], a
 	ld [wBillsPC_ScrollPosition], a
 	ret
@@ -413,9 +410,8 @@ BillsPC_Withdraw:
 	ld [wPokemonWithdrawDepositParameter], a
 	farcall RemoveMonFromPartyOrBox
 	call ReleasePKMN_ByePKMN
-	ld a, $0
-	ld [wJumptableIndex], a
 	xor a
+	ld [wJumptableIndex], a
 	ld [wBillsPC_CursorPosition], a
 	ld [wBillsPC_ScrollPosition], a
 	pop af
@@ -428,7 +424,7 @@ BillsPC_Withdraw:
 	ret
 
 .cancel
-	ld a, $0
+	xor a
 	ld [wJumptableIndex], a
 	ret
 
@@ -547,7 +543,6 @@ _MovePKMNWithoutMail:
 	xor a
 	ld [wBillsPC_CursorPosition], a
 	ld [wBillsPC_ScrollPosition], a
-	ld a, $0
 	ld [wJumptableIndex], a
 	ret
 
@@ -555,7 +550,7 @@ _MovePKMNWithoutMail:
 	call BillsPC_GetSelectedPokemonSpecies
 	and a
 	ret z
-	cp -1
+	inc a
 	jr z, .b_button
 	ld a, $2
 	ld [wJumptableIndex], a
@@ -623,7 +618,7 @@ _MovePKMNWithoutMail:
 	jp BillsPC_ApplyPalettes
 
 .Cancel:
-	ld a, $0
+	xor a
 	ld [wJumptableIndex], a
 	ret
 
@@ -673,8 +668,8 @@ _MovePKMNWithoutMail:
 	call BillsPC_RefreshTextboxes
 	ld a, $1
 	ldh [hBGMapMode], a
-	call DelayFrame
-	jp DelayFrame
+	ld c, 2
+	jp DelayFrames
 
 .dpad_2
 	xor a
@@ -688,7 +683,7 @@ _MovePKMNWithoutMail:
 	call BillsPC_CheckSpaceInDestination
 	jr c, .no_space
 	call MovePKMNWithoutMail_InsertMon
-	ld a, $0
+	xor a
 	ld [wJumptableIndex], a
 	ret
 
@@ -704,7 +699,7 @@ _MovePKMNWithoutMail:
 	ld [wBillsPC_CursorPosition], a
 	ld a, [wBillsPC_BackupLoadedBox]
 	ld [wBillsPC_LoadedBox], a
-	ld a, $0
+	xor a
 	ld [wJumptableIndex], a
 	ret
 
@@ -1301,9 +1296,9 @@ BillsPC_RefreshTextboxes:
 MACRO copy_box_data
 .loop\@
 	ld a, [hl]
-	cp -1
+	inc a
 	jr z, .done\@
-	and a
+	dec a
 	jr z, .done\@
 	ld [de], a ; species
 	inc de

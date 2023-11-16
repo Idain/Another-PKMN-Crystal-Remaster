@@ -138,10 +138,9 @@ INCLUDE "gfx/mystery_gift/mobile_text.pal"
 	ld a, $7
 	call FillBoxWithByte
 	hlcoord 0, 2, wAttrmap
-	ld a, $4
-	ld [hl], a
+	ld [hl], $4
 	hlcoord 19, 2, wAttrmap
-	ld [hl], a
+	ld [hl], $4
 	ret
 
 .Function49496:
@@ -150,10 +149,9 @@ INCLUDE "gfx/mystery_gift/mobile_text.pal"
 	ld a, $7
 	call FillBoxWithByte
 	hlcoord 0, 1, wAttrmap
-	ld a, $4
-	ld [hl], a
+	ld [hl], $4
 	hlcoord 19, 1, wAttrmap
-	ld [hl], a
+	ld [hl], $4
 	ret
 
 INCLUDE "engine/tilesets/tileset_palettes.asm"

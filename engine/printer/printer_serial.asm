@@ -400,8 +400,8 @@ Printer_ByteFill:
 	push de
 	ld e, a
 .loop
-	ld [hl], e
-	inc hl
+	ld a, e
+	ld [hli], a
 	dec bc
 	ld a, c
 	or b
@@ -440,7 +440,7 @@ _PrinterReceive::
 	dw Printer_SendNextByte ; 06
 	dw Printer_SendwPrinterChecksumLo ; 07
 	dw Printer_SendwPrinterChecksumHi ; 08
-	dw Printer_Send0x00_2 ; 09
+	dw Printer_Send0x00 ; 09
 	dw Printer_ReceiveTwoPrinterHandshakeAndSend0x00 ; 0a
 	dw Printer_ReceiveTwoPrinterStatusFlagsAndExitSendLoop ; 0b
 
@@ -451,7 +451,7 @@ _PrinterReceive::
 	dw Printer_Send0x00 ; 10
 	dw Printer_Send0x0f ; 11
 	dw Printer_Send0x00 ; 12
-	dw Printer_Send0x00_2 ; 13
+	dw Printer_Send0x00 ; 13
 	dw Printer_ReceiveTwoPrinterHandshakeAndSend0x00 ; 14
 	dw Printer_ReceiveTwoPrinterStatusFlagsAndExitSendLoop_2 ; 15
 
@@ -462,7 +462,7 @@ _PrinterReceive::
 	dw Printer_Send0x00 ; 1a
 	dw Printer_Send0x08 ; 1b
 	dw Printer_Send0x00 ; 1c
-	dw Printer_Send0x00_2 ; 1d
+	dw Printer_Send0x00 ; 1d
 	dw Printer_ReceiveTwoPrinterHandshakeAndSend0x00 ; 1e
 	dw Printer_ReceiveTwoPrinterStatusFlagsAndExitSendLoop ; 1f
 
@@ -506,8 +506,8 @@ Printer_SendNextByte:
 	or d
 	jr z, .done
 	dec de
-	ld [hl], d
-	dec hl
+	ld a, d
+	ld [hld], a
 	ld [hl], e
 
 	ld a, [wPrinterSendByteOffset]
@@ -536,18 +536,13 @@ Printer_SendwPrinterChecksumHi:
 	call Printer_SerialSend
 	jr Printer_NextInstruction
 
-Printer_Send0x00_2:
-; identical to Printer_Send0x00, but referenced less
-	ld a, $0
-	call Printer_SerialSend
-	jr Printer_NextInstruction
-
 Printer_ReceiveTwoPrinterHandshakeAndSend0x00:
 	ldh a, [rSB]
 	ld [wPrinterHandshake], a
-	ld a, $0
+Printer_Send0x00:
+	xor a
 	call Printer_SerialSend
-	jp Printer_NextInstruction
+	jr Printer_NextInstruction
 
 Printer_ReceiveTwoPrinterStatusFlagsAndExitSendLoop:
 	ldh a, [rSB]
@@ -558,11 +553,6 @@ Printer_ReceiveTwoPrinterStatusFlagsAndExitSendLoop:
 
 Printer_Send0x0f:
 	ld a, $f
-	call Printer_SerialSend
-	jp Printer_NextInstruction
-
-Printer_Send0x00:
-	ld a, $0
 	call Printer_SerialSend
 	jp Printer_NextInstruction
 

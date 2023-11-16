@@ -186,9 +186,6 @@ endc
 	db -1
 
 MainMenu_GetWhichMenu:
-	nop
-	nop
-	nop
 	ld a, [wSaveFileExists]
 	and a
 	jr nz, .next
@@ -197,9 +194,9 @@ MainMenu_GetWhichMenu:
 
 .next
 	ldh a, [hCGB]
-	cp TRUE
+	and a
 	ld a, MAINMENU_CONTINUE
-	ret nz
+	ret z
 	ld a, BANK(sNumDailyMysteryGiftPartnerIDs)
 	call OpenSRAM
 	ld a, [sNumDailyMysteryGiftPartnerIDs]

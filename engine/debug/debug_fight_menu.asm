@@ -392,10 +392,9 @@ DebugFight_DisplayLevel:
 	ld de, wDebugFightMonLevel
 	add e
 	ld e, a
-	jr nc, .update
-; Handle overflow
-	inc d
-.update
+	adc d
+	sub e
+	ld d, a
 	ld a, c
 	ld [de], a
 	push bc
@@ -484,10 +483,9 @@ DebugFight_GetSpeciesAndLevel:
 	ld a, [wCurPartyMon]
 	add l
 	ld l, a
-	jr nc, .save_species
-; Handle overflow
-	inc h
-.save_species
+	adc h
+	sub l
+	ld h, a
 	ld a, [hl]
 	ld b, a
 
@@ -496,10 +494,9 @@ DebugFight_GetSpeciesAndLevel:
 	ld a, [wCurPartyMon]
 	add l
 	ld l, a
-	jr nc, .save_level
-; Handle overflow
-	inc h
-.save_level
+	adc h
+	sub l
+	ld h, a
 	ld a, [hl]
 	ld c, a
 	ret
@@ -542,9 +539,9 @@ DebugFight_SelectButton:
 	ld de, wPartySpecies
 	add e
 	ld e, a
-	jr nc, .start_reprint
-	inc d
-.start_reprint
+	adc d
+	sub e
+	ld d, a
 	ld a, [de]
 	cp -1
 	jr z, .finish
@@ -578,9 +575,9 @@ DebugFight_SelectButton:
 	ld de, wDebugFightMonLevel
 	add e
 	ld e, a
-	jr nc, .load_level
-	inc d
-.load_level
+	adc d
+	sub e
+	ld d, a
 	ld a, [wCurPartyLevel]
 	ld [de], a
 	ld hl, wCurPartyMon
@@ -1372,9 +1369,9 @@ DebugFight_TryStartBattle:
 	ld de, wPartySpecies
 	add e
 	ld e, a
-	jr nc, .start_reprint
-	inc d
-.start_reprint
+	adc d
+	sub e
+	ld d, a
 	ld a, [de]
 	cp -1
 	jr z, .finish
@@ -1408,9 +1405,9 @@ DebugFight_TryStartBattle:
 	ld de, wDebugFightMonLevel
 	add e
 	ld e, a
-	jr nc, .load_level
-	inc d
-.load_level
+	adc d
+	sub e
+	ld d, a
 	ld a, [wCurPartyLevel]
 	ld [de], a
 	ld hl, wCurPartyMon

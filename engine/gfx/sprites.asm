@@ -500,27 +500,6 @@ GetFrameOAMPointer:
 	add hl, de
 	ret
 
-UnusedLoadSpriteAnimGFX: ; unreferenced
-	push hl
-	ld l, a
-	ld h, 0
-	add hl, hl
-	add hl, hl
-	ld de, UnusedSpriteAnimGFX
-	add hl, de
-	ld c, [hl]
-	inc hl
-	ld b, [hl]
-	inc hl
-	ld e, [hl]
-	inc hl
-	ld d, [hl]
-	pop hl
-	push bc
-	call Request2bpp
-	pop bc
-	ret
-
 INCLUDE "data/sprite_anims/sequences.asm"
 
 INCLUDE "engine/gfx/sprite_anims.asm"
@@ -528,8 +507,6 @@ INCLUDE "engine/gfx/sprite_anims.asm"
 INCLUDE "data/sprite_anims/framesets.asm"
 
 INCLUDE "data/sprite_anims/oam.asm"
-
-INCLUDE "data/sprite_anims/unused_gfx.asm"
 
 
 AnimateEndOfExpBar:

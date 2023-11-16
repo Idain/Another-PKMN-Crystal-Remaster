@@ -489,8 +489,9 @@ HDMATransfer_OnlyTopFourRows:
 	inc de
 	dec c
 	jr nz, .inner_loop
-	ld a, l
-	add BG_MAP_WIDTH - SCREEN_WIDTH
+	ld a, BG_MAP_WIDTH - SCREEN_WIDTH
+	; hl += a
+	add l
 	ld l, a
 	adc h
 	sub l

@@ -553,8 +553,8 @@ PlacePrinterStatusString:
 	ld hl, PrinterStatusStringPointers
 	add hl, de
 	add hl, de
-	ld e, [hl]
-	inc hl
+	ld a, [hli]
+	ld e, a
 	ld d, [hl]
 	hlcoord 1, 7
 	ld a, BANK(GBPrinterStrings)
@@ -827,19 +827,17 @@ Printer_PlaceTopBorder:
 	ld [hli], a
 	dec c
 	jr nz, .loop
-	ld a, "┐"
-	ld [hl], a
+	ld [hl], "┐"
 	ret
 
 Printer_PlaceSideBorders:
 	hlcoord 0, 0
 	ld de, SCREEN_WIDTH - 1
 	ld c, SCREEN_HEIGHT
-.loop
 	ld a, "│"
+.loop
 	ld [hl], a
 	add hl, de
-	ld a, "│"
 	ld [hli], a
 	dec c
 	jr nz, .loop
@@ -855,8 +853,7 @@ Printer_PlaceBottomBorders:
 	ld [hli], a
 	dec c
 	jr nz, .loop
-	ld a, "┘"
-	ld [hl], a
+	ld [hl], "┘"
 	ret
 
 Printer_PlaceEmptyBoxSlotString:

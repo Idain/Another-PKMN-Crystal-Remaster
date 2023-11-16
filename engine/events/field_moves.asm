@@ -247,8 +247,8 @@ Cut_GetLeafSpawnCoords:
 	ld hl, .Coords
 	add hl, de
 	add hl, de
-	ld e, [hl]
-	inc hl
+	ld a, [hli]
+	ld e, a
 	ld d, [hl]
 	ret
 
@@ -281,8 +281,8 @@ Cut_Headbutt_GetPixelFacing:
 	ld d, 0
 	ld hl, .Coords
 	add hl, de
-	ld e, [hl]
-	inc hl
+	ld a, [hli]
+	ld e, a
 	ld d, [hl]
 	ret
 
