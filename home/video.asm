@@ -103,7 +103,7 @@ endr
 	ret
 
 WaitTop::
-; Wait until the top third of the BG Map is being updated.
+; Wait until the top half of the BG Map is being updated.
 
 	ldh a, [hBGMapMode]
 	and a

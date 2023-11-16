@@ -475,10 +475,11 @@ endc
 	ld bc, NAME_LENGTH
 	call CopyBytes
 	call ReturnToMapFromSubmenu
-	ld a, [wDisableTextAcceleration]
+	ld a, [wOptions]
 	push af
-	ld a, 1
-	ld [wDisableTextAcceleration], a
+	and ~TEXT_DELAY_MASK
+	or TEXT_DELAY_FAST
+	ld [wOptions], a
 	ldh a, [rIE]
 	push af
 	ldh a, [rIF]
@@ -503,7 +504,7 @@ endc
 	ld a, h
 	ldh [rIF], a
 	pop af
-	ld [wDisableTextAcceleration], a
+	ld [wOptions], a
 	pop af
 	ld [wOptions], a
 

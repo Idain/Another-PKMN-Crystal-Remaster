@@ -3766,15 +3766,11 @@ StartMobileBattle:
 	ld a, [hl]
 	push af
 	and (1 << STEREO)
-	or 1 ; 1 frame per character i.e. fast text
+	or TEXT_DELAY_FAST ; 1 frame per character i.e. fast text
 	ld [hl], a
-	ld a, 1
-	ld [wDisableTextAcceleration], a
 	farcall BattleIntro
 	farcall DoBattle
 	farcall ShowLinkBattleParticipantsAfterEnd
-	xor a
-	ld [wDisableTextAcceleration], a
 	ld a, CONNECTION_NOT_ESTABLISHED
 	ldh [hSerialConnectionStatus], a
 	pop af
@@ -3782,11 +3778,14 @@ StartMobileBattle:
 	ret
 
 Function101a4f:
-	ld a, 1
-	ld [wDisableTextAcceleration], a
+	ld a, [wOptions]
+	push af
+	and ~TEXT_DELAY_MASK
+	or TEXT_DELAY_FAST
+	ld [wOptions], a
 	farcall DisplayLinkBattleResult
-	xor a
-	ld [wDisableTextAcceleration], a
+	pop af
+	ld [wOptions], a
 	farcall CleanUpBattleRAM
 	farcall LoadPokemonData
 	call Function1013c0

@@ -25,8 +25,6 @@ INCBIN "gfx/mobile/mobile_menu.2bpp"
 
 MainMenu:
 .loop
-	xor a
-	ld [wDisableTextAcceleration], a
 	call ClearTilemapEtc
 	ld b, SCGB_DIPLOMA
 	call GetSGBLayout

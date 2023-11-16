@@ -133,7 +133,7 @@ wMapTimeOfDay:: db
 wPrinterConnectionOpen:: db
 wPrinterOpcode:: db
 wPrevDexEntry:: db
-wDisableTextAcceleration:: db
+	ds 1
 wPrevLandmark:: db
 wCurLandmark:: db
 wLandmarkSignTimer:: dw

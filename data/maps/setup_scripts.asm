@@ -154,7 +154,6 @@ MapSetupScript_LinkReturn:
 	mapsetup FadeInPalettes
 	mapsetup ActivateMapAnims
 	mapsetup LoadWildMonData
-	mapsetup EnableTextAcceleration
 	db -1 ; end
 
 MapSetupScript_Continue:

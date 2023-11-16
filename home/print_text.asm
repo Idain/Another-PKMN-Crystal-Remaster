@@ -17,18 +17,15 @@ PrintLetterDelay::
 	ld a, [wTextboxFlags]
 	bit NO_TEXT_DELAY_F, a
 	ret z
+	bit FAST_TEXT_DELAY_F, a
+	jr z, .forceFastScroll
 
+	ld a, 1
+	ldh [hBGMapHalf], a
+.forceFastScroll
 	push hl
 	push de
 	push bc
-
-	ld hl, hOAMUpdate
-	ld a, [hl]
-	push af
-
-; orginally turned oam update off...
-;	ld a, 1
-	ld [hl], a
 
 ; force fast scroll?
 	ld a, [wTextboxFlags]
@@ -42,32 +39,17 @@ PrintLetterDelay::
 	; fallthrough
 .updatedelay
 	ld [wTextDelayFrames], a
-
-.checkjoypad
-	call GetJoypad
-
-; input override
-	ld a, [wDisableTextAcceleration]
+.textDelayLoop
+	ld a, [wTextDelayFrames]
 	and a
-	jr nz, .wait
-
+	jr z, .end
+	call DelayFrame
+	call GetJoypad
 ; Wait one frame if holding A or B.
 	ldh a, [hJoyDown]
 	and A_BUTTON | B_BUTTON
-	jr z, .wait
-
-;delay
-	call DelayFrame
-	jr .end
-
-.wait
-	ld a, [wTextDelayFrames]
-	and a
-	jr nz, .checkjoypad
-
+	jr z, .textDelayLoop
 .end
-	pop af
-	ldh [hOAMUpdate], a
 	pop bc
 	pop de
 	pop hl

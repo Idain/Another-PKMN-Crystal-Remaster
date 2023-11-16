@@ -58,11 +58,6 @@ ReadMapSetupScript:
 
 INCLUDE "data/maps/setup_script_pointers.asm"
 
-EnableTextAcceleration:
-	xor a
-	ld [wDisableTextAcceleration], a
-	ret
-
 ActivateMapAnims:
 	ld a, TRUE
 	ldh [hMapAnims], a
