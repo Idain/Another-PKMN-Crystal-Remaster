@@ -14,14 +14,19 @@ DoPlayerMovement::
 	ldh a, [hJoyDown]
 	ld [wCurInput], a
 
-; Standing downhill instead moves down.
-
+	; Standing downhill instead moves down.
 	ld hl, wBikeFlags
 	bit BIKEFLAGS_DOWNHILL_F, [hl]
 	ret z
 
+	; Disable automatic movement if the player is already
+	; holding either a direction or the A/B buttons.
 	ld c, a
 	and D_PAD
+	ret nz
+
+	ld a, c
+	and A_BUTTON | B_BUTTON
 	ret nz
 
 	ld a, c
