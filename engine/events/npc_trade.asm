@@ -269,17 +269,11 @@ DoNPCTrade:
 	ret
 
 GetTradeAttr:
-	ld d, 0
-	push de
 	ld a, [wJumptableIndex]
-	and $f
-	swap a
-	ld e, a
-	ld d, 0
 	ld hl, NPCTrades
-	add hl, de
-	add hl, de
-	pop de
+	ld bc, NPCTRADE_STRUCT_LENGTH
+	call AddNTimes
+	ld d, 0
 	add hl, de
 	ret
 
