@@ -12,8 +12,6 @@ RuinsOfAlphAerodactylChamberCheckWallScene:
 ; OpenWall:
 	sdefer RuinsOfAlphAerodactylChamberWallOpenScript
 .done
-	end
-
 RuinsOfAlphAerodactylChamberNoopScene:
 	end
 

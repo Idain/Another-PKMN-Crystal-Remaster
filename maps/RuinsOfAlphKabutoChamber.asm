@@ -16,8 +16,6 @@ RuinsOfAlphKabutoChamberCheckWallScene:
 ; OpenWall:
 	sdefer RuinsOfAlphKabutoChamberWallOpenScript
 .done
-	end
-
 RuinsOfAlphKabutoChamberNoopScene:
 	end
 

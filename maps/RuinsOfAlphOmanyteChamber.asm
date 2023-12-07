@@ -13,8 +13,6 @@ RuinsOfAlphOmanyteChamberCheckWallScene:
 ; OpenWall:
 	sdefer RuinsOfAlphOmanyteChamberWallOpenScript
 .done
-	end
-
 RuinsOfAlphOmanyteChamberNoopScene:
 	end
 

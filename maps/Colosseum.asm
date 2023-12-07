@@ -14,8 +14,6 @@ Colosseum_MapScripts:
 
 ColosseumInitializeScene:
 	sdefer ColosseumInitializeAndPreparePokecenter2FScript
-	end
-
 ColosseumNoop1Scene:
 ColosseumNoop2Scene:
 	end

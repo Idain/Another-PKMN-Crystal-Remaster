@@ -11,8 +11,6 @@ BrunosRoom_MapScripts:
 
 BrunosRoomLockDoorScene:
 	sdefer BrunosRoomDoorLocksBehindYouScript
-	end
-
 BrunosRoomNoopScene:
 	end
 

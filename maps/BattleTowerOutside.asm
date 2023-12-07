@@ -8,11 +8,7 @@ BattleTowerOutside_MapScripts:
 	def_scene_scripts
 
 	def_callbacks
-	callback MAPCALLBACK_TILES, BattleTowerOutsideNoopCallback
 	callback MAPCALLBACK_OBJECTS, BattleTowerOutsideShowCiviliansCallback
-
-BattleTowerOutsideNoopCallback:
-	endcallback
 
 BattleTowerOutsideShowCiviliansCallback:
 	clearevent EVENT_BATTLE_TOWER_OPEN_CIVILIANS
