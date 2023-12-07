@@ -1490,7 +1490,6 @@ FlameWheel:
 	applydamage
 	criticaltext
 	supereffectivetext
-	defrost
 	checkfaint
 	buildopponentrage
 	kingsrock
@@ -1702,7 +1701,6 @@ SacredFire:
 	applydamage
 	criticaltext
 	supereffectivetext
-	defrost
 	checkfaint
 	buildopponentrage
 	kingsrock

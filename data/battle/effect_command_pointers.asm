@@ -84,7 +84,6 @@ BattleCommandPointers:
 	dw BattleCommand_Thief
 	dw BattleCommand_ArenaTrap
 	dw BattleCommand_Nightmare
-	dw BattleCommand_Defrost
 	dw BattleCommand_Curse
 	dw BattleCommand_Protect
 	dw BattleCommand_Spikes

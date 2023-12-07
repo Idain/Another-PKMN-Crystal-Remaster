@@ -4030,10 +4030,6 @@ BattleCommand_BurnTarget:
 	ld [wNumHits], a
 	call CheckSubstituteOpp
 	ret nz
-	ld a, BATTLE_VARS_STATUS_OPP
-	call GetBattleVarAddr
-	and a
-	jp nz, Defrost
 	ld a, [wTypeModifier]
 	and $7f
 	ret z
@@ -4062,31 +4058,6 @@ BattleCommand_BurnTarget:
 	call StdBattleTextbox
 
 	farjp UseHeldStatusHealingItem
-
-Defrost:
-	ld a, [hl]
-	and 1 << FRZ
-	ret z
-
-	xor a
-	ld [hl], a
-
-	ldh a, [hBattleTurn]
-	and a
-	ld a, [wCurOTMon]
-	ld hl, wOTPartyMon1Status
-	jr z, .ok
-	ld hl, wPartyMon1Status
-	ld a, [wCurBattleMon]
-.ok
-
-	call GetPartyLocation
-	xor a
-	ld [hl], a
-	call UpdateOpponentInParty
-
-	ld hl, DefrostedOpponentText
-	jp StdBattleTextbox
 
 BattleCommand_FreezeTarget:
 	xor a
@@ -6294,35 +6265,6 @@ BattleCommand_ArenaTrap:
 	jp PrintButItFailed
 
 INCLUDE "engine/battle/move_effects/nightmare.asm"
-
-BattleCommand_Defrost:
-; Thaw the user.
-
-	ld a, BATTLE_VARS_STATUS
-	call GetBattleVarAddr
-	bit FRZ, [hl]
-	ret z
-	res FRZ, [hl]
-
-; Don't update the enemy's party struct in a wild battle.
-
-	ldh a, [hBattleTurn]
-	and a
-	jr z, .party
-
-	ld a, [wBattleMode]
-	dec a
-	jr z, .done
-
-.party
-	ld a, MON_STATUS
-	call UserPartyAttr
-	res FRZ, [hl]
-
-.done
-	call RefreshBattleHuds
-	ld hl, WasDefrostedText
-	jp StdBattleTextbox
 
 INCLUDE "engine/battle/move_effects/curse.asm"
 

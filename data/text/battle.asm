@@ -718,11 +718,6 @@ WasBurnedText:
 	line "was burned!"
 	prompt
 
-DefrostedOpponentText:
-	text "<TARGET>"
-	line "was defrosted!"
-	prompt
-
 GotAFrostbiteText:
 	text "<TARGET>"
 	line "got a frostbite!"
@@ -959,11 +954,6 @@ StartedNightmareText:
 	text "<TARGET>"
 	line "started to have a"
 	cont "nightmare!"
-	prompt
-
-WasDefrostedText:
-	text "<USER>"
-	line "was defrosted!"
 	prompt
 
 PutACurseText:
