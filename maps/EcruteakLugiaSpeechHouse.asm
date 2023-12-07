@@ -28,7 +28,7 @@ EcruteakLugiaSpeechHouseGrampsText:
 	cont "out the sun."
 
 	para "I wonder what that"
-	line "#mon was? "
+	line "#mon was?"
 
 	para "It was like a bird"
 	line "and a dragon."

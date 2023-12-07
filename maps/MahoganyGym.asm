@@ -224,7 +224,7 @@ PryceText_Intro:
 	line "experiences in"
 
 	para "their lives, just"
-	line "like we do. "
+	line "like we do."
 
 	para "I, too, have seen"
 	line "and suffered much"
