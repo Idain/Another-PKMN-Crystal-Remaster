@@ -3487,30 +3487,6 @@ INCLUDE "engine/battle/move_effects/lock_on.asm"
 
 INCLUDE "engine/battle/move_effects/sketch.asm"
 
-BattleCommand_DefrostOpponent:
-; Thaw the opponent if frozen, and
-; raise the user's Attack one stage.
-
-	call AnimateCurrentMove
-
-	ld a, BATTLE_VARS_STATUS_OPP
-	call GetBattleVarAddr
-	call Defrost
-
-	ld a, BATTLE_VARS_MOVE_EFFECT
-	call GetBattleVarAddr
-	ld a, [hl]
-	push hl
-	push af
-
-	ld [hl], EFFECT_ATTACK_UP
-	call BattleCommand_StatUp
-
-	pop af
-	pop hl
-	ld [hl], a
-	ret
-
 INCLUDE "engine/battle/move_effects/sleep_talk.asm"
 
 INCLUDE "engine/battle/move_effects/destiny_bond.asm"
