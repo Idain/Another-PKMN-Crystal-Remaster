@@ -101,11 +101,11 @@ CeladonMansionRoofHousePharmacistStoryText:
 
 	para "For listening so"
 	line "patiently, you may"
-	cont "take this--TM03!"
+	cont "take this!"
 	done
 
 CeladonMansionRoofHousePharmacistCurseText:
-	text "TM03 is Curse."
+	text "It contains Curse."
 
 	para "It's a terrifying"
 	line "move that slowly"

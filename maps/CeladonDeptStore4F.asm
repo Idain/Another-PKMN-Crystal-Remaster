@@ -28,7 +28,7 @@ CeladonDeptStore4FElevatorButton:
 	jumpstd ElevatorButtonScript
 
 CeladonDeptStore4FSuperNerdText:
-	text "I'm here to buy"
+	text "I'm here to buy a"
 	line "Surf Mail to send"
 	cont "to my girlfriend."
 	done
