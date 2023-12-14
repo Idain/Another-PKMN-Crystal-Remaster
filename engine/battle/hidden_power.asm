@@ -20,8 +20,6 @@ HiddenPowerDamage::
 	ret
 
 GetHiddenPowerType::
-; Type:
-
 	; Def & 3
 	ld a, [bc]
 	and %0011
@@ -34,10 +32,6 @@ GetHiddenPowerType::
 	add a
 	add a
 	or d
-
-; Skip Normal
-	inc a
-
-.done
+	inc a ; Skip Normal
 	ld e, a
 	ret
