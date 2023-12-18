@@ -240,10 +240,10 @@ SetDefaultBoxNames:
 	db "Box@"
 
 InitializeMagikarpHouse:
-	ld hl, wBestMagikarpLengthFeet
-	ld a, $3
+	ld hl, wBestMagikarpLengthMm
+	ld a, HIGH(1067)
 	ld [hli], a
-	ld a, $6
+	ld a, LOW(1067)
 	ld [hli], a
 	ld de, .Ralph
 	jp CopyName2

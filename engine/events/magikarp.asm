@@ -31,15 +31,15 @@ CheckMagikarpLength:
 	call PrintText
 
 	; Did we beat the record?
-	ld hl, wMagikarpLength
-	ld de, wBestMagikarpLengthFeet
+	ld hl, wMagikarpLengthMm
+	ld de, wBestMagikarpLengthMm
 	ld c, 2
 	call CompareBytes
 	jr nc, .not_long_enough
 
 	; NEW RECORD!!! Let's save that.
-	ld hl, wMagikarpLength
-	ld de, wBestMagikarpLengthFeet
+	ld hl, wMagikarpLengthMm
+	ld de, wBestMagikarpLengthMm
 	ld a, [hli]
 	ld [de], a
 	inc de
@@ -74,13 +74,69 @@ CheckMagikarpLength:
 	text_end
 
 PrintMagikarpLength:
+	ld a, [wMagikarpLengthMmHi]
+	ld b, a
+	ld a, [wMagikarpLengthMmLo]
+	ld c, a
+	ld de, DIV(1.0q16, 25.4q16, 16) ; 1 in / 25.4 mm = 0.03937 in/mm
+	xor a
+	ldh [hTmpd], a
+	ldh [hTmpe], a
+	ld hl, 0
+	ld a, 16
+	ldh [hProduct], a
+.loop
+	add hl, hl
+	ldh a, [hTmpe]
+	rla
+	ldh [hTmpe], a
+	ldh a, [hTmpd]
+	rla
+	ldh [hTmpd], a
+	sla e
+	rl d
+	jr nc, .noadd
+	add hl, bc
+	ldh a, [hTmpe]
+	adc 0
+	ldh [hTmpe], a
+	ldh a, [hTmpd]
+	adc 0
+	ldh [hTmpd], a
+.noadd
+	ldh a, [hProduct]
+	dec a
+	ldh [hProduct], a
+	jr nz, .loop
+	ldh a, [hTmpd]
+	ld h, a
+	ldh a, [hTmpe]
+	ld l, a
+	ld bc, -12
+	ld e, 0
+.inchloop
+	ld a, h
+	and a
+	jr nz, .inchloop2
+	ld a, l
+	cp 12
+	jr c, .inchdone
+.inchloop2
+	add hl, bc
+	inc e
+	jr .inchloop
+.inchdone
+	ld a, e
+	ld [wMagikarpLengthMmHi], a
+	ld a, l
+	ld [wMagikarpLengthMmLo], a
 	ld hl, wStringBuffer1
-	ld de, wMagikarpLength
+	ld de, wMagikarpLengthMmHi
 	lb bc, PRINTNUM_LEFTALIGN | 1, 2
 	call PrintNum
 	ld a, "′"
 	ld [hli], a
-	ld de, wMagikarpLength + 1
+	ld de, wMagikarpLengthMmLo
 	lb bc, PRINTNUM_LEFTALIGN | 1, 2
 	call PrintNum
 	ld a, "″"
@@ -89,7 +145,7 @@ PrintMagikarpLength:
 	ret
 
 CalcMagikarpLength:
-; Return Magikarp's length (in feet and inches) at wMagikarpLength (big endian).
+; Return Magikarp's length (in feet and inches) at wMagikarpLengthMm (big endian).
 ;
 ; input:
 ;   de: wEnemyMonDVs
@@ -97,7 +153,7 @@ CalcMagikarpLength:
 
 ; This function is poorly commented.
 
-; In short, it generates a value between 190 and 1786 using
+; In short, it generates a value between 90 and 1786 using
 ; a Magikarp's DVs and its trainer ID. This value is further
 ; filtered in LoadEnemyMon to make longer Magikarp even rarer.
 
@@ -106,24 +162,25 @@ CalcMagikarpLength:
 
 ; bc = rrc(dv[0]) ++ rrc(dv[1]) ^ rrc(id)
 
-; if bc < 10:    [wMagikarpLength] = c + 190
-; if bc ≥ $ff00: [wMagikarpLength] = c + 1370
-; else:          [wMagikarpLength] = z * 100 + (bc - x) / y
+; if bc ≥ 65510: [wMagikarpLengthMm] = bc - 65510 + 1600
+; else:          [wMagikarpLengthMm] = z * 100 + (bc - x) / y
 
-; X, Y, and Z depend on the value of b as follows:
+; X, Y, and Z depend on the value of bc as follows:
 
-; if b = 0:        x =   310,  y =   2,  z =  3
-; if b = 1:        x =   710,  y =   4,  z =  4
-; if b = 2-9:      x =  2710,  y =  20,  z =  5
-; if b = 10-29:    x =  7710,  y =  50,  z =  6
-; if b = 30-68:    x = 17710,  y = 100,  z =  7
-; if b = 69-126:   x = 32710,  y = 150,  z =  8
-; if b = 127-185:  x = 47710,  y = 150,  z =  9
-; if b = 186-224:  x = 57710,  y = 100,  z = 10
-; if b = 225-243:  x = 62710,  y =  50,  z = 11
-; if b = 244-251:  x = 64710,  y =  20,  z = 12
-; if b = 252-253:  x = 65210,  y =   5,  z = 13
-; if b = 254:      x = 65410,  y =   2,  z = 14
+; if bc = 0-109:        x =   110,  y =   1,  z =  2
+; if bc = 110-309:      x =   310,  y =   2,  z =  3
+; if bc = 310-709:      x =   710,  y =   4,  z =  4
+; if bc = 710-2709:     x =  2710,  y =  20,  z =  5
+; if bc = 2710-7709:    x =  7710,  y =  50,  z =  6
+; if bc = 7710-17709:   x = 17710,  y = 100,  z =  7
+; if bc = 17710-32709:  x = 32710,  y = 150,  z =  8
+; if bc = 32710-47709:  x = 47710,  y = 150,  z =  9
+; if bc = 47710-57709:  x = 57710,  y = 100,  z = 10
+; if bc = 57710-62709:  x = 62710,  y =  50,  z = 11
+; if bc = 62710-64709:  x = 64710,  y =  20,  z = 12
+; if bc = 64710-65209:  x = 65210,  y =   5,  z = 13
+; if bc = 65210-65409:  x = 65410,  y =   2,  z = 14
+; if bc = 65410-65509:  x = 65510,  y =   1,  z = 15
 
 	; bc = rrc(dv[0]) ++ rrc(dv[1]) ^ rrc(id)
 
@@ -149,25 +206,6 @@ CalcMagikarpLength:
 	rrca
 	xor c
 	ld c, a
-
-	; if bc < 10:
-	;     de = bc + 190
-	;     break
-
-	ld a, b
-	and a
-	jr nz, .no
-	ld a, c
-	cp 10
-	jr nc, .no
-
-	ld hl, 190
-	add hl, bc
-	ld d, h
-	ld e, l
-	jr .done
-
-.no
 
 	ld hl, MagikarpLengths
 	ld a, 2
@@ -215,7 +253,7 @@ CalcMagikarpLength:
 .next
 	inc hl ; align to next triplet
 	ld a, [wTempByteValue]
-	inc a
+	inc a ; no-optimize inefficient WRAM increment/decrement
 	ld [wTempByteValue], a
 	cp 16
 	jr c, .read
@@ -227,41 +265,10 @@ CalcMagikarpLength:
 	ld e, l
 
 .done
-	; convert from mm to feet and inches
-	; in = mm / 25.4
-	; ft = in / 12
-
-	; hl = de × 10
-	ld h, d
-	ld l, e
-	add hl, hl
-	add hl, hl
-	add hl, de
-	add hl, hl
-
-	; hl = hl / 254
-	ld de, -254
-	ld a, -1
-.div_254
-	inc a
-	add hl, de
-	jr c, .div_254
-
-	; d, e = hl / 12, hl % 12
-	ld d, 0
-.mod_12
-	cp 12
-	jr c, .ok
-	sub 12
-	inc d
-	jr .mod_12
-.ok
-	ld e, a
-
-	ld hl, wMagikarpLength
-	ld a, d ; ft
+	ld hl, wMagikarpLengthMm
+	ld a, d
 	ld [hli], a
-	ld [hl], e ; in
+	ld [hl], e
 	ret
 
 .BCLessThanDE:
@@ -285,10 +292,10 @@ CalcMagikarpLength:
 INCLUDE "data/events/magikarp_lengths.asm"
 
 MagikarpHouseSign:
-	ld a, [wBestMagikarpLengthFeet]
-	ld [wMagikarpLength], a
-	ld a, [wBestMagikarpLengthInches]
-	ld [wMagikarpLength + 1], a
+	ld a, [wBestMagikarpLengthMmHi]
+	ld [wMagikarpLengthMmHi], a
+	ld a, [wBestMagikarpLengthMmLo]
+	ld [wMagikarpLengthMmLo], a
 	call PrintMagikarpLength
 	ld hl, .KarpGuruRecordText
 	jp PrintText

@@ -1,5 +1,5 @@
 MagikarpLengths:
-; [wMagikarpLength] = z * 100 + (bc - x) / y
+; [wMagikarpLengthMm] = z * 100 + (bc - x) / y
 ; First argument is the bc threshold as well as x.
 ; Second argument is y.
 	dwb   110, 1
@@ -15,4 +15,4 @@ MagikarpLengths:
 	dwb 64710, 20
 	dwb 65210, 5
 	dwb 65410, 2
-	dwb 65510, 1 ; not used
+	dwb 65510, 1

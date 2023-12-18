@@ -113,6 +113,10 @@ ENDU
 UNION
 hMoneyTemp:: ds 3
 NEXTU
+hTmpd:: db
+hTmpe:: db
+	ds 1
+NEXTU
 hMGJoypadPressed::  db
 hMGJoypadReleased:: db
 hMGPrevTIMA::       db

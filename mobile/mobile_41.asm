@@ -37,7 +37,7 @@ StubbedTrainerRankings_MagikarpLength:
 	ret
 	ld a, BANK(sTrainerRankingLongestMagikarp)
 	call OpenSRAM
-	ld de, wMagikarpLength
+	ld de, wMagikarpLengthMm
 	ld hl, sTrainerRankingLongestMagikarp
 
 	; Is this Magikarp the longest measured?
