@@ -126,6 +126,13 @@ PrintMagikarpLength:
 	inc e
 	jr .inchloop
 .inchdone
+	; Temporarily save metric values
+	ld a, [wMagikarpLengthMmHi]
+	ldh [hTmpd], a
+	ld a, [wMagikarpLengthMmLo]
+	ldh [hTmpe], a
+
+	; Print imperial values
 	ld a, e
 	ld [wMagikarpLengthMmHi], a
 	ld a, l
@@ -142,6 +149,12 @@ PrintMagikarpLength:
 	ld a, "″"
 	ld [hli], a
 	ld [hl], "@"
+
+	; Restore metric values
+	ldh a, [hTmpd]
+	ld [wMagikarpLengthMmHi], a
+	ldh a, [hTmpe]
+	ld [wMagikarpLengthMmLo], a
 	ret
 
 CalcMagikarpLength:
@@ -275,6 +288,7 @@ CalcMagikarpLength:
 	ld a, b
 	cp d
 	ret c
+	ret nz
 	ld a, c
 	cp e
 	ret
