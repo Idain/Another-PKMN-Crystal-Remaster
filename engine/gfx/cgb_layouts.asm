@@ -258,7 +258,7 @@ _CGB_Pokedex:
 .is_pokemon
 	call GetMonPalettePointer
 	ld a, [wPokedexShinyToggle]
-	bit 0, a
+	and a
 	jr z, .not_shiny
 rept 4
 	inc hl
