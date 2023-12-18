@@ -6105,7 +6105,7 @@ LoadEnemyMon:
 
 ; 5% chance of getting Item2 (10% of 50% = 5%)
 	call BattleRandom
-	cp 10 percent
+	cp 10 percent + 1
 	ld a, [wBaseItem2]
 	jr c, .UpdateItem
 
@@ -6187,7 +6187,6 @@ LoadEnemyMon:
 
 ; If it hasn't, we need to initialize the DVs
 ; (HP is initialized at the end of the battle)
-	call GetRoamMonDVs
 	inc hl
 	call BattleRandom
 	ld [hld], a
@@ -6206,7 +6205,7 @@ LoadEnemyMon:
 	cp BATTLETYPE_FORCESHINY
 	jr nz, .GenerateDVs
 
-	lb bc, ATKDEFDV_SHINY, SPDSPCDV_SHINY ; Both are $ff
+	lb bc, ATKDEFDV_SHINY, SPDSPCDV_SHINY
 	jr .UpdateDVs
 
 .GenerateDVs:
@@ -6345,7 +6344,7 @@ LoadEnemyMon:
 
 	ld a, [wEnemySubStatus5]
 	bit SUBSTATUS_TRANSFORMED, a
-	jp nz, .Moves
+	jr nz, .Moves
 
 .TreeMon:
 ; If we're headbutting trees, some monsters enter battle asleep.
@@ -6380,7 +6379,7 @@ LoadEnemyMon:
 	and a
 	jr z, .InitRoamHP
 ; Update from the struct if it has
-	ld a, [hl]
+;	ld a, [hl]
 	ld [wEnemyMonHP + 1], a
 	jr .Moves
 
