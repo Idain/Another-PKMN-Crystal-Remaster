@@ -501,17 +501,13 @@ TossMenu:
 	ld hl, AskThrowAwayText
 	call Pack_PrintTextNoScroll
 	farcall SelectQuantityToToss
-	push af
 	call ExitMenu
-	pop af
 	ret c
 	call Pack_GetItemName
 	ld hl, AskQuantityThrowAwayText
 	call MenuTextbox
 	call YesNoBox
-	push af
 	call ExitMenu
-	pop af
 	ret c
 	ld hl, wNumItems
 	ld a, [wCurItemQuantity]

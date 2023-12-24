@@ -46,9 +46,7 @@ TossItemFromPC:
 	ld hl, .ItemsThrowAwayText
 	call MenuTextbox
 	call YesNoBox
-	push af
 	call ExitMenu
-	pop af
 	jr c, .quit
 	pop hl
 	ld a, [wCurItemQuantity]
