@@ -1243,6 +1243,12 @@ BattleCommand_Stab:
 	bit SUBSTATUS_IDENTIFIED, a
 	jr nz, .end
 
+	; False Swipe can hit Ghost-type Pokémon
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	cp EFFECT_FALSE_SWIPE
+	jr z, .end
+
 	jr .TypesLoop
 
 .SkipForesightCheck:
@@ -1358,10 +1364,19 @@ CheckTypeMatchup:
 	jr z, .End
 	cp -2
 	jr nz, .Next
+
+	; Foresight
 	ld a, BATTLE_VARS_SUBSTATUS1_OPP
 	call GetBattleVar
 	bit SUBSTATUS_IDENTIFIED, a
 	jr nz, .End
+
+	; False Swipe can hit Ghost-type Pokémon
+	ld a, BATTLE_VARS_MOVE_EFFECT
+	call GetBattleVar
+	cp EFFECT_FALSE_SWIPE
+	jr z, .End
+
 	jr .TypesLoop
 
 .Next:
