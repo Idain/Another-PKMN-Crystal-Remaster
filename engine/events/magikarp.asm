@@ -166,7 +166,7 @@ CalcMagikarpLength:
 
 ; This function is poorly commented.
 
-; In short, it generates a value between 90 and 1625 using
+; In short, it generates a value between 190 and 1625 using
 ; a Magikarp's DVs and its trainer ID. This value is further
 ; filtered in LoadEnemyMon to make longer Magikarp even rarer.
 
@@ -175,12 +175,13 @@ CalcMagikarpLength:
 
 ; bc = rrc(dv[0]) ++ rrc(dv[1]) ^ rrc(id)
 
+; if bc < 10:    [wMagikarpLengthMm] = c + 190
 ; if bc ≥ 65510: [wMagikarpLengthMm] = bc - 65510 + 1600
 ; else:          [wMagikarpLengthMm] = z * 100 + (bc - x) / y
 
 ; X, Y, and Z depend on the value of bc as follows:
 
-; if bc = 0-109:        x =   110,  y =   1,  z =  2
+; if bc = 10-109:       x =   110,  y =   1,  z =  2
 ; if bc = 110-309:      x =   310,  y =   2,  z =  3
 ; if bc = 310-709:      x =   710,  y =   4,  z =  4
 ; if bc = 710-2709:     x =  2710,  y =  20,  z =  5
@@ -220,6 +221,24 @@ CalcMagikarpLength:
 	xor c
 	ld c, a
 
+	; if bc < 10:
+	;     de = bc + 190
+	;     break
+
+	ld a, b
+	and a
+	jr nz, .no
+	ld a, c
+	cp 10
+	jr nc, .no
+
+	ld hl, 190
+	add hl, bc
+	ld d, h
+	ld e, l
+	jr .done
+
+.no
 	ld hl, MagikarpLengths
 	ld a, 2
 	ld [wTempByteValue], a
