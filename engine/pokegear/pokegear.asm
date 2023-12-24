@@ -838,9 +838,8 @@ PokegearPhone_MakePhoneCall:
 	call PlaySFX
 	ld hl, .GearEllipseText
 	call PrintText
-	call WaitSFX
 	ld de, SFX_CALL
-	call PlaySFX
+	call WaitPlaySFX
 	ld hl, .GearEllipseText
 	call PrintText
 	call WaitSFX

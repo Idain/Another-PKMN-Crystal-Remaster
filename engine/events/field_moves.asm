@@ -3,9 +3,8 @@ DEF FIELDMOVE_TREE  EQU $84
 DEF FIELDMOVE_FLY   EQU $84
 
 PlayWhirlpoolSound:
-	call WaitSFX
 	ld de, SFX_SURF
-	call PlaySFX
+	call WaitPlaySFX
 	jp WaitSFX
 
 BlindingFlash:
@@ -41,9 +40,8 @@ ShakeHeadbuttTree:
 	call HideHeadbuttTree
 	ld a, 32
 	ld [wFrameCounter], a
-	call WaitSFX
 	ld de, SFX_SANDSTORM
-	call PlaySFX
+	call WaitPlaySFX
 .loop
 	ld hl, wFrameCounter
 	ld a, [hl]
@@ -115,9 +113,8 @@ OWCutAnimation:
 	and 1
 	ld [wJumptableIndex], a
 	call .LoadCutGFX
-	call WaitSFX
 	ld de, SFX_PLACE_PUZZLE_PIECE_DOWN
-	call PlaySFX
+	call WaitPlaySFX
 .loop
 	ld a, [wJumptableIndex]
 	bit 7, a

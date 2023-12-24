@@ -179,27 +179,16 @@ TurnOffPC:
 
 PC_PlayBootSound:
 	ld de, SFX_BOOT_PC
-	jr PC_WaitPlaySFX
+	jp WaitPlaySFX
 
 PC_PlayShutdownSound:
 	ld de, SFX_SHUT_DOWN_PC
-	call PC_WaitPlaySFX
+	call WaitPlaySFX
 	jp WaitSFX
 
 PC_PlayChoosePCSound:
 	ld de, SFX_CHOOSE_PC_OPTION
-	jr PC_WaitPlaySFX
-
-PC_PlaySwapItemsSound:
-	ld de, SFX_SWITCH_POKEMON
-	call PC_WaitPlaySFX
-	ld de, SFX_SWITCH_POKEMON
-
-PC_WaitPlaySFX:
-	push de
-	call WaitSFX
-	pop de
-	jp PlaySFX
+	jp WaitPlaySFX
 
 _PlayersHousePC:
 	call PC_PlayBootSound
@@ -599,11 +588,15 @@ PCItemsJoypad:
 	jr .next
 
 .a_select_2
-	call PC_PlaySwapItemsSound
+; PC_PlaySwapItemsSound
+	ld de, SFX_SWITCH_POKEMON
+	call WaitPlaySFX
+	ld de, SFX_SWITCH_POKEMON
+	call WaitPlaySFX
 .select_1
 	farcall SwitchItemsInBag
 .next
-	jp .loop
+	jr .loop
 
 .a_1
 	farcall ScrollingMenu_ClearLeftColumn

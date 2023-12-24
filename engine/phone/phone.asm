@@ -492,9 +492,8 @@ HangUp_BoopOff:
 	jp SpeechTextbox
 
 Phone_StartRinging:
-	call WaitSFX
 	ld de, SFX_CALL
-	call PlaySFX
+	call WaitPlaySFX
 	call Phone_CallerTextbox
 	call UpdateSprites
 	jp CopyTilemapAtOnce

@@ -35,9 +35,8 @@ MoveDeletion:
 	pop bc
 	jr c, .declined
 	call .DeleteMove
-	call WaitSFX
 	ld de, SFX_MOVE_DELETED
-	call PlaySFX
+	call WaitPlaySFX
 	call WaitSFX
 	ld hl, .DeleterForgotMoveText
 	jp PrintText

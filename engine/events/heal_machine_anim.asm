@@ -119,9 +119,8 @@ ENDM
 	ld de, SFX_GAME_FREAK_LOGO_GS
 	call PlaySFX
 	call .FlashPalettes8Times
-	call WaitSFX
 	ld de, SFX_BOOT_PC
-	jp PlaySFX
+	jp WaitPlaySFX
 
 .PC_ElmsLab_OAM:
 	dbsprite   4,   4, 2, 0, $7c, PAL_OW_TREE | OBP_NUM
