@@ -1707,9 +1707,8 @@ wMoreMenuDataEnd::
 
 wOverworldDelay:: db
 wTextDelayFrames:: db
-wVBlankOccurred:: db
 
-	ds 7
+	ds 8
 
 wUnusedLinkCommunicationByte:: db
 

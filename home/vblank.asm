@@ -32,7 +32,7 @@ VBlank::
 	call GameTimer
 
 	xor a
-	ld [wVBlankOccurred], a
+	ldh [hVBlankOccurred], a
 
 	ldh a, [hROMBankBackup]
 	rst Bankswitch
@@ -116,7 +116,7 @@ VBlank0::
 	ldh [hRandomSub], a
 
 	xor a
-	ld [wVBlankOccurred], a
+	ldh [hVBlankOccurred], a
 
 	ld a, [wOverworldDelay]
 	and a
