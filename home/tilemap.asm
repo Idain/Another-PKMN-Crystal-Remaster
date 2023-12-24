@@ -5,7 +5,7 @@ WaitBGMap::
 	ld a, 1 ; BG Map 0 tiles
 	ldh [hBGMapMode], a
 ; Wait for it to do its magic
-	ld c, 3
+	ld c, 4
 	jp DelayFrames
 
 WaitBGMap2::
@@ -15,7 +15,7 @@ WaitBGMap2::
 
 	ld a, 2
 	ldh [hBGMapMode], a
-	ld c, 3
+	ld c, 4
 	call DelayFrames
 	jr WaitBGMap
 
