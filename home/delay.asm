@@ -1,6 +1,6 @@
 DelayFrame::
 ; Wait for one frame
-	ld a, 1
+	xor a ; ld a, FALSE
 	ldh [hVBlankOccurred], a
 
 ; Wait for the next VBlank, halting to conserve battery
@@ -9,7 +9,7 @@ DelayFrame::
 	nop
 	ldh a, [hVBlankOccurred]
 	and a
-	jr nz, .halt
+	jr z, .halt
 	ret
 
 DelayFrames::

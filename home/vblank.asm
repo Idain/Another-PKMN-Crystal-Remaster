@@ -31,7 +31,7 @@ VBlank::
 
 	call GameTimer
 
-	xor a
+	ld a, TRUE
 	ldh [hVBlankOccurred], a
 
 	ldh a, [hROMBankBackup]
@@ -115,7 +115,7 @@ VBlank0::
 	sbc b
 	ldh [hRandomSub], a
 
-	xor a
+	ld a, TRUE
 	ldh [hVBlankOccurred], a
 
 	ld a, [wOverworldDelay]
