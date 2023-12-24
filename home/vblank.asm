@@ -16,6 +16,9 @@ VBlank::
 	ldh [hROMBankBackup], a
 
 	ldh a, [hVBlank]
+	cp 7
+	jr z, .skipToGameTime
+
 	and 7
 	add a
 
@@ -29,6 +32,7 @@ VBlank::
 
 	call _hl_
 
+.doGameTime
 	call GameTimer
 
 	ld a, TRUE
@@ -43,15 +47,19 @@ VBlank::
 	pop af
 	reti
 
+.skipToGameTime
+	call AnimateTileset
+	jr .doGameTime
+
 .VBlanks:
-	dw VBlank0
-	dw VBlank1
-	dw VBlank2
-	dw VBlank3
-	dw VBlank4
-	dw VBlank5
-	dw VBlank6
-	dw VBlank7
+	dw VBlank0 ; 0
+	dw VBlank1 ; 1
+	dw VBlank2 ; 2
+	dw VBlank1 ; 3
+	dw VBlank4 ; 4
+	dw VBlank5 ; 5
+	dw VBlank6 ; 6
+	dw VBlank7 ; 7
 
 VBlank0::
 ; normal operation
@@ -159,62 +167,23 @@ VBlank1::
 	ldh a, [hSCY]
 	ldh [rSCY], a
 
-	call UpdatePals
-	jr c, VBlank1EntryPoint
-
-	call UpdateBGMap
-	call Serve2bppRequest
-
-	jr VBlank1EntryPoint
-
-UpdatePals::
-; update pals for either dmg or cgb
-
-	ldh a, [hCGB]
-	and a
-	jp nz, UpdateCGBPals
-
-	; update gb pals
-	ld a, [wBGP]
-	ldh [rBGP], a
-	ld a, [wOBP0]
-	ldh [rOBP0], a
-	ld a, [wOBP1]
-	ldh [rOBP1], a
-
-	and a
-	ret
-
-VBlank3::
-; scx, scy
-; palettes
-; bg map
-; tiles
-; oam
-; sound / lcd stat
-
-	ldh a, [hSCX]
-	ldh [rSCX], a
-	ldh a, [hSCY]
-	ldh [rSCY], a
-
 	call UpdateCGBPals
-	jr c, VBlank1EntryPoint
+	jr c, .done
 
 	call UpdateBGMap
 	call Serve2bppRequest
 	call LYOverrideStackCopy
 
-VBlank1EntryPoint:
+.done
 	call PushOAM
 
 	; get requested ints
+	ldh a, [rIE]
+	push af
 	ldh a, [rIF]
 	push af
+
 	xor a
-	ldh [rIF], a
-	ld a, 1 << LCD_STAT
-	ldh [rIE], a
 	ldh [rIF], a
 
 	ei
@@ -232,7 +201,7 @@ VBlank1EntryPoint:
 	xor a
 	ldh [rIF], a
 	; enable ints besides joypad
-	ld a, IE_DEFAULT
+	pop af
 	ldh [rIE], a
 	; request ints
 	ld a, b
@@ -274,16 +243,14 @@ VBlank5::
 
 	call UpdateBGMap
 	call Serve2bppRequest
-.done
 
+.done
 	call UpdateJoypad
 
 	xor a
 	ldh [rIF], a
-	ld a, 1 << LCD_STAT
-	ldh [rIE], a
-	; request lcd stat
-	ldh [rIF], a
+	ldh a, [rIE]
+	push af
 
 	ei
 	call VBlankUpdateSound
@@ -291,8 +258,8 @@ VBlank5::
 
 	xor a
 	ldh [rIF], a
-	; enable ints besides joypad
-	ld a, IE_DEFAULT
+	; enable usual interrupts
+	pop af
 	ldh [rIE], a
 	ret
 
