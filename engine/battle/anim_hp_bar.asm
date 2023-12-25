@@ -284,16 +284,18 @@ HPBarAnim_BGMapUpdate:
 .cgb
 	ld a, [wWhichHPBar]
 	and a
-	jr z, .load_0
+	ld c, 0
+	jr z, .finish
+	inc c ; 1
 	dec a
-	jr z, .load_1
+	jr z, .finish
 	ld a, [wCurPartyMon]
 	cp 3
 	ld c, 0
 	jr c, .got_third
 
 ;bottom_half_of_screen
-	ld c, 1
+	inc c
 .got_third
 	push af
 	cp 2
@@ -330,12 +332,6 @@ HPBarAnim_BGMapUpdate:
 	ldh [hBGMapHalf], a
 	jp DelayFrame
 
-.load_0
-	ld c, 0
-	jr .finish
-
-.load_1
-	ld c, 1
 .finish
 	call DelayFrame
 	ld a, c
