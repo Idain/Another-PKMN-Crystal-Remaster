@@ -709,7 +709,7 @@ _InitVerticalMenuCursor::
 	ld a, c
 	ld [hli], a
 ; wMenuCursorX
-;	ld a, 1
+	ld a, 1
 	ld [hli], a
 ; wCursorOffCharacter, wCursorCurrentTile
 	xor a

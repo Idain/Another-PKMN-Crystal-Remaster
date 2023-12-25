@@ -577,7 +577,7 @@ ReadObjectEvents::
 	inc hl
 	ld bc, MAPOBJECT_LENGTH
 .loop
-	ld [hl],  0 ; no-optimize *hl++|*hl-- = N
+	ld [hl], 0  ; no-optimize *hl++|*hl-- = N
 	inc hl
 	ld [hl], -1 ; no-optimize *hl++|*hl-- = N
 	dec hl
