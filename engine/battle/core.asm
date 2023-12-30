@@ -1806,7 +1806,7 @@ HandleWeather:
 	xor a
 	ld [wNumHits], a
 	call SwitchTurn
-	call GetEighthMaxHP
+	call GetSixteenthMaxHP
 	call SubtractHPFromUser
 
 	ld hl, SandstormHitsText
