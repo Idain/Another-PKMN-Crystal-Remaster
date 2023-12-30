@@ -155,8 +155,8 @@ BattleText_TheSandstormRages:
 	line "rages."
 	prompt
 
-BattleText_HailContinuesToFall:
-	text "Hail continues to"
+BattleText_SnowContinuesToFall:
+	text "Snow continues to"
 	line "fall."
 	prompt
 
@@ -174,8 +174,8 @@ BattleText_TheSandstormSubsided:
 	line "subsided."
 	prompt
 
-BattleText_TheHailStopped:
-	text "The hail stopped."
+BattleText_TheSnowStopped:
+	text "The snow stopped."
 	prompt
 
 BattleText_EnemyMonFainted:
@@ -1091,13 +1091,7 @@ BattleText_LinkErrorBattleCanceled:
 	line "been canceled…"
 	prompt
 
-ItStartedToHailText:
+ItStartedToSnowText:
 	text "It started"
-	line "to hail!"
+	line "to snow!"
 	prompt
-
-PeltedByHailText:
-	text "<USER>"
-	line "is pelted by Hail!"
-	prompt
-

@@ -324,7 +324,7 @@ AI_Smart_EffectHandlers:
 	dbw EFFECT_RAZOR_WIND,       AI_Smart_RazorWind
 	dbw EFFECT_SUPER_FANG,       AI_Smart_SuperFang
 	dbw EFFECT_TRAP_TARGET,      AI_Smart_TrapTarget
-	dbw EFFECT_HAIL,             AI_Smart_Hail
+	dbw EFFECT_SNOW,             AI_Smart_Snow
 	dbw EFFECT_CONFUSE,          AI_Smart_Confuse
 	dbw EFFECT_SP_DEF_UP_2,      AI_Smart_SpDefenseUp2
 	dbw EFFECT_REFLECT,          AI_Smart_Reflect
@@ -2110,42 +2110,48 @@ AI_Smart_Sandstorm:
 	db STEEL
 	db -1 ; end
 
-AI_Smart_Hail:
-; Greatly discourage this move if the player is immune to Hail damage.
-	ld a, [wBattleMonType1]
+AI_Smart_Snow:
+; Greatly encourage this move if certain conditions are met.
+
+	; If the enemy is an Ice-type...
+	ld a, [wEnemyMonType1]
 	cp ICE
-	jr z, .greatly_discourage
+	jr z, .check_enemy_hp
 
-	ld a, [wBattleMonType2]
+	ld a, [wEnemyMonType2]
 	cp ICE
-	jr z, .greatly_discourage
+	jr nz, .check_snow_moves
 
-; Discourage this move if player's HP is below 50%.
-	call AICheckPlayerHalfHP
-	jr nc, .discourage
+.check_enemy_hp
+	; ...if its HP is above 50%...
+	call AICheckEnemyHalfHP
+	jr c, .check_snow_moves
 
-; Encourage move if AI has good Hail moves
+	; ...and if it's the first turn.
+	ld a, [wEnemyTurnsTaken]
+	and a
+	jr z, .greatly_encourage
+
+.check_snow_moves
+; Otherwise, encourage move if AI has good Snow moves
 	push hl
-	ld hl, .GoodHailMoves
+	ld hl, .GoodSnowMoves
 	call AIHasMoveInArray
 	pop hl
 	jr c, .encourage
 
 ; 50% chance to encourage this move otherwise.
 	call AI_50_50
-	ret c
+	jr nc, .encourage
+	ret
 
+.greatly_encourage
+	dec [hl]
 .encourage
 	dec [hl]
 	ret
 
-.greatly_discourage
-	inc [hl]
-.discourage
-	inc [hl]
-	ret
-
-.GoodHailMoves
+.GoodSnowMoves
 	db BLIZZARD
 	db -1 ; end
 

@@ -38,7 +38,7 @@ MahoganyGymPryceScript:
 	readvar VAR_BADGES
 	scall MahoganyGymActivateRockets
 .FightDone:
-	checkevent EVENT_GOT_TM07_HAIL
+	checkevent EVENT_GOT_TM07_SNOW
 	iftrue PryceScript_Defeat
 	setevent EVENT_BEAT_SKIER_ROXANNE
 	setevent EVENT_BEAT_SKIER_CLARISSA
@@ -53,10 +53,10 @@ MahoganyGymPryceScript:
 .continue2
 	writetext PryceText_AGiftFromMe
 	promptbutton
-	verbosegiveitem TM_HAIL
+	verbosegiveitem TM_SNOW
 	iffalse MahoganyGym_NoRoomForIcyWind
-	setevent EVENT_GOT_TM07_HAIL
-	writetext PryceText_HailSpeech
+	setevent EVENT_GOT_TM07_SNOW
+	writetext PryceText_SnowSpeech
 	waitbutton
 	closetext
 	end
@@ -306,17 +306,19 @@ PryceText_AGiftFromMe:
 	line "a gift from me!"
 	done
 
-PryceText_HailSpeech:
+PryceText_SnowSpeech:
 	text "That TM contains"
-	line "Hail."
+	line "Snow."
 
-	para "It summons a hail-"
+	para "It summons a snow-"
 	line "storm that lasts"
 	cont "for five turns."
 
-	para "The hailstorm da-"
-	line "mages all types"
-	cont "except Ice."
+	para "The snowstorm"
+	line "boosts the Defense"
+
+	para "of Ice-type #-"
+	line "mon by 50 %."
 	done
 
 PryceText_CherishYourPokemon:

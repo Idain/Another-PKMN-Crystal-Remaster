@@ -536,11 +536,11 @@ wBattleWeather::
 ; 01 rain
 ; 02 sun
 ; 03 sandstorm
-; 04 hail
+; 04 snow
 ; 05 rain stopped
 ; 06 sunliight faded
 ; 07 sandstorm subsided
-; 08 hail stopped
+; 08 snow stopped
 	db
 
 wWeatherCount::

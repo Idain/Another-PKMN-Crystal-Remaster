@@ -225,11 +225,11 @@ DEF ALL_STATUS EQU (1 << PSN) | (1 << BRN) | (1 << FRZ) | (1 << PAR) | (1 << TOX
 	const WEATHER_RAIN
 	const WEATHER_SUN
 	const WEATHER_SANDSTORM
-	const WEATHER_HAIL
+	const WEATHER_SNOW
 	const WEATHER_RAIN_END
 	const WEATHER_SUN_END
 	const WEATHER_SANDSTORM_END
-	const WEATHER_HAIL_END
+	const WEATHER_SNOW_END
 
 ; wBattleAction
 	const_def

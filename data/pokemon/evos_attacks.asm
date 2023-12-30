@@ -1300,7 +1300,7 @@ SeelEvosAttacks:
 	db 32, TAKE_DOWN
 	db 37, ICE_BEAM
 	db 48, SAFEGUARD
-	db 53, HAIL
+	db 53, SNOW
 	db 0 ; no more level-up moves
 
 DewgongEvosAttacks:
@@ -1312,7 +1312,7 @@ DewgongEvosAttacks:
 	db 32, TAKE_DOWN
 	db 43, ICE_BEAM
 	db 60, SAFEGUARD
-	db 65, HAIL
+	db 65, SNOW
 	db 0 ; no more level-up moves
 
 GrimerEvosAttacks:
@@ -2202,7 +2202,7 @@ ArticunoEvosAttacks:
 	db 25, AGILITY
 	db 37, MIND_READER
 	db 49, ICE_BEAM
-	db 57, HAIL
+	db 57, SNOW
 	db 61, REFLECT
 	db 73, BLIZZARD
 	db 0 ; no more level-up moves

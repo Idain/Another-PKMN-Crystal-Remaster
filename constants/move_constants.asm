@@ -257,7 +257,7 @@
 	const ROCK_SMASH   ; f9
 	const WHIRLPOOL    ; fa
 	const BEAT_UP      ; fb
-	const HAIL		   ; fc
+	const SNOW		   ; fc
 	const PLAY_ROUGH   ; fd
 	const MOONBLAST	   ; fe
 DEF NUM_ATTACKS EQU const_value - 1
@@ -278,7 +278,7 @@ DEF NUM_ATTACKS EQU const_value - 1
 	const ANIM_IN_SANDSTORM      ; 10b
 	const ANIM_IN_RAIN           ; 10c
 	const ANIM_IN_SUN    		 ; 10d
-	const ANIM_IN_HAIL           ; 10e
+	const ANIM_IN_SNOW           ; 10e
 	const ANIM_IN_NIGHTMARE      ; 10f
 	const ANIM_IN_WHIRLPOOL      ; 110
 ; battle anims

@@ -217,7 +217,7 @@ DEF TM01 EQU const_value
 	add_tm ROLLOUT      ; bb
 	add_tm ROAR         ; bc
 	add_tm TOXIC        ; bd
-	add_tm HAIL			; be
+	add_tm SNOW			; be
 	add_tm ROCK_SMASH   ; bf
 	add_tm PSYCH_UP     ; c0
 	add_tm HIDDEN_POWER ; c1

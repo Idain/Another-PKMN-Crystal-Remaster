@@ -2089,9 +2089,9 @@ Growth:
 	growth
 	endmove
 
-Hail:
+Snow:
 	checkobedience
 	usedmovetext
 	doturn
-	starthail
+	startsnow
 	endmove

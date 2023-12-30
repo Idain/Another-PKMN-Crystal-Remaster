@@ -1748,7 +1748,7 @@ HandleWeather:
 	ld de, ANIM_IN_SANDSTORM
 	jr z, .anim_weather
 
-	ld de, ANIM_IN_HAIL
+	ld de, ANIM_IN_SNOW
 	; fallthrough
 .anim_weather
 	call Call_PlayBattleAnim
@@ -1757,7 +1757,7 @@ HandleWeather:
 
 	ld a, [wBattleWeather]
 	cp WEATHER_SANDSTORM
-	jr nz, .check_hail
+	ret nz
 
 	ld a, [wEnemyIsFaster]
 	and a
@@ -1812,57 +1812,6 @@ HandleWeather:
 	ld hl, SandstormHitsText
 	jp StdBattleTextbox
 
-.check_hail
-	ld a, [wBattleWeather]
-	cp WEATHER_HAIL
-	ret nz
-
-	ld a, [wEnemyIsFaster]
-	and a
-	jr nz, .enemy_first_hail
-	; fallthrough
-.player_first_hail
-	call SetPlayerTurn
-	call .HailDamage
-	call SetEnemyTurn
-	jr .HailDamage
-
-.enemy_first_hail
-	call SetEnemyTurn
-	call .HailDamage
-	call SetPlayerTurn
-
-.HailDamage:
-	ld a, BATTLE_VARS_SUBSTATUS3
-	call GetBattleVar
-	bit SUBSTATUS_UNDERGROUND, a
-	ret nz
-
-	ld hl, wBattleMonType1
-	ldh a, [hBattleTurn]
-	and a
-	jr z, .ok1
-	ld hl, wEnemyMonType1
-.ok1
-	ld a, [hli]
-	cp ICE
-	ret z
-
-	ld a, [hl]
-	cp ICE
-	ret z
-
-	call SwitchTurn
-	xor a
-	ld [wNumHits], a
-	call SwitchTurn
-
-	call GetSixteenthMaxHP
-	call SubtractHPFromUser
-
-	ld hl, PeltedByHailText
-	jp StdBattleTextbox
-
 .PrintWeatherMessage:
 	ld a, [wBattleWeather]
 	dec a
@@ -1880,14 +1829,14 @@ HandleWeather:
 	dw BattleText_RainContinuesToFall
 	dw BattleText_TheSunlightIsStrong
 	dw BattleText_TheSandstormRages
-	dw BattleText_HailContinuesToFall
+	dw BattleText_SnowContinuesToFall
 
 .WeatherEndedMessages:
 ; entries correspond to WEATHER_* constants
 	dw BattleText_TheRainStopped
 	dw BattleText_TheSunlightFaded
 	dw BattleText_TheSandstormSubsided
-	dw BattleText_TheHailStopped
+	dw BattleText_TheSnowStopped
 
 SubtractHPFromTarget:
 	call SubtractHP
@@ -5683,7 +5632,7 @@ GetWeatherImage:
 	ld b, PAL_BATTLE_OB_BROWN
 	dec a
 	jr z, .done
-	ld de, HailWeatherImage
+	ld de, SnowWeatherImage
 	ld b, PAL_BATTLE_OB_BLUE
 	dec a
 	ret nz

@@ -251,7 +251,7 @@ MoveNames::
 	li "Rock Smash"
 	li "Whirlpool"
 	li "Beat Up"
-	li "Hail"
+	li "Snow"
 	li "Play Rough"
 	li "Moonblast"
 	assert_list_length NUM_ATTACKS

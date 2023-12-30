@@ -265,7 +265,7 @@ Moves:
 	move ROCK_SMASH,   EFFECT_DEFENSE_DOWN_HIT,   40, FIGHTING,      PHYSICAL, 100, 15,  50
 	move WHIRLPOOL,    EFFECT_TRAP_TARGET,        35, WATER,         SPECIAL,   85, 15,   0
 	move BEAT_UP,      EFFECT_BEAT_UP,            10, DARK,          PHYSICAL, 100, 10,   0
-	move HAIL, 		   EFFECT_HAIL, 			   0, ICE, 			 STATUS,   100, 10,   0
+	move SNOW, 		   EFFECT_SNOW, 			   0, ICE, 			 STATUS,   100, 10,   0
 	move PLAY_ROUGH,   EFFECT_ATTACK_DOWN_HIT, 	  90, FAIRY, 		 PHYSICAL,  90, 10,  10
 	move MOONBLAST,    EFFECT_SP_ATK_DOWN_HIT, 	  95, FAIRY, 		 SPECIAL,  100, 15,  30
 	assert_table_length NUM_ATTACKS

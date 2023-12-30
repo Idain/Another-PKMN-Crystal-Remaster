@@ -88,7 +88,7 @@ PryceGroup:
 	db 34, SEEL      
 		db 188, 168, 168, 168, 168, 188
 		db NO_ITEM		
-		db SNORE, ICY_WIND, HAIL, REST
+		db SNORE, ICY_WIND, SNOW, REST
 	db 35, DEWGONG  
 		db 212, 200, 200, 200, 200, 212
 		db NO_ITEM		
@@ -96,7 +96,7 @@ PryceGroup:
 	db 37, PILOSWINE 
 		db 228, 228, 224, 220, 220, 220
 		db GOLD_BERRY 	
-		db HAIL, EARTHQUAKE, HEADBUTT, BLIZZARD
+		db SNOW, EARTHQUAKE, HEADBUTT, BLIZZARD
 	db -1 ; end
 
 	; PRYCE (2)
@@ -104,7 +104,7 @@ PryceGroup:
 	db 30, SEEL      
 		db 132, 120, 120, 120, 120, 132
 		db NO_ITEM		
-		db SNORE, ICY_WIND, HAIL, REST
+		db SNORE, ICY_WIND, SNOW, REST
 	db 31, DEWGONG  
 		db 152, 140, 140, 140, 140, 152
 		db NO_ITEM		
@@ -112,7 +112,7 @@ PryceGroup:
 	db 33, PILOSWINE 
 		db 172, 172, 168, 160, 160, 160
 		db GOLD_BERRY 	
-		db HAIL, EARTHQUAKE, HEADBUTT, BLIZZARD
+		db SNOW, EARTHQUAKE, HEADBUTT, BLIZZARD
 	db -1 ; end
 
 	; PRYCE (3)
@@ -120,7 +120,7 @@ PryceGroup:
 	db 32, SEEL      
 		db 160, 152, 152, 152, 152, 160
 		db NO_ITEM		
-		db SNORE, ICY_WIND, HAIL, REST
+		db SNORE, ICY_WIND, SNOW, REST
 	db 33, DEWGONG  
 		db 180, 172, 172, 172, 172, 180
 		db NO_ITEM		
@@ -128,7 +128,7 @@ PryceGroup:
 	db 35, PILOSWINE 
 		db 200, 200, 196, 188, 188, 188
 		db GOLD_BERRY 	
-		db HAIL, EARTHQUAKE, HEADBUTT, BLIZZARD
+		db SNOW, EARTHQUAKE, HEADBUTT, BLIZZARD
 	db -1 ; end
 
 JasmineGroup:

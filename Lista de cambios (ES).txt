@@ -12,7 +12,7 @@ de infrarrojos. Créditos a Vulcandth, Rangi, pfero, Drush, ax6 y todos los que 
 
 - TMS:
 	-- ¡El total de TMs ha sido expandido a 60! Estos son: Light Screen, Reflect, Safeguard, False Swipe, Explosion, Thunder Wave, Swords Dance, Rock Slide, Substitute y...
-	-- ¡...El NUEVO MOVIMIENTO! Hail (Granizo), y también es la nueva TM07. La entrega Pryce al derrotarlo.
+	-- ¡...El NUEVO MOVIMIENTO! Snow (Nieve), y también es la nueva TM07. La entrega Pryce al derrotarlo.
 		
 	Notas:
 	--- El orden de las TMs ha sido cambiado.

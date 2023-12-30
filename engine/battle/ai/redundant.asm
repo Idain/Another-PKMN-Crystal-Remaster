@@ -42,7 +42,7 @@ AI_Redundant:
 	dbw EFFECT_WEATHER_HEAL, .WeatherHeal
 	dbw EFFECT_SWAGGER,      .Swagger
 	dbw EFFECT_FUTURE_SIGHT, .FutureSight
-	dbw EFFECT_HAIL,         .Hail
+	dbw EFFECT_SNOW,         .Snow
 	dbw EFFECT_FORCE_SWITCH, .WhirlwindRoar
 	dbw EFFECT_TELEPORT,     .Teleport
 	dbw EFFECT_BATON_PASS,   .BatonPass
@@ -179,9 +179,9 @@ AI_Redundant:
 	and a
 	ret
 
-.Hail:
+.Snow:
 	ld a, [wBattleWeather]
-	cp WEATHER_HAIL
+	cp WEATHER_SNOW
 	jr .InvertZero
 
 .BatonPass:

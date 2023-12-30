@@ -1762,8 +1762,8 @@ BattleCommand_CheckHit:
 	ld a, [wBattleWeather]
 	cp WEATHER_RAIN
 	jr z, .RainAccCheck
-	cp WEATHER_HAIL
-	jr z, .HailAccCheck
+	cp WEATHER_SNOW
+	jr z, .SnowAccCheck
 	ret
 
 .RainAccCheck:
@@ -1772,7 +1772,7 @@ BattleCommand_CheckHit:
 	cp EFFECT_THUNDER
 	ret
 
-.HailAccCheck:
+.SnowAccCheck:
 	ld a, BATTLE_VARS_MOVE_EFFECT
 	call GetBattleVar
 	cp EFFECT_BLIZZARD
@@ -2627,7 +2627,7 @@ PlayerAttackDamage:
 	ld b, a
 	ld c, [hl]
 
-	call HailDefenseBoost
+	call SnowDefenseBoost
 
 	ld a, [wEnemyScreens]
 	bit SCREENS_REFLECT, a
@@ -2793,13 +2793,13 @@ SandstormSpDefBoost:
 	ld c, l
 	ret
 
-HailDefenseBoost: 
-; Raise Defense by 50% if there's Hail and the opponent
+SnowDefenseBoost: 
+; Raise Defense by 50% if there's Snow and the opponent
 ; is Ice-type.
 
-; First, check if Hail is active.
+; First, check if Snow is active.
 	ld a, [wBattleWeather]
-	cp WEATHER_HAIL
+	cp WEATHER_SNOW
 	ret nz
 
 ; Then, check the opponent's types.
@@ -2947,7 +2947,7 @@ EnemyAttackDamage:
 	ld b, a
 	ld c, [hl]
 
-	call HailDefenseBoost
+	call SnowDefenseBoost
 
 	ld a, [wPlayerScreens]
 	bit SCREENS_REFLECT, a
@@ -6369,7 +6369,7 @@ BattleCommand_WeatherBasedHeal:
 	jr z, .Heal
 
 ; x2 in sun
-; /2 in rain/sandstorm/hail
+; /2 in rain/sandstorm/snow
 	inc c
 	cp WEATHER_SUN
 	jr z, .Heal
@@ -6420,9 +6420,9 @@ INCLUDE "engine/battle/move_effects/psych_up.asm"
 
 INCLUDE "engine/battle/move_effects/mirror_coat.asm"
 
-BattleCommand_StartHail:
-; starthail
-	ld b, WEATHER_HAIL
+BattleCommand_StartSnow:
+; startsnow
+	ld b, WEATHER_SNOW
 	jr BattleCommand_StartWeather
 
 BattleCommand_StartRain:
@@ -6462,8 +6462,8 @@ BattleCommand_StartWeather:
 	dec a
 	jr z, .start
 	
-	; WEATHER_HAIL
-	ld hl, ItStartedToHailText
+	; WEATHER_SNOW
+	ld hl, ItStartedToSnowText
 
 .start
 	ld a, b

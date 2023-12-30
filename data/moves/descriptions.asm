@@ -252,7 +252,7 @@ MoveDescriptions::
 	dw RockSmashDescription
 	dw WhirlpoolDescription
 	dw BeatUpDescription
-	dw HailDescription
+	dw SnowDescription
 	dw PlayRoughDescription
 	dw MoonblastDescription
 	assert_table_length NUM_ATTACKS
@@ -906,9 +906,12 @@ LockOnDescription:
 	next "attack will hit.@"
 
 SandstormDescription:
-HailDescription:
 	db   "Inflicts damage"
 	next "every turn.@"
+
+SnowDescription:
+	db   "Raises Defense of"
+	next "Ice-type #mon.@"
 
 EndureDescription:
 	db   "Always leaves at"

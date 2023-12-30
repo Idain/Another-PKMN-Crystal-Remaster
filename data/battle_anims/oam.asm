@@ -223,7 +223,7 @@ BattleAnimOAMData:
 	battleanimoam $00,  6, .OAMData_d5 ; BATTLEANIMOAMSET_D5
 	battleanimoam $00, 14, .OAMData_d6 ; BATTLEANIMOAMSET_D6
 	battleanimoam $00, 12, .OAMData_d7 ; BATTLEANIMOAMSET_D7
-	battleanimoam $00, 13, .OAMData_Hail ; BATTLEANIMOAMSET_HAIL
+	battleanimoam $00, 13, .OAMData_Snow ; BATTLEANIMOAMSET_SNOW
 	assert_table_length NUM_BATTLEANIMOAMSETS
 
 .OAMData_11:
@@ -1093,7 +1093,7 @@ BattleAnimOAMData:
 	dbsprite  10,  -2, 4, 0, $00, $0
 
 
-.OAMData_Hail:
+.OAMData_Snow:
 	dbsprite -13,  -2, 4, 0, $04, $0
 	dbsprite -11,  -4, 4, 0, $04, $0
 	dbsprite  -9,  -1, 4, 0, $04, $0

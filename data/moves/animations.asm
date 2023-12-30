@@ -253,7 +253,7 @@ BattleAnimations::
 	dw BattleAnim_RockSmash
 	dw BattleAnim_Whirlpool
 	dw BattleAnim_BeatUp
-	dw BattleAnim_Hail
+	dw BattleAnim_Snow
 	dw BattleAnim_PlayRough
 	dw BattleAnim_Moonblast
 	assert_table_length NUM_ATTACKS + 1
@@ -274,7 +274,7 @@ BattleAnimations::
 	dw BattleAnim_InSandstorm
 	dw BattleAnim_InRain
 	dw BattleAnim_InSun
-	dw BattleAnim_InHail
+	dw BattleAnim_InSnow
 	dw BattleAnim_InNightmare
 	dw BattleAnim_InWhirlpool
 	dw BattleAnim_Miss
@@ -4819,15 +4819,15 @@ BattleAnim_ShowMon_1:
 	anim_wait 1
 	anim_ret
 
-BattleAnim_Hail:
-BattleAnim_InHail:
+BattleAnim_Snow:
+BattleAnim_InSnow:
 	anim_1gfx ANIM_GFX_ICE
 	anim_bgeffect ANIM_BG_WHITE_HUES, $0, $8, $0
-	anim_obj ANIM_OBJ_HAIL, 88, 0, $0
+	anim_obj ANIM_OBJ_SNOW, 88, 0, $0
 	anim_wait 8
-	anim_obj ANIM_OBJ_HAIL, 72, 0, $1
+	anim_obj ANIM_OBJ_SNOW, 72, 0, $1
 	anim_wait 8
-	anim_obj ANIM_OBJ_HAIL, 56, 0, $2
+	anim_obj ANIM_OBJ_SNOW, 56, 0, $2
 .loop
 	anim_sound 0, 1, SFX_SHINE
 	anim_wait 8
