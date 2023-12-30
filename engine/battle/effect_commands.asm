@@ -6361,7 +6361,7 @@ BattleCommand_WeatherBasedHeal:
 
 ; Index for .Multipliers
 ; Default restores 1/2 max HP.
-	ld c, 1
+	ld c, 0
 
 .Weather:
 	ld a, [wBattleWeather]
@@ -6373,8 +6373,7 @@ BattleCommand_WeatherBasedHeal:
 	inc c
 	cp WEATHER_SUN
 	jr z, .Heal
-	dec c
-	dec c
+	inc c
 
 .Heal:
 	ld b, 0
@@ -6408,9 +6407,9 @@ BattleCommand_WeatherBasedHeal:
 	jp StdBattleTextbox
 
 .Multipliers:
-	dw GetQuarterMaxHP
 	dw GetHalfMaxHP
 	dw GetTwoThirdsMaxHP
+	dw GetQuarterMaxHP
 
 INCLUDE "engine/battle/move_effects/hidden_power.asm"
 
