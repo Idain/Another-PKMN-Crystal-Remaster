@@ -991,7 +991,7 @@ StartPerishText:
 	line "faint in 3 turns!"
 	prompt
 
-SandstormBrewedText:
+SandstormKickedUpText:
 	text "A sandstorm"
 	line "kicked up!"
 	prompt

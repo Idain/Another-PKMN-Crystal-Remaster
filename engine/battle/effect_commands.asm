@@ -6458,7 +6458,7 @@ BattleCommand_StartWeather:
 	jr z, .start
 
 	; WEATHER_SANDSTORM
-	ld hl, SandstormBrewedText
+	ld hl, SandstormKickedUpText
 	dec a
 	jr z, .start
 	
