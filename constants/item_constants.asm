@@ -217,7 +217,7 @@ DEF TM01 EQU const_value
 	add_tm ROLLOUT      ; bb
 	add_tm ROAR         ; bc
 	add_tm TOXIC        ; bd
-	add_tm SNOWSCAPE	; be
+	add_tm SNOWSCAPE	; be (NEW)
 	add_tm ROCK_SMASH   ; bf
 	add_tm PSYCH_UP     ; c0
 	add_tm HIDDEN_POWER ; c1
@@ -226,11 +226,11 @@ DEF TM01 EQU const_value
 	add_tm SNORE        ; c4
 	add_tm BLIZZARD     ; c5
 	add_tm HYPER_BEAM   ; c6
-	add_tm LIGHT_SCREEN ; c7
+	add_tm LIGHT_SCREEN ; c7 (NEW)
 	add_tm PROTECT      ; c8
 	add_tm RAIN_DANCE   ; c9
 	add_tm GIGA_DRAIN   ; ca
-	add_tm SAFEGUARD	; cb
+	add_tm SAFEGUARD	; cb (NEW)
 	add_tm FRUSTRATION  ; cc
 	add_tm SOLARBEAM    ; cd
 	add_tm IRON_TAIL    ; ce
@@ -243,7 +243,7 @@ DEF TM01 EQU const_value
 	add_tm SHADOW_BALL  ; d5
 	add_tm MUD_SLAP     ; d6
 	add_tm DOUBLE_TEAM  ; d7
-	add_tm REFLECT		; d8
+	add_tm REFLECT		; d8 (NEW)
 	add_tm SWAGGER      ; d9
 	add_tm SLEEP_TALK   ; da
 	add_tm SLUDGE_BOMB  ; db
@@ -261,16 +261,16 @@ DEF TM01 EQU const_value
 	add_tm FIRE_PUNCH   ; e7
 	add_tm FURY_CUTTER  ; e8
 	add_tm NIGHTMARE    ; e9
-	add_tm FALSE_SWIPE  ; ea
+	add_tm FALSE_SWIPE  ; ea (NEW)
 	add_tm ZAP_CANNON   ; eb
 	add_tm ENDURE 		; ec
 	add_tm ICY_WIND 	; ed
 	add_tm ICE_PUNCH 	; ee
-	add_tm EXPLOSION  	; ef
-	add_tm THUNDER_WAVE ; f0
-	add_tm SWORDS_DANCE	; f1
-	add_tm ROCK_SLIDE	; f2
-	add_tm SUBSTITUTE	; f3
+	add_tm EXPLOSION  	; ef (NEW)
+	add_tm THUNDER_WAVE ; f0 (NEW)
+	add_tm SWORDS_DANCE	; f1 (NEW)
+	add_tm ROCK_SLIDE	; f2 (NEW)
+	add_tm SUBSTITUTE	; f3 (NEW)
 DEF NUM_TMS EQU __tmhm_value__ - 1
 
 MACRO add_hm

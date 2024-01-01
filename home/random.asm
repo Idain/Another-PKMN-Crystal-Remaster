@@ -78,3 +78,56 @@ RandomRange::
 
 	pop bc
 	ret
+
+LinearFeedbackShiftRegister::
+; implementation of an 8bit Gallois Linear Feedback Shift Register
+; generates a random number based on the value of a. Ideally taken from rDIV
+; used for the personality value and when more randomness is desired (IVs?)
+; may be totally useless but it's cool
+; http://datagenetics.com/blog/november12017/index.html
+
+	; If bit 0 isn't set, return
+    ldh a, [rDIV]
+    srl a
+    ret z
+
+    push bc
+    push hl
+
+    ld b, a
+    ld a, [hRandomSub] ; we pick the mask based on the value of hRandomSub. Could have been hRandomAdd as well
+    and %00001111
+    ld hl, LFSRMasks
+    ; Point to entry in the table by doing hl + a
+    add l
+    ld l, a
+    adc h
+    sub l
+    ld h, a
+    ; Get value from table 
+    ld a, [hl]
+    xor b ; we xor the value of a, the mask, with b, the random number initially in a
+    pop hl
+    pop bc
+    ret
+
+LFSRMasks:
+MACRO lfsr_mask
+    db \1
+ENDM
+    lfsr_mask %10001110
+    lfsr_mask %10010101
+    lfsr_mask %10010110
+    lfsr_mask %10100110
+    lfsr_mask %10101111
+    lfsr_mask %10110001
+    lfsr_mask %10110010
+    lfsr_mask %10110100
+    lfsr_mask %10111000
+    lfsr_mask %11000011
+    lfsr_mask %11000110
+    lfsr_mask %11010100
+    lfsr_mask %11100001
+    lfsr_mask %11100111
+    lfsr_mask %11110011
+    lfsr_mask %11111010
