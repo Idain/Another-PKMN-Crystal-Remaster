@@ -168,7 +168,7 @@ DEF NUM_POKE_BALLS EQU const_value - 1
 	const NORMAL_BOX   ; 9e
 	const GORGEOUS_BOX ; 9f
 	const SUN_STONE    ; a0
-	const POLKADOT_BOW ; a1
+	const FAIRYFEATHER ; a1
 	const ITEM_AB      ; a2
 	const UP_GRADE     ; a3
 	const BERRY        ; a4

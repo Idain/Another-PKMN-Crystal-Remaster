@@ -17,7 +17,7 @@ NEW:
 - NEW TYPE: FAIRY-TYPE! All Pokémon and moves that are Fairy-type from Gen 6 onwards were changed to also have it in this game.
 
 - ITEM: 
-	-- Polkadow Bow. Boosts Fairy-type moves by 20%
+	-- FairyFeather. Boosts Fairy-type moves by 20%
 		* LOCATION: Sometimes Picknicker Tiffany calls you and hands it over.
 	-- Sitrus Berry. Replaces Gold Berry, healing 25% MAX HP instead of 30HP.
 	-- PP MAX. Maximizes PPs of a single move.

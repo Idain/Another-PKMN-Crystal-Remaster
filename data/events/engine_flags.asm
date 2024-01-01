@@ -166,7 +166,7 @@ EngineFlags:
 	engine_flag wDailyPhoneItemFlags, 5 ; liz has thunderstone
 	engine_flag wDailyPhoneItemFlags, 6 ; derek has nugget
 	engine_flag wDailyPhoneItemFlags, 7 ; tully has water stone
-	engine_flag wDailyPhoneItemFlags, 8 ; tiffany has pink bow
+	engine_flag wDailyPhoneItemFlags, 8 ; tiffany has FairyFeather
 	engine_flag wDailyPhoneItemFlags, 9 ; wilton has item (see EVENT_WILTON_HAS_*** in constants/event_flags.asm)
 
 	engine_flag wDailyPhoneTimeOfDayFlags,  0 ; jack

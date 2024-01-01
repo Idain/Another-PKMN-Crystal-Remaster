@@ -175,7 +175,7 @@ ItemEffects:
 	dw NormalBoxEffect     ; NORMAL_BOX
 	dw GorgeousBoxEffect   ; GORGEOUS_BOX
 	dw EvoStoneEffect      ; SUN_STONE
-	dw NoEffect            ; POLKADOT_BOW
+	dw NoEffect            ; FAIRYFEATHER
 	dw NoEffect            ; ITEM_AB
 	dw NoEffect            ; UP_GRADE
 	dw RestoreHPEffect     ; BERRY

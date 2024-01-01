@@ -5,7 +5,7 @@ TiffanyPhoneCalleeScript:
 	farscall PhoneScript_AnswerPhone_Female
 	checkflag ENGINE_TIFFANY_TUESDAY_AFTERNOON
 	iftrue .NotTuesday
-	checkflag ENGINE_TIFFANY_HAS_POLKADOT_BOW
+	checkflag ENGINE_TIFFANY_HAS_FAIRYFEATHER
 	iftrue .HasItem
 	readvar VAR_WEEKDAY
 	ifnotequal TUESDAY, .NotTuesday
@@ -32,18 +32,18 @@ TiffanyPhoneCallerScript:
 	iftrue .Generic
 	checkflag ENGINE_TIFFANY_TUESDAY_AFTERNOON
 	iftrue .Generic
-	checkflag ENGINE_TIFFANY_HAS_POLKADOT_BOW
+	checkflag ENGINE_TIFFANY_HAS_FAIRYFEATHER
 	iftrue .Generic
 	farscall PhoneScript_Random3
 	ifequal 0, TiffanyWantsBattle
-	checkevent EVENT_TIFFANY_GAVE_POLKADOT_BOW
-	iftrue .PolkadotBow
+	checkevent EVENT_TIFFANY_GAVE_FAIRYFEATHER
+	iftrue .FairyFeather
 	farscall PhoneScript_Random2
-	ifequal 0, TiffanyHasPolkadotBow
+	ifequal 0, TiffanyHasFairyFeather
 
-.PolkadotBow:
+.FairyFeather:
 	farscall PhoneScript_Random11
-	ifequal 0, TiffanyHasPolkadotBow
+	ifequal 0, TiffanyHasFairyFeather
 
 .Generic:
 	farsjump Phone_GenericCall_Female
@@ -91,7 +91,7 @@ TiffanysFamilyMembers:
 .PoorClefairy:
 	farsjump TiffanyItsAwful
 
-TiffanyHasPolkadotBow:
-	setflag ENGINE_TIFFANY_HAS_POLKADOT_BOW
+TiffanyHasFairyFeather:
+	setflag ENGINE_TIFFANY_HAS_FAIRYFEATHER
 	getlandmarkname STRING_BUFFER_5, LANDMARK_ROUTE_43
 	farsjump PhoneScript_FoundItem_Female

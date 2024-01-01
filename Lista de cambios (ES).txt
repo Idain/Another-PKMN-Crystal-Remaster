@@ -211,7 +211,7 @@ AÑADIDOS:
 - NUEVO TIPO: ¡Tipo hada! Los Pokémon y movimientos existentes que son de tipo hada en la 6ta gen ahora lo serán en este juego.
 
 - Items: 
-	-- Polkadot Bow. Aumenta la potencia de movimientos tipo hada en un 20%.
+	-- FairyFeather. Aumenta la potencia de movimientos tipo hada en un 20%.
 		* Obtención: A veces Picknicker Tiffany lo entrega en Ruta 43. Has de tener su número.
 	-- Sitrus Berry. Esta reemplaza a la Gold Berry, curando 25% MAX HP en vez de 30HP.
 	-- PP MAX. Aumenta permanentemente los PP de un movimiento al máximo.

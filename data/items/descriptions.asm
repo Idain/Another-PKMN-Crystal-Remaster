@@ -162,7 +162,7 @@ ItemDescriptions:
 	dw NormalBoxDesc
 	dw GorgeousBoxDesc
 	dw SunStoneDesc
-	dw PolkadotBowDesc
+	dw FairyFeatherDesc
 	dw TeruSamaDesc
 	dw UpGradeDesc
 	dw BerryDesc
@@ -842,7 +842,7 @@ GorgeousBoxDesc:
 	db   "Open it and see"
 	next "what's inside.@"
 
-PolkadotBowDesc:
+FairyFeatherDesc:
 	db   "Powers up Fairy-"
 	next "type moves. (HOLD)@"
 
