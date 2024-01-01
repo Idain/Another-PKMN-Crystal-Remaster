@@ -253,7 +253,7 @@ BattleAnimations::
 	dw BattleAnim_RockSmash
 	dw BattleAnim_Whirlpool
 	dw BattleAnim_BeatUp
-	dw BattleAnim_Snow
+	dw BattleAnim_Snowscape
 	dw BattleAnim_PlayRough
 	dw BattleAnim_Moonblast
 	assert_table_length NUM_ATTACKS + 1
@@ -4819,7 +4819,7 @@ BattleAnim_ShowMon_1:
 	anim_wait 1
 	anim_ret
 
-BattleAnim_Snow:
+BattleAnim_Snowscape:
 BattleAnim_InSnow:
 	anim_1gfx ANIM_GFX_ICE
 	anim_bgeffect ANIM_BG_WHITE_HUES, $0, $8, $0

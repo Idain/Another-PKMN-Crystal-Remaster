@@ -2089,7 +2089,7 @@ Growth:
 	growth
 	endmove
 
-Snow:
+Snowscape:
 	checkobedience
 	usedmovetext
 	doturn
