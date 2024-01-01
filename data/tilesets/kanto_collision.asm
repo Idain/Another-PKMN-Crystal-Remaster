@@ -138,3 +138,4 @@
 	tilecoll WATER, WATER, BUOY, BUOY ; 89
 	tilecoll WATER, BUOY, BUOY, BUOY ; 8a
 	tilecoll FLOOR, WALL, FLOOR, FLOOR ; 8b
+	tilecoll FLOOR, FLOOR, WALL, WALL ; 8c
