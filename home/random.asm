@@ -86,10 +86,10 @@ LinearFeedbackShiftRegister::
 ; may be totally useless but it's cool
 ; http://datagenetics.com/blog/november12017/index.html
 
-	; If bit 0 isn't set, return
+	; Return if bit 0 isn't set.
     ldh a, [rDIV]
     srl a
-    ret z
+    ret nc
 
     push bc
     push hl
