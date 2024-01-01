@@ -217,7 +217,7 @@ DEF TM01 EQU const_value
 	add_tm ROLLOUT      ; bb
 	add_tm ROAR         ; bc
 	add_tm TOXIC        ; bd
-	add_tm SNOW			; be
+	add_tm SNOW			; be new
 	add_tm ROCK_SMASH   ; bf
 	add_tm PSYCH_UP     ; c0
 	add_tm HIDDEN_POWER ; c1
@@ -261,16 +261,16 @@ DEF TM01 EQU const_value
 	add_tm FIRE_PUNCH   ; e7
 	add_tm FURY_CUTTER  ; e8
 	add_tm NIGHTMARE    ; e9
-	add_tm FALSE_SWIPE  ; ea
+	add_tm FALSE_SWIPE  ; ea new
 	add_tm ZAP_CANNON   ; eb
 	add_tm ENDURE 		; ec
 	add_tm ICY_WIND 	; ed
 	add_tm ICE_PUNCH 	; ee
-	add_tm EXPLOSION  	; ef
-	add_tm THUNDER_WAVE ; f0
-	add_tm SWORDS_DANCE	; f1
-	add_tm ROCK_SLIDE	; f2
-	add_tm SUBSTITUTE	; f3
+	add_tm EXPLOSION  	; ef new
+	add_tm THUNDER_WAVE ; f0 new
+	add_tm SWORDS_DANCE	; f1 new
+	add_tm ROCK_SLIDE	; f2 new
+	add_tm SUBSTITUTE	; f3 new
 DEF NUM_TMS EQU __tmhm_value__ - 1
 
 MACRO add_hm
