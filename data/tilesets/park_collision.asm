@@ -69,7 +69,7 @@
 	tilecoll WALL, WALL, WALL, WALL ; 44
 	tilecoll WALL, FLOOR, WALL, FLOOR ; 45
 	tilecoll FLOOR, WALL, FLOOR, WALL ; 46
-	tilecoll , , ,  ; 47
-	tilecoll , , ,  ; 48
-	tilecoll , , ,  ; 49
-	tilecoll , , ,  ; 4a
+	tilecoll WALL, WALL, WALL, WALL ; 47 temp
+	tilecoll WALL, WALL, WALL, WALL ; 48 temp
+	tilecoll WALL, WALL, WALL, WALL ; 49 temp
+	tilecoll WALL, WALL, WALL, WALL ; 4a temp
