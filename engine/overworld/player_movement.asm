@@ -415,14 +415,14 @@ ENDC
 	db FACE_UP | FACE_LEFT    ; COLL_HOP_UP_LEFT
 
 .TryStairs:
-	ld a, [wPlayerTile]
+	ld a, [wPlayerLastTile]
 	ld e, a
 	and $f0
 	cp HI_NYBBLE_STAIRS
 	jr nz, .DontStairs
 
 	ld a, e
-	and 7
+	and $f
 	ld e, a
 	ld d, 0
 	ld hl, .FacingStairsTable
@@ -433,15 +433,19 @@ ENDC
 
 	ld a, STEP_STAIRS
 	call .DoStep
-	ld a, PLAYERMOVEMENT_JUMP
+	ld a, PLAYERMOVEMENT_STAIRS
 	scf
 	ret
 
 .FacingStairsTable:
-	db FACE_RIGHT
-	db FACE_LEFT
-	db FACE_RIGHT
-	db FACE_LEFT
+	db FACE_RIGHT 			   ; COLL_STAIRS_DOWN_RIGHT
+	db FACE_LEFT  			   ; COLL_STAIRS_DOWN_LEFT 
+	db FACE_RIGHT 			   ; COLL_STAIRS_UP_RIGHT
+	db FACE_LEFT 			   ; COLL_STAIRS_UP_LEFT
+	db FACE_LEFT | FACE_RIGHT  ; COLL_STAIRS_UP_LEFT_UP_RIGHT
+	db FACE_LEFT | FACE_RIGHT  ; COLL_STAIRS_DOWN_LEFT_UP_RIGHT
+	db FACE_LEFT | FACE_RIGHT  ; COLL_STAIRS_UP_LEFT_DOWN_RIGHT
+	db FACE_LEFT | FACE_RIGHT  ; COLL_STAIRS_DOWN_LEFT_DOWN_RIGHT
 
 .DontStairs:
 	xor a

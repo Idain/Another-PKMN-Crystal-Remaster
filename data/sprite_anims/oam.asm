@@ -431,10 +431,10 @@ SpriteAnimOAMData:
 
 .OAMData_TextEntryCursorBig:
 	db 8
-	dbsprite  0, -0,  0,  0, $00, 0
-	dbsprite  1, -0,  0,  0, $01, 0
-	dbsprite  2, -0,  0,  0, $01, 0
-	dbsprite  3, -0,  0,  0, $00, 0 | X_FLIP
+	dbsprite  0,  0,  0,  0, $00, 0
+	dbsprite  1,  0,  0,  0, $01, 0
+	dbsprite  2,  0,  0,  0, $01, 0
+	dbsprite  3,  0,  0,  0, $00, 0 | X_FLIP
 	dbsprite  0,  0,  0,  0, $00, 0 | Y_FLIP
 	dbsprite  1,  0,  0,  0, $01, 0 | Y_FLIP
 	dbsprite  2,  0,  0,  0, $01, 0 | Y_FLIP

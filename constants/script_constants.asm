@@ -106,6 +106,7 @@ DEF NUM_PLAYER_EVENTS EQU const_value
 	const PLAYERMOVEMENT_CONTINUE
 	const PLAYERMOVEMENT_EXIT_WATER
 	const PLAYERMOVEMENT_JUMP
+	const PLAYERMOVEMENT_STAIRS
 DEF NUM_PLAYER_MOVEMENTS EQU const_value
 
 ; script data sizes (see macros/scripts/maps.asm)

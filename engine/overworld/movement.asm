@@ -650,10 +650,6 @@ Movement_stairs_step_right:
 	; fallthrough
 DiagonalStairsStep:
 	call InitStep
-	ld hl, OBJECT_JUMP_HEIGHT
-	add hl, bc
-	ld [hl], $0
-
 	ld hl, OBJECT_ACTION
 	add hl, bc
 	ld [hl], OBJECT_ACTION_STEP

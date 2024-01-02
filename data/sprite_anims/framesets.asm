@@ -130,13 +130,13 @@ SpriteAnimFrameData:
 	oamrestart
 
 .Frameset_TextEntryCursor:
-	oamframe SPRITE_ANIM_OAMSET_TEXT_ENTRY_CURSOR,  4
-	oamwait 4
+	oamframe SPRITE_ANIM_OAMSET_TEXT_ENTRY_CURSOR,  2
+	oamwait 2
 	oamrestart
 
 .Frameset_TextEntryCursorBig:
-	oamframe SPRITE_ANIM_OAMSET_TEXT_ENTRY_CURSOR_BIG,  4
-	oamwait 4
+	oamframe SPRITE_ANIM_OAMSET_TEXT_ENTRY_CURSOR_BIG,  2
+	oamwait 2
 	oamrestart
 
 .Frameset_GameFreakLogo:
