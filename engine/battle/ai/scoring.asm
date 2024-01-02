@@ -1908,7 +1908,7 @@ AI_Smart_Curse:
 
 .ghost_continue
 	call AICheckEnemyQuarterHP
-	jp nc, .approve
+	jr nc, .approve
 
 	call AICheckEnemyHalfHP
 	jr nc, .greatly_encourage

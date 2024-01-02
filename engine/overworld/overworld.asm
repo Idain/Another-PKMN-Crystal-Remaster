@@ -45,7 +45,7 @@ RefreshSprites::
 	call AddMapSprites
 	call LoadSpriteGFX
 	call ArrangeUsedSprites
-	jp LoadUsedSpritesGFX
+	jr LoadUsedSpritesGFX
 
 GetPlayerSprite:
 ; Get Chris or Kris's sprite.
@@ -230,7 +230,7 @@ GetMonSprite:
 	add hl, de
 	ld a, [hl]
 	and a
-	jp nz, GetMonSprite
+	jr nz, GetMonSprite
 
 .NoBreedmon:
 	ld a, WALKING_SPRITE

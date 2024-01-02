@@ -680,7 +680,7 @@ LoadMirageMailGFX:
 	hlcoord 2, 11
 	call Mail_Draw16TileRow
 	pop hl
-	jp MailGFX_PlaceMessage
+	jr MailGFX_PlaceMessage
 
 MailGFX_GenerateMonochromeTilesColor2:
 .loop

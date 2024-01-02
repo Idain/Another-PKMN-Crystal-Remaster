@@ -1065,7 +1065,7 @@ EvoStoneEffect:
 	ld b, PARTYMENUACTION_EVO_STONE
 	call UseItem_SelectMon
 
-	jp c, .DecidedNotToUse
+	jr c, .DecidedNotToUse
 
 	ld a, MON_ITEM
 	call GetPartyParamLocation
@@ -1094,7 +1094,7 @@ VitaminEffect:
 	ld b, PARTYMENUACTION_HEALING_ITEM
 	call UseItem_SelectMon
 
-	jp c, RareCandy_StatBooster_ExitMenu
+	jr c, RareCandy_StatBooster_ExitMenu
 
 	call RareCandy_StatBooster_GetParameters
 
@@ -1218,7 +1218,7 @@ RareCandyEffect:
 	ld b, PARTYMENUACTION_HEALING_ITEM
 	call UseItem_SelectMon
 
-	jp c, RareCandy_StatBooster_ExitMenu
+	jr c, RareCandy_StatBooster_ExitMenu
 
 	call RareCandy_StatBooster_GetParameters
 
@@ -1448,7 +1448,7 @@ RevivalHerbEffect:
 	call LooksBitterMessage
 
 	xor a
-	jp StatusHealer_Jumptable
+	jr StatusHealer_Jumptable
 
 ReviveEffect:
 	ld b, PARTYMENUACTION_HEALING_ITEM
@@ -1456,7 +1456,7 @@ ReviveEffect:
 	jp c, StatusHealer_ExitMenu
 
 	call RevivePokemon
-	jp StatusHealer_Jumptable
+	jr StatusHealer_Jumptable
 
 RevivePokemon:
 	call IsMonFainted
@@ -1737,7 +1737,7 @@ ContinueRevive:
 	ld a, d
 	ld [hli], a
 	ld [hl], e
-	jp LoadCurHPIntoBuffer3
+	jr LoadCurHPIntoBuffer3
 
 RestoreHealth:
 	ld a, MON_HP + 1
@@ -2376,7 +2376,7 @@ endr
 Not_PP_Up:
 	call RestorePP
 	jr nz, BattleRestorePP
-	jp PPRestoreItem_NoEffect
+	jr PPRestoreItem_NoEffect
 
 Elixer_RestorePPofAllMoves:
 	xor a

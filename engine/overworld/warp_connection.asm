@@ -22,7 +22,7 @@ EnterMapConnection:
 	and a ; DOWN
 	jp z, .south
 	dec a ; UP
-	jp z, .north
+	jr z, .north
 	dec a ; LEFT
 	jr z, .west
 	dec a ; RIGHT

@@ -58,6 +58,7 @@ QueueBGEffect:
 	ld [hl], a
 	ret
 
+BattleBGEffect_End:
 EndBattleBGEffect:
 	ld hl, BG_EFFECT_STRUCT_FUNCTION
 	add hl, bc
@@ -129,9 +130,6 @@ BattleBGEffects:
 	dw BattleBGEffect_WobblePlayer
 	dw BattleBGEffect_WobbleScreen
 
-BattleBGEffect_End:
-	jp EndBattleBGEffect
-
 BattleBGEffects_AnonJumptable:
 	ld hl, BG_EFFECT_STRUCT_JT_INDEX
 	add hl, bc
@@ -148,7 +146,7 @@ BattleBGEffects_IncAnonJumptableIndex:
 
 BattleBGEffect_FlashInverted:
 	ld de, .inverted
-	jp BattleBGEffect_FlashContinue
+	jr BattleBGEffect_FlashContinue
 
 .inverted
 	dc 3, 2, 1, 0
@@ -156,7 +154,7 @@ BattleBGEffect_FlashInverted:
 
 BattleBGEffect_FlashWhite:
 	ld de, .white
-	jp BattleBGEffect_FlashContinue
+	jr BattleBGEffect_FlashContinue
 
 .white
 	dc 3, 2, 1, 0
@@ -2451,7 +2449,7 @@ BattleBGEffects_ResetVideoHRAM:
 	ld [wOBP1], a
 	ldh [hLYOverrideStart], a
 	ldh [hLYOverrideEnd], a
-	jp BattleBGEffects_ClearLYOverrides
+	jr BattleBGEffects_ClearLYOverrides
 
 DeformScreen:
 	push bc

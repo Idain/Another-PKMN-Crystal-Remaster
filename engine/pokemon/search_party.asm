@@ -8,7 +8,7 @@ _FindPartyMonAtLeastThatHappy:
 
 _FindPartyMonThatSpecies:
 	ld hl, wPartyMon1Species
-	jp FindThatSpecies
+	jr FindThatSpecies
 
 _FindPartyMonThatSpeciesYourTrainerID:
 	ld hl, wPartyMon1Species

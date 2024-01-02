@@ -630,7 +630,7 @@ SendGetMonIntoFromBox:
 	cp PC_DEPOSIT
 	jr z, .took_out_of_box
 	cp DAY_CARE_DEPOSIT
-	jp z, .CloseSRAM_And_ClearCarryFlag
+	jr z, .CloseSRAM_And_ClearCarryFlag
 
 	push hl
 	srl a
@@ -781,7 +781,7 @@ RetrieveMonFromDayCareMan:
 	ld [wCurPartyLevel], a
 	xor a
 	ld [wPokemonWithdrawDepositParameter], a
-	jp RetrieveBreedmon
+	jr RetrieveBreedmon
 
 RetrieveMonFromDayCareLady:
 	ld a, [wBreedMon2Species]
@@ -1262,7 +1262,7 @@ RemoveMonFromPartyOrBox:
 	cp d
 	jr nz, .delete_inside
 	ld [hl], -1
-	jp .finish
+	jr .finish
 
 .delete_inside
 	; Shift the OT names

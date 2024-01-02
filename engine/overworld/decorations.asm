@@ -194,7 +194,7 @@ DecoBedMenu:
 FindOwnedBeds:
 	ld hl, .beds
 	ld c, BEDS
-	jp FindOwnedDecosInCategory
+	jr FindOwnedDecosInCategory
 
 .beds:
 	db DECO_FEATHERY_BED ; 2
@@ -212,7 +212,7 @@ DecoCarpetMenu:
 FindOwnedCarpets:
 	ld hl, .carpets
 	ld c, CARPETS
-	jp FindOwnedDecosInCategory
+	jr FindOwnedDecosInCategory
 
 .carpets:
 	db DECO_RED_CARPET ; 7
@@ -230,7 +230,7 @@ DecoPlantMenu:
 FindOwnedPlants:
 	ld hl, .plants
 	ld c, PLANTS
-	jp FindOwnedDecosInCategory
+	jr FindOwnedDecosInCategory
 
 .plants:
 	db DECO_MAGNAPLANT ; c
@@ -247,7 +247,7 @@ DecoPosterMenu:
 FindOwnedPosters:
 	ld hl, .posters
 	ld c, POSTERS
-	jp FindOwnedDecosInCategory
+	jr FindOwnedDecosInCategory
 
 .posters:
 	db DECO_TOWN_MAP ; 10
@@ -265,7 +265,7 @@ DecoConsoleMenu:
 FindOwnedConsoles:
 	ld hl, .consoles
 	ld c, CONSOLES
-	jp FindOwnedDecosInCategory
+	jr FindOwnedDecosInCategory
 
 .consoles:
 	db DECO_FAMICOM ; 15
@@ -566,7 +566,7 @@ DecoAction_nothing:
 
 DecoAction_setupbed:
 	ld hl, wDecoBed
-	jp DecoAction_TrySetItUp
+	jr DecoAction_TrySetItUp
 
 DecoAction_putawaybed:
 	ld hl, wDecoBed
@@ -574,44 +574,43 @@ DecoAction_putawaybed:
 
 DecoAction_setupcarpet:
 	ld hl, wDecoCarpet
-	jp DecoAction_TrySetItUp
+	jr DecoAction_TrySetItUp
 
 DecoAction_putawaycarpet:
 	ld hl, wDecoCarpet
-	jp DecoAction_TryPutItAway
+	jr DecoAction_TryPutItAway
 
 DecoAction_setupplant:
 	ld hl, wDecoPlant
-	jp DecoAction_TrySetItUp
+	jr DecoAction_TrySetItUp
 
 DecoAction_putawayplant:
 	ld hl, wDecoPlant
-	jp DecoAction_TryPutItAway
+	jr DecoAction_TryPutItAway
 
 DecoAction_setupposter:
 	ld hl, wDecoPoster
-	jp DecoAction_TrySetItUp
+	jr DecoAction_TrySetItUp
 
 DecoAction_putawayposter:
 	ld hl, wDecoPoster
-	jp DecoAction_TryPutItAway
+	jr DecoAction_TryPutItAway
 
 DecoAction_setupconsole:
 	ld hl, wDecoConsole
-	jp DecoAction_TrySetItUp
+	jr DecoAction_TrySetItUp
 
 DecoAction_putawayconsole:
 	ld hl, wDecoConsole
-	jp DecoAction_TryPutItAway
-
-DecoAction_setupbigdoll:
-	ld hl, wDecoBigDoll
-	jp DecoAction_TrySetItUp
+	jr DecoAction_TryPutItAway
 
 DecoAction_putawaybigdoll:
 	ld hl, wDecoBigDoll
-	jp DecoAction_TryPutItAway
+	jr DecoAction_TryPutItAway
 
+DecoAction_setupbigdoll:
+	ld hl, wDecoBigDoll
+	; fallthrough
 DecoAction_TrySetItUp:
 	ld a, [hl]
 	ld [wCurDecoration], a

@@ -259,9 +259,9 @@ ApplyCleanseTagEffectOnEncounterRate::
 
 ChooseWildEncounter:
 	call LoadWildMonDataPointer
-	jp nc, .nowildbattle
+	jr nc, .nowildbattle
 	call CheckEncounterRoamMon
-	jp c, .startwildbattle
+	jr c, .startwildbattle
 
 	inc hl
 	inc hl
@@ -684,13 +684,13 @@ JumpRoamMons:
 .SkipEntei:
 	ld a, [wRoamMon3MapGroup]
 	cp GROUP_N_A
-	jp z, _BackUpMapIndices
+	jr z, _BackUpMapIndices
 	call JumpRoamMon
 	ld a, b
 	ld [wRoamMon3MapGroup], a
 	ld a, c
 	ld [wRoamMon3MapNumber], a
-	jp _BackUpMapIndices
+	jr _BackUpMapIndices
 
 JumpRoamMon:
 .loop

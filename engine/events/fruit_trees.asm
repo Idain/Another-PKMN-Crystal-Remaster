@@ -44,7 +44,7 @@ TryResetFruitTrees:
 	ld hl, wDailyFlags1
 	bit DAILYFLAGS1_ALL_FRUIT_TREES_F, [hl]
 	ret nz
-	jp ResetFruitTrees
+	jr ResetFruitTrees
 
 CheckFruitTree:
 	ld b, 2
@@ -55,7 +55,7 @@ CheckFruitTree:
 
 PickedFruitTree:
 	ld b, 1
-	jp GetFruitTreeFlag
+	jr GetFruitTreeFlag
 
 ResetFruitTrees:
 	xor a

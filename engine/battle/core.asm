@@ -226,7 +226,7 @@ BattleTurn:
 	ld a, [wBattleEnded]
 	and a
 	ret nz
-	jp .loop
+	jr .loop
 
 HandleBetweenTurnEffects:
 	ld a, [wPlayerIsSwitching]
@@ -483,14 +483,14 @@ DetermineMoveOrder:
 
 	call BattleRandom
 	cp 50 percent + 1
-	jp c, .player_first
-	jp .enemy_first
+	jr c, .player_first
+	jr .enemy_first
 
 .player_2
 	call BattleRandom
 	cp 50 percent + 1
-	jp c, .enemy_first
-	jp .player_first
+	jr c, .enemy_first
+	jr .player_first
 
 .switch
 	farcall AI_Switch
@@ -611,7 +611,7 @@ CheckPlayerLockedIn:
 
 ParsePlayerAction:
 	call CheckPlayerLockedIn
-	jp c, .locked_in
+	jr c, .locked_in
 	ld hl, wPlayerSubStatus5
 	bit SUBSTATUS_ENCORED, [hl]
 	jr z, .not_encored
@@ -942,7 +942,7 @@ PlayerTurn_EndOpponentProtectEndureDestinyBond:
 	call SetPlayerTurn
 	call EndUserDestinyBond
 	farcall DoPlayerTurn
-	jp EndOpponentProtectEndureDestinyBond
+	jr EndOpponentProtectEndureDestinyBond
 
 EnemyTurn_EndOpponentProtectEndureDestinyBond:
 	call SetEnemyTurn
@@ -4795,7 +4795,7 @@ DrawEnemyHUD:
 	ld c, a
 	ld e, a
 	ld d, HP_BAR_LENGTH
-	jp .draw_bar
+	jr .draw_bar
 
 .not_fainted
 	xor a
@@ -4940,11 +4940,11 @@ LoadBattleMenu2:
 BattleMenu_Pack:
 	ld a, [wLinkMode]
 	and a
-	jp nz, .ItemsCantBeUsed
+	jr nz, .ItemsCantBeUsed
 
 	ld a, [wInBattleTowerBattle]
 	and a
-	jp nz, .ItemsCantBeUsed
+	jr nz, .ItemsCantBeUsed
 
 	call LoadStandardMenuHeader
 
@@ -5429,9 +5429,9 @@ MoveSelectionScreen:
 	ldh [hBGMapMode], a
 	call DoMenuJoypadLoop
 	bit D_UP_F, a
-	jp nz, .pressed_up
+	jr nz, .pressed_up
 	bit D_DOWN_F, a
-	jp nz, .pressed_down
+	jr nz, .pressed_down
 	bit SELECT_F, a
 	jp nz, .pressed_select
 	bit B_BUTTON_F, a
@@ -5819,7 +5819,7 @@ ParseEnemyAction:
 	cp BATTLEACTION_STRUGGLE
 	jp z, .struggle
 	cp BATTLEACTION_SKIPTURN
-	jp z, .skip_turn
+	jr z, .skip_turn
 	cp BATTLEACTION_SWITCH1
 	jp nc, ResetVarsForSubstatusRage
 	ld [wCurEnemyMoveNum], a
@@ -5864,7 +5864,7 @@ ParseEnemyAction:
 .loop
 	ld a, [hl]
 	and a
-	jp z, .struggle
+	jr z, .struggle
 	ld a, [wEnemyDisabledMove]
 	cp [hl]
 	jr z, .disabled
@@ -6617,7 +6617,7 @@ ApplyStatusEffectOnStats:
 	ldh [hBattleTurn], a
 	call ApplyPrzEffectOnSpeed
 	call ApplyBrnEffectOnAttack
-	jp ApplyFrbEffectOnSpclAttack
+	jr ApplyFrbEffectOnSpclAttack
 
 ApplyPrzEffectOnSpeed:
 	ldh a, [hBattleTurn]
@@ -7672,45 +7672,9 @@ GoodComeBackText:
 	text_far _GoodComeBackText
 	text_end
 
-;TextJump_ComeBack: ; unreferenced
-;	ld hl, ComeBackText
-;	ret
-
 ComeBackText:
 	text_far _ComeBackText
 	text_end
-
-;HandleSafariAngerEatingStatus: ; unreferenced
-;	ld hl, wSafariMonEating
-;	ld a, [hl]
-;	and a
-;	jr z, .angry
-;	dec [hl]
-;	ld hl, BattleText_WildMonIsEating
-;	jr .finish
-;
-;.angry
-;	dec hl
-;	assert wSafariMonEating - 1 == wSafariMonAngerCount
-;	ld a, [hl]
-;	and a
-;	ret z
-;	dec [hl]
-;	ld hl, BattleText_WildMonIsAngry
-;	jr nz, .finish
-;	push hl
-;	ld a, [wEnemyMonSpecies]
-;	ld [wCurSpecies], a
-;	call GetBaseData
-;	ld a, [wBaseCatchRate]
-;	ld [wEnemyMonCatchRate], a
-;	pop hl
-;
-;.finish
-;	push hl
-;	call SafeLoadTempTilemapToTilemap
-;	pop hl
-;	jp StdBattleTextbox
 
 FillInExpBar:
 	push hl
@@ -7718,7 +7682,7 @@ FillInExpBar:
 	pop hl
 	ld de, 7
 	add hl, de
-	jp PlaceExpBar
+	jr PlaceExpBar
 
 CalcExpBar:
 ; Calculate the percent exp between this level and the next
@@ -7987,7 +7951,7 @@ LoadTrainerOrWildMonPic:
 InitEnemy:
 	ld a, [wOtherTrainerClass]
 	and a
-	jp nz, InitEnemyTrainer ; trainer
+	jr nz, InitEnemyTrainer ; trainer
 	jp InitEnemyWildmon ; wild
 
 BackUpBGMap2:
@@ -8189,7 +8153,7 @@ ShowLinkBattleParticipantsAfterEnd:
 
 DisplayLinkBattleResult:
 	call CheckMobileBattleError
-	jp c, .Mobile_InvalidBattle
+	jr c, .Mobile_InvalidBattle
 	call IsMobileBattle2
 	jr nz, .proceed
 
@@ -8772,7 +8736,7 @@ InitBattleDisplay:
 
 .InitBackPic:
 	call GetTrainerBackpic
-	jp CopyBackpic
+	jr CopyBackpic
 
 GetTrainerBackpic:
 ; Load the player character's backpic (6x6) into VRAM starting from vTiles2 tile $31.

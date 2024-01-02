@@ -225,7 +225,7 @@ VBlank4::
 
 	call AskSerial
 
-	jp VBlankUpdateSound
+	jr VBlankUpdateSound
 
 VBlank5::
 ; scx

@@ -3856,7 +3856,7 @@ BattleCommand_Poison:
 	ld b, a
 	ld hl, AlreadyPoisonedText
 	and 1 << PSN
-	jp nz, .failed
+	jr nz, .failed
 
 	call GetOpponentItem
 	ld a, b

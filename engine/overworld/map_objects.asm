@@ -2976,9 +2976,9 @@ InitSprites:
 	add hl, bc
 	ld a, [hl]
 	cp STANDING
-	jp z, .done
+	jr z, .done
 	cp NUM_FACINGS
-	jp nc, .done
+	jr nc, .done
 	ld l, a
 	ld h, 0
 	add hl, hl

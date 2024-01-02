@@ -227,7 +227,7 @@ MonStatsJoypad:
 
 .next
 	and D_DOWN | D_UP | D_LEFT | D_RIGHT | A_BUTTON | B_BUTTON
-	jp StatsScreen_JoypadAction
+	jr StatsScreen_JoypadAction
 
 StatsScreenWaitCry:
 	call IsSFXPlaying
@@ -297,7 +297,7 @@ StatsScreen_JoypadAction:
 	ld c, a
 	pop af
 	bit B_BUTTON_F, a
-	jp nz, .b_button
+	jr nz, .b_button
 	bit D_LEFT_F, a
 	jr nz, .d_left
 	bit D_RIGHT_F, a

@@ -210,7 +210,7 @@ GetCaughtLocation:
 
 .Unknown:
 	ld de, wSeerCaughtLocation
-	jp UnknownCaughtData
+	jr UnknownCaughtData
 
 .event
 	ld a, SEERACTION_LEVEL_ONLY

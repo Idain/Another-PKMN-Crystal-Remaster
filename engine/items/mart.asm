@@ -376,7 +376,7 @@ MartAskPurchaseQuantity:
 	ld hl, wNumItems
 	call CheckItem
 	pop de
-	jp c, .AlreadyHaveTM
+	jr c, .AlreadyHaveTM
 	farcall GetItemPrice
 	ld a, d
 	ld [wBuySellItemPrice + 0], a
@@ -734,7 +734,7 @@ SellMenu:
 	farcall DepositSellPack
 	ld a, [wPackUsedItem]
 	and a
-	jp z, .quit
+	jr z, .quit
 	call .TryToSellItem
 	jr .loop
 

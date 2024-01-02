@@ -144,7 +144,7 @@ IntroScene1:
 	xor a
 	ld [wIntroSceneFrameCounter], a
 	ld [wIntroSceneTimer], a
-	jp NextIntroScene
+	jr NextIntroScene
 
 IntroScene2:
 ; First Unown (A) fades in, pulses, then fades out.

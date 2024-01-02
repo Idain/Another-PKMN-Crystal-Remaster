@@ -107,7 +107,7 @@ UpdateCelebiPosition:
 	add hl, bc
 	ld a, [hl]
 	cp 8 * 10 + 2
-	jp nc, .FreezeCelebiPosition
+	jr nc, .FreezeCelebiPosition
 	ld hl, SPRITEANIMSTRUCT_YCOORD
 	add hl, bc
 	inc [hl]

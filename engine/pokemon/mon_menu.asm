@@ -587,11 +587,11 @@ MonMenu_Fly:
 
 MonMenu_Flash:
 	farcall FlashFunction
-	jp CheckFieldMoveSuccess
+	jr CheckFieldMoveSuccess
 
 MonMenu_Strength:
 	farcall StrengthFunction
-	jp CheckFieldMoveSuccess
+	jr CheckFieldMoveSuccess
 
 MonMenu_Whirlpool:
 	farcall WhirlpoolFunction
@@ -832,7 +832,7 @@ MoveScreenLoop:
 .d_right
 	ld a, [wSwappingMove]
 	and a
-	jp nz, .joy_loop
+	jr nz, .joy_loop
 
 	ld a, [wCurPartyMon]
 	ld b, a

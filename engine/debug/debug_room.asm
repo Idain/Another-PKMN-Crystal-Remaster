@@ -556,9 +556,9 @@ DebugRoom_EditPagedValues:
 	rra ; START_F?
 	jr c, DebugRoom_PagedValuePressedStart
 	rra ; D_RIGHT_F?
-	jp c, DebugRoom_IncrementPagedValue
+	jr c, DebugRoom_IncrementPagedValue
 	rra ; D_LEFT_F?
-	jp c, DebugRoom_DecrementPagedValue
+	jr c, DebugRoom_DecrementPagedValue
 	rra ; D_UP_F?
 	jp c, DebugRoom_PrevPagedValue
 	rra ; D_DOWN_F?
@@ -1286,7 +1286,7 @@ DebugRoom_SaveRTC:
 	call YesNoBox
 	ret c
 	ld hl, wDebugRoomRTCSec
-	jp DebugRoom_SetClock
+	jr DebugRoom_SetClock
 
 DebugRoomMenu_RTCEdit_UpdateClock:
 	ld hl, wDebugRoomRTCCurSec

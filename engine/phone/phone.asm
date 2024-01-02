@@ -400,7 +400,7 @@ Script_SpecialBillCall::
 
 .LoadBillScript:
 	ld e, PHONE_BILL
-	jp LoadCallerScript
+	jr LoadCallerScript
 
 RingTwice_StartCall:
 	call .Ring
