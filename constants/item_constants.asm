@@ -115,7 +115,7 @@ DEF NUM_POKE_BALLS EQU const_value - 1
 	const PNK_APRICORN ; 62
 	const BLACKGLASSES ; 63
 	const SLOWPOKETAIL ; 64
-	const PINK_BOW     ; 65
+	const SILK_SCARF   ; 65
 	const STICK        ; 66
 	const SMOKE_BALL   ; 67
 	const NEVERMELTICE ; 68
