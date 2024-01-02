@@ -189,7 +189,7 @@ ENDM
 	map_const ROUTE_19,                                    10, 18 ;  5
 	map_const ROUTE_20,                                    50, 13 ;  6
 	map_const ROUTE_21,                                    10, 18 ;  7
-	map_const CINNABAR_ISLAND,                             10,  9 ;  8
+	map_const CINNABAR_ISLAND,                             13,  13 ;  8
 	endgroup
 
 	newgroup CERULEAN                                             ;  7
