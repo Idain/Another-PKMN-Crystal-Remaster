@@ -54,19 +54,19 @@ MoomooScript:
 	promptbutton
 	writetext Route39BarnItsCryIsWeakText
 	checkevent EVENT_TALKED_TO_FARMER_ABOUT_MOOMOO
-	iftrue .GiveBerry
+	iftrue .GiveOranBerry
 	waitbutton
 	closetext
 	end
 
-.GiveBerry:
+.GiveOranBerry:
 	promptbutton
 	writetext Route39BarnAskGiveBerryText
 	yesorno
 	iffalse .Refused
-	checkitem BERRY
+	checkitem ORAN_BERRY
 	iffalse .NoBerriesInBag
-	takeitem BERRY
+	takeitem ORAN_BERRY
 	readmem wMooMooBerries
 	addval 1
 	writemem wMooMooBerries

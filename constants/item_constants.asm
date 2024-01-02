@@ -87,17 +87,17 @@ DEF NUM_POKE_BALLS EQU const_value - 1
 	const SILVER_WING  ; 46
 	const MOOMOO_MILK  ; 47
 	const QUICK_CLAW   ; 48
-	const PSNCUREBERRY ; 49
+	const PECHA_BERRY  ; 49
 	const GOLD_LEAF    ; 4a
 	const SOFT_SAND    ; 4b
 	const SHARP_BEAK   ; 4c
-	const PRZCUREBERRY ; 4d
-	const BURNT_BERRY  ; 4e
-	const ICE_BERRY    ; 4f
+	const CHERI_BERRY  ; 4d
+	const ASPEAR_BERRY ; 4e
+	const RAWST_BERRY  ; 4f
 	const POISON_BARB  ; 50
 	const KINGS_ROCK   ; 51
-	const BITTER_BERRY ; 52
-	const MINT_BERRY   ; 53
+	const PERSIM_BERRY ; 52
+	const CHESTO_BERRY ; 53
 	const RED_APRICORN ; 54
 	const TINYMUSHROOM ; 55
 	const BIG_MUSHROOM ; 56
@@ -120,7 +120,7 @@ DEF NUM_POKE_BALLS EQU const_value - 1
 	const SMOKE_BALL   ; 67
 	const NEVERMELTICE ; 68
 	const MAGNET       ; 69
-	const MIRACLEBERRY ; 6a
+	const LUM_BERRY    ; 6a
 	const PEARL        ; 6b
 	const BIG_PEARL    ; 6c
 	const EVERSTONE    ; 6d
@@ -155,7 +155,7 @@ DEF NUM_POKE_BALLS EQU const_value - 1
 	const SOOTHE_BELL  ; 8a
 	const EVIOLITE     ; 8b
 	const DUSK_STONE   ; 8c
-	const MYSTERYBERRY ; 8d
+	const LEPPA_BERRY  ; 8d
 	const DRAGON_SCALE ; 8e
 	const BERSERK_GENE ; 8f
 	const LINK_CABLE   ; 90
@@ -171,8 +171,8 @@ DEF NUM_POKE_BALLS EQU const_value - 1
 	const FAIRYFEATHER ; a1
 	const ITEM_AB      ; a2
 	const UP_GRADE     ; a3
-	const BERRY        ; a4
-	const GOLD_BERRY   ; a5
+	const ORAN_BERRY   ; a4
+	const SITRUS_BERRY ; a5
 	const SQUIRTBOTTLE ; a6
 	const ITEM_B0      ; a7
 	const RAINBOW_WING ; a9

@@ -4321,7 +4321,7 @@ HandleHPHealingItem:
 	push hl
 	farcall GetOpponentItem
 	ld a, [hl]
-	cp GOLD_BERRY
+	cp SITRUS_BERRY
 	pop hl
 	jr nz, .not_sitrus_berry ; If it's not, continue the normal routine.
 

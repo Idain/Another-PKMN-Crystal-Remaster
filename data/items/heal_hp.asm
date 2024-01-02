@@ -8,7 +8,7 @@ HealingHPAmounts::
 	dbw MAX_POTION,   MAX_STAT_VALUE
 	dbw FULL_RESTORE, MAX_STAT_VALUE
 	dbw MOOMOO_MILK,  100
-	dbw BERRY,         10
+	dbw ORAN_BERRY,    10
 	dbw ENERGYPOWDER,  60
 	dbw ENERGY_ROOT,  120
 	dbw BERRY_JUICE,   20

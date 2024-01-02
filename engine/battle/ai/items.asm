@@ -268,11 +268,11 @@ AI_Items:
 	dbw SODA_POP,     .HealingItem
 	dbw LEMONADE,     .HealingItem
 	dbw MOOMOO_MILK,  .HealingItem
-	dbw BERRY,        .HealingItem
+	dbw ORAN_BERRY,   .HealingItem
 	dbw ENERGYPOWDER, .HealingItem
 	dbw ENERGY_ROOT,  .HealingItem
 	dbw BERRY_JUICE,  .HealingItem
-	dbw MIRACLEBERRY, .FullHeal
+	dbw LUM_BERRY,    .FullHeal
 	dbw FULL_HEAL,    .FullHeal
 	dbw GUARD_SPEC,   .GuardSpec
 	dbw DIRE_HIT,     .DireHit

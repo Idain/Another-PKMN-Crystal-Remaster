@@ -24,7 +24,7 @@ GiveShuckle:
 	push af
 	ld hl, wPartyMon1Item
 	call GetPartyLocation
-	ld [hl], BERRY
+	ld [hl], ORAN_BERRY
 	pop af
 
 ; OT ID.
