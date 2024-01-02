@@ -185,4 +185,5 @@
 	tilecoll , , ,  ; b8
 	tilecoll , , ,  ; b9
 	tilecoll WALL, WALL, WALL, WALL ; ba
-	tilecoll , , ,  ; bb
+	tilecoll WALL, WALL, WALL, WALL ; bb
+	tilecoll , , ,  ; bc
