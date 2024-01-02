@@ -139,7 +139,7 @@
 	tilecoll WATER, BUOY, BUOY, BUOY ; 8a
 	tilecoll FLOOR, WALL, FLOOR, FLOOR ; 8b
 	tilecoll FLOOR, FLOOR, WALL, WALL ; 8c
-	tilecoll FLOOR, FLOOR, WALL, FLOOR ; 8d
+	tilecoll FLOOR, WALL, FLOOR, FLOOR ; 8d
 	tilecoll WALL, FLOOR, FLOOR, FLOOR ; 8e
 	tilecoll FLOOR, WALL, FLOOR, FLOOR ; 8f
 	tilecoll WALL, WALL, FLOOR, WALL ; 90
@@ -153,3 +153,10 @@
 	tilecoll WALL, UP_WALL, WALL, FLOOR ; 98
 	tilecoll WALL, WALL, WALL, WALL ; 99
 	tilecoll WALL, WALL, WALL, WALL ; 9a
+	tilecoll , , ,  ; 9b
+	tilecoll FLOOR, FLOOR, WALL, WALL ; 9c
+	tilecoll FLOOR, FLOOR, WALL, WALL ; 9d
+	tilecoll , , ,  ; 9e
+	tilecoll , , ,  ; 9f
+	tilecoll WALL, WALL, WALL, DOOR ; a0
+	tilecoll , , ,  ; a1
