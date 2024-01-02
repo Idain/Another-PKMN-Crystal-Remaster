@@ -94,17 +94,17 @@ ItemEffects:
 	dw NoEffect            ; SILVER_WING
 	dw RestoreHPEffect     ; MOOMOO_MILK
 	dw NoEffect            ; QUICK_CLAW
-	dw StatusHealingEffect ; PSNCUREBERRY
+	dw StatusHealingEffect ; PECHA_BERRY
 	dw NoEffect            ; GOLD_LEAF
 	dw NoEffect            ; SOFT_SAND
 	dw NoEffect            ; SHARP_BEAK
-	dw StatusHealingEffect ; PRZCUREBERRY
-	dw StatusHealingEffect ; BURNT_BERRY
-	dw StatusHealingEffect ; ICE_BERRY
+	dw StatusHealingEffect ; CHERI_BERRY
+	dw StatusHealingEffect ; ASPEAR_BERRY
+	dw StatusHealingEffect ; RAWST_BERRY
 	dw NoEffect            ; POISON_BARB
 	dw NoEffect            ; KINGS_ROCK
-	dw BitterBerryEffect   ; BITTER_BERRY
-	dw StatusHealingEffect ; MINT_BERRY
+	dw PersimBerryEffect   ; PERSIM_BERRY
+	dw StatusHealingEffect ; CHESTO_BERRY
 	dw NoEffect            ; RED_APRICORN
 	dw NoEffect            ; TINYMUSHROOM
 	dw NoEffect            ; BIG_MUSHROOM
@@ -122,12 +122,12 @@ ItemEffects:
 	dw NoEffect            ; PNK_APRICORN
 	dw NoEffect            ; BLACKGLASSES
 	dw NoEffect            ; SLOWPOKETAIL
-	dw NoEffect            ; PINK_BOW
+	dw NoEffect            ; SILK_SCARF
 	dw NoEffect            ; STICK
 	dw NoEffect            ; SMOKE_BALL
 	dw NoEffect            ; NEVERMELTICE
 	dw NoEffect            ; MAGNET
-	dw StatusHealingEffect ; MIRACLEBERRY
+	dw StatusHealingEffect ; LUM_BERRY
 	dw NoEffect            ; PEARL
 	dw NoEffect            ; BIG_PEARL
 	dw NoEffect            ; EVERSTONE
@@ -162,10 +162,10 @@ ItemEffects:
 	dw NoEffect            ; SOOTHE_BELL
 	dw NoEffect            ; EVIOLITE
 	dw EvoStoneEffect      ; DUSK_STONE
-	dw RestorePPEffect     ; MYSTERYBERRY
+	dw RestorePPEffect     ; LEPPA_BERRY
 	dw NoEffect            ; DRAGON_SCALE
 	dw NoEffect            ; BERSERK_GENE
-	dw EvoStoneEffect      ; LINK_CABLE
+	dw NoEffect            ; LINK_CABLE
 	dw NoEffect            ; ITEM_9A
 	dw NoEffect            ; ITEM_9B
 	dw SacredAshEffect     ; SACRED_ASH
@@ -175,11 +175,11 @@ ItemEffects:
 	dw NormalBoxEffect     ; NORMAL_BOX
 	dw GorgeousBoxEffect   ; GORGEOUS_BOX
 	dw EvoStoneEffect      ; SUN_STONE
-	dw NoEffect            ; POLKADOT_BOW
+	dw NoEffect            ; FAIRYFEATHER
 	dw NoEffect            ; ITEM_AB
-	dw NoEffect            ; UP_GRADE
-	dw RestoreHPEffect     ; BERRY
-	dw RestoreHPEffect     ; GOLD_BERRY
+	dw NoEffect            ; UPGRADE
+	dw RestoreHPEffect     ; ORAN_BERRY
+	dw RestoreHPEffect     ; SITRUS_BERRY
 	dw SquirtbottleEffect  ; SQUIRTBOTTLE
 	dw NoEffect            ; ITEM_B0
 	dw NoEffect            ; RAINBOW_WING
@@ -953,8 +953,7 @@ LoveBallMultiplier: ; Catch rate = x4
 
 FastBallMultiplier:
 ; Multiply catch rate by 4 if enemy's base speed >=100
-	ld hl, wEnemyMonBaseStats + 3
-	ld a, [hl]
+	ld a, [wEnemyMonBaseStats + 3]
 	cp 100
 	ret c ; If enemy speed < 100, catch rate x1
 
@@ -1066,7 +1065,7 @@ EvoStoneEffect:
 	ld b, PARTYMENUACTION_EVO_STONE
 	call UseItem_SelectMon
 
-	jp c, .DecidedNotToUse
+	jr c, .DecidedNotToUse
 
 	ld a, MON_ITEM
 	call GetPartyParamLocation
@@ -1095,7 +1094,7 @@ VitaminEffect:
 	ld b, PARTYMENUACTION_HEALING_ITEM
 	call UseItem_SelectMon
 
-	jp c, RareCandy_StatBooster_ExitMenu
+	jr c, RareCandy_StatBooster_ExitMenu
 
 	call RareCandy_StatBooster_GetParameters
 
@@ -1219,7 +1218,7 @@ RareCandyEffect:
 	ld b, PARTYMENUACTION_HEALING_ITEM
 	call UseItem_SelectMon
 
-	jp c, RareCandy_StatBooster_ExitMenu
+	jr c, RareCandy_StatBooster_ExitMenu
 
 	call RareCandy_StatBooster_GetParameters
 
@@ -1449,7 +1448,7 @@ RevivalHerbEffect:
 	call LooksBitterMessage
 
 	xor a
-	jp StatusHealer_Jumptable
+	jr StatusHealer_Jumptable
 
 ReviveEffect:
 	ld b, PARTYMENUACTION_HEALING_ITEM
@@ -1457,7 +1456,7 @@ ReviveEffect:
 	jp c, StatusHealer_ExitMenu
 
 	call RevivePokemon
-	jp StatusHealer_Jumptable
+	jr StatusHealer_Jumptable
 
 RevivePokemon:
 	call IsMonFainted
@@ -1539,7 +1538,7 @@ FullRestoreEffect:
 	xor a
 	ret
 
-BitterBerryEffect:
+PersimBerryEffect:
 	ld hl, wPlayerSubStatus3
 	bit SUBSTATUS_CONFUSED, [hl]
 	ld a, 1
@@ -1738,7 +1737,7 @@ ContinueRevive:
 	ld a, d
 	ld [hli], a
 	ld [hl], e
-	jp LoadCurHPIntoBuffer3
+	jr LoadCurHPIntoBuffer3
 
 RestoreHealth:
 	ld a, MON_HP + 1
@@ -1867,10 +1866,10 @@ GetOneFifthMaxHP:
 GetHealingItemAmount:
 	push hl
 	ld a, [wCurItem]
-	cp GOLD_BERRY
-	jr nz, .not_gold_berry
+	cp SITRUS_BERRY
+	jr nz, .not_SITRUS_BERRY
 
-; If item is GOLD_BERRY, heal 25% HP.
+; If item is SITRUS_BERRY, heal 25% HP.
 	ld a, MON_MAXHP
 	call GetPartyParamLocation
 	ld a, [hli]
@@ -1888,7 +1887,7 @@ GetHealingItemAmount:
 	inc e ; Heal at least 1 HP
 	jr .sitrus_berry_done
 
-.not_gold_berry
+.not_SITRUS_BERRY
 	ld hl, HealingHPAmounts
 	ld d, a
 .next
@@ -2377,7 +2376,7 @@ endr
 Not_PP_Up:
 	call RestorePP
 	jr nz, BattleRestorePP
-	jp PPRestoreItem_NoEffect
+	jr PPRestoreItem_NoEffect
 
 Elixer_RestorePPofAllMoves:
 	xor a

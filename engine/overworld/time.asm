@@ -35,7 +35,7 @@ if DEF(_DEBUG)
 .debug_ok
 	ld a, h
 endc
-	jp RestartReceiveCallDelay
+	jr RestartReceiveCallDelay
 
 .ReceiveCallDelays:
 	db 20, 10, 5, 3
@@ -90,7 +90,7 @@ CheckReceiveCallDelay:
 
 RestartDailyResetTimer:
 	ld hl, wDailyResetTimer
-	jp InitOneDayCountdown
+	jr InitOneDayCountdown
 
 CheckDailyResetTimer::
 	ld hl, wDailyResetTimer

@@ -264,7 +264,7 @@ Get1bpp::
 ; copy c 1bpp tiles from b:de to hl
 	ldh a, [rLCDC]
 	bit rLCDC_ENABLE, a
-	jp nz, Request1bpp
+	jr nz, Request1bpp
 	; fallthrough
 
 Copy1bpp::
@@ -384,7 +384,7 @@ HBlankCopy2bpp::
 .outerLoop2
 	ldh a, [rLY]
 	cp $88
-	jp nc, ContinueHBlankCopy
+	jr nc, ContinueHBlankCopy
 .waitNoHBlank2
 	ldh a, [c]
 	and b
@@ -407,12 +407,12 @@ endr
 	dec a
 	ldh [hTilesPerCycle], a
 	jr nz, .outerLoop2
-	jp DoneHBlankCopy
+	jr DoneHBlankCopy
 
 .outerLoop
 	ldh a, [rLY]
 	cp $88
-	jp nc, ContinueHBlankCopy
+	jr nc, ContinueHBlankCopy
 .innerLoop
 	pop bc
 	pop de

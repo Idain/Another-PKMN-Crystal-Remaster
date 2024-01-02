@@ -612,7 +612,7 @@ _ExitMenu::
 	call GetWindowStackTop
 	ld a, l
 	or h
-	jp z, Error_Cant_ExitMenu
+	jr z, Error_Cant_ExitMenu
 	ld a, l
 	ld [wWindowStackPointer], a
 	ld a, h

@@ -70,7 +70,7 @@ _GetVarAction::
 	ld b, wEndPokedexCaught - wPokedexCaught
 	call CountSetBits
 	ld a, [wNumSetBits]
-	jp .loadstringbuffer2
+	jr .loadstringbuffer2
 
 .CountSeenMons:
 ; Seen mons.
@@ -78,7 +78,7 @@ _GetVarAction::
 	ld b, wEndPokedexSeen - wPokedexSeen
 	call CountSetBits
 	ld a, [wNumSetBits]
-	jp .loadstringbuffer2
+	jr .loadstringbuffer2
 
 .CountBadges:
 ; Number of total owned badges.

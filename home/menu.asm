@@ -397,13 +397,11 @@ PlaceYesNoBox::
 	pop bc
 ; This seems to be an overflow prevention.
 	ld a, b
-	cp SCREEN_WIDTH - 1 - 5
-	jr nc, .okay
+	cp SCREEN_WIDTH - 1 - 4
+	jr c, .okay
 	ld a, SCREEN_WIDTH - 1 - 5
-	ld b, a
-
+	; fallthrough
 .okay
-	ld a, b
 	ld [wMenuBorderLeftCoord], a
 	add 5
 	ld [wMenuBorderRightCoord], a

@@ -395,8 +395,8 @@ HDMATransfer1bpp::
 .loop
 	ld a, c
 	cp $10
-	jp c, .bankswitch
-	jp z, .bankswitch
+	jr c, .bankswitch
+	jr z, .bankswitch
 	push bc
 	push hl
 	push de

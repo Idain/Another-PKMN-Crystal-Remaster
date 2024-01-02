@@ -348,7 +348,7 @@ Battle_GetTrainerName::
 	ld hl, wOTPlayerName
 	ld a, BANK(@)
 	ld [wTrainerGroupBank], a
-	jp nz, CopyTrainerName
+	jr nz, CopyTrainerName
 
 	ld a, [wOtherTrainerID]
 	ld b, a

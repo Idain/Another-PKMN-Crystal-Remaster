@@ -44,7 +44,7 @@ AI_SwitchOrTryItem:
 	bit SWITCH_RARELY_F, [hl]
 	jr nz, SwitchRarely
 	bit SWITCH_SOMETIMES_F, [hl]
-	jp nz, SwitchSometimes
+	jr nz, SwitchSometimes
 	bit SWITCH_OFTEN_F, [hl]	
 	jp z, AI_TryItem
 	; fallthrough
@@ -73,7 +73,7 @@ SwitchOften:
 	; $30
 	call Random
 	cp 4 percent
-	jp c, AI_TryItem
+	jr c, AI_TryItem
 
 .switch
 	ld a, [wEnemySwitchMonParam]
@@ -268,11 +268,11 @@ AI_Items:
 	dbw SODA_POP,     .HealingItem
 	dbw LEMONADE,     .HealingItem
 	dbw MOOMOO_MILK,  .HealingItem
-	dbw BERRY,        .HealingItem
+	dbw ORAN_BERRY,   .HealingItem
 	dbw ENERGYPOWDER, .HealingItem
 	dbw ENERGY_ROOT,  .HealingItem
 	dbw BERRY_JUICE,  .HealingItem
-	dbw MIRACLEBERRY, .FullHeal
+	dbw LUM_BERRY,    .FullHeal
 	dbw FULL_HEAL,    .FullHeal
 	dbw GUARD_SPEC,   .GuardSpec
 	dbw DIRE_HIT,     .DireHit
@@ -324,7 +324,7 @@ AI_Items:
 
 .FullRestore:
 	call .HealItem
-	jp nc, .UseFullRestore
+	jr nc, .UseFullRestore
 	ld a, [bc]
 	bit CONTEXT_USE_F, a
 	jp z, .DontUse
@@ -349,7 +349,7 @@ AI_Items:
 	jp c, .DontUse
 	ld a, [bc]
 	bit UNKNOWN_USE_F, a
-	jp nz, .CheckQuarterHP
+	jr nz, .CheckQuarterHP
 	call AICheckEnemyQuarterHP
 	jp nc, .Use
 	call Random
@@ -379,7 +379,7 @@ AI_Items:
 	call .HealItem
 	jp c, .DontUse
 	call EnemyUsedHealingItem
-	jp .Use
+	jr .Use
 
 .XAccuracy:
 	call .XItem
@@ -450,7 +450,7 @@ AI_Items:
 .notfirstturnout
 	ld a, [bc]
 	bit ALWAYS_USE_F, a
-	jp z, .DontUse
+	jr z, .DontUse
 	call Random
 	cp 20 percent - 1
 	jr c, .Use
@@ -678,14 +678,14 @@ EnemyUsedGuardSpec:
 	ld a, 5
 	ld [de], a
 	ld a, GUARD_SPEC
-	jp PrintText_UsedItemOn_AND_AIUpdateHUD
+	jr PrintText_UsedItemOn_AND_AIUpdateHUD
 
 EnemyUsedDireHit:
 	call AIUsedItemSound
 	ld hl, wEnemySubStatus4
 	set SUBSTATUS_FOCUS_ENERGY, [hl]
 	ld a, DIRE_HIT
-	jp PrintText_UsedItemOn_AND_AIUpdateHUD
+	jr PrintText_UsedItemOn_AND_AIUpdateHUD
 
 EnemyUsedXAttack: 	; Boost by 2 stages
 	ld b, $10 | ATTACK

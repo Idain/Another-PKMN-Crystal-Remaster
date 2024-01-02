@@ -35,6 +35,6 @@ BattleCommand_Metronome:
 	call GetBattleVarAddr
 	ld [hl], b
 	call UpdateMoveData
-	jp ResetTurn
+	jr ResetTurn
 
 INCLUDE "data/moves/metronome_exception_moves.asm"

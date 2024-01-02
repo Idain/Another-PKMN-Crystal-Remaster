@@ -844,7 +844,7 @@ Script_applymovementlasttalked:
 
 	ldh a, [hLastTalked]
 	ld c, a
-	jp ApplyMovement
+	jr ApplyMovement
 
 Script_faceplayer:
 	ldh a, [hLastTalked]
@@ -1559,7 +1559,7 @@ ConvertLandmarkToText:
 	ld e, a
 	farcall GetLandmarkName
 	ld de, wStringBuffer1
-	jp GetStringBuffer
+	jr GetStringBuffer
 
 Script_getlandmarkname:
 	call GetScriptByte
@@ -1582,7 +1582,7 @@ ContinueToGetName:
 	ld [wCurSpecies], a
 	call GetName
 	ld de, wStringBuffer1
-	jp GetStringBuffer
+	jr GetStringBuffer
 
 Script_gettrainerclassname:
 	ld a, TRAINER_NAME
@@ -1596,7 +1596,7 @@ Script_getmoney:
 	lb bc, PRINTNUM_LEFTALIGN | 3, 6
 	call PrintNum
 	ld de, wStringBuffer1
-	jp GetStringBuffer
+	jr GetStringBuffer
 
 Script_getcoins:
 	call ResetStringBuffer1
@@ -2092,7 +2092,7 @@ Script_newloadmap:
 
 Script_reloadend:
 	call Script_newloadmap
-	jp Script_end
+	jr Script_end
 
 Script_opentext:
 	jp OpenText

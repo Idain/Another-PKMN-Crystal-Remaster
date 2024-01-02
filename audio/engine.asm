@@ -944,13 +944,13 @@ ApplyPitchSlide:
 	add hl, bc
 	ld a, [hl]
 	cp d
-	jp c, .finished_pitch_slide
+	jr c, .finished_pitch_slide
 	jr nz, .continue_pitch_slide
 	ld hl, CHANNEL_PITCH_SLIDE_TARGET
 	add hl, bc
 	ld a, [hl]
 	cp e
-	jp c, .finished_pitch_slide
+	jr c, .finished_pitch_slide
 	jr .continue_pitch_slide
 
 .decreasing
@@ -1900,7 +1900,7 @@ Music_StereoPanning:
 	ld a, [wOptions]
 	bit STEREO, a
 	; skip param
-	jp z, GetMusicByte
+	jr z, GetMusicByte
 
 Music_ForceStereoPanning:
 ; force panning

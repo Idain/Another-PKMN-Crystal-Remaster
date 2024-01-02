@@ -15,7 +15,7 @@ TrainerClassAttributes:
 	dw CONTEXT_USE | SWITCH_SOMETIMES
 
 ; Bugsy
-	db LEMONADE, MIRACLEBERRY ; items
+	db LEMONADE, LUM_BERRY ; items
 	db 30 ; base reward
 	dw AI_BASIC | AI_SETUP | AI_SMART | AI_AGGRESSIVE | AI_CAUTIOUS | AI_STATUS | AI_RISKY
 	dw CONTEXT_USE | SWITCH_SOMETIMES
@@ -123,31 +123,31 @@ TrainerClassAttributes:
 	dw CONTEXT_USE | SWITCH_SOMETIMES
 
 ; Erika
-	db FULL_RESTORE, MIRACLEBERRY ; items
+	db FULL_RESTORE, LUM_BERRY ; items
 	db 30 ; base reward
 	dw AI_BASIC | AI_SETUP | AI_SMART | AI_AGGRESSIVE | AI_CAUTIOUS | AI_STATUS | AI_RISKY
 	dw CONTEXT_USE | SWITCH_SOMETIMES
 
 ; Youngster
-	db MIRACLEBERRY, NO_ITEM ; items
+	db LUM_BERRY, NO_ITEM ; items
 	db 4 ; base reward
 	dw AI_BASIC | AI_STATUS
 	dw CONTEXT_USE | SWITCH_SOMETIMES
 
 ; Schoolboy
-	db MIRACLEBERRY, NO_ITEM ; items
+	db LUM_BERRY, NO_ITEM ; items
 	db 8 ; base reward
 	dw AI_BASIC | AI_SETUP | AI_TYPES | AI_OPPORTUNIST | AI_CAUTIOUS | AI_STATUS
 	dw CONTEXT_USE | SWITCH_OFTEN
 
 ; Bird Keeper
-	db MIRACLEBERRY, NO_ITEM ; items
+	db LUM_BERRY, NO_ITEM ; items
 	db 8 ; base reward
 	dw AI_BASIC | AI_TYPES | AI_OFFENSIVE | AI_OPPORTUNIST | AI_STATUS
 	dw CONTEXT_USE | SWITCH_SOMETIMES
 
 ; Lass
-	db MIRACLEBERRY, NO_ITEM ; items
+	db LUM_BERRY, NO_ITEM ; items
 	db 4 ; base reward
 	dw AI_BASIC | AI_CAUTIOUS | AI_STATUS
 	dw CONTEXT_USE | SWITCH_OFTEN
@@ -195,7 +195,7 @@ TrainerClassAttributes:
 	dw CONTEXT_USE | SWITCH_SOMETIMES
 
 ; Skier
-	db HYPER_POTION, MIRACLEBERRY ; items
+	db HYPER_POTION, LUM_BERRY ; items
 	db 8 ; base reward
 	dw AI_BASIC | AI_SETUP | AI_TYPES | AI_STATUS | AI_RISKY
 	dw CONTEXT_USE | SWITCH_SOMETIMES
@@ -213,13 +213,13 @@ TrainerClassAttributes:
 	dw CONTEXT_USE | SWITCH_SOMETIMES
 
 ; Bug Catcher
-	db MIRACLEBERRY, NO_ITEM ; items
+	db LUM_BERRY, NO_ITEM ; items
 	db 4 ; base reward
 	dw AI_BASIC | AI_SETUP | AI_STATUS
 	dw CONTEXT_USE | SWITCH_SOMETIMES
 
 ; Fisher
-	db MIRACLEBERRY, NO_ITEM ; items
+	db LUM_BERRY, NO_ITEM ; items
 	db 8 ; base reward
 	dw AI_BASIC | AI_TYPES | AI_OPPORTUNIST | AI_CAUTIOUS | AI_STATUS
 	dw CONTEXT_USE | SWITCH_OFTEN
@@ -261,7 +261,7 @@ TrainerClassAttributes:
 	dw CONTEXT_USE | SWITCH_SOMETIMES
 
 ; Hiker
-	db MIRACLEBERRY, NO_ITEM ; items
+	db LUM_BERRY, NO_ITEM ; items
 	db 8 ; base reward
 	dw AI_BASIC | AI_OFFENSIVE | AI_STATUS
 	dw CONTEXT_USE | SWITCH_SOMETIMES
@@ -297,7 +297,7 @@ TrainerClassAttributes:
 	dw CONTEXT_USE | SWITCH_SOMETIMES
 
 ; Blackbelt T
-	db MIRACLEBERRY, NO_ITEM ; items
+	db LUM_BERRY, NO_ITEM ; items
 	db 6 ; base reward
 	dw AI_BASIC | AI_OFFENSIVE | AI_STATUS | AI_RISKY
 	dw CONTEXT_USE | SWITCH_SOMETIMES
@@ -315,13 +315,13 @@ TrainerClassAttributes:
 	dw CONTEXT_USE | SWITCH_SOMETIMES
 
 ; Picnicker
-	db MIRACLEBERRY, NO_ITEM ; items
+	db LUM_BERRY, NO_ITEM ; items
 	db 4 ; base reward
 	dw AI_BASIC | AI_CAUTIOUS | AI_STATUS
 	dw CONTEXT_USE | SWITCH_SOMETIMES
 
 ; Camper
-	db MIRACLEBERRY, NO_ITEM ; items
+	db LUM_BERRY, NO_ITEM ; items
 	db 4 ; base reward
 	dw AI_BASIC | AI_CAUTIOUS | AI_STATUS
 	dw CONTEXT_USE | SWITCH_SOMETIMES
@@ -333,13 +333,13 @@ TrainerClassAttributes:
 	dw CONTEXT_USE | SWITCH_SOMETIMES
 
 ; Sage
-	db MIRACLEBERRY, NO_ITEM ; items
+	db LUM_BERRY, NO_ITEM ; items
 	db 12 ; base reward
 	dw AI_BASIC | AI_SETUP | AI_TYPES | AI_CAUTIOUS | AI_STATUS | AI_RISKY
 	dw CONTEXT_USE | SWITCH_SOMETIMES
 
 ; Medium
-	db MIRACLEBERRY, NO_ITEM ; items
+	db LUM_BERRY, NO_ITEM ; items
 	db 12 ; base reward
 	dw AI_BASIC | AI_SETUP | AI_TYPES | AI_CAUTIOUS | AI_STATUS | AI_RISKY
 	dw CONTEXT_USE | SWITCH_SOMETIMES
@@ -363,7 +363,7 @@ TrainerClassAttributes:
 	dw CONTEXT_USE | SWITCH_SOMETIMES
 
 ; Twins
-	db MIRACLEBERRY, MIRACLEBERRY ; items
+	db LUM_BERRY, LUM_BERRY ; items
 	db 5 ; base reward
 	dw AI_BASIC | AI_TYPES
 	dw CONTEXT_USE | SWITCH_OFTEN

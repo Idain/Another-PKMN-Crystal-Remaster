@@ -161,7 +161,7 @@ ItemNames::
 	li "Normal Box"
 	li "Gorgeous Box"
 	li "Sun Stone"
-	li "Polkadot Bow"
+	li "FairyFeather"
 	li "Teru-sama"
 	li "Upgrade"
 	li "Oran Berry"

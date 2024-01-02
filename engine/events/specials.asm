@@ -266,7 +266,7 @@ StoreSwarmMapIndices::
 CheckPokerus:
 ; Check if a monster in your party has Pokerus
 	farcall _CheckPokerus
-	jp ScriptReturnCarry
+	jr ScriptReturnCarry
 
 ResetLuckyNumberShowFlag:
 	farjp LoadOrRegenerateLuckyIDNumber

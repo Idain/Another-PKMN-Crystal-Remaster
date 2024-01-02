@@ -941,7 +941,7 @@ ReelAction_StopReel2:
 	ret
 
 .NoBias:
-	jp Slots_StopReel
+	jr Slots_StopReel
 
 ReelAction_StopReel3:
 ; Manipulate the reel up to wReel3ManipCounter (i.e. 4) slots,

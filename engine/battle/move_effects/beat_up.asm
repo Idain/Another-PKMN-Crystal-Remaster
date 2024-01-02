@@ -130,7 +130,7 @@ BattleCommand_BeatUp:
 	call GetBeatupMonLocation
 	ld a, [hli]
 	or [hl]
-	jp z, .beatup_fail
+	jr z, .beatup_fail
 
 	ld a, [wCurBeatUpPartyMon]
 	ld b, a

@@ -211,7 +211,7 @@ Function3f7c::
 	call GetMenuBoxDims
 	dec b
 	dec c
-	jp Function3eea
+	jr Function3eea
 
 Function3f88::
 	ld hl, wDecompressScratch

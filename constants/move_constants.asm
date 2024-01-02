@@ -257,7 +257,7 @@
 	const ROCK_SMASH   ; f9
 	const WHIRLPOOL    ; fa
 	const BEAT_UP      ; fb
-	const SNOW		   ; fc
+	const SNOWSCAPE	   ; fc
 	const PLAY_ROUGH   ; fd
 	const MOONBLAST	   ; fe
 DEF NUM_ATTACKS EQU const_value - 1

@@ -38,7 +38,7 @@ MahoganyGymPryceScript:
 	readvar VAR_BADGES
 	scall MahoganyGymActivateRockets
 .FightDone:
-	checkevent EVENT_GOT_TM07_SNOW
+	checkevent EVENT_GOT_TM07_SNOWSCAPE
 	iftrue PryceScript_Defeat
 	setevent EVENT_BEAT_SKIER_ROXANNE
 	setevent EVENT_BEAT_SKIER_CLARISSA
@@ -53,10 +53,10 @@ MahoganyGymPryceScript:
 .continue2
 	writetext PryceText_AGiftFromMe
 	promptbutton
-	verbosegiveitem TM_SNOW
+	verbosegiveitem TM_SNOWSCAPE
 	iffalse MahoganyGym_NoRoomForIcyWind
-	setevent EVENT_GOT_TM07_SNOW
-	writetext PryceText_SnowSpeech
+	setevent EVENT_GOT_TM07_SNOWSCAPE
+	writetext PryceText_SnowscapeSpeech
 	waitbutton
 	closetext
 	end
@@ -306,9 +306,9 @@ PryceText_AGiftFromMe:
 	line "a gift from me!"
 	done
 
-PryceText_SnowSpeech:
+PryceText_SnowscapeSpeech:
 	text "That TM contains"
-	line "Snow."
+	line "Snowscape."
 
 	para "It summons a snow-"
 	line "storm that lasts"

@@ -324,7 +324,7 @@ AI_Smart_EffectHandlers:
 	dbw EFFECT_RAZOR_WIND,       AI_Smart_RazorWind
 	dbw EFFECT_SUPER_FANG,       AI_Smart_SuperFang
 	dbw EFFECT_TRAP_TARGET,      AI_Smart_TrapTarget
-	dbw EFFECT_SNOW,             AI_Smart_Snow
+	dbw EFFECT_SNOWSCAPE,        AI_Smart_Snowscape
 	dbw EFFECT_CONFUSE,          AI_Smart_Confuse
 	dbw EFFECT_SP_DEF_UP_2,      AI_Smart_SpDefenseUp2
 	dbw EFFECT_REFLECT,          AI_Smart_Reflect
@@ -1908,7 +1908,7 @@ AI_Smart_Curse:
 
 .ghost_continue
 	call AICheckEnemyQuarterHP
-	jp nc, .approve
+	jr nc, .approve
 
 	call AICheckEnemyHalfHP
 	jr nc, .greatly_encourage
@@ -2110,7 +2110,7 @@ AI_Smart_Sandstorm:
 	db STEEL
 	db -1 ; end
 
-AI_Smart_Snow:
+AI_Smart_Snowscape:
 ; Greatly encourage this move if certain conditions are met.
 
 	; If the enemy is an Ice-type...

@@ -365,7 +365,7 @@ BillsPC_Withdraw:
 
 .withdraw
 	call BillsPC_CheckMail_PreventBlackout
-	jp c, .cancel
+	jr c, .cancel
 	call TryWithdrawPokemon
 	jr c, .FailedWithdraw
 	xor a
@@ -581,7 +581,7 @@ _MovePKMNWithoutMail:
 	ld a, [wMenuCursorY]
 	ld [wMenuCursorPosition], a
 	call VerticalMenu
-	jp c, .Cancel
+	jr c, .Cancel
 	ld a, [wMenuCursorY]
 	dec a
 	and %11
@@ -596,7 +596,7 @@ _MovePKMNWithoutMail:
 
 .Move:
 	call BillsPC_CheckMail_PreventBlackout
-	jp c, .Cancel
+	jr c, .Cancel
 	ld a, [wBillsPC_ScrollPosition]
 	ld [wBillsPC_BackupScrollPosition], a
 	ld a, [wBillsPC_CursorPosition]

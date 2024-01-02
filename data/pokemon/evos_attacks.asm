@@ -959,7 +959,7 @@ AbraEvosAttacks:
 
 KadabraEvosAttacks:
 	db EVOLVE_TRADE, -1, ALAKAZAM
-	db EVOLVE_ITEM, LINK_CABLE, ALAKAZAM
+	db EVOLVE_HOLDING, LINK_CABLE, ALAKAZAM
 	db 0 ; no more evolutions
 	db 1, TELEPORT
 	db 1, KINESIS
@@ -1005,7 +1005,7 @@ MachopEvosAttacks:
 
 MachokeEvosAttacks:
 	db EVOLVE_TRADE, -1, MACHAMP
-	db EVOLVE_ITEM, LINK_CABLE, MACHAMP
+	db EVOLVE_HOLDING, LINK_CABLE, MACHAMP
 	db 0 ; no more evolutions
 	db 1, LOW_KICK
 	db 1, LEER
@@ -1121,7 +1121,7 @@ GeodudeEvosAttacks:
 
 GravelerEvosAttacks:
 	db EVOLVE_TRADE, -1, GOLEM
-	db EVOLVE_ITEM, LINK_CABLE, GOLEM
+	db EVOLVE_HOLDING, LINK_CABLE, GOLEM
 	db 0 ; no more evolutions
 	db 1, TACKLE
 	db 6, DEFENSE_CURL
@@ -1300,7 +1300,7 @@ SeelEvosAttacks:
 	db 32, TAKE_DOWN
 	db 37, ICE_BEAM
 	db 48, SAFEGUARD
-	db 53, SNOW
+	db 53, SNOWSCAPE
 	db 0 ; no more level-up moves
 
 DewgongEvosAttacks:
@@ -1312,7 +1312,7 @@ DewgongEvosAttacks:
 	db 32, TAKE_DOWN
 	db 43, ICE_BEAM
 	db 60, SAFEGUARD
-	db 65, SNOW
+	db 65, SNOWSCAPE
 	db 0 ; no more level-up moves
 
 GrimerEvosAttacks:
@@ -1393,7 +1393,7 @@ GastlyEvosAttacks:
 
 HaunterEvosAttacks:
 	db EVOLVE_TRADE, -1, GENGAR
-	db EVOLVE_ITEM, LINK_CABLE, GENGAR
+	db EVOLVE_HOLDING, LINK_CABLE, GENGAR
 	db 0 ; no more evolutions
 	db 1, HYPNOSIS
 	db 1, LICK
@@ -2084,8 +2084,8 @@ FlareonEvosAttacks:
 	db 0 ; no more level-up moves
 
 PorygonEvosAttacks:
-	db EVOLVE_TRADE, UP_GRADE, PORYGON2
-	db EVOLVE_HOLDING, UP_GRADE, PORYGON2
+	db EVOLVE_TRADE, UPGRADE, PORYGON2
+	db EVOLVE_HOLDING, UPGRADE, PORYGON2
 	db 0 ; no more evolutions
 	db 1, CONVERSION2
 	db 1, TACKLE
@@ -2202,7 +2202,7 @@ ArticunoEvosAttacks:
 	db 25, AGILITY
 	db 37, MIND_READER
 	db 49, ICE_BEAM
-	db 57, SNOW
+	db 57, SNOWSCAPE
 	db 61, REFLECT
 	db 73, BLIZZARD
 	db 0 ; no more level-up moves

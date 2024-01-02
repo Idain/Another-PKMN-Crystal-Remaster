@@ -86,10 +86,9 @@ TiffanyHangUpText:
 	done
 
 TiffanyFoundItemText:
-	text "I bought some Pol-"
-	line "kadot Bows at Gol-"
-	cont "denrod Dept.Store"
-	cont "for my Clefairy."
+	text "I bought some Fai-"
+	line "ryFeathers for my"
+	cont "Clefairy."
 
 	para "I got too many, so"
 	line "I'll give you one!"

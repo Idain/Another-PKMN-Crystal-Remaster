@@ -88,10 +88,10 @@ endc
 .skip_checks
 	ld a, [wMysteryGiftPlayerBackupItem]
 	and a
-	jp nz, .GiftWaiting
+	jr nz, .GiftWaiting
 	ld a, [wMysteryGiftPartnerBackupItem]
 	and a
-	jp nz, .FriendNotReady
+	jr nz, .FriendNotReady
 	ld a, [wMysteryGiftPartnerGameVersion]
 	cp POKEMON_PIKACHU_2_VERSION
 	jr z, .skip_append_save
@@ -665,7 +665,7 @@ SendNameCardDataPayload:
 	ldh a, [hMGExchangedByte]
 	swap a
 	cp NAME_CARD_PREFIX
-	jp nz, WrongMysteryGiftRegion
+	jr nz, WrongMysteryGiftRegion
 	; Switch roles
 	call BeginSendingIRCommunication
 	ret nz
@@ -894,7 +894,7 @@ ReceiveIRHelloMessage:
 	ld d, 5
 	call SendInfraredLEDOn
 	ld d, 5
-	jp SendInfraredLEDOff
+	jr SendInfraredLEDOff
 
 SendIRHelloMessageAfterDelay:
 	; Wait a random amount of time
@@ -1111,10 +1111,10 @@ ReceiveIRDataBlock:
 	pop hl
 	pop af
 	cp b
-	jp c, ReceivedWrongIRMessagePrefix
+	jr c, ReceivedWrongIRMessagePrefix
 	ldh a, [hMGExchangedWord + 0]
 	cp MESSAGE_PREFIX
-	jp nz, ReceivedWrongIRMessagePrefix
+	jr nz, ReceivedWrongIRMessagePrefix
 	call ReceiveIRDataMessage
 	ldh a, [hMGChecksum + 0]
 	ld d, a
@@ -1156,10 +1156,10 @@ ReceiveIRDataMessage:
 
 	ld d, 0
 	call ReceiveInfraredLEDOff
-	jp z, InfraredLEDReceiveTimedOut
+	jr z, InfraredLEDReceiveTimedOut
 	ld d, 0
 	call ReceiveInfraredLEDOn
-	jp z, InfraredLEDReceiveTimedOut
+	jr z, InfraredLEDReceiveTimedOut
 	ld d, 0
 	call ReceiveInfraredLEDOff
 	jp z, InfraredLEDReceiveTimedOut
@@ -1608,9 +1608,9 @@ DoNameCardSwap:
 	ldh [rIE], a
 	ld a, d
 	cp $10
-	jp z, .LinkCanceled
+	jr z, .LinkCanceled
 	cp MG_OKAY
-	jp nz, .CommunicationError
+	jr nz, .CommunicationError
 	call .SlideNameCardUpOffScreen
 	ld c, 60
 	call DelayFrames
@@ -1727,7 +1727,7 @@ StageDataForNameCard:
 	ld a, [sCrystalData + 0]
 	ld [de], a
 	inc de
-	ld a, BANK(s4_a603) ; aka BANK(sEZChatMessages) ; MBC30 bank used by JP Crystal; inaccessible by MBC3
+	ld a, BANK(s4_a603) ; aka BANK(sEZChatMessages) ; MBC30 bank used by jp Crystal; inaccessible by MBC3
 	call OpenSRAM
 	ld hl, s4_a603 ; address of MBC30 bank
 	ld bc, 8

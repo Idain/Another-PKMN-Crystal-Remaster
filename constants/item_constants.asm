@@ -87,17 +87,17 @@ DEF NUM_POKE_BALLS EQU const_value - 1
 	const SILVER_WING  ; 46
 	const MOOMOO_MILK  ; 47
 	const QUICK_CLAW   ; 48
-	const PSNCUREBERRY ; 49
+	const PECHA_BERRY  ; 49
 	const GOLD_LEAF    ; 4a
 	const SOFT_SAND    ; 4b
 	const SHARP_BEAK   ; 4c
-	const PRZCUREBERRY ; 4d
-	const BURNT_BERRY  ; 4e
-	const ICE_BERRY    ; 4f
+	const CHERI_BERRY  ; 4d
+	const ASPEAR_BERRY ; 4e
+	const RAWST_BERRY  ; 4f
 	const POISON_BARB  ; 50
 	const KINGS_ROCK   ; 51
-	const BITTER_BERRY ; 52
-	const MINT_BERRY   ; 53
+	const PERSIM_BERRY ; 52
+	const CHESTO_BERRY ; 53
 	const RED_APRICORN ; 54
 	const TINYMUSHROOM ; 55
 	const BIG_MUSHROOM ; 56
@@ -115,12 +115,12 @@ DEF NUM_POKE_BALLS EQU const_value - 1
 	const PNK_APRICORN ; 62
 	const BLACKGLASSES ; 63
 	const SLOWPOKETAIL ; 64
-	const PINK_BOW     ; 65
+	const SILK_SCARF   ; 65
 	const STICK        ; 66
 	const SMOKE_BALL   ; 67
 	const NEVERMELTICE ; 68
 	const MAGNET       ; 69
-	const MIRACLEBERRY ; 6a
+	const LUM_BERRY    ; 6a
 	const PEARL        ; 6b
 	const BIG_PEARL    ; 6c
 	const EVERSTONE    ; 6d
@@ -155,7 +155,7 @@ DEF NUM_POKE_BALLS EQU const_value - 1
 	const SOOTHE_BELL  ; 8a
 	const EVIOLITE     ; 8b
 	const DUSK_STONE   ; 8c
-	const MYSTERYBERRY ; 8d
+	const LEPPA_BERRY  ; 8d
 	const DRAGON_SCALE ; 8e
 	const BERSERK_GENE ; 8f
 	const LINK_CABLE   ; 90
@@ -168,11 +168,11 @@ DEF NUM_POKE_BALLS EQU const_value - 1
 	const NORMAL_BOX   ; 9e
 	const GORGEOUS_BOX ; 9f
 	const SUN_STONE    ; a0
-	const POLKADOT_BOW ; a1
+	const FAIRYFEATHER ; a1
 	const ITEM_AB      ; a2
-	const UP_GRADE     ; a3
-	const BERRY        ; a4
-	const GOLD_BERRY   ; a5
+	const UPGRADE      ; a3
+	const ORAN_BERRY   ; a4
+	const SITRUS_BERRY ; a5
 	const SQUIRTBOTTLE ; a6
 	const ITEM_B0      ; a7
 	const RAINBOW_WING ; a9
@@ -217,7 +217,7 @@ DEF TM01 EQU const_value
 	add_tm ROLLOUT      ; bb
 	add_tm ROAR         ; bc
 	add_tm TOXIC        ; bd
-	add_tm SNOW			; be
+	add_tm SNOWSCAPE	; be (NEW)
 	add_tm ROCK_SMASH   ; bf
 	add_tm PSYCH_UP     ; c0
 	add_tm HIDDEN_POWER ; c1
@@ -226,11 +226,11 @@ DEF TM01 EQU const_value
 	add_tm SNORE        ; c4
 	add_tm BLIZZARD     ; c5
 	add_tm HYPER_BEAM   ; c6
-	add_tm LIGHT_SCREEN ; c7
+	add_tm LIGHT_SCREEN ; c7 (NEW)
 	add_tm PROTECT      ; c8
 	add_tm RAIN_DANCE   ; c9
 	add_tm GIGA_DRAIN   ; ca
-	add_tm SAFEGUARD	; cb
+	add_tm SAFEGUARD	; cb (NEW)
 	add_tm FRUSTRATION  ; cc
 	add_tm SOLARBEAM    ; cd
 	add_tm IRON_TAIL    ; ce
@@ -243,7 +243,7 @@ DEF TM01 EQU const_value
 	add_tm SHADOW_BALL  ; d5
 	add_tm MUD_SLAP     ; d6
 	add_tm DOUBLE_TEAM  ; d7
-	add_tm REFLECT		; d8
+	add_tm REFLECT		; d8 (NEW)
 	add_tm SWAGGER      ; d9
 	add_tm SLEEP_TALK   ; da
 	add_tm SLUDGE_BOMB  ; db
@@ -261,16 +261,16 @@ DEF TM01 EQU const_value
 	add_tm FIRE_PUNCH   ; e7
 	add_tm FURY_CUTTER  ; e8
 	add_tm NIGHTMARE    ; e9
-	add_tm FALSE_SWIPE  ; ea
+	add_tm FALSE_SWIPE  ; ea (NEW)
 	add_tm ZAP_CANNON   ; eb
 	add_tm ENDURE 		; ec
 	add_tm ICY_WIND 	; ed
 	add_tm ICE_PUNCH 	; ee
-	add_tm EXPLOSION  	; ef
-	add_tm THUNDER_WAVE ; f0
-	add_tm SWORDS_DANCE	; f1
-	add_tm ROCK_SLIDE	; f2
-	add_tm SUBSTITUTE	; f3
+	add_tm EXPLOSION  	; ef (NEW)
+	add_tm THUNDER_WAVE ; f0 (NEW)
+	add_tm SWORDS_DANCE	; f1 (NEW)
+	add_tm ROCK_SLIDE	; f2 (NEW)
+	add_tm SUBSTITUTE	; f3 (NEW)
 DEF NUM_TMS EQU __tmhm_value__ - 1
 
 MACRO add_hm

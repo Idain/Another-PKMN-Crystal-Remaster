@@ -1928,7 +1928,7 @@ Pokedex_DisplayTypeNotFoundMessage:
 Pokedex_UpdateCursorOAM:
 	ld a, [wCurDexMode]
 	cp DEXMODE_OLD
-	jp z, Pokedex_PutOldModeCursorOAM
+	jr z, Pokedex_PutOldModeCursorOAM
 	call Pokedex_PutNewModeABCModeCursorOAM
 	jp Pokedex_PutScrollbarOAM
 

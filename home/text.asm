@@ -125,7 +125,7 @@ SpeechTextbox::
 ; Standard textbox.
 	hlcoord TEXTBOX_X, TEXTBOX_Y
 	lb bc, TEXTBOX_INNERH, TEXTBOX_INNERW
-	jp Textbox
+	jr Textbox
 
 RadioTerminator::
 	ld hl, .stop

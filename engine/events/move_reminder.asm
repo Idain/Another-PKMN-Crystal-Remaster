@@ -6,7 +6,7 @@ MoveReminder:
 	ld hl, Text_MoveReminderIntro
 	call PrintText
 	call YesNoBox
-	jp c, .cancel
+	jr c, .cancel
 
 	ld hl, Text_MoveReminderWhichMon
 	call PrintText

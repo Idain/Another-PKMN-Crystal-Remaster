@@ -1238,7 +1238,7 @@ InitTradeMenuDisplay:
 	ld [wMenuCursorY], a
 	inc a
 	ld [wPlayerLinkAction], a
-	jp LinkTrade_PlayerPartyMenu
+	jr LinkTrade_PlayerPartyMenu
 
 LinkTrade_OTPartyMenu:
 	ld a, OTPARTYMON
@@ -1327,16 +1327,16 @@ LinkTradePartymonMenuLoop:
 	farcall LinkTradeMenu
 	ld a, d
 	and a
-	jp z, LinkTradePartiesMenuMasterLoop
+	jr z, LinkTradePartiesMenuMasterLoop
 
 	bit A_BUTTON_F, a
-	jp nz, LinkTrade_TradeStatsMenu
+	jr nz, LinkTrade_TradeStatsMenu
 
 	bit D_DOWN_F, a
 	jr z, .not_d_down
 	ld a, [wMenuCursorY]
 	dec a
-	jp nz, LinkTradePartiesMenuMasterLoop
+	jr nz, LinkTradePartiesMenuMasterLoop
 	ld a, OTPARTYMON
 	ld [wMonType], a
 	call HideCursor
@@ -1372,7 +1372,7 @@ LinkTradePartymonMenuLoop:
 LinkTradePartiesMenuMasterLoop:
 	ld a, [wMonType]
 	and a
-	jp z, LinkTradePartymonMenuLoop ; PARTYMON
+	jr z, LinkTradePartymonMenuLoop ; PARTYMON
 	jp LinkTradeOTPartymonMenuLoop  ; OTPARTYMON
 
 LinkTrade_TradeStatsMenu:
@@ -2500,13 +2500,13 @@ CloseLink:
 	ld c, 3
 	call DelayFrames
 	vc_hook Wireless_room_check
-	jp Link_ResetSerialRegistersAfterLinkClosure
+	jr Link_ResetSerialRegistersAfterLinkClosure
 
 FailedLinkToPast:
 	ld c, 40
 	call DelayFrames
 	ld a, $e
-	jp Link_EnsureSync
+	jr Link_EnsureSync
 
 Link_ResetSerialRegistersAfterLinkClosure:
 	ld c, 3

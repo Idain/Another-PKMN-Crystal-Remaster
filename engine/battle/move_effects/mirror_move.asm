@@ -46,4 +46,4 @@ BattleCommand_MirrorMove:
 
 .done
 	call BattleCommand_MoveDelay
-	jp ResetTurn
+	jr ResetTurn

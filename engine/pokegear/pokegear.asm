@@ -1360,7 +1360,7 @@ RadioChannels:
 	ld a, [wTimeOfDay]
 	and a
 	jp z, LoadStation_PokedexShow
-	jp LoadStation_OaksPokemonTalk
+	jr LoadStation_OaksPokemonTalk
 
 .PokemonMusic:
 	call .InJohto

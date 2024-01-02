@@ -557,7 +557,7 @@ OaksPKMNTalk11:
 	hlcoord 9, 14
 	ld de, .pokemon_string
 	ld a, OAKS_POKEMON_TALK_12
-	jp PlaceRadioString
+	jr PlaceRadioString
 
 .pokemon_string
 	db "#mon@"
@@ -569,7 +569,7 @@ OaksPKMNTalk12:
 	hlcoord 1, 16
 	ld de, .pokemon_channel_string
 	ld a, OAKS_POKEMON_TALK_13
-	jp PlaceRadioString
+	jr PlaceRadioString
 
 .pokemon_channel_string
 	db "#mon Channel@"
@@ -581,7 +581,7 @@ OaksPKMNTalk13:
 	hlcoord 12, 16
 	ld de, .terminator
 	ld a, OAKS_POKEMON_TALK_14
-	jp PlaceRadioString
+	jr PlaceRadioString
 
 .terminator
 	db "@"
@@ -1390,7 +1390,7 @@ EvolutionRadio:
 BuenasPassword1:
 ; Determine if we need to be here
 	call BuenasPasswordCheckTime
-	jp nc, .PlayPassword
+	jr nc, .PlayPassword
 	ld a, [wNumRadioLinesPrinted]
 	and a
 	jp z, BuenasPassword20
