@@ -15,11 +15,11 @@ Route19_MapScripts:
 Route19ClearRocksCallback:
 	checkevent EVENT_CINNABAR_ROCKS_CLEARED
 	iftrue .Done
-	changeblock  6,  6, $7a ; rock
-	changeblock  8,  6, $7a ; rock
-	changeblock 10,  6, $7a ; rock
-	changeblock 12,  8, $7a ; rock
-	changeblock  4,  8, $7a ; rock
+	;changeblock  8,  6, $7a ; rock
+	changeblock  8,  8, $7a ; rock moved up
+	changeblock 10,  6, $7a ; rock stay
+	changeblock 12,  8, $7a ; rock stay
+	;changeblock  4,  8, $7a ; rock
 	changeblock 10, 10, $7a ; rock
 .Done:
 	endcallback
@@ -246,5 +246,5 @@ Route19_MapEvents:
 	object_event 13, 32, SPRITE_SWIMMER_GUY, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerSwimmermHarold, -1
 	object_event 12, 18, SPRITE_SWIMMER_GUY, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 3, TrainerSwimmermJerome, -1
 	object_event  6, 38, SPRITE_SWIMMER_GUY, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_TRAINER, 0, TrainerSwimmermTucker, -1
-	object_event  8,  6, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 1, Route19Fisher1Script, -1
-	object_event 11, 12, SPRITE_FISHER, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 1, Route19Fisher2Script, -1
+	object_event  8,  5, SPRITE_FISHER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 1, Route19Fisher1Script, -1
+	object_event 11,  5, SPRITE_FISHER, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 1, Route19Fisher2Script, -1
