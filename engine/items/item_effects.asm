@@ -165,7 +165,7 @@ ItemEffects:
 	dw RestorePPEffect     ; LEPPA_BERRY
 	dw NoEffect            ; DRAGON_SCALE
 	dw NoEffect            ; BERSERK_GENE
-	dw EvoStoneEffect      ; LINK_CABLE
+	dw NoEffect            ; LINK_CABLE
 	dw NoEffect            ; ITEM_9A
 	dw NoEffect            ; ITEM_9B
 	dw SacredAshEffect     ; SACRED_ASH
