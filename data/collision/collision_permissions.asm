@@ -213,10 +213,10 @@ TileCollisionTable::
 	db LAND_TILE         ; COLL_STAIRS_DOWN_LEFT
 	db LAND_TILE         ; COLL_STAIRS_UP_RIGHT
 	db LAND_TILE         ; COLL_STAIRS_UP_LEFT
-	db LAND_TILE         ; d4
-	db LAND_TILE         ; d5
-	db LAND_TILE         ; d6
-	db LAND_TILE         ; d7
+	db LAND_TILE         ; COLL_STAIRS_UP_LEFT_UP_RIGHT
+	db LAND_TILE         ; COLL_STAIRS_DOWN_LEFT_UP_RIGHT
+	db LAND_TILE         ; COLL_STAIRS_UP_LEFT_DOWN_RIGHT
+	db LAND_TILE         ; COLL_STAIRS_DOWN_LEFT_DOWN_RIGHT
 	db LAND_TILE         ; d8
 	db LAND_TILE         ; d9
 	db LAND_TILE         ; da
