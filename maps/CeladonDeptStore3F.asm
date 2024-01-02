@@ -62,8 +62,8 @@ CeladonDeptStore3FGameboyKid1Text:
 	text "Uh-oh! I traded my"
 	line "#mon without"
 
-	para "removing the Up-"
-	line "grade from it."
+	para "removing the"
+	line "Upgrade from it."
 	done
 
 CeladonDeptStore3FGameboyKid2Text:

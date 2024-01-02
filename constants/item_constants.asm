@@ -170,7 +170,7 @@ DEF NUM_POKE_BALLS EQU const_value - 1
 	const SUN_STONE    ; a0
 	const FAIRYFEATHER ; a1
 	const ITEM_AB      ; a2
-	const UP_GRADE     ; a3
+	const UPGRADE      ; a3
 	const ORAN_BERRY   ; a4
 	const SITRUS_BERRY ; a5
 	const SQUIRTBOTTLE ; a6

@@ -164,7 +164,7 @@ ItemDescriptions:
 	dw SunStoneDesc
 	dw FairyFeatherDesc
 	dw TeruSamaDesc
-	dw UpGradeDesc
+	dw UpgradeDesc
 	dw OranBerry
 	dw SitrusBerryDesc
 	dw SquirtBottleDesc
@@ -846,8 +846,8 @@ FairyFeatherDesc:
 	db   "Powers up Fairy-"
 	next "type moves. (HOLD)@"
 
-UpGradeDesc:
-	db   "A mysterious box"
+UpgradeDesc:
+	db   "A peculiar device"
 	next "made by Silph Co.@"
 
 OranBerry:
