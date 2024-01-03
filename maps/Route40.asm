@@ -303,7 +303,7 @@ Route40_MapEvents:
 	def_coord_events
 
 	def_bg_events
-	bg_event 14, 10, BGEVENT_READ, Route40Sign
+	bg_event 14,  8, BGEVENT_READ, Route40Sign
 	bg_event  7,  8, BGEVENT_ITEM, Route40HiddenHyperPotion
 
 	def_object_events
