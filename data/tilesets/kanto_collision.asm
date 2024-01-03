@@ -198,3 +198,4 @@
 	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; c5
 	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; c6
 	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; c7
+	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; c8
