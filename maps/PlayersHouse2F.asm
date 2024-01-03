@@ -69,19 +69,18 @@ PlayersHouseRadioScript:
 	end
 
 PlayersHouseBookshelfScript:
-	;jumpstd PictureBookshelfScript
-	;debug!
+if DEF(_DEBUG)
 	opentext
 	writetext DebugTest
-	givemoney $0, 999999
+	givemoney YOUR_MONEY, MAX_MONEY
 	giveitem COIN_CASE
-	givecoins 9999
+	givecoins MAX_COINS
 	; good party
-	givepoke MEWTWO, 100, LEFTOVERS
-	givepoke CHANSEY, 4, LUCKY_EGG
+	givepoke MEWTWO, MAX_LEVEL, LEFTOVERS
+	givepoke CHANSEY, 5, LUCKY_EGG
 	; hm slaves
-	givepoke MEW, 100, LEFTOVERS
-	givepoke MEW, 100, LEFTOVERS
+	givepoke MEW, MAX_LEVEL, LEFTOVERS
+	givepoke MEW, MAX_LEVEL, LEFTOVERS
 	; tms for party
 	giveitem TM_SHADOW_BALL
 	giveitem TM_EARTHQUAKE
@@ -137,10 +136,6 @@ PlayersHouseBookshelfScript:
 	setevent EVENT_BEAT_BLAINE
 	setevent EVENT_BEAT_BLUE
 	setevent EVENT_BEAT_ELITE_FOUR
-	;setevent EVENT_DECO_UNOWN_DOLL
-	;setevent EVENT_DECO_SNES
-	;setevent EVENT_DECO_N64
-	;setevent EVENT_DECO_VIRTUAL_BOY
 	; fly anywhere
 	setflag ENGINE_FLYPOINT_NEW_BARK
 	setflag ENGINE_FLYPOINT_CHERRYGROVE
@@ -170,28 +165,31 @@ PlayersHouseBookshelfScript:
 	setevent EVENT_RESTORED_POWER_TO_KANTO
 	giveitem PASS
 	; useful items
-	giveitem MAX_REPEL, 99
-	giveitem MAX_REVIVE, 99
-	giveitem FULL_RESTORE, 99
-	giveitem MAX_ELIXER, 99
-	giveitem RARE_CANDY, 99
-	giveitem ESCAPE_ROPE, 99
-	giveitem SILVER_LEAF, 99
-	giveitem GOLD_LEAF, 99
+	giveitem MAX_REPEL, MAX_ITEM_STACK
+	giveitem MAX_REVIVE, MAX_ITEM_STACK
+	giveitem FULL_RESTORE, MAX_ITEM_STACK
+	giveitem MAX_ELIXER, MAX_ITEM_STACK
+	giveitem RARE_CANDY, MAX_ITEM_STACK
+	giveitem ESCAPE_ROPE, MAX_ITEM_STACK
+	giveitem SILVER_LEAF, MAX_ITEM_STACK
+	giveitem GOLD_LEAF, MAX_ITEM_STACK
 	; all balls
-	giveitem POKE_BALL, 99
-	giveitem GREAT_BALL, 99
-	giveitem ULTRA_BALL, 99
-	giveitem MASTER_BALL, 99
-	giveitem LOVE_BALL, 99
-	giveitem LURE_BALL, 99
-	giveitem FAST_BALL, 99
-	giveitem FRIEND_BALL, 99
-	giveitem LEVEL_BALL, 99
-	giveitem MOON_BALL, 99
-	giveitem HEAVY_BALL, 99
+	giveitem POKE_BALL, MAX_ITEM_STACK
+	giveitem GREAT_BALL, MAX_ITEM_STACK
+	giveitem ULTRA_BALL, MAX_ITEM_STACK
+	giveitem MASTER_BALL, MAX_ITEM_STACK
+	giveitem LOVE_BALL, MAX_ITEM_STACK
+	giveitem LURE_BALL, MAX_ITEM_STACK
+	giveitem FAST_BALL, MAX_ITEM_STACK
+	giveitem FRIEND_BALL, MAX_ITEM_STACK
+	giveitem LEVEL_BALL, MAX_ITEM_STACK
+	giveitem MOON_BALL, MAX_ITEM_STACK
+	giveitem HEAVY_BALL, MAX_ITEM_STACK
 	closetext
 	end
+else
+	jumpstd PictureBookshelfScript
+endc
 
 PlayersHousePCScript:
 	opentext
@@ -223,10 +221,12 @@ PlayersRadioText4:
 	line "#mon Channel…"
 	done
 
+if (_DEBUG)
 DebugTest:
 	text "Debug Mode"
 	line "ACTIVATED!"
 	done
+endc
 
 PlayersHouse2F_MapEvents:
 	def_warp_events
