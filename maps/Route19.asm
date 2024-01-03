@@ -238,7 +238,7 @@ Route19_MapEvents:
 	def_coord_events
 
 	def_bg_events
-	bg_event  9, 11, BGEVENT_READ, Route19Sign
+	bg_event  9, 15, BGEVENT_READ, Route19Sign
 	bg_event 13,  3, BGEVENT_READ, CarefulSwimmingSign
 
 	def_object_events
