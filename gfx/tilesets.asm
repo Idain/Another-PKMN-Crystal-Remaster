@@ -6,9 +6,6 @@ ENDM
 
 SECTION "Tileset Data 1", ROMX
 
-TilesetKantoGFX::
-INCBIN "gfx/tilesets/kanto.2bpp.lz"
-
 TilesetKantoMeta::
 INCBIN "data/tilesets/kanto_metatiles.bin"
 
@@ -445,3 +442,9 @@ INCBIN "data/tilesets/omanyte_word_room_attributes.bin"
 
 TilesetAerodactylWordRoomAttr::
 INCBIN "data/tilesets/aerodactyl_word_room_attributes.bin"
+
+
+SECTION "Tileset Data 12", ROMX
+
+TilesetKantoGFX::
+	INCBIN "gfx/tilesets/kanto.2bpp.lz"
