@@ -133,8 +133,8 @@ FuchsiaCity_MapEvents:
 	warp_event 23,  3, SAFARI_ZONE_FUCHSIA_GATE_BETA, 3 ; inaccessible
 	warp_event 39, 16, ROUTE_15_FUCHSIA_GATE, 1
 	warp_event 39, 17, ROUTE_15_FUCHSIA_GATE, 2
-	warp_event 18, 35, ROUTE_19_FUCHSIA_GATE, 1
-	warp_event 19, 35, ROUTE_19_FUCHSIA_GATE, 2
+	warp_event 17, 35, ROUTE_19_FUCHSIA_GATE, 1
+	warp_event 18, 35, ROUTE_19_FUCHSIA_GATE, 2
 
 	def_coord_events
 

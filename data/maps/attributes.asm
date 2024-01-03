@@ -266,17 +266,17 @@ ENDM
 	connection east, Route19, ROUTE_19, -9
 
 	map_attributes Route19, ROUTE_19, $43, NORTH | WEST
-	connection north, FuchsiaCity, FUCHSIA_CITY, 0
+	connection north, FuchsiaCity, FUCHSIA_CITY, -4
 	connection west, Route20, ROUTE_20, 9
 
 	map_attributes FuchsiaCity, FUCHSIA_CITY, $0f, SOUTH | WEST | EAST
-	connection south, Route19, ROUTE_19, 0
-	connection west, Route18, ROUTE_18, 7
-	connection east, Route15, ROUTE_15, 9
+	connection south, Route19, ROUTE_19, 4
+	connection west, Route18, ROUTE_18, 5
+	connection east, Route15, ROUTE_15, 6
 
 	map_attributes Route18, ROUTE_18, $43, WEST | EAST
 	connection west, Route17, ROUTE_17, -38
-	connection east, FuchsiaCity, FUCHSIA_CITY, -7
+	connection east, FuchsiaCity, FUCHSIA_CITY, -5
 
 	map_attributes Route17, ROUTE_17, $43, NORTH | EAST
 	connection north, Route16, ROUTE_16, 0
@@ -295,7 +295,7 @@ ENDM
 	connection east, SaffronCity, SAFFRON_CITY, -9
 
 	map_attributes Route15, ROUTE_15, $0f, WEST | EAST
-	connection west, FuchsiaCity, FUCHSIA_CITY, -9
+	connection west, FuchsiaCity, FUCHSIA_CITY, -6
 	connection east, Route14, ROUTE_14, -9
 
 	map_attributes Route14, ROUTE_14, $43, NORTH | WEST
