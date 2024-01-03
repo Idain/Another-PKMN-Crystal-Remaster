@@ -11,7 +11,7 @@ DEF NUM_STRING_BUFFERS EQU const_value
 
 DEF STRING_BUFFER_LENGTH EQU 19
 
-; checkmoney/takemoney accounts
+; getmoney/givemoney/checkmoney/takemoney accounts
 	const_def
 	const YOUR_MONEY ; 0
 	const MOMS_MONEY ; 1
