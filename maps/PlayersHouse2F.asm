@@ -221,7 +221,7 @@ PlayersRadioText4:
 	line "#mon Channel…"
 	done
 
-if (_DEBUG)
+if DEF(_DEBUG)
 DebugTest:
 	text "Debug Mode"
 	line "ACTIVATED!"
