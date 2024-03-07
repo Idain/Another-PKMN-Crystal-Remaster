@@ -105,25 +105,25 @@ SoulHouseSignText:
 LavenderTown_MapEvents:
 	def_warp_events
 	warp_event  9,  7, LAVENDER_POKECENTER_1F, 1
-	warp_event  9, 11, MR_FUJIS_HOUSE, 1
-	warp_event  7, 15, LAVENDER_SPEECH_HOUSE, 1
-	warp_event 11, 15, LAVENDER_NAME_RATER, 1
+	warp_event 11, 13, MR_FUJIS_HOUSE, 1
+	warp_event  7, 17, LAVENDER_SPEECH_HOUSE, 1
+	warp_event 11, 17, LAVENDER_NAME_RATER, 1
 	warp_event  5,  7, LAVENDER_MART, 2
-	warp_event 17, 13, SOUL_HOUSE, 1
+	warp_event 21, 15, SOUL_HOUSE, 1
 	warp_event 18,  7, LAV_RADIO_TOWER_1F, 1
 
 	def_coord_events
 
 	def_bg_events
-	bg_event 15,  5, BGEVENT_READ, LavenderTownSign
-	bg_event 19,  9, BGEVENT_READ, KantoRadioStationSign
-	bg_event  7, 11, BGEVENT_READ, VolunteerPokemonHouseSign
-	bg_event 19, 15, BGEVENT_READ, SoulHouseSign
+	bg_event 17, 11, BGEVENT_READ, LavenderTownSign
+	bg_event 15,  7, BGEVENT_READ, KantoRadioStationSign
+	bg_event  9, 13, BGEVENT_READ, VolunteerPokemonHouseSign
+	bg_event 17, 15, BGEVENT_READ, SoulHouseSign
 	bg_event 10,  7, BGEVENT_READ, LavenderPokecenterSignText
 	bg_event  6,  7, BGEVENT_READ, LavenderMartSignText
 
 	def_object_events
-	object_event 16,  9, SPRITE_POKEFAN_M, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, LavenderTownPokefanMScript, -1
-	object_event  6, 17, SPRITE_TEACHER, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, LavenderTownTeacherScript, -1
-	object_event 18, 14, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, LavenderTownGrampsScript, -1
-	object_event 10, 13, SPRITE_YOUNGSTER, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 1, LavenderTownYoungsterScript, -1
+	object_event 20, 10, SPRITE_POKEFAN_M, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, LavenderTownPokefanMScript, -1
+	object_event  6, 19, SPRITE_TEACHER, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, LavenderTownTeacherScript, -1
+	object_event 19, 17, SPRITE_GRAMPS, SPRITEMOVEDATA_STANDING_UP, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, LavenderTownGrampsScript, -1
+	object_event  6, 11, SPRITE_YOUNGSTER, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 1, 0, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 1, LavenderTownYoungsterScript, -1
