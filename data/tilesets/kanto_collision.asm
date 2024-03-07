@@ -220,3 +220,8 @@
 	tilecoll FLOOR, FLOOR, HOP_DOWN, CUT_TREE ; db
 	tilecoll FLOOR, WALL, FLOOR, WALL ; dc
 	tilecoll FLOOR, WALL, FLOOR, FLOOR ; dd
+	tilecoll FLOOR, FLOOR, WALL, WALL ; de
+	tilecoll WALL, WALL, FLOOR, CUT_TREE ; df
+	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; e0
+	tilecoll WATER, WATER, WATER, WATER ; e1
+	tilecoll FLOOR, FLOOR, FLOOR, WALL ; e2
