@@ -204,3 +204,19 @@
 	tilecoll , , ,  ; cb
 	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; cc
 	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; cd
+	tilecoll WALL, STAIRS_DOWN_LEFT, WALL, FLOOR ; ce
+	tilecoll WALL, STAIRS_DOWN_LEFT, WALL, FLOOR ; cf
+	tilecoll WALL, FLOOR, WALL, FLOOR ; d0
+	tilecoll FLOOR, WALL, FLOOR, WALL ; d1
+	tilecoll WALL, FLOOR, WALL, WALL ; d2
+	tilecoll FLOOR, WALL, WALL, WALL ; d3
+	tilecoll WALL, UP_WALL, WALL, FLOOR ; d4
+	tilecoll UP_WALL, WALL, FLOOR, WALL ; d5
+	tilecoll UP_WALL, UP_WALL, FLOOR, FLOOR ; d6
+	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; d7
+	tilecoll FLOOR, FLOOR, WALL, WALL ; d8
+	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; d9
+	tilecoll WALL, FLOOR, WALL, FLOOR ; da
+	tilecoll FLOOR, FLOOR, HOP_DOWN, CUT_TREE ; db
+	tilecoll FLOOR, WALL, FLOOR, WALL ; dc
+	tilecoll FLOOR, WALL, FLOOR, FLOOR ; dd

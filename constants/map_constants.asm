@@ -341,8 +341,8 @@ ENDM
 	endgroup
 
 	newgroup FUCHSIA                                              ; 17
-	map_const ROUTE_13,                                    30,  9 ;  1
-	map_const ROUTE_14,                                    10, 18 ;  2
+	map_const ROUTE_13,                                    40, 10 ;  1
+	map_const ROUTE_14,                                    11, 19 ;  2
 	map_const ROUTE_15,                                    31,  9 ;  3
 	map_const ROUTE_18,                                    10,  9 ;  4
 	map_const FUCHSIA_CITY,                                21, 18 ;  5
