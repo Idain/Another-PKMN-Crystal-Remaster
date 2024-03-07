@@ -172,7 +172,7 @@ Route12_MapEvents:
 
 	def_bg_events
 	bg_event 13, 65, BGEVENT_READ, Route12Sign
-	bg_event 15, 13, BGEVENT_READ, FishingSpotSign
+	bg_event 15, 17, BGEVENT_READ, FishingSpotSign
 	bg_event 18, 35, BGEVENT_ITEM, Route12HiddenElixer
 
 	def_object_events
