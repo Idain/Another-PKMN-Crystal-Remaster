@@ -343,7 +343,7 @@ ENDM
 	newgroup FUCHSIA                                              ; 17
 	map_const ROUTE_13,                                    30,  9 ;  1
 	map_const ROUTE_14,                                    10, 18 ;  2
-	map_const ROUTE_15,                                    20,  9 ;  3
+	map_const ROUTE_15,                                    31,  9 ;  3
 	map_const ROUTE_18,                                    10,  9 ;  4
 	map_const FUCHSIA_CITY,                                21, 18 ;  5
 	map_const FUCHSIA_MART,                                 6,  4 ;  6

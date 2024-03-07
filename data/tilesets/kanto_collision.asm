@@ -199,3 +199,8 @@
 	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; c6
 	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; c7
 	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; c8
+	tilecoll FLOOR, HOP_RIGHT, FLOOR, HOP_RIGHT ; c9
+	tilecoll HOP_LEFT, FLOOR, HOP_LEFT, FLOOR ; ca
+	tilecoll , , ,  ; cb
+	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; cc
+	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; cd
