@@ -125,6 +125,7 @@ NewBarkTownRivalScript:
 
 NewBarkTownSign:
 	jumptext NewBarkTownSignText
+	end
 
 NewBarkTownPlayersHouseSign:
 	jumptext NewBarkTownPlayersHouseSignText

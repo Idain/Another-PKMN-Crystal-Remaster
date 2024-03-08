@@ -16,11 +16,11 @@ Route19ClearRocksCallback:
 	checkevent EVENT_CINNABAR_ROCKS_CLEARED
 	iftrue .Done
 	;changeblock  8,  6, $7a ; rock
-	changeblock  8,  8, $7a ; rock moved up
-	changeblock 10,  6, $7a ; rock stay
-	changeblock 12,  8, $7a ; rock stay
-	;changeblock  4,  8, $7a ; rock
-	changeblock 10, 10, $7a ; rock
+	changeblock 08,  06, $7a ; rock
+	changeblock 10,  06, $7a ; rock
+	changeblock 12,  10, $7a ; rock
+	changeblock 10,  12, $7a ; rock
+	changeblock 14,  06, $7a ; rock
 .Done:
 	endcallback
 
