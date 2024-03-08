@@ -88,6 +88,7 @@ LinearFeedbackShiftRegister::
 
 	; Return if bit 0 isn't set.
     ldh a, [rDIV]
+	;ld a, %00100100
     srl a
     ret nc
 
@@ -107,6 +108,7 @@ LinearFeedbackShiftRegister::
     ; Get value from table 
     ld a, [hl]
     xor b ; we xor the value of a, the mask, with b, the random number initially in a
+
     pop hl
     pop bc
     ret
