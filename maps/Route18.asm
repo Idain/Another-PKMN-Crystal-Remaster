@@ -77,14 +77,14 @@ Route18SignText:
 
 Route18_MapEvents:
 	def_warp_events
-	warp_event  2,  6, ROUTE_17_ROUTE_18_GATE, 3
-	warp_event  2,  7, ROUTE_17_ROUTE_18_GATE, 4
+	warp_event  6,  6, ROUTE_17_ROUTE_18_GATE, 3
+	warp_event  6,  7, ROUTE_17_ROUTE_18_GATE, 4
 
 	def_coord_events
 
 	def_bg_events
-	bg_event  9,  5, BGEVENT_READ, Route18Sign
+	bg_event 19,  4, BGEVENT_READ, Route18Sign
 
 	def_object_events
-	object_event  9, 12, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerBirdKeeperBoris, -1
-	object_event 13,  6, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerBirdKeeperBob, -1
+	object_event  8, 12, SPRITE_YOUNGSTER, SPRITEMOVEDATA_SPINRANDOM_FAST, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerBirdKeeperBoris, -1
+	object_event 12,  5, SPRITE_YOUNGSTER, SPRITEMOVEDATA_STANDING_DOWN, 0, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_TRAINER, 3, TrainerBirdKeeperBob, -1
