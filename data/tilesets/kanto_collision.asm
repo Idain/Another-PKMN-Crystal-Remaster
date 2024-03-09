@@ -201,7 +201,7 @@
 	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; c8
 	tilecoll FLOOR, HOP_RIGHT, FLOOR, HOP_RIGHT ; c9
 	tilecoll HOP_LEFT, FLOOR, HOP_LEFT, FLOOR ; ca
-	tilecoll , , ,  ; cb
+	tilecoll FLOOR, WALL, FLOOR, FLOOR ; cb
 	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; cc
 	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; cd
 	tilecoll WALL, STAIRS_DOWN_LEFT, WALL, FLOOR ; ce
@@ -233,4 +233,4 @@
 	tilecoll WALL, WALL, WALL, WALL ; e8
 	tilecoll WALL, WALL, WALL, WALL ; e9
 	tilecoll WALL, WALL, WALL, WALL ; ea
-	tilecoll , , ,  ; eb
+	tilecoll WALL, WALL, WALL, WALL ; eb
