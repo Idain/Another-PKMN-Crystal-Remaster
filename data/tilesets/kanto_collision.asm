@@ -105,7 +105,7 @@
 	tilecoll WALL, WALL, WALL, WALL ; 68
 	tilecoll WALL, WALL, WALL, WALL ; 69
 	tilecoll STAIRS_DOWN_RIGHT, WALL, FLOOR, WALL ; 6a
-	tilecoll WALL, WALL, WALL, WALL ; 6b
+	tilecoll FLOOR, FLOOR, WALL, WALL ; 6b
 	tilecoll WALL, WALL, FLOOR, FLOOR ; 6c
 	tilecoll WALL, FLOOR, WALL, FLOOR ; 6d
 	tilecoll FLOOR, WALL, FLOOR, WALL ; 6e
