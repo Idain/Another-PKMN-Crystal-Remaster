@@ -15,6 +15,7 @@ PowerPlantSignText:
 
 Route10North_MapEvents:
 	def_warp_events
+	warp_event 10,  3, ROCK_TUNNEL_1F, 1
 	warp_event 15,  5, ROUTE_10_POKECENTER_1F, 1
 	warp_event  8, 29, POWER_PLANT, 1
 
