@@ -34,10 +34,9 @@ ChangeHappiness:
 ; Perform happiness action c on wCurPartyMon
 
 	ld a, [wCurPartyMon]
-	inc a
 	ld e, a
 	ld d, 0
-	ld hl, wPartySpecies - 1
+	ld hl, wPartySpecies
 	add hl, de
 	ld a, [hl]
 	cp EGG
