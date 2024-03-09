@@ -567,9 +567,10 @@ DayCare_InitBreeding:
 ; to either gender of Nidoran.
 	ld a, [wCurPartySpecies]
 	cp NIDORAN_F
-	jr c, .GotEggSpecies
-	cp NIDOKING + 1
-	jr nc, .GotEggSpecies
+	jr z, .GetNidoran
+	cp NIDORAN_M
+	jr nz, .GotEggSpecies
+.GetNidoran:
 ; Determine which Nidoran we get.
 	call Random
 	cp 50 percent + 1
