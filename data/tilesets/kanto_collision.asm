@@ -236,3 +236,7 @@
 	tilecoll WALL, WALL, WALL, WALL ; eb
 	tilecoll WALL, FLOOR, WALL, WALL ; ec
 	tilecoll FLOOR, WALL, WALL, WALL ; ed
+	tilecoll WALL, FLOOR, CUT_TREE, FLOOR ; ee
+	tilecoll FLOOR, CUT_TREE, FLOOR, WALL ; ef
+	tilecoll WALL, WALL, WALL, DOOR ; f0
+	tilecoll WALL, WALL, WALL, WALL ; f1
