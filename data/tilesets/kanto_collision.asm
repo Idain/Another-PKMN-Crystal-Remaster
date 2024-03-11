@@ -203,7 +203,7 @@
 	tilecoll HOP_LEFT, FLOOR, HOP_LEFT, FLOOR ; ca
 	tilecoll FLOOR, WALL, FLOOR, FLOOR ; cb
 	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; cc
-	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; cd
+	tilecoll FLOOR, WALL, FLOOR, FLOOR ; cd
 	tilecoll WALL, STAIRS_DOWN_LEFT, WALL, FLOOR ; ce
 	tilecoll WALL, STAIRS_DOWN_LEFT, WALL, FLOOR ; cf
 	tilecoll WALL, FLOOR, WALL, FLOOR ; d0
@@ -216,9 +216,9 @@
 	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; d7
 	tilecoll FLOOR, FLOOR, WALL, WALL ; d8
 	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; d9
-	tilecoll WALL, FLOOR, WALL, FLOOR ; da
+	tilecoll FLOOR, FLOOR, FLOOR, WALL ; da
 	tilecoll FLOOR, FLOOR, HOP_DOWN, CUT_TREE ; db
-	tilecoll FLOOR, WALL, FLOOR, WALL ; dc
+	tilecoll FLOOR, FLOOR, FLOOR, WALL ; dc
 	tilecoll FLOOR, WALL, FLOOR, FLOOR ; dd
 	tilecoll FLOOR, FLOOR, WALL, WALL ; de
 	tilecoll WALL, WALL, FLOOR, CUT_TREE ; df
@@ -240,3 +240,5 @@
 	tilecoll FLOOR, CUT_TREE, FLOOR, WALL ; ef
 	tilecoll WALL, WALL, WALL, DOOR ; f0
 	tilecoll WALL, WALL, WALL, WALL ; f1
+	tilecoll , , ,  ; f2
+	tilecoll WALL, FLOOR, FLOOR, FLOOR ; f3
