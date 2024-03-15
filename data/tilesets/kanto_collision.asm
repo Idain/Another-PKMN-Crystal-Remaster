@@ -240,5 +240,5 @@
 	tilecoll FLOOR, CUT_TREE, FLOOR, WALL ; ef
 	tilecoll WALL, WALL, WALL, DOOR ; f0
 	tilecoll WALL, WALL, WALL, WALL ; f1
-	tilecoll , , ,  ; f2
+	tilecoll WALL, WALL, WALL, WALL ; f2
 	tilecoll WALL, FLOOR, FLOOR, FLOOR ; f3
