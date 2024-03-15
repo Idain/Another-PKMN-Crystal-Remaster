@@ -14,6 +14,7 @@ Tilesets::
 	tileset TilesetJohto
 	tileset TilesetJohtoModern
 	tileset TilesetKanto
+	tileset TilesetKantoModern
 	tileset TilesetBattleTowerOutside
 	tileset TilesetHouse
 	tileset TilesetPlayersHouse

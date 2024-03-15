@@ -447,4 +447,16 @@ INCBIN "data/tilesets/aerodactyl_word_room_attributes.bin"
 SECTION "Tileset Data 12", ROMX
 
 TilesetKantoGFX::
-	INCBIN "gfx/tilesets/kanto.2bpp.lz"
+INCBIN "gfx/tilesets/kanto.2bpp.lz"
+
+TilesetKantoModernGFX::
+INCBIN "gfx/tilesets/kanto_modern.2bpp.lz"
+
+TilesetKantoModernMeta::
+INCBIN "data/tilesets/kanto_modern_metatiles.bin"
+	
+TilesetKantoModernColl::
+INCLUDE "data/tilesets/kanto_modern_collision.asm"
+
+TilesetKantoModernAttr::
+INCBIN "data/tilesets/kanto_modern_attributes.bin"
