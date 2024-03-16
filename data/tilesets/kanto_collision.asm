@@ -242,3 +242,4 @@
 	tilecoll WALL, WALL, WALL, WALL ; f1
 	tilecoll WALL, WALL, WALL, WALL ; f2
 	tilecoll WALL, FLOOR, FLOOR, FLOOR ; f3
+	tilecoll PUDDLE, PUDDLE, PUDDLE, PUDDLE ; f4

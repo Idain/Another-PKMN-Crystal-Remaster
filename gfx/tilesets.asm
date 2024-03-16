@@ -337,9 +337,6 @@ INCBIN "data/tilesets/johto_attributes.bin"
 TilesetJohtoModernAttr::
 INCBIN "data/tilesets/johto_modern_attributes.bin"
 
-TilesetKantoAttr::
-INCBIN "data/tilesets/kanto_attributes.bin"
-
 TilesetBattleTowerOutsideAttr::
 INCBIN "data/tilesets/battle_tower_outside_attributes.bin"
 
@@ -448,6 +445,12 @@ SECTION "Tileset Data 12", ROMX
 
 TilesetKantoGFX::
 INCBIN "gfx/tilesets/kanto.2bpp.lz"
+
+TilesetKantoAttr::
+INCBIN "data/tilesets/kanto_attributes.bin"
+
+
+SECTION "Tileset Data 13", ROMX
 
 TilesetKantoModernGFX::
 INCBIN "gfx/tilesets/kanto_modern.2bpp.lz"
