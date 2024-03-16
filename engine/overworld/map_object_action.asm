@@ -19,6 +19,7 @@ ObjectActionPairPointers:
 	dw SetFacingBoulderDust,           SetFacingStanding
 	dw SetFacingGrassShake,            SetFacingStanding
 	dw SetFacingSkyfall,               SetFacingCurrent
+	dw SetFacingPuddleSplash,          SetFacingStanding
 	assert_table_length NUM_OBJECT_ACTIONS
 
 SetFacingStanding:
@@ -284,8 +285,24 @@ SetFacingGrassShake:
 	and 4
 	ld a, FACING_GRASS_1
 	jr z, .ok
-	inc a ; FACING_GRASS_2
+	inc a
+	assert FACING_GRASS_1 + 1 == FACING_GRASS_2
+.ok
+	ld [hl], a
+	ret
 
+SetFacingPuddleSplash:
+	ld hl, OBJECT_STEP_FRAME
+	add hl, bc
+	inc [hl]
+	ld a, [hl]
+	ld hl, OBJECT_FACING
+	add hl, bc
+	and 4
+	ld a, FACING_SPLASH_1
+	jr z, .ok
+	inc a
+	assert FACING_SPLASH_1 + 1 == FACING_SPLASH_2
 .ok
 	ld [hl], a
 	ret

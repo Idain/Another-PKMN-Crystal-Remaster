@@ -283,3 +283,14 @@ Sfx_Twinkle_Ch5:
 	octave 5
 	note G_, 6
 	sound_ret
+
+Sfx_Puddle:
+	channel_count 1
+	channel 5, Sfx_Puddle_Ch5
+
+Sfx_Puddle_Ch5:
+	duty_cycle 1
+	pitch_sweep 9, 7
+	square_note 15, 9, 8, 1792
+	pitch_sweep 0, 8
+	sound_ret
