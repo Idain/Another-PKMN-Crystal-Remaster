@@ -157,18 +157,18 @@ MountMoonRivalTextLoss:
 
 MountMoon_MapEvents:
 	def_warp_events
-	warp_event  3,  3, ROUTE_3, 1
-	warp_event 15, 15, ROUTE_4, 1
-	warp_event 13,  3, MOUNT_MOON, 7
-	warp_event 15, 11, MOUNT_MOON, 8
-	warp_event 25,  5, MOUNT_MOON_SQUARE, 1
-	warp_event 25, 15, MOUNT_MOON_SQUARE, 2
-	warp_event 25,  3, MOUNT_MOON, 3
-	warp_event 25, 13, MOUNT_MOON, 4
+	warp_event  5,  5, ROUTE_3, 1
+	warp_event 17, 17, ROUTE_4, 1
+	warp_event 15,  5, MOUNT_MOON, 7
+	warp_event 17, 13, MOUNT_MOON, 8
+	warp_event 29,  7, MOUNT_MOON_SQUARE, 1
+	warp_event 29, 19, MOUNT_MOON_SQUARE, 2
+	warp_event 29,  5, MOUNT_MOON, 3
+	warp_event 29, 17, MOUNT_MOON, 4
 
 	def_coord_events
 
 	def_bg_events
 
 	def_object_events
-	object_event  7,  3, SPRITE_RIVAL, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_MT_MOON_RIVAL
+	object_event  9,  5, SPRITE_RIVAL, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, ObjectEvent, EVENT_MT_MOON_RIVAL
