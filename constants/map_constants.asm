@@ -304,7 +304,7 @@ ENDM
 	endgroup
 
 	newgroup PEWTER                                               ; 14
-	map_const ROUTE_3,                                     30,  9 ;  1
+	map_const ROUTE_3,                                     37, 15 ;  1
 	map_const PEWTER_CITY,                                 20, 18 ;  2
 	map_const PEWTER_NIDORAN_SPEECH_HOUSE,                  4,  4 ;  3
 	map_const PEWTER_GYM,                                   5,  7 ;  4
