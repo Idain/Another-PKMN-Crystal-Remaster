@@ -297,6 +297,11 @@ Serve1bppRequest::
 	cp LY_VBLANK + 2
 	ret nc
 
+; # tiles to copy is in b
+	xor a
+	ldh [hRequested1bppSize], a
+
+_Serve1bppRequest::
 ; Copy [hRequested1bppSize] 1bpp tiles from [hRequestedVTileSource] to [hRequestedVTileDest]
 
 	ld [hSPBuffer], sp
@@ -313,10 +318,6 @@ Serve1bppRequest::
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-
-; # tiles to copy is in b
-	xor a
-	ldh [hRequested1bppSize], a
 
 .next
 rept 4

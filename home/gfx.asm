@@ -346,20 +346,19 @@ Copy2bpp:
 	call CheckGDMA
 	jmp c, SafeHDMATransfer
 
-	rst SwapHLDE
-; bank
-	ld a, b
-; bc = c * LEN_2BPP_TILE
+	ldh a, [hROMBank]
 	push af
-	swap c
-	ld a, $f
-	and c
-	ld b, a
-	ld a, $f0
-	and c
-	ld c, a
+	ld a, b
+	rst Bankswitch
+
+	call WriteVCopyRegistersToHRAM
+	ld b, c
+	di
+	call _Serve2bppRequest
+
 	pop af
-	jp FarCopyBytes
+	rst Bankswitch
+	reti
 
 Get1bpp::
 ; copy c 1bpp tiles from b:de to hl
@@ -369,26 +368,19 @@ Get1bpp::
 	; fallthrough
 
 Copy1bpp::
-	push de
-	ld d, h
-	ld e, l
-
-; bank
-	ld a, b
-
-; bc = c * LEN_1BPP_TILE
+	ldh a, [hROMBank]
 	push af
-	ld h, 0
-	ld l, c
-	add hl, hl
-	add hl, hl
-	add hl, hl
-	ld b, h
-	ld c, l
-	pop af
+	ld a, b
+	rst Bankswitch
 
-	pop hl
-	jp FarCopyBytesDouble
+	call WriteVCopyRegistersToHRAM
+	ld b, c
+	di
+	call _Serve1bppRequest
+
+	pop af
+	rst Bankswitch
+	reti
 
 HBlankCopy1bpp:
 	di
@@ -418,11 +410,11 @@ HBlankCopy1bpp:
 	pop de
 .waitNoHBlank
 	ldh a, [rSTAT]
-	and %11
+	and rSTAT_MODE_MASK
 	jr z, .waitNoHBlank
 .waitHBlank
 	ldh a, [rSTAT]
-	and %11
+	and rSTAT_MODE_MASK
 	jr nz, .waitHBlank
 	ld a, c
 	ld [hli], a
@@ -480,7 +472,7 @@ HBlankCopy2bpp::
 	jr nc, .innerLoop
 
 ; VRAM to VRAM copy
-	lb bc, %11, rSTAT & $ff
+	lb bc, rSTAT_MODE_MASK, LOW(rSTAT)
 	jr .waitNoHBlank2
 .outerLoop2
 	ldh a, [rLY]
@@ -519,11 +511,11 @@ endr
 	pop de
 .waitNoHBlank
 	ldh a, [rSTAT]
-	and %11
+	and rSTAT_MODE_MASK
 	jr z, .waitNoHBlank
 .waitHBlank
 	ldh a, [rSTAT]
-	and %11
+	and rSTAT_MODE_MASK
 	jr nz, .waitHBlank
 	ld a, c
 	ld [hli], a
