@@ -289,7 +289,7 @@ CeruleanCity_MapEvents:
 	bg_event 31, 30, BGEVENT_READ, CeruleanGymSign
 	bg_event  9, 35, BGEVENT_READ, CeruleanBikeShopSign
 	bg_event 31, 22, BGEVENT_READ, CeruleanPoliceSign
-	bg_event 37, 10, BGEVENT_READ, CeruleanCapeSign
+	bg_event 37,  8, BGEVENT_READ, CeruleanCapeSign
 	bg_event 11, 35, BGEVENT_READ, CeruleanLockedDoor
 	bg_event 22, 27, BGEVENT_READ, CeruleanCityPokecenterSign
 	bg_event 22, 35, BGEVENT_READ, CeruleanCityMartSign
