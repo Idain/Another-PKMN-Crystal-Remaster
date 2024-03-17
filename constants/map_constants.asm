@@ -324,7 +324,7 @@ ENDM
 	map_const FAST_SHIP_B1F,                               16,  8 ;  7
 	map_const OLIVINE_PORT_PASSAGE,                        10,  9 ;  8
 	map_const VERMILION_PORT_PASSAGE,                      10,  9 ;  9
-	map_const MOUNT_MOON_SQUARE,                           15,  9 ; 10
+	map_const MOUNT_MOON_SQUARE,                           18, 11 ; 10
 	map_const MOUNT_MOON_GIFT_SHOP,                         4,  4 ; 11
 	map_const TIN_TOWER_ROOF,                              10,  9 ; 12
 	endgroup

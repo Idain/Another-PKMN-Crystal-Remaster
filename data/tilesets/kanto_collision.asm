@@ -249,3 +249,4 @@
 	tilecoll FLOOR, PUDDLE, PUDDLE, PUDDLE ; f8
 	tilecoll PUDDLE, PUDDLE, FLOOR, FLOOR ; f9
 	tilecoll PUDDLE, FLOOR, PUDDLE, FLOOR ; fa
+	tilecoll , , ,  ; fb
