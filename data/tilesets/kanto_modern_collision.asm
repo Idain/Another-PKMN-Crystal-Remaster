@@ -219,7 +219,7 @@
 	tilecoll FLOOR, FLOOR, FLOOR, WALL ; da
 	tilecoll WALL, WALL, WALL, WALL ; db
 	tilecoll FLOOR, FLOOR, FLOOR, WALL ; dc
-	tilecoll FLOOR, WALL, FLOOR, FLOOR ; dd
+	tilecoll FLOOR, FLOOR, WALL, FLOOR ; dd
 	tilecoll FLOOR, FLOOR, WALL, WALL ; de
 	tilecoll WALL, WALL, FLOOR, CUT_TREE ; df
 	tilecoll FLOOR, FLOOR, FLOOR, FLOOR ; e0
