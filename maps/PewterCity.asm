@@ -154,26 +154,26 @@ PewterCityWelcomeSignText:
 
 PewterCity_MapEvents:
 	def_warp_events
-	warp_event 33, 15, PEWTER_NIDORAN_SPEECH_HOUSE, 1
-	warp_event 20, 19, PEWTER_GYM, 1
-	warp_event 26, 19, PEWTER_MART, 2
-	warp_event 17, 27, PEWTER_POKECENTER_1F, 1
-	warp_event 11, 31, PEWTER_SNOOZE_SPEECH_HOUSE, 1
+	warp_event 31, 15, PEWTER_NIDORAN_SPEECH_HOUSE, 1
+	warp_event 18, 19, PEWTER_GYM, 1
+	warp_event 24, 19, PEWTER_MART, 2
+	warp_event 15, 27, PEWTER_POKECENTER_1F, 1
+	warp_event  9, 31, PEWTER_SNOOZE_SPEECH_HOUSE, 1
 
 	def_coord_events
 
 	def_bg_events
-	bg_event 29, 25, BGEVENT_READ, PewterCitySign
-	bg_event 15, 19, BGEVENT_READ, PewterGymSign
-	bg_event 19, 11, BGEVENT_READ, PewterMuseumSign
-	bg_event 37, 21, BGEVENT_READ, PewterCityMtMoonGiftShopSign
-	bg_event 23, 31, BGEVENT_READ, PewterCityWelcomeSign
-	bg_event 18, 27, BGEVENT_READ, PewterCityPokecenterSign
-	bg_event 28, 19, BGEVENT_READ, PewterCityMartSign
+	bg_event 27, 25, BGEVENT_READ, PewterCitySign
+	bg_event 13, 19, BGEVENT_READ, PewterGymSign
+	bg_event 17, 11, BGEVENT_READ, PewterMuseumSign
+	bg_event 35, 21, BGEVENT_READ, PewterCityMtMoonGiftShopSign
+	bg_event 21, 31, BGEVENT_READ, PewterCityWelcomeSign
+	bg_event 16, 27, BGEVENT_READ, PewterCityPokecenterSign
+	bg_event 26, 19, BGEVENT_READ, PewterCityMartSign
 
 	def_object_events
-	object_event 23, 13, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, PewterCityCooltrainerFScript, -1
-	object_event 18, 31, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, PewterCityBugCatcherScript, -1
-	object_event 33, 19, SPRITE_GRAMPS, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 2, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, PewterCityGrampsScript, -1
-	object_event 36,  5, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, PewterCityFruitTree1, -1
-	object_event 34,  5, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, PewterCityFruitTree2, -1
+	object_event 21, 13, SPRITE_COOLTRAINER_F, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, PAL_NPC_GREEN, OBJECTTYPE_SCRIPT, 0, PewterCityCooltrainerFScript, -1
+	object_event 16, 31, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_WANDER, 2, 2, -1, -1, PAL_NPC_RED, OBJECTTYPE_SCRIPT, 0, PewterCityBugCatcherScript, -1
+	object_event 31, 19, SPRITE_GRAMPS, SPRITEMOVEDATA_WALK_LEFT_RIGHT, 2, 0, -1, -1, PAL_NPC_BLUE, OBJECTTYPE_SCRIPT, 0, PewterCityGrampsScript, -1
+	object_event 34,  5, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, PewterCityFruitTree1, -1
+	object_event 32,  5, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, PewterCityFruitTree2, -1
