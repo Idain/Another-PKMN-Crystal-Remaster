@@ -237,9 +237,6 @@ SECTION "Tileset Data 6", ROMX
 TilesetTraditionalHouseColl::
 INCLUDE "data/tilesets/traditional_house_collision.asm"
 
-TilesetForestGFX::
-INCBIN "gfx/tilesets/forest.2bpp.lz"
-
 TilesetChampionsRoomGFX::
 INCBIN "gfx/tilesets/champions_room.2bpp.lz"
 
@@ -463,3 +460,6 @@ INCLUDE "data/tilesets/kanto_modern_collision.asm"
 
 TilesetKantoModernAttr::
 INCBIN "data/tilesets/kanto_modern_attributes.bin"
+
+TilesetForestGFX::
+INCBIN "gfx/tilesets/forest.2bpp.lz"
