@@ -146,28 +146,28 @@ Route2DiglettsCaveSignText:
 
 Route2_MapEvents:
 	def_warp_events
-	warp_event 19, 21, ROUTE_2_NUGGET_HOUSE, 1
-	warp_event  3, 48, ROUTE_2_GATE, 3
-	warp_event 22, 45, ROUTE_2_GATE, 1
-	warp_event 23, 45, ROUTE_2_GATE, 2
-	warp_event 18, 11, DIGLETTS_CAVE, 3
+	warp_event 17, 21, ROUTE_2_NUGGET_HOUSE, 1
+	warp_event 10, 44, ROUTE_2_GATE, 3
+	warp_event 20, 45, ROUTE_2_GATE, 1
+	warp_event 21, 45, ROUTE_2_GATE, 2
+	warp_event 16, 11, DIGLETTS_CAVE, 3
 
 	def_coord_events
 
 	def_bg_events
-	bg_event  1, 49, BGEVENT_READ, Route2Sign
-	bg_event 19, 12, BGEVENT_READ, Route2DiglettsCaveSign
-	bg_event  1, 48, BGEVENT_ITEM, Route2HiddenMaxEther
+	bg_event  8, 44, BGEVENT_READ, Route2Sign
+	bg_event 15, 12, BGEVENT_READ, Route2DiglettsCaveSign
+	bg_event 13, 45, BGEVENT_ITEM, Route2HiddenMaxEther
 	bg_event 10, 14, BGEVENT_ITEM, Route2HiddenFullHeal
-	bg_event  0, 48, BGEVENT_ITEM, Route2HiddenFullRestore
-	bg_event  4, 49, BGEVENT_ITEM, Route2HiddenRevive
+	bg_event 12, 45, BGEVENT_ITEM, Route2HiddenFullRestore
+	bg_event 10, 45, BGEVENT_ITEM, Route2HiddenRevive
 
 	def_object_events
-	object_event  2, 49, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 5, TrainerBugCatcherRob, -1
-	object_event 12,  7, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 3, TrainerBugCatcherEd, -1
-	object_event  3, 49, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 3, TrainerBugCatcherDoug, -1
-	object_event  5, 49, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route2DireHit, EVENT_ROUTE_2_DIRE_HIT
-	object_event  2, 48, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route2MaxPotion, EVENT_ROUTE_2_MAX_POTION
-	object_event 18,  5, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route2Carbos, EVENT_ROUTE_2_CARBOS
-	object_event  0, 49, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route2Elixer, EVENT_ROUTE_2_ELIXER
-	object_event 24, 22, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route2FruitTree, -1
+	object_event  8, 45, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_STANDING_LEFT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 5, TrainerBugCatcherRob, -1
+	object_event 10,  7, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_SPINCLOCKWISE, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 3, TrainerBugCatcherEd, -1
+	object_event  9, 45, SPRITE_BUG_CATCHER, SPRITEMOVEDATA_STANDING_RIGHT, 0, 0, -1, -1, PAL_NPC_BROWN, OBJECTTYPE_TRAINER, 3, TrainerBugCatcherDoug, -1
+	object_event 11, 45, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route2DireHit, EVENT_ROUTE_2_DIRE_HIT
+	object_event  9, 44, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route2MaxPotion, EVENT_ROUTE_2_MAX_POTION
+	object_event 16,  5, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route2Carbos, EVENT_ROUTE_2_CARBOS
+	object_event 12, 44, SPRITE_POKE_BALL, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_ITEMBALL, 0, Route2Elixer, EVENT_ROUTE_2_ELIXER
+	object_event 22, 22, SPRITE_FRUIT_TREE, SPRITEMOVEDATA_STILL, 0, 0, -1, -1, 0, OBJECTTYPE_SCRIPT, 0, Route2FruitTree, -1
