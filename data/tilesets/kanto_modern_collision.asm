@@ -171,7 +171,7 @@
 	tilecoll WALL, WALL, WALL, WALL ; aa
 	tilecoll WALL, WALL, WALL, WALL ; ab
 	tilecoll WALL, DOOR, FLOOR, FLOOR ; ac
-	tilecoll WALL, FLOOR, FLOOR, FLOOR ; ad
+	tilecoll WALL, FLOOR, FLOOR, CUT_TREE ; ad
 	tilecoll WALL, FLOOR, FLOOR, FLOOR ; ae
 	tilecoll FLOOR, WALL, FLOOR, WALL ; af
 	tilecoll WALL, WALL, FLOOR, FLOOR ; b0
