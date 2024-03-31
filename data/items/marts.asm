@@ -62,6 +62,7 @@ MartCherrygrove:
 	db PARLYZ_HEAL
 	db -1 ; end
 
+DefaultMart:
 MartCherrygroveDex:
 	db 4 ; # items
 	db POKE_BALL
@@ -692,10 +693,4 @@ MartUnderground:
 	db ENERGYPOWDER
 	db ENERGY_ROOT
 	db REVIVAL_HERB
-	db -1 ; end
-
-DefaultMart:
-	db 2 ; # items
-	db POKE_BALL
-	db POTION
 	db -1 ; end
